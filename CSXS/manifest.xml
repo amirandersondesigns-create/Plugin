@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="9.0" ExtensionBundleId="com.aanders.motionspellchecker"
-    ExtensionBundleVersion="2.0.0" ExtensionBundleName="Motion Spell Checker"
-    xmlns="http://ns.adobe.com/extension/1.0">
+<ExtensionManifest Version="9.0" ExtensionBundleId="com.aanders.motionspellchecker" ExtensionBundleVersion="2.0.1" ExtensionBundleName="Motion Spell Checker" xmlns="http://ns.adobe.com/extension/1.0">
     <ExtensionList>
-        <Extension Id="com.aanders.motionspellchecker.panel" Version="2.0.0" />
+        <Extension Id="com.aanders.motionspellchecker.panel" Version="2.0.1" />
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
