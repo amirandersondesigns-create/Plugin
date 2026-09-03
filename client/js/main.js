@@ -25,35 +25,29 @@
     function $(id) { return document.getElementById(id); }
 
     var el = {
-        settingsDrawer: $("settingsDrawer"),
-        compactScanBar: $("compactScanBar"),
-        btnSettingsToggle: $("btnSettingsToggle"),
-        btnDictToggle: $("btnDictToggle"),
-        btnHighlightToggle: $("btnHighlightToggle"),
+        btnVerifyDict: $("btnVerifyDict"),
+        btnHelp: $("btnHelp"),
 
         ddlScope: $("ddlScope"),
-        ddlScopeCompact: $("ddlScopeCompact"),
         ddlFilter: $("ddlFilter"),
+        btnClear: $("btnClear"),
+        btnScan: $("btnScan"),
+
+        btnAdvancedToggle: $("btnAdvancedToggle"),
+        advancedPanel: $("advancedPanel"),
 
         cbIgnoreHidden: $("cbIgnoreHidden"),
         cbIgnoreLocked: $("cbIgnoreLocked"),
         cbSelectedOnly: $("cbSelectedOnly"),
-        cbForceHighlight: $("cbForceHighlight"),
-        cbDisableGlobal: $("cbDisableGlobal"),
         cbIgnoreCaps: $("cbIgnoreCaps"),
         cbSkipNumbers: $("cbSkipNumbers"),
         cbSmartMatch: $("cbSmartMatch"),
 
-        btnScanActive: $("btnScanActive"),
-        btnScanSelected: $("btnScanSelected"),
-        btnRescan: $("btnRescan"),
-        btnScanCompact: $("btnScanCompact"),
-        btnClear: $("btnClear"),
-
+        statusDot: $("statusDot"),
+        statusText: $("statusText"),
         statComps: $("statComps"),
         statWords: $("statWords"),
         statErrors: $("statErrors"),
-        statErrorsPill: $("statErrorsPill"),
 
         wordsTitle: $("wordsTitle"),
         emptyState: $("emptyState"),
@@ -66,17 +60,10 @@
         suggestionsTitle: $("suggestionsTitle"),
         suggestInput: $("suggestInput"),
         suggestList: $("suggestList"),
-        btnSuggestInfo: $("btnSuggestInfo"),
-        suggestInfoPopover: $("suggestInfoPopover"),
         btnReplace: $("btnReplace"),
         btnUndo: $("btnUndo"),
         btnIgnore: $("btnIgnore"),
         btnAddDict: $("btnAddDict"),
-
-        statusDot: $("statusDot"),
-        statusText: $("statusText"),
-        btnVerifyDict: $("btnVerifyDict"),
-        btnHelp: $("btnHelp"),
 
         dictOverlay: $("dictOverlay"),
         dictOverlayBody: $("dictOverlayBody"),
@@ -89,9 +76,7 @@
     var state = {
         scanned: false,
         words: [],          // [{lower, word, count, locations:[{label,sourceType}], suggestions:[...]}]
-        selectedLower: null,
-        lastScanParams: null,
-        highlightsOn: true
+        selectedLower: null
     };
 
     // ---------------------------------------------------------------
@@ -108,36 +93,15 @@
         el.statComps.textContent = stats.comps || 0;
         el.statWords.textContent = stats.words || 0;
         el.statErrors.textContent = stats.errors || 0;
-        el.statErrorsPill.className = "stat-pill" + (stats.errors > 0 ? " error" : (state.scanned ? " ok" : ""));
     }
 
     // ---------------------------------------------------------------
-    // Settings drawer
+    // Advanced options — collapsed by default (progressive disclosure)
     // ---------------------------------------------------------------
-    function setDrawerOpen(open) {
-        el.settingsDrawer.classList.toggle("open", open);
-        el.btnSettingsToggle.classList.toggle("active", open);
-        el.compactScanBar.style.display = open ? "none" : "flex";
-    }
-
-    el.btnSettingsToggle.addEventListener("click", function () {
-        setDrawerOpen(!el.settingsDrawer.classList.contains("open"));
+    el.btnAdvancedToggle.addEventListener("click", function () {
+        var open = el.advancedPanel.classList.toggle("open");
+        el.btnAdvancedToggle.querySelector(".caret").innerHTML = open ? "&#9662;" : "&#9656;";
     });
-
-    el.btnHighlightToggle.addEventListener("click", function () {
-        state.highlightsOn = !state.highlightsOn;
-        el.btnHighlightToggle.classList.toggle("active", state.highlightsOn);
-    });
-    el.btnHighlightToggle.classList.add("active");
-
-    el.btnDictToggle.addEventListener("click", function () {
-        if (state.selectedLower) { addToDictionary(); }
-        else { setStatus("Select a misspelled word first, then click here to whitelist it.", "warning"); }
-    });
-
-    // keep the two scope dropdowns mirrored
-    el.ddlScope.addEventListener("change", function () { el.ddlScopeCompact.value = el.ddlScope.value; });
-    el.ddlScopeCompact.addEventListener("change", function () { el.ddlScope.value = el.ddlScopeCompact.value; });
 
     el.ddlFilter.addEventListener("change", function () {
         renderWordsList();
@@ -147,9 +111,9 @@
     // ---------------------------------------------------------------
     // Scan
     // ---------------------------------------------------------------
-    function gatherScanParams(scopeOverride) {
+    function gatherScanParams() {
         return {
-            scope: scopeOverride || el.ddlScope.value,
+            scope: el.ddlScope.value,
             filter: el.ddlFilter.value,
             ignoreHidden: el.cbIgnoreHidden.checked,
             ignoreLocked: el.cbIgnoreLocked.checked,
@@ -161,14 +125,11 @@
     }
 
     function setScanningUI(isScanning) {
-        [el.btnScanActive, el.btnScanSelected, el.btnRescan, el.btnScanCompact, el.btnClear].forEach(function (b) {
-            b.disabled = isScanning;
-        });
+        [el.btnScan, el.btnClear].forEach(function (b) { b.disabled = isScanning; });
     }
 
-    function runScan(scopeOverride) {
-        var params = gatherScanParams(scopeOverride);
-        state.lastScanParams = params;
+    function runScan() {
+        var params = gatherScanParams();
         setScanningUI(true);
         setStatus("Scanning project…", "scanning");
 
@@ -189,20 +150,17 @@
             if (res.compsScanned === 0) {
                 setStatus("Nothing to scan — " + (res.scope === "selected" ? "select some layers first" : "no compositions found"), "warning");
             } else if (state.words.length === 0) {
-                setStatus("✓ Clean — " + res.stats.words + " words across " + res.compsScanned + " comp(s), no issues", "success");
+                setStatus("Clean — " + res.stats.words + " words across " + res.compsScanned + " comp(s), no issues.", "success");
             } else {
-                setStatus("Found " + state.words.length + " issue(s) · " + scopeLabel + " · " + res.stats.words + " words", "error");
+                setStatus("Found " + state.words.length + " issue(s) in " + scopeLabel + " (" + res.stats.words + " words scanned).", "error");
             }
             if (res.usingFallbackOnly) {
-                setStatus("⚠ Using built-in fallback dictionary only (" + res.fallbackWordCount + " words). Add category .txt files to /Dictionary/.", "warning");
+                setStatus("Using built-in fallback dictionary only (" + res.fallbackWordCount + " words). Add category .txt files to /Dictionary/.", "warning");
             }
         });
     }
 
-    el.btnScanActive.addEventListener("click", function () { runScan("active"); });
-    el.btnScanSelected.addEventListener("click", function () { runScan("selected"); });
-    el.btnScanCompact.addEventListener("click", function () { runScan(); });
-    el.btnRescan.addEventListener("click", function () { runScan(state.lastScanParams ? state.lastScanParams.scope : undefined); });
+    el.btnScan.addEventListener("click", runScan);
 
     el.btnClear.addEventListener("click", function () {
         state.scanned = false;
@@ -211,7 +169,7 @@
         renderStats(null);
         renderWordsList();
         clearDetail();
-        setStatus("Cleared — ready to scan", null);
+        setStatus("Cleared — ready to scan.", null);
     });
 
     // ---------------------------------------------------------------
@@ -240,7 +198,7 @@
             return;
         }
         if (visible.length === 0) {
-            el.emptyState.textContent = "✓ No spelling issues found.";
+            el.emptyState.textContent = "No spelling issues found.";
             el.emptyState.className = "empty-state success";
             el.emptyState.style.display = "block";
             el.wordsList.style.display = "none";
@@ -254,9 +212,9 @@
             var row = document.createElement("div");
             row.className = "row-item" + (w.lower === state.selectedLower ? " selected" : "");
             row.innerHTML =
-                '<span class="tag">' + (i + 1) + '</span>' +
-                '<span class="word-text">' + escapeHtml(w.word) + '</span>' +
-                '<span class="count-chip">×' + w.count + '</span>';
+                '<span class="row-index">' + (i + 1) + '</span>' +
+                '<span class="row-word">' + escapeHtml(w.word) + '</span>' +
+                '<span class="row-count">' + w.count + '</span>';
             row.addEventListener("click", function () { selectWord(w.lower); });
             el.wordsList.appendChild(row);
         });
@@ -279,24 +237,22 @@
 
         el.locationsTitle.textContent = "Locations (" + w.locations.length + ")";
         el.locationsList.innerHTML = "";
-        w.locations.forEach(function (loc) {
+        w.locations.forEach(function (loc, i) {
             var row = document.createElement("div");
-            row.className = "row-item location-item";
+            row.className = "row-item location-item" + (i === 0 ? " selected" : "");
             row.innerHTML =
-                '<div class="src-tag">' + escapeHtml(sourceLabel(loc.sourceType)) + '</div>' +
-                '<div class="loc-label">' + escapeHtml(loc.label) + '</div>';
+                '<div class="src">' + escapeHtml(sourceLabel(loc.sourceType)) + '</div>' +
+                '<div class="label">' + escapeHtml(loc.label) + '</div>';
+            row.dataset.index = String(i);
             row.addEventListener("dblclick", function () { revealSelected(); });
             row.addEventListener("click", function () {
                 Array.prototype.forEach.call(el.locationsList.children, function (c) { c.classList.remove("selected"); });
                 row.classList.add("selected");
-                row.dataset.selected = "true";
             });
-            row.dataset.index = String(w.locations.indexOf(loc));
             el.locationsList.appendChild(row);
         });
-        if (el.locationsList.firstChild) el.locationsList.firstChild.classList.add("selected");
 
-        el.suggestionsTitle.textContent = "Suggestions (" + w.suggestions.length + ")";
+        el.suggestionsTitle.textContent = w.suggestions.length > 0 ? "Suggestion (" + w.suggestions.length + " found)" : "Suggestion";
         el.suggestList.innerHTML = "";
         w.suggestions.forEach(function (s) {
             var o = document.createElement("option");
@@ -320,7 +276,7 @@
     function clearDetail() {
         el.locationsTitle.textContent = "Locations";
         el.locationsList.innerHTML = "";
-        el.suggestionsTitle.textContent = "Suggestions";
+        el.suggestionsTitle.textContent = "Suggestion";
         el.suggestList.innerHTML = "";
         el.suggestInput.value = "";
         el.suggestInput.placeholder = "No suggestions";
@@ -338,9 +294,7 @@
     function removeWordFromState(lower) {
         state.words = state.words.filter(function (w) { return w.lower !== lower; });
         if (state.selectedLower === lower) state.selectedLower = null;
-        var errCount = state.words.length;
-        el.statErrors.textContent = errCount;
-        el.statErrorsPill.className = "stat-pill" + (errCount > 0 ? " error" : " ok");
+        el.statErrors.textContent = state.words.length;
         renderWordsList();
         clearDetail();
     }
@@ -352,31 +306,29 @@
         var w = findWord(state.selectedLower);
         callHost("csReplace", { lower: state.selectedLower, newWord: newWord }).then(function (res) {
             if (res.ok) {
-                setStatus("✓ Replaced \"" + res.word + "\" → \"" + res.newWord + "\" (" + res.replaced + " instance(s))", "success");
+                setStatus("Replaced \"" + res.word + "\" with \"" + res.newWord + "\" (" + res.replaced + " instance(s)).", "success");
                 removeWordFromState(w.lower);
             } else {
-                setStatus(res.error || ("Could not replace \"" + (w ? w.word : state.selectedLower) + "\""), "error");
+                setStatus(res.error || ("Could not replace \"" + (w ? w.word : state.selectedLower) + "\"."), "error");
             }
         });
     });
 
-    el.btnIgnore.addEventListener("click", function () { ignoreSelected(); });
-    function ignoreSelected() {
+    el.btnIgnore.addEventListener("click", function () {
         if (!state.selectedLower) { setStatus("Select a misspelled word first.", "warning"); return; }
         var lower = state.selectedLower;
         callHost("csIgnore", { lower: lower }).then(function (res) {
-            if (res.ok) { setStatus("Ignored \"" + lower + "\" (saved to ignoredWords.txt)", "warning"); removeWordFromState(lower); }
+            if (res.ok) { setStatus("Ignored \"" + lower + "\" (saved to ignoredWords.txt).", null); removeWordFromState(lower); }
         });
-    }
+    });
 
-    el.btnAddDict.addEventListener("click", function () { addToDictionary(); });
-    function addToDictionary() {
+    el.btnAddDict.addEventListener("click", function () {
         if (!state.selectedLower) { setStatus("Select a misspelled word first.", "warning"); return; }
         var lower = state.selectedLower;
         callHost("csAddToDictionary", { lower: lower }).then(function (res) {
-            if (res.ok) { setStatus("✓ Added \"" + lower + "\" to custom dictionary", "success"); removeWordFromState(lower); }
+            if (res.ok) { setStatus("Added \"" + lower + "\" to custom dictionary.", "success"); removeWordFromState(lower); }
         });
-    }
+    });
 
     el.btnReveal.addEventListener("click", function () { revealSelected(); });
     function revealSelected() {
@@ -393,10 +345,6 @@
             if (res.ok) setStatus("Undid last change.", null);
             else setStatus(res.error || "Nothing to undo.", "warning");
         });
-    });
-
-    el.btnSuggestInfo.addEventListener("click", function () {
-        el.suggestInfoPopover.classList.toggle("open");
     });
 
     // ---------------------------------------------------------------
@@ -424,12 +372,12 @@
     function renderDictOverlay(r) {
         var html = "";
         html += '<div class="dict-summary">' +
-            '<div class="stat-pill ok"><div class="num">' + r.loaded + '</div><div class="lbl">Loaded</div></div>' +
-            '<div class="stat-pill"><div class="num">' + r.missing + '</div><div class="lbl">Missing</div></div>' +
-            '<div class="stat-pill error"><div class="num">' + r.error + '</div><div class="lbl">Errors</div></div>' +
+            '<span><span class="num">' + r.loaded + '</span> loaded</span>' +
+            '<span><span class="num">' + r.missing + '</span> missing</span>' +
+            '<span><span class="num">' + r.error + '</span> errors</span>' +
             '</div>';
         html += '<p style="color:var(--muted);font-size:10.5px;margin-bottom:10px;">Folder: ' + escapeHtml(r.dictionaryPath) +
-            '<br/>Fallback list: ' + r.fallbackWords + ' words · Custom dictionary: ' + r.customWords + ' words · ' +
+            '<br/>Fallback list: ' + r.fallbackWords + ' words &middot; Custom dictionary: ' + r.customWords + ' words &middot; ' +
             'Category files: ' + r.fileWords + ' words / ' + r.fileCorrections + ' corrections</p>';
         r.categories.forEach(function (c) {
             html += '<div class="dict-row"><span class="name">' + escapeHtml(c.name.replace(/_/g, " ")) + '</span>' +
@@ -453,8 +401,8 @@
     function init() {
         callHost("csGetInfo").then(function (res) {
             if (res.ok) {
-                document.getElementById("appTitle").textContent = res.appName + " V" + res.version.split(".")[0];
-                document.getElementById("appByline").textContent = "by " + res.author;
+                $("appTitle").textContent = res.appName;
+                $("appByline").textContent = "by " + res.author + " · v" + res.version;
                 if (!res.hasProject) setStatus("Open an After Effects project to get started.", "warning");
             }
         });
