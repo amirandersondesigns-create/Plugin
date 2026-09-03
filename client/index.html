@@ -10,8 +10,10 @@
 
         <!-- Title bar -->
         <div class="titlebar">
-            <h1 id="appTitle">Motion Spell Checker</h1>
-            <span class="byline" id="appByline">by Amir Anderson</span>
+            <div class="titlebar-id">
+                <h1 id="appTitle">Motion Spell Checker</h1>
+                <span class="byline" id="appByline">by Amir Anderson</span>
+            </div>
             <span class="spacer"></span>
             <button class="link-btn" id="btnVerifyDict">Verify Dictionary</button>
             <button class="link-btn" id="btnHelp">Help</button>
@@ -19,7 +21,7 @@
 
         <!-- Toolbar: scope + primary action, always visible -->
         <div class="toolbar">
-            <div class="toolbar-row">
+            <div class="toolbar-row toolbar-fields">
                 <label class="field">
                     <span class="field-label">Scope</span>
                     <select id="ddlScope">
@@ -40,8 +42,11 @@
                         <option value="name">Names</option>
                     </select>
                 </label>
-                <span class="spacer"></span>
+            </div>
+
+            <div class="toolbar-row toolbar-actions">
                 <button id="btnGearSettings" class="icon-btn" title="Scan settings">&#9881;</button>
+                <span class="spacer"></span>
                 <button id="btnClear" class="btn-plain">Clear</button>
                 <button id="btnScan" class="btn-primary">Scan</button>
             </div>
@@ -90,11 +95,11 @@
                     </div>
                     <div class="help-text">Pick a suggestion or type your own replacement, then Replace.</div>
 
+                    <button id="btnReplace" class="btn-primary btn-block">Replace</button>
                     <div class="action-row">
-                        <button id="btnReplace" class="btn-primary">Replace</button>
-                        <button id="btnUndo" class="btn-plain">Undo</button>
+                        <button id="btnUndo" class="icon-btn" title="Undo last change">&#8630;</button>
                         <button id="btnIgnore" class="btn-plain">Ignore</button>
-                        <button id="btnAddDict" class="btn-plain">Add to Dictionary</button>
+                        <button id="btnAddDict" class="btn-plain">+ Dictionary</button>
                     </div>
                 </div>
             </div>
