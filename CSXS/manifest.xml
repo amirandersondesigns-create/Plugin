@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="9.0" ExtensionBundleId="com.aanders.motionspellchecker"
+    ExtensionBundleVersion="2.0.0" ExtensionBundleName="Motion Spell Checker"
+    xmlns="http://ns.adobe.com/extension/1.0">
+    <ExtensionList>
+        <Extension Id="com.aanders.motionspellchecker.panel" Version="2.0.0" />
+    </ExtensionList>
+    <ExecutionEnvironment>
+        <HostList>
+            <Host Name="AEFT" Version="[22.0,99.9]" />
+        </HostList>
+        <LocaleList>
+            <Locale Code="All" />
+        </LocaleList>
+        <RequiredRuntimeList>
+            <RequiredRuntime Name="CSXS" Version="9.0" />
+        </RequiredRuntimeList>
+    </ExecutionEnvironment>
+    <DispatchInfoList>
+        <Extension Id="com.aanders.motionspellchecker.panel">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./client/index.html</MainPath>
+                    <ScriptPath>./host/spellcheck.jsx</ScriptPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                        <Parameter>--mixed-context</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>Panel</Type>
+                    <Menu>Motion Spell Checker</Menu>
+                    <Geometry>
+                        <Size>
+                            <Height>820</Height>
+                            <Width>420</Width>
+                        </Size>
+                        <MinSize>
+                            <Height>560</Height>
+                            <Width>360</Width>
+                        </MinSize>
+                        <MaxSize>
+                            <Height>2400</Height>
+                            <Width>900</Width>
+                        </MaxSize>
+                    </Geometry>
+                    <Icons>
+                        <Icon Type="Normal">./client/icons/icon.png</Icon>
+                        <Icon Type="RollOver">./client/icons/icon.png</Icon>
+                        <Icon Type="Darkest">./client/icons/icon.png</Icon>
+                    </Icons>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+    </DispatchInfoList>
+</ExtensionManifest>
