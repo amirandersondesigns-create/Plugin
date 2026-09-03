@@ -123,39 +123,31 @@ button:disabled { opacity: 0.4; cursor: default; }
 
 .spacer { flex: 1 1 auto; }
 
-/* Advanced options — hidden by default, expands inline, no animation */
-.advanced-toggle {
-    background: none;
-    border: none;
+/* Icon buttons — gear / eye / dictionary / refresh, square and quiet */
+.icon-btn {
+    background: transparent;
+    border: 1px solid var(--border);
     color: var(--muted);
-    font-size: 10.5px;
-    cursor: pointer;
-    padding: 2px 0;
-    align-self: flex-start;
-    display: flex;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    display: inline-flex;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
+    font-size: 13px;
+    line-height: 1;
+    flex: 0 0 auto;
 }
-.advanced-toggle:hover { color: var(--text); }
-.advanced-toggle .caret { font-size: 9px; }
+.icon-btn:hover:not(:disabled) { background: var(--panel-alt); color: var(--text); }
+.icon-btn.active { color: var(--accent); border-color: var(--accent); }
 
-.advanced-panel {
-    display: none;
-    padding: 8px 10px;
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius);
-    background: var(--field);
-    flex-direction: column;
-    gap: 8px;
-}
-.advanced-panel.open { display: flex; }
-
-.check-group { display: flex; flex-direction: column; gap: 4px; }
+.check-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
 .check-group-label {
     font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.4px;
     color: var(--faint); margin-bottom: 2px;
 }
 .check-row { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.check-row-inline { padding: 0 1px; }
 
 .checkbox {
     display: flex; align-items: center; gap: 6px;
@@ -304,7 +296,8 @@ button:disabled { opacity: 0.4; cursor: default; }
     padding: 10px 12px; border-bottom: 1px solid var(--border-soft);
     flex: 0 0 auto;
 }
-.overlay-header h2 { margin: 0; font-size: 12px; color: var(--text-strong); }
+.overlay-header h2 { margin: 0; font-size: 12px; color: var(--text-strong); flex: 1 1 auto; }
+.header-icons { display: flex; gap: 6px; margin-right: 8px; }
 .overlay-body { padding: 10px 12px; overflow-y: auto; font-size: 11.5px; line-height: 1.55; color: var(--text); }
 .overlay-body h3 { font-size: 10.5px; color: var(--accent); margin: 12px 0 5px; text-transform: uppercase; letter-spacing: 0.3px; }
 .overlay-body h3:first-child { margin-top: 0; }
@@ -330,3 +323,10 @@ button:disabled { opacity: 0.4; cursor: default; }
 
 .dict-summary { display: flex; gap: 14px; margin-bottom: 10px; font-size: 11px; }
 .dict-summary .num { color: var(--text-strong); font-weight: 600; }
+
+/* ---------- Scan Settings drawer: layer filters + highlighting + scan actions ---------- */
+.settings-scan-row { display: flex; align-items: stretch; gap: 6px; margin-top: 4px; }
+.settings-scan-row .btn-primary { flex: 1 1 auto; }
+.btn-block { width: 100%; display: block; text-align: center; margin-top: 8px; }
+#settingsOverlay .overlay-panel { max-width: 340px; }
+#settingsOverlay .help-text { margin: -2px 0 4px; }

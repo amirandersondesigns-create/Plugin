@@ -27,6 +27,28 @@ ignore, "add to dictionary" and reveal-in-timeline action calls into
 `host/spellcheck.jsx` through `CSInterface.evalScript()`, which returns
 JSON that `main.js` renders.
 
+## What's in the box
+
+- **Scope**: Active Comp, Entire Project, Selected Layers, or Selected
+  Comps (comps selected in the Project panel) — plus one-click "Scan
+  Active Comp" / "Scan Selected Comps" buttons in the gear-icon settings
+  drawer.
+- **On-canvas highlighting**: after a scan, every layer containing a
+  misspelling gets a red outline drawn directly in the Composition
+  viewer, on a non-rendering guide layer (`MSC Highlights`) that's
+  excluded from render and never touches your actual layers. Toggle it
+  with the eye icon, force it to reveal hidden layers ("Force highlight
+  visibility"), or turn it off entirely for large projects ("Disable
+  global highlights (faster)").
+- **Scan settings drawer** (gear icon): layer filters (hidden / locked /
+  selected-only) and the highlighting controls above, plus a Dictionary
+  shortcut and the highlight-visibility toggle.
+- **Host theme adaptation**: the panel reads After Effects' own UI skin
+  color on load (and live, on theme change) and re-tints itself to match
+  — dark or light — instead of assuming a fixed dark theme.
+- Word-level suggestions (Levenshtein-ranked), one-click Replace/Undo,
+  session Ignore, and a persistent custom dictionary — all as before.
+
 ## Installing it for testing (unsigned / debug mode)
 
 CEP extensions normally need to be signed into a `.zxp` to install

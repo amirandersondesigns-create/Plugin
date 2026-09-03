@@ -26,6 +26,7 @@
                         <option value="active">Active Comp</option>
                         <option value="project">Entire Project</option>
                         <option value="selected">Selected Layers</option>
+                        <option value="selectedComps">Selected Comps</option>
                     </select>
                 </label>
                 <label class="field">
@@ -40,31 +41,15 @@
                     </select>
                 </label>
                 <span class="spacer"></span>
+                <button id="btnGearSettings" class="icon-btn" title="Scan settings">&#9881;</button>
                 <button id="btnClear" class="btn-plain">Clear</button>
                 <button id="btnScan" class="btn-primary">Scan</button>
             </div>
 
-            <button class="advanced-toggle" id="btnAdvancedToggle">
-                <span class="caret">&#9656;</span> Options
-            </button>
-
-            <div class="advanced-panel" id="advancedPanel">
-                <div class="check-group">
-                    <div class="check-group-label">Layer filters</div>
-                    <div class="check-row">
-                        <label class="checkbox"><input type="checkbox" id="cbIgnoreHidden" /> Ignore hidden layers</label>
-                        <label class="checkbox"><input type="checkbox" id="cbIgnoreLocked" /> Ignore locked layers</label>
-                        <label class="checkbox"><input type="checkbox" id="cbSelectedOnly" /> Selected layers only</label>
-                    </div>
-                </div>
-                <div class="check-group">
-                    <div class="check-group-label">Word matching</div>
-                    <div class="check-row">
-                        <label class="checkbox"><input type="checkbox" id="cbIgnoreCaps" checked /> Ignore ALL-CAPS</label>
-                        <label class="checkbox"><input type="checkbox" id="cbSkipNumbers" checked /> Skip words with numbers</label>
-                        <label class="checkbox"><input type="checkbox" id="cbSmartMatch" checked /> Smart word matching</label>
-                    </div>
-                </div>
+            <div class="check-row check-row-inline">
+                <label class="checkbox"><input type="checkbox" id="cbIgnoreCaps" checked /> Ignore ALL-CAPS</label>
+                <label class="checkbox"><input type="checkbox" id="cbSkipNumbers" checked /> Skip words with numbers</label>
+                <label class="checkbox"><input type="checkbox" id="cbSmartMatch" checked /> Smart word matching</label>
             </div>
         </div>
 
@@ -136,13 +121,27 @@
             </div>
             <div class="overlay-body">
                 <h3>Scanning</h3>
-                <p>Pick a scope (Active Comp, Entire Project, or Selected Layers) and click Scan.
-                The checker reads layer names, text layers, marker comments, string effect
-                parameters, and quoted string literals inside expressions.</p>
+                <p>Pick a scope (Active Comp, Entire Project, Selected Layers, or Selected Comps)
+                and click Scan — or open the gear icon for one-click "Scan Active Comp" /
+                "Scan Selected Comps" buttons. The checker reads layer names, text layers,
+                marker comments, string effect parameters, and quoted string literals inside
+                expressions.</p>
 
-                <h3>Options</h3>
-                <p>Click "Options" to restrict which layers are scanned (hidden, locked,
-                selected-only) or adjust word matching (ALL-CAPS, numbers, smart matching).</p>
+                <h3>Word matching</h3>
+                <p>Ignore ALL-CAPS, Skip words with numbers, and Smart word matching (also
+                accepts plurals/tenses of a known word) are always visible in the toolbar.</p>
+
+                <h3>Scan settings (gear icon)</h3>
+                <p>Restrict which layers are scanned (hidden, locked, selected-only), and
+                control on-canvas highlighting: "Force highlight visibility" temporarily shows
+                hidden layers that contain errors, and "Disable global highlights (faster)"
+                skips drawing highlights entirely for large projects.</p>
+
+                <h3>Highlighting in the comp</h3>
+                <p>After a scan, every layer with a spelling error gets a red outline directly
+                in the Composition viewer, drawn on a non-rendering guide layer named
+                "MSC Highlights" — it never modifies your actual layers and is excluded from
+                render. Toggle it on/off with the eye icon, or clear it with Clear.</p>
 
                 <h3>Fixing a word</h3>
                 <p>Select a misspelled word on the left, review where it appears, then either
@@ -156,6 +155,39 @@
                 correction lines) into the extension's <code>Dictionary</code> folder for full
                 coverage beyond the built-in fallback list. Use Verify Dictionary to see what's
                 currently loaded.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scan Settings overlay -->
+    <div class="overlay" id="settingsOverlay">
+        <div class="overlay-panel">
+            <div class="overlay-header">
+                <h2>Scan Settings</h2>
+                <div class="header-icons">
+                    <button class="icon-btn" id="btnToggleHighlightsIcon" title="Toggle highlight visibility in the comp">&#128065;</button>
+                    <button class="icon-btn" id="btnOpenDictFromSettings" title="Dictionary status">&#128214;</button>
+                </div>
+                <button class="close-x" data-close="settingsOverlay">Close</button>
+            </div>
+            <div class="overlay-body">
+                <div class="check-group">
+                    <div class="check-group-label">Layer filters</div>
+                    <label class="checkbox"><input type="checkbox" id="cbIgnoreHidden" /> Ignore hidden layers</label>
+                    <label class="checkbox"><input type="checkbox" id="cbIgnoreLocked" /> Ignore locked layers</label>
+                    <label class="checkbox"><input type="checkbox" id="cbSelectedOnly" /> Selected layers only</label>
+                </div>
+                <div class="check-group">
+                    <div class="check-group-label">Highlight in viewer</div>
+                    <label class="checkbox"><input type="checkbox" id="cbForceHighlight" /> Force highlight visibility</label>
+                    <label class="checkbox"><input type="checkbox" id="cbDisableHighlights" /> Disable global highlights (faster)</label>
+                </div>
+                <p class="help-text">Highlighting draws a red outline around every layer that contains a misspelling, directly in the Composition viewer, using a non-rendering guide layer. It never touches your actual layers.</p>
+                <div class="settings-scan-row">
+                    <button id="btnScanActiveComp" class="btn-primary btn-block">Scan Active Comp</button>
+                    <button id="btnRefreshScan" class="icon-btn" title="Re-run the last scan">&#8635;</button>
+                </div>
+                <button id="btnScanSelectedComps" class="btn-plain btn-block">Scan Selected Comps</button>
             </div>
         </div>
     </div>

@@ -33,12 +33,19 @@
         btnClear: $("btnClear"),
         btnScan: $("btnScan"),
 
-        btnAdvancedToggle: $("btnAdvancedToggle"),
-        advancedPanel: $("advancedPanel"),
+        btnGearSettings: $("btnGearSettings"),
+        settingsOverlay: $("settingsOverlay"),
+        btnScanActiveComp: $("btnScanActiveComp"),
+        btnScanSelectedComps: $("btnScanSelectedComps"),
+        btnRefreshScan: $("btnRefreshScan"),
+        btnToggleHighlightsIcon: $("btnToggleHighlightsIcon"),
+        btnOpenDictFromSettings: $("btnOpenDictFromSettings"),
 
         cbIgnoreHidden: $("cbIgnoreHidden"),
         cbIgnoreLocked: $("cbIgnoreLocked"),
         cbSelectedOnly: $("cbSelectedOnly"),
+        cbForceHighlight: $("cbForceHighlight"),
+        cbDisableHighlights: $("cbDisableHighlights"),
         cbIgnoreCaps: $("cbIgnoreCaps"),
         cbSkipNumbers: $("cbSkipNumbers"),
         cbSmartMatch: $("cbSmartMatch"),
@@ -95,14 +102,6 @@
         el.statErrors.textContent = stats.errors || 0;
     }
 
-    // ---------------------------------------------------------------
-    // Advanced options — collapsed by default (progressive disclosure)
-    // ---------------------------------------------------------------
-    el.btnAdvancedToggle.addEventListener("click", function () {
-        var open = el.advancedPanel.classList.toggle("open");
-        el.btnAdvancedToggle.querySelector(".caret").innerHTML = open ? "&#9662;" : "&#9656;";
-    });
-
     el.ddlFilter.addEventListener("change", function () {
         renderWordsList();
         clearDetail();
@@ -120,7 +119,9 @@
             selectedOnly: el.cbSelectedOnly.checked,
             ignoreAllCaps: el.cbIgnoreCaps.checked,
             skipNumbers: el.cbSkipNumbers.checked,
-            smartMatching: el.cbSmartMatch.checked
+            smartMatching: el.cbSmartMatch.checked,
+            forceHighlightVisibility: el.cbForceHighlight.checked,
+            disableGlobalHighlights: el.cbDisableHighlights.checked
         };
     }
 
@@ -146,13 +147,20 @@
             renderWordsList();
             clearDetail();
 
-            var scopeLabel = res.scope === "project" ? "project" : (res.scope === "selected" ? "selected layers" : "active comp");
+            setHighlightIconState(!!res.highlightsVisible);
+
+            var scopeLabel = res.scope === "project" ? "project" :
+                (res.scope === "selected" ? "selected layers" :
+                (res.scope === "selectedComps" ? "selected comps" : "active comp"));
             if (res.compsScanned === 0) {
-                setStatus("Nothing to scan — " + (res.scope === "selected" ? "select some layers first" : "no compositions found"), "warning");
+                var noneMsg = res.scope === "selected" ? "select some layers first" :
+                    (res.scope === "selectedComps" ? "select comp(s) in the Project panel first" : "no compositions found");
+                setStatus("Nothing to scan — " + noneMsg, "warning");
             } else if (state.words.length === 0) {
                 setStatus("Clean — " + res.stats.words + " words across " + res.compsScanned + " comp(s), no issues.", "success");
             } else {
-                setStatus("Found " + state.words.length + " issue(s) in " + scopeLabel + " (" + res.stats.words + " words scanned).", "error");
+                var hlNote = res.highlightCount ? (" · " + res.highlightCount + " layer(s) highlighted in the comp") : "";
+                setStatus("Found " + state.words.length + " issue(s) in " + scopeLabel + " (" + res.stats.words + " words scanned)" + hlNote + ".", "error");
             }
             if (res.usingFallbackOnly) {
                 setStatus("Using built-in fallback dictionary only (" + res.fallbackWordCount + " words). Add category .txt files to /Dictionary/.", "warning");
@@ -170,6 +178,45 @@
         renderWordsList();
         clearDetail();
         setStatus("Cleared — ready to scan.", null);
+        callHost("csClearHighlights").then(function () { setHighlightIconState(false); });
+    });
+
+    // ---------------------------------------------------------------
+    // Scan Settings drawer (gear icon) — layer filters, highlight
+    // options, and the two dedicated scan actions from the reference UI.
+    // ---------------------------------------------------------------
+    el.btnGearSettings.addEventListener("click", function () { openOverlay("settingsOverlay"); });
+
+    el.btnScanActiveComp.addEventListener("click", function () {
+        el.ddlScope.value = "active";
+        closeOverlay("settingsOverlay");
+        runScan();
+    });
+
+    el.btnScanSelectedComps.addEventListener("click", function () {
+        el.ddlScope.value = "selectedComps";
+        closeOverlay("settingsOverlay");
+        runScan();
+    });
+
+    el.btnRefreshScan.addEventListener("click", function () { runScan(); });
+
+    function setHighlightIconState(on) {
+        el.btnToggleHighlightsIcon.classList.toggle("active", !!on);
+    }
+
+    el.btnToggleHighlightsIcon.addEventListener("click", function () {
+        callHost("csToggleHighlights").then(function (res) {
+            if (res.ok) {
+                setHighlightIconState(res.visible);
+                setStatus(res.visible ? "Highlights shown in the comp." : "Highlights hidden.", null);
+            }
+        });
+    });
+
+    el.btnOpenDictFromSettings.addEventListener("click", function () {
+        closeOverlay("settingsOverlay");
+        verifyDictionaries();
     });
 
     // ---------------------------------------------------------------
@@ -356,18 +403,20 @@
     document.querySelectorAll("[data-close]").forEach(function (btn) {
         btn.addEventListener("click", function () { closeOverlay(btn.getAttribute("data-close")); });
     });
-    [el.dictOverlay, el.helpOverlay].forEach(function (ov) {
+    [el.dictOverlay, el.helpOverlay, el.settingsOverlay].forEach(function (ov) {
         ov.addEventListener("click", function (e) { if (e.target === ov) ov.classList.remove("open"); });
     });
 
-    el.btnVerifyDict.addEventListener("click", function () {
+    function verifyDictionaries() {
         el.dictOverlayBody.textContent = "Checking…";
         openOverlay("dictOverlay");
         callHost("csVerifyDictionaries").then(function (res) {
             if (!res.ok) { el.dictOverlayBody.textContent = res.error || "Could not verify dictionaries."; return; }
             renderDictOverlay(res.result);
         });
-    });
+    }
+
+    el.btnVerifyDict.addEventListener("click", verifyDictionaries);
 
     function renderDictOverlay(r) {
         var html = "";
@@ -396,9 +445,46 @@
     el.btnHelp.addEventListener("click", function () { openOverlay("helpOverlay"); });
 
     // ---------------------------------------------------------------
+    // Host theme adaptation — matches After Effects' own UI brightness
+    // (dark or light) instead of assuming a fixed dark theme.
+    // ---------------------------------------------------------------
+    function clampByte(v) { return Math.max(0, Math.min(255, Math.round(v))); }
+
+    function shadeColor(c, amt) {
+        return "rgb(" + clampByte(c.red + amt) + "," + clampByte(c.green + amt) + "," + clampByte(c.blue + amt) + ")";
+    }
+
+    function applyHostTheme() {
+        try {
+            var env = csInterface.getHostEnvironment();
+            var skin = env && env.appSkinInfo;
+            var c = skin && skin.panelBackgroundColor && skin.panelBackgroundColor.color;
+            if (!c) return;
+
+            var brightness = (c.red * 299 + c.green * 587 + c.blue * 114) / 1000;
+            var isDark = brightness < 128;
+            var root = document.documentElement.style;
+
+            root.setProperty("--bg", "rgb(" + clampByte(c.red) + "," + clampByte(c.green) + "," + clampByte(c.blue) + ")");
+            root.setProperty("--panel", shadeColor(c, isDark ? 8 : -8));
+            root.setProperty("--panel-alt", shadeColor(c, isDark ? 14 : -14));
+            root.setProperty("--field", shadeColor(c, isDark ? -6 : 10));
+            root.setProperty("--border", shadeColor(c, isDark ? 24 : -24));
+            root.setProperty("--border-soft", shadeColor(c, isDark ? 16 : -16));
+            root.setProperty("--text", isDark ? "#d8d8d8" : "#2a2a2a");
+            root.setProperty("--text-strong", isDark ? "#f0f0f0" : "#101010");
+            root.setProperty("--muted", isDark ? "#8a8a8a" : "#5a5a5a");
+            root.setProperty("--faint", isDark ? "#666666" : "#8a8a8a");
+        } catch (e) {}
+    }
+
+    // ---------------------------------------------------------------
     // Init
     // ---------------------------------------------------------------
     function init() {
+        applyHostTheme();
+        csInterface.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, applyHostTheme);
+
         callHost("csGetInfo").then(function (res) {
             if (res.ok) {
                 $("appTitle").textContent = res.appName;

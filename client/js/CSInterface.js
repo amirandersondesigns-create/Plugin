@@ -2,8 +2,9 @@
  * Minimal CSInterface bridge for Adobe CEP panels.
  *
  * This implements only what Motion Spell Checker's panel needs to talk to
- * ExtendScript (host/spellcheck.jsx): evalScript() and a couple of
- * environment getters. It intentionally does not reproduce Adobe's full
+ * ExtendScript (host/spellcheck.jsx): evalScript(), a couple of environment
+ * getters, and a passthrough to the native host event bridge (used for live
+ * theme-change updates). It intentionally does not reproduce Adobe's full
  * CSInterface.js (~700 lines of menu/theme/event plumbing this panel
  * doesn't use). Drop in the official CSInterface.js from Adobe's CEP
  * samples instead if a future feature needs it — this file exposes the
@@ -46,6 +47,19 @@
     CSInterface.prototype.closeExtension = function () {
         try { window.__adobe_cep__.closeExtension(); } catch (e) {}
     };
+
+    // Passthrough to the native CEP event bridge — used here to react live to
+    // host UI theme changes (com.adobe.csxs.events.ThemeColorChanged) so the
+    // panel keeps matching After Effects' own brightness setting.
+    CSInterface.prototype.addEventListener = function (type, listener) {
+        try { window.__adobe_cep__.addEventListener(type, listener); } catch (e) {}
+    };
+
+    CSInterface.prototype.removeEventListener = function (type, listener) {
+        try { window.__adobe_cep__.removeEventListener(type, listener); } catch (e) {}
+    };
+
+    CSInterface.THEME_COLOR_CHANGED_EVENT = "com.adobe.csxs.events.ThemeColorChanged";
 
     global.CSInterface = CSInterface;
 })(window);
