@@ -46,9 +46,9 @@
                         </MaxSize>
                     </Geometry>
                     <Icons>
-                        <Icon Type="Normal">./client/icons/icon.png</Icon>
-                        <Icon Type="RollOver">./client/icons/icon.png</Icon>
-                        <Icon Type="Darkest">./client/icons/icon.png</Icon>
+                        <Icon Type="Normal">./client/icons/icon-normal.png</Icon>
+                        <Icon Type="RollOver">./client/icons/icon-rollover.png</Icon>
+                        <Icon Type="Darkest">./client/icons/icon-darkest.png</Icon>
                     </Icons>
                 </UI>
             </DispatchInfo>
