@@ -382,11 +382,10 @@
             return;
         }
 
-        if ((e.metaKey || e.ctrlKey) && (e.key === "z" || e.key === "Z")) {
-            e.preventDefault();
-            el.btnUndo.click();
-            return;
-        }
+        // Deliberately NOT intercepting Cmd/Ctrl+Z here — After Effects'
+        // own native Undo already handles it correctly. Capturing it in the
+        // panel and rerouting through our own Undo button would only break
+        // the one thing that reliably works right now.
 
         var tag = (e.target && e.target.tagName) || "";
         var typing = tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA";
