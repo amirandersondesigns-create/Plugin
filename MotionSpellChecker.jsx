@@ -1941,12 +1941,6 @@ function doAddToDictionary(lower) {
     return { ok: true, lower: lower };
 }
 
-function doReveal(lower, index) {
-    var err = sessionState.errors ? sessionState.errors[lower] : null;
-    if (!err || !err.locations[index]) return { ok: false, error: "Location not found." };
-    return { ok: navigateToLocation(err.locations[index]) };
-}
-
 function doUndo() {
     try {
         var id = app.findMenuCommandId("Undo");
@@ -1998,20 +1992,28 @@ function buildUI(thisObj) {
     fieldsRow.spacing = 8;
 
     var scopeGroup = fieldsRow.add("group");
-    scopeGroup.orientation = "row";
-    scopeGroup.alignment = ["fill", "center"];
-    scopeGroup.add("statictext", undefined, "Scope");
+    scopeGroup.orientation = "column";
+    scopeGroup.alignChildren = ["fill", "top"];
+    scopeGroup.alignment = ["fill", "top"];
+    scopeGroup.spacing = 2;
+    var scopeLabel = scopeGroup.add("statictext", undefined, "Scope");
+    scopeLabel.justify = "left";
+    try { scopeLabel.graphics.font = ScriptUI.newFont("dialog", "regular", 9); } catch (e) {}
     var ddlScope = scopeGroup.add("dropdownlist", undefined, ["Active Comp", "Entire Project", "Selected Layers", "Selected Comps"]);
     ddlScope.selection = 0;
-    ddlScope.alignment = ["fill", "center"];
+    ddlScope.alignment = ["fill", "top"];
 
     var filterGroup = fieldsRow.add("group");
-    filterGroup.orientation = "row";
-    filterGroup.alignment = ["fill", "center"];
-    filterGroup.add("statictext", undefined, "Filter");
+    filterGroup.orientation = "column";
+    filterGroup.alignChildren = ["fill", "top"];
+    filterGroup.alignment = ["fill", "top"];
+    filterGroup.spacing = 2;
+    var filterLabel = filterGroup.add("statictext", undefined, "Filter");
+    filterLabel.justify = "left";
+    try { filterLabel.graphics.font = ScriptUI.newFont("dialog", "regular", 9); } catch (e) {}
     var ddlFilter = filterGroup.add("dropdownlist", undefined, ["All", "Text", "Expressions", "Effects", "Markers", "Names"]);
     ddlFilter.selection = 0;
-    ddlFilter.alignment = ["fill", "center"];
+    ddlFilter.alignment = ["fill", "top"];
     var FILTER_VALUES = ["all", "text", "expression", "effect", "marker", "name"];
     var SCOPE_VALUES = ["active", "project", "selected", "selectedComps"];
 
@@ -2059,19 +2061,12 @@ function buildUI(thisObj) {
     lstLocations.alignment = ["fill", "top"];
     lstLocations.preferredSize = [-1, 70];
 
-    var btnReveal = pal.add("button", undefined, "Reveal in Timeline");
-    btnReveal.alignment = ["fill", "top"];
-
     var suggLabel = pal.add("statictext", undefined, "Suggestions");
     suggLabel.justify = "left";
     try { suggLabel.graphics.font = ScriptUI.newFont("dialog", "bold", 10); } catch (e) {}
     var lstSuggestions = pal.add("listbox", undefined, []);
     lstSuggestions.alignment = ["fill", "top"];
-    lstSuggestions.preferredSize = [-1, 70];
-
-    var txtReplacement = pal.add("edittext", undefined, "");
-    txtReplacement.alignment = ["fill", "top"];
-    txtReplacement.helpTip = "Pick a suggestion above, or type your own replacement.";
+    lstSuggestions.preferredSize = [-1, 90];
 
     var btnReplace = pal.add("button", undefined, "Replace");
     btnReplace.alignment = ["fill", "top"];
@@ -2144,7 +2139,6 @@ function buildUI(thisObj) {
     function clearDetail() {
         lstLocations.removeAll();
         lstSuggestions.removeAll();
-        txtReplacement.text = "";
         locLabel.text = "Locations";
         suggLabel.text = "Suggestions";
     }
@@ -2172,8 +2166,7 @@ function buildUI(thisObj) {
 
         suggLabel.text = w.suggestions.length > 0 ? "Suggestions (" + w.suggestions.length + ")" : "Suggestions";
         for (var s = 0; s < w.suggestions.length; s++) { lstSuggestions.add("item", w.suggestions[s]); }
-        if (w.suggestions.length > 0) { lstSuggestions.selection = 0; txtReplacement.text = w.suggestions[0]; }
-        else { txtReplacement.text = ""; }
+        if (w.suggestions.length > 0) lstSuggestions.selection = 0;
     }
 
     function removeWordFromState(lower) {
@@ -2189,10 +2182,6 @@ function buildUI(thisObj) {
         for (var i = 0; i < state.words.length; i++) { if (wordMatchesFilter(state.words[i])) visible.push(state.words[i]); }
         var idx = lstWords.selection ? lstWords.selection.index : -1;
         if (idx >= 0 && visible[idx]) { state.selectedLower = visible[idx].lower; renderDetail(); }
-    };
-
-    lstSuggestions.onChange = function () {
-        if (lstSuggestions.selection) txtReplacement.text = lstSuggestions.selection.text;
     };
 
     ddlFilter.onChange = function () { renderWordsList(); };
@@ -2258,17 +2247,11 @@ function buildUI(thisObj) {
         doClearHighlights();
     };
 
-    btnReveal.onClick = function () {
-        if (!state.selectedLower) { setStatus("Select a misspelled word first."); return; }
-        var idx = lstLocations.selection ? lstLocations.selection.index : 0;
-        var res = doReveal(state.selectedLower, idx);
-        if (!res.ok) setStatus(res.error || "Could not reveal location.");
-    };
-
     btnReplace.onClick = function () {
         if (!state.selectedLower) { setStatus("Select a misspelled word first."); return; }
-        var newWord = trimString(txtReplacement.text);
-        if (!newWord) { setStatus("Type or pick a replacement first."); return; }
+        if (!lstSuggestions.selection) { setStatus("Select a suggestion first."); return; }
+        var newWord = trimString(lstSuggestions.selection.text);
+        if (!newWord) { setStatus("Select a suggestion first."); return; }
         var w = findWord(state.selectedLower);
         var res = doReplace(state.selectedLower, newWord);
         if (res.ok) {
