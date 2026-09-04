@@ -1974,34 +1974,30 @@ function buildUI(thisObj) {
     pal.orientation = "column";
     pal.alignChildren = ["fill", "top"];
     pal.margins = 10;
-    pal.spacing = 6;
+    pal.spacing = 7;
 
     if (pal instanceof Window) {
-        pal.preferredSize = [460, 760];
-        pal.minimumSize = [380, 520];
+        pal.preferredSize = [360, 600];
+        pal.minimumSize = [300, 460];
     }
 
     // ---------------- Header ----------------
     var header = pal.add("group");
     header.orientation = "row";
     header.alignment = ["fill", "top"];
-    var title = header.add("statictext", undefined, APP_NAME);
-    try { title.graphics.font = ScriptUI.newFont("dialog", "bold", 13); } catch (e) {}
-    var byline = header.add("statictext", undefined, "by " + AUTHOR + " · v" + VERSION);
-    try { byline.graphics.font = ScriptUI.newFont("dialog", "italic", 9); } catch (e) {}
+    var title = header.add("statictext", undefined, APP_NAME + "   v" + VERSION);
+    try { title.graphics.font = ScriptUI.newFont("dialog", "bold", 12); } catch (e) {}
     header.add("statictext", undefined, "").alignment = ["fill", "top"];
-    var btnVerifyDict = header.add("button", undefined, "Verify Dictionary");
-    btnVerifyDict.preferredSize = [-1, 22];
     var btnHelp = header.add("button", undefined, "?");
     btnHelp.preferredSize = [24, 22];
 
-    // ---------------- Toolbar ----------------
-    var toolbarFields = pal.add("group");
-    toolbarFields.orientation = "row";
-    toolbarFields.alignChildren = ["fill", "center"];
-    toolbarFields.spacing = 8;
+    // ---------------- Scope / Filter ----------------
+    var fieldsRow = pal.add("group");
+    fieldsRow.orientation = "row";
+    fieldsRow.alignChildren = ["fill", "center"];
+    fieldsRow.spacing = 8;
 
-    var scopeGroup = toolbarFields.add("group");
+    var scopeGroup = fieldsRow.add("group");
     scopeGroup.orientation = "row";
     scopeGroup.alignment = ["fill", "center"];
     scopeGroup.add("statictext", undefined, "Scope");
@@ -2009,7 +2005,7 @@ function buildUI(thisObj) {
     ddlScope.selection = 0;
     ddlScope.alignment = ["fill", "center"];
 
-    var filterGroup = toolbarFields.add("group");
+    var filterGroup = fieldsRow.add("group");
     filterGroup.orientation = "row";
     filterGroup.alignment = ["fill", "center"];
     filterGroup.add("statictext", undefined, "Filter");
@@ -2019,104 +2015,74 @@ function buildUI(thisObj) {
     var FILTER_VALUES = ["all", "text", "expression", "effect", "marker", "name"];
     var SCOPE_VALUES = ["active", "project", "selected", "selectedComps"];
 
-    var toolbarActions = pal.add("group");
-    toolbarActions.orientation = "row";
-    toolbarActions.spacing = 6;
-    var btnSettings = toolbarActions.add("button", undefined, "Settings…");
-    toolbarActions.add("statictext", undefined, "").alignment = ["fill", "top"];
-    var btnClear = toolbarActions.add("button", undefined, "Clear");
-    var btnScan = toolbarActions.add("button", undefined, "Scan");
-    btnScan.preferredSize = [-1, 26];
+    // ---------------- Actions ----------------
+    var actionsRow = pal.add("group");
+    actionsRow.orientation = "row";
+    actionsRow.alignChildren = ["fill", "top"];
+    actionsRow.spacing = 6;
+    var btnClear = actionsRow.add("button", undefined, "Clear");
+    var btnScan = actionsRow.add("button", undefined, "Scan");
+    var btnSettings = actionsRow.add("button", undefined, "Settings…");
 
-    var matchRow = pal.add("group");
-    matchRow.orientation = "row";
-    matchRow.spacing = 14;
-    var cbIgnoreCaps = matchRow.add("checkbox", undefined, "Ignore ALL-CAPS");
-    cbIgnoreCaps.value = true;
-    var cbSkipNumbers = matchRow.add("checkbox", undefined, "Skip words with numbers");
-    cbSkipNumbers.value = true;
-    var cbSmartMatch = matchRow.add("checkbox", undefined, "Smart word matching");
-    cbSmartMatch.value = true;
-
-    // ---------------- Settings state (set via the Settings dialog) ----------------
+    // ---------------- Settings state (edited via the Settings dialog) ----------------
     var settings = {
+        ignoreAllCaps: true, skipNumbers: true, smartMatching: true,
         ignoreHidden: false, ignoreLocked: false, selectedOnly: false,
         forceHighlightVisibility: false, disableGlobalHighlights: false
     };
 
-    // ---------------- Status line ----------------
+    // ---------------- Status ----------------
     var statusLine = pal.add("group");
     statusLine.orientation = "row";
     statusLine.alignChildren = ["left", "center"];
-    var statusText = statusLine.add("statictext", undefined, "Ready — choose a scope and click Scan.");
+    var statusText = statusLine.add("statictext", undefined, "Ready — choose a scope and click Scan.", { multiline: true });
     statusText.alignment = ["fill", "center"];
-    var statsText = statusLine.add("statictext", undefined, "Comps 0  Words 0  Errors 0");
+    var statsText = statusLine.add("statictext", undefined, "0 · 0 · 0");
     try { statsText.graphics.font = ScriptUI.newFont("dialog", "regular", 10); } catch (e) {}
+    statsText.helpTip = "Comps scanned · words scanned · errors found";
 
     function setStatus(msg) { statusText.text = msg; try { pal.update(); } catch (e) {} }
 
-    // ---------------- Results ----------------
-    var results = pal.add("group");
-    results.orientation = "row";
-    results.alignment = ["fill", "fill"];
-    results.alignChildren = ["fill", "fill"];
-    results.spacing = 8;
-
-    var leftPane = results.add("group");
-    leftPane.orientation = "column";
-    leftPane.alignChildren = ["fill", "top"];
-    leftPane.alignment = ["fill", "fill"];
-    leftPane.preferredSize = [-1, -1];
-    var wordsLabel = leftPane.add("statictext", undefined, "Misspelled words");
+    // ---------------- Misspelled words ----------------
+    var wordsLabel = pal.add("statictext", undefined, "Misspelled words");
     wordsLabel.justify = "left";
     try { wordsLabel.graphics.font = ScriptUI.newFont("dialog", "bold", 10); } catch (e) {}
-    var lstWords = leftPane.add("listbox", undefined, []);
-    lstWords.alignment = ["fill", "fill"];
+    var lstWords = pal.add("listbox", undefined, []);
+    lstWords.alignment = ["fill", "top"];
+    lstWords.preferredSize = [-1, 170];
 
-    var rightPane = results.add("group");
-    rightPane.orientation = "column";
-    rightPane.alignChildren = ["fill", "top"];
-    rightPane.alignment = ["fill", "fill"];
-    rightPane.preferredSize = [-1, -1];
-
-    var locLabel = rightPane.add("statictext", undefined, "Locations");
+    // ---------------- Selected-word detail ----------------
+    var locLabel = pal.add("statictext", undefined, "Locations");
     locLabel.justify = "left";
     try { locLabel.graphics.font = ScriptUI.newFont("dialog", "bold", 10); } catch (e) {}
-    var lstLocations = rightPane.add("listbox", undefined, []);
+    var lstLocations = pal.add("listbox", undefined, []);
     lstLocations.alignment = ["fill", "top"];
-    lstLocations.preferredSize = [-1, 110];
+    lstLocations.preferredSize = [-1, 70];
 
-    var btnReveal = rightPane.add("button", undefined, "Reveal in Timeline");
+    var btnReveal = pal.add("button", undefined, "Reveal in Timeline");
     btnReveal.alignment = ["fill", "top"];
 
-    var suggLabel = rightPane.add("statictext", undefined, "Suggestions");
+    var suggLabel = pal.add("statictext", undefined, "Suggestions");
     suggLabel.justify = "left";
     try { suggLabel.graphics.font = ScriptUI.newFont("dialog", "bold", 10); } catch (e) {}
-    var lstSuggestions = rightPane.add("listbox", undefined, []);
+    var lstSuggestions = pal.add("listbox", undefined, []);
     lstSuggestions.alignment = ["fill", "top"];
-    lstSuggestions.preferredSize = [-1, 90];
+    lstSuggestions.preferredSize = [-1, 70];
 
-    var replaceRow = rightPane.add("group");
-    replaceRow.orientation = "row";
-    replaceRow.alignChildren = ["fill", "center"];
-    replaceRow.alignment = ["fill", "top"];
-    var txtReplacement = replaceRow.add("edittext", undefined, "");
-    txtReplacement.alignment = ["fill", "center"];
+    var txtReplacement = pal.add("edittext", undefined, "");
+    txtReplacement.alignment = ["fill", "top"];
     txtReplacement.helpTip = "Pick a suggestion above, or type your own replacement.";
 
-    var actionRow1 = rightPane.add("group");
-    actionRow1.orientation = "row";
-    actionRow1.alignment = ["fill", "top"];
-    actionRow1.spacing = 4;
-    var btnReplace = actionRow1.add("button", undefined, "Replace");
+    var btnReplace = pal.add("button", undefined, "Replace");
     btnReplace.alignment = ["fill", "top"];
-    var btnUndo = actionRow1.add("button", undefined, "Undo");
-    btnUndo.preferredSize = [50, -1];
 
-    var actionRow2 = rightPane.add("group");
+    var actionRow2 = pal.add("group");
     actionRow2.orientation = "row";
     actionRow2.alignment = ["fill", "top"];
+    actionRow2.alignChildren = ["fill", "top"];
     actionRow2.spacing = 4;
+    var btnUndo = actionRow2.add("button", undefined, "Undo");
+    btnUndo.alignment = ["fill", "top"];
     var btnIgnore = actionRow2.add("button", undefined, "Ignore");
     btnIgnore.alignment = ["fill", "top"];
     var btnAddDict = actionRow2.add("button", undefined, "+ Dictionary");
@@ -2152,12 +2118,14 @@ function buildUI(thisObj) {
         if (!state.scanned) {
             lstWords.add("item", "No scan yet — choose a scope and click Scan.");
             lstWords.enabled = false;
+            clearDetail();
             return;
         }
         lstWords.enabled = true;
         if (visible.length === 0) {
             lstWords.add("item", "No spelling issues found.");
             lstWords.enabled = false;
+            clearDetail();
             return;
         }
         for (var v = 0; v < visible.length; v++) {
@@ -2177,6 +2145,8 @@ function buildUI(thisObj) {
         lstLocations.removeAll();
         lstSuggestions.removeAll();
         txtReplacement.text = "";
+        locLabel.text = "Locations";
+        suggLabel.text = "Suggestions";
     }
 
     function sourceLabel(t) {
@@ -2235,9 +2205,9 @@ function buildUI(thisObj) {
             ignoreHidden: settings.ignoreHidden,
             ignoreLocked: settings.ignoreLocked,
             selectedOnly: settings.selectedOnly,
-            ignoreAllCaps: cbIgnoreCaps.value,
-            skipNumbers: cbSkipNumbers.value,
-            smartMatching: cbSmartMatch.value,
+            ignoreAllCaps: settings.ignoreAllCaps,
+            skipNumbers: settings.skipNumbers,
+            smartMatching: settings.smartMatching,
             forceHighlightVisibility: settings.forceHighlightVisibility,
             disableGlobalHighlights: settings.disableGlobalHighlights
         };
@@ -2254,7 +2224,7 @@ function buildUI(thisObj) {
         state.scanned = true;
         state.words = res.words || [];
         state.selectedLower = null;
-        statsText.text = "Comps " + res.stats.comps + "  Words " + res.stats.words + "  Errors " + res.stats.errors;
+        statsText.text = res.stats.comps + " · " + res.stats.words + " · " + res.stats.errors;
         renderWordsList();
 
         var scopeLabel = res.scope === "project" ? "project" :
@@ -2282,9 +2252,8 @@ function buildUI(thisObj) {
         state.scanned = false;
         state.words = [];
         state.selectedLower = null;
-        statsText.text = "Comps 0  Words 0  Errors 0";
+        statsText.text = "0 · 0 · 0";
         renderWordsList();
-        clearDetail();
         setStatus("Cleared — ready to scan.");
         doClearHighlights();
     };
@@ -2331,88 +2300,8 @@ function buildUI(thisObj) {
         removeWordFromState(lower);
     };
 
-    // ---------------- Settings dialog ----------------
-    btnSettings.onClick = function () {
-        var dlg = new Window("dialog", "Scan Settings");
-        dlg.orientation = "column";
-        dlg.alignChildren = ["fill", "top"];
-        dlg.margins = 14;
-        dlg.spacing = 10;
-        dlg.preferredSize = [320, -1];
-
-        var filtersPanel = dlg.add("panel", undefined, "Layer filters");
-        filtersPanel.orientation = "column";
-        filtersPanel.alignChildren = ["left", "top"];
-        filtersPanel.margins = 10;
-        var cbIgnoreHidden = filtersPanel.add("checkbox", undefined, "Ignore hidden layers");
-        cbIgnoreHidden.value = settings.ignoreHidden;
-        var cbIgnoreLocked = filtersPanel.add("checkbox", undefined, "Ignore locked layers");
-        cbIgnoreLocked.value = settings.ignoreLocked;
-        var cbSelectedOnly = filtersPanel.add("checkbox", undefined, "Selected layers only");
-        cbSelectedOnly.value = settings.selectedOnly;
-
-        var hlPanel = dlg.add("panel", undefined, "Highlight in viewer");
-        hlPanel.orientation = "column";
-        hlPanel.alignChildren = ["left", "top"];
-        hlPanel.margins = 10;
-        var cbForceHighlight = hlPanel.add("checkbox", undefined, "Force highlight visibility");
-        cbForceHighlight.value = settings.forceHighlightVisibility;
-        var cbDisableHighlights = hlPanel.add("checkbox", undefined, "Disable global highlights (faster)");
-        cbDisableHighlights.value = settings.disableGlobalHighlights;
-        var hlNote = hlPanel.add("statictext", undefined,
-            "Draws a red outline around every layer with a misspelling, on a\nnon-rendering guide layer. Never touches your actual layers.",
-            { multiline: true });
-        try { hlNote.graphics.font = ScriptUI.newFont("dialog", "italic", 9); } catch (e) {}
-
-        var btnToggleHl = dlg.add("button", undefined, "Toggle Highlight Visibility");
-
-        var scanRow = dlg.add("group");
-        scanRow.orientation = "column";
-        scanRow.alignChildren = ["fill", "top"];
-        scanRow.spacing = 6;
-        var btnScanActive = scanRow.add("button", undefined, "Scan Active Comp");
-        var btnScanSelectedComps = scanRow.add("button", undefined, "Scan Selected Comps");
-
-        var closeRow = dlg.add("group");
-        closeRow.orientation = "row";
-        closeRow.alignment = ["center", "top"];
-        var btnClose = closeRow.add("button", undefined, "Close", { name: "ok" });
-
-        function saveSettings() {
-            settings.ignoreHidden = cbIgnoreHidden.value;
-            settings.ignoreLocked = cbIgnoreLocked.value;
-            settings.selectedOnly = cbSelectedOnly.value;
-            settings.forceHighlightVisibility = cbForceHighlight.value;
-            settings.disableGlobalHighlights = cbDisableHighlights.value;
-        }
-
-        btnToggleHl.onClick = function () {
-            var visible = toggleHighlightVisibility();
-            setStatus(visible ? "Highlights shown in the comp." : "Highlights hidden.");
-        };
-
-        btnScanActive.onClick = function () {
-            saveSettings();
-            ddlScope.selection = 0;
-            dlg.close();
-            runScanUI();
-        };
-
-        btnScanSelectedComps.onClick = function () {
-            saveSettings();
-            ddlScope.selection = 3;
-            dlg.close();
-            runScanUI();
-        };
-
-        btnClose.onClick = function () { saveSettings(); dlg.close(); };
-
-        dlg.center();
-        dlg.show();
-    };
-
     // ---------------- Verify Dictionary dialog ----------------
-    btnVerifyDict.onClick = function () {
+    function showVerifyDictionary() {
         setStatus("Checking dictionaries…");
         var r = verifyDictionaries();
 
@@ -2421,7 +2310,7 @@ function buildUI(thisObj) {
         dlg.alignChildren = ["fill", "top"];
         dlg.margins = 14;
         dlg.spacing = 8;
-        dlg.preferredSize = [560, 520];
+        dlg.preferredSize = [520, 480];
 
         var summary = dlg.add("statictext", undefined,
             "Loaded: " + r.loaded + "   Missing: " + r.missing + "   Empty: " + r.empty + "   Errors: " + r.error);
@@ -2446,7 +2335,7 @@ function buildUI(thisObj) {
 
         var report = dlg.add("edittext", undefined, lines.join("\n"), { multiline: true, scrolling: true, readonly: true });
         report.alignment = ["fill", "fill"];
-        report.preferredSize = [-1, 380];
+        report.preferredSize = [-1, 340];
 
         var btnClose = dlg.add("button", undefined, "Close", { name: "ok" });
         btnClose.alignment = ["center", "top"];
@@ -2454,6 +2343,101 @@ function buildUI(thisObj) {
         dlg.center();
         dlg.show();
         setStatus("Ready.");
+    }
+
+    // ---------------- Settings dialog ----------------
+    btnSettings.onClick = function () {
+        var dlg = new Window("dialog", "Settings");
+        dlg.orientation = "column";
+        dlg.alignChildren = ["fill", "top"];
+        dlg.margins = 14;
+        dlg.spacing = 8;
+        dlg.preferredSize = [300, -1];
+
+        var matchPanel = dlg.add("panel", undefined, "Word matching");
+        matchPanel.orientation = "column";
+        matchPanel.alignChildren = ["left", "top"];
+        matchPanel.margins = 10;
+        var cbIgnoreCaps = matchPanel.add("checkbox", undefined, "Ignore ALL-CAPS");
+        cbIgnoreCaps.value = settings.ignoreAllCaps;
+        var cbSkipNumbers = matchPanel.add("checkbox", undefined, "Skip words with numbers");
+        cbSkipNumbers.value = settings.skipNumbers;
+        var cbSmartMatch = matchPanel.add("checkbox", undefined, "Smart word matching");
+        cbSmartMatch.value = settings.smartMatching;
+
+        var filtersPanel = dlg.add("panel", undefined, "Layer filters");
+        filtersPanel.orientation = "column";
+        filtersPanel.alignChildren = ["left", "top"];
+        filtersPanel.margins = 10;
+        var cbIgnoreHidden = filtersPanel.add("checkbox", undefined, "Ignore hidden layers");
+        cbIgnoreHidden.value = settings.ignoreHidden;
+        var cbIgnoreLocked = filtersPanel.add("checkbox", undefined, "Ignore locked layers");
+        cbIgnoreLocked.value = settings.ignoreLocked;
+        var cbSelectedOnly = filtersPanel.add("checkbox", undefined, "Selected layers only");
+        cbSelectedOnly.value = settings.selectedOnly;
+
+        var hlPanel = dlg.add("panel", undefined, "Highlight in viewer");
+        hlPanel.orientation = "column";
+        hlPanel.alignChildren = ["left", "top"];
+        hlPanel.margins = 10;
+        var cbForceHighlight = hlPanel.add("checkbox", undefined, "Force highlight visibility");
+        cbForceHighlight.value = settings.forceHighlightVisibility;
+        var cbDisableHighlights = hlPanel.add("checkbox", undefined, "Disable global highlights (faster)");
+        cbDisableHighlights.value = settings.disableGlobalHighlights;
+        var btnToggleHl = hlPanel.add("button", undefined, "Toggle Highlight Visibility");
+        btnToggleHl.alignment = ["fill", "top"];
+
+        var btnVerifyDict = dlg.add("button", undefined, "Verify Dictionary");
+        btnVerifyDict.alignment = ["fill", "top"];
+
+        var scanRow = dlg.add("group");
+        scanRow.orientation = "column";
+        scanRow.alignChildren = ["fill", "top"];
+        scanRow.spacing = 6;
+        var btnScanActive = scanRow.add("button", undefined, "Scan Active Comp");
+        var btnScanSelectedComps = scanRow.add("button", undefined, "Scan Selected Comps");
+
+        var closeRow = dlg.add("group");
+        closeRow.orientation = "row";
+        closeRow.alignment = ["center", "top"];
+        var btnClose = closeRow.add("button", undefined, "Close", { name: "ok" });
+
+        function saveSettings() {
+            settings.ignoreAllCaps = cbIgnoreCaps.value;
+            settings.skipNumbers = cbSkipNumbers.value;
+            settings.smartMatching = cbSmartMatch.value;
+            settings.ignoreHidden = cbIgnoreHidden.value;
+            settings.ignoreLocked = cbIgnoreLocked.value;
+            settings.selectedOnly = cbSelectedOnly.value;
+            settings.forceHighlightVisibility = cbForceHighlight.value;
+            settings.disableGlobalHighlights = cbDisableHighlights.value;
+        }
+
+        btnToggleHl.onClick = function () {
+            var visible = toggleHighlightVisibility();
+            setStatus(visible ? "Highlights shown in the comp." : "Highlights hidden.");
+        };
+
+        btnVerifyDict.onClick = function () { saveSettings(); dlg.close(); showVerifyDictionary(); };
+
+        btnScanActive.onClick = function () {
+            saveSettings();
+            ddlScope.selection = 0;
+            dlg.close();
+            runScanUI();
+        };
+
+        btnScanSelectedComps.onClick = function () {
+            saveSettings();
+            ddlScope.selection = 3;
+            dlg.close();
+            runScanUI();
+        };
+
+        btnClose.onClick = function () { saveSettings(); dlg.close(); };
+
+        dlg.center();
+        dlg.show();
     };
 
     // ---------------- Help dialog ----------------
@@ -2463,38 +2447,34 @@ function buildUI(thisObj) {
         dlg.alignChildren = ["fill", "top"];
         dlg.margins = 16;
         dlg.spacing = 10;
-        dlg.preferredSize = [520, 560];
+        dlg.preferredSize = [480, 540];
 
         var helpContent =
             "SCANNING\n" +
             "Pick a scope (Active Comp, Entire Project, Selected Layers, or Selected\n" +
-            "Comps) and click Scan — or open Settings for one-click \"Scan Active\n" +
-            "Comp\" / \"Scan Selected Comps\" buttons. Reads layer names, text layers,\n" +
-            "marker comments, string effect parameters, and quoted string literals\n" +
-            "inside expressions.\n\n" +
-            "WORD MATCHING\n" +
-            "Ignore ALL-CAPS, Skip words with numbers, and Smart word matching\n" +
-            "(also accepts plurals/tenses of a known word) are always visible above.\n\n" +
+            "Comps) and click Scan. Reads layer names, text layers, marker comments,\n" +
+            "string effect parameters, and quoted string literals inside\n" +
+            "expressions.\n\n" +
             "SETTINGS\n" +
-            "Restrict which layers are scanned (hidden, locked, selected-only), and\n" +
-            "control on-canvas highlighting: \"Force highlight visibility\" temporarily\n" +
-            "shows hidden layers that contain errors, \"Disable global highlights\n" +
-            "(faster)\" skips drawing highlights entirely for large projects.\n\n" +
+            "Word matching (Ignore ALL-CAPS, Skip words with numbers, Smart word\n" +
+            "matching — also accepts plurals/tenses of a known word), layer\n" +
+            "filters (hidden / locked / selected-only), on-canvas highlighting\n" +
+            "controls, Verify Dictionary, and one-click \"Scan Active Comp\" /\n" +
+            "\"Scan Selected Comps\" all live in Settings.\n\n" +
             "HIGHLIGHTING IN THE COMP\n" +
             "After a scan, every layer with a spelling error gets a red outline drawn\n" +
             "directly in the Composition viewer, on a non-rendering guide layer\n" +
-            "named \"MSC Highlights\" — it never modifies your actual layers. Toggle\n" +
-            "it from Settings, or clear it with Clear.\n\n" +
+            "named \"MSC Highlights\" — it never modifies your actual layers.\n\n" +
             "FIXING A WORD\n" +
-            "Select a misspelled word on the left, review where it appears, then\n" +
+            "Select a misspelled word from the list, review where it appears, then\n" +
             "either pick a suggestion and click Replace (fixes every occurrence),\n" +
             "click Ignore (skips it this session, saves to ignoredWords.txt), or\n" +
             "click + Dictionary to whitelist it permanently.\n\n" +
             "DICTIONARY FILES\n" +
             "Drop category word lists (one word per line, or \"wrong -> right\"\n" +
             "correction lines) into a \"Dictionary\" folder next to this script for\n" +
-            "coverage beyond the built-in fallback list. Use Verify Dictionary to\n" +
-            "see what's currently loaded.\n\n" +
+            "coverage beyond the built-in fallback list. Use Settings > Verify\n" +
+            "Dictionary to see what's currently loaded.\n\n" +
             "INSTALLING\n" +
             "Copy this .jsx file into Scripts/ScriptUI Panels/ for a dockable panel\n" +
             "under Window > " + APP_NAME + ", or run it once via File > Scripts >\n" +
@@ -2502,7 +2482,7 @@ function buildUI(thisObj) {
 
         var helpText = dlg.add("edittext", undefined, helpContent, { multiline: true, scrolling: true, readonly: true });
         helpText.alignment = ["fill", "fill"];
-        helpText.preferredSize = [-1, 460];
+        helpText.preferredSize = [-1, 440];
 
         var btnOK = dlg.add("button", undefined, "OK", { name: "ok" });
         btnOK.alignment = ["center", "top"];
