@@ -2064,40 +2064,49 @@ function buildUI(thisObj) {
 
     var leftPane = results.add("group");
     leftPane.orientation = "column";
+    leftPane.alignChildren = ["fill", "top"];
     leftPane.alignment = ["fill", "fill"];
     leftPane.preferredSize = [-1, -1];
     var wordsLabel = leftPane.add("statictext", undefined, "Misspelled words");
+    wordsLabel.justify = "left";
     try { wordsLabel.graphics.font = ScriptUI.newFont("dialog", "bold", 10); } catch (e) {}
     var lstWords = leftPane.add("listbox", undefined, []);
     lstWords.alignment = ["fill", "fill"];
 
     var rightPane = results.add("group");
     rightPane.orientation = "column";
+    rightPane.alignChildren = ["fill", "top"];
     rightPane.alignment = ["fill", "fill"];
     rightPane.preferredSize = [-1, -1];
 
     var locLabel = rightPane.add("statictext", undefined, "Locations");
+    locLabel.justify = "left";
     try { locLabel.graphics.font = ScriptUI.newFont("dialog", "bold", 10); } catch (e) {}
     var lstLocations = rightPane.add("listbox", undefined, []);
-    lstLocations.preferredSize = [-1, 90];
+    lstLocations.alignment = ["fill", "top"];
+    lstLocations.preferredSize = [-1, 110];
 
     var btnReveal = rightPane.add("button", undefined, "Reveal in Timeline");
     btnReveal.alignment = ["fill", "top"];
 
     var suggLabel = rightPane.add("statictext", undefined, "Suggestions");
+    suggLabel.justify = "left";
     try { suggLabel.graphics.font = ScriptUI.newFont("dialog", "bold", 10); } catch (e) {}
     var lstSuggestions = rightPane.add("listbox", undefined, []);
-    lstSuggestions.preferredSize = [-1, 70];
+    lstSuggestions.alignment = ["fill", "top"];
+    lstSuggestions.preferredSize = [-1, 90];
 
     var replaceRow = rightPane.add("group");
     replaceRow.orientation = "row";
     replaceRow.alignChildren = ["fill", "center"];
+    replaceRow.alignment = ["fill", "top"];
     var txtReplacement = replaceRow.add("edittext", undefined, "");
     txtReplacement.alignment = ["fill", "center"];
     txtReplacement.helpTip = "Pick a suggestion above, or type your own replacement.";
 
     var actionRow1 = rightPane.add("group");
     actionRow1.orientation = "row";
+    actionRow1.alignment = ["fill", "top"];
     actionRow1.spacing = 4;
     var btnReplace = actionRow1.add("button", undefined, "Replace");
     btnReplace.alignment = ["fill", "top"];
@@ -2106,6 +2115,7 @@ function buildUI(thisObj) {
 
     var actionRow2 = rightPane.add("group");
     actionRow2.orientation = "row";
+    actionRow2.alignment = ["fill", "top"];
     actionRow2.spacing = 4;
     var btnIgnore = actionRow2.add("button", undefined, "Ignore");
     btnIgnore.alignment = ["fill", "top"];
@@ -2408,19 +2418,23 @@ function buildUI(thisObj) {
 
         var dlg = new Window("dialog", "Dictionary Status");
         dlg.orientation = "column";
+        dlg.alignChildren = ["fill", "top"];
         dlg.margins = 14;
         dlg.spacing = 8;
         dlg.preferredSize = [560, 520];
 
         var summary = dlg.add("statictext", undefined,
             "Loaded: " + r.loaded + "   Missing: " + r.missing + "   Empty: " + r.empty + "   Errors: " + r.error);
+        summary.justify = "left";
         try { summary.graphics.font = ScriptUI.newFont("dialog", "bold", 11); } catch (e) {}
 
         var pathText = dlg.add("statictext", undefined, "Folder: " + r.dictionaryPath, { multiline: true });
+        pathText.justify = "left";
         var totalsText = dlg.add("statictext", undefined,
             "Fallback list: " + r.fallbackWords + " words · Custom dictionary: " + r.customWords +
             " words · Category files: " + r.fileWords + " words / " + r.fileCorrections + " corrections",
             { multiline: true });
+        totalsText.justify = "left";
 
         var lines = [];
         for (var i = 0; i < r.categories.length; i++) {
