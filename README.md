@@ -6,7 +6,17 @@ expressions; suggests corrections; replaces in place; and (optionally)
 draws a highlight box around every layer with an error, directly in the
 Composition viewer.
 
-## Recommended: `MotionSpellChecker.jsx` — a single-file script
+## Released build: the CEP extension (`CSXS/`, `client/`, `host/`)
+
+This is the version distributed as `MotionSpellChecker.zxp` — custom
+theme, settings drawer, host-theme adaptation, on-canvas highlighting.
+**If you just downloaded this to install it, see [`INSTALL.md`](./INSTALL.md)
+instead of the developer notes below.**
+
+The rest of this file (packaging, signing, debug-mode testing) is for
+working on the plugin's source, not for installing the finished product.
+
+## Alternative: `MotionSpellChecker.jsx` — a single-file script
 
 **`MotionSpellChecker.jsx`** (repo root) is the primary way to install and
 distribute this. It's a plain ExtendScript `.jsx` file with a ScriptUI
@@ -66,21 +76,14 @@ to see what's currently loaded.
 
 ---
 
-## Also included: a CEP extension build
+## CEP extension source layout
 
-This repo also contains a full CEP (HTML/CSS/JS panel + ExtendScript host)
-version of the same tool, under `CSXS/`, `client/`, and `host/`. It looks
-more like a polished commercial product (custom theme, settings drawer,
-host-theme adaptation), but installing an unsigned copy for testing
-requires enabling AE's developer debug mode and placing it in a specific
-system folder — considerably more setup than the single-file script above,
-and more failure-prone across different AE versions and machine
-configurations.
-
-Use the CEP build if you specifically want that richer UI and are willing
-to sign it into a `.zxp` for real distribution (see below). Otherwise,
-`MotionSpellChecker.jsx` is the simpler, more robust choice for both
-personal use and sharing with other artists.
+The CEP (HTML/CSS/JS panel + ExtendScript host) build under `CSXS/`,
+`client/`, and `host/` is the released product (see the top of this file).
+The standalone `MotionSpellChecker.jsx` above is a lighter-weight
+alternative for anyone who'd rather skip signing/installers entirely — the
+tradeoff is the plain ScriptUI look instead of the CEP build's custom
+theme and settings drawer.
 
 ```
 CSXS/manifest.xml     Extension manifest (panel size, host app, entry points)
@@ -125,8 +128,25 @@ ZXPSignCmd -selfSignedCert US CA "Amir Anderson" "Motion Spell Checker" password
 ZXPSignCmd -sign . MotionSpellChecker.zxp cert.p12 password -tsa https://timestamp.digicert.com
 ```
 
+Run the `-sign` command from *inside* the extension folder itself (the one
+containing `CSXS/manifest.xml`) — `.` means "sign the current directory,"
+and pointing it anywhere else (e.g. your home folder) will try to sign
+everything in that folder instead. If `-tsa` fails on a flaky network,
+drop it and re-run; timestamping is optional.
+
 Users then install the `.zxp` with **ZXP Installer** (zxpinstaller.com) or
 **Anastasiy's Extension Manager** — no debug mode needed on their machine.
+`INSTALL.md` in this repo is the customer-facing version of these steps —
+that's what to hand to people downloading the finished `.zxp`, not this file.
+
+> **Manifest note**: `CSXS/manifest.xml`'s root `<ExtensionManifest>` tag
+> must NOT carry a default `xmlns="..."` attribute. Adding one (even
+> pointing at a real Adobe namespace URL) makes AE's manifest parser
+> silently fail with `Unsupported Manifest version ''` and skip loading
+> the extension entirely, with no indication why — this cost significant
+> debugging time to track down. A prefixed namespace like
+> `xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"` (as seen in
+> Adobe's own extensions) is fine; a bare `xmlns="..."` is not.
 
 ### Debugging the CEP panel itself
 
