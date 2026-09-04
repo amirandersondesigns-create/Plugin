@@ -25,7 +25,6 @@
     function $(id) { return document.getElementById(id); }
 
     var el = {
-        btnVerifyDict: $("btnVerifyDict"),
         btnHelp: $("btnHelp"),
 
         ddlScope: $("ddlScope"),
@@ -35,9 +34,6 @@
 
         btnGearSettings: $("btnGearSettings"),
         settingsOverlay: $("settingsOverlay"),
-        btnScanActiveComp: $("btnScanActiveComp"),
-        btnScanSelectedComps: $("btnScanSelectedComps"),
-        btnRefreshScan: $("btnRefreshScan"),
         btnToggleHighlightsIcon: $("btnToggleHighlightsIcon"),
         btnOpenDictFromSettings: $("btnOpenDictFromSettings"),
 
@@ -62,11 +58,9 @@
 
         locationsTitle: $("locationsTitle"),
         locationsList: $("locationsList"),
-        btnReveal: $("btnReveal"),
 
         suggestionsTitle: $("suggestionsTitle"),
-        suggestInput: $("suggestInput"),
-        suggestList: $("suggestList"),
+        suggestionsList: $("suggestionsList"),
         btnReplace: $("btnReplace"),
         btnUndo: $("btnUndo"),
         btnIgnore: $("btnIgnore"),
@@ -147,8 +141,6 @@
             renderWordsList();
             clearDetail();
 
-            setHighlightIconState(!!res.highlightsVisible);
-
             var scopeLabel = res.scope === "project" ? "project" :
                 (res.scope === "selected" ? "selected layers" :
                 (res.scope === "selectedComps" ? "selected comps" : "active comp"));
@@ -178,39 +170,19 @@
         renderWordsList();
         clearDetail();
         setStatus("Cleared — ready to scan.", null);
-        callHost("csClearHighlights").then(function () { setHighlightIconState(false); });
+        callHost("csClearHighlights");
     });
 
     // ---------------------------------------------------------------
-    // Scan Settings drawer (gear icon) — layer filters, highlight
-    // options, and the two dedicated scan actions from the reference UI.
+    // Settings drawer — layer filters, word matching, and highlight
+    // options. The main Scan button already reads whatever scope is
+    // selected, so there's no separate "scan now" action in here.
     // ---------------------------------------------------------------
     el.btnGearSettings.addEventListener("click", function () { openOverlay("settingsOverlay"); });
 
-    el.btnScanActiveComp.addEventListener("click", function () {
-        el.ddlScope.value = "active";
-        closeOverlay("settingsOverlay");
-        runScan();
-    });
-
-    el.btnScanSelectedComps.addEventListener("click", function () {
-        el.ddlScope.value = "selectedComps";
-        closeOverlay("settingsOverlay");
-        runScan();
-    });
-
-    el.btnRefreshScan.addEventListener("click", function () { runScan(); });
-
-    function setHighlightIconState(on) {
-        el.btnToggleHighlightsIcon.classList.toggle("active", !!on);
-    }
-
     el.btnToggleHighlightsIcon.addEventListener("click", function () {
         callHost("csToggleHighlights").then(function (res) {
-            if (res.ok) {
-                setHighlightIconState(res.visible);
-                setStatus(res.visible ? "Highlights shown in the comp." : "Highlights hidden.", null);
-            }
+            if (res.ok) setStatus(res.visible ? "Highlights shown in the comp." : "Highlights hidden.", null);
         });
     });
 
@@ -290,8 +262,6 @@
             row.innerHTML =
                 '<div class="src">' + escapeHtml(sourceLabel(loc.sourceType)) + '</div>' +
                 '<div class="label">' + escapeHtml(loc.label) + '</div>';
-            row.dataset.index = String(i);
-            row.addEventListener("dblclick", function () { revealSelected(); });
             row.addEventListener("click", function () {
                 Array.prototype.forEach.call(el.locationsList.children, function (c) { c.classList.remove("selected"); });
                 row.classList.add("selected");
@@ -299,15 +269,25 @@
             el.locationsList.appendChild(row);
         });
 
-        el.suggestionsTitle.textContent = w.suggestions.length > 0 ? "Suggestion (" + w.suggestions.length + " found)" : "Suggestion";
-        el.suggestList.innerHTML = "";
-        w.suggestions.forEach(function (s) {
-            var o = document.createElement("option");
-            o.value = s;
-            el.suggestList.appendChild(o);
-        });
-        el.suggestInput.value = w.suggestions.length > 0 ? w.suggestions[0] : "";
-        el.suggestInput.placeholder = w.suggestions.length > 0 ? "" : "No suggestions — type a replacement";
+        el.suggestionsTitle.textContent = w.suggestions.length > 0 ? "Suggestions (" + w.suggestions.length + ")" : "Suggestions";
+        el.suggestionsList.innerHTML = "";
+        if (w.suggestions.length === 0) {
+            var none = document.createElement("div");
+            none.className = "empty-state";
+            none.textContent = "No suggestions for this word.";
+            el.suggestionsList.appendChild(none);
+        } else {
+            w.suggestions.forEach(function (s, i) {
+                var row = document.createElement("div");
+                row.className = "row-item" + (i === 0 ? " selected" : "");
+                row.textContent = s;
+                row.addEventListener("click", function () {
+                    Array.prototype.forEach.call(el.suggestionsList.children, function (c) { c.classList.remove("selected"); });
+                    row.classList.add("selected");
+                });
+                el.suggestionsList.appendChild(row);
+            });
+        }
     }
 
     function sourceLabel(t) {
@@ -323,10 +303,8 @@
     function clearDetail() {
         el.locationsTitle.textContent = "Locations";
         el.locationsList.innerHTML = "";
-        el.suggestionsTitle.textContent = "Suggestion";
-        el.suggestList.innerHTML = "";
-        el.suggestInput.value = "";
-        el.suggestInput.placeholder = "No suggestions";
+        el.suggestionsTitle.textContent = "Suggestions";
+        el.suggestionsList.innerHTML = "";
     }
 
     function escapeHtml(s) {
@@ -348,8 +326,10 @@
 
     el.btnReplace.addEventListener("click", function () {
         if (!state.selectedLower) { setStatus("Select a misspelled word first.", "warning"); return; }
-        var newWord = el.suggestInput.value.replace(/^\s+|\s+$/g, "");
-        if (!newWord) { setStatus("Type or pick a replacement first.", "warning"); return; }
+        var selectedSuggestion = el.suggestionsList.querySelector(".row-item.selected");
+        if (!selectedSuggestion) { setStatus("Select a suggestion first.", "warning"); return; }
+        var newWord = selectedSuggestion.textContent.replace(/^\s+|\s+$/g, "");
+        if (!newWord) { setStatus("Select a suggestion first.", "warning"); return; }
         var w = findWord(state.selectedLower);
         callHost("csReplace", { lower: state.selectedLower, newWord: newWord }).then(function (res) {
             if (res.ok) {
@@ -376,16 +356,6 @@
             if (res.ok) { setStatus("Added \"" + lower + "\" to custom dictionary.", "success"); removeWordFromState(lower); }
         });
     });
-
-    el.btnReveal.addEventListener("click", function () { revealSelected(); });
-    function revealSelected() {
-        if (!state.selectedLower) { setStatus("Select a misspelled word first.", "warning"); return; }
-        var selectedRow = el.locationsList.querySelector(".row-item.selected");
-        var index = selectedRow ? parseInt(selectedRow.dataset.index, 10) : 0;
-        callHost("csReveal", { lower: state.selectedLower, index: index }).then(function (res) {
-            if (!res.ok) setStatus(res.error || "Could not reveal location.", "error");
-        });
-    }
 
     el.btnUndo.addEventListener("click", function () {
         callHost("csUndo").then(function (res) {
@@ -415,8 +385,6 @@
             renderDictOverlay(res.result);
         });
     }
-
-    el.btnVerifyDict.addEventListener("click", verifyDictionaries);
 
     function renderDictOverlay(r) {
         var html = "";

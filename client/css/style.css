@@ -93,8 +93,11 @@ html, body {
 .toolbar-fields { flex-wrap: nowrap; }
 .toolbar-fields .field { flex: 1 1 0; min-width: 0; }
 
-label.field { display: flex; align-items: center; gap: 6px; min-width: 0; }
-.field-label { font-size: 11px; color: var(--muted); white-space: nowrap; flex: 0 0 auto; }
+label.field { display: flex; flex-direction: column; align-items: stretch; gap: 3px; min-width: 0; }
+.field-label { font-size: 9.5px; color: var(--muted); white-space: nowrap; flex: 0 0 auto; }
+
+.toolbar-actions { justify-content: stretch; }
+.toolbar-actions button { flex: 1 1 0; min-width: 0; }
 
 select, input[type="text"] {
     background: var(--field);
@@ -134,31 +137,11 @@ button:disabled { opacity: 0.4; cursor: default; }
 
 .spacer { flex: 1 1 auto; }
 
-/* Icon buttons — gear / eye / dictionary / refresh, square and quiet */
-.icon-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    width: 26px;
-    height: 26px;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    line-height: 1;
-    flex: 0 0 auto;
-}
-.icon-btn:hover:not(:disabled) { background: var(--panel-alt); color: var(--text); }
-.icon-btn.active { color: var(--accent); border-color: var(--accent); }
-
 .check-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
 .check-group-label {
     font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.4px;
     color: var(--faint); margin-bottom: 2px;
 }
-.check-row { display: flex; flex-wrap: wrap; gap: 4px 18px; }
-.check-row-inline { padding: 0 1px; }
 
 .checkbox {
     display: flex; align-items: center; gap: 6px;
@@ -196,21 +179,14 @@ button:disabled { opacity: 0.4; cursor: default; }
 .stat .lbl { color: var(--faint); margin-right: 3px; }
 .stat.error-count .num { color: var(--error); font-weight: 600; }
 
-/* ---------- Results: left-to-right workflow (pick word -> see where -> fix it) ---------- */
-.results {
+/* ---------- Results: single column, top to bottom (pick word -> see where -> fix it) ---------- */
+.results-column {
     flex: 1 1 auto;
-    display: flex;
-    min-height: 0;
-}
-
-.pane {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    min-width: 0;
+    overflow-y: auto;
 }
-.pane-words { flex: 0 0 34%; border-right: 1px solid var(--border-soft); }
-.pane-detail { flex: 1 1 66%; }
 
 .pane-header {
     flex: 0 0 auto;
@@ -235,10 +211,14 @@ button:disabled { opacity: 0.4; cursor: default; }
 .empty-state.success { color: var(--success); }
 
 .list {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     overflow-y: auto;
     min-height: 0;
+    border-bottom: 1px solid var(--border-soft);
 }
+.list.words-list { height: 110px; }
+.list.locations { height: 70px; }
+.list.suggestions { height: 90px; }
 
 .row-item {
     display: flex;
@@ -260,8 +240,6 @@ button:disabled { opacity: 0.4; cursor: default; }
 .location-item .src { font-size: 9.5px; font-weight: 600; text-transform: uppercase; color: var(--accent); }
 .location-item .label { font-size: 11px; color: var(--text); }
 
-.list.locations { flex: 0 0 120px; border-bottom: 1px solid var(--border-soft); }
-
 /* ---------- Fix panel: grouped controls, primary action obvious ---------- */
 .fix-panel {
     flex: 0 0 auto;
@@ -271,12 +249,8 @@ button:disabled { opacity: 0.4; cursor: default; }
     gap: 8px;
 }
 
-.suggest-row { display: flex; align-items: center; gap: 6px; }
-.suggest-row input[type="text"] { flex: 1 1 auto; }
-
 .action-row { display: flex; gap: 6px; }
 .action-row button { flex: 1 1 0; min-width: 0; padding-left: 6px; padding-right: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.action-row .icon-btn { flex: 0 0 26px; }
 
 .help-text { font-size: 10px; color: var(--faint); line-height: 1.4; }
 
@@ -308,7 +282,6 @@ button:disabled { opacity: 0.4; cursor: default; }
     flex: 0 0 auto;
 }
 .overlay-header h2 { margin: 0; font-size: 12px; color: var(--text-strong); flex: 1 1 auto; }
-.header-icons { display: flex; gap: 6px; margin-right: 8px; }
 .overlay-body { padding: 10px 12px; overflow-y: auto; font-size: 11.5px; line-height: 1.55; color: var(--text); }
 .overlay-body h3 { font-size: 10.5px; color: var(--accent); margin: 12px 0 5px; text-transform: uppercase; letter-spacing: 0.3px; }
 .overlay-body h3:first-child { margin-top: 0; }
@@ -335,9 +308,6 @@ button:disabled { opacity: 0.4; cursor: default; }
 .dict-summary { display: flex; gap: 14px; margin-bottom: 10px; font-size: 11px; }
 .dict-summary .num { color: var(--text-strong); font-weight: 600; }
 
-/* ---------- Scan Settings drawer: layer filters + highlighting + scan actions ---------- */
-.settings-scan-row { display: flex; align-items: stretch; gap: 6px; margin-top: 4px; }
-.settings-scan-row .btn-primary { flex: 1 1 auto; }
 .btn-block { width: 100%; display: block; text-align: center; }
 .overlay-body .btn-block { margin-top: 8px; }
 #settingsOverlay .overlay-panel { max-width: 340px; }

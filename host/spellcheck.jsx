@@ -9,7 +9,7 @@
 // ============================================================================
 
 var APP_NAME = "Motion Spell Checker";
-var VERSION = "2.1";
+var VERSION = "2.2";
 var AUTHOR = "Amir Anderson";
 var HIGHLIGHT_LAYER_NAME = "MSC Highlights";
 
@@ -1598,29 +1598,6 @@ function applyCorrection(finding, oldWord, newWord) {
     return { success: false, count: 0 };
 }
 
-// ==================== NAVIGATION ====================
-function navigateToLocation(loc) {
-    try {
-        var finding = loc.finding;
-        var comp = finding.comp;
-        if (!comp) return false;
-        comp.openInViewer();
-        if (finding.layer) {
-            try {
-                var idx = finding.layer.index;
-                if (idx >= 1 && idx <= comp.numLayers) {
-                    comp.selectedLayers = [comp.layer(idx)];
-                    if (finding.property && finding.propKind !== "layerName" && finding.propKind !== "compName") {
-                        try { finding.property.selected = true; } catch (e) {}
-                    }
-                    return true;
-                }
-            } catch (e) {}
-        }
-        return true;
-    } catch (e) { return false; }
-}
-
 function persistCustomWord(word) {
     var dictPath = getDictionaryPath();
     if (!dictPath) return false;
@@ -2020,16 +1997,6 @@ function csAddToDictionary(paramsJSON) {
         dictionaryData.words[p.lower] = true;
         persistCustomWord(p.lower);
         return JSON.stringify({ ok: true, lower: p.lower });
-    } catch (e) { return JSON.stringify({ ok: false, error: e.toString() }); }
-}
-
-function csReveal(paramsJSON) {
-    try {
-        var p = JSON.parse(paramsJSON);
-        var err = sessionState.errors ? sessionState.errors[p.lower] : null;
-        if (!err || !err.locations[p.index]) return JSON.stringify({ ok: false, error: "Location not found." });
-        var ok = navigateToLocation(err.locations[p.index]);
-        return JSON.stringify({ ok: ok });
     } catch (e) { return JSON.stringify({ ok: false, error: e.toString() }); }
 }
 

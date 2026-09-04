@@ -15,7 +15,6 @@
                 <span class="byline" id="appByline">by Amir Anderson</span>
             </div>
             <span class="spacer"></span>
-            <button class="link-btn" id="btnVerifyDict">Verify Dictionary</button>
             <button class="link-btn" id="btnHelp">Help</button>
         </div>
 
@@ -45,16 +44,9 @@
             </div>
 
             <div class="toolbar-row toolbar-actions">
-                <button id="btnGearSettings" class="icon-btn" title="Scan settings">&#9881;</button>
-                <span class="spacer"></span>
                 <button id="btnClear" class="btn-plain">Clear</button>
                 <button id="btnScan" class="btn-primary">Scan</button>
-            </div>
-
-            <div class="check-row check-row-inline">
-                <label class="checkbox"><input type="checkbox" id="cbIgnoreCaps" checked /> Ignore ALL-CAPS</label>
-                <label class="checkbox"><input type="checkbox" id="cbSkipNumbers" checked /> Skip words with numbers</label>
-                <label class="checkbox"><input type="checkbox" id="cbSmartMatch" checked /> Smart word matching</label>
+                <button id="btnGearSettings" class="btn-plain">Settings…</button>
             </div>
         </div>
 
@@ -67,40 +59,30 @@
             <div class="stat error-count"><span class="lbl">Errors</span><span class="num" id="statErrors">0</span></div>
         </div>
 
-        <!-- Results: pick a word -> see where it is -> fix it -->
-        <div class="results">
-            <div class="pane pane-words">
-                <div class="pane-header">
-                    <span id="wordsTitle">Misspelled words</span>
-                </div>
-                <div class="empty-state" id="emptyState">No scan yet — choose a scope and click Scan.</div>
-                <div class="list" id="wordsList" style="display:none;"></div>
+        <!-- Results: single column, top to bottom -->
+        <div class="results-column">
+            <div class="pane-header">
+                <span id="wordsTitle">Misspelled words</span>
             </div>
+            <div class="empty-state" id="emptyState">No scan yet — choose a scope and click Scan.</div>
+            <div class="list words-list" id="wordsList" style="display:none;"></div>
 
-            <div class="pane pane-detail">
+            <div class="pane-header">
+                <span id="locationsTitle">Locations</span>
+            </div>
+            <div class="list locations" id="locationsList"></div>
+
+            <div class="fix-panel">
                 <div class="pane-header">
-                    <span id="locationsTitle">Locations</span>
+                    <span id="suggestionsTitle">Suggestions</span>
                 </div>
-                <div class="list locations" id="locationsList"></div>
+                <div class="list suggestions" id="suggestionsList"></div>
 
-                <div class="fix-panel">
-                    <button id="btnReveal" class="btn-plain">Reveal in Timeline</button>
-
-                    <div class="pane-header" style="padding:0; border:none;">
-                        <span id="suggestionsTitle">Suggestion</span>
-                    </div>
-                    <div class="suggest-row">
-                        <input type="text" id="suggestInput" list="suggestList" placeholder="No suggestions" autocomplete="off" />
-                        <datalist id="suggestList"></datalist>
-                    </div>
-                    <div class="help-text">Pick a suggestion or type your own replacement, then Replace.</div>
-
-                    <button id="btnReplace" class="btn-primary btn-block">Replace</button>
-                    <div class="action-row">
-                        <button id="btnUndo" class="icon-btn" title="Undo last change">&#8630;</button>
-                        <button id="btnIgnore" class="btn-plain">Ignore</button>
-                        <button id="btnAddDict" class="btn-plain">+ Dictionary</button>
-                    </div>
+                <button id="btnReplace" class="btn-primary btn-block">Replace</button>
+                <div class="action-row">
+                    <button id="btnUndo" class="btn-plain">Undo</button>
+                    <button id="btnIgnore" class="btn-plain">Ignore</button>
+                    <button id="btnAddDict" class="btn-plain">+ Dictionary</button>
                 </div>
             </div>
         </div>
@@ -127,55 +109,50 @@
             <div class="overlay-body">
                 <h3>Scanning</h3>
                 <p>Pick a scope (Active Comp, Entire Project, Selected Layers, or Selected Comps)
-                and click Scan — or open the gear icon for one-click "Scan Active Comp" /
-                "Scan Selected Comps" buttons. The checker reads layer names, text layers,
-                marker comments, string effect parameters, and quoted string literals inside
-                expressions.</p>
+                and click Scan. The checker reads layer names, text layers, marker comments,
+                string effect parameters, and quoted string literals inside expressions.</p>
 
-                <h3>Word matching</h3>
-                <p>Ignore ALL-CAPS, Skip words with numbers, and Smart word matching (also
-                accepts plurals/tenses of a known word) are always visible in the toolbar.</p>
-
-                <h3>Scan settings (gear icon)</h3>
-                <p>Restrict which layers are scanned (hidden, locked, selected-only), and
-                control on-canvas highlighting: "Force highlight visibility" temporarily shows
-                hidden layers that contain errors, and "Disable global highlights (faster)"
-                skips drawing highlights entirely for large projects.</p>
+                <h3>Settings</h3>
+                <p>Word matching (Ignore ALL-CAPS, Skip words with numbers, Smart word matching),
+                layer filters (hidden / locked / selected-only), on-canvas highlighting controls,
+                and Verify Dictionary all live in Settings.</p>
 
                 <h3>Highlighting in the comp</h3>
                 <p>After a scan, every layer with a spelling error gets a red outline directly
                 in the Composition viewer, drawn on a non-rendering guide layer named
                 "MSC Highlights" — it never modifies your actual layers and is excluded from
-                render. Toggle it on/off with the eye icon, or clear it with Clear.</p>
+                render.</p>
 
                 <h3>Fixing a word</h3>
-                <p>Select a misspelled word on the left, review where it appears, then either
+                <p>Select a misspelled word from the list, review where it appears, then either
                 pick a suggestion and click Replace (fixes every occurrence of that word),
                 click Ignore (skips it for this session and saves it to
-                <code>ignoredWords.txt</code>), or click Add to Dictionary to whitelist it
+                <code>ignoredWords.txt</code>), or click + Dictionary to whitelist it
                 permanently.</p>
 
                 <h3>Dictionary files</h3>
                 <p>Drop category word lists (one word per line, or <code>wrong -&gt; right</code>
                 correction lines) into the extension's <code>Dictionary</code> folder for full
-                coverage beyond the built-in fallback list. Use Verify Dictionary to see what's
-                currently loaded.</p>
+                coverage beyond the built-in fallback list. Use Settings &gt; Verify Dictionary
+                to see what's currently loaded.</p>
             </div>
         </div>
     </div>
 
-    <!-- Scan Settings overlay -->
+    <!-- Settings overlay -->
     <div class="overlay" id="settingsOverlay">
         <div class="overlay-panel">
             <div class="overlay-header">
-                <h2>Scan Settings</h2>
-                <div class="header-icons">
-                    <button class="icon-btn" id="btnToggleHighlightsIcon" title="Toggle highlight visibility in the comp">&#128065;</button>
-                    <button class="icon-btn" id="btnOpenDictFromSettings" title="Dictionary status">&#128214;</button>
-                </div>
+                <h2>Settings</h2>
                 <button class="close-x" data-close="settingsOverlay">Close</button>
             </div>
             <div class="overlay-body">
+                <div class="check-group">
+                    <div class="check-group-label">Word matching</div>
+                    <label class="checkbox"><input type="checkbox" id="cbIgnoreCaps" checked /> Ignore ALL-CAPS</label>
+                    <label class="checkbox"><input type="checkbox" id="cbSkipNumbers" checked /> Skip words with numbers</label>
+                    <label class="checkbox"><input type="checkbox" id="cbSmartMatch" checked /> Smart word matching</label>
+                </div>
                 <div class="check-group">
                     <div class="check-group-label">Layer filters</div>
                     <label class="checkbox"><input type="checkbox" id="cbIgnoreHidden" /> Ignore hidden layers</label>
@@ -186,13 +163,10 @@
                     <div class="check-group-label">Highlight in viewer</div>
                     <label class="checkbox"><input type="checkbox" id="cbForceHighlight" /> Force highlight visibility</label>
                     <label class="checkbox"><input type="checkbox" id="cbDisableHighlights" /> Disable global highlights (faster)</label>
+                    <p class="help-text">Draws a red outline around every layer that contains a misspelling, directly in the Composition viewer, using a non-rendering guide layer. It never touches your actual layers.</p>
+                    <button id="btnToggleHighlightsIcon" class="btn-plain btn-block">Toggle Highlight Visibility</button>
                 </div>
-                <p class="help-text">Highlighting draws a red outline around every layer that contains a misspelling, directly in the Composition viewer, using a non-rendering guide layer. It never touches your actual layers.</p>
-                <div class="settings-scan-row">
-                    <button id="btnScanActiveComp" class="btn-primary btn-block">Scan Active Comp</button>
-                    <button id="btnRefreshScan" class="icon-btn" title="Re-run the last scan">&#8635;</button>
-                </div>
-                <button id="btnScanSelectedComps" class="btn-plain btn-block">Scan Selected Comps</button>
+                <button id="btnOpenDictFromSettings" class="btn-plain btn-block">Verify Dictionary</button>
             </div>
         </div>
     </div>
