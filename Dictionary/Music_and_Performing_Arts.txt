@@ -1,0 +1,1209 @@
+# Music and Performing Arts Dictionary
+# Musical terms, instruments, genres, performance terminology (no artists, albums, or songs)
+
+# Music Fundamentals
+music
+sound
+tone
+pitch
+rhythm
+melody
+harmony
+timbre
+texture
+dynamics
+tempo
+beat
+measure
+bar
+
+# Note Values
+note
+rest
+whole note
+half note
+quarter note
+eighth note
+sixteenth note
+thirty second note
+sixty fourth note
+dotted note
+tied note
+triplet
+quintuplet
+sextuplet
+
+# Accidentals and Keys
+sharp
+flat
+natural
+accidental
+key signature
+time signature
+clef
+treble clef
+bass clef
+alto clef
+tenor clef
+staff
+stave
+ledger line
+grand staff
+octave
+
+# Scales and Modes
+scale
+major scale
+minor scale
+harmonic minor
+melodic minor
+natural minor
+chromatic scale
+whole tone scale
+pentatonic scale
+blues scale
+mode
+ionian mode
+dorian mode
+phrygian mode
+lydian mode
+mixolydian mode
+aeolian mode
+locrian mode
+
+# Intervals
+interval
+unison
+second
+third
+fourth
+fifth
+sixth
+seventh
+perfect interval
+major interval
+minor interval
+augmented interval
+diminished interval
+consonant interval
+dissonant interval
+
+# Chords
+chord
+triad
+major chord
+minor chord
+augmented chord
+diminished chord
+suspended chord
+seventh chord
+dominant seventh
+major seventh
+minor seventh
+diminished seventh
+half diminished seventh
+extended chord
+ninth chord
+eleventh chord
+thirteenth chord
+add chord
+altered chord
+power chord
+
+# Chord Inversions
+inversion
+root position
+first inversion
+second inversion
+third inversion
+progression
+cadence
+authentic cadence
+plagal cadence
+half cadence
+deceptive cadence
+
+# Harmonic Functions
+tonic
+dominant
+subdominant
+mediant
+submediant
+leading tone
+supertonic
+modulation
+key change
+transposition
+accidentals
+enharmonic equivalent
+circle fifths
+diatonic
+chromatic
+atonal
+polytonal
+bitonal
+microtonal
+quarter tone
+
+# Tuning Systems
+tuning
+equal temperament
+just intonation
+pythagorean tuning
+meantone temperament
+well temperament
+concert pitch
+reference pitch
+standard pitch
+absolute pitch
+perfect pitch
+relative pitch
+ear training
+sight reading
+sight singing
+solfege
+fixed do
+movable do
+
+# Music Theory
+music theory
+harmony
+counterpoint
+composition
+orchestration
+arrangement
+instrumentation
+voice leading
+part writing
+four part harmony
+figured bass
+thorough bass
+roman numeral analysis
+functional harmony
+tonal harmony
+jazz harmony
+contemporary harmony
+
+# Musical Forms
+form
+structure
+binary form
+ternary form
+rondo form
+sonata form
+sonata allegro form
+theme variations
+fugue
+canon
+round
+ostinato
+basso ostinato
+ground bass
+passacaglia
+chaconne
+suite
+movement
+exposition
+development
+recapitulation
+coda
+introduction
+bridge
+transition
+
+# Song Structure
+verse
+chorus
+refrain
+pre chorus
+hook
+breakdown
+solo section
+interlude
+outro
+fade out
+
+# Classical Genres
+genre
+style
+classical music
+baroque music
+renaissance music
+medieval music
+romantic music
+impressionist music
+modern music
+contemporary classical
+minimalist music
+avant garde
+experimental music
+
+# Electronic Music
+electronic music
+ambient music
+techno
+house music
+trance music
+drum bass
+dubstep
+breakbeat
+jungle
+garage music
+dance music
+electronic dance music
+synthesizer music
+industrial music
+noise music
+glitch music
+intelligent dance music
+trip hop
+downtempo
+chillout music
+lounge music
+
+# Jazz Styles
+jazz
+bebop
+cool jazz
+hard bop
+modal jazz
+free jazz
+fusion jazz
+smooth jazz
+latin jazz
+afro cuban jazz
+bossa nova
+swing music
+big band
+dixieland
+ragtime
+
+# Blues and Soul
+blues music
+delta blues
+chicago blues
+electric blues
+blues rock
+rhythm blues
+soul music
+funk music
+disco music
+motown sound
+
+# Religious Music
+gospel music
+spiritual music
+hymn
+psalm
+chant
+gregorian chant
+plainchant
+polyphony
+organum
+motet
+madrigal
+chanson
+lied
+art song
+
+# Opera and Vocal
+opera
+aria
+recitative
+ensemble
+duet
+trio
+quartet
+quintet
+sextet
+septet
+octet
+libretto
+
+# Musical Scores
+score
+full score
+vocal score
+piano reduction
+orchestral score
+
+# Chamber Music
+chamber music
+string quartet
+piano trio
+wind quintet
+brass quintet
+symphony
+concerto
+sonata
+
+# Classical Compositions
+prelude
+nocturne
+etude
+study
+caprice
+scherzo
+waltz
+mazurka
+polonaise
+march
+minuet
+gavotte
+bourree
+gigue
+sarabande
+allemande
+courante
+toccata
+fantasia
+rhapsody
+overture
+tone poem
+symphonic poem
+oratorio
+cantata
+mass
+requiem
+magnificat
+te deum
+stabat mater
+
+# Rock and Metal
+rock music
+rock roll
+hard rock
+heavy metal
+thrash metal
+death metal
+black metal
+power metal
+progressive metal
+doom metal
+metalcore
+deathcore
+grindcore
+
+# Punk and Alternative
+punk rock
+hardcore punk
+pop punk
+post punk
+new wave
+alternative rock
+indie rock
+grunge music
+shoegaze
+dream pop
+noise rock
+math rock
+post rock
+emo music
+screamo
+gothic rock
+industrial rock
+
+# Rock Subgenres
+glam rock
+psychedelic rock
+progressive rock
+art rock
+folk rock
+country rock
+southern rock
+surf rock
+garage rock
+rockabilly
+
+# Pop Music
+pop music
+dance pop
+synth pop
+teen pop
+bubblegum pop
+power pop
+indie pop
+electropop
+art pop
+chamber pop
+baroque pop
+
+# Country and Folk
+country music
+bluegrass music
+folk music
+traditional music
+
+# World Music
+world music
+ethnic music
+celtic music
+flamenco music
+klezmer music
+reggae music
+ska music
+dub music
+dancehall music
+calypso music
+soca music
+salsa music
+merengue music
+bachata music
+cumbia music
+tango music
+samba music
+bossa nova
+fado music
+rembetiko music
+rebetiko music
+qawwali music
+ghazal music
+carnatic music
+hindustani music
+raga music
+gamelan music
+koto music
+shakuhachi music
+taiko drumming
+
+# Regional Music
+african music
+afrobeat music
+highlife music
+mbalax music
+soukous music
+rumba music
+aboriginal music
+native american music
+indigenous music
+
+# Vocal Techniques
+throat singing
+overtone singing
+yodeling
+scat singing
+beatboxing
+vocal percussion
+a cappella
+unaccompanied singing
+choral music
+choir singing
+chorus
+ensemble
+
+# Voice Types
+soprano voice
+mezzo soprano
+alto voice
+contralto voice
+tenor voice
+baritone voice
+bass voice
+countertenor voice
+falsetto voice
+head voice
+chest voice
+mixed voice
+vibrato
+tremolo
+melisma
+portamento
+glissando
+vocal range
+tessitura
+register
+break
+passaggio
+
+# Vocal Training
+vocal technique
+breath control
+diaphragmatic breathing
+support
+resonance
+projection
+articulation
+diction
+pronunciation
+phrasing
+interpretation
+expression
+emotion
+
+# Dynamic Markings
+dynamics
+soft
+loud
+crescendo
+decrescendo
+diminuendo
+piano
+forte
+mezzo piano
+mezzo forte
+fortissimo
+pianissimo
+sforzando
+accent
+
+# Articulation
+staccato
+legato
+marcato
+tenuto
+fermata
+pause
+rubato
+tempo rubato
+accelerando
+ritardando
+rallentando
+
+# Tempo Markings
+tempo marking
+largo
+adagio
+andante
+moderato
+allegro
+presto
+grave
+lento
+vivace
+
+# String Instruments
+instrument
+string instrument
+bowed string
+plucked string
+violin
+viola
+cello
+violoncello
+double bass
+contrabass
+fiddle
+viol
+viola gamba
+hurdy gurdy
+
+# Guitars
+guitar
+acoustic guitar
+classical guitar
+steel string guitar
+nylon string guitar
+electric guitar
+bass guitar
+upright bass
+acoustic bass
+twelve string guitar
+resonator guitar
+lap steel guitar
+pedal steel guitar
+
+# Other Strings
+banjo
+mandolin
+ukulele
+lute
+oud
+sitar
+sarod
+veena
+tambura
+harp
+celtic harp
+pedal harp
+zither
+dulcimer
+hammered dulcimer
+appalachian dulcimer
+koto
+guzheng
+guqin
+pipa
+balalaika
+domra
+bouzouki
+
+# Woodwinds
+wind instrument
+woodwind
+brass instrument
+flute
+piccolo flute
+alto flute
+bass flute
+recorder
+soprano recorder
+alto recorder
+tenor recorder
+bass recorder
+oboe
+english horn
+cor anglais
+bassoon
+contrabassoon
+
+# Clarinets and Saxophones
+clarinet
+bass clarinet
+contrabass clarinet
+saxophone
+soprano saxophone
+alto saxophone
+tenor saxophone
+baritone saxophone
+bass saxophone
+
+# Brass
+trumpet
+cornet
+flugelhorn
+french horn
+horn
+trombone
+bass trombone
+euphonium
+tuba
+sousaphone
+bugle
+
+# Other Winds
+conch shell horn
+shofar
+alphorn
+didgeridoo
+bagpipe
+great highland bagpipe
+uilleann pipes
+harmonica
+mouth organ
+blues harp
+accordion
+concertina
+melodeon
+bandoneon
+
+# Percussion
+percussion instrument
+drum
+snare drum
+bass drum
+tom tom
+floor tom
+timpani
+kettledrum
+conga drum
+bongo drum
+djembe drum
+talking drum
+frame drum
+bodhran
+tambourine
+tabla
+tabla set
+darbuka
+doumbek
+
+# Cymbals and Metals
+cymbal
+crash cymbal
+ride cymbal
+hi hat cymbal
+splash cymbal
+china cymbal
+gong
+tam tam
+triangle instrument
+cowbell
+wood block
+temple block
+claves
+maracas
+shaker
+cabasa
+guiro
+vibraslap
+castanets
+tambourine
+
+# Tuned Percussion
+bell
+chimes
+tubular bells
+orchestral bells
+glockenspiel
+xylophone
+marimba
+vibraphone
+vibes
+celesta
+
+# Keyboards
+keyboard instrument
+piano
+grand piano
+upright piano
+digital piano
+electric piano
+harpsichord
+clavichord
+organ
+pipe organ
+church organ
+hammond organ
+electric organ
+reed organ
+harmonium
+
+# Electronic Keyboards
+synthesizer
+analog synthesizer
+digital synthesizer
+modular synthesizer
+midi controller
+sampler
+drum machine
+sequencer
+music box
+hurdy gurdy
+
+# Orchestra and Ensembles
+orchestra
+symphony orchestra
+chamber orchestra
+string orchestra
+philharmonic orchestra
+concert band
+wind ensemble
+marching band
+brass band
+military band
+jazz band
+big band
+combo
+ensemble
+rock band
+pop band
+cover band
+tribute band
+backing band
+session musician
+studio musician
+touring musician
+
+# Musical Leadership
+conductor
+maestro
+music director
+bandleader
+concertmaster
+principal player
+section leader
+first chair
+second chair
+rank file
+soloist
+featured artist
+guest artist
+
+# Music Production
+composer
+songwriter
+lyricist
+arranger
+orchestrator
+music producer
+record producer
+executive producer
+mixing engineer
+mastering engineer
+audio engineer
+sound engineer
+recording engineer
+live sound engineer
+studio engineer
+
+# Recording Types
+session
+recording
+live recording
+field recording
+multitrack recording
+overdubbing
+punch
+layering
+mixing
+mastering
+post production
+audio editing
+comping
+takes
+splice editing
+crossfade
+
+# Audio Effects
+equalization
+compression
+dynamic range compression
+limiting
+noise gate
+reverb
+reverberation
+delay
+echo
+chorus effect
+flanger
+phaser
+distortion
+overdrive
+fuzz
+wah wah
+pedal
+effects pedal
+stompbox
+pedalboard
+signal chain
+
+# Amplification
+amplifier
+guitar amplifier
+bass amplifier
+keyboard amplifier
+acoustic amplifier
+tube amplifier
+solid state amplifier
+modeling amplifier
+practice amplifier
+combo amplifier
+head
+cabinet
+speaker cabinet
+monitor speaker
+pa system
+public address system
+sound system
+
+# Microphones
+microphone
+dynamic microphone
+condenser microphone
+ribbon microphone
+lavalier microphone
+lapel microphone
+shotgun microphone
+handheld microphone
+stand mounted microphone
+wireless microphone
+direct box
+mixer
+mixing console
+soundboard
+audio interface
+preamp
+preamplifier
+cable
+xlr cable
+quarter inch cable
+patch cable
+instrument cable
+speaker cable
+
+# Performance Venues
+stage
+performance
+live performance
+concert
+recital
+gig
+show
+set
+encore
+soundcheck
+rehearsal
+practice session
+jam session
+open mic night
+karaoke night
+venue
+concert hall
+auditorium
+theater
+theatre
+amphitheater
+arena
+stadium
+club
+nightclub
+bar
+lounge
+cafe
+coffee house
+festival
+music festival
+arts festival
+performance space
+black box theater
+
+# Stage Types
+proscenium stage
+thrust stage
+arena stage
+round stage
+platform stage
+riser
+stage curtain
+backdrop
+scenery
+props
+
+# Lighting
+stage lighting
+spotlight
+floodlight
+footlight
+follow spot
+moving light
+intelligent light
+led light
+strobe light
+black light
+lighting design
+lighting plot
+lighting cue
+gel
+color filter
+gobo
+pattern
+projection
+dimmer
+lighting console
+lighting board
+
+# Acoustics
+sound design
+acoustics
+room acoustics
+concert hall acoustics
+sound absorption
+sound reflection
+sound diffusion
+reverberation time
+echo
+acoustic treatment
+soundproofing
+
+# Audience
+audience
+crowd
+house
+seating
+orchestra seating
+balcony seating
+mezzanine seating
+box seat
+general admission
+reserved seating
+standing room
+pit area
+vip section
+backstage
+green room
+dressing room
+wings
+stage right
+stage left
+upstage
+downstage
+center stage
+front house
+house right
+house left
+
+# Ticketing
+box office
+ticket sales
+will call
+admission
+entry
+ticket
+season ticket
+subscription series
+matinee performance
+evening performance
+opening night
+closing night
+premiere
+debut performance
+tour
+concert tour
+world tour
+national tour
+regional tour
+residency performance
+
+# Performing Arts
+performing arts
+theater
+drama
+play
+musical theater
+musical theatre
+opera
+operetta
+ballet
+dance performance
+contemporary dance
+modern dance
+jazz dance
+tap dance
+hip hop dance
+ballroom dance
+latin dance
+folk dance
+traditional dance
+cultural dance
+ethnic dance
+dance company
+dance troupe
+choreography
+choreographer
+dance notation
+movement vocabulary
+dance technique
+body awareness
+spatial awareness
+kinesthetic awareness
+improvisation
+ensemble work
+stage presence
+performance quality
+artistry
+expression
+interpretation
+
+# Theater Production
+acting
+actor
+actress
+performer
+cast
+casting
+audition
+callback
+rehearsal
+blocking
+staging
+direction
+director
+assistant director
+stage manager
+assistant stage manager
+production manager
+technical director
+set designer
+scenic designer
+costume designer
+makeup designer
+hair designer
+props master
+properties master
+wardrobe supervisor
+dresser
+stagehand
+crew member
+fly operator
+spotlight operator
+sound operator
+lighting operator
+
+# Script and Performance
+script
+screenplay
+dialogue
+monologue
+soliloquy
+line
+delivery
+cue
+prompt book
+stage direction
+character development
+motivation
+subtext
+objective
+obstacle
+tactics
+beat work
+scene work
+given circumstances
+magic if
+emotional memory
+sense memory
+physical action
+gesture
+body language
+facial expression
+voice work
+vocal technique
+projection
+articulation
+characterization
+accent work
+dialect coaching
+period style
+
+# Theater Genres
+genre
+comedy
+tragedy
+farce
+melodrama
+satire
+absurdist theater
+experimental theater
+physical theater
+mime
+pantomime
+clowning
+commedia arte
+improvisation comedy
+sketch comedy
+stand up comedy
+variety show
+vaudeville
+burlesque
+cabaret
+
+# Performance Art
+performance art
+installation art
+site specific performance
+street performance
+busking
+magic show
+illusion
+sleight hand
+mentalism
+escapology
+juggling
+acrobatics
+
+# Circus Arts
+circus arts
+aerial arts
+trapeze
+aerial silks
+aerial hoop
+tightrope walking
+stilt walking
+fire breathing
+fire eating
+sword swallowing
+knife throwing
+contortionism
+hand balancing
+plate spinning
+hula hooping

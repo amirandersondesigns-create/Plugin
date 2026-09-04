@@ -1,0 +1,422 @@
+# Monuments and Landmarks
+
+# Paris Landmarks
+Eiffel Tower
+Louvre Museum
+Notre-Dame Cathedral
+Sacré-Coeur
+Versailles Palace
+Champs-Élysées
+Arc de Triomphe
+Bastille
+Panthéon
+Luxembourg Gardens
+Tuileries Garden
+Sainte-Chapelle
+Les Invalides
+Montmartre
+Moulin Rouge
+Pompidou Centre
+Musée d'Orsay
+Rodin Museum
+Picasso Museum
+Conciergerie
+Catacombs of Paris
+Père Lachaise Cemetery
+Montparnasse Tower
+La Défense
+Grande Arche
+Louvre Pyramid
+
+# Rome Landmarks
+Colosseum
+Coliseum
+Vatican City
+Sistine Chapel
+Saint Peter's Basilica
+Trevi Fountain
+Spanish Steps
+Roman Forum
+Palatine Hill
+Capitoline Hill
+Aventine Hill
+Caelian Hill
+Esquiline Hill
+Viminal Hill
+Quirinal Hill
+Piazza Navona
+Piazza Venezia
+Piazza di Spagna
+Piazza del Popolo
+Borghese Gallery
+Galleria Nazionale
+Castel Sant'Angelo
+Trastevere
+Campo de' Fiori
+Bocca della Verità
+Mouth of Truth
+Circus Maximus
+Baths of Caracalla
+Baths of Diocletian
+Appian Way
+Roman Catacombs
+Hadrian's Villa
+Tivoli Gardens
+Ostia Antica
+
+# Berlin Landmarks
+Brandenburg Gate
+Reichstag Building
+Berlin Wall
+Berlin Wall Memorial
+Holocaust Memorial
+Checkpoint Charlie
+Alexanderplatz
+Fernsehturm
+Berlin TV Tower
+Potsdamer Platz
+Unter den Linden
+Museum Island
+Pergamon Museum
+Neues Museum
+Altes Museum
+Bode Museum
+Friedrichstraße
+Gendarmenmarkt
+Charlottenburg Palace
+Tiergarten
+Zoologischer Garten
+Kurfürstendamm
+Kaiser Wilhelm Memorial Church
+Gedächtniskirche
+Olympiastadion
+Spandau Citadel
+Tempelhof Airport
+Oberbaum Bridge
+East Side Gallery
+Molecule Man
+Berlin Atomium
+
+# Brussels Landmarks
+Atomium
+Manneken Pis
+Grand Place
+Grote Markt
+Royal Palace of Brussels
+Palais de Justice
+Parc du Cinquantenaire
+Mini-Europe
+
+# Spanish Landmarks
+Sagrada Família
+Alhambra
+Granada
+Prado Museum
+Reina Sofía Museum
+Thyssen-Bornemisza Museum
+Retiro Park
+Plaza Mayor
+Puerta del Sol
+Cibeles Fountain
+Puerta de Alcalá
+Gran Vía
+Templo de Debod
+Palacio Real
+Almudena Cathedral
+Santiago Bernabéu Stadium
+Camp Nou
+Montjuïc
+Park Güell
+Casa Milà
+La Pedrera
+Casa Batlló
+Las Ramblas
+Gothic Quarter
+Barri Gòtic
+Picasso Museum
+Joan Miró Museum
+Museu Nacional d'Art de Catalunya
+Montserrat
+Gaudí Architecture
+
+# Greek Landmarks
+Parthenon
+Acropolis
+Syntagma Square
+Panathenaic Stadium
+Monastiraki
+Plaka
+Temple of Zeus
+Hadrian's Arch
+Ancient Agora
+Olympieion
+Odeon of Herodes Atticus
+Erectheion
+Erechtheion
+Propylaea
+Temple of Athena Nike
+Delphi
+Oracle of Delphi
+Meteora
+Ancient Olympia
+Epidaurus
+Mycenae
+Knossos Palace
+Santorini
+Mykonos
+Rhodes
+Crete
+Corinth Canal
+Peloponnese
+Thermopylae
+
+# London Landmarks
+Stonehenge
+Westminster Abbey
+Houses of Parliament
+Big Ben
+Elizabeth Tower
+Clock Tower
+Buckingham Palace
+London Eye
+Tower Bridge
+Trafalgar Square
+Nelson's Column
+British Museum
+National Gallery
+National Portrait Gallery
+Tate Modern
+Tate Britain
+Natural History Museum
+Science Museum
+Victoria and Albert Museum
+Madame Tussauds
+Harrods
+Hyde Park
+Regent's Park
+Kensington Gardens
+Greenwich Observatory
+Prime Meridian
+Cutty Sark
+Canary Wharf
+The Shard
+The Gherkin
+Walkie Talkie Building
+Cheesegrater
+Piccadilly Circus
+Leicester Square
+Covent Garden
+Carnaby Street
+Oxford Street
+Cambridge
+Notting Hill
+Portobello Road
+Abbey Road
+Windsor Castle
+Hampton Court Palace
+Kew Gardens
+Richmond Park
+Wimbledon
+Greenwich
+National Maritime Museum
+Shakespeare's Globe Theatre
+Stratford-upon-Avon
+Bath
+Roman Baths
+Cotswolds
+Peak District
+Lake District
+Yorkshire Dales
+Yorkshire Moors
+Jurassic Coast
+White Cliffs of Dover
+Canterbury Cathedral
+
+# New York Landmarks
+Statue of Liberty
+Empire State Building
+Times Square
+Central Park
+Brooklyn Bridge
+Chrysler Building
+Rockefeller Center
+Flatiron Building
+Grand Central Terminal
+Madison Square Garden
+Carnegie Hall
+Radio City Music Hall
+Metropolitan Opera
+Lincoln Center
+Museum of Modern Art
+MoMA
+Guggenheim Museum
+Whitney Museum
+American Museum of Natural History
+Hayden Planetarium
+Intrepid Museum
+September 11 Memorial
+9/11 Memorial
+Freedom Tower
+One World Trade Center
+Battery Park
+Ellis Island
+Immigration Museum
+Financial District
+New York Stock Exchange
+Charging Bull
+Fearless Girl
+World Trade Center
+Ground Zero
+Oculus
+Hudson Yards
+The Vessel
+High Line Park
+Chelsea Market
+Meatpacking District
+Greenwich Village
+Washington Square Park
+SoHo
+Tribeca
+Chinatown
+Little Italy
+Harlem
+Apollo Theater
+Yankee Stadium
+Citi Field
+Arthur Ashe Stadium
+Barclays Center
+MetLife Stadium
+Governors Island
+Roosevelt Island
+Coney Island
+Brighton Beach
+Prospect Park
+Brooklyn Botanic Garden
+Bronx Zoo
+Queens
+Staten Island Ferry
+Verrazano-Narrows Bridge
+Manhattan Bridge
+Williamsburg Bridge
+Queensboro Bridge
+George Washington Bridge
+Triborough Bridge
+Robert F. Kennedy Bridge
+
+# San Francisco Landmarks
+Golden Gate Bridge
+Alcatraz Island
+Fisherman's Wharf
+Pier 39
+Lombard Street
+Cable Cars
+San Francisco Chinatown
+Union Square
+Coit Tower
+Transamerica Pyramid
+Palace of Fine Arts
+Exploratorium
+Castro District
+Haight-Ashbury
+Painted Ladies
+Alamo Square
+Mission District
+Dolores Park
+Twin Peaks
+Presidio
+Lands End
+Ocean Beach
+Fort Point
+Battery Spencer
+Baker Beach
+Angel Island
+Sausalito
+Muir Woods
+Redwood Forest
+
+# National Parks
+Yosemite National Park
+Sequoia National Park
+Death Valley
+Joshua Tree National Park
+Grand Canyon
+Yellowstone National Park
+Old Faithful Geyser
+Mammoth Hot Springs
+Lamar Valley
+Hayden Valley
+Zion National Park
+Bryce Canyon
+Arches National Park
+Canyonlands
+Monument Valley
+Antelope Canyon
+Horseshoe Bend
+Hoover Dam
+Niagara Falls
+Mount Rushmore
+Crazy Horse Memorial
+Gateway Arch
+Saint Louis Arch
+
+# Seattle Landmarks
+Space Needle
+Pike Place Market
+Gum Wall
+Fremont Troll
+Chihuly Garden and Glass
+Museum of Flight
+Pioneer Square
+Capitol Hill
+University of Washington
+Husky Stadium
+Lumen Field
+Climate Pledge Arena
+Safeco Field
+T-Mobile Park
+Kerry Park
+Discovery Park
+Ballard Locks
+Woodland Park Zoo
+Seattle Aquarium
+Seattle Great Wheel
+Alki Beach
+Gas Works Park
+Fremont
+Wallingford
+Green Lake
+Greenlake Park
+Ravenna Park
+Volunteer Park
+Conservatory
+Seattle Asian Art Museum
+Nordic Museum
+Museum of History and Industry
+Living Computers Museum
+Pinball Museum
+Underground Tour
+Argosy Cruises
+Washington State Ferries
+Bainbridge Island
+Whidbey Island
+San Juan Islands
+Puget Sound
+Cascade Mountains
+Olympic Mountains
+Olympic Peninsula
+Mount Rainier
+Mount Baker
+Mount Adams
+Mount Hood
+Mount Saint Helens
+Crater Lake
+Columbia River Gorge
+Multnomah Falls
+Smith Rock
+Cannon Beach
+Haystack Rock
+Astoria Column
+Crater Lake National Park
+Oregon Caves
+Lava Beds National Monument
+Redwood National and State Parks

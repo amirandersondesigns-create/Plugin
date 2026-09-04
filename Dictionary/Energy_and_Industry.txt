@@ -1,0 +1,596 @@
+# Energy and Industry Dictionary
+
+# Power and Electricity
+power
+electricity
+generation
+transmission
+distribution
+grid
+electrical grid
+smart grid
+microgrid
+off grid
+baseload power
+peak load
+demand response
+balancing
+frequency regulation
+voltage control
+capacity factor
+availability
+reliability
+outage
+blackout
+brownout
+rolling blackout
+power failure
+grid stability
+resilience
+interconnection
+synchronous grid
+high voltage line
+extra high voltage
+ultra high voltage
+transmission tower
+pylon
+lattice tower
+monopole
+substation
+transformer
+switching station
+step up transformer
+step down transformer
+pad mounted transformer
+pole mounted transformer
+underground cable
+overhead line
+primary distribution
+secondary distribution
+service drop
+meter
+electric meter
+advanced metering infrastructure
+ami
+net metering
+bidirectional meter
+time of use meter
+real time pricing
+dynamic pricing
+demand charge
+fixed charge
+connection fee
+utility bill
+rate schedule
+tariff
+rate structure
+residential rate
+commercial rate
+industrial rate
+
+# Fossil Fuels
+fossil fuel
+coal
+natural gas
+petroleum
+oil
+crude oil
+refined products
+gasoline
+diesel
+kerosene
+jet fuel
+liquefied petroleum gas
+lpg
+propane
+butane
+shale gas
+tight gas
+coalbed methane
+cbm
+conventional gas
+unconventional gas
+associated gas
+non associated gas
+dry gas
+wet gas
+sour gas
+sweet gas
+gas pipeline
+compressed natural gas
+cng
+natural gas liquids
+ngl
+ethane
+propane
+butane
+pentane
+condensate
+gas processing plant
+fractionation
+petrochemical
+refinery
+crude distillation unit
+cdu
+vacuum distillation unit
+vdu
+catalytic cracking
+hydrocracking
+reforming
+alkylation
+isomerization
+coking
+visbreaking
+desulfurization
+hydrotreating
+sweetening
+blending
+storage tank
+tank farm
+product storage
+floating roof tank
+spherical tank
+bullet tank
+
+# Pipeline Infrastructure
+gathering pipeline
+export pipeline
+import pipeline
+interstate pipeline
+intrastate pipeline
+offshore pipeline
+subsea pipeline
+onshore pipeline
+trunk line
+feeder line
+pump station
+compressor station
+block valve
+pig launcher
+pig receiver
+pipeline integrity
+inspection
+inline inspection
+ili
+intelligent pigging
+magnetic flux leakage
+mfl
+ultrasonic testing
+radiographic testing
+pressure testing
+hydrostatic testing
+leak detection
+cathodic protection
+coating system
+right of way
+row
+easement
+land acquisition
+eminent domain
+environmental impact assessment
+
+# Drilling and Wells
+drilling
+well
+exploration well
+appraisal well
+development well
+production well
+injection well
+observation well
+monitoring well
+vertical well
+horizontal well
+directional drilling
+multilateral well
+sidetrack well
+relief well
+wildcat well
+infill well
+step out well
+rotary drilling
+cable tool drilling
+mud drilling
+air drilling
+underbalanced drilling
+managed pressure drilling
+mpd
+drilling rig
+jack up rig
+semi submersible
+drillship
+platform rig
+tender assist drilling
+tad
+derrick
+mast
+draw works
+rotary table
+kelly drive
+top drive
+drill string
+drill pipe
+drill collar
+heavy weight drill pipe
+drill bit
+roller cone bit
+tricone bit
+pdc bit
+polycrystalline diamond compact
+casing
+surface casing
+intermediate casing
+production casing
+liner
+cementing
+squeeze cementing
+wellhead
+christmas tree
+safety valve
+sssv
+tubing
+packer
+bridge plug
+downhole equipment
+completion
+perforation
+perforating gun
+shaped charge
+
+# Well Stimulation
+stimulation
+hydraulic fracturing
+fracking
+acidizing
+matrix acidizing
+fracture acidizing
+proppant
+frac sand
+ceramic proppant
+resin coated proppant
+fracturing fluid
+slickwater
+cross linked gel
+foam based fluid
+flowback water
+produced water
+wastewater
+disposal well
+saltwater disposal
+swd
+
+# Enhanced Recovery
+enhanced oil recovery
+eor
+secondary recovery
+tertiary recovery
+waterflooding
+co2 flooding
+nitrogen flooding
+hydrocarbon flooding
+miscible flooding
+immiscible flooding
+chemical flooding
+polymer flooding
+surfactant flooding
+alkaline flooding
+thermal recovery
+steam flooding
+cyclic steam stimulation
+css
+steam assisted gravity drainage
+sagd
+in situ combustion
+fireflood
+
+# Production Analysis
+well testing
+transient analysis
+build up test
+decline curve analysis
+reserve estimation
+proved reserves
+probable reserves
+possible reserves
+contingent resources
+prospective resources
+reserve replacement ratio
+finding and development cost
+
+# Oil and Gas Segments
+upstream
+midstream
+downstream
+exploration and production
+e&p
+oilfield services
+wireline logging
+coiled tubing
+well intervention
+workover operations
+sidetracking
+recompletion
+well abandonment
+p&a
+decommissioning
+platform removal
+plugging
+site restoration
+
+# Offshore Operations
+offshore
+shallow water
+deepwater
+continental shelf
+continental slope
+abyssal plain
+subsea manifold
+subsea end
+pipeline end termination
+plet
+flowline
+riser
+flexible riser
+steel catenary riser
+scr
+tensioned riser
+ttr
+umbilical
+hydraulic line
+separation
+compression
+pumping
+offloading
+fpso
+floating production storage offloading
+fso
+floating storage offloading
+tension leg platform
+tlp
+spar platform
+compliant tower
+guyed tower
+gravity based structure
+gbs
+jacket platform
+
+# Gas Processing
+flare
+flare stack
+flare tip
+pilot burner
+vapor recovery unit
+vru
+amine treating
+sulfur recovery
+claus process
+tail gas treatment
+acid gas removal
+dehydration
+glycol dehydration
+molecular sieve
+compressor
+reciprocating compressor
+centrifugal compressor
+screw compressor
+vane compressor
+
+# Flow Measurement
+flow measurement
+orifice meter
+turbine meter
+coriolis meter
+positive displacement meter
+custody transfer
+fiscal metering
+allocation metering
+meter proving
+check meter
+master meter
+prover
+tank strapping
+tank gauge
+volume correction
+temperature correction
+shrinkage
+
+# Mining
+mining
+open pit mining
+strip mining
+mountaintop removal
+contour mining
+auger mining
+highwall mining
+underground mining
+longwall mining
+room and pillar mining
+retreat mining
+continuous miner
+bord and pillar
+shaft mining
+drift mining
+inclined shaft
+ventilation
+hoisting
+skip hoist
+cage hoist
+winder
+headframe
+tipple
+coal preparation
+coal washing
+beneficiation
+crushing
+screening
+jigging
+dense medium separation
+froth flotation
+tailings
+spoil pile
+overburden
+mine reclamation
+revegetation
+mine safety
+
+# Coal Power
+coal fired power plant
+boiler
+fire tube boiler
+water tube boiler
+pulverized coal
+fluidized bed combustion
+fbc
+circulating fluidized bed
+cfb
+bubbling fluidized bed
+bfb
+stoker fired
+superheater
+reheater
+economizer
+air preheater
+steam turbine
+impulse turbine
+reaction turbine
+condensing turbine
+extraction turbine
+back pressure turbine
+
+# Gas Turbines
+gas turbine
+combined cycle gas turbine
+ccgt
+aeroderivative turbine
+generator
+synchronous generator
+induction generator
+alternator
+stator
+rotor
+exciter
+
+# Cooling Systems
+condenser
+air cooled condenser
+water cooled condenser
+cooling tower
+natural draft
+mechanical draft
+hybrid cooling tower
+once through cooling
+closed loop cooling
+feedwater heater
+deaerator
+boiler feed pump
+circulating water pump
+
+# Emissions Control
+ash handling
+bottom ash
+fly ash
+ash utilization
+flue gas desulfurization
+fgd
+scrubber
+spray tower
+selective catalytic reduction
+scr
+selective non catalytic reduction
+sncr
+nox reduction
+so2 reduction
+particulate control
+electrostatic precipitator
+esp
+baghouse
+fabric filter
+cyclone separator
+chimney
+smokestack
+emission monitoring
+continuous emission monitoring system
+cems
+opacity monitor
+
+# Nuclear Power
+nuclear power
+nuclear reactor
+pressurized water reactor
+pwr
+boiling water reactor
+bwr
+heavy water reactor
+hwr
+candu reactor
+magnox reactor
+advanced gas cooled reactor
+agr
+high temperature gas reactor
+htgr
+liquid metal fast breeder reactor
+lmfbr
+sodium cooled fast reactor
+sfr
+lead cooled fast reactor
+lfr
+generation iv reactor
+small modular reactor
+smr
+microreactor
+reactor core
+fuel assembly
+fuel rod
+fuel pellet
+uranium dioxide
+mixed oxide fuel
+mox
+enriched uranium
+low enriched uranium
+leu
+highly enriched uranium
+heu
+weapons grade uranium
+depleted uranium
+plutonium
+moderator
+coolant
+reactor pressure vessel
+rpv
+pressurizer
+containment building
+biological shield
+radiation shielding
+spent fuel pool
+dry cask storage
+interim storage
+permanent storage
+deep geological repository
+nuclear waste
+high level waste
+low level waste
+vitrification
+reprocessing
+nuclear fuel cycle
+front end
+back end
+uranium milling
+conversion
+enrichment
+fuel fabrication
+irradiation
+refueling
+planned outage
+forced outage
+yellow cake
+uranium concentrate
+enrichment facility
+uf6
+uranium hexafluoride
+centrifuge
+gas diffusion
+laser enrichment
+atomic vapor laser isotope separation
+avlis
+molecular laser isotope separation
+mlis

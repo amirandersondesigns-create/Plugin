@@ -1,0 +1,700 @@
+# Financial Terms and Stock Market
+
+# Basic Financial Instruments
+stock
+share
+equity
+bond
+debenture
+security
+investment
+portfolio
+asset
+liability
+capital
+dividend
+yield
+return
+profit
+loss
+gain
+revenue
+income
+earnings
+cash flow
+
+# Financial Statements
+balance sheet
+income statement
+financial statement
+annual report
+quarterly report
+fiscal year
+fiscal quarter
+earnings call
+conference call
+guidance
+forecast
+projection
+estimate
+consensus estimate
+earnings beat
+earnings miss
+earnings surprise
+upside
+downside
+
+# Market Conditions
+bull market
+bear market
+market correction
+market crash
+market rally
+market rebound
+market recovery
+recession
+depression
+inflation
+deflation
+stagflation
+hyperinflation
+
+# Economic Indicators
+Consumer Price Index
+CPI
+Producer Price Index
+PPI
+Gross Domestic Product
+GDP
+unemployment rate
+interest rate
+federal funds rate
+discount rate
+prime rate
+LIBOR
+London Interbank Offered Rate
+SOFR
+Secured Overnight Financing Rate
+
+# Bonds
+treasury bond
+treasury yield curve
+bond coupon
+bond maturity
+bond duration
+bond convexity
+credit rating
+investment grade
+junk bond
+high-yield bond
+municipal bond
+corporate bond
+government bond
+treasury bill
+treasury note
+TIPS
+Treasury Inflation-Protected Securities
+savings bond
+zero-coupon bond
+convertible bond
+callable bond
+putable bond
+floating rate note
+FRN
+fixed-rate bond
+variable-rate bond
+
+# Loans and Mortgages
+adjustable-rate mortgage
+ARM
+mortgage refinance
+amortization
+principal payment
+interest payment
+down payment
+closing costs
+escrow
+title insurance
+homeowners insurance
+private mortgage insurance
+PMI
+loan
+lender
+borrower
+debtor
+creditor
+loan default
+delinquent loan
+foreclosure
+
+# Bankruptcy
+bankruptcy
+Chapter 11 bankruptcy
+Chapter 7 bankruptcy
+Chapter 13 bankruptcy
+liquidation
+reorganization
+debt discharge
+fire sale
+bankruptcy auction
+receivership
+bankruptcy trustee
+
+# Debt Types
+secured debt
+unsecured debt
+senior debt
+subordinated debt
+mezzanine debt
+collateral
+guarantee
+guarantor
+cosigner
+personal loan
+line of credit
+revolving credit
+term loan
+bridge loan
+construction loan
+auto loan
+student loan
+payday loan
+pawn loan
+peer-to-peer lending
+P2P lending
+
+# Crowdfunding
+crowdfunding
+equity crowdfunding
+reward-based crowdfunding
+donation crowdfunding
+
+# IPO and Public Offerings
+initial public offering
+IPO
+direct listing
+special purpose acquisition company
+SPAC
+reverse merger
+secondary offering
+follow-on offering
+rights issue
+private placement
+Regulation D
+accredited investor
+qualified institutional buyer
+QIB
+underwriter
+lead underwriter
+bookrunner
+syndicate
+roadshow
+prospectus
+red herring prospectus
+lockup period
+greenshoe option
+overallotment option
+stabilization
+price discovery
+
+# Valuation Metrics
+valuation
+market capitalization
+market cap
+enterprise value
+price-to-earnings ratio
+PE ratio
+price-to-book ratio
+PB ratio
+price-to-sales ratio
+PS ratio
+PEG ratio
+earnings per share
+EPS
+book value
+tangible book value
+net asset value
+NAV
+return on equity
+ROE
+return on assets
+ROA
+return on invested capital
+ROIC
+profit margin
+operating margin
+EBITDA margin
+earnings before interest taxes depreciation and amortization
+EBITDA
+earnings before interest and taxes
+EBIT
+free cash flow
+FCF
+operating cash flow
+investing cash flow
+financing cash flow
+working capital
+current ratio
+quick ratio
+EBITDA coverage ratio
+interest coverage ratio
+debt service coverage ratio
+DSCR
+leverage ratio
+debt-to-equity ratio
+gearing ratio
+solvency ratio
+liquidity ratio
+efficiency ratio
+profitability ratio
+growth ratio
+asset turnover
+inventory turnover
+receivables turnover
+payables turnover
+days sales outstanding
+DSO
+days inventory outstanding
+DIO
+days payable outstanding
+DPO
+cash conversion cycle
+CCC
+
+# Investment Analysis
+fundamental analysis
+technical analysis
+quantitative analysis
+qualitative analysis
+top-down analysis
+bottom-up analysis
+buy recommendation
+sell recommendation
+hold recommendation
+
+# Trading Styles
+day trading
+swing trading
+scalping
+position trading
+long position
+short position
+short selling
+shorting
+short covering
+short squeeze
+margin account
+margin maintenance
+margin call
+leveraged account
+unleveraged account
+
+# Options Trading
+options trading
+call option
+put option
+strike price
+expiration date
+option premium
+in the money
+ITM
+at the money
+ATM
+out of the money
+OTM
+intrinsic value
+extrinsic value
+time value
+time decay
+theta
+delta
+gamma
+vega
+rho
+option greeks
+implied volatility
+IV
+historical volatility
+HV
+volatility skew
+volatility smile
+Black-Scholes model
+binomial model
+option chain
+option spread
+iron condor
+butterfly spread
+straddle
+strangle
+calendar spread
+diagonal spread
+backspread
+covered call
+protective put
+collar
+married put
+synthetic position
+box spread
+
+# Futures Trading
+futures contract
+commodity futures
+forward contract
+spot price
+future price
+contango
+backwardation
+normal backwardation
+delivery month
+expiry date
+futures rollover
+roll yield
+basis risk
+hedge
+hedging
+perfect hedge
+imperfect hedge
+cross-hedge
+natural hedge
+speculator
+arbitrageur
+
+# Market Making
+market maker
+liquidity provider
+high-frequency trading
+HFT
+algorithmic trading
+quantitative trading
+statistical arbitrage
+pairs trading
+mean reversion
+trend following
+momentum trading
+breakout trading
+range trading
+
+# Technical Analysis
+support level
+resistance level
+trendline
+moving average
+simple moving average
+SMA
+exponential moving average
+EMA
+weighted moving average
+WMA
+Relative Strength Index
+RSI
+Moving Average Convergence Divergence
+MACD
+stochastic oscillator
+Bollinger Bands
+Average True Range
+ATR
+volume analysis
+Volume-Weighted Average Price
+VWAP
+On-Balance Volume
+OBV
+Accumulation Distribution Line
+Fibonacci retracement
+Fibonacci extension
+Elliott Wave Theory
+
+# Chart Types
+candlestick chart
+bar chart
+line chart
+point and figure chart
+Renko chart
+Heikin-Ashi chart
+bullish pattern
+bearish pattern
+neutral pattern
+doji
+hammer
+hanging man
+shooting star
+inverted hammer
+bullish engulfing pattern
+bearish engulfing pattern
+harami pattern
+morning star
+evening star
+three white soldiers
+three black crows
+head and shoulders pattern
+double top
+double bottom
+triple top
+triple bottom
+cup and handle
+rising wedge
+falling wedge
+ascending triangle
+descending triangle
+symmetrical triangle
+pennant
+flag
+rectangle
+channel
+ascending channel
+descending channel
+rounding top
+rounding bottom
+island reversal
+
+# Gap Types
+gap
+breakaway gap
+runaway gap
+exhaustion gap
+common gap
+continuation gap
+consolidation
+markup
+markdown
+
+# Market Profile
+market profile
+time price opportunity
+TPO
+point of control
+POC
+value area
+value area high
+value area low
+single prints
+naked point of control
+poor high
+poor low
+excess
+balance
+imbalance
+auction theory
+
+# Order Types
+order flow
+tape reading
+level II quotes
+market depth
+depth of market
+DOM
+bid price
+ask price
+limit order
+market order
+stop order
+stop-loss order
+trailing stop
+good till canceled
+GTC
+fill or kill
+FOK
+immediate or cancel
+IOC
+all or none
+AON
+partial fill
+execution
+slippage
+market impact
+illiquidity
+thin market
+deep market
+tick size
+lot size
+round lot
+odd lot
+board lot
+standard lot
+mini lot
+micro lot
+nano lot
+notional value
+
+# Margin and Leverage
+margin requirement
+margin used
+margin available
+buying power
+floating profit
+floating loss
+realized profit
+realized loss
+unrealized profit
+unrealized loss
+paper profit
+paper loss
+mark to market
+MTM
+fair value
+market value
+carrying value
+replacement value
+going concern value
+salvage value
+scrap value
+residual value
+terminal value
+
+# Investment Analysis Methods
+present value
+PV
+net present value
+NPV
+future value
+FV
+discount rate
+hurdle rate
+required return
+internal rate of return
+IRR
+modified internal rate of return
+MIRR
+payback period
+discounted payback period
+profitability index
+PI
+benefit-cost ratio
+BCR
+break-even analysis
+break-even point
+contribution margin
+variable cost
+fixed cost
+semivariable cost
+direct cost
+indirect cost
+overhead cost
+sunk cost
+opportunity cost
+marginal cost
+cost variance
+
+# Value Creation
+economic value added
+EVA
+market value added
+MVA
+shareholder value added
+SVA
+cash flow return on investment
+CFROI
+accounting profit
+economic profit
+taxable income
+tax shield
+capital structure
+optimal capital structure
+pecking order theory
+Modigliani-Miller theorem
+weighted average cost of capital
+WACC
+cost of equity
+cost of debt
+cost of preferred stock
+
+# Asset Pricing
+capital asset pricing model
+CAPM
+beta
+market risk premium
+equity risk premium
+systematic risk
+unsystematic risk
+specific risk
+diversifiable risk
+non-diversifiable risk
+idiosyncratic risk
+market risk
+credit risk
+liquidity risk
+operational risk
+currency risk
+foreign exchange risk
+FX risk
+interest rate risk
+reinvestment risk
+prepayment risk
+counterparty risk
+settlement risk
+sovereign risk
+political risk
+regulatory risk
+legal risk
+reputational risk
+strategic risk
+business risk
+concentration risk
+contagion risk
+systemic risk
+tail risk
+black swan event
+fat tail risk
+
+# Risk Measures
+normal distribution
+lognormal distribution
+skewness
+kurtosis
+Value at Risk
+VaR
+Conditional Value at Risk
+CVaR
+expected shortfall
+stress testing
+scenario analysis
+Monte Carlo simulation
+variance-covariance method
+risk-adjusted return
+Sharpe ratio
+Sortino ratio
+Treynor ratio
+information ratio
+Jensen's alpha
+tracking error
+active share
+upside capture
+downside capture
+maximum drawdown
+Calmar ratio
+Sterling ratio
+Burke ratio
+Martin ratio
+Omega ratio
+Kappa ratio
+pain ratio
+
+# Portfolio Management
+modern portfolio theory
+MPT
+efficient frontier
+capital market line
+CML
+security market line
+SML
+tangency portfolio
+minimum variance portfolio
+risk parity
+equal weight portfolio
+factor investing
+smart beta
+strategic allocation
+tactical allocation
+style drift
+thematic investing
+ESG investing
+environmental social governance
+sustainable investing
+socially responsible investing
+SRI
+impact investing
+green bond
+sustainability-linked bond
+climate finance
+carbon credit
+carbon offset
+emissions trading

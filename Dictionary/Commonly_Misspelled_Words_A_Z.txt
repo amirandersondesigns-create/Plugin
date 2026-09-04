@@ -1,0 +1,305 @@
+# Commonly Misspelled Words with Corrections
+# Format: misspelling → correct spelling
+
+# A
+absense → absence
+accomodate → accommodate
+acomodate → accommodate
+accidently → accidentally
+acheive → achieve
+acknowlege → acknowledge
+acquaintence → acquaintance
+aquire → acquire
+aquaintance → acquaintance
+adress → address
+advertisment → advertisement
+affect → effect
+agression → aggression
+agressive → aggressive
+alchohol → alcohol
+allmost → almost
+alot → a lot
+allright → all right
+alright → all right
+amature → amateur
+amung → among
+analogeous → analogous
+analagous → analogous
+analize → analyze
+analysist → analyst
+annoint → anoint
+annonymous → anonymous
+anual → annual
+aparent → apparent
+apparant → apparent
+apparrent → apparent
+appearence → appearance
+apropriate → appropriate
+aquire → acquire
+arguement → argument
+artic → arctic
+asthetic → aesthetic
+athiest → atheist
+athelete → athlete
+
+# B
+basicly → basically
+becom → become
+begining → beginning
+beleif → belief
+beleive → believe
+benifit → benefit
+biege → beige
+buisness → business
+
+# C
+calander → calendar
+calender → calendar
+camoflage → camouflage
+capitol → capital
+carefull → careful
+carrer → career
+catagory → category
+cemetary → cemetery
+cementary → cemetery
+changable → changeable
+charactor → character
+charactaristic → characteristic
+cheif → chief
+cieling → ceiling
+collegue → colleague
+colum → column
+comittee → committee
+comming → coming
+commited → committed
+comparsion → comparison
+competant → competent
+compitition → competition
+concious → conscious
+concensus → consensus
+congradulate → congratulate
+consciencious → conscientious
+consciouss → conscious
+conquer → conquer
+contraversy → controversy
+convience → convenience
+copywrite → copyright
+corispondant → correspondent
+curiousity → curiosity
+
+# D
+daquiri → daiquiri
+decieve → deceive
+definately → definitely
+definatly → definitely
+dicipline → discipline
+dilemna → dilemma
+disapear → disappear
+dissapear → disappear
+dissappoint → disappoint
+discribe → describe
+dispair → despair
+droped → dropped
+
+# E
+eigth → eighth
+embarass → embarrass
+enviroment → environment
+equiptment → equipment
+essencial → essential
+exagerate → exaggerate
+excellant → excellent
+existance → existence
+experiance → experience
+expierence → experience
+extacy → ecstasy
+
+# F
+familar → familiar
+familier → familiar
+febuary → february
+firey → fiery
+florescent → fluorescent
+foriegn → foreign
+fourty → forty
+freind → friend
+futur → future
+futher → further
+
+# G
+goverment → government
+grammer → grammar
+gramatically → grammatically
+greatful → grateful
+greif → grief
+gaurd → guard
+guidence → guidance
+
+# H
+happyness → happiness
+harrass → harass
+heighth → height
+heirarchy → hierarchy
+heros → heroes
+hygeine → hygiene
+
+# I
+ignorence → ignorance
+imaginery → imaginary
+immediatly → immediately
+incidently → incidentally
+independant → independent
+indispensible → indispensable
+inoculate → inoculate
+inteligence → intelligence
+intresting → interesting
+irelevent → irrelevant
+irresistable → irresistible
+
+# J
+jewlery → jewelry
+judgement → judgment
+
+# K
+knowlege → knowledge
+
+# L
+labratory → laboratory
+leutenant → lieutenant
+libary → library
+licence → license
+lightening → lightning
+liason → liaison
+liesure → leisure
+
+# M
+maintainance → maintenance
+maintenence → maintenance
+maneuver → maneuver
+marrige → marriage
+medcine → medicine
+medival → medieval
+millenium → millennium
+miniscule → minuscule
+mischievious → mischievous
+momento → memento
+
+# N
+neccessary → necessary
+neice → niece
+nieghbor → neighbor
+noticable → noticeable
+
+# O
+occassion → occasion
+occured → occurred
+occurance → occurrence
+omision → omission
+opertunity → opportunity
+oppurtunity → opportunity
+
+# P
+paralel → parallel
+parlament → parliament
+passtime → pastime
+percieve → perceive
+peice → piece
+perimiter → perimeter
+permissable → permissible
+perseverence → perseverance
+personaly → personally
+persaude → persuade
+pharoah → pharaoh
+phenominal → phenomenal
+plagarize → plagiarize
+playright → playwright
+possesion → possession
+practicly → practically
+preceed → precede
+preceeding → preceding
+prefered → preferred
+preperation → preparation
+presance → presence
+privelege → privilege
+probly → probably
+pronounciation → pronunciation
+propoganda → propaganda
+publically → publicly
+
+# Q
+questionaire → questionnaire
+
+# R
+realy → really
+recieve → receive
+reccomend → recommend
+refered → referred
+relevent → relevant
+religous → religious
+repitition → repetition
+restarant → restaurant
+rythm → rhythm
+
+# S
+sacrafice → sacrifice
+satelite → satellite
+scisors → scissors
+secratary → secretary
+seperate → separate
+sergent → sergeant
+sieze → seize
+similiar → similar
+skillful → skillful
+speach → speech
+strenght → strength
+succesful → successful
+supercede → supersede
+suprise → surprise
+
+# T
+tatoo → tattoo
+temperture → temperature
+tendancy → tendency
+therefor → therefore
+thier → their
+tommorrow → tomorrow
+tommorow → tomorrow
+tounge → tongue
+truely → truly
+twelth → twelfth
+tyrany → tyranny
+
+# U
+underate → underrate
+unecessary → unnecessary
+unforseen → unforeseen
+unfortunatly → unfortunately
+untill → until
+useable → usable
+usualy → usually
+
+# V
+vaccum → vacuum
+vegeterian → vegetarian
+vehical → vehicle
+vengence → vengeance
+visious → vicious
+
+# W
+wierd → weird
+wellcome → welcome
+whereever → wherever
+wholy → wholly
+writeoff → write-off
+
+# Common Typos
+teh → the
+adn → and
+nad → and
+fo → of
+ont → not
+waht → what
+taht → that
+hte → the
+thsi → this
+wich → which

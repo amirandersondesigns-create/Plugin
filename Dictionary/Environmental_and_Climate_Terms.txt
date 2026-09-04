@@ -1,0 +1,680 @@
+# Environmental and Climate Terms Dictionary
+
+# Environmental Science
+environment
+ecology
+ecosystem
+biodiversity
+habitat
+biome
+biosphere
+atmosphere
+hydrosphere
+lithosphere
+geosphere
+cryosphere
+
+# Weather
+weather
+temperature
+precipitation
+humidity
+atmospheric pressure
+wind
+wind patterns
+air circulation
+ocean currents
+gulf stream
+jet stream
+trade winds
+westerlies
+polar easterlies
+monsoon
+monsoon season
+el nino
+la nina
+southern oscillation
+enso
+pacific decadal oscillation
+pdo
+atlantic multidecadal oscillation
+amo
+north atlantic oscillation
+nao
+arctic oscillation
+ao
+
+# Climate Change
+climate change
+global warming
+climate crisis
+climate emergency
+anthropogenic climate change
+natural climate variability
+climate forcing
+radiative forcing
+greenhouse effect
+enhanced greenhouse effect
+greenhouse gas
+carbon dioxide
+co2
+methane
+ch4
+nitrous oxide
+n2o
+water vapor
+ozone
+o3
+chlorofluorocarbon
+cfc
+hydrofluorocarbon
+hfc
+perfluorocarbon
+pfc
+sulfur hexafluoride
+sf6
+
+# Environmental Impact
+carbon footprint
+ecological footprint
+environmental impact
+sustainability
+sustainable development
+renewable resource
+non renewable resource
+resource depletion
+overconsumption
+carrying capacity
+ecological overshoot
+ecological deficit
+ecological reserve
+
+# Natural Cycles
+carbon cycle
+nitrogen cycle
+phosphorus cycle
+hydrologic cycle
+biogeochemical cycle
+nutrient cycling
+carbon sequestration
+carbon capture and storage
+ccs
+carbon sink
+carbon source
+net zero emissions
+carbon neutral
+carbon negative
+carbon offset
+carbon credit
+carbon trading
+emissions trading scheme
+ets
+cap and trade system
+carbon tax
+carbon pricing
+
+# Climate Finance
+climate finance
+green climate fund
+gcf
+climate adaptation
+climate mitigation
+loss and damage
+climate resilience building
+vulnerability assessment
+climate risk assessment
+environmental impact assessment
+eia
+strategic environmental assessment
+sea
+life cycle assessment
+lca
+cradle to grave analysis
+cradle to cradle design
+
+# Circular Economy
+circular economy
+linear economy
+resource efficiency
+material efficiency
+energy efficiency
+waste minimization
+waste reduction
+waste prevention
+reuse
+recycle
+reduce
+three rs
+four rs
+five rs
+refuse
+rot
+repair
+repurpose
+upcycle
+downcycle
+
+# Waste Management
+composting
+vermicomposting
+anaerobic digestion
+biogas production
+landfill
+waste to energy
+energy recovery
+incineration
+thermal treatment
+pyrolysis
+gasification
+plasma gasification
+municipal solid waste
+msw
+hazardous waste
+toxic waste
+electronic waste
+ewaste
+plastic waste
+marine debris
+microplastic
+nanoplastic
+plastic pollution
+single use plastic
+disposable plastic
+biodegradable
+compostable
+bioplastic
+photodegradable
+oxo biodegradable
+plastic free lifestyle
+
+# Sustainable Living
+zero waste
+minimalism
+sustainable living
+eco friendly
+environmentally friendly
+earth friendly
+planet friendly
+green products
+organic
+chemical free
+toxin free
+hypoallergenic
+cruelty free
+vegan
+plant based
+fair trade
+ethically sourced
+locally sourced
+seasonal food
+farm to table
+
+# Agriculture
+organic farming
+sustainable agriculture
+regenerative agriculture
+permaculture
+agroecology
+agroforestry
+silvopasture
+conservation agriculture
+no till farming
+reduced tillage
+cover cropping
+crop rotation
+intercropping
+companion planting
+integrated pest management
+ipm
+biological control
+organic pesticide
+synthetic pesticide
+herbicide
+insecticide
+fungicide
+rodenticide
+neonicotinoid
+glyphosate
+atrazine
+ddt
+
+# Pollution
+persistent organic pollutant
+pop
+bioaccumulation
+biomagnification
+food chain contamination
+soil pollution
+land pollution
+noise pollution
+light pollution
+radioactive pollution
+air pollution
+water pollution
+emission
+effluent
+wastewater
+sewage
+
+# Water Treatment
+primary treatment
+secondary treatment
+tertiary treatment
+advanced treatment
+disinfection
+chlorination
+uv disinfection
+ozonation
+filtration
+sedimentation
+coagulation
+flocculation
+activated sludge process
+trickling filter
+lagoon
+constructed wetland
+reed bed
+septic tank
+drain field
+leach field
+greywater
+blackwater
+water recycling
+reclaimed water
+recycled water
+potable reuse
+direct potable reuse
+indirect potable reuse
+
+# Water Conservation
+water saving
+low flow fixtures
+dual flush toilet
+waterless urinal
+rainwater harvesting
+rainwater collection
+rain barrel
+cistern
+drip irrigation
+micro irrigation
+water efficient landscaping
+smart irrigation
+
+# Land Degradation
+water scarcity
+water stress
+drought
+desertification
+land degradation
+soil erosion
+soil compaction
+salinization
+soil acidification
+topsoil loss
+dust bowl
+
+# Deforestation
+deforestation
+forest degradation
+tree cutting
+clear cutting
+slash and burn
+logging
+illegal logging
+selective logging
+sustainable forestry
+reforestation
+afforestation
+urban forestry
+urban greening
+green infrastructure
+green roof
+green wall
+vertical garden
+community garden
+rooftop garden
+container garden
+balcony garden
+
+# Stormwater Management
+bioswale
+retention basin
+detention basin
+permeable pavement
+porous pavement
+pervious concrete
+stormwater management
+runoff
+infiltration
+groundwater recharge enhancement
+aquifer recharge
+groundwater depletion
+water table
+groundwater pumping
+over pumping
+aquifer depletion
+groundwater extraction
+safe yield
+cone of depression
+saltwater intrusion
+seawater intrusion
+brackish water
+freshwater availability
+water supply
+water demand
+water balance
+water budget
+
+# Water Resources
+watershed management
+river basin
+catchment area
+water resources management
+integrated water resources management
+iwrm
+wetland restoration
+marsh
+swamp
+bog
+wetland protection
+peatland
+mangrove
+coastal wetland
+estuarine wetland
+riparian zone
+riparian buffer
+streambank stabilization
+dam removal
+barrier removal
+fish passage
+wildlife corridor
+migration route
+habitat connectivity
+landscape connectivity
+habitat fragmentation
+habitat destruction
+
+# Biodiversity
+species extinction
+mass extinction
+sixth extinction event
+endangered species
+threatened species
+vulnerable species
+critically endangered
+near threatened
+least concern
+conservation status
+iucn red list
+population decline
+habitat conservation
+in situ conservation
+ex situ conservation
+captive breeding program
+reintroduction
+translocation
+assisted migration
+seed bank
+gene bank
+cryopreservation
+botanical garden
+zoological park
+safari park
+
+# Protected Areas
+nature reserve
+protected area
+national park
+state park
+provincial park
+regional park
+marine protected area
+mpa
+no take zone
+wildlife sanctuary
+bird sanctuary
+unesco world heritage site
+ramsar site
+wetland of international importance
+conservation easement
+land trust
+nature conservancy
+conservation organization
+ngo
+non governmental organization
+grassroots movement
+
+# Environmental Justice
+environmentalism
+deep ecology
+shallow ecology
+social ecology
+political ecology
+environmental justice
+intergenerational equity
+environmental racism
+environmental inequality
+sacrifice zone
+pollution hotspot
+superfund site
+brownfield site
+contaminated site
+site remediation
+cleanup
+bioremediation
+phytoremediation
+natural attenuation
+monitored natural attenuation
+pump and treat
+soil vapor extraction
+air sparging
+chemical oxidation
+solidification
+stabilization
+encapsulation
+capping
+landfill closure
+post closure care
+long term monitoring
+
+# Environmental Monitoring
+environmental monitoring
+air quality monitoring
+water quality monitoring
+remote sensing
+satellite imagery
+aerial survey
+camera trap
+acoustic monitoring
+edna
+environmental dna
+biomonitoring
+indicator species
+keystone species
+umbrella species
+flagship species
+foundation species
+
+# Invasive Species
+invasive species
+native species
+alien species
+exotic species
+introduced species
+naturalized species
+invasive alien species
+ias
+biological invasion
+species introduction
+accidental introduction
+deliberate introduction
+ballast water
+pet trade
+ornamental plant
+noxious weed
+agricultural pest
+disease vector
+zoonotic disease
+emerging infectious disease
+eid
+one health approach
+ecohealth
+planetary health
+
+# Indoor Environment
+public health
+occupational health
+indoor air quality
+sick building syndrome
+building related illness
+ventilation rate
+air exchange rate
+radon exposure
+asbestos
+lead exposure
+mercury
+volatile organic compound
+voc
+formaldehyde
+particulate matter
+pm
+pm2.5
+pm10
+ultrafine particle
+black carbon
+soot
+smog
+photochemical smog
+
+# Atmospheric Issues
+ground level ozone
+tropospheric ozone
+stratospheric ozone
+ozone layer
+ozone hole
+antarctic ozone hole
+montreal protocol
+vienna convention
+phase out
+ozone depleting substance
+ods
+alternative refrigerant
+hydrochlorofluorocarbon
+hcfc
+kigali amendment
+phase down
+acid rain
+acid deposition
+wet deposition
+dry deposition
+so2
+nox
+forest decline
+lake acidification
+tree dieback
+liming
+neutralization
+
+# Air Quality Regulations
+clean air act
+air quality standard
+ambient air quality standard
+naaqs
+emission limit
+best available technology
+bat
+lowest achievable emission rate
+laer
+reasonably available control technology
+ract
+maximum achievable control technology
+mact
+new source performance standard
+nsps
+prevention of significant deterioration
+psd
+nonattainment area
+attainment area
+state implementation plan
+sip
+
+# Water Regulations
+safe drinking water act
+sdwa
+maximum contaminant level
+mcl
+national pollutant discharge elimination system
+npdes
+total maximum daily load
+tmdl
+point source pollution
+nonpoint source pollution
+diffuse pollution
+combined sewer overflow
+cso
+sanitary sewer overflow
+sso
+best management practice
+bmp
+low impact development
+lid
+green stormwater infrastructure
+gsi
+sponge city
+blue green infrastructure
+nature based solution
+nbs
+ecosystem based adaptation
+eba
+community based adaptation
+cba
+
+# Climate Resilience
+climate resilient infrastructure
+disaster risk reduction
+drr
+early warning system
+climate information service
+weather forecast
+climate projection
+climate model
+general circulation model
+gcm
+regional climate model
+rcm
+earth system model
+esm
+climate simulation
+climate scenario
+representative concentration pathway
+rcp
+shared socioeconomic pathway
+ssp
+climate target
+1.5 degree target
+two degree target
+paris agreement
+nationally determined contribution
+ndc
+climate pledge
+carbon neutrality
+climate ambition
+climate action
+climate leadership
+climate diplomacy
+climate negotiation
+conference of the parties
+cop
+unfccc
+united nations framework convention on climate change
+kyoto protocol
+glasgow climate pact
+climate finance mechanism
+warsaw international mechanism
+loss and damage
+climate reparation
+climate debt
+historical responsibility
+common but differentiated responsibility
+climate equity
+climate fairness

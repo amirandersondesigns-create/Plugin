@@ -1,0 +1,641 @@
+# Art and Literature Dictionary - No Authors
+
+# Visual Arts
+art
+visual art
+fine art
+artwork
+masterpiece
+painting
+drawing
+sketch
+illustration
+printmaking
+print
+etching
+engraving
+lithograph
+woodcut
+linocut
+screen print
+silkscreen
+monotype
+intaglio
+relief printing
+sculpture
+statue
+bust
+relief
+bas relief
+high relief
+low relief
+carving
+casting
+bronze casting
+modeling
+assemblage
+installation
+installation art
+public art
+mural
+fresco
+mosaic
+collage
+mixed media
+found object
+readymade
+kinetic art
+mobile
+land art
+earthwork
+environmental art
+performance art
+happening
+video art
+digital art
+computer art
+generative art
+new media art
+conceptual art
+abstract art
+representational art
+figurative art
+landscape
+seascape
+cityscape
+portrait
+self portrait
+still life
+genre painting
+history painting
+religious art
+iconography
+miniature
+illuminated manuscript
+calligraphy
+ceramics
+pottery
+porcelain
+stoneware
+earthenware
+glassblowing
+glasswork
+stained glass
+textile art
+tapestry
+weaving
+embroidery
+needlework
+quilting
+fiber art
+metalwork
+jewelry
+goldsmithing
+silversmithing
+blacksmithing
+woodworking
+wood carving
+furniture design
+
+# Art Movements and Styles
+movement
+art movement
+style
+period
+renaissance
+early renaissance
+high renaissance
+northern renaissance
+baroque
+rococo
+neoclassicism
+romanticism
+realism
+naturalism
+impressionism
+post impressionism
+pointillism
+fauvism
+expressionism
+cubism
+futurism
+constructivism
+suprematism
+dadaism
+surrealism
+abstract expressionism
+pop art
+op art
+kinetic art
+minimalism
+conceptual art
+land art
+arte povera
+fluxus
+neo expressionism
+appropriation art
+street art
+graffiti
+contemporary art
+modern art
+postmodern art
+hyperrealism
+photorealism
+assemblage
+installation art
+performance art
+video art
+digital art
+
+# Art Techniques and Materials
+technique
+medium
+oil paint
+acrylic paint
+watercolor
+gouache
+tempera
+fresco
+encaustic
+pastel
+charcoal
+graphite
+pencil
+pen and ink
+crayon
+marker
+airbrush
+spray paint
+canvas
+panel
+paper
+parchment
+vellum
+board
+wood panel
+linen
+cotton
+primer
+gesso
+ground
+underpainting
+glaze
+impasto
+scumbling
+sfumato
+chiaroscuro
+tenebrism
+perspective
+linear perspective
+atmospheric perspective
+foreshortening
+proportion
+composition
+balance
+symmetry
+asymmetry
+focal point
+negative space
+positive space
+figure ground
+color theory
+primary color
+secondary color
+tertiary color
+complementary color
+analogous color
+warm color
+cool color
+hue
+saturation
+value
+tone
+shade
+tint
+pigment
+binder
+solvent
+varnish
+fixative
+stretcher
+easel
+palette
+palette knife
+brush
+paintbrush
+pencil
+eraser
+stylus
+chisel
+mallet
+armature
+kiln
+firing
+glazing
+patina
+oxidation
+
+# Art Institutions
+museum
+art museum
+gallery
+art gallery
+exhibition
+solo exhibition
+group exhibition
+retrospective
+survey exhibition
+biennial
+triennial
+art fair
+auction
+auction house
+sotheby
+christie
+collection
+permanent collection
+private collection
+public collection
+acquisition
+donation
+bequest
+loan
+provenance
+conservation
+restoration
+curator
+curatorial
+art critic
+art historian
+art history
+iconography
+connoisseur
+collector
+patron
+art dealer
+artist
+painter
+sculptor
+printmaker
+illustrator
+ceramicist
+glassblower
+textile artist
+jeweler
+metalworker
+craftsperson
+artisan
+studio
+atelier
+workshop
+art school
+academy
+conservatory
+residency
+fellowship
+grant
+commission
+commissioned work
+public commission
+exhibition catalog
+monograph
+art book
+art criticism
+art review
+art theory
+aesthetics
+taste
+beauty
+sublime
+ugly
+kitsch
+
+# Literary Terms
+literature
+literary
+fiction
+nonfiction
+prose
+poetry
+verse
+drama
+play
+novel
+novella
+short story
+flash fiction
+microfiction
+epic
+saga
+romance
+adventure
+mystery
+detective story
+crime fiction
+thriller
+suspense
+horror
+gothic
+science fiction
+sci fi
+fantasy
+speculative fiction
+dystopia
+utopia
+alternate history
+historical fiction
+biographical novel
+autobiography
+memoir
+biography
+essay
+personal essay
+lyric essay
+creative nonfiction
+travel writing
+nature writing
+journalism
+literary journalism
+satire
+parody
+comedy
+tragedy
+tragicomedy
+farce
+melodrama
+allegory
+fable
+parable
+myth
+legend
+folklore
+fairy tale
+folk tale
+tall tale
+ghost story
+love story
+coming of age
+bildungsroman
+picaresque
+epistolary
+stream of consciousness
+magical realism
+metafiction
+postmodern
+experimental
+avant garde
+minimalist
+maximalist
+genre fiction
+literary fiction
+popular fiction
+pulp fiction
+young adult
+ya fiction
+middle grade
+children literature
+picture book
+chapter book
+graphic novel
+comic
+manga
+poetry
+poem
+lyric poetry
+narrative poetry
+epic poetry
+dramatic poetry
+free verse
+blank verse
+prose poetry
+sonnet
+haiku
+limerick
+ballad
+ode
+elegy
+pastoral
+villanelle
+sestina
+ghazal
+pantoum
+acrostic
+concrete poetry
+slam poetry
+spoken word
+verse
+stanza
+couplet
+tercet
+quatrain
+refrain
+rhyme
+rhyme scheme
+meter
+iambic pentameter
+rhythm
+alliteration
+assonance
+consonance
+onomatopoeia
+metaphor
+simile
+personification
+imagery
+symbolism
+motif
+theme
+tone
+mood
+voice
+point of view
+first person
+second person
+third person
+omniscient
+limited omniscient
+unreliable narrator
+narrator
+protagonist
+antagonist
+character
+characterization
+round character
+flat character
+dynamic character
+static character
+foil
+archetype
+plot
+exposition
+rising action
+climax
+falling action
+resolution
+denouement
+conflict
+internal conflict
+external conflict
+foreshadowing
+flashback
+frame story
+subplot
+setting
+dialogue
+monologue
+soliloquy
+aside
+diction
+syntax
+style
+irony
+dramatic irony
+situational irony
+verbal irony
+paradox
+juxtaposition
+contrast
+ambiguity
+allusion
+ekphrasis
+
+# Literary Movements
+literary movement
+classicism
+romanticism
+realism
+naturalism
+modernism
+postmodernism
+symbolism
+imagism
+surrealism
+dadaism
+futurism
+expressionism
+beat generation
+lost generation
+harlem renaissance
+transcendentalism
+gothic literature
+victorian literature
+edwardian literature
+elizabethan literature
+metaphysical poetry
+augustan literature
+restoration literature
+medieval literature
+renaissance literature
+enlightenment
+rationalism
+existentialism
+absurdism
+
+# Publishing and Literary World
+manuscript
+draft
+revision
+editing
+copyediting
+proofreading
+typesetting
+galley
+proof
+advance copy
+arc
+advance reader copy
+publication
+publisher
+publishing house
+imprint
+literary agent
+editor
+acquiring editor
+developmental editor
+copy editor
+proofreader
+typesetter
+book designer
+cover designer
+illustrator
+foreword
+preface
+introduction
+prologue
+epilogue
+acknowledgment
+dedication
+epigraph
+table of contents
+chapter
+section
+part
+volume
+page
+hardcover
+paperback
+trade paperback
+mass market paperback
+ebook
+audiobook
+edition
+first edition
+limited edition
+revised edition
+annotated edition
+critical edition
+printing
+reprint
+out of print
+copyright
+isbn
+library of congress
+cataloging
+genre
+bestseller
+bestseller list
+book award
+literary prize
+nobel prize
+pulitzer
+national book award
+booker prize
+pen award
+literary festival
+book fair
+book club
+reading
+book review
+literary criticism
+literary theory
+close reading
+textual analysis
+interpretation
+exegesis
+hermeneutics
+deconstruction
+feminist criticism
+marxist criticism
+psychoanalytic criticism
+postcolonial criticism
+new criticism
+formalism
+structuralism
+post structuralism
+reader response
+canon
+literary canon
+classic
+timeless
+influential
+seminal work
+magnum opus
+oeuvre
+corpus
+anthology
+collection
+series
+trilogy
+quartet
+saga
+cycle

@@ -1,0 +1,682 @@
+# War and Conflict Terms
+
+# Basic War Terms
+warfare
+combat
+battle
+hostility
+aggression
+invasion
+occupation
+siege
+blockade
+embargo
+offensive
+defensive
+campaign
+operation
+mission
+deployment
+mobilization
+demobilization
+armistice
+ceasefire
+truce
+peace treaty
+surrender
+capitulation
+victory
+defeat
+retreat
+withdrawal
+evacuation
+reinforcement
+supply line
+logistics
+strategy
+tactics
+maneuver
+flanking
+ambush
+raid
+strike
+assault
+attack
+counterattack
+charge
+barrage
+bombardment
+
+# Weapons
+artillery
+artillery shelling
+mortar
+rocket
+missile
+bomb
+explosive
+grenade
+mine
+landmine
+IED
+improvised explosive device
+booby trap
+shell
+ammunition
+ordnance
+munitions
+weapon
+firearm
+rifle
+carbine
+machine gun
+submachine gun
+pistol
+revolver
+shotgun
+sniper rifle
+automatic weapon
+semiautomatic weapon
+bolt-action rifle
+bayonet
+knife
+sword
+spear
+lance
+pike
+halberd
+axe
+mace
+club
+bow
+arrow
+crossbow
+catapult
+trebuchet
+ballista
+cannon
+howitzer
+field gun
+anti-aircraft gun
+flak gun
+
+# Military Vehicles
+tank
+armored vehicle
+infantry fighting vehicle
+IFV
+armored personnel carrier
+APC
+self-propelled artillery
+multiple launch rocket system
+MLRS
+surface-to-air missile
+SAM
+anti-tank guided missile
+ATGM
+cruise missile
+ballistic missile
+intercontinental ballistic missile
+ICBM
+submarine-launched ballistic missile
+SLBM
+
+# Weapons of Mass Destruction
+nuclear weapon
+atomic bomb
+hydrogen bomb
+thermonuclear weapon
+dirty bomb
+radiological weapon
+chemical weapon
+biological weapon
+weapons of mass destruction
+WMD
+nuclear proliferation
+non-proliferation
+nuclear disarmament
+arms control
+
+# Laws of War
+Geneva Convention
+Hague Convention
+rules of engagement
+ROE
+law of armed conflict
+international humanitarian law
+war crime
+crimes against humanity
+genocide
+ethnic cleansing
+war crimes tribunal
+international criminal court
+international court of justice
+war crimes prosecutor
+defendant
+perpetrator
+victim
+civilian casualty
+collateral damage
+friendly fire
+blue-on-blue
+fratricide
+
+# Prisoners and Refugees
+prisoner of war
+POW
+detainee
+internment camp
+concentration camp
+extermination camp
+death camp
+gulag
+forced labor camp
+refugee
+displaced person
+internally displaced person
+IDP
+asylum seeker
+refugee crisis
+humanitarian aid
+humanitarian relief
+humanitarian assistance
+Red Cross
+Red Crescent
+Doctors Without Borders
+United Nations peacekeeping
+peacekeeper
+blue helmet
+UN observer
+military intervention
+
+# Military Alliances
+coalition
+alliance
+military pact
+axis
+allies
+Central Powers
+Triple Entente
+NATO
+North Atlantic Treaty Organization
+Warsaw Pact
+SEATO
+Southeast Asia Treaty Organization
+CENTO
+Central Treaty Organization
+Collective Security Treaty Organization
+CSTO
+mutual defense treaty
+Article 5
+Article Five
+
+# Military Ranks
+commander in chief
+general
+admiral
+field marshal
+lieutenant general
+major general
+brigadier general
+colonel
+lieutenant colonel
+major
+captain
+first lieutenant
+second lieutenant
+sergeant
+first sergeant
+master sergeant
+staff sergeant
+sergeant first class
+corporal
+private first class
+private
+recruit
+cadet
+officer
+commissioned officer
+non-commissioned officer
+NCO
+enlisted personnel
+
+# Military Personnel
+soldier
+infantryman
+rifleman
+grenadier
+paratrooper
+airborne soldier
+ranger
+commando
+special forces
+special operations
+Navy SEAL
+Green Beret
+Delta Force
+Special Air Service
+SAS
+Special Boat Service
+SBS
+Spetsnaz
+marine
+marine corps
+leatherneck
+jarhead
+sailor
+seaman
+petty officer
+ensign
+midshipman
+airman
+aviator
+pilot
+navigator
+bombardier
+gunner
+crew chief
+mechanic
+medic
+corpsman
+chaplain
+
+# Intelligence and Espionage
+intelligence analyst
+spy
+secret agent
+operative
+informant
+mole
+double agent
+defector
+traitor
+turncoat
+collaborator
+quisling
+fifth column
+saboteur
+partisan
+guerrilla
+insurgent
+rebel
+revolutionary
+freedom fighter
+terrorist
+militant
+extremist
+radical
+jihadist
+separatist
+secessionist
+nationalist
+fascist
+Nazi
+communist
+Bolshevik
+anarchist
+militia
+paramilitary
+mercenary
+soldier of fortune
+private military contractor
+private military company
+PMC
+warlord
+chieftain
+tribal leader
+faction
+sect
+cult
+
+# Military Units
+squad
+platoon
+company
+battalion
+regiment
+brigade
+division
+corps
+army
+army group
+fire team
+death squad
+hit squad
+assassination squad
+execution
+firing squad
+
+# Reconnaissance
+reconnaissance team
+scout
+patrol
+sentry
+guard
+watchman
+lookout
+forward observer
+artillery spotter
+liaison officer
+courier
+runner
+messenger
+radio operator
+signaler
+cryptographer
+codebreaker
+decoder
+cipher
+code
+encrypted message
+
+# Military Reports
+intelligence report
+situation briefing
+debriefing
+after-action report
+AAR
+situation report
+SITREP
+contact report
+battle damage assessment
+BDA
+target acquisition
+target designation
+target identification
+friend or foe
+IFF
+
+# Military Zones
+combat zone
+war zone
+free fire zone
+no-fly zone
+demilitarized zone
+DMZ
+buffer zone
+neutral zone
+safe zone
+protected zone
+exclusion zone
+danger zone
+danger close
+kill zone
+impact area
+firing range
+training area
+exercise area
+assembly area
+staging area
+forward operating base
+FOB
+combat outpost
+COP
+checkpoint
+roadblock
+barricade
+
+# Fortifications
+fortification
+bunker
+pillbox
+trench
+foxhole
+fighting position
+strongpoint
+redoubt
+fortress
+castle
+citadel
+rampart
+parapet
+battlement
+moat
+drawbridge
+gate
+tower
+wall
+palisade
+earthwork
+breastwork
+revetment
+abatis
+wire obstacle
+dragon's teeth
+anti-tank ditch
+minefield
+mine belt
+obstacle course
+defensive perimeter
+inner perimeter
+outer perimeter
+
+# Military Tactics
+cordon
+encirclement
+pocket
+salient
+breakthrough
+penetration
+envelopment
+pincer movement
+blitzkrieg
+lightning war
+asymmetric warfare
+hybrid warfare
+conventional warfare
+unconventional warfare
+limited war
+total war
+world war
+great war
+cold war
+hot war
+proxy war
+civil war
+insurrection
+uprising
+revolt
+revolution
+coup d'état
+putsch
+mutiny
+rebellion
+secession
+independence movement
+liberation war
+colonial war
+imperial war
+territorial war
+border war
+religious war
+crusade
+jihad
+holy war
+sectarian war
+sectarian violence
+clan war
+tribal war
+feud
+vendetta
+blood feud
+
+# Historical Wars
+ancient warfare
+medieval warfare
+modern warfare
+contemporary warfare
+future warfare
+cyber warfare
+information warfare
+psychological warfare
+propaganda
+disinformation
+misinformation
+fake news
+black propaganda
+white propaganda
+grey propaganda
+leaflet drop
+loudspeaker broadcast
+television broadcast
+internet propaganda
+social media
+influence operation
+perception management
+hearts and minds
+winning hearts and minds
+
+# Counterinsurgency
+counterinsurgency
+COIN
+pacification
+nation building
+state building
+regime change
+decapitation strike
+targeted killing
+drone strike
+unmanned aerial vehicle
+UAV
+Predator drone
+Reaper drone
+surveillance
+intelligence surveillance reconnaissance
+ISR
+electronic warfare
+jamming
+spoofing
+deception
+decoy
+chaff
+flare
+countermeasure
+
+# Stealth and Camouflage
+stealth technology
+radar cross section
+RCS
+radar cross section reduction
+low observable
+signature reduction
+camouflage
+concealment
+cover
+defilade
+hide
+camouflage net
+ghillie suit
+face paint
+disruptive pattern
+woodland camouflage
+desert camouflage
+urban camouflage
+digital camouflage
+pixelated camouflage
+MultiCam
+universal camouflage pattern
+UCP
+operational camouflage pattern
+OCP
+
+# Night Operations
+night vision
+thermal imaging
+infrared imaging
+forward-looking infrared
+FLIR
+laser designator
+laser rangefinder
+binoculars
+periscope
+telescope
+scope
+sight
+optic
+red dot sight
+holographic sight
+reflex sight
+iron sights
+telescopic sight
+Advanced Combat Optical Gunsight
+aiming module
+flashlight
+tactical light
+suppressor
+silencer
+muzzle brake
+flash hider
+compensator
+bipod
+tripod
+foregrip
+vertical grip
+angled grip
+stock
+buttstock
+collapsible stock
+folding stock
+adjustable stock
+fixed stock
+
+# Ammunition
+magazine
+clip
+drum magazine
+box magazine
+detachable magazine
+internal magazine
+tubular magazine
+stripper clip
+speed loader
+belt feed
+linked ammunition
+cartridge
+round
+bullet
+projectile
+slug
+shot
+buckshot
+birdshot
+flechette
+tracer round
+armor-piercing round
+hollow point
+full metal jacket
+soft point
+ballistic tip
+incendiary round
+high-explosive
+HE
+high-explosive anti-tank
+HEAT
+high-explosive squash head
+HESH
+armor-piercing fin-stabilized discarding sabot
+APFSDS
+depleted uranium
+DU
+tungsten penetrator
+kinetic energy penetrator
+shaped charge
+explosively formed penetrator
+EFP
+
+# Armor
+reactive armor
+ERA
+composite armor
+Chobham armor
+rolled homogeneous armor
+RHA
+spaced armor
+slat armor
+cage armor
+bar armor
+active protection system
+APS
+hard-kill system
+soft-kill system
+smoke screen
+obscurant

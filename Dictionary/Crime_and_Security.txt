@@ -1,0 +1,760 @@
+# Crime and Security Dictionary
+
+# Law Enforcement
+police
+law enforcement
+police officer
+policeman
+policewoman
+officer
+cop
+detective
+investigator
+inspector
+sergeant
+lieutenant
+captain
+chief
+police chief
+commissioner
+deputy
+sheriff
+deputy sheriff
+constable
+marshal
+federal agent
+special agent
+trooper
+state trooper
+highway patrol
+ranger
+park ranger
+game warden
+border patrol
+customs officer
+immigration officer
+ice agent
+secret service
+secret service agent
+fbi agent
+cia agent
+dea agent
+atf agent
+postal inspector
+air marshal
+security guard
+private security
+security officer
+bounty hunter
+bail bondsman
+
+# Police Operations
+patrol
+beat
+foot patrol
+bike patrol
+car patrol
+community policing
+crime prevention
+neighborhood watch
+surveillance
+stakeout
+undercover
+undercover operation
+sting operation
+raid
+search
+arrest
+apprehension
+detention
+booking
+custody
+interrogation
+questioning
+interview
+witness interview
+lineup
+photo lineup
+identification
+eyewitness identification
+crime scene
+crime scene investigation
+csi
+forensic investigation
+evidence collection
+chain of custody
+forensic evidence
+physical evidence
+circumstantial evidence
+direct evidence
+trace evidence
+ballistic evidence
+dna evidence
+fingerprint
+fingerprint analysis
+blood spatter analysis
+autopsy
+postmortem
+forensic autopsy
+medical examiner
+coroner
+cause of death
+time of death
+manner of death
+toxicology
+toxicology report
+
+# Security Systems
+security
+security system
+alarm system
+burglar alarm
+fire alarm
+panic alarm
+duress alarm
+security camera
+surveillance camera
+cctv
+closed circuit television
+motion detector
+motion sensor
+glass break sensor
+door sensor
+window sensor
+perimeter security
+access control
+key card
+swipe card
+badge
+proximity card
+biometric
+fingerprint scanner
+retina scanner
+facial recognition
+security gate
+turnstile
+bollard
+barrier
+fence
+security fence
+perimeter fence
+chain link fence
+barbed wire
+razor wire
+concertina wire
+guard tower
+watchtower
+checkpoint
+security checkpoint
+screening
+metal detector
+xray machine
+body scanner
+bag check
+pat down
+frisk
+
+# Cybersecurity
+cybersecurity
+information security
+network security
+computer security
+data security
+endpoint security
+cloud security
+application security
+iot security
+mobile security
+wireless security
+encryption
+data encryption
+end to end encryption
+cryptography
+secure socket layer
+ssl
+transport layer security
+tls
+virtual private network
+vpn
+firewall
+intrusion detection system
+ids
+intrusion prevention system
+ips
+antivirus
+antimalware
+spam filter
+security patch
+software update
+vulnerability
+security vulnerability
+zero day
+zero day vulnerability
+exploit
+security exploit
+backdoor
+trojan
+trojan horse
+virus
+computer virus
+worm
+malware
+spyware
+adware
+ransomware
+keylogger
+rootkit
+botnet
+distributed denial of service
+ddos
+denial of service
+dos
+phishing
+spear phishing
+whaling
+social engineering
+pretexting
+baiting
+quid pro quo
+tailgating
+piggybacking
+man in the middle
+mitm
+session hijacking
+password attack
+brute force attack
+dictionary attack
+credential stuffing
+sql injection
+cross site scripting
+xss
+buffer overflow
+privilege escalation
+data breach
+security breach
+hack
+hacking
+hacker
+white hat
+black hat
+grey hat
+ethical hacker
+penetration testing
+pen test
+vulnerability assessment
+security audit
+threat intelligence
+threat actor
+advanced persistent threat
+apt
+nation state actor
+insider threat
+security operations center
+soc
+incident response
+incident response team
+computer emergency response team
+cert
+security information and event management
+siem
+security orchestration automation and response
+soar
+
+# Criminal Investigation
+investigation
+criminal investigation
+homicide investigation
+cold case
+missing person
+missing persons case
+forensic science
+forensics
+crime lab
+forensic laboratory
+evidence
+proof
+clue
+lead
+suspect
+person of interest
+witness
+victim
+complainant
+informant
+confidential informant
+snitch
+testimony
+statement
+confession
+alibi
+motive
+means
+opportunity
+premeditation
+intent
+malice
+criminal profile
+behavioral analysis
+geographic profiling
+victimology
+modus operandi
+mo
+signature
+calling card
+pattern
+serial crime
+serial killer
+serial rapist
+serial arsonist
+crime spree
+crime wave
+organized crime
+criminal organization
+gang
+street gang
+drug cartel
+mafia
+mob
+syndicate
+racketeering
+money laundering
+smuggling
+trafficking
+human trafficking
+drug trafficking
+arms trafficking
+contraband
+illegal weapon
+controlled substance
+narcotic
+drug
+illegal drug
+illicit drug
+street drug
+designer drug
+methamphetamine
+meth
+cocaine
+crack cocaine
+heroin
+fentanyl
+opioid
+marijuana
+cannabis
+ecstasy
+mdma
+lsd
+pcp
+
+# Types of Crime
+violent crime
+property crime
+financial crime
+economic crime
+white collar crime
+corporate crime
+organized crime
+cybercrime
+computer crime
+internet crime
+hate crime
+bias crime
+sex crime
+sexual offense
+domestic violence
+intimate partner violence
+child abuse
+child neglect
+child exploitation
+elder abuse
+financial exploitation
+identity theft
+credit card fraud
+bank fraud
+insurance fraud
+tax fraud
+securities fraud
+investment fraud
+ponzi scheme
+pyramid scheme
+embezzlement
+forgery
+counterfeiting
+bribery
+corruption
+extortion
+blackmail
+kidnapping
+abduction
+hostage taking
+ransom
+robbery
+armed robbery
+bank robbery
+burglary
+breaking and entering
+home invasion
+theft
+larceny
+shoplifting
+auto theft
+carjacking
+pickpocketing
+purse snatching
+vandalism
+graffiti
+arson
+assault
+battery
+aggravated assault
+sexual assault
+rape
+stalking
+harassment
+cyberstalking
+cyberbullying
+trespassing
+loitering
+public intoxication
+disorderly conduct
+disturbing the peace
+riot
+looting
+civil unrest
+
+# Terrorism and National Security
+terrorism
+domestic terrorism
+international terrorism
+terrorist
+terrorist organization
+terrorist group
+extremism
+violent extremism
+radicalization
+jihadist
+insurgent
+militant
+guerrilla
+rebel
+freedom fighter
+asymmetric warfare
+unconventional warfare
+suicide bomber
+suicide attack
+car bomb
+roadside bomb
+improvised explosive device
+ied
+bomb threat
+active shooter
+mass shooting
+mass casualty
+hostage situation
+hijacking
+airplane hijacking
+piracy
+maritime piracy
+sabotage
+assassination
+political violence
+weapons of mass destruction
+wmd
+biological weapon
+chemical weapon
+nuclear weapon
+radiological weapon
+dirty bomb
+bioterrorism
+cyberterrorism
+ecoterrorism
+narcoterrorism
+homeland security
+national security
+intelligence
+intelligence agency
+intelligence community
+counterterrorism
+counterintelligence
+surveillance
+wiretap
+electronic surveillance
+signals intelligence
+sigint
+human intelligence
+humint
+covert operation
+black ops
+rendition
+extraordinary rendition
+detention
+interrogation
+enhanced interrogation
+waterboarding
+torture
+geneva convention
+war crime
+
+# Security Threats
+threat
+security threat
+credible threat
+imminent threat
+clear and present danger
+risk
+security risk
+vulnerability
+exposure
+attack
+security incident
+breach
+intrusion
+unauthorized access
+espionage
+industrial espionage
+corporate espionage
+theft of trade secrets
+sabotage
+subversion
+sedition
+treason
+insider threat
+disgruntled employee
+workplace violence
+active shooter
+armed intruder
+suspicious activity
+suspicious person
+suspicious package
+unattended bag
+bomb scare
+evacuation
+lockdown
+shelter in place
+all clear
+emergency alert
+emergency notification
+amber alert
+silver alert
+blue alert
+
+# Crime Prevention
+crime prevention
+situational crime prevention
+environmental design
+cpted
+crime prevention through environmental design
+defensible space
+natural surveillance
+access control
+territoriality
+target hardening
+deterrence
+general deterrence
+specific deterrence
+intervention
+early intervention
+youth program
+mentoring program
+after school program
+community outreach
+neighborhood watch
+block watch
+citizens on patrol
+crime stoppers
+tip line
+hotline
+anonymous tip
+reward
+public awareness
+crime awareness
+safety education
+self defense
+personal safety
+situational awareness
+home security
+vehicle security
+travel safety
+internet safety
+online safety
+stranger danger
+safety plan
+emergency plan
+disaster preparedness
+
+# Criminal Justice System
+criminal justice
+criminal justice system
+law enforcement
+courts
+corrections
+juvenile justice
+restorative justice
+victim services
+victim advocacy
+victim compensation
+victim impact statement
+restitution
+crime victim rights
+victims rights
+offender
+criminal
+felon
+convict
+inmate
+prisoner
+parolee
+probationer
+sex offender
+registered sex offender
+sex offender registry
+community notification
+background check
+criminal record
+criminal history
+rap sheet
+arrest record
+conviction
+acquittal
+dismissal
+expungement
+sealing
+pardon
+clemency
+commutation
+rehabilitation
+recidivism
+repeat offender
+career criminal
+three strikes law
+mandatory minimum
+sentencing guidelines
+death penalty
+capital punishment
+life sentence
+prison
+jail
+detention center
+correctional facility
+halfway house
+work release
+electronic monitoring
+ankle monitor
+house arrest
+probation
+parole
+supervised release
+community supervision
+reentry
+reintegration
+
+# Security Personnel and Training
+security professional
+security consultant
+security analyst
+threat analyst
+risk analyst
+security manager
+security director
+chief security officer
+cso
+loss prevention
+loss prevention specialist
+private investigator
+pi
+bodyguard
+executive protection
+close protection
+dignitary protection
+armored car
+cash in transit
+secure transport
+security clearance
+background investigation
+security vetting
+security training
+tactical training
+firearms training
+defensive tactics
+emergency response
+crisis management
+disaster response
+business continuity
+continuity of operations
+coop
+emergency management
+first responder
+emergency medical services
+ems
+paramedic
+firefighter
+fire department
+disaster recovery
+hazmat
+hazardous materials
+bomb squad
+explosive ordnance disposal
+eod
+swat
+special weapons and tactics
+tactical team
+crisis negotiation
+hostage negotiation
+k9 unit
+police dog
+bomb sniffing dog
+drug sniffing dog
+search and rescue
+sar
+
+# Security Technologies
+biometric authentication
+two factor authentication
+multi factor authentication
+mfa
+single sign on
+sso
+password manager
+security token
+digital certificate
+public key infrastructure
+pki
+secure email
+encrypted messaging
+secure file transfer
+data loss prevention
+dlp
+mobile device management
+mdm
+security awareness training
+phishing simulation
+penetration test
+red team
+blue team
+purple team
+threat hunting
+digital forensics
+computer forensics
+network forensics
+mobile forensics
+malware analysis
+reverse engineering
+sandbox
+honeypot
+security analytics
+behavioral analytics
+anomaly detection
+threat detection
+security monitoring
+log analysis
+audit trail
+compliance
+regulatory compliance
+data privacy
+gdpr
+hipaa
+pci dss
+sox
+iso 27001
+nist
+cybersecurity framework

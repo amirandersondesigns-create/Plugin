@@ -1,0 +1,432 @@
+# Emergency and Rescue Vehicles
+
+# Medical Emergency Vehicles
+ambulance
+emergency medical services
+EMS
+paramedic unit
+advanced life support
+ALS
+basic life support
+BLS
+mobile intensive care unit
+MICU
+critical care transport
+neonatal ambulance
+bariatric ambulance
+air ambulance
+medical helicopter
+medevac
+flight medic
+search and rescue
+
+# Fire Apparatus
+fire engine
+fire truck
+pumper
+ladder truck
+aerial ladder
+aerial platform
+quint
+quintuple combination
+combination pumper
+tanker
+water tender
+brush truck
+wildland fire truck
+airport crash truck
+aircraft rescue and firefighting
+ARFF vehicle
+firefighting vehicle
+hazmat unit
+hazardous materials response
+decontamination unit
+chemical response
+bomb squad
+explosive ordnance disposal
+EOD
+
+# Police Vehicles
+police car
+patrol car
+cruiser
+interceptor
+pursuit vehicle
+unmarked car
+undercover vehicle
+detective car
+K9 unit
+canine unit
+SWAT vehicle
+special weapons and tactics
+armored personnel carrier
+bearcat
+tactical vehicle
+command center
+mobile command post
+incident command
+communications van
+emergency operations center
+EOC
+command trailer
+
+# Disaster Response
+disaster response
+mass casualty incident
+MCI
+field hospital
+mobile hospital
+heavy rescue
+technical rescue
+urban search and rescue
+USAR
+collapse rescue
+confined space rescue
+high angle rescue
+rope rescue
+swift water rescue
+flood rescue
+boat rescue
+amphibious vehicle
+Coast Guard vessel
+lifeboat
+rigid hull inflatable boat
+RHIB
+rescue cutter
+search and rescue
+SAR
+lifeguard vehicle
+beach patrol
+jet ski
+personal watercraft
+PWC
+
+# Specialty Rescue Vehicles
+all-terrain vehicle
+ATV
+utility task vehicle
+UTV
+side-by-side
+snowmobile
+snow cat
+snow groomer
+mountain rescue
+wilderness rescue
+backcountry rescue
+forestry service
+park ranger
+wildlife officer
+conservation officer
+game warden
+animal control
+veterinary ambulance
+humane society
+ASPCA
+
+# Recovery and Support
+tow truck
+wrecker
+flatbed
+heavy duty tow
+rotator
+recovery vehicle
+road service
+highway assistance
+freeway service
+DOT vehicle
+Department of Transportation
+maintenance truck
+snow plow
+salt truck
+road crew
+utility company
+electric utility
+power restoration
+bucket truck
+cherry picker
+digger derrick
+line truck
+cable repair
+gas company
+water department
+sewer department
+public works
+street department
+sanitation
+
+# Emergency Support
+generator truck
+light tower
+portable lighting
+mobile cell tower
+cell on wheels
+COW
+satellite truck
+site on wheels
+SATCOM
+broadcasting van
+radio station
+information vehicle
+media relations
+press vehicle
+coroner van
+medical examiner
+forensic investigation
+crime scene investigation
+CSI
+mobile lab
+evidence collection
+morgue van
+mortuary van
+mass fatality incident
+MFI
+refrigerated truck
+temporary morgue
+
+# Healthcare Transport
+blood bank
+blood donation
+blood drive
+plasma center
+organ transport
+organ courier
+tissue transfer
+wheelchair van
+wheelchair accessible
+paratransit
+dialysis transport
+non-emergency medical transport
+NEMT
+behavioral health
+crisis intervention
+mental health
+substance abuse
+homeless outreach
+social services
+community health
+mobile clinic
+vaccination clinic
+testing center
+COVID testing
+flu shot clinic
+health screening
+mammography van
+dental van
+vision care
+health fair
+wellness check
+
+# Animal Services
+animal control
+spay and neuter
+pet adoption
+animal shelter
+veterinary clinic
+food truck
+mobile pantry
+meals on wheels
+soup kitchen
+food distribution
+disaster relief
+supply distribution
+Red Cross
+Salvation Army
+canteen truck
+volunteer services
+
+# Specialized Fire Rescue
+first responder
+rapid intervention team
+RIT
+firefighter rehab
+rehabilitation unit
+breathing air compressor
+foam unit
+foam truck
+class A foam
+class B foam
+purple K
+deluge unit
+master stream appliance
+deck gun
+monitor nozzle
+turret nozzle
+ground ladder
+elevated master stream
+medium duty rescue
+walk-in rescue
+rescue engine
+battalion chief
+fire district
+deputy chief
+assistant chief
+fire safety
+fire marshal
+fire prevention
+arson investigator
+fire inspector
+code enforcement
+
+# Municipal Services
+building inspector
+electrical inspector
+plumbing inspector
+mechanical inspector
+structural engineer
+emergency manager
+emergency coordinator
+homeland security
+emergency preparedness
+FEMA
+Federal Emergency Management Agency
+state emergency
+county emergency
+city emergency
+municipal emergency
+emergency director
+sheriff patrol
+state trooper
+highway patrol
+township police
+university police
+campus police
+school resource officer
+SRO
+transit police
+transit authority
+railroad police
+harbor patrol
+marine patrol
+dive team
+underwater rescue
+bomb detection
+narcotics dog
+drug detection
+accelerant dog
+cadaver dog
+missing person
+tracking dog
+trailing dog
+bloodhound
+mounted patrol
+horse patrol
+motorcycle patrol
+motor patrol
+traffic enforcement
+DUI enforcement
+sobriety checkpoint
+license plate reader
+LPR
+speed enforcement
+radar enforcement
+accident investigation
+collision investigation
+reconstruction team
+
+# Specialized Units
+gang unit
+vice squad
+juvenile division
+crossing guard
+parking enforcement
+meter maid
+code compliance
+zoning enforcement
+environmental health
+sanitarian
+vector control
+mosquito abatement
+rodent control
+pest control
+nuisance abatement
+weed abatement
+graffiti removal
+litter cleanup
+illegal dump
+household hazardous waste
+electronic waste
+recycling truck
+scrap metal
+appliance pickup
+bulky item pickup
+yard waste
+composting
+curbside collection
+single stream recycling
+multi-stream recycling
+drop-off center
+transfer station
+materials recovery facility
+MRF
+landfill compactor
+street sweeper
+vacuum sweeper
+broom sweeper
+regenerative sweeper
+street flusher
+street cleaning
+sewer camera
+pipe inspection
+storm drain cleaning
+catch basin cleaning
+vactor truck
+pothole patcher
+asphalt patcher
+crack sealing
+pavement marking
+street striping
+sign installation
+traffic signal
+streetlight maintenance
+bridge inspection
+tunnel inspection
+dam inspection
+levee inspection
+seawall inspection
+retaining wall
+slope stabilization
+erosion control
+sediment control
+stormwater management
+best management practices
+BMP
+construction site
+grading permit
+demolition permit
+excavation permit
+trench entry
+confined space entry
+permit required space
+fall protection
+scaffolding inspection
+crane inspection
+rigging inspection
+hoisting equipment
+elevator inspection
+escalator inspection
+boiler inspection
+pressure vessel
+amusement ride
+carnival inspection
+special event
+large gathering
+parade route
+marathon support
+bicycle race
+triathlon support
+sporting event
+concert security
+festival security
+convention security
+dignitary protection
+executive protection
+close protection detail
+motorcade
+presidential motorcade
+governor motorcade
+mayoral detail
+funeral escort
+police escort
+honor guard
+ceremonial duty
+color guard

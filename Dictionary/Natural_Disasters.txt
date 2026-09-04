@@ -1,0 +1,420 @@
+# Natural Disasters and Weather Events Dictionary
+# Natural disasters, severe weather, emergency events, disaster response
+
+# Seismic Events
+earthquake
+tsunami
+seismic
+aftershock
+foreshock
+mainshock
+epicenter
+hypocenter
+focus
+fault line
+tectonic plate
+subduction zone
+transform boundary
+convergent
+divergent
+spreading ridge
+trench
+seismic wave
+primary wave
+secondary wave
+surface wave
+love wave
+rayleigh wave
+seismograph
+seismometer
+accelerometer
+strong motion
+ground shaking
+liquefaction
+soil liquefaction
+subsidence
+uplift
+displacement
+rupture
+slip
+offset
+throw
+heave
+richter scale
+magnitude
+moment magnitude
+mercalli intensity
+
+# Structural Damage
+collapse
+building collapse
+bridge collapse
+infrastructure damage
+structural failure
+pancake collapse
+progressive collapse
+soft story collapse
+unreinforced masonry
+reinforced concrete
+steel frame
+wood frame
+base isolation
+seismic retrofit
+earthquake resistant design
+aseismic
+building code
+seismic zone
+seismic hazard
+seismic risk
+vulnerability
+exposure
+
+# Tropical Storms
+hurricane
+typhoon
+cyclone
+tropical depression
+tropical disturbance
+storm
+category
+saffir simpson scale
+storm surge
+eye
+eyewall
+rain band
+storm track
+landfall
+wind speed
+sustained wind
+wind gust
+barometric pressure
+
+# Tornadoes
+tornado
+twister
+funnel
+funnel cloud
+waterspout
+landspout
+dust devil
+whirlwind
+supercell
+mesocyclone
+updraft
+downdraft
+microburst
+macroburst
+enhanced fujita scale
+tornado alley
+tornado watch
+tornado warning
+
+# Severe Weather
+derecho
+squall line
+gust front
+thunderstorm
+lightning
+thunder
+hail
+hailstone
+hailstorm
+sleet
+freezing rain
+ice storm
+blizzard
+snowstorm
+noreaster
+alberta clipper
+colorado low
+pineapple express
+atmospheric river
+bomb cyclogenesis
+polar vortex
+arctic outbreak
+cold snap
+heat wave
+drought
+
+# Wildfires
+wildfire
+bushfire
+forest fire
+grassfire
+conflagration
+firestorm
+crown fire
+surface fire
+ground fire
+prescribed burn
+backfire
+firebreak
+fireline
+containment
+evacuation
+red flag warning
+fire weather watch
+smoke plume
+pyrocumulus
+flammagenitus
+ember
+spark
+ignition
+fuel load
+fire behavior
+spread rate
+intensity
+severity
+suppression
+retardant
+water bomber
+helitack
+hotshot
+smokejumper
+control line
+mop operations
+
+# Flooding
+flood
+flash flood
+river flooding
+coastal flooding
+storm surge
+tidal wave
+king tide
+spring tide
+neap tide
+inundation
+overflow
+levee breach
+dam failure
+embankment
+dike
+floodplain
+floodway
+flood stage
+crest
+high water mark
+floodwater
+runoff
+drainage basin
+watershed
+catchment area
+precipitation
+rainfall
+cloudburst
+deluge
+monsoon
+
+# Disaster Response
+mitigation
+preparedness
+response
+recovery
+relief
+aid
+humanitarian assistance
+emergency management
+disaster declaration
+federal emergency management agency
+national guard
+red cross
+salvation army
+united nations
+world food programme
+doctors without borders
+medecins sans frontieres
+international committee crescent
+oxfam
+care
+save children
+unicef
+refugee agency
+world health organization
+centers disease control prevention
+
+# Pandemic Terms
+pandemic
+epidemic
+outbreak
+contagion
+infectious disease
+virus
+bacteria
+pathogen
+vector
+transmission
+incubation period
+quarantine
+isolation
+lockdown
+social distancing
+mask mandate
+vaccine
+vaccination
+immunization
+herd immunity
+contact tracing
+testing
+surveillance
+monitoring
+containment
+suppression
+flattening curve
+overwhelm
+healthcare system
+hospital capacity
+intensive care unit
+ventilator
+shortage
+
+# Personal Protective Equipment
+personal protective equipment
+n95 mask
+respirator
+face shield
+gown
+gloves
+hand sanitizer
+disinfectant
+sanitization
+decontamination
+sterilization
+hygiene
+handwashing
+respiratory etiquette
+cough
+sneeze
+droplet
+aerosol
+airborne transmission
+fomite
+surface contamination
+
+# Disease Symptoms
+asymptomatic
+carrier
+presymptomatic
+symptomatic
+mild
+moderate
+severe
+critical
+hospitalization
+intensive care
+intubation
+mechanical ventilation
+oxygenation
+oxygen saturation
+pulse oximeter
+fever
+cough
+shortness breath
+dyspnea
+fatigue
+body aches
+myalgia
+headache
+loss taste smell
+anosmia
+ageusia
+sore throat
+congestion
+runny nose
+rhinorrhea
+nausea
+vomiting
+diarrhea
+abdominal pain
+rash
+confusion
+disorientation
+chest pain
+palpitations
+tachycardia
+bradycardia
+arrhythmia
+hypotension
+hypoxia
+
+# Medical Complications
+respiratory distress syndrome
+acute respiratory failure
+sepsis
+septic shock
+multi organ failure
+cytokine storm
+coagulopathy
+thrombosis
+embolism
+pulmonary embolism
+deep vein thrombosis
+stroke
+myocardial infarction
+heart attack
+cardiac arrest
+sudden cardiac death
+complications
+sequelae
+long covid
+post acute sequelae
+coronavirus
+recovery
+rehabilitation
+survivor
+victim
+casualty
+fatality
+death toll
+mortality rate
+case fatality rate
+infection fatality rate
+morbidity
+hospitalization rate
+attack rate
+
+# Epidemiological Terms
+reproduction number
+basic reproduction number
+effective reproduction number
+doubling time
+generation time
+serial interval
+incubation period
+infectious period
+communicable period
+shedding
+viral load
+titer
+pcr test
+polymerase chain reaction
+antigen test
+rapid test
+antibody test
+serology
+seroprevalence
+seropositivity
+false positive
+false negative
+sensitivity
+specificity
+positive predictive value
+negative predictive value
+accuracy
+precision
+recall
+diagnostic test
+screening test
+confirmatory test
+point care test
+laboratory test
+
+# Sample Collection
+specimen collection
+nasal swab
+nasopharyngeal swab
+oropharyngeal swab
+saliva sample
+blood sample
+serum sample
+plasma sample

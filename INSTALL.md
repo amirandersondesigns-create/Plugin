@@ -17,11 +17,14 @@
 
 That's it — no debug mode, no manual file copying, no Terminal commands. Those are only needed for *developers* working on the plugin's source code, not for installing the finished version.
 
-## Adding a custom dictionary (optional)
+## Adding your own words (optional)
 
-The plugin works out of the box with a built-in ~8,100-word dictionary. To
-extend it with your own word lists (brand names, industry terms, names of
-people/places specific to your work):
+The plugin ships with a full dictionary already installed — 46 category
+files (world leaders, countries, medical terms, tech vocabulary, common
+misspelling corrections, and more) plus a general fallback list, so it
+works out of the box with no setup. To extend it further with your own
+words (brand names, character names, industry terms specific to your
+work):
 
 1. In the plugin, open **Settings → Verify Dictionary** to see the exact
    `Dictionary` folder path it's using.

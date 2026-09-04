@@ -1,0 +1,385 @@
+# Law_and_Justice
+# Legal system, courts, law enforcement, and justice-related vocabulary.
+# One word per line = recognized as correctly spelled.
+# "wrong -> right" = flagged and suggested as a correction.
+
+# ---- Courts and tribunals ----
+judiciary
+judicature
+magistrate
+magistrates
+arbitration
+arbitrator
+adjudication
+adjudicate
+adjudicated
+tribunal
+tribunals
+appellate
+plaintiff
+plaintiffs
+defendant
+defendants
+litigant
+litigants
+litigation
+litigator
+prosecutor
+prosecutors
+prosecution
+prosecutorial
+defense
+counsel
+barrister
+barristers
+solicitor
+solicitors
+bailiff
+bailiffs
+clerk
+notary
+paralegal
+jurist
+jurists
+juror
+jurors
+jury
+juries
+venue
+docket
+subpoena
+subpoenaed
+deposition
+depositions
+testimony
+testimonies
+witness
+witnesses
+exhibit
+exhibits
+verdict
+verdicts
+acquittal
+acquitted
+conviction
+convicted
+sentencing
+sentenced
+appeal
+appeals
+appellant
+appellee
+injunction
+injunctions
+mandamus
+habeas
+certiorari
+recusal
+recuse
+venire
+voir
+
+# ---- Legal roles and professions ----
+attorney
+attorneys
+lawyer
+lawyers
+advocate
+advocates
+litigator
+paralegals
+mediator
+mediators
+ombudsman
+adjudicator
+notarize
+notarized
+notarization
+
+# ---- Legal concepts and doctrine ----
+jurisdiction
+jurisdictional
+jurisprudence
+precedent
+precedents
+statute
+statutes
+statutory
+ordinance
+ordinances
+regulation
+regulations
+regulatory
+legislation
+legislative
+legislature
+constitutional
+unconstitutional
+constitutionality
+liability
+liabilities
+negligence
+negligent
+tort
+torts
+tortious
+culpability
+culpable
+indictment
+indictable
+indicted
+arraignment
+arraigned
+felony
+felonies
+felon
+felons
+misdemeanor
+misdemeanors
+infraction
+infractions
+perjury
+perjured
+defamation
+defamatory
+slander
+slanderous
+libel
+libelous
+extradition
+extradite
+extradited
+deposition
+disposition
+dispositive
+custodial
+custody
+probation
+probationary
+parole
+parolee
+incarceration
+incarcerated
+detainment
+detained
+detainee
+detainees
+restitution
+reparation
+reparations
+damages
+compensatory
+punitive
+plaintiff
+countersuit
+counterclaim
+counterclaims
+lawsuit
+lawsuits
+settlement
+settlements
+mediation
+arbitral
+contractual
+contractually
+covenant
+covenants
+breach
+breached
+indemnity
+indemnification
+indemnify
+liable
+warrant
+warrants
+warranted
+affidavit
+affidavits
+deposition
+stipulation
+stipulated
+stipulate
+testify
+testified
+allegation
+allegations
+alleged
+allegedly
+plea
+pleas
+plead
+pleaded
+pled
+pretrial
+posttrial
+mistrial
+retrial
+overrule
+overruled
+sustained
+objection
+objections
+
+# ---- Latin legal terms ----
+prima
+facie
+pro
+bono
+amicus
+curiae
+subpoena
+duces
+tecum
+habeas
+corpus
+mens
+rea
+actus
+reus
+ipso
+facto
+de
+jure
+de
+facto
+ad
+hoc
+bona
+fide
+per
+se
+sui
+generis
+res
+judicata
+stare
+decisis
+voir
+dire
+certiorari
+mandamus
+nolo
+contendere
+quid
+pro
+quo
+
+# ---- Law enforcement / justice system ----
+constabulary
+constable
+constables
+sheriff
+sheriffs
+deputized
+deputize
+detective
+detectives
+interrogation
+interrogated
+interrogate
+custodian
+apprehend
+apprehended
+apprehension
+surveillance
+forensic
+forensics
+evidentiary
+evidence
+corroborate
+corroborated
+corroboration
+exculpatory
+inculpatory
+recidivism
+recidivist
+vigilante
+vigilantism
+misconduct
+malfeasance
+nonfeasance
+malpractice
+
+# ---- Documents and filings ----
+brief
+briefs
+motion
+motions
+pleading
+pleadings
+complaint
+complaints
+summons
+summonses
+writ
+writs
+deed
+deeds
+lien
+liens
+easement
+easements
+codicil
+codicils
+testament
+testamentary
+probate
+executor
+executrix
+beneficiary
+beneficiaries
+trustee
+trustees
+fiduciary
+fiduciaries
+notarial
+escrow
+
+# ---- Common misspelling corrections ----
+lible -> liable
+neglegence -> negligence
+neglagent -> negligent
+juditial -> judicial
+judical -> judicial
+juristiction -> jurisdiction
+jurisdicton -> jurisdiction
+subpeona -> subpoena
+subpoenna -> subpoena
+plantiff -> plaintiff
+plaintif -> plaintiff
+defendent -> defendant
+attorny -> attorney
+atorney -> attorney
+counsil -> counsel
+counsul -> counsel
+percedent -> precedent
+presedent -> precedent
+alledged -> alleged
+alledgedly -> allegedly
+inditement -> indictment
+indictement -> indictment
+aquittal -> acquittal
+aquitted -> acquitted
+convicton -> conviction
+misdemeanour -> misdemeanor
+felonly -> felony
+perjery -> perjury
+libelous -> libelous
+slanderous -> slanderous
+witnes -> witness
+testamony -> testimony
+verdic -> verdict
+apeal -> appeal
+appellent -> appellant
+tribunel -> tribunal
+arbitrarion -> arbitration
+litagation -> litigation
+litigent -> litigant
+warrent -> warrant
+afidavit -> affidavit
+affadavit -> affidavit
+stipulaton -> stipulation
+custady -> custody
+parolee -> parolee
+incarserated -> incarcerated
+extraditon -> extradition

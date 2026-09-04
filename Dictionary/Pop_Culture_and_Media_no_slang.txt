@@ -1,0 +1,864 @@
+# Pop Culture and Media Dictionary - No Slang
+
+# Film and Cinema
+film
+movie
+cinema
+motion picture
+feature film
+short film
+documentary
+mockumentary
+docudrama
+biographical film
+biopic
+animated film
+animation
+stop motion
+claymation
+computer animation
+cgi
+visual effects
+vfx
+special effects
+practical effects
+blockbuster
+independent film
+indie film
+art film
+arthouse
+foreign film
+international cinema
+silent film
+black and white film
+color film
+widescreen
+imax
+3d film
+director
+filmmaker
+producer
+executive producer
+screenwriter
+scriptwriter
+cinematographer
+director of photography
+editor
+film editor
+production designer
+costume designer
+makeup artist
+sound designer
+composer
+film score
+soundtrack
+actor
+actress
+performer
+cast
+ensemble cast
+leading role
+supporting role
+cameo
+extra
+stunt performer
+stunt double
+screen test
+audition
+casting
+rehearsal
+production
+preproduction
+postproduction
+filming
+shooting
+principal photography
+location
+set
+studio
+backlot
+soundstage
+premiere
+film festival
+award ceremony
+academy awards
+oscars
+golden globes
+cannes
+sundance
+toronto international film festival
+tiff
+venice film festival
+berlin film festival
+box office
+opening weekend
+theatrical release
+home video
+streaming
+video on demand
+vod
+
+# Television
+television
+tv
+broadcast
+cable
+satellite
+streaming service
+network
+channel
+program
+show
+series
+television series
+tv series
+miniseries
+limited series
+anthology series
+sitcom
+situation comedy
+drama
+dramedy
+comedy
+soap opera
+daytime drama
+reality show
+reality television
+competition show
+game show
+talk show
+late night
+variety show
+sketch comedy
+news program
+newscast
+current affairs
+documentary series
+docuseries
+true crime
+nature documentary
+educational program
+children television
+kids show
+animated series
+cartoon
+anime
+telenovela
+pilot
+pilot episode
+season
+episode
+premiere
+season premiere
+season finale
+series finale
+cliffhanger
+syndication
+rerun
+marathon
+binge watching
+streaming platform
+netflix
+hulu
+amazon prime
+disney plus
+hbo
+showtime
+starz
+peacock
+paramount plus
+apple tv plus
+television production
+showrunner
+writer
+writing staff
+director
+producer
+executive producer
+cast
+regular cast
+guest star
+recurring role
+cameo appearance
+audition
+casting
+filming
+taping
+live audience
+studio audience
+laugh track
+commercial
+advertisement
+sponsor
+network television
+cable television
+premium cable
+pay per view
+ppv
+on demand
+video on demand
+dvr
+digital video recorder
+timeshifting
+nielsen ratings
+viewership
+audience
+demographic
+prime time
+daytime
+late night
+morning show
+breakfast television
+public television
+pbs
+educational television
+access television
+
+# Music Industry
+music
+music industry
+recording industry
+record label
+major label
+independent label
+indie label
+artist
+musician
+singer
+vocalist
+band
+group
+solo artist
+duo
+trio
+quartet
+ensemble
+orchestra
+songwriter
+composer
+lyricist
+producer
+music producer
+sound engineer
+audio engineer
+mixing engineer
+mastering engineer
+session musician
+backup singer
+touring musician
+roadie
+tour manager
+music video
+music video director
+choreographer
+album
+studio album
+live album
+compilation album
+ep
+extended play
+single
+debut album
+sophomore album
+greatest hits
+remix album
+track
+song
+recording
+demo
+master recording
+album cover
+cover art
+liner notes
+record
+vinyl
+vinyl record
+lp
+compact disc
+cd
+cassette
+tape
+digital download
+streaming
+music streaming
+spotify
+apple music
+youtube music
+tidal
+pandora
+soundcloud
+bandcamp
+itunes
+record store
+music store
+concert
+live performance
+show
+gig
+tour
+world tour
+festival
+music festival
+venue
+arena
+stadium
+amphitheater
+club
+concert hall
+backstage
+soundcheck
+setlist
+encore
+opening act
+headliner
+sold out
+ticket
+general admission
+vip
+meet and greet
+merchandise
+merch
+fan club
+fanbase
+genre
+rock
+pop
+hip hop
+rap
+country
+jazz
+blues
+classical
+electronic
+dance
+edm
+folk
+indie
+alternative
+punk
+metal
+reggae
+soul
+rhythm and blues
+rnb
+funk
+disco
+house
+techno
+trance
+dubstep
+ambient
+experimental
+world music
+latin
+salsa
+reggaeton
+k pop
+j pop
+mainstream
+underground
+crossover
+hit
+hit song
+chart topper
+billboard
+hot 100
+top 40
+platinum
+gold
+certified
+riaa
+grammy
+grammy awards
+music awards
+american music awards
+billboard music awards
+mtv video music awards
+vmas
+brit awards
+latin grammy
+country music awards
+cma
+academy of country music
+rock and roll hall of fame
+
+# Publishing and Literature
+publishing
+book publishing
+magazine publishing
+newspaper
+magazine
+journal
+periodical
+publication
+publisher
+publishing house
+imprint
+editor
+literary agent
+author
+writer
+novelist
+poet
+essayist
+journalist
+columnist
+critic
+book
+novel
+fiction
+nonfiction
+memoir
+autobiography
+biography
+essay
+short story
+novella
+poetry
+anthology
+collection
+hardcover
+hardback
+paperback
+trade paperback
+mass market paperback
+ebook
+audiobook
+kindle
+nook
+kobo
+manuscript
+draft
+revision
+editing
+proofreading
+typesetting
+layout
+book design
+cover design
+dust jacket
+foreword
+preface
+introduction
+prologue
+epilogue
+acknowledgments
+dedication
+table of contents
+index
+glossary
+bibliography
+footnote
+endnote
+chapter
+page
+bestseller
+new york times bestseller
+bestseller list
+book award
+pulitzer prize
+national book award
+booker prize
+man booker
+nobel prize in literature
+book club
+book signing
+book tour
+literary festival
+book fair
+library
+bookstore
+independent bookstore
+chain bookstore
+barnes and noble
+waterstones
+online retailer
+amazon
+reading
+literacy
+book review
+literary criticism
+genre fiction
+literary fiction
+young adult
+ya
+middle grade
+children book
+picture book
+graphic novel
+comic book
+manga
+adaptation
+film adaptation
+television adaptation
+
+# Broadcasting and Journalism
+broadcasting
+radio
+radio station
+am radio
+fm radio
+satellite radio
+podcast
+podcasting
+streaming audio
+news
+journalism
+news media
+press
+media outlet
+news organization
+news agency
+wire service
+associated press
+ap
+reuters
+journalist
+reporter
+correspondent
+foreign correspondent
+war correspondent
+news anchor
+anchor
+news presenter
+commentator
+pundit
+columnist
+editorial
+op ed
+opinion piece
+investigative journalism
+investigative reporter
+photojournalism
+photojournalist
+broadcast journalism
+print journalism
+digital journalism
+online journalism
+multimedia journalism
+citizen journalism
+press conference
+interview
+exclusive interview
+breaking news
+developing story
+headline
+lead story
+news cycle
+24 hour news
+cable news
+cnn
+msnbc
+fox news
+bbc news
+sky news
+news program
+newscast
+evening news
+morning news
+news magazine
+current affairs
+documentary
+investigative report
+feature story
+human interest story
+news analysis
+fact checking
+verification
+attribution
+source
+anonymous source
+off the record
+on the record
+embargo
+news embargo
+press release
+media advisory
+press kit
+press credentials
+freedom of the press
+first amendment
+journalistic ethics
+objectivity
+impartiality
+bias
+media bias
+fake news
+misinformation
+disinformation
+propaganda
+public relations
+pr
+publicity
+media relations
+spokesperson
+press secretary
+spin
+damage control
+
+# Social Media
+social media
+social network
+social networking
+platform
+facebook
+twitter
+x
+instagram
+tiktok
+youtube
+snapchat
+linkedin
+pinterest
+reddit
+tumblr
+whatsapp
+telegram
+discord
+twitch
+clubhouse
+mastodon
+threads
+bluesky
+account
+profile
+username
+handle
+avatar
+profile picture
+bio
+biography
+post
+status update
+tweet
+retweet
+like
+favorite
+share
+comment
+reply
+mention
+tag
+hashtag
+trending
+trending topic
+viral
+going viral
+viral content
+follower
+following
+friend
+connection
+subscriber
+notification
+feed
+timeline
+newsfeed
+algorithm
+engagement
+reach
+impressions
+views
+click through rate
+ctr
+influencer
+social media influencer
+content creator
+youtuber
+tiktoker
+instagrammer
+blogger
+vlogger
+livestream
+live streaming
+story
+stories
+ephemeral content
+reel
+short form video
+long form content
+user generated content
+ugc
+meme
+gif
+emoji
+emoticon
+direct message
+dm
+private message
+group chat
+community
+subreddit
+forum
+online community
+verification
+verified account
+blue checkmark
+sponsored content
+influencer marketing
+affiliate marketing
+brand partnership
+collaboration
+collab
+social media marketing
+digital marketing
+content strategy
+analytics
+metrics
+engagement rate
+growth
+organic reach
+paid promotion
+boosted post
+social media advertising
+targeted advertising
+
+# Entertainment Industry
+entertainment
+entertainment industry
+show business
+showbiz
+hollywood
+bollywood
+studio
+production company
+talent agency
+casting agency
+management company
+publicist
+entertainment lawyer
+contract
+deal
+development
+greenlight
+pilot season
+pilot
+pitch
+treatment
+script
+screenplay
+adaptation
+intellectual property
+franchise
+universe
+cinematic universe
+sequel
+prequel
+spin off
+reboot
+remake
+reimagining
+revival
+crossover
+merchandise
+licensing
+tie in
+promotional tour
+press junket
+red carpet
+premiere
+gala
+screening
+film festival
+comic con
+convention
+fan convention
+celebrity
+star
+icon
+household name
+a list
+b list
+leading man
+leading lady
+character actor
+ensemble
+breakthrough performance
+comeback
+retirement
+career
+filmography
+discography
+body of work
+legacy
+hall of fame
+lifetime achievement
+tribute
+memorial
+retrospective
+anniversary
+milestone
+box office
+ratings
+critical acclaim
+commercial success
+cult following
+cult classic
+underground hit
+sleeper hit
+phenomenon
+cultural impact
+zeitgeist
+nostalgia
+retro
+throwback
+classic
+timeless
+influential
+groundbreaking
+revolutionary
+innovative
+experimental
+avant garde
+mainstream
+mass appeal
+crossover appeal
+demographic
+target audience
+fanbase
+fandom
+fan
+superfan
+enthusiast
+collector
+memorabilia
+merchandise
+limited edition
+exclusive
+behind the scenes
+making of
+bonus feature
+commentary
+deleted scene
+outtake
+blooper
+easter egg
+reference
+homage
+parody
+satire
+spoof
+pastiche
+genre
+subgenre
+trope
+cliche
+formula
+convention
+criticism
+review
+critique
+rating
+score
+metacritic
+rotten tomatoes
+imdb
+award
+nomination
+winner
+ceremony
+acceptance speech
+campaign
+for your consideration
+fyc
+screener

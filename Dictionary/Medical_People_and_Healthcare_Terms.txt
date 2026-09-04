@@ -1,0 +1,554 @@
+# Medical People and Healthcare Terms
+
+# Medical Professionals
+acupuncturist
+allergist
+anesthesiologist
+anesthetist
+audiologist
+cardiologist
+chiropractor
+clinician
+dentist
+dermatologist
+dietician
+dietitian
+doctor
+physician
+endocrinologist
+epidemiologist
+gastroenterologist
+gynecologist
+hematologist
+hospitalist
+immunologist
+internist
+kinesiologist
+microbiologist
+midwife
+neonatologist
+nephrologist
+neurologist
+neurosurgeon
+nurse
+nutritionist
+obstetrician
+oncologist
+ophthalmologist
+optician
+optometrist
+orthodontist
+orthopedist
+osteopath
+otolaryngologist
+paramedic
+pathologist
+pediatrician
+periodontist
+pharmacist
+phlebotomist
+physiatrist
+physiotherapist
+podiatrist
+practitioner
+proctologist
+psychiatrist
+psychologist
+pulmonologist
+radiologist
+rheumatologist
+sonographer
+specialist
+surgeon
+therapist
+urologist
+veterinarian
+virologist
+
+# Medical Conditions
+acne
+addiction
+ailment
+allergy
+Alzheimer's disease
+amputation
+anemia
+aneurysm
+angina
+anxiety
+appendicitis
+arrhythmia
+arthritis
+asthma
+atherosclerosis
+autism
+bleeding
+blindness
+blister
+bronchitis
+bruise
+burnout
+cancer
+cardiac arrest
+cardiovascular disease
+cataract
+cellulitis
+cerebral palsy
+cholesterol
+chronic condition
+cirrhosis
+blood clot
+coma
+concussion
+congenital condition
+congestion
+constipation
+contagious disease
+contamination
+coronavirus
+cough
+cramp
+cyst
+deafness
+dehydration
+dementia
+depression
+dermatitis
+diabetes
+diarrhea
+disease
+disorder
+dizziness
+dysfunction
+dyslexia
+eczema
+edema
+embolism
+emergency
+encephalitis
+epilepsy
+fatigue
+fever
+fibromyalgia
+fracture
+gastritis
+gastrointestinal disorder
+glaucoma
+gonorrhea
+gout
+hemorrhage
+hepatitis
+hernia
+herpes
+hypertension
+hypoglycemia
+hypothermia
+indigestion
+infection
+infertility
+inflammation
+influenza
+injury
+insomnia
+jaundice
+laceration
+laryngitis
+leukemia
+lump
+lupus
+lymphoma
+malaria
+malignant tumor
+meningitis
+menopause
+migraine
+miscarriage
+mumps
+muscle strain
+mutation
+myocardial infarction
+nausea
+necrosis
+neoplasm
+neuropathy
+obstruction
+osteoporosis
+outbreak
+overdose
+palpitation
+pandemic
+paralysis
+parasite
+Parkinson's disease
+pneumonia
+poisoning
+polio
+polyp
+pregnancy
+psoriasis
+psychosis
+rash
+recovery
+relapse
+rupture
+salmonella
+scabies
+scar
+schizophrenia
+sclerosis
+seizure
+sepsis
+septic shock
+shock
+sinus infection
+smallpox
+spasm
+spinal injury
+sprain
+staphylococcus infection
+streptococcus infection
+stress
+stroke
+swelling
+symptom
+syndrome
+tachycardia
+tendonitis
+tetanus
+thrombosis
+tonsillitis
+toxicity
+tuberculosis
+tumor
+typhoid
+ulcer
+unconsciousness
+urinalysis
+viral infection
+virus
+vomiting
+wound
+
+# Medical Equipment
+antibiotic
+antibody
+antidote
+antiseptic
+biopsy
+catheter
+defibrillator
+dialysis
+electrocardiogram
+inhaler
+injection
+inoculation
+insulin
+intravenous
+intubation
+pacemaker
+stethoscope
+syringe
+tomography
+tourniquet
+transfusion
+transplant
+ultrasound
+vaccination
+vaccine
+ventilator
+wheelchair
+x-ray
+
+# Healthcare Settings
+clinic
+hospital
+hospice
+intensive care
+medical facility
+outpatient clinic
+
+# Medical Terms
+diagnosis
+prognosis
+prescription
+treatment
+therapy
+surgery
+medication
+medicine
+procedure
+protocol
+specimen
+tissue
+organ
+immune system
+metabolism
+circulation
+respiration
+cardiovascular system
+gastrointestinal system
+respiratory system
+nervous system
+endocrine system
+immune system
+musculoskeletal system
+
+# Healthcare Types
+healthcare
+primary care
+preventive care
+curative care
+rehabilitative care
+palliative care
+holistic medicine
+integrative medicine
+alternative medicine
+complementary medicine
+traditional medicine
+allopathic medicine
+homeopathic medicine
+naturopathic medicine
+Ayurvedic medicine
+chiropractic care
+osteopathic medicine
+podiatric medicine
+optometric care
+dental care
+periodontal care
+orthodontic care
+endodontic care
+prosthodontic care
+maxillofacial surgery
+orthopedic surgery
+cardiovascular surgery
+gastrointestinal surgery
+genitourinary surgery
+neurological care
+psychiatric care
+psychological care
+dermatological care
+ophthalmological care
+otolaryngological care
+pulmonary care
+renal care
+hepatic care
+endocrine care
+immunological care
+hematological care
+oncological care
+neonatal care
+pediatric care
+geriatric care
+obstetric care
+gynecological care
+rheumatological care
+nephrological care
+urological care
+proctological care
+gastroenterological care
+
+# Disease Types
+infectious disease
+parasitic disease
+metabolic disease
+genetic disease
+congenital disease
+acquired disease
+chronic disease
+acute disease
+subacute disease
+terminal disease
+progressive disease
+degenerative disease
+autoimmune disease
+inflammatory disease
+allergic disease
+neoplastic disease
+benign condition
+malignant condition
+metastatic disease
+localized disease
+systemic disease
+primary disease
+secondary disease
+tertiary disease
+idiopathic disease
+iatrogenic condition
+nosocomial infection
+zoonotic disease
+endemic disease
+epidemic disease
+pandemic disease
+sporadic disease
+
+# Treatment Phases
+remission
+exacerbation
+relapse
+recurrence
+prophylaxis
+screening
+diagnosis
+treatment
+therapy
+surgery
+medication
+intervention
+procedure
+protocol
+guideline
+clinical pathway
+standard of care
+best practice
+evidence-based practice
+clinical research
+clinical trial
+medical study
+clinical investigation
+medical assessment
+medical evaluation
+patient monitoring
+disease surveillance
+health tracking
+medical documentation
+medical reporting
+
+# Medical Ethics
+confidentiality
+privacy
+informed consent
+medical ethics
+bioethics
+beneficence
+nonmaleficence
+patient autonomy
+justice
+equity
+healthcare access
+affordability
+quality of care
+patient safety
+treatment efficacy
+treatment effectiveness
+healthcare efficiency
+health outcome
+health indicator
+health metric
+performance benchmark
+quality improvement
+healthcare innovation
+medical technology
+telemedicine
+telehealth
+digital health
+electronic health records
+mobile health
+wearable technology
+remote monitoring
+virtual care
+artificial intelligence
+predictive analytics
+preventive medicine
+personalized medicine
+precision medicine
+genomic medicine
+molecular medicine
+cellular therapy
+tissue engineering
+organ transplant
+stem cell therapy
+
+# Body Systems
+anatomy
+physiology
+pathology
+pharmacology
+toxicology
+microbiology
+immunology
+virology
+bacteriology
+parasitology
+mycology
+biochemistry
+biophysics
+biomechanics
+biostatistics
+epidemiology
+demography
+health geography
+environmental health
+occupational health
+industrial hygiene
+community health
+public health
+population health
+global health
+international health
+national health
+regional health
+local health
+rural health
+urban health
+
+# Healthcare Populations
+underserved population
+vulnerable population
+disadvantaged population
+marginalized population
+health disparity
+health inequality
+social determinant of health
+risk factor
+protective factor
+health hazard
+environmental exposure
+disease susceptibility
+disease resistance
+immunity
+immune tolerance
+drug sensitivity
+test specificity
+diagnostic accuracy
+measurement precision
+test reliability
+test validity
+calibration
+standardization
+normalization
+reference range
+reference value
+threshold value
+cutoff value
+diagnostic criterion
+clinical parameter
+outcome variable
+endpoint
+health measure
+health score
+health scale
+health index
+health rating
+disease classification
+disease category
+disease stage
+disease grade
+severity level
+symptom intensity
+symptom duration
+symptom frequency
+disease onset
+disease course
+disease pattern
+clinical presentation
+clinical manifestation
+clinical sign
+clinical symptom
+clinical finding
+clinical feature
+clinical characteristic
+clinical attribute
+clinical trait
+biomarker
+clinical biomarker
+disease indicator

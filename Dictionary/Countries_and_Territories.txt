@@ -1,0 +1,534 @@
+# Countries and Territories
+
+# Sovereign States
+Afghanistan
+Albania
+Algeria
+Andorra
+Angola
+Antigua and Barbuda
+Argentina
+Armenia
+Australia
+Austria
+Azerbaijan
+Bahamas
+Bahrain
+Bangladesh
+Barbados
+Belarus
+Belgium
+Belize
+Benin
+Bhutan
+Bolivia
+Bosnia and Herzegovina
+Botswana
+Brazil
+Brunei
+Bulgaria
+Burkina Faso
+Burundi
+Cambodia
+Cameroon
+Canada
+Cape Verde
+Chad
+Chile
+China
+Colombia
+Comoros
+Congo
+Costa Rica
+Croatia
+Cuba
+Cyprus
+Czechia
+Denmark
+Djibouti
+Dominica
+Dominican Republic
+Ecuador
+Egypt
+El Salvador
+Equatorial Guinea
+Eritrea
+Estonia
+Eswatini
+Ethiopia
+Fiji
+Finland
+France
+Gabon
+Gambia
+Georgia
+Germany
+Ghana
+Greece
+Grenada
+Guatemala
+Guinea
+Guinea-Bissau
+Guyana
+Haiti
+Honduras
+Hungary
+Iceland
+India
+Indonesia
+Iran
+Iraq
+Ireland
+Israel
+Italy
+Jamaica
+Japan
+Jordan
+Kazakhstan
+Kenya
+Kiribati
+Kuwait
+Kyrgyzstan
+Laos
+Latvia
+Lebanon
+Lesotho
+Liberia
+Libya
+Liechtenstein
+Lithuania
+Luxembourg
+Madagascar
+Malawi
+Malaysia
+Maldives
+Mali
+Malta
+Marshall Islands
+Mauritania
+Mauritius
+Mexico
+Micronesia
+Moldova
+Monaco
+Mongolia
+Montenegro
+Morocco
+Mozambique
+Myanmar
+Namibia
+Nauru
+Nepal
+Netherlands
+New Zealand
+Nicaragua
+Niger
+Nigeria
+North Macedonia
+Norway
+Oman
+Pakistan
+Palau
+Palestine
+Panama
+Papua New Guinea
+Paraguay
+Peru
+Philippines
+Poland
+Portugal
+Qatar
+Romania
+Russia
+Rwanda
+Saint Kitts and Nevis
+Saint Lucia
+Saint Vincent and the Grenadines
+Samoa
+San Marino
+Sao Tome and Principe
+Saudi Arabia
+Senegal
+Serbia
+Seychelles
+Sierra Leone
+Singapore
+Slovakia
+Slovenia
+Solomon Islands
+Somalia
+South Africa
+South Sudan
+Spain
+Sri Lanka
+Sudan
+Suriname
+Sweden
+Switzerland
+Syria
+Taiwan
+Tajikistan
+Tanzania
+Thailand
+Timor-Leste
+East Timor
+Togo
+Tonga
+Trinidad and Tobago
+Tunisia
+Turkey
+Turkmenistan
+Tuvalu
+Uganda
+Ukraine
+United Arab Emirates
+United Kingdom
+United States
+Uruguay
+Uzbekistan
+Vanuatu
+Vatican City
+Venezuela
+Vietnam
+Yemen
+Zambia
+Zimbabwe
+
+# Territories and Dependencies
+Abkhazia
+Anguilla
+Aruba
+Ascension Island
+Azores
+Bermuda
+Bonaire
+Bouvet Island
+British Virgin Islands
+Canary Islands
+Cayman Islands
+Christmas Island
+Clipperton Island
+Cocos Islands
+Keeling Islands
+Cook Islands
+Curacao
+Curaçao
+Easter Island
+Falkland Islands
+Faroe Islands
+French Guiana
+French Polynesia
+French Southern Territories
+Gibraltar
+Greenland
+Guadeloupe
+Guam
+Guernsey
+Hong Kong
+Isle of Man
+Jersey
+Kosovo
+Macau
+Macao
+Madeira
+Martinique
+Mayotte
+Montserrat
+New Caledonia
+Niue
+Norfolk Island
+Northern Mariana Islands
+Pitcairn Islands
+Puerto Rico
+Reunion
+Réunion
+Saba
+Saint Helena
+Saint Pierre and Miquelon
+Saint Maarten
+Sint Maarten
+Sint Eustatius
+South Georgia
+South Sandwich Islands
+Svalbard
+Jan Mayen
+Tokelau
+Transnistria
+Tristan da Cunha
+Turks and Caicos Islands
+Wallis and Futuna
+Western Sahara
+
+# UK Constituent Countries
+England
+Scotland
+Wales
+Northern Ireland
+
+# Regions of Belgium
+Flanders
+Wallonia
+Brussels
+
+# German States
+Bavaria
+Saxony
+Prussia
+
+# Spanish Autonomous Communities
+Catalonia
+Basque Country
+Galicia
+Andalusia
+
+# French Regions
+Brittany
+Corsica
+
+# Italian Regions
+Sicily
+Sardinia
+Lombardy
+Tuscany
+Piedmont
+Veneto
+Emilia-Romagna
+Calabria
+Apulia
+Campania
+Liguria
+Umbria
+Marche
+Abruzzo
+Molise
+Lazio
+Friuli-Venezia Giulia
+Trentino-Alto Adige
+Valle d'Aosta
+Castile and León
+Asturias
+Cantabria
+La Rioja
+Navarre
+Aragon
+Extremadura
+Murcia
+Valencia
+Balearic Islands
+
+# Greek Regions
+Macedonia
+Thrace
+Peloponnese
+Crete
+Epirus
+Thessaly
+Aegean Islands
+Ionian Islands
+
+# Canadian Provinces
+Quebec
+Ontario
+British Columbia
+Alberta
+Saskatchewan
+Manitoba
+New Brunswick
+Nova Scotia
+Prince Edward Island
+Newfoundland and Labrador
+Yukon
+Northwest Territories
+Nunavut
+
+# US States
+California
+Texas
+Florida
+New York
+Pennsylvania
+Illinois
+Ohio
+Georgia
+North Carolina
+Michigan
+New Jersey
+Virginia
+Washington
+Arizona
+Massachusetts
+Tennessee
+Indiana
+Missouri
+Maryland
+Wisconsin
+Colorado
+Minnesota
+Alabama
+Louisiana
+Kentucky
+Oregon
+Oklahoma
+Connecticut
+Utah
+Iowa
+Nevada
+Arkansas
+Mississippi
+Kansas
+New Mexico
+Nebraska
+West Virginia
+Idaho
+Hawaii
+New Hampshire
+Maine
+Montana
+Rhode Island
+Delaware
+South Dakota
+North Dakota
+Alaska
+Vermont
+Wyoming
+District of Columbia
+
+# Mexican States
+Sonora
+Chihuahua
+Coahuila
+Durango
+Jalisco
+Tamaulipas
+Veracruz
+Michoacán
+Oaxaca
+Puebla
+Guanajuato
+Chiapas
+Guerrero
+Sinaloa
+Hidalgo
+Tabasco
+Yucatán
+Morelos
+Quintana Roo
+Querétaro
+Tlaxcala
+Nayarit
+Campeche
+Zacatecas
+Aguascalientes
+Colima
+
+# Indian States and Union Territories
+Delhi
+Mumbai
+Kolkata
+Chennai
+Bangalore
+Bengaluru
+Hyderabad
+Ahmedabad
+Pune
+Surat
+Jaipur
+Lucknow
+Kanpur
+Nagpur
+Indore
+Thane
+Bhopal
+Visakhapatnam
+Pimpri-Chinchwad
+Patna
+Vadodara
+Ghaziabad
+Ludhiana
+Agra
+Nashik
+Faridabad
+Meerut
+Rajkot
+Kalyan-Dombivli
+Vasai-Virar
+Varanasi
+Srinagar
+Aurangabad
+Dhanbad
+Amritsar
+Navi Mumbai
+Allahabad
+Prayagraj
+Ranchi
+Howrah
+Coimbatore
+Jabalpur
+Gwalior
+Vijayawada
+Jodhpur
+Madurai
+Raipur
+Kota
+Chandigarh
+Guwahati
+Solapur
+Hubballi-Dharwad
+Tiruchirappalli
+Bareilly
+Moradabad
+Mysore
+Mysuru
+Gurgaon
+Gurugram
+Aligarh
+Jalandhar
+Tiruppur
+Bhubaneswar
+Salem
+Warangal
+Mira-Bhayandar
+Thiruvananthapuram
+Guntur
+Bhiwandi
+Saharanpur
+Gorakhpur
+Bikaner
+Amravati
+Noida
+Jamshedpur
+Bhilai
+Cuttack
+Firozabad
+Kochi
+Cochin
+Nellore
+Bhavnagar
+Dehradun
+Durgapur
+Asansol
+Rourkela
+Nanded
+Kolhapur
+Ajmer
+Akola
+Gulbarga
+Jamnagar
+Ujjain
+Loni
+Siliguri
+Jhansi
+Ulhasnagar
+Jammu
+Sangli-Miraj-Kupwad
+Mangalore
+Erode
+Belgaum
+Belagavi
+Ambattur
+Tirunelveli
+Malegaon
+Gaya
+Jalgaon
+Udaipur
+Maheshtala

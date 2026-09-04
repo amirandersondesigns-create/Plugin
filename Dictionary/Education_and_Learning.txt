@@ -1,0 +1,778 @@
+# Education and Learning Dictionary
+
+# Learning Terms
+teaching
+instruction
+training
+study
+knowledge
+skill
+competency
+literacy
+numeracy
+
+# Students
+student
+pupil
+learner
+scholar
+apprentice
+trainee
+undergraduate
+graduate
+postgraduate
+freshman
+sophomore
+junior
+senior
+
+# Educators
+teacher
+instructor
+professor
+lecturer
+educator
+tutor
+mentor
+coach
+trainer
+faculty
+staff
+administrator
+principal
+headmaster
+headmistress
+headteacher
+dean
+provost
+chancellor
+vice chancellor
+president
+vice president
+rector
+director
+superintendent
+assistant superintendent
+department head
+chair
+chairperson
+coordinator
+counselor
+advisor
+academic advisor
+career counselor
+school guidance counselor
+librarian
+media specialist
+school nurse
+school psychologist
+social worker
+
+# Specialized Teachers
+special education teacher
+resource teacher
+reading specialist
+math specialist
+science specialist
+esl teacher
+english as second language
+bilingual teacher
+music teacher
+art teacher
+physical education teacher
+pe teacher
+drama teacher
+theatre teacher
+dance teacher
+technology teacher
+computer teacher
+vocational teacher
+technical teacher
+cte teacher
+substitute teacher
+supply teacher
+relief teacher
+teacher aide
+paraprofessional
+classroom assistant
+teaching fellow
+research assistant
+lab assistant
+
+# School Types
+preschool
+kindergarten
+elementary school
+primary school
+middle school
+junior high school
+high school
+secondary school
+upper school
+lower school
+preparatory school
+prep school
+grammar school
+comprehensive school
+selective school
+magnet school
+charter school
+alternative school
+trade school
+vocational school
+technical college
+community college
+liberal arts college
+university
+institute
+academy
+conservatory
+seminary
+military academy
+naval academy
+air force academy
+online school
+virtual school
+distance learning
+remote learning
+homeschool
+home education
+unschooling
+
+# School Categories
+public school
+state school
+private school
+independent school
+parochial school
+religious school
+catholic school
+christian school
+islamic school
+jewish school
+day school
+boarding school
+residential school
+international school
+british school
+american school
+montessori school
+waldorf school
+reggio emilia
+democratic school
+free school
+forest school
+
+# Special Education
+special needs
+special education
+inclusive education
+mainstream education
+gifted and talented
+gifted program
+honors program
+advanced placement
+ap
+international baccalaureate
+ib
+dual enrollment
+early college
+accelerated learning
+enrichment program
+remedial education
+intervention program
+summer school
+extended year
+after school program
+before school program
+breakfast club
+homework club
+homework hall
+tutorial session
+tutoring service
+support services
+learning disability
+learning accommodation
+learning modification
+individualized education plan
+iep
+504 plan
+response to intervention
+rti
+multi tiered system of supports
+mtss
+positive behavioral interventions and supports
+pbis
+
+# Social Emotional Learning
+social emotional learning
+sel
+character education
+citizenship education
+civic education
+values education
+moral education
+ethics education
+health education
+sex education
+drug education
+safety education
+environmental education
+sustainability education
+financial literacy
+digital literacy
+information literacy
+data literacy
+
+# Core Subjects
+literacy
+scientific literacy
+mathematical literacy
+reading
+writing
+english language arts
+ela
+literature
+composition
+vocabulary
+spelling
+phonics
+phonemic awareness
+reading fluency
+reading comprehension
+writing skills
+essay writing
+creative writing
+persuasive writing
+expository writing
+narrative writing
+descriptive writing
+research paper
+term paper
+thesis
+dissertation
+
+# Mathematics
+mathematics
+arithmetic
+algebra
+geometry
+trigonometry
+calculus
+statistics
+probability
+pre algebra
+pre calculus
+applied mathematics
+pure mathematics
+number theory
+set theory
+logic
+discrete mathematics
+linear algebra
+differential equations
+multivariable calculus
+vector calculus
+real analysis
+complex analysis
+abstract algebra
+topology
+
+# Sciences
+science
+natural science
+life science
+earth science
+space science
+biology
+chemistry
+physics
+astronomy
+geology
+meteorology
+oceanography
+ecology
+botany
+zoology
+microbiology
+genetics
+molecular biology
+cellular biology
+anatomy
+physiology
+biochemistry
+organic chemistry
+inorganic chemistry
+analytical chemistry
+physical chemistry
+mechanics
+thermodynamics
+electromagnetism
+optics
+quantum mechanics
+nuclear physics
+particle physics
+astrophysics
+cosmology
+
+# Social Studies
+social studies
+history
+geography
+economics
+political science
+sociology
+anthropology
+psychology
+philosophy
+world history
+ancient history
+medieval history
+modern history
+contemporary history
+european history
+asian history
+african history
+american history
+latin american history
+middle eastern history
+local history
+regional history
+national history
+economic history
+cultural history
+human geography
+physical geography
+urban geography
+rural geography
+cartography
+map reading
+globe
+
+# Economics and Government
+microeconomics
+macroeconomics
+comparative economics
+government
+political systems
+international relations
+civics
+law
+criminal justice
+religion
+theology
+ethics
+epistemology
+metaphysics
+aesthetics
+philosophy of mind
+
+# Languages
+foreign language
+classical language
+spanish
+french
+german
+italian
+portuguese
+russian
+chinese
+mandarin
+japanese
+korean
+arabic
+hindi
+urdu
+greek
+latin
+hebrew
+sign language
+asl
+american sign language
+
+# Arts
+fine arts
+visual arts
+performing arts
+art
+drawing
+painting
+sculpture
+ceramics
+pottery
+printmaking
+photography
+graphic design
+animation
+film
+video production
+art history
+art appreciation
+music
+choir
+chorus
+band
+orchestra
+string ensemble
+jazz band
+marching band
+concert band
+symphonic band
+wind ensemble
+theater
+theatre
+acting
+stagecraft
+dance
+ballet
+modern dance
+tap dance
+hip hop dance
+
+# Physical Education
+physical education
+health
+wellness
+fitness
+sports
+athletics
+team sports
+individual sports
+intramural sports
+interscholastic sports
+varsity sports
+recreation
+outdoor education
+adventure education
+experiential learning
+
+# Career and Technical
+business education
+marketing
+web design
+computer programming
+coding
+robotics
+engineering
+drafting
+architecture
+construction trades
+carpentry
+electrical work
+plumbing
+hvac
+welding
+automotive
+culinary arts
+hospitality
+tourism
+cosmetology
+barbering
+fashion design
+interior design
+agriculture
+horticulture
+animal science
+forestry
+natural resources
+health sciences
+nursing
+medical assisting
+dental assisting
+pharmacy
+emergency medical services
+ems
+fire science
+law enforcement
+paralegal studies
+legal studies
+early childhood education
+child development
+family studies
+consumer sciences
+parenting
+independent living
+
+# Study Skills
+study skills
+time management
+organization
+note taking
+test preparation
+test taking
+exam preparation
+sat
+act
+gre
+gmat
+lsat
+mcat
+standardized test
+achievement test
+aptitude test
+diagnostic test
+benchmark test
+
+# Assessment
+assessment
+formative assessment
+summative assessment
+interim assessment
+performance assessment
+portfolio assessment
+authentic assessment
+rubric
+scoring guide
+grading scale
+grade point average
+gpa
+weighted gpa
+unweighted gpa
+class rank
+percentile rank
+honor roll
+dean's list
+merit award
+scholarship
+fellowship
+grant
+financial aid
+student loan
+work study
+tuition
+fees
+textbooks
+school supplies
+cost of attendance
+expected family contribution
+efc
+financial aid application
+federal student aid
+fafsa
+pell grant
+stafford loan
+parent plus loan
+
+# Academic Calendar
+academic calendar
+semester
+quarter
+trimester
+term
+session
+summer session
+winter session
+intersession
+fall semester
+spring semester
+first quarter
+second quarter
+third quarter
+fourth quarter
+marking period
+progress report
+report card
+transcript
+permanent record
+attendance
+tardy
+absent
+excused absence
+unexcused absence
+truancy
+truant officer
+attendance policy
+
+# Assignments and Grading
+make up work
+late work
+missing assignment
+incomplete
+pass fail
+satisfactory
+unsatisfactory
+credit
+unit
+carnegie unit
+contact hour
+clock hour
+full time status
+part time status
+course load
+overload
+prerequisite
+corequisite
+elective
+required course
+core curriculum
+distribution requirement
+general education
+major
+minor
+concentration
+specialization
+track
+pathway
+degree
+certificate
+diploma
+associate degree
+bachelor degree
+master degree
+doctoral degree
+professional degree
+honorary degree
+terminal degree
+
+# Graduation
+graduation
+graduation requirements
+residency requirement
+capstone project
+comprehensive exam
+qualifying exam
+preliminary exam
+oral exam
+thesis defense
+commencement
+convocation
+graduation ceremony
+license
+certification
+credential
+accreditation
+institutional accreditation
+programmatic accreditation
+specialized accreditation
+accrediting agency
+accrediting body
+recognition
+approval
+authorization
+licensure
+quality assurance
+quality improvement
+continuous improvement
+program review
+self study
+site visit
+external review
+peer review
+reaffirmation
+candidacy
+probationary status
+good standing
+warning
+show cause
+withdrawal
+loss of accreditation
+
+# Curriculum
+curriculum
+syllabus
+lesson plan
+scope and sequence
+pacing guide
+learning objective
+learning outcome
+learning goal
+standard
+learning standard
+performance indicator
+benchmark
+expectation
+common core standards
+ccss
+next generation science standards
+ngss
+
+# Teaching Methods
+instructional leadership
+teaching strategy
+teaching method
+pedagogy
+andragogy
+heutagogy
+didactics
+direct instruction
+explicit instruction
+guided practice
+modeling
+demonstration
+think aloud
+scaffolding
+differentiated instruction
+differentiation
+flexible grouping
+station teaching
+center based learning
+inquiry based learning
+problem based learning
+pbl
+case based learning
+discovery learning
+cooperative learning
+collaborative learning
+reciprocal teaching
+socratic method
+lecture
+discussion
+seminar
+workshop
+laboratory
+lab work
+fieldwork
+practicum
+internship
+clinical experience
+student teaching
+
+# Modern Learning
+flipped classroom
+blended learning
+hybrid learning
+elearning
+online learning
+distance education
+asynchronous learning
+synchronous learning
+self paced learning
+adaptive learning
+personalized learning
+mastery learning
+competency based education
+cbe
+outcomes based education
+obe
+constructivism
+behaviorism
+cognitivism
+connectivism
+
+# Learning Theory
+multiple intelligences
+learning styles
+visual learning
+auditory learning
+kinesthetic learning
+tactile learning
+bloom's taxonomy
+webb's depth of knowledge
+dok
+universal design for learning
+udl
+brain based learning
+educational neuroscience
+neuropsychology
+growth mindset
+fixed mindset
+grit
+perseverance
+resilience
+self efficacy
+motivation
+intrinsic motivation
+extrinsic motivation
+engagement
+active learning
+student centered learning

@@ -1,0 +1,716 @@
+# Government and Politics Dictionary
+
+# Political Systems
+government
+politics
+democracy
+republic
+monarchy
+dictatorship
+autocracy
+oligarchy
+aristocracy
+theocracy
+plutocracy
+meritocracy
+technocracy
+bureaucracy
+gerontocracy
+kleptocracy
+anarchy
+totalitarianism
+authoritarianism
+fascism
+communism
+socialism
+capitalism
+liberalism
+conservatism
+libertarianism
+populism
+nationalism
+internationalism
+globalism
+federalism
+confederalism
+unitarism
+centralization
+decentralization
+devolution
+autonomy
+sovereignty
+independence
+self determination
+secession
+annexation
+unification
+integration
+
+# Branches of Government
+separation of powers
+checks and balances
+legislative branch
+executive branch
+judicial branch
+
+# Legislative Bodies
+parliament
+congress
+senate
+house of representatives
+chamber of deputies
+national assembly
+federal assembly
+state duma
+bundestag
+bundesrat
+reichstag
+diet
+knesset
+majlis
+shura council
+cortes
+storting
+folketing
+riksdag
+eduskunta
+althing
+sejm
+senat
+rada
+verkhovna rada
+people assembly
+supreme soviet
+politburo
+central committee
+standing committee
+constituent assembly
+constitutional convention
+
+# Legislators
+legislature
+legislator
+lawmaker
+member of parliament
+mp
+senator
+congressman
+congresswoman
+representative
+deputy
+delegate
+assemblyman
+assemblywoman
+councilmember
+alderman
+alderwoman
+supervisor
+commissioner
+trustee
+selectman
+
+# Legislative Leadership
+speaker of the house
+majority leader
+minority leader
+whip
+floor leader
+committee chair
+chairperson
+ranking member
+president of the senate
+president pro tempore
+president pro tem
+
+# Executive Leaders
+president
+prime minister
+premier
+chancellor
+chief minister
+first minister
+governor
+lieutenant governor
+mayor
+vice mayor
+city manager
+county executive
+magistrate
+prefect
+procurator
+commissar
+secretary general
+general secretary
+chairman
+vice chairman
+deputy chairman
+
+# Cabinet and Ministers
+treasurer
+comptroller
+controller
+auditor
+attorney general
+solicitor general
+advocate general
+prosecutor general
+inspector general
+ombudsman
+ombudswoman
+cabinet
+minister
+secretary of state
+under secretary
+assistant secretary
+deputy secretary
+permanent secretary
+principal secretary
+chief secretary
+home secretary
+foreign secretary
+finance minister
+defense minister
+interior minister
+justice minister
+education minister
+health minister
+transportation minister
+agriculture minister
+commerce minister
+labor minister
+energy minister
+environment minister
+culture minister
+information minister
+communication minister
+science and technology minister
+youth and sports minister
+women affairs minister
+social welfare minister
+rural development minister
+urban development minister
+housing minister
+water resources minister
+power minister
+petroleum minister
+mines minister
+textiles minister
+food minister
+civil aviation minister
+railways minister
+shipping minister
+tourism minister
+tribal affairs minister
+minority affairs minister
+panchayati raj minister
+statistics and program implementation minister
+parliamentary affairs minister
+law minister
+corporate affairs minister
+heavy industries minister
+chemicals and fertilizers minister
+
+# Diplomatic Corps
+embassy
+ambassador
+high commissioner
+consul general
+consul
+attache
+charge d affaires
+envoy
+plenipotentiary
+legate
+nuncio
+emissary
+special representative
+diplomat
+diplomatic corps
+diplomatic immunity
+diplomatic pouch
+diplomatic relations
+recognition
+accreditation
+credentials
+letter of credence
+persona non grata
+diplomatic mission
+consulate
+legation
+chancery
+residency
+high commission
+permanent mission
+
+# Treaties and Agreements
+treaty
+agreement
+convention
+protocol
+memorandum of understanding
+mou
+accord
+pact
+compact
+charter
+covenant
+declaration
+resolution
+proclamation
+manifesto
+white paper
+green paper
+blue book
+
+# Legislation
+bill
+act
+law
+statute
+ordinance
+decree
+edict
+proclamation
+executive order
+presidential directive
+executive memorandum
+signing statement
+veto
+pocket veto
+line item veto
+override
+filibuster
+cloture
+unanimous consent
+voice vote
+roll call vote
+division vote
+standing vote
+recorded vote
+proxy vote
+absentee vote
+early vote
+mail vote
+
+# Elections and Voting
+ballot
+secret ballot
+open ballot
+australian ballot
+butterfly ballot
+provisional ballot
+challenged ballot
+spoiled ballot
+sample ballot
+long ballot
+short ballot
+split ticket
+straight ticket
+preferential voting
+ranked choice voting
+instant runoff voting
+approval voting
+cumulative voting
+limited voting
+single transferable vote
+stv
+proportional representation
+pr
+mixed member proportional
+mmp
+party list system
+closed list
+open list
+first past the post
+fptp
+plurality voting
+majority voting
+runoff election
+two round system
+primary election
+caucus
+convention
+nomination
+candidacy
+candidate
+incumbent
+challenger
+dark horse
+favorite son
+front runner
+underdog
+swing voter
+undecided voter
+swing state
+battleground state
+safe state
+red state
+blue state
+purple state
+electoral college
+elector
+electoral vote
+popular vote
+mandate
+landslide victory
+narrow victory
+upset victory
+
+# Campaigns
+campaign
+political campaign
+election campaign
+campaign finance
+campaign contribution
+donation
+fundraising
+political action committee
+pac
+super pac
+dark money
+soft money
+hard money
+matching funds
+public financing
+contribution limit
+spending limit
+disclosure requirement
+transparency
+accountability
+
+# Ethics and Corruption
+ethics
+conflict of interest
+nepotism
+cronyism
+patronage
+spoils system
+merit system
+civil service
+career civil servant
+political appointee
+confirmation hearing
+advice and consent
+impeachment
+articles of impeachment
+high crimes and misdemeanors
+treason
+bribery
+corruption
+graft
+embezzlement
+misappropriation
+kickback
+quid pro quo
+influence peddling
+lobbying
+lobbyist
+special interest group
+advocacy group
+think tank
+
+# Political Parties
+political party
+major party
+minor party
+third party
+splinter party
+fringe party
+single issue party
+coalition
+alliance
+bloc
+faction
+wing
+left wing
+right wing
+center
+moderate
+progressive
+liberal
+conservative
+radical
+reactionary
+revisionist
+reformist
+revolutionary
+counterrevolutionary
+establishment
+anti establishment
+insider
+outsider
+elite
+grassroots
+base
+core supporter
+activist
+volunteer
+organizer
+canvasser
+phone bank
+door to door campaign
+ground game
+air game
+
+# Political Advertising
+advertisement
+attack ad
+negative ad
+contrast ad
+issue ad
+biography ad
+testimonial ad
+endorsement ad
+opposition research
+oppo research
+dirt digging
+smear campaign
+mudslinging
+character assassination
+whisper campaign
+push poll
+robo call
+
+# Campaign Events
+town hall meeting
+rally
+stump speech
+debate
+forum
+press conference
+photo op
+campaign trail
+swing tour
+bus tour
+barnstorming
+retail politics
+wholesale politics
+
+# Political Communication
+spin
+spin doctor
+talking point
+sound bite
+gaffe
+scandal
+october surprise
+dog whistle
+wedge issue
+hot button issue
+third rail
+litmus test
+poison pill
+
+# Legislative Tactics
+pork barrel
+earmark
+logrolling
+vote trading
+horse trading
+backroom deal
+smoke filled room
+gentleman agreement
+handshake deal
+compromise
+concession
+negotiation
+mediation
+arbitration
+
+# Diplomacy
+shuttle diplomacy
+backchannel
+track two diplomacy
+public diplomacy
+soft power
+hard power
+smart power
+gunboat diplomacy
+coercive diplomacy
+preventive diplomacy
+summit
+bilateral meeting
+multilateral meeting
+conference
+forum
+dialogue
+consultation
+working group
+task force
+commission
+committee
+subcommittee
+hearing
+investigation
+inquiry
+inquest
+probe
+examination
+review
+audit
+oversight
+
+# Government Transparency
+sunshine law
+freedom of information act
+foia
+open records law
+public records act
+whistleblower
+leaker
+source
+anonymous source
+deep throat
+off the record
+on background
+deep background
+embargo
+news cycle
+news dump
+friday news dump
+trial balloon
+leak
+authorized leak
+unauthorized leak
+classified information
+top secret
+secret
+confidential
+restricted
+sensitive
+unclassified
+declassified
+redacted
+
+# Security and Immigration
+national security
+homeland security
+public safety
+law and order
+crime prevention
+counterterrorism
+counterintelligence
+intelligence community
+intelligence agency
+secret service
+security service
+border patrol
+customs
+immigration enforcement
+deportation
+detention center
+refugee camp
+asylum application
+green card
+visa
+work permit
+citizenship
+naturalization
+denaturalization
+expatriation
+statelessness
+dual citizenship
+nationality
+
+# Social Issues
+ethnicity
+race
+religion
+caste
+class
+gender
+sexual orientation
+age
+disability
+discrimination
+prejudice
+bias
+bigotry
+racism
+sexism
+homophobia
+transphobia
+xenophobia
+islamophobia
+anti semitism
+hate speech
+hate crime
+
+# Rights and Freedoms
+civil rights
+human rights
+fundamental rights
+constitutional rights
+natural rights
+inalienable rights
+universal rights
+women rights
+children rights
+minority rights
+indigenous rights
+disability rights
+lgbtq rights
+equal rights
+voting rights
+suffrage
+universal suffrage
+women suffrage
+property qualification
+literacy test
+poll tax
+grandfather clause
+gerrymandering
+redistricting
+reapportionment
+
+# Polling and Research
+census
+enumeration
+headcount
+population
+demographics
+statistics
+data analysis
+polling
+opinion poll
+exit poll
+tracking poll
+benchmark poll
+straw poll
+focus group
+survey
+questionnaire
+sample size
+margin of error
+confidence interval
+statistical significance
+correlation
+causation
+bias
+sampling bias
+selection bias
+response bias
+non response bias
+social desirability bias
+confirmation bias
+cognitive bias
+heuristic
+stereotype
+prejudice
+discrimination
+
+# Policy and Equality
+affirmative action
+quota system
+diversity
+inclusion
+equity
+equality
+justice
+fairness
+impartiality
+neutrality
+objectivity
+independence
+autonomy
+sovereignty

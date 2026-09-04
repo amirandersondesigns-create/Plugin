@@ -1,0 +1,684 @@
+# Space and Astronomy Dictionary
+# Universe, celestial bodies, cosmic phenomena, astrophysics, cosmology
+
+# Universe and Space
+universe
+cosmos
+space
+outer space
+interstellar space
+intergalactic space
+void
+vacuum
+
+# Galaxies
+galaxy
+milky way
+andromeda
+spiral galaxy
+elliptical galaxy
+irregular galaxy
+dwarf galaxy
+satellite galaxy
+galaxy cluster
+supercluster
+local group
+virgo supercluster
+laniakea supercluster
+great wall
+filament
+
+# Stars
+star
+sun
+solar system
+protostar
+t tauri star
+brown dwarf
+failed star
+variable star
+cepheid variable
+rr lyrae variable
+mira variable
+nova
+supernova
+type ia supernova
+type ii supernova
+core collapse supernova
+supernova remnant
+
+# Stellar Types
+main sequence star
+red giant
+blue giant
+supergiant
+hypergiant
+white dwarf
+neutron star
+magnetar
+pulsar
+black hole
+supermassive black hole
+stellar black hole
+intermediate mass black hole
+primordial black hole
+micro black hole
+hawking radiation
+accretion disk
+jets
+
+# Active Galactic Nuclei
+quasar
+active galactic nucleus
+blazar
+seyfert galaxy
+radio galaxy
+
+# Nebulae
+nebula
+planetary nebula
+emission nebula
+reflection nebula
+dark nebula
+molecular cloud
+stellar nursery
+star formation region
+hii region
+herbig haro object
+bok globule
+pillars creation
+orion nebula
+crab nebula
+eagle nebula
+helix nebula
+ring nebula
+horsehead nebula
+lagoon nebula
+trifid nebula
+carina nebula
+tarantula nebula
+
+# Planets
+planet
+mercury
+venus
+earth
+mars
+jupiter
+saturn
+uranus
+neptune
+pluto
+dwarf planet
+asteroid
+comet
+meteor
+meteorite
+meteoroid
+
+# Moons and Satellites
+moon
+satellite
+natural satellite
+lunar
+
+# Eclipses
+eclipse
+solar eclipse
+lunar eclipse
+total eclipse
+partial eclipse
+annular eclipse
+penumbra
+umbra
+
+# Orbital Mechanics
+orbit
+orbital period
+revolution
+rotation
+axial tilt
+obliquity
+precession
+nutation
+libration
+synchronous rotation
+tidal locking
+aphelion
+perihelion
+apogee
+perigee
+ascending node
+descending node
+inclination
+eccentricity
+semi major axis
+orbital velocity
+escape velocity
+
+# Gravity and Relativity
+gravitational constant
+gravity
+gravitation
+gravitational field
+gravitational wave
+gravitational lensing
+general relativity
+special relativity
+spacetime
+curvature
+geodesic
+event horizon
+singularity
+
+# Constellations
+constellation
+zodiac
+aries
+taurus
+gemini
+cancer
+leo
+virgo
+libra
+scorpio
+sagittarius
+capricorn
+aquarius
+pisces
+ursa major
+ursa minor
+orion
+cassiopeia
+andromeda
+perseus
+cygnus
+lyra
+aquila
+bootes
+corona borealis
+draco
+hercules
+ophiuchus
+serpens
+centaurus
+crux
+southern cross
+canis major
+canis minor
+pegasus
+phoenix
+tucana
+hydra
+eridanus
+cetus
+puppis
+vela
+carina
+dorado
+volans
+apus
+pavo
+grus
+indus
+telescopium
+microscopium
+octans
+chamaeleon
+musca
+circinus
+norma
+triangulum australe
+ara
+lupus
+
+# Celestial Coordinates
+ecliptic
+celestial equator
+celestial sphere
+right ascension
+declination
+altitude
+azimuth
+zenith
+nadir
+meridian
+prime meridian
+hour angle
+sidereal time
+solar time
+universal time
+coordinated universal time
+greenwich mean time
+julian date
+modified julian date
+epoch
+equinox
+vernal equinox
+autumnal equinox
+summer solstice
+winter solstice
+
+# Time Measurements
+tropical year
+sidereal year
+anomalistic year
+calendar year
+leap year
+synodic month
+sidereal month
+anomalistic month
+draconic month
+tropical month
+lunar month
+lunar cycle
+metonic cycle
+saros cycle
+
+# Brightness and Magnitude
+magnitude
+apparent magnitude
+absolute magnitude
+luminosity
+brightness
+flux
+intensity
+radiance
+irradiance
+albedo
+reflectivity
+absorption
+emission
+
+# Spectroscopy
+spectroscopy
+spectrum
+electromagnetic spectrum
+visible light
+infrared
+ultraviolet
+xray
+gamma ray
+radio wave
+microwave
+wavelength
+frequency
+energy
+photon
+electromagnetic radiation
+
+# Blackbody Radiation
+blackbody radiation
+thermal radiation
+planck law
+stefan boltzmann law
+wien displacement law
+
+# Doppler and Redshift
+doppler effect
+redshift
+blueshift
+cosmological redshift
+gravitational redshift
+hubble constant
+hubble law
+expansion universe
+accelerating expansion
+
+# Dark Matter and Energy
+dark energy
+dark matter
+cold dark matter
+warm dark matter
+hot dark matter
+wimp
+weakly interacting massive particle
+axion
+neutralino
+sterile neutrino
+modified newtonian dynamics
+
+# Big Bang Theory
+big bang theory
+cosmic microwave background
+cosmic inflation
+inflationary epoch
+planck epoch
+grand unification epoch
+electroweak epoch
+quark epoch
+hadron epoch
+lepton epoch
+photon epoch
+nucleosynthesis
+big bang nucleosynthesis
+stellar nucleosynthesis
+recombination epoch
+dark ages
+reionization epoch
+
+# Structure Formation
+structure formation
+galaxy formation
+star formation
+first stars
+population iii stars
+population ii stars
+population i stars
+metallicity
+heavy elements
+
+# Elements
+carbon
+nitrogen
+oxygen
+iron
+silicon
+magnesium
+calcium
+sodium
+aluminum
+sulfur
+helium
+hydrogen
+deuterium
+tritium
+lithium
+beryllium
+boron
+
+# Nuclear Processes
+fusion
+nuclear fusion
+proton proton chain
+cno cycle
+triple alpha process
+fission
+nuclear fission
+radioactive decay
+half life
+isotope
+element
+
+# Atomic Structure
+atom
+nucleus
+proton
+neutron
+electron
+positron
+antiparticle
+antimatter
+annihilation
+pair production
+
+# Quantum Physics
+quantum mechanics
+quantum theory
+quantum field theory
+standard model
+particle physics
+elementary particle
+fundamental particle
+
+# Quarks and Leptons
+quark
+up quark
+down quark
+charm quark
+strange quark
+top quark
+bottom quark
+lepton
+electron
+muon
+tau
+neutrino
+electron neutrino
+muon neutrino
+tau neutrino
+
+# Bosons
+boson
+gauge boson
+photon
+gluon
+w boson
+z boson
+higgs boson
+graviton
+
+# Fundamental Forces
+strong force
+weak force
+electromagnetic force
+gravitational force
+fundamental force
+
+# Unified Theories
+unified theory
+grand unified theory
+theory everything
+string theory
+superstring theory
+m theory
+brane
+braneworld
+extra dimension
+compactification
+kaluza klein theory
+loop quantum gravity
+quantum cosmology
+
+# Multiverse
+multiverse
+parallel universe
+alternate universe
+many worlds interpretation
+
+# Cosmic Structures
+cosmic string
+domain wall
+monopole
+topological defect
+wormhole
+einstein rosen bridge
+time travel
+causality
+arrow time
+entropy
+second law thermodynamics
+
+# Fate of Universe
+heat death universe
+big crunch
+big rip
+big freeze
+vacuum decay
+false vacuum
+true vacuum
+
+# Astrobiology
+anthropic principle
+fine tuning
+cosmic coincidence
+goldilocks zone
+habitable zone
+circumstellar habitable zone
+galactic habitable zone
+drake equation
+fermi paradox
+great filter
+rare earth hypothesis
+panspermia
+directed panspermia
+lithopanspermia
+
+# Origin of Life
+abiogenesis
+origin life
+prebiotic chemistry
+rna world hypothesis
+primordial soup
+miller urey experiment
+hydrothermal vent theory
+iron sulfur world theory
+metabolism first hypothesis
+replication first hypothesis
+protocell
+vesicle
+micelle
+liposome
+coacervate
+
+# Biochemistry
+nucleotide
+amino acid
+protein
+enzyme
+catalyst
+ribozyme
+dna
+deoxyribonucleic acid
+rna
+ribonucleic acid
+genetic code
+codon
+translation
+transcription
+replication
+mutation
+
+# Evolution
+natural selection
+evolution
+darwinian evolution
+lamarckian evolution
+convergent evolution
+divergent evolution
+parallel evolution
+coevolution
+
+# Symbiosis
+symbiosis
+mutualism
+commensalism
+parasitism
+endosymbiosis
+endosymbiotic theory
+mitochondria
+chloroplast
+
+# Cell Types
+eukaryote
+prokaryote
+bacteria
+archaea
+
+# Extremophiles
+extremophile
+thermophile
+psychrophile
+halophile
+acidophile
+alkaliphile
+barophile
+radioresistant
+xerophile
+oligotroph
+chemolithotroph
+methanogen
+
+# Metabolism
+photosynthesis
+chemosynthesis
+autotroph
+heterotroph
+aerobic
+anaerobic
+facultative anaerobe
+obligate anaerobe
+obligate aerobe
+
+# Cellular Biology
+microorganism
+microbe
+unicellular
+multicellular
+cell
+organelle
+cytoplasm
+membrane
+cell wall
+nucleus
+ribosome
+endoplasmic reticulum
+golgi apparatus
+lysosome
+peroxisome
+vacuole
+vesicle
+centriole
+flagellum
+cilium
+pseudopod
+
+# Biological Organization
+tissue
+organ
+organ system
+organism
+species
+genus
+family
+order
+class
+phylum
+kingdom
+domain
+
+# Classification
+taxonomy
+phylogeny
+cladistics
+systematics
+binomial nomenclature
+linnaeus
+darwin
+wallace
+mendel
+
+# Genetics
+genetics
+heredity
+trait
+allele
+genotype
+phenotype
+dominant
+recessive
+homozygous
+heterozygous
+punnett square
+chromosome
+gene
+locus
+genome
+genomics
+proteomics
+transcriptomics
+metabolomics
+bioinformatics
+computational biology
+systems biology
+synthetic biology
+
+# Genetic Engineering
+genetic engineering
+biotechnology
+crispr
+gene editing
+cloning
+transgenic organism
+gmo
+genetically modified organism

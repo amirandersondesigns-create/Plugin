@@ -1,0 +1,667 @@
+# Hospitals and Medical Facilities Dictionary
+
+# Medical Facilities
+hospital
+clinic
+infirmary
+sanatorium
+sanitarium
+hospice
+dispensary
+polyclinic
+surgery center
+laboratory
+pharmacy
+
+# Facility Types
+ambulatory care
+outpatient facility
+inpatient facility
+emergency department
+trauma center
+intensive care unit
+critical care unit
+coronary care unit
+cardiac care unit
+maternity ward
+obstetric unit
+pediatric ward
+neonatal unit
+geriatric care
+psychiatric facility
+rehabilitation center
+convalescent home
+dialysis center
+radiology department
+oncology center
+surgical ward
+medical ward
+dental clinic
+ophthalmology clinic
+orthopedic center
+neurological center
+cardiovascular center
+pulmonary center
+gastrointestinal clinic
+dermatology clinic
+urology clinic
+nephrology unit
+endocrinology clinic
+hematology lab
+immunology lab
+infectious disease ward
+pathology lab
+anatomy lab
+morgue
+mortuary
+autopsy room
+
+# Medical Procedures
+examination
+consultation
+treatment
+procedure
+operating room
+operating theatre
+recovery room
+postoperative care
+preoperative care
+anesthesia
+sterilization
+decontamination
+isolation ward
+quarantine facility
+triage area
+reception desk
+admission office
+discharge planning
+referral service
+transfer service
+
+# Emergency Services
+ambulance
+helicopter
+medical evacuation
+medevac
+air ambulance
+airlift
+
+# Medical Equipment
+stretcher
+gurney
+wheelchair
+walker
+crutches
+prosthesis
+orthosis
+brace
+splint
+cast
+bandage
+dressing
+gauze
+suture
+staple
+catheter
+cannula
+needle
+syringe
+intravenous drip
+infusion
+transfusion
+ventilator
+respirator
+defibrillator
+monitor
+scanner
+ultrasound
+mammography
+tomography
+fluoroscopy
+
+# Diagnostic Procedures
+endoscopy
+colonoscopy
+laparoscopy
+arthroscopy
+bronchoscopy
+cystoscopy
+gastroscopy
+hysteroscopy
+sigmoidoscopy
+microscopy
+spectroscopy
+chromatography
+electrophoresis
+
+# Laboratory Equipment
+centrifuge
+incubator
+autoclave
+sterilizer
+disinfectant
+antiseptic
+sanitizer
+cleanser
+detergent
+bleach
+alcohol
+iodine
+hydrogen peroxide
+betadine
+chlorhexidine
+formaldehyde
+glutaraldehyde
+phenol
+quaternary ammonium
+sodium hypochlorite
+ethylene oxide
+
+# Sterilization
+radiation sterilization
+ultraviolet sterilization
+gamma radiation
+steam sterilization
+high pressure
+high temperature
+
+# Facility Systems
+humidity control
+ventilation system
+air filtration
+air purification
+air circulation
+air conditioning
+heating system
+cooling system
+lighting
+illumination
+brightness
+contrast
+resolution
+magnification
+calibration
+maintenance
+inspection
+testing
+validation
+verification
+certification
+accreditation
+licensure
+registration
+approval
+authorization
+clearance
+compliance
+regulation
+standard
+protocol
+guideline
+procedure
+policy
+best practice
+quality assurance
+safety protocol
+security measures
+privacy protection
+confidentiality
+
+# Documentation
+documentation
+recording
+reporting
+notification
+communication
+coordination
+collaboration
+consultation
+referral
+transfer
+discharge
+admission
+registration
+scheduling
+appointment
+reservation
+confirmation
+reminder
+cancellation
+rescheduling
+waitlist
+queue
+priority
+urgency
+emergency
+routine care
+elective procedure
+scheduled surgery
+unscheduled visit
+walk in appointment
+
+# Telemedicine
+telemedicine
+telehealth
+virtual visit
+remote consultation
+distance medicine
+online consultation
+digital health
+electronic health
+mobile health
+portable device
+handheld device
+wearable device
+implantable device
+disposable equipment
+reusable equipment
+single use
+multiple use
+sterile equipment
+nonsterile equipment
+
+# Procedure Types
+invasive procedure
+noninvasive procedure
+diagnostic test
+therapeutic procedure
+preventive care
+curative treatment
+palliative care
+supportive care
+symptomatic treatment
+prophylactic treatment
+empirical treatment
+definitive treatment
+conservative treatment
+aggressive treatment
+minimal intervention
+maximal intervention
+optimal treatment
+suboptimal treatment
+adequate care
+inadequate care
+appropriate treatment
+inappropriate treatment
+indicated procedure
+contraindicated procedure
+precaution
+warning
+adverse event
+adverse reaction
+side effect
+outcome
+complication
+sequela
+morbidity
+mortality
+survival rate
+recovery
+improvement
+deterioration
+progression
+regression
+remission
+exacerbation
+relapse
+recurrence
+persistence
+resolution
+stabilization
+normalization
+restoration
+rehabilitation
+reintegration
+readjustment
+adaptation
+accommodation
+compensation
+coping mechanism
+support system
+assistance
+aid
+care
+service
+
+# Healthcare Organizations
+facility
+institution
+organization
+establishment
+center
+institute
+foundation
+association
+society
+federation
+confederation
+alliance
+coalition
+network
+consortium
+collaboration
+partnership
+affiliation
+accreditation body
+certification board
+licensing board
+registration authority
+designation
+recognition
+approval
+authorization
+endorsement
+recommendation
+referral
+consultation
+second opinion
+advice
+guidance
+counseling
+education
+training
+instruction
+teaching
+learning
+development
+improvement
+enhancement
+optimization
+maximization
+minimization
+reduction
+prevention
+control
+management
+administration
+supervision
+oversight
+monitoring
+surveillance
+tracking
+recording
+documentation
+reporting
+notification
+
+# Research and Analysis
+communication
+information
+data
+statistics
+analytics
+intelligence
+research
+investigation
+study
+trial
+experiment
+observation
+assessment
+evaluation
+examination
+inspection
+audit
+review
+analysis
+interpretation
+conclusion
+recommendation
+implementation
+application
+utilization
+adoption
+integration
+incorporation
+inclusion
+exclusion
+selection
+screening
+testing
+diagnosis
+prognosis
+treatment plan
+therapy
+intervention
+procedure
+operation
+surgery
+technique
+method
+approach
+strategy
+plan
+program
+initiative
+project
+campaign
+effort
+action
+activity
+task
+function
+role
+responsibility
+duty
+obligation
+requirement
+expectation
+standard
+criterion
+benchmark
+target
+goal
+objective
+outcome
+result
+achievement
+success
+failure
+error
+mistake
+incident
+event
+occurrence
+situation
+circumstance
+condition
+state
+status
+position
+location
+site
+place
+setting
+environment
+context
+background
+history
+medical record
+patient file
+medical document
+report
+form
+chart
+graph
+table
+list
+index
+directory
+registry
+database
+system
+network
+platform
+infrastructure
+facility
+equipment
+instrument
+device
+tool
+apparatus
+machine
+technology
+innovation
+advancement
+development
+progress
+improvement
+enhancement
+upgrade
+update
+revision
+modification
+adjustment
+change
+transformation
+transition
+shift
+evolution
+revolution
+disruption
+innovation
+invention
+discovery
+breakthrough
+achievement
+milestone
+landmark
+turning point
+pivotal moment
+critical juncture
+
+# Medical Importance
+essential
+vital
+crucial
+important
+significant
+notable
+remarkable
+outstanding
+exceptional
+extraordinary
+unprecedented
+unique
+distinctive
+characteristic
+typical
+common
+usual
+normal
+standard
+regular
+routine
+ordinary
+average
+moderate
+mild
+severe
+extreme
+intense
+acute
+chronic
+persistent
+recurrent
+intermittent
+episodic
+sporadic
+occasional
+frequent
+constant
+continuous
+sustained
+prolonged
+extended
+lasting
+permanent
+temporary
+transient
+brief
+short term
+long term
+
+# Time Periods
+duration
+period
+time
+moment
+instant
+second
+minute
+hour
+day
+week
+month
+year
+decade
+century
+millennium
+era
+age
+generation
+lifetime
+lifespan
+longevity
+mortality
+morbidity
+disability
+impairment
+limitation
+restriction
+constraint
+barrier
+obstacle
+challenge
+difficulty
+problem
+issue
+concern
+matter
+question
+topic
+subject
+theme
+focus
+emphasis
+priority
+importance
+significance
+relevance
+applicability
+utility
+value
+worth
+benefit
+advantage
+strength
+asset
+resource
+capacity
+capability
+ability
+skill
+competence
+proficiency
+expertise
+mastery
+excellence
+quality
+standard
+level
+grade
+rank
+rating
+score
+performance
+achievement
+accomplishment
+success
+outcome
+result
+effect
+impact
+influence
+consequence
+implication
+ramification

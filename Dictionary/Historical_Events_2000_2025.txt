@@ -1,0 +1,840 @@
+# Historical Events 2000-2025 Dictionary
+
+# Millennium and Terrorism
+millennium
+y2k
+september eleven
+9/11
+september 11 attacks
+world trade center
+pentagon
+shanksville
+al qaeda
+osama bin laden
+taliban
+afghanistan war
+operation enduring freedom
+iraq war
+operation iraqi freedom
+saddam hussein
+weapons of mass destruction
+wmd
+coalition provisional authority
+
+# Arab Spring
+arab spring
+tahrir square
+hosni mubarak
+muammar gaddafi
+bashar al assad
+syrian civil war
+isis
+isil
+islamic state
+daesh
+caliphate
+boko haram
+extremism
+jihadism
+counterterrorism
+
+# War on Terror
+patriot act
+homeland security
+guantanamo bay
+extraordinary rendition
+enhanced interrogation techniques
+waterboarding
+abu ghraib
+wikileaks
+julian assange
+chelsea manning
+edward snowden
+nsa surveillance
+prism
+metadata collection
+privacy rights
+encryption debate
+
+# Natural Disasters
+hurricane katrina
+levee breach
+new orleans flooding
+fema response
+disaster relief
+indian ocean tsunami
+sumatra andaman earthquake
+boxing day tsunami
+relief effort
+haiti earthquake
+port au prince
+cholera outbreak
+tohoku earthquake
+fukushima nuclear disaster
+meltdown
+tsunami japan
+philippines typhoon
+typhoon haiyan
+typhoon yolanda
+hurricane sandy
+superstorm sandy
+hurricane harvey
+hurricane irma
+hurricane maria
+puerto rico crisis
+california wildfires
+camp fire
+paradise fire
+australian bushfires
+black summer
+amazon rainforest fires
+
+# Climate Change
+climate change
+global warming
+paris agreement
+kyoto protocol
+copenhagen summit
+climate accord
+carbon emissions
+greenhouse gases
+renewable energy
+solar power
+wind energy
+electric vehicle
+tesla
+carbon neutral
+net zero
+greta thunberg
+fridays for future
+extinction rebellion
+climate strike
+
+# Financial Crisis
+financial crisis
+great recession
+housing bubble
+subprime mortgage crisis
+lehman brothers collapse
+bank bailout
+tarp
+troubled asset relief program
+quantitative easing
+stimulus package
+recovery act
+occupy wall street
+one percent
+ninety nine percent
+income inequality
+wealth gap
+european debt crisis
+greek debt crisis
+eurozone crisis
+austerity measures
+
+# Brexit
+brexit
+referendum
+leave campaign
+remain campaign
+article fifty
+withdrawal agreement
+northern ireland protocol
+trade deal
+post brexit
+boris johnson
+theresa may
+david cameron
+nicola sturgeon
+scottish independence referendum
+catalonia independence movement
+carles puigdemont
+
+# Hong Kong and China
+hong kong protests
+umbrella movement
+extradition bill
+national security law
+one country two systems
+carrie lam
+joshua wong
+democracy movement
+tiananmen anniversary
+uyghur genocide
+xinjiang
+reeducation camps
+forced labor
+human rights violations
+tibet
+dalai lama
+
+# Myanmar
+myanmar coup
+aung san suu kyi
+rohingya crisis
+ethnic cleansing
+
+# Refugee Crisis
+refugee crisis
+migrant crisis
+syrian refugees
+european migration crisis
+mediterranean crossings
+lampedusa
+refugee camps
+immigration policy
+border wall
+family separation policy
+travel ban
+muslim ban
+daca
+deferred action for childhood arrivals
+dreamers
+asylum seekers
+migrant caravan
+
+# Russia Ukraine
+russia ukraine conflict
+crimea annexation
+donbas war
+maidan revolution
+euromaidan
+viktor yanukovych
+petro poroshenko
+volodymyr zelensky
+zelenskyy
+russian invasion of ukraine
+full scale invasion
+special military operation
+kharkiv offensive
+kyiv offensive
+mariupol siege
+bucha massacre
+war crimes
+international criminal court
+icc referral
+sanctions on russia
+swift ban
+energy embargo
+oil embargo
+gas pipeline
+nord stream pipeline
+pipeline sabotage
+minsk agreements
+normandy format
+vladimir putin
+dmitry medvedev
+sergey lavrov
+nato expansion
+membership
+article five
+collective defense
+
+# Russia Conflicts
+georgia war
+south ossetia
+abkhazia
+chechnya wars
+beslan school siege
+moscow theater hostage crisis
+apartment bombings
+alexander litvinenko poisoning
+skripal poisoning
+novichok
+alexei navalny poisoning
+political prisoner
+opposition leader
+kremlin critic
+
+# Latin America
+jair bolsonaro
+brazil
+amazon deforestation
+indigenous rights
+lula
+dilma rousseff
+impeachment
+corruption scandal
+operation car wash
+lava jato
+petrobras scandal
+venezuela crisis
+nicolas maduro
+hugo chavez
+bolivarian revolution
+hyperinflation
+economic collapse
+venezuelan refugees
+humanitarian crisis
+juan guaido
+interim president
+disputed election
+colombia farc
+peace deal
+juan manuel santos
+nobel peace prize
+disarmament
+alvaro uribe
+gustavo petro
+drug cartels
+war on drugs
+mexico violence
+felipe calderon
+enrique pena nieto
+andres manuel lopez obrador
+amlo
+femicides
+ayotzinapa students
+disappearance
+cartel violence
+sinaloa cartel
+el chapo
+joaquin guzman
+extradition
+
+# Cuba
+cuba relations
+normalization
+barack obama
+raul castro
+miguel diaz canel
+embargo lift
+guantanamo closure
+
+# North Korea
+north korea nuclear program
+kim jong un
+kim jong il
+missile tests
+nuclear tests
+pyongyang
+denuclearization
+summit
+singapore summit
+hanoi summit
+dmz meeting
+trump kim meeting
+sanctions regime
+
+# Iran
+iran nuclear deal
+jcpoa
+joint comprehensive plan of action
+sanctions relief
+uranium enrichment
+centrifuges
+hassan rouhani
+ayatollah khamenei
+qasem soleimani
+assassination
+drone strike
+baghdad strike
+retaliation
+missile attack
+base attack
+
+# Israel Palestine
+israel palestine conflict
+gaza strip
+west bank
+jerusalem
+embassy move
+recognition as capital
+two state solution
+settlement expansion
+annexation plan
+intifada
+operation cast lead
+operation protective edge
+gaza wars
+hamas
+hezbollah
+lebanon war
+israel defense forces
+idf
+iron dome
+rocket attacks
+airstrikes
+blockade
+humanitarian crisis
+arab israeli conflict
+peace process
+oslo accords
+camp david
+abraham accords
+normalization agreements
+uae
+bahrain
+morocco
+recognition
+benjamin netanyahu
+benny gantz
+naftali bennett
+yair lapid
+coalition government
+likud party
+
+# China Rise
+china rise
+belt and road initiative
+bri
+silk road
+made in china 2025
+trade war
+tariffs
+trade deficit
+intellectual property theft
+technology transfer
+huawei ban
+5g security concerns
+zte sanctions
+south china sea dispute
+artificial islands
+nine dash line
+freedom of navigation operations
+taiwan strait tensions
+one china policy
+cross strait relations
+tsai ing wen
+ma ying jeou
+chen shui bian
+kuomintang
+democratic progressive party
+dpp
+taiwan independence
+reunification
+status quo
+
+# India Pakistan
+india pakistan tensions
+kashmir dispute
+line of control
+pulwama attack
+balakot airstrike
+standoff
+nuclear powers
+partition anniversary
+narendra modi
+manmohan singh
+atal bihari vajpayee
+bjp
+bharatiya janata party
+congress party
+citizenship amendment act
+caa
+farm laws protest
+farmers protest
+delhi protests
+
+# Africa
+ethiopia tigray war
+conflict
+abiy ahmed
+nobel peace prize
+civil war
+humanitarian crisis
+famine
+eritrea involvement
+rwanda genocide anniversary
+tutsi genocide
+hutu extremists
+paul kagame
+reconciliation
+commemoration
+sudan darfur
+genocide
+omar al bashir
+janjaweed militia
+icc indictment
+coup
+protests
+transitional government
+south sudan independence
+secession
+civil war
+salva kiir
+riek machar
+oil resources
+
+# Black Lives Matter
+black lives matter
+blm movement
+george floyd murder
+police brutality
+systemic racism
+breonna taylor
+ahmaud arbery
+trayvon martin
+michael brown
+ferguson protests
+eric garner
+chokehold
+hands up dont shoot
+i cant breathe
+kneel protest
+colin kaepernick
+defund the police
+police reform
+racial justice
+racial reckoning
+
+# MeToo Movement
+metoo movement
+harvey weinstein
+sexual harassment
+sexual assault
+allegations
+time up campaign
+believe women
+survivors
+empowerment
+kavanaugh hearings
+christine blasey ford
+testimony
+confirmation battle
+supreme court nomination
+
+# Trump Presidency
+donald trump
+trump presidency
+election 2016
+upset victory
+electoral college
+popular vote
+hillary clinton
+email scandal
+james comey letter
+russian interference
+collusion investigation
+robert mueller
+mueller report
+special counsel
+impeachment ukraine
+ukraine call
+whistleblower complaint
+quid pro quo
+abuse of power
+obstruction of congress
+senate trial
+acquittal
+second impeachment
+capitol riot
+january sixth
+insurrection
+electoral college certification
+stop the steal movement
+proud boys
+oath keepers
+sedition charges
+congressional investigation
+january 6 committee
+hearing
+mike pence
+nancy pelosi
+
+# Biden Presidency
+joe biden
+biden presidency
+election 2020
+mail in voting
+pandemic election
+vote counting
+lawsuits
+challenges
+transition of power
+inauguration
+kamala harris
+first woman vice president
+afghanistan withdrawal
+kabul evacuation
+taliban takeover
+fall of kabul
+airport chaos
+abbey gate attack
+troop withdrawal
+end of war
+longest war
+
+# COVID Pandemic
+covid pandemic
+coronavirus
+sars cov 2
+wuhan outbreak
+zoonotic origin
+lab leak theory
+wet market hypothesis
+pangolin
+bat virus
+spillover event
+global pandemic
+who declaration
+lockdown measures
+stay at home orders
+social distancing
+mask mandates
+quarantine requirements
+contact tracing apps
+testing shortage
+ppe shortage
+ventilator shortage
+hospital capacity crisis
+healthcare workers
+frontline workers
+essential workers
+flattening the curve
+surge
+wave
+second wave
+third wave
+delta variant
+omicron variant
+alpha variant
+beta variant
+gamma variant
+variant of concern
+voc
+mutation
+spike protein
+transmissibility
+severity
+immune evasion
+
+# Vaccines
+vaccine development
+operation warp speed
+pfizer biontech vaccine
+moderna vaccine
+astrazeneca vaccine
+johnson and johnson vaccine
+janssen vaccine
+novavax vaccine
+sinovac vaccine
+sinopharm vaccine
+sputnik vaccine
+mrna vaccine technology
+viral vector vaccine
+protein subunit vaccine
+emergency use authorization
+eua
+full approval
+fda approval
+booster shot
+third dose
+fourth dose
+bivalent vaccine
+updated vaccine
+vaccine hesitancy
+anti vaxx movement
+misinformation
+disinformation
+infodemic
+conspiracy theories
+hydroxychloroquine controversy
+ivermectin controversy
+remdesivir treatment
+monoclonal antibody treatment
+paxlovid antiviral
+long covid
+post acute sequelae
+persistent symptoms
+brain fog
+fatigue
+shortness of breath
+disability
+
+# Pandemic Impact
+lockdown protests
+reopening debate
+economic impact
+recession
+job losses
+unemployment surge
+business closures
+small business struggle
+supply chain disruption
+shipping delays
+port congestion
+container shortage
+chip shortage
+semiconductor shortage
+inflation surge
+price increases
+cost of living crisis
+housing market boom
+stock market volatility
+gamestop short squeeze
+meme stock phenomenon
+cryptocurrency boom
+bitcoin rally
+ethereum rise
+nft craze
+non fungible token
+digital art market
+metaverse hype
+facebook rebrand
+meta platforms
+twitter acquisition
+elon musk takeover
+social media turmoil
+platform changes
+verification changes
+trump twitter ban
+deplatforming debate
+section 230 debate
+content moderation
+free speech debate
+disinformation spread
+fake news
+echo chamber
+polarization
+tribalism
+
+# Culture Wars
+cancel culture debate
+woke culture
+culture wars
+identity politics
+populism rise
+nationalism surge
+authoritarianism trend
+democratic backsliding
+erosion of norms
+erosion of institutions
+attacks on press
+attacks on judiciary
+attacks on election integrity
+voter suppression
+gerrymandering
+filibuster reform debate
+court packing proposal
+term limits debate
+roe v wade overturned
+dobbs decision
+abortion rights rollback
+state trigger laws
+reproductive rights battle
+marriage equality
+obergefell decision
+lgbtq rights
+trans rights
+bathroom bills
+sports participation debate
+gender affirming care debate
+
+# School Curriculum
+school curriculum battles
+critical race theory
+crt debate
+book bans
+library censorship
+parental rights movement
+
+# Gun Violence
+gun violence epidemic
+mass shootings
+sandy hook shooting
+parkland shooting
+march for our lives
+uvalde shooting
+las vegas shooting
+pulse nightclub shooting
+charleston church shooting
+pittsburgh synagogue shooting
+buffalo supermarket shooting
+gun control debate
+assault weapons ban
+background checks
+red flag laws
+constitutional carry
+second amendment rights
+nra
+national rifle association
+gun lobby
+
+# Opioid Crisis
+opioid crisis
+epidemic
+overdose deaths
+fentanyl crisis
+oxycontin scandal
+purdue pharma
+sackler family
+settlements
+addiction treatment
+harm reduction
+narcan distribution
+safe injection sites
+drug decriminalization
+cannabis legalization
+marijuana legalization
+recreational cannabis
+medical marijuana
+dispensaries
+psychedelic research
+mdma therapy
+psilocybin therapy
+
+# Mental Health
+mental health crisis
+suicide prevention
+depression awareness
+anxiety epidemic
+therapy access
+telehealth expansion
+remote healthcare
+virtual doctor visits
+telemedicine growth
+
+# Technology
+artificial intelligence advances
+machine learning progress
+chatgpt launch
+generative ai boom
+large language models
+llms
+gpt
+dall e
+midjourney
+stable diffusion
+ai art generators
+deepfakes concern
+synthetic media
+detection challenge
+autonomous vehicles progress
+self driving cars
+waymo
+tesla autopilot
+cruise testing
+accidents investigation
+
+# Space
+space exploration advances
+spacex success
+falcon heavy launch
+starship development
+mars colonization plans
+artemis program
+moon return plan
+james webb space telescope launch
+first images
+deep field image
+exoplanet discovery
+mars rover missions
+perseverance rover
+ingenuity helicopter
+mars flight
+sample return mission
+commercial spaceflight
+space tourism
+blue origin flights
+virgin galactic flights
+inspiration4 mission
+axiom missions
+international space station
+iss decommission plans
+chinese space station
+tiangong construction
+indian space program
+chandrayaan missions
+japanese space program
+european space agency missions

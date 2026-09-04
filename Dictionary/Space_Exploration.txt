@@ -1,0 +1,586 @@
+# Space Exploration Dictionary
+# Space missions, agencies, spacecraft, astronautics, launch systems
+
+# Space Agencies
+nasa
+national aeronautics space administration
+esa
+european space agency
+roscosmos
+russian federal space agency
+cnsa
+china national space administration
+jaxa
+japan aerospace exploration agency
+isro
+indian space research organisation
+csa
+canadian space agency
+spacex
+blue origin
+virgin galactic
+rocket lab
+axiom space
+sierra space
+northrop grumman
+lockheed martin
+boeing
+airbus defence
+arianespace
+ula
+united launch alliance
+
+# Spacecraft Types
+rocket
+launch vehicle
+booster
+satellite
+orbiter
+lander
+rover
+probe
+flyby spacecraft
+crewed spacecraft
+capsule
+command module
+service module
+lunar module
+space shuttle orbiter
+space station
+space habitat
+cargo spacecraft
+resupply vehicle
+reentry vehicle
+reusable rocket
+expendable rocket
+multistage rocket
+single stage orbit
+
+# Launch Systems
+launch pad
+gantry
+launch tower
+mobile launcher
+crawler transporter
+vehicle assembly building
+payload processing facility
+launch control center
+mission control
+firing room
+blockhouse
+flame trench
+sound suppression water deluge system
+lightning protection system
+umbilical tower
+fueling system
+cryogenic propellant
+liquid oxygen
+liquid hydrogen
+kerosene
+hypergolic propellant
+
+# Rocket Components
+nose cone
+fairing
+payload fairing
+payload adapter
+interstage
+avionics bay
+guidance system
+flight computer
+inertial measurement unit
+reaction control system
+thrusters
+engine
+nozzle
+combustion chamber
+turbopump
+fuel tank
+oxidizer tank
+pressurization system
+separation mechanism
+explosive bolts
+stage separation
+booster separation
+heat shield
+thermal protection system
+ablative material
+tiles
+blanket
+
+# Propulsion Systems
+chemical propulsion
+rocket engine
+liquid fuel engine
+solid fuel motor
+hybrid rocket engine
+ion drive
+electric propulsion
+hall thruster
+gridded ion thruster
+plasma propulsion
+nuclear thermal propulsion
+nuclear electric propulsion
+solar sail
+photon propulsion
+antimatter propulsion
+fusion propulsion
+specific impulse
+thrust
+power
+exhaust velocity
+delta change velocity
+
+# Orbital Mechanics
+orbit
+trajectory
+elliptical orbit
+circular orbit
+low earth orbit
+medium earth orbit
+high earth orbit
+geostationary orbit
+geosynchronous orbit
+polar orbit
+sun synchronous orbit
+molniya orbit
+transfer orbit
+hohmann transfer orbit
+lagrange point
+halo orbit
+libration point
+escape velocity
+orbital velocity
+periapsis
+apoapsis
+perigee
+apogee
+perihelion
+aphelion
+ascending node
+descending node
+inclination
+eccentricity
+
+# Mission Phases
+prelaunch
+countdown
+ignition
+liftoff
+launch
+ascent
+max
+staging
+booster separation
+fairing jettison
+orbital insertion
+circularization burn
+phasing orbit
+rendezvous
+docking
+berthing
+departure
+deorbit burn
+reentry
+atmospheric entry
+descent
+landing
+splashdown
+touchdown
+recovery
+
+# Space Stations
+international space station
+iss
+mir space station
+skylab
+salyut
+tiangong space station
+gateway
+lunar gateway
+module
+node
+cupola
+airlock
+docking port
+berthing mechanism
+solar array
+radiator
+truss structure
+robotic arm
+canadarm
+life support system
+environmental control
+microgravity research laboratory
+
+# Astronauts
+astronaut
+cosmonaut
+taikonaut
+spationaut
+crew member
+commander
+pilot
+mission specialist
+payload specialist
+flight engineer
+science officer
+spacewalk
+extravehicular activity
+intravehicular activity
+space suit
+pressure suit
+mobility unit
+portable life support system
+helmet
+visor
+gloves
+tether
+safety line
+manned maneuvering unit
+
+# Training
+astronaut training
+simulator
+flight simulator
+mockup trainer
+neutral buoyancy laboratory
+underwater training
+parabolic flight
+zero gravity flight
+vomit comet
+centrifuge training
+survival training
+wilderness survival
+water survival
+mission simulation
+integrated simulation
+emergency procedures
+contingency training
+medical training
+scientific training
+robotics training
+
+# Planetary Missions
+mars mission
+lunar mission
+venus mission
+mercury mission
+jupiter mission
+saturn mission
+uranus mission
+neptune mission
+asteroid mission
+comet mission
+interplanetary mission
+deep space mission
+sample return mission
+orbiter mission
+flyby mission
+impact mission
+penetrator
+lander mission
+rover mission
+atmospheric probe
+
+# Planetary Bodies
+mercury
+venus
+earth
+mars
+jupiter
+saturn
+uranus
+neptune
+pluto
+dwarf planet
+ceres
+eris
+makemake
+haumea
+moon
+luna
+phobos
+deimos
+io
+europa
+ganymede
+callisto
+titan
+enceladus
+mimas
+rhea
+iapetus
+miranda
+triton
+charon
+
+# Small Bodies
+asteroid
+near earth asteroid
+potentially hazardous asteroid
+comet
+short period comet
+long period comet
+meteor
+meteoroid
+meteorite
+bolide
+fireball
+shooting star
+meteor shower
+asteroid belt
+kuiper belt
+oort cloud
+trans neptunian object
+centaur
+trojan asteroid
+
+# Space Science
+astrobiology
+exobiology
+planetary science
+planetology
+cosmology
+astrophysics
+heliophysics
+solar physics
+space weather
+solar wind
+solar flare
+coronal mass ejection
+radiation belt
+van allen belt
+magnetosphere
+ionosphere
+thermosphere
+exosphere
+atmospheric science
+planetary geology
+areology
+selenology
+
+# Telescopes
+hubble space telescope
+james webb space telescope
+chandra observatory
+spitzer space telescope
+kepler space telescope
+tess
+transiting exoplanet survey satellite
+gaia mission
+fermi gamma ray telescope
+compton observatory
+radio telescope
+infrared telescope
+ultraviolet telescope
+optical telescope
+reflecting telescope
+refracting telescope
+
+# Lunar Exploration
+apollo program
+apollo mission
+lunar landing
+moon landing
+first step
+tranquility base
+lunar module
+command module
+service module
+lunar rover
+moon buggy
+lunar sample
+moon rock
+regolith
+mare
+highland
+crater
+rille
+lunar south pole
+lunar gateway
+artemis program
+
+# Mars Exploration
+viking lander
+pathfinder
+sojourner rover
+spirit rover
+opportunity rover
+curiosity rover
+perseverance rover
+ingenuity helicopter
+mars reconnaissance orbiter
+maven
+insight lander
+mars express
+mariner mission
+mars climate orbiter
+mars polar lander
+phoenix lander
+mars sample return
+terraforming
+
+# Satellites
+communications satellite
+relay satellite
+weather satellite
+meteorological satellite
+earth observation satellite
+remote sensing satellite
+reconnaissance satellite
+spy satellite
+navigation satellite
+positioning satellite
+scientific satellite
+technology demonstration satellite
+cubesat
+smallsat
+miniaturized satellite
+constellation
+satellite network
+payload
+instrument
+sensor
+camera
+spectrometer
+radiometer
+altimeter
+radar
+lidar
+
+# Ground Control
+mission control center
+flight control room
+flight director
+capcom
+capsule communicator
+flight dynamics officer
+guidance navigation control
+retrofire officer
+telemetry communications officer
+electrical environmental power systems
+ground controller
+surgeon
+flight activities officer
+payload operations
+tracking station
+deep space network
+ground antenna
+dish
+
+# Space Technology
+heat shield
+thermal protection
+ablative shield
+tiles
+ceramic tiles
+reinforced carbon
+solar panel
+photovoltaic array
+battery
+power system
+fuel cell
+radioisotope thermoelectric generator
+nuclear reactor
+antenna
+communications array
+transponder
+transmitter
+receiver
+avionics
+computer
+guidance system
+star tracker
+sun sensor
+gyroscope
+accelerometer
+reaction wheel
+momentum wheel
+
+# Commercial Space
+commercial spaceflight
+space tourism
+orbital tourism
+suborbital flight
+space hotel
+commercial crew program
+cargo resupply
+commercial launch service
+rideshare mission
+dedicated launch
+satellite deployment
+space manufacturing
+microgravity research
+pharmaceutical research
+materials science
+crystal growth
+protein crystallization
+
+# Future Exploration
+moon base
+lunar colony
+mars colony
+space settlement
+asteroid mining
+resource extraction
+water ice mining
+rare earth elements
+platinum group metals
+helium
+solar power satellite
+space elevator
+orbital ring
+space habitat
+stanford torus
+neill cylinder
+bernal sphere
+generation ship
+interstellar travel
+
+# Space Hazards
+space debris
+orbital debris
+kessler syndrome
+micrometeoroid
+space junk
+defunct satellite
+rocket stage
+collision avoidance
+debris mitigation
+deorbiting
+active debris removal
+radiation exposure
+cosmic rays
+solar radiation
+galactic cosmic radiation
+radiation shielding
+micrometeorite impact
+space weathering
+thermal cycling
+vacuum exposure
+atomic oxygen erosion
+
+# International Cooperation
+international cooperation
+bilateral agreement
+multilateral agreement
+memorandum understanding
+partnership
+collaboration
+joint mission
+cooperative program
+data sharing
+technology transfer
+astronaut exchange
+crew exchange
+visiting astronaut
+payload specialist
+commercial astronaut
+private astronaut
+space treaty
+outer space treaty
+moon agreement
+rescue agreement
+liability convention
+registration convention

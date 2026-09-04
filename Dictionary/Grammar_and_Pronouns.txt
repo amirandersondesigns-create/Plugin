@@ -1,0 +1,481 @@
+# Grammar Terms and Pronouns
+
+# Parts of Speech
+pronoun
+noun
+verb
+adjective
+adverb
+preposition
+conjunction
+interjection
+article
+determiner
+
+# Personal Pronouns
+I
+you
+he
+she
+it
+we
+they
+me
+him
+her
+us
+them
+
+# Possessive Adjectives
+my
+your
+his
+her
+its
+our
+their
+
+# Possessive Pronouns
+mine
+yours
+hers
+ours
+theirs
+
+# Reflexive Pronouns
+myself
+yourself
+himself
+herself
+itself
+ourselves
+yourselves
+themselves
+
+# Demonstrative Pronouns
+this
+that
+these
+those
+
+# Interrogative Pronouns
+who
+whom
+whose
+which
+what
+whoever
+whomever
+whichever
+whatever
+
+# Indefinite Pronouns
+anyone
+anybody
+anything
+someone
+somebody
+something
+everyone
+everybody
+everything
+no one
+nobody
+nothing
+each
+either
+neither
+one
+other
+another
+both
+few
+many
+several
+all
+some
+any
+none
+most
+more
+less
+fewer
+much
+little
+enough
+
+# Articles
+the
+a
+an
+
+# Coordinating Conjunctions
+and
+but
+or
+nor
+for
+yet
+so
+
+# Subordinating Conjunctions
+because
+since
+although
+though
+while
+whereas
+if
+unless
+until
+when
+where
+why
+how
+
+# Conjunctive Adverbs
+however
+therefore
+thus
+hence
+consequently
+moreover
+furthermore
+nevertheless
+nonetheless
+meanwhile
+otherwise
+instead
+rather
+besides
+indeed
+certainly
+surely
+perhaps
+maybe
+possibly
+probably
+definitely
+absolutely
+completely
+entirely
+totally
+fully
+partly
+partially
+slightly
+somewhat
+quite
+very
+extremely
+incredibly
+remarkably
+especially
+particularly
+specifically
+
+# Frequency Adverbs
+generally
+usually
+normally
+typically
+often
+frequently
+sometimes
+occasionally
+rarely
+seldom
+never
+always
+ever
+forever
+still
+yet
+already
+just
+only
+even
+almost
+nearly
+hardly
+barely
+scarcely
+
+# Degree Adverbs
+too
+also
+either
+neither
+both
+all
+some
+any
+none
+every
+each
+such
+so
+thus
+as
+like
+unlike
+than
+
+# Prepositions
+except
+besides
+despite
+during
+throughout
+within
+without
+about
+above
+below
+beneath
+under
+over
+across
+through
+along
+around
+behind
+before
+after
+against
+among
+between
+into
+onto
+upon
+toward
+towards
+up
+down
+in
+out
+on
+off
+at
+by
+with
+from
+to
+
+# Grammatical Terms
+subject
+object
+predicate
+clause
+phrase
+sentence
+paragraph
+sentence fragment
+run-on sentence
+comma splice
+period
+question mark
+exclamation point
+semicolon
+colon
+apostrophe
+quotation marks
+parentheses
+brackets
+dash
+hyphen
+ellipsis
+capitalization
+punctuation
+
+# Verb Tenses
+tense
+past tense
+present tense
+future tense
+perfect tense
+progressive tense
+continuous tense
+simple tense
+conditional tense
+subjunctive mood
+imperative mood
+indicative mood
+infinitive
+gerund
+participle
+active voice
+passive voice
+direct speech
+indirect speech
+transitive verb
+intransitive verb
+linking verb
+auxiliary verb
+modal verb
+
+# Agreement
+singular
+plural
+subject-verb agreement
+pronoun-antecedent agreement
+antecedent
+pronoun reference
+modifier
+misplaced modifier
+dangling modifier
+parallel structure
+
+# Linguistic Fields
+syntax
+grammar
+semantics
+morphology
+phonology
+etymology
+diction
+vocabulary
+lexicon
+idiom
+colloquialism
+slang
+jargon
+register
+formal
+informal
+standard
+nonstandard
+dialect
+accent
+pronunciation
+articulation
+enunciation
+intonation
+stress
+emphasis
+rhythm
+cadence
+tone
+pitch
+volume
+tempo
+pace
+inflection
+modulation
+expression
+
+# Writing Qualities
+clarity
+coherence
+cohesion
+unity
+organization
+development
+support
+evidence
+reasoning
+logic
+argument
+claim
+thesis
+topic sentence
+main idea
+supporting detail
+example
+illustration
+explanation
+description
+narration
+exposition
+persuasion
+argumentation
+analysis
+synthesis
+evaluation
+interpretation
+summary
+paraphrase
+quote
+citation
+reference
+source
+bibliography
+works cited
+footnote
+endnote
+
+# Academic Integrity
+plagiarism
+copyright
+fair use
+intellectual property
+originality
+authenticity
+credibility
+reliability
+validity
+accuracy
+precision
+clarity
+conciseness
+brevity
+wordiness
+redundancy
+repetition
+variation
+diversity
+consistency
+uniformity
+style
+tone
+voice
+mood
+atmosphere
+
+# Literary Terms
+setting
+character
+plot
+conflict
+resolution
+theme
+symbol
+metaphor
+simile
+personification
+alliteration
+assonance
+consonance
+onomatopoeia
+hyperbole
+understatement
+irony
+satire
+parody
+allegory
+foreshadowing
+flashback
+point of view
+first person
+second person
+third person
+omniscient narrator
+limited narrator
+objective narrator
+narrator
+protagonist
+antagonist
+foil
+dynamic character
+static character
+round character
+flat character
+
+# Plot Structure
+setting
+exposition
+rising action
+climax
+falling action
+resolution
+denouement

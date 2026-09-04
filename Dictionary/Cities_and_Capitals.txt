@@ -1,0 +1,521 @@
+# Cities and Capitals Dictionary
+# Format: One city/capital name per line
+# Multi-word names should be on a single line
+
+# World Capitals - A
+Abuja
+Accra
+Addis Ababa
+Algiers
+Amman
+Amsterdam
+Ankara
+Antananarivo
+Apia
+Ashgabat
+Asmara
+Astana
+Asuncion
+Athens
+
+# World Capitals - B
+Baghdad
+Baku
+Bamako
+Bandar Seri Begawan
+Bangui
+Banjul
+Basseterre
+Beijing
+Beirut
+Belgrade
+Belmopan
+Berlin
+Bern
+Bishkek
+Bissau
+Bloemfontein
+Bogota
+Brasilia
+Bratislava
+Brazzaville
+Bridgetown
+Brussels
+Bucharest
+Budapest
+Buenos Aires
+
+# World Capitals - C
+Cairo
+Canberra
+Cape Town
+Caracas
+Castries
+Colombo
+Conakry
+Copenhagen
+
+# World Capitals - D
+Dakar
+Damascus
+Dar es Salaam
+Dhaka
+Dili
+Djibouti
+Dodoma
+Doha
+Dubai
+Dublin
+Dushanbe
+
+# World Capitals - E
+Edinburgh
+
+# World Capitals - F
+Freetown
+Funafuti
+
+# World Capitals - G
+Gaborone
+Georgetown
+Gitega
+Guatemala City
+
+# World Capitals - H
+Hanoi
+Harare
+Havana
+Helsinki
+Honiara
+
+# World Capitals - I
+Islamabad
+Istanbul
+
+# World Capitals - J
+Jakarta
+Jerusalem
+Juba
+
+# World Capitals - K
+Kabul
+Kampala
+Kathmandu
+Khartoum
+Kiev
+Kyiv
+Kigali
+Kingston
+Kingstown
+Kinshasa
+Kuala Lumpur
+Kuwait City
+
+# World Capitals - L
+Lima
+Lisbon
+Ljubljana
+Lome
+London
+Luanda
+Lusaka
+Luxembourg
+
+# World Capitals - M
+Madrid
+Majuro
+Malabo
+Male
+Managua
+Manama
+Manila
+Maputo
+Maseru
+Mexico City
+Minsk
+Mogadishu
+Monaco
+Monrovia
+Montevideo
+Moroni
+Moscow
+Muscat
+
+# World Capitals - N
+Nairobi
+Nassau
+Naypyidaw
+Ndjamena
+New Delhi
+Niamey
+Nicosia
+Nouakchott
+Nukualofa
+
+# World Capitals - O
+Oslo
+Ottawa
+Ouagadougou
+
+# World Capitals - P
+Palikir
+Panama City
+Paramaribo
+Paris
+Phnom Penh
+Podgorica
+Port Louis
+Port Moresby
+Port Vila
+Port au Prince
+Porto Novo
+Prague
+Praia
+Pretoria
+Pristina
+Pyongyang
+
+# World Capitals - Q
+Quito
+
+# World Capitals - R
+Rabat
+Reykjavik
+Riga
+Riyadh
+Rome
+Roseau
+
+# World Capitals - S
+San Jose
+San Marino
+San Salvador
+Sanaa
+Santiago
+Santo Domingo
+Sao Tome
+Sarajevo
+Seoul
+Singapore
+Skopje
+Sofia
+Stockholm
+Sucre
+Suva
+
+# World Capitals - T
+Taipei
+Tallinn
+Tarawa
+Tashkent
+Tbilisi
+Tegucigalpa
+Tehran
+Thimphu
+Tirana
+Tokyo
+Tripoli
+Tunis
+
+# World Capitals - U
+Ulaanbaatar
+
+# World Capitals - V
+Vaduz
+Valletta
+Vatican City
+Victoria
+Vienna
+Vientiane
+Vilnius
+
+# World Capitals - W
+Warsaw
+Washington
+Wellington
+Windhoek
+
+# World Capitals - Y
+Yamoussoukro
+Yangon
+Yaounde
+Yaren
+Yerevan
+
+# World Capitals - Z
+Zagreb
+
+# United States Major Cities
+New York
+Los Angeles
+Chicago
+Houston
+Phoenix
+Philadelphia
+San Antonio
+San Diego
+Dallas
+San Jose
+Austin
+Jacksonville
+Fort Worth
+Columbus
+Charlotte
+San Francisco
+Indianapolis
+Seattle
+Denver
+Boston
+Nashville
+Detroit
+Memphis
+Portland
+Las Vegas
+Milwaukee
+Baltimore
+Albuquerque
+Tucson
+Fresno
+Sacramento
+Mesa
+Kansas City
+Atlanta
+Miami
+Cleveland
+Tampa
+Orlando
+Minneapolis
+Saint Paul
+Tulsa
+Raleigh
+Omaha
+Colorado Springs
+Virginia Beach
+Oakland
+Arlington
+Wichita
+Bakersfield
+Anaheim
+Honolulu
+Riverside
+Corpus Christi
+Lexington
+Henderson
+Stockton
+Saint Louis
+Cincinnati
+Pittsburgh
+Greensboro
+Anchorage
+Plano
+Lincoln
+Newark
+Toledo
+Chula Vista
+Irvine
+Fort Wayne
+Jersey City
+Durham
+Laredo
+Buffalo
+Madison
+Lubbock
+Chandler
+Scottsdale
+Glendale
+Reno
+Baton Rouge
+Richmond
+Boise
+Spokane
+Des Moines
+Tacoma
+
+# United Kingdom Cities
+London
+Birmingham
+Manchester
+Glasgow
+Liverpool
+Leeds
+Sheffield
+Edinburgh
+Bristol
+Cardiff
+Belfast
+Leicester
+Coventry
+Bradford
+Nottingham
+Newcastle
+Brighton
+Hull
+Plymouth
+Stoke
+Wolverhampton
+Southampton
+Derby
+Portsmouth
+York
+Oxford
+Cambridge
+Norwich
+Exeter
+Bath
+Canterbury
+Chester
+
+# European Cities
+Paris
+Marseille
+Lyon
+Toulouse
+Nice
+Nantes
+Strasbourg
+Montpellier
+Bordeaux
+Lille
+Rennes
+Reims
+Berlin
+Hamburg
+Munich
+Cologne
+Frankfurt
+Stuttgart
+Dusseldorf
+Dortmund
+Essen
+Leipzig
+Bremen
+Dresden
+Hannover
+Nuremberg
+Rome
+Milan
+Naples
+Turin
+Palermo
+Genoa
+Bologna
+Florence
+Bari
+Catania
+Venice
+Verona
+Barcelona
+Madrid
+Valencia
+Seville
+Zaragoza
+Malaga
+Murcia
+Palma
+Bilbao
+Alicante
+Cordoba
+Athens
+Thessaloniki
+Amsterdam
+Rotterdam
+The Hague
+Utrecht
+Brussels
+Antwerp
+Zurich
+Geneva
+Basel
+Vienna
+Stockholm
+Copenhagen
+Oslo
+Dublin
+Prague
+Budapest
+Warsaw
+Lisbon
+Porto
+
+# Asian Cities
+Tokyo
+Yokohama
+Osaka
+Nagoya
+Sapporo
+Kobe
+Kyoto
+Fukuoka
+Shanghai
+Beijing
+Guangzhou
+Shenzhen
+Chengdu
+Tianjin
+Wuhan
+Chongqing
+Nanjing
+Hangzhou
+Xian
+Seoul
+Busan
+Incheon
+Mumbai
+Delhi
+Bangalore
+Chennai
+Kolkata
+Hyderabad
+Pune
+Ahmedabad
+Karachi
+Lahore
+Manila
+Bangkok
+Jakarta
+Surabaya
+Singapore
+Kuala Lumpur
+Ho Chi Minh City
+Hanoi
+Taipei
+Hong Kong
+
+# African Cities
+Cairo
+Lagos
+Kinshasa
+Johannesburg
+Nairobi
+Casablanca
+Cape Town
+Durban
+Alexandria
+Addis Ababa
+Algiers
+Khartoum
+Luanda
+Dar es Salaam
+Abidjan
+Kano
+Ibadan
+Dakar
+Accra
+
+# South American Cities
+Sao Paulo
+Rio de Janeiro
+Buenos Aires
+Lima
+Bogota
+Santiago
+Caracas
+Belo Horizonte
+Brasilia
+Medellin
+Cali
+Guayaquil
+Quito
+Montevideo
+Asuncion
+La Paz

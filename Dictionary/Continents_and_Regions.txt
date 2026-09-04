@@ -1,0 +1,500 @@
+# Continents and Regions
+
+# Continents
+Africa
+Antarctica
+Asia
+Europe
+North America
+South America
+Oceania
+Australia
+
+# Polar Regions
+Arctic
+Antarctic
+
+# Major Deserts
+Sahara
+Kalahari
+Gobi
+Arabian Desert
+Mojave
+Sonoran
+Chihuahuan
+Atacama
+Patagonian Desert
+Great Basin
+Colorado Plateau
+Thar Desert
+Taklamakan
+Karakum
+Kyzylkum
+Namib
+Negev
+Simpson Desert
+Tanami Desert
+Great Victoria Desert
+Strzelecki Desert
+Sturt Stony Desert
+Gibson Desert
+Painted Desert
+
+# Major Mountain Ranges
+Himalaya
+Himalayas
+Andes
+Rocky Mountains
+Rockies
+Alps
+Atlas Mountains
+Pyrenees
+Carpathian Mountains
+Caucasus Mountains
+Ural Mountains
+Urals
+Appalachian Mountains
+Sierra Nevada
+Cascade Range
+Coast Mountains
+Brooks Range
+Alaska Range
+Chugach Mountains
+Wrangell-Saint Elias
+Aleutian Range
+Kunlun Mountains
+Tian Shan
+Altai Mountains
+Pamir Mountains
+Hindu Kush
+Karakoram
+Zagros Mountains
+Elburz Mountains
+Dinaric Alps
+Balkan Mountains
+Pennines
+Grampian Mountains
+Cambrian Mountains
+Snowdonia
+Scottish Highlands
+Scottish Lowlands
+Pennine Chain
+Cotswolds
+Chiltern Hills
+Mendip Hills
+Quantock Hills
+Exmoor
+Dartmoor
+Bodmin Moor
+Brecon Beacons
+Cairngorms
+Scandinavian Mountains
+Kjølen Mountains
+Scandes
+Dolomites
+Apennines
+Pindus Mountains
+Rhodope Mountains
+Rila Mountains
+Pirin Mountains
+Carpathians
+Tatra Mountains
+Sudetes
+Ore Mountains
+Harz Mountains
+Black Forest
+Vosges Mountains
+Jura Mountains
+Massif Central
+Cévennes
+Ardennes
+Eifel
+
+# German Regions
+Taunus
+Spessart
+Odenwald
+Fichtelgebirge
+Erzgebirge
+Bohemian Forest
+Bavarian Forest
+Swabian Jura
+Franconian Jura
+Thuringian Forest
+Rhön
+Vogelsberg
+Westerwald
+Rothaargebirge
+Sauerland
+Teutoburg Forest
+Weserbergland
+Bergisches Land
+Siegerland
+Kellerwald
+Habichtswald
+Kaufunger Wald
+Meißner
+Solling
+Bramwald
+Reinhardswald
+Eggegebirge
+Münsterland Basin
+Emsland
+Oldenburg Geest
+Lüneburg Heath
+Fläming
+Lusatian Highlands
+Zittau Mountains
+Lausitzer Bergland
+Oberlausitz
+Niederlausitz
+Spreewald
+Barnim
+Teltow
+Uckermark
+Schorfheide
+Ruppiner Land
+Havelland
+Prignitz
+Altmark
+Börde
+Magdeburg Börde
+
+# Central European Regions
+Thuringia
+Franconia
+Vogtland
+Saxony
+Bohemia
+Moravia
+Silesia
+Pomerania
+Masuria
+Warmia
+Sambia
+Kulmerland
+Dobrzyn
+Kociewie
+Kashubia
+Powiśle
+Kujawy
+Kuyavia
+Pałuki
+Krajna
+Bory Tucholskie
+Żuławy
+Vistula Delta
+Nogat Delta
+Elbląg
+Vistula Lagoon
+Curonian Spit
+Curonian Lagoon
+Samogitia
+Aukštaitija
+Dzūkija
+Suvalkija
+Sūduva
+
+# Historical Lithuanian Regions
+Lithuania Minor
+Sudovia
+Yotvingians
+Nadrovia
+Scalovia
+Galindia
+Barta
+Notangia
+Pomesania
+Pogesania
+Warmia
+
+# Polish Regions
+Prussia
+Culmerland
+Lubawa
+Michałowo
+Działdowo
+Nidzica
+Brodnica
+Chełmno
+Toruń
+Bydgoszcz
+Inowrocław
+Gniezno
+Poznań
+Wielkopolska
+Greater Poland
+Mazovia
+Podlaskie
+Podlasie
+Lubelskie
+Lublin Voivodeship
+Świętokrzyskie
+Kielce
+Małopolska
+Lesser Poland
+Kraków
+Silesian Voivodeship
+Katowice
+Opole
+Opolskie
+Zachodniopomorskie
+West Pomeranian
+Szczecin
+Lubuskie
+Gorzów Wielkopolski
+Zielona Góra
+Dolnośląskie
+Lower Silesian
+Wrocław
+Łódzkie
+Łódź
+Kujawsko-Pomorskie
+Warmian-Masurian
+Olsztyn
+Podkarpackie
+Subcarpathian
+Rzeszów
+
+# Balkan Regions
+Balkans
+Slovenia
+Croatia
+Dalmatia
+Istria
+Slavonia
+Vojvodina
+Banat
+Bačka
+Baranya
+Syrmia
+Srem
+Transylvania
+Wallachia
+Muntenia
+Oltenia
+Moldavia
+Moldova
+Bessarabia
+Bukovina
+Dobruja
+Dobrogea
+Crimea
+Taurida
+
+# Caucasus Regions
+Kuban
+Caucasia
+Circassia
+Dagestan
+Chechnya
+Ingushetia
+North Ossetia
+South Ossetia
+Kabardino-Balkaria
+Karachay-Cherkessia
+Adygea
+Abkhazia
+Adjara
+Guria
+Imereti
+Racha-Lechkhumi
+Kvemo Svaneti
+Samegrelo-Zemo Svaneti
+Mingrelia
+Samtskhe-Javakheti
+Kakheti
+Kartli
+Shida Kartli
+Kvemo Kartli
+Mtskheta-Mtianeti
+Pshavi
+Khevsureti
+Tusheti
+Khevi
+Meskheti
+
+# Armenia and Azerbaijan
+Armenia
+Azerbaijan
+Nakhchivan
+Nagorno-Karabakh
+Artsakh
+Syunik
+Zangezur
+Tavush
+Lori
+Shirak
+Aragatsotn
+Armavir
+Ararat
+Vayots Dzor
+Gegharkunik
+Kotayk
+
+# Middle Eastern Regions
+Persia
+Khuzestan
+Fars
+Kerman
+Yazd
+Isfahan
+Khorasan
+Razavi Khorasan
+Gilan
+Mazandaran
+Golestan
+Sistan and Baluchistan
+Kurdistan
+Kermanshah
+Hamadan
+Lorestan
+Ilam
+Bushehr
+Hormozgan
+Ardabil
+Zanjan
+Qazvin
+Qom
+Markazi
+Chaharmahal and Bakhtiari
+Kohgiluyeh and Boyer-Ahmad
+Anatolia
+Thrace
+Marmara
+Aegean Region
+Mediterranean Region
+Central Anatolia
+Eastern Anatolia
+Southeastern Anatolia
+Levant
+Mesopotamia
+Phoenicia
+Palestine
+Judea
+Samaria
+Galilee
+Golan Heights
+Negev Desert
+Sinai Peninsula
+Hejaz
+Nejd
+Najd
+Asir
+Tihamah
+Rub al Khali
+Empty Quarter
+Nafud
+Dahna
+Dhofar
+Oman
+Hadhramaut
+Yemen
+Mahra
+Socotra
+Arabia Felix
+
+# Ancient Regions
+Petra
+Nabatea
+Palmyra
+Tadmur
+Hatra
+Dura-Europos
+Antioch
+Ephesus
+Smyrna
+Pergamon
+Miletus
+Halicarnassus
+Sardis
+Lydia
+Phrygia
+Lycia
+Pamphylia
+Cilicia
+Cappadocia
+Pontus
+Bithynia
+Galatia
+Paphlagonia
+Colchis
+Iberia
+Caucasian Albania
+Sarmatia
+Scythia
+Bactria
+Sogdia
+Transoxiana
+Khwarazm
+Chorasmia
+Khoresmia
+Fergana Valley
+Farghana
+Samarkand
+Bukhara
+Tashkent
+Merv
+Herat
+Balkh
+Kabul
+Gandhara
+
+# Indian Subcontinent Regions
+Kashmir
+Punjab
+Sindh
+Gujarat
+Rajasthan
+Marwar
+Mewar
+Malwa
+Bundelkhand
+Awadh
+Oudh
+Rohilkhand
+Bihar
+Bengal
+Orissa
+Odisha
+Assam
+Manipur
+Nagaland
+Mizoram
+Tripura
+Meghalaya
+Arunachal Pradesh
+Sikkim
+Bhutan
+Himachal Pradesh
+Uttarakhand
+Uttaranchal
+Haryana
+Uttar Pradesh
+Madhya Pradesh
+Chhattisgarh
+Jharkhand
+Andhra Pradesh
+Telangana
+Karnataka
+Mysore
+Kerala
+Malabar
+Travancore
+Cochin
+Tamil Nadu
+Madras
+Pondicherry
+Puducherry
+Maharashtra
+Bombay
+Konkan
+Vidarbha
+Marathwada
+Khandesh
+Goa
+Daman and Diu
+Dadra and Nagar Haveli
+Lakshadweep
+Laccadive Islands
+Andaman and Nicobar Islands

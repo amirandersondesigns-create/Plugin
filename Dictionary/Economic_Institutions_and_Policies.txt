@@ -1,0 +1,560 @@
+# Economic Institutions and Policies
+
+# Basic Economic Terms
+economy
+economics
+macroeconomics
+microeconomics
+economic theory
+economic policy
+fiscal policy
+monetary policy
+trade policy
+industrial policy
+agricultural policy
+labor policy
+tax policy
+budget policy
+government spending
+austerity
+stimulus
+quantitative easing
+tapering
+forward guidance
+interest rate
+open market operations
+discount window
+
+# Central Banks
+central bank
+Federal Reserve
+Bank of England
+European Central Bank
+ECB
+People's Bank of China
+PBOC
+Bank of Japan
+Deutsche Bundesbank
+Swiss National Bank
+Reserve Bank of Australia
+RBA
+Reserve Bank of India
+RBI
+Bank of Canada
+Riksbank
+Norges Bank
+Banxico
+central bank governor
+central bank chairman
+central bank president
+board of governors
+Federal Open Market Committee
+FOMC
+Monetary Policy Committee
+MPC
+
+# International Financial Institutions
+International Monetary Fund
+IMF
+World Bank
+World Bank Group
+International Bank for Reconstruction and Development
+IBRD
+International Development Association
+IDA
+International Finance Corporation
+IFC
+Multilateral Investment Guarantee Agency
+MIGA
+International Centre for Settlement of Investment Disputes
+ICSID
+Asian Development Bank
+ADB
+African Development Bank
+AfDB
+Inter-American Development Bank
+IDB
+European Bank for Reconstruction and Development
+EBRD
+Islamic Development Bank
+New Development Bank
+NDB
+BRICS Bank
+Asian Infrastructure Investment Bank
+AIIB
+Caribbean Development Bank
+CDB
+Nordic Investment Bank
+NIB
+European Investment Bank
+EIB
+Bretton Woods Institution
+Special Drawing Right
+SDR
+conditionality
+Structural Adjustment Program
+SAP
+Washington Consensus
+
+# Economic Systems
+neoliberalism
+free market capitalism
+mixed economy
+command economy
+planned economy
+laissez-faire
+Keynesian economics
+supply-side economics
+monetarism
+Austrian School
+Chicago School
+classical economics
+behavioral economics
+institutional economics
+environmental economics
+ecological economics
+welfare economics
+public economics
+health economics
+urban economics
+regional economics
+
+# Trade Theory
+comparative advantage
+absolute advantage
+Heckscher-Ohlin Model
+Ricardo
+Ricardian theory
+terms of trade
+balance of trade
+trade surplus
+trade deficit
+current account
+capital account
+balance of payments
+exchange rate
+fixed exchange rate
+floating exchange rate
+managed float
+currency peg
+dollarization
+exchange rate mechanism
+ERM
+appreciation
+depreciation
+devaluation
+revaluation
+foreign exchange intervention
+foreign exchange
+forex
+foreign exchange reserves
+
+# Sovereign Wealth Funds
+sovereign wealth fund
+SWF
+stabilization fund
+future generations fund
+strategic investment fund
+savings fund
+Abu Dhabi Investment Authority
+Kuwait Investment Authority
+GIC Private Limited
+Temasek Holdings
+Norway Government Pension Fund Global
+Alaska Permanent Fund
+Texas Permanent School Fund
+
+# Trade Policy Tools
+tariff
+import tariff
+export tariff
+ad valorem tariff
+specific tariff
+compound tariff
+protective tariff
+revenue tariff
+prohibitive tariff
+quota
+voluntary export restraint
+VER
+orderly marketing arrangement
+OMA
+non-tariff barrier
+NTB
+technical barrier to trade
+TBT
+sanitary and phytosanitary measure
+SPS
+import license
+export license
+local content requirement
+subsidy
+production subsidy
+export subsidy
+consumption subsidy
+trade remedy
+antidumping duty
+countervailing duty
+safeguard measure
+dumping
+predatory pricing
+cross-subsidization
+
+# Trade Agreements
+trade agreement
+free trade agreement
+FTA
+preferential trade agreement
+PTA
+customs union
+common market
+economic union
+monetary union
+currency bloc
+regional trade agreement
+RTA
+bilateral trade agreement
+
+# Major Trade Blocs
+North American Free Trade Agreement
+NAFTA
+United States-Mexico-Canada Agreement
+USMCA
+European Union
+EU
+European Economic Community
+EEC
+European Coal and Steel Community
+ECSC
+Eurozone
+Euro Area
+Single European Act
+Maastricht Treaty
+Treaty of Lisbon
+Schengen Agreement
+Association of Southeast Asian Nations
+ASEAN
+ASEAN Free Trade Area
+AFTA
+Regional Comprehensive Economic Partnership
+RCEP
+Comprehensive and Progressive Trans-Pacific Partnership
+CPTPP
+Trans-Pacific Partnership
+TPP
+Transatlantic Trade and Investment Partnership
+TTIP
+Trade in Services Agreement
+TiSA
+African Continental Free Trade Area
+AfCFTA
+Mercosur
+Southern Common Market
+Andean Community
+CAN
+Caribbean Community
+CARICOM
+Central American Integration System
+SICA
+Pacific Alliance
+Gulf Cooperation Council
+GCC
+Eurasian Economic Union
+EAEU
+Commonwealth of Independent States
+CIS
+South Asian Association for Regional Cooperation
+SAARC
+Bay of Bengal Initiative for Multi-Sectoral Economic Cooperation
+Economic Cooperation Organization
+ECO
+
+# World Trade Organization
+World Trade Organization
+WTO
+General Agreement on Tariffs and Trade
+GATT
+Uruguay Round
+Doha Round
+WTO Ministerial Conference
+Dispute Settlement Body
+DSB
+Trade Policy Review Mechanism
+TPRM
+most-favored-nation
+MFN
+national treatment
+transparency principle
+reciprocity
+trade liberalization
+market access
+tariff reduction
+tariff elimination
+rules of origin
+cumulation
+certificate of origin
+
+# WTO Agreements
+Agreement on Trade-Related Aspects of Intellectual Property Rights
+TRIPS
+Agreement on Agriculture
+AoA
+General Agreement on Trade in Services
+GATS
+mode of supply
+cross-border supply
+consumption abroad
+commercial presence
+presence of natural persons
+Trade Facilitation Agreement
+TFA
+customs modernization
+automated clearance
+risk management
+post-clearance audit
+authorized economic operator
+AEO
+trusted trader program
+pre-arrival processing
+green lane
+expedited clearance
+
+# Special Economic Zones
+special economic zone
+SEZ
+export processing zone
+EPZ
+free trade zone
+industrial park
+technology park
+science park
+business park
+logistics park
+port authority
+bonded warehouse
+free zone
+enterprise zone
+empowerment zone
+opportunity zone
+tax haven
+offshore financial center
+international financial center
+tax competition
+base erosion and profit shifting
+BEPS
+transfer pricing
+thin capitalization
+treaty shopping
+controlled foreign corporation
+CFC
+passive foreign investment company
+PFIC
+
+# Investment Treaties
+double taxation treaty
+bilateral investment treaty
+BIT
+investment protection
+investor-state dispute settlement
+ISDS
+expropriation
+nationalization
+fair and equitable treatment
+full protection and security
+minimum standard of treatment
+umbrella clause
+grandfather clause
+sunset clause
+survival clause
+denial of benefits
+essential security exception
+public order exception
+prudential carve-out
+cultural exception
+
+# Competition Law
+antitrust law
+competition law
+antimonopoly law
+Sherman Act
+Clayton Act
+Federal Trade Commission Act
+Robinson-Patman Act
+Hart-Scott-Rodino Act
+merger control
+premerger notification
+market concentration
+Herfindahl-Hirschman Index
+HHI
+concentration ratio
+market power
+monopoly power
+dominant position
+substantial lessening of competition
+SLC
+significant impediment to effective competition
+SIEC
+abuse of dominance
+exclusionary conduct
+exploitative conduct
+price discrimination
+exclusive dealing
+tying
+bundling
+refusal to deal
+essential facility doctrine
+margin squeeze
+fidelity rebate
+loyalty discount
+quantity discount
+target rebate
+retroactive rebate
+market foreclosure
+raising rival costs
+entry deterrence
+vertical restraint
+horizontal restraint
+resale price maintenance
+RPM
+price fixing
+bid rigging
+market allocation
+customer allocation
+territorial allocation
+output restriction
+cartel
+hard-core cartel
+leniency program
+immunity program
+whistleblower
+dawn raid
+unannounced inspection
+statement of objections
+commitment decision
+infringement decision
+behavioral remedy
+structural remedy
+divestiture
+interoperability
+competition advocacy
+market study
+sector inquiry
+
+# Consumer Protection
+consumer protection
+unfair trade practice
+deceptive practice
+false advertising
+misleading advertising
+bait and switch
+pyramid scheme
+Ponzi scheme
+multi-level marketing
+MLM
+direct selling
+network marketing
+product safety
+product liability
+strict liability
+negligence
+breach of warranty
+express warranty
+implied warranty
+warranty of merchantability
+warranty of fitness for particular purpose
+design defect
+manufacturing defect
+warning defect
+failure to warn
+consumer rights
+right to information
+right to choose
+right to be heard
+right to refund
+right to replacement
+right to repair
+rescission
+revocation of acceptance
+cooling-off period
+lemon law
+Magnuson-Moss Warranty Act
+Truth in Lending Act
+TILA
+Fair Credit Reporting Act
+FCRA
+Fair Debt Collection Practices Act
+FDCPA
+Electronic Fund Transfer Act
+EFTA
+Equal Credit Opportunity Act
+ECOA
+Home Mortgage Disclosure Act
+HMDA
+Real Estate Settlement Procedures Act
+RESPA
+Credit CARD Act
+Dodd-Frank Act
+Wall Street Reform Act
+Consumer Financial Protection Bureau
+CFPB
+
+# Financial Regulation
+financial regulation
+microprudential regulation
+macroprudential regulation
+Basel Accord
+Basel I
+Basel II
+Basel III
+Basel IV
+capital adequacy
+capital adequacy ratio
+CAR
+tier 1 capital
+tier 2 capital
+risk-weighted asset
+RWA
+credit risk
+market risk
+operational risk
+leverage ratio
+liquidity coverage ratio
+LCR
+net stable funding ratio
+NSFR
+systemically important financial institution
+SIFI
+systemically important bank
+SIB
+global systemically important bank
+G-SIB
+domestic systemically important bank
+D-SIB
+capital surcharge
+counter-cyclical capital buffer
+stress test
+scenario analysis
+Comprehensive Capital Analysis and Review
+CCAR
+supervisory stress test
+macroeconomic scenario
+baseline scenario
+adverse scenario
+severely adverse scenario
+resolution planning
+living will
+orderly liquidation authority
+OLA
+single point of entry
+SPOE
+multiple point of entry
+MPOE
+bail-in
+creditor bail-in
+taxpayer bail-in
+gone-concern
+loss-absorbing capacity
+total loss-absorbing capacity
+TLAC
+minimum requirement for own funds and eligible liabilities
+MREL

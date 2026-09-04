@@ -1,0 +1,827 @@
+# Food and Agriculture Dictionary
+
+# Agriculture Basics
+farming
+cultivation
+crop
+harvest
+plant
+seed
+
+# Grains and Cereals
+grain
+wheat
+rice
+corn
+maize
+barley
+oats
+rye
+sorghum
+millet
+quinoa
+amaranth
+buckwheat
+teff
+spelt
+farro
+kamut
+triticale
+couscous
+bulgur
+semolina
+flour
+bread
+pasta
+noodle
+cereal
+porridge
+oatmeal
+granola
+muesli
+
+# Vegetables and Legumes
+vegetable
+fruit
+legume
+bean
+pea
+lentil
+chickpea
+garbanzo
+soybean
+kidney bean
+black bean
+pinto bean
+navy bean
+lima bean
+cannellini bean
+fava bean
+broad bean
+mung bean
+adzuki bean
+green bean
+string bean
+snap bean
+wax bean
+runner bean
+edamame
+tofu
+tempeh
+soy milk
+soy sauce
+miso
+natto
+
+# Nuts and Seeds
+peanut
+groundnut
+almond
+walnut
+cashew
+pistachio
+hazelnut
+pecan
+macadamia
+brazil nut
+pine nut
+chestnut
+acorn
+coconut
+sunflower seed
+pumpkin seed
+sesame seed
+flax seed
+linseed
+chia seed
+hemp seed
+poppy seed
+caraway seed
+fennel seed
+coriander seed
+cumin seed
+mustard seed
+celery seed
+dill seed
+anise seed
+fenugreek seed
+cardamom
+
+# Common Vegetables
+tomato
+potato
+onion
+garlic
+carrot
+lettuce
+cabbage
+broccoli
+cauliflower
+brussels sprout
+kale
+collard greens
+spinach
+arugula
+rocket
+watercress
+endive
+escarole
+radicchio
+chard
+swiss chard
+beet
+turnip
+bok choy
+napa cabbage
+chinese cabbage
+asparagus
+artichoke
+leek
+scallion
+spring onion
+shallot
+chive
+ramp
+wild leek
+kohlrabi
+radish
+rutabaga
+swede
+parsnip
+beetroot
+daikon
+horseradish
+ginger
+turmeric
+galangal
+wasabi
+
+# Peppers
+pepper
+bell pepper
+sweet pepper
+hot pepper
+chili pepper
+jalapeno
+serrano
+habanero
+scotch bonnet
+ghost pepper
+carolina reaper
+poblano
+anaheim
+banana pepper
+pepperoncini
+cayenne
+paprika
+pimiento
+pimento
+
+# Squash and Gourds
+eggplant
+aubergine
+zucchini
+courgette
+squash
+acorn squash
+butternut squash
+spaghetti squash
+delicata squash
+kabocha squash
+hubbard squash
+cucumber
+pickle
+gherkin
+cornichon
+okra
+lady finger
+bitter melon
+gourd
+chayote
+bottle gourd
+ridge gourd
+snake gourd
+sponge gourd
+luffa
+
+# Root Vegetables
+taro
+yam
+cassava
+manioc
+yuca
+plantain
+
+# Citrus Fruits
+apple
+orange
+lemon
+lime
+grapefruit
+tangerine
+mandarin
+clementine
+satsuma
+kumquat
+pomelo
+bergamot
+yuzu
+citron
+key lime
+persian lime
+meyer lemon
+blood orange
+navel orange
+valencia orange
+
+# Stone Fruits
+pear
+peach
+plum
+apricot
+nectarine
+cherry
+
+# Berries
+strawberry
+raspberry
+blackberry
+blueberry
+cranberry
+gooseberry
+currant
+elderberry
+mulberry
+boysenberry
+loganberry
+huckleberry
+lingonberry
+cloudberry
+bilberry
+whortleberry
+
+# Grapes and Melons
+grape
+raisin
+sultana
+wine grape
+table grape
+concord grape
+muscadine
+watermelon
+cantaloupe
+honeydew
+muskmelon
+casaba melon
+crenshaw melon
+santa claus melon
+
+# Tropical Fruits
+mango
+papaya
+pineapple
+guava
+passionfruit
+dragonfruit
+pitaya
+lychee
+litchi
+longan
+rambutan
+mangosteen
+durian
+jackfruit
+breadfruit
+starfruit
+carambola
+persimmon
+pomegranate
+fig
+date
+kiwi
+kiwifruit
+quince
+medlar
+loquat
+feijoa
+cherimoya
+custard apple
+soursop
+pawpaw
+tamarind
+jujube
+acai berry
+goji berry
+wolfberry
+noni
+
+# Chocolate and Coffee
+cacao
+cocoa
+chocolate
+carob
+coffee
+tea
+green tea
+black tea
+oolong
+white tea
+herbal tea
+tisane
+chamomile
+peppermint
+spearmint
+rooibos
+yerba mate
+matcha
+espresso
+cappuccino
+latte
+macchiato
+americano
+mocha
+affogato
+ristretto
+lungo
+cortado
+flat white
+
+# Sweeteners
+sugar
+white sugar
+brown sugar
+cane sugar
+turbinado
+demerara
+muscovado
+raw sugar
+powdered sugar
+confectioners sugar
+icing sugar
+granulated sugar
+superfine sugar
+caster sugar
+pearl sugar
+sanding sugar
+honey
+maple syrup
+molasses
+treacle
+golden syrup
+agave nectar
+stevia
+aspartame
+saccharin
+sucralose
+splenda
+sweet and low
+equal
+truvia
+monk fruit sweetener
+xylitol
+erythritol
+sorbitol
+mannitol
+maltitol
+isomalt
+lactitol
+
+# Salt and Seasonings
+salt
+sea salt
+kosher salt
+rock salt
+himalayan pink salt
+celtic salt
+fleur de sel
+flake salt
+smoked salt
+kala namak
+seasoning
+spice
+herb
+
+# Fresh Herbs
+basil
+oregano
+thyme
+rosemary
+sage
+parsley
+cilantro
+coriander
+mint
+tarragon
+chervil
+marjoram
+savory
+bay leaf
+curry leaf
+epazote
+shiso
+perilla
+lemongrass
+kaffir lime leaf
+vietnamese coriander
+culantro
+long coriander
+
+# Spices
+grains of paradise
+cinnamon
+cassia
+clove
+nutmeg
+mace
+allspice
+star anise
+vanilla
+saffron
+nigella
+ajwain
+carom seed
+asafoetida
+hing
+sumac
+zaatar
+dukkah
+baharat
+ras el hanout
+berbere
+harissa
+garam masala
+curry powder
+chipotle
+adobo
+sazon
+sofrito
+recaito
+mirepoix
+holy trinity
+bouquet garni
+fines herbes
+herbes de provence
+italian seasoning
+poultry seasoning
+pumpkin pie spice
+five spice
+panch phoron
+
+# Meat and Poultry
+meat
+beef
+pork
+lamb
+mutton
+goat
+veal
+venison
+bison
+buffalo
+elk
+wild boar
+rabbit
+hare
+chicken
+turkey
+duck
+goose
+quail
+pheasant
+partridge
+grouse
+guinea fowl
+squab
+pigeon
+ostrich
+emu
+
+# Fish and Seafood
+fish
+salmon
+tuna
+cod
+haddock
+halibut
+flounder
+sole
+tilapia
+catfish
+trout
+bass
+pike
+perch
+walleye
+snapper
+grouper
+mahi mahi
+swordfish
+marlin
+mackerel
+sardine
+anchovy
+herring
+smelt
+whitefish
+pollock
+hake
+monkfish
+branzino
+arctic char
+barramundi
+pompano
+amberjack
+yellowtail
+hamachi
+bluefin tuna
+albacore
+skipjack
+bonito
+
+# Shellfish
+shellfish
+shrimp
+prawn
+crab
+lobster
+crayfish
+crawfish
+langoustine
+scampi
+clam
+mussel
+oyster
+scallop
+abalone
+conch
+whelk
+periwinkle
+cockle
+squid
+calamari
+octopus
+cuttlefish
+sea urchin
+uni
+
+# Dairy Products
+dairy
+milk
+cream
+heavy cream
+light cream
+half and half
+whipping cream
+clotted cream
+sour cream
+creme fraiche
+butter
+clarified butter
+ghee
+buttermilk
+yogurt
+greek yogurt
+skyr
+kefir
+
+# Cheese
+cheese
+cottage cheese
+ricotta
+mascarpone
+neufchatel
+quark
+fromage blanc
+cheddar
+mozzarella
+parmesan
+parmigiano reggiano
+pecorino romano
+asiago
+provolone
+fontina
+gruyere
+emmental
+gouda
+edam
+havarti
+muenster
+monterey jack
+colby
+brie
+camembert
+roquefort
+gorgonzola
+stilton
+blue cheese
+feta
+halloumi
+paneer
+queso fresco
+queso blanco
+manchego
+idiazabal
+cabrales
+mahon
+tetilla
+raclette
+limburger
+taleggio
+epoisses
+reblochon
+comte
+beaufort
+mimolette
+cantal
+tomme
+chevre
+goat cheese
+sheep cheese
+burrata
+stracciatella
+scamorza
+caciocavallo
+provolone piccante
+kasseri
+kefalotiri
+mizithra
+manouri
+graviera
+aged cheese
+fresh cheese
+soft cheese
+semi soft cheese
+hard cheese
+processed cheese
+pasteurized cheese
+artisan cheese
+farmstead cheese
+
+# Eggs
+egg
+scrambled egg
+fried egg
+poached egg
+boiled egg
+hard boiled egg
+soft boiled egg
+coddled egg
+baked egg
+shirred egg
+deviled egg
+pickled egg
+century egg
+thousand year egg
+salted egg
+omelet
+omelette
+frittata
+quiche
+souffle
+meringue
+flan
+creme brulee
+custard
+pudding
+mousse
+panna cotta
+tiramisu
+zabaglione
+sabayon
+
+# Oils and Vinegars
+oil
+olive oil
+extra virgin olive oil
+vegetable oil
+canola oil
+rapeseed oil
+corn oil
+safflower oil
+sunflower oil
+avocado oil
+coconut oil
+palm oil
+peanut oil
+rice bran oil
+grapeseed oil
+flaxseed oil
+walnut oil
+sesame oil
+truffle oil
+vinegar
+white vinegar
+red wine vinegar
+white wine vinegar
+champagne vinegar
+sherry vinegar
+balsamic vinegar
+apple cider vinegar
+rice vinegar
+malt vinegar
+distilled vinegar
+
+# Condiments
+ketchup
+catsup
+mustard
+yellow mustard
+dijon mustard
+whole grain mustard
+spicy mustard
+mayonnaise
+aioli
+tartar sauce
+cocktail sauce
+worcestershire sauce
+soy sauce
+tamari
+shoyu
+hoisin sauce
+teriyaki sauce
+ponzu
+mirin
+sake
+shaoxing wine
+tabasco
+sriracha
+sambal oelek
+gochujang
+doenjang
+fermented bean paste
+doubanjiang
+tianmianjiang
+tahini
+hummus
+baba ghanoush
+tzatziki
+raita
+chutney
+relish
+salsa
+pico de gallo
+guacamole
+chimichurri
+pesto
+tapenade
+romesco
+zhug
+schug
+
+# Sauces
+marinara
+bolognese
+ragu
+carbonara
+alfredo
+puttanesca
+arrabbiata
+amatriciana
+vodka sauce
+bechamel
+mornay
+veloute
+espagnole
+hollandaise
+bearnaise
+beurre blanc
+beurre rouge
+pan sauce
+gravy
+jus
+reduction
+demi glace
+coulis
+compote
+confit
+marmalade
+jam
+jelly
+preserve
+conserve
+gelee
+aspic
+
+# Stocks and Soups
+stock
+broth
+bouillon
+consomme
+soup
+stew
+chowder
+bisque
+potage
+gazpacho
+vichyssoise
+borscht
+minestrone
+ribollita
+egg drop soup
+wonton soup
+miso soup
+ramen
+pho
+laksa
+tom yum
+tom kha gai

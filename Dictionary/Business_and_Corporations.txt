@@ -1,0 +1,822 @@
+# Business and Corporations Dictionary
+# Business and corporate terms
+
+# Business Entities
+business
+company
+corporation
+enterprise
+firm
+organization
+startup
+venture
+partnership
+proprietorship
+llc
+limited liability company
+incorporated
+subsidiary
+parent company
+holding company
+conglomerate
+multinational
+franchise
+
+# Business Actions
+merger
+acquisition
+takeover
+buyout
+
+# Leadership and Management
+board of directors
+executive
+ceo
+chief executive officer
+cfo
+chief financial officer
+cto
+chief technology officer
+coo
+chief operations officer
+cmo
+chief marketing officer
+president
+vice president
+chairman
+founder
+partner
+manager
+director
+supervisor
+employee
+staff
+workforce
+team
+department
+division
+headquarters
+branch office
+
+# Stakeholders
+stakeholder
+shareholder
+investor
+
+# Finance and Accounting
+finance
+accounting
+revenue
+sales
+profit
+loss
+earnings
+margin
+assets
+liabilities
+equity
+capital
+debt
+budget
+forecast
+expense
+income statement
+balance sheet
+cash flow
+audit
+tax
+fiscal year
+quarter
+annual report
+dividend
+payout
+roi
+return on investment
+
+# Marketing and Sales
+marketing
+advertising
+brand
+campaign
+promotion
+customer
+client
+consumer
+target audience
+market segment
+lead generation
+conversion
+sales pipeline
+quota
+commission
+negotiation
+contract
+agreement
+terms and conditions
+proposal
+bid
+tender
+
+# Operations
+procurement
+vendor
+supplier
+distribution
+wholesale
+retail
+ecommerce
+pricing
+discount
+margin
+markup
+inventory
+stock
+warehouse
+logistics
+supply chain
+shipping
+delivery
+fulfillment
+
+# Strategy and Planning
+strategy
+planning
+mission
+vision
+objective
+goal
+milestone
+kpi
+key performance indicator
+growth
+expansion
+market share
+competitive advantage
+swot analysis
+strengths
+weaknesses
+opportunities
+threats
+
+# Operations Management
+operations
+production
+quality control
+efficiency
+productivity
+process improvement
+lean manufacturing
+six sigma
+
+# Human Resources
+human resources
+recruitment
+hiring
+training
+development
+retention
+turnover
+compensation
+salary
+benefits
+payroll
+performance review
+termination
+
+# Compliance and Legal
+compliance
+regulation
+legal
+policy
+procedure
+ethics
+governance
+risk management
+insurance
+liability
+intellectual property
+trademark
+patent
+copyright
+confidential
+nondisclosure agreement
+lawsuit
+litigation
+settlement
+arbitration
+mediation
+
+# Consulting
+consulting
+advisory
+strategic planning
+tactical planning
+operational planning
+
+# Project Management
+project management
+agile
+scrum
+milestone
+deliverable
+timeline
+deadline
+resource allocation
+budget
+variance
+scope
+change management
+stakeholder communication
+reporting
+dashboard
+metrics
+analytics
+data driven
+decision making
+
+# Innovation
+automation
+digital transformation
+innovation
+disruption
+pivot
+scale
+scalability
+sustainable
+sustainability
+corporate social responsibility
+csr
+esg
+environmental social governance
+diversity
+equity
+inclusion
+dei
+
+# Leadership Skills
+leadership
+collaboration
+teamwork
+culture
+values
+mission statement
+vision statement
+core competency
+best practice
+benchmark
+industry standard
+
+# Competitive Analysis
+competitor analysis
+positioning
+differentiation
+value proposition
+unique selling proposition
+usp
+
+# Branding
+branding
+logo
+tagline
+slogan
+messaging
+
+# Digital Marketing
+content marketing
+social media
+seo
+search engine optimization
+sem
+search engine marketing
+ppc
+pay per click
+email marketing
+newsletter
+webinar
+podcast
+blog
+influencer marketing
+affiliate marketing
+referral program
+viral marketing
+engagement
+reach
+impressions
+clicks
+conversions
+
+# Sales Funnel
+funnel
+pipeline
+crm
+customer relationship management
+customer acquisition
+retention
+churn
+loyalty
+lifetime value
+ltv
+customer acquisition cost
+cac
+net promoter score
+nps
+customer satisfaction
+feedback
+survey
+testimonial
+review
+rating
+
+# Content Types
+case study
+white paper
+ebook
+infographic
+video
+webcast
+presentation
+pitch deck
+demo
+prototype
+minimum viable product
+mvp
+iteration
+validation
+product market fit
+
+# Go to Market
+go to market strategy
+gtm
+launch
+rollout
+adoption
+penetration
+maturity
+decline
+lifecycle
+
+# Portfolio Management
+portfolio
+diversification
+vertical integration
+horizontal integration
+outsourcing
+offshoring
+insourcing
+joint venture
+collaboration
+alliance
+ecosystem
+network effect
+
+# Business Models
+platform
+marketplace
+aggregator
+intermediary
+disintermediation
+subscription model
+freemium
+tiered pricing
+dynamic pricing
+bundle
+unbundle
+upsell
+cross sell
+
+# Revenue Models
+recurring revenue
+arr
+annual recurring revenue
+mrr
+monthly recurring revenue
+churn rate
+retention rate
+cohort analysis
+unit economics
+contribution margin
+break even
+burn rate
+runway
+
+# Funding
+fundraising
+seed round
+series a
+angel investor
+venture capital
+private equity
+valuation
+pre money
+post money
+dilution
+cap table
+term sheet
+due diligence
+closing
+exit strategy
+ipo
+initial public offering
+spac
+direct listing
+secondary market
+liquidity event
+unicorn
+decacorn
+
+# Strategy Frameworks
+disruption
+innovation
+blue ocean strategy
+red ocean strategy
+first mover advantage
+early adopter
+crossing the chasm
+moat
+defensibility
+switching cost
+lock in
+network effects
+viral coefficient
+k factor
+referral program
+gamification
+
+# Marketing Strategy
+personalization
+segmentation
+targeting
+positioning
+messaging
+channel strategy
+omnichannel
+multichannel
+attribution
+tracking
+pixel
+cookie
+remarketing
+retargeting
+lookalike audience
+custom audience
+saved audience
+
+# Audience Targeting
+demographics
+psychographics
+behavioral targeting
+contextual targeting
+geographic targeting
+firmographic
+technographic
+intent signals
+lead scoring
+qualification
+nurturing
+drip campaign
+sequence
+automation
+workflow
+trigger
+action
+condition
+branching logic
+personalization token
+dynamic content
+
+# Testing and Optimization
+ab test
+split test
+multivariate test
+optimization
+experimentation
+hypothesis
+statistical significance
+confidence interval
+sample size
+control group
+variant
+winner
+loser
+incrementality
+lift
+baseline
+holdout group
+randomization
+bias
+confounding variable
+correlation
+causation
+
+# Analytics
+regression
+coefficient
+predictive model
+forecasting
+scenario planning
+sensitivity analysis
+monte carlo simulation
+decision tree
+
+# Business Frameworks
+framework
+canvas
+business model canvas
+value chain
+porter five forces
+pestel
+ansoff matrix
+bcg matrix
+growth share matrix
+product lifecycle
+adoption curve
+diffusion of innovation
+tipping point
+critical mass
+inflection point
+
+# Economics
+economies of scale
+economies of scope
+learning curve
+marginal cost
+fixed cost
+variable cost
+overhead
+allocation
+absorption costing
+activity based costing
+throughput accounting
+bottleneck
+constraint
+theory of constraints
+just in time
+jit
+kanban
+pull system
+continuous improvement
+kaizen
+gemba walk
+root cause analysis
+fishbone diagram
+ishikawa
+five whys
+pareto principle
+vital few
+trivial many
+
+# Performance Management
+dashboard
+scorecard
+balanced scorecard
+okr
+objectives and key results
+smart goals
+specific
+measurable
+achievable
+relevant
+timebound
+cascading goals
+alignment
+transparency
+accountability
+ownership
+empowerment
+delegation
+authority
+responsibility
+span of control
+
+# Organizational Structure
+hierarchy
+flat organization
+matrix organization
+functional organization
+divisional organization
+geographic organization
+product organization
+customer organization
+hybrid organization
+centralized
+decentralized
+federated
+shared services
+center of excellence
+
+# Meetings and Communication
+offsite
+retreat
+townhall
+allhands
+standup meeting
+retrospective
+postmortem
+lessons learned
+action items
+followup
+cadence
+rhythm
+checkpoint
+sync
+async
+asynchronous
+synchronous
+realtime
+batch processing
+scheduled
+adhoc
+recurring meeting
+agenda
+minutes
+meeting notes
+summary
+takeaways
+decisions
+parking lot
+icebreaker
+energizer
+facilitation
+moderator
+timekeeper
+scribe
+participant
+attendee
+optional
+required
+decline
+tentative
+accepted
+calendar invite
+scheduling
+booking
+availability
+timezone
+conflict
+double booking
+
+# Productivity
+buffer time
+focus time
+deep work
+maker schedule
+manager schedule
+context switching
+multitasking
+prioritization
+eisenhower matrix
+urgent
+important
+delegate
+delete
+defer
+quadrant
+inbox zero
+gtd
+getting things done
+pomodoro technique
+timeboxing
+batching
+theming
+time blocking
+
+# Optimization
+productivity
+efficiency
+effectiveness
+output
+outcome
+impact
+leverage
+force multiplier
+automation
+delegation
+elimination
+simplification
+streamlining
+optimization
+rationalization
+consolidation
+standardization
+template
+playbook
+runbook
+checklist
+procedure
+protocol
+guideline
+framework
+methodology
+approach
+technique
+tactic
+strategy
+tool
+resource
+asset
+capability
+competency
+skill
+knowledge
+expertise
+proficiency
+mastery
+
+# Skill Levels
+beginner
+intermediate
+advanced
+expert
+novice
+apprentice
+journeyman
+specialist
+generalist
+tshaped profile
+crossfunctional
+interdisciplinary
+multidisciplinary
+transdisciplinary
+silo
+handoff
+collaboration
+cooperation
+coordination
+communication
+transparency
+visibility
+alignment
+consensus
+buyin
+commitment
+engagement
+motivation
+morale
+satisfaction
+retention
+attraction
+
+# Employer Branding
+employer brand
+employee value proposition
+evp
+culture fit
+onboarding
+offboarding
+exit interview
+stay interview
+pulse survey
+engagement survey
+engagement score
+enps
+glassdoor rating
+indeed
+linkedin company page
+career site
+applicant tracking system
+ats
+
+# Hiring Process
+resume screening
+phone screen
+technical assessment
+take home assignment
+onsite interview
+panel interview
+behavioral interview
+situational interview
+case interview
+competency based interview
+star method
+situation
+task
+action
+result
+reference check
+background check
+offer letter
+acceptance
+rejection
+counteroffer
+negotiation
+relocation package
+signing bonus
+equity grant
+stock options
+rsu
+restricted stock units
+vesting schedule
+cliff
+acceleration
+single trigger
+double trigger
+refresher grant
+strike price
+exercise window
+409a valuation
+qualified small business stock
+qsbs
+alternative minimum tax
+amt
+tax loss carry forward
+tax loss harvesting

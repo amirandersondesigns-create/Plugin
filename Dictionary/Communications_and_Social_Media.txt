@@ -1,0 +1,658 @@
+# Communications and Social Media Dictionary
+# Digital communication, platforms, networking, online terminology
+
+# Social Media Platforms
+facebook
+instagram
+twitter
+tiktok
+snapchat
+linkedin
+youtube
+pinterest
+reddit
+tumblr
+whatsapp
+telegram
+discord
+signal
+messenger
+wechat
+weibo
+line
+kakao talk
+viber
+threads
+bluesky
+mastodon
+clubhouse
+vimeo
+flickr
+periscope
+vine
+myspace
+friendster
+
+# Social Media Actions
+post
+share
+repost
+reshare
+retweet
+quote tweet
+like
+favorite
+heart
+upvote
+downvote
+comment
+reply
+mention
+tag
+hashtag
+follow
+unfollow
+subscribe
+unsubscribe
+block
+mute
+report
+flag
+bookmark
+save
+archive
+delete
+edit
+pin
+highlight
+feature
+promote
+boost
+sponsor
+
+# Content Types
+status update
+text post
+photo
+image
+video
+live video
+story
+reel
+short form video
+clip
+carousel
+album
+gallery
+poll
+survey
+quiz
+question and answer
+thread
+tweet storm
+blog post
+article
+link share
+infographic
+meme
+gif
+sticker
+emoji
+reaction
+live stream
+broadcast
+premiere
+vlog
+podcast
+audio clip
+
+# Engagement Metrics
+likes
+views
+impressions
+reach
+engagement rate
+click through rate
+conversion rate
+followers
+following
+subscribers
+members
+connections
+friends
+audience growth
+follower count
+engagement score
+virality
+shares
+comments
+saves
+bookmarks
+retweets
+mentions
+tags
+branded hashtag
+performance
+
+# Social Media Strategy
+content strategy
+editorial calendar
+posting schedule
+content pillars
+brand voice
+tone
+messaging
+target audience
+persona
+demographics
+psychographics
+community management
+customer service
+reputation management
+crisis communication
+influencer marketing
+user generated content
+testimonial
+review
+social listening
+sentiment analysis
+competitive analysis
+benchmarking
+
+# Algorithms and Reach
+algorithm
+news feed
+timeline
+chronological feed
+curated feed
+personalized content
+recommendation engine
+trending topics
+explore page
+discovery feed
+suggested content
+related posts
+organic reach
+paid reach
+boosted post
+sponsored content
+promoted post
+advertising campaign
+targeting options
+demographic targeting
+interest targeting
+behavioral targeting
+lookalike audience
+retargeting
+remarketing
+
+# Influencer Marketing
+influencer
+content creator
+brand ambassador
+partnership
+collaboration
+sponsored post
+affiliate marketing
+commission
+disclosure
+transparency
+authenticity
+engagement rate
+micro influencer
+macro influencer
+mega influencer
+nano influencer
+celebrity endorsement
+brand deal
+media kit
+rate card
+negotiation
+contract
+deliverable
+content rights
+usage rights
+exclusivity
+
+# Digital Communication
+email
+electronic mail
+inbox
+outbox
+sent folder
+draft
+spam folder
+junk mail
+newsletter
+mailing list
+distribution list
+broadcast message
+mass email
+personalized email
+transactional email
+marketing email
+drip campaign
+automation
+workflow
+trigger email
+welcome email
+abandoned cart email
+confirmation email
+receipt
+invoice
+
+# Messaging Systems
+instant messaging
+chat
+direct message
+private message
+group chat
+channel
+conversation
+thread
+notification
+push notification
+badge
+alert
+read receipt
+typing indicator
+online status
+away status
+busy status
+offline status
+last seen
+end to end encryption
+disappearing message
+self destruct
+screenshot notification
+
+# Communication Tools
+video conferencing
+video call
+voice call
+audio call
+screen sharing
+presentation mode
+virtual background
+breakout room
+waiting room
+host controls
+mute
+unmute
+video on
+audio on
+chat feature
+hand raise
+reaction
+recording
+transcript
+closed caption
+live caption
+interpretation
+collaboration
+whiteboard
+annotation
+polling
+survey
+
+# Professional Networking
+professional network
+career profile
+resume
+curriculum vitae
+work experience
+education
+skills
+endorsement
+recommendation
+connection request
+networking event
+job posting
+job application
+recruiter
+headhunter
+talent acquisition
+hiring manager
+interview
+portfolio
+showcase
+case study
+publication
+certification
+license
+volunteer experience
+award
+honor
+
+# Content Creation
+content creation
+creative process
+ideation
+brainstorm
+concept development
+scripting
+storyboard
+shooting
+filming
+recording
+editing
+post production
+color grading
+sound design
+music licensing
+voiceover
+narration
+caption
+subtitle
+thumbnail
+cover image
+banner
+header
+profile picture
+avatar
+branding
+graphics
+template
+preset
+
+# Publishing and Distribution
+publish
+schedule
+queue
+draft
+preview
+publish immediately
+schedule post
+auto publish
+cross posting
+syndication
+distribution channel
+platform
+native content
+repurpose content
+evergreen content
+timely content
+seasonal content
+trending content
+content library
+asset management
+archive
+backup
+
+# Analytics and Insights
+analytics
+insights
+metrics
+dashboard
+report
+performance data
+statistics
+tracking
+pixel
+tracking code
+conversion tracking
+attribution model
+first click
+last click
+multi touch attribution
+click path
+customer journey
+funnel analysis
+cohort analysis
+retention rate
+churn rate
+lifetime value
+acquisition cost
+return on investment
+
+# Advertising Terms
+advertisement
+sponsored content
+native advertising
+display advertising
+banner ad
+video ad
+social media advertising
+search engine marketing
+pay per click
+cost per click
+cost per impression
+cost per acquisition
+cost per view
+advertising budget
+daily budget
+lifetime budget
+bid strategy
+manual bidding
+automatic bidding
+ad creative
+ad copy
+call to action
+landing page
+conversion optimization
+
+# Community Building
+community
+online community
+community management
+moderator
+admin
+community guidelines
+rules
+forum
+discussion board
+thread
+topic
+category
+subforum
+subreddit
+group
+page
+fan page
+support group
+interest group
+local group
+event
+meetup
+virtual event
+live session
+webinar
+workshop
+ask me anything
+weekly thread
+pinned post
+announcement
+
+# Privacy and Security
+privacy settings
+privacy policy
+terms of service
+data protection
+personal information
+consent
+opt in
+opt out
+cookie consent
+tracking cookie
+third party cookie
+data collection
+data sharing
+data breach
+security incident
+two factor authentication
+multi factor authentication
+password security
+account recovery
+verification badge
+verified account
+impersonation
+fake account
+
+# User Experience
+user interface
+user experience
+navigation
+menu
+search function
+filter
+sort
+refresh
+load more
+infinite scroll
+pagination
+swipe gesture
+tap
+double tap
+long press
+drag and drop
+zoom
+pinch to zoom
+rotate
+accessibility
+screen reader
+alt text
+caption
+dark mode
+light mode
+theme
+customization
+
+# Viral Content
+viral
+trending
+buzz
+word of mouth
+shareability
+relatability
+emotional appeal
+humor
+entertainment
+educational
+inspirational
+controversial
+newsworthy
+timely
+relevant
+authentic
+genuine
+organic growth
+exponential growth
+momentum
+tipping point
+peak
+virality
+lifecycle
+decline phase
+
+# Brand Presence
+brand awareness
+brand recognition
+brand recall
+brand identity
+visual identity
+brand personality
+brand values
+brand mission
+brand story
+storytelling
+narrative
+brand consistency
+brand guidelines
+style guide
+tone of voice
+messaging framework
+positioning statement
+unique selling proposition
+value proposition
+competitive advantage
+
+# Customer Engagement
+customer engagement
+interaction
+conversation
+dialogue
+feedback
+response time
+response rate
+customer satisfaction
+net promoter score
+customer effort score
+customer lifetime value
+loyalty program
+rewards
+incentive
+exclusive content
+early access
+behind the scenes
+sneak peek
+announcement
+teaser
+reveal
+launch
+
+# Content Moderation
+moderation
+content moderation
+automated moderation
+manual moderation
+keyword filter
+profanity filter
+spam filter
+hate speech
+harassment
+bullying
+cyberbullying
+trolling
+misinformation
+disinformation
+fake news
+fact checking
+content warning
+trigger warning
+sensitive content
+age restriction
+parental control
+
+# Trends and Challenges
+trend
+trending topic
+hashtag challenge
+viral challenge
+dance challenge
+ice bucket challenge
+mannequin challenge
+bottle flip challenge
+viral dance
+trend forecast
+prediction
+emerging trend
+fad
+cultural moment
+zeitgeist
+movement
+campaign
+awareness campaign
+social cause
+activism
+advocacy
+
+# Cross Platform Strategy
+omnichannel
+multi channel
+cross platform
+integrated marketing
+unified messaging
+consistent branding
+platform specific content
+native format
+optimized content
+mobile first
+desktop optimization
+responsive design
+adaptive content
+platform integration
+automation tool
+social media management
+scheduling tool
+analytics platform
+listening tool

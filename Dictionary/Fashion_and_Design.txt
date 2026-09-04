@@ -1,0 +1,642 @@
+# Fashion and Design Dictionary
+# Fashion terminology, designers, brands, materials, styles
+
+# Clothing Types
+dress
+gown
+skirt
+blouse
+shirt
+top
+sweater
+cardigan
+pullover
+turtleneck
+tunic
+tank top
+camisole
+crop top
+blazer
+jacket
+coat
+overcoat
+trench coat
+peacoat
+parka
+puffer jacket
+bomber jacket
+denim jacket
+leather jacket
+pants
+trousers
+jeans
+chinos
+khakis
+slacks
+leggings
+joggers
+sweatpants
+shorts
+culottes
+palazzo pants
+jumpsuit
+romper
+overall
+dungarees
+suit
+tuxedo
+vest
+waistcoat
+kimono
+kaftan
+poncho
+cape
+cloak
+shawl
+
+# Accessories
+handbag
+purse
+clutch
+tote bag
+messenger bag
+backpack
+satchel
+crossbody bag
+shoulder bag
+belt
+wallet
+scarf
+necktie
+bow tie
+pocket square
+handkerchief
+gloves
+mittens
+hat
+cap
+beanie
+beret
+fedora
+panama hat
+sun hat
+visor
+headband
+hairband
+sunglasses
+eyeglasses
+watch
+wristwatch
+bracelet
+bangle
+cuff
+necklace
+pendant
+chain
+choker
+earrings
+studs
+hoops
+dangles
+ring
+brooch
+pin
+badge
+
+# Footwear
+shoes
+sneakers
+trainers
+athletic shoes
+running shoes
+basketball shoes
+boots
+ankle boots
+knee high boots
+combat boots
+chelsea boots
+riding boots
+rain boots
+snow boots
+sandals
+flip flops
+slides
+wedges
+pumps
+heels
+stilettos
+kitten heels
+platforms
+flats
+ballet flats
+loafers
+moccasins
+oxfords
+brogues
+derbies
+espadrilles
+clogs
+slippers
+mules
+
+# Fabrics and Materials
+cotton
+linen
+silk
+wool
+cashmere
+alpaca
+mohair
+angora
+merino wool
+lambswool
+polyester
+nylon
+acrylic
+rayon
+viscose
+spandex
+lycra
+elastane
+chambray
+corduroy
+velvet
+velour
+suede
+faux suede
+patent leather
+canvas
+twill
+satin
+chiffon
+organza
+tulle
+lace
+crochet
+knit
+jersey
+fleece
+flannel
+terry cloth
+microfiber
+mesh
+neoprene
+gore tex
+waterproof
+breathable
+stretch fabric
+woven
+nonwoven
+
+# Patterns and Prints
+solid
+plain
+striped
+horizontal stripes
+vertical stripes
+diagonal stripes
+pinstripe
+checkered
+checked
+gingham
+plaid
+tartan
+houndstooth
+herringbone
+chevron
+zigzag
+polka dot
+floral
+botanical
+paisley
+abstract
+geometric
+animal print
+leopard print
+zebra print
+snake print
+camouflage
+camo
+tie dye
+ombre
+gradient
+color block
+marbled
+ikat
+batik
+toile
+damask
+
+# Styles and Aesthetics
+casual
+formal
+semi formal
+business casual
+smart casual
+streetwear
+athleisure
+activewear
+sportswear
+loungewear
+sleepwear
+swimwear
+beachwear
+resort wear
+evening wear
+cocktail attire
+black tie
+white tie
+vintage
+retro
+classic
+timeless
+modern
+contemporary
+minimalist
+maximalist
+bohemian
+boho chic
+preppy
+punk
+rock
+grunge
+gothic
+romantic
+feminine
+masculine
+androgynous
+unisex
+edgy
+sophisticated
+elegant
+glamorous
+
+# Silhouettes and Cuts
+slim fit
+regular fit
+relaxed fit
+oversized
+fitted
+tailored
+structured
+loose
+flowing
+draped
+ruched
+gathered
+pleated
+tucked
+darted
+seamed
+paneled
+color blocked
+asymmetric
+wrap
+halter
+strapless
+spaghetti strap
+off shoulder
+one shoulder
+cold shoulder
+short sleeve
+three quarter sleeve
+long sleeve
+sleeveless
+racerback
+scoop neck
+crew neck
+vneck
+sweetheart neckline
+boat neck
+mock neck
+empire waist
+drop waist
+natural waist
+high rise
+low rise
+mid rise
+
+# Design Process
+design
+sketch
+illustration
+technical drawing
+flat sketch
+croquis
+mood board
+inspiration board
+color palette
+fabric swatches
+sample
+prototype
+muslin
+fitting
+alterations
+adjustments
+pattern making
+draping
+cutting
+sewing
+stitching
+hemming
+finishing
+embellishment
+trim
+detail
+hardware
+zipper
+button
+snap
+hook and eye
+velcro
+elastic
+drawstring
+lining
+interlining
+interfacing
+padding
+boning
+corsetry
+
+# Industry
+fashion designer
+creative director
+head designer
+assistant designer
+stylist
+personal stylist
+wardrobe stylist
+costume designer
+patternmaker
+tailor
+seamstress
+textile designer
+embroidery specialist
+accessories designer
+footwear designer
+jewelry designer
+fashion illustrator
+merchandiser
+buyer
+fashion editor
+fashion journalist
+fashion photographer
+model
+supermodel
+runway model
+showroom
+sales representative
+
+# Shows and Events
+fashion week
+fashion show
+runway show
+catwalk
+presentation
+trunk show
+trade fair
+exhibition
+gala
+benefit
+premiere
+launch event
+collection debut
+lookbook
+showroom appointment
+buyers meeting
+press preview
+influencer event
+celebrity appearance
+front row
+backstage
+rehearsal
+model lineup
+opening look
+finale
+standing ovation
+
+# Retail and Commerce
+boutique
+flagship store
+concept store
+pop up shop
+department store
+outlet
+factory outlet
+discount store
+thrift store
+consignment shop
+online store
+ecommerce
+marketplace
+retail price
+wholesale price
+markup
+markdown
+sale
+clearance
+promotion
+seasonal sale
+flash sale
+limited edition
+exclusive
+collaboration
+capsule collection
+pre order
+waitlist
+sold out
+restock
+inventory
+stock
+size run
+color variant
+
+# Luxury Brands
+chanel
+dior
+louis vuitton
+gucci
+prada
+hermes
+fendi
+bottega veneta
+balenciaga
+givenchy
+valentino
+versace
+armani
+dolce gabbana
+burberry
+celine
+saint laurent
+loewe
+cartier
+tiffany
+bulgari
+chopard
+rolex
+patek philippe
+
+# Fashion Terminology
+couture
+haute couture
+ready to wear
+pret a porter
+bespoke
+made to measure
+custom made
+off the rack
+mass produced
+fast fashion
+slow fashion
+sustainable fashion
+ethical fashion
+eco friendly
+organic
+recycled
+upcycled
+second hand
+pre owned
+pre loved
+deadstock
+archive piece
+statement piece
+investment piece
+wardrobe staple
+basic
+essential
+trend
+microtrend
+iconic
+signature style
+aesthetic
+vibe
+outfit
+ensemble
+coordination
+layering
+mixing and matching
+
+# Color Terms
+neutral
+earth tone
+jewel tone
+pastel
+neon
+fluorescent
+metallic
+matte
+glossy
+shiny
+iridescent
+holographic
+ivory
+cream
+beige
+tan
+brown
+chocolate
+camel
+khaki
+olive
+charcoal
+gray
+grey
+silver
+gold
+rose gold
+copper
+bronze
+navy
+navy blue
+cobalt
+turquoise
+teal
+aqua
+mint
+mint green
+emerald
+jade
+yellow
+mustard
+ochre
+orange
+rust
+terracotta
+red
+crimson
+scarlet
+burgundy
+wine
+maroon
+pink
+fuchsia
+magenta
+purple
+lavender
+lilac
+plum
+aubergine
+
+# Garment Details
+collar
+lapel
+notched lapel
+peak lapel
+shawl collar
+mandarin collar
+peter pan collar
+ruffled collar
+french cuff
+placket
+yoke
+gusset
+vent
+side vent
+center vent
+pocket
+patch pocket
+welt pocket
+slash pocket
+flap pocket
+cargo pocket
+kangaroo pocket
+seam
+princess seam
+french seam
+felled seam
+topstitching
+contrast stitching
+piping
+binding
+bias tape
+rickrack
+fringe
+tassel
+pom pom
+sequin
+bead
+applique
+stud
+rivet
+grommet
+drawcord
+toggle
+buckle
+
+# Fashion Photography
+editorial
+campaign
+catalog
+product shot
+flat lay photography
+lifestyle photography
+street style
+model lineup
+hair and makeup
+lighting
+natural light
+studio light
+retouching
+color grading
+post production

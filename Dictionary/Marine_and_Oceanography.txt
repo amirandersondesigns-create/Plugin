@@ -1,0 +1,710 @@
+# Marine and Oceanography Dictionary
+# Oceans, marine life, oceanography, maritime terms, marine science
+
+# Major Oceans and Seas
+pacific ocean
+atlantic ocean
+indian ocean
+southern ocean
+arctic ocean
+mediterranean sea
+caribbean sea
+south china sea
+bering sea
+sea japan
+east china sea
+arabian sea
+coral sea
+tasman sea
+north sea
+baltic sea
+black sea
+red sea
+caspian sea
+dead sea
+persian gulf
+gulf mexico
+gulf california
+hudson bay
+baffin bay
+
+# Ocean Zones
+surface zone
+epipelagic zone
+sunlight zone
+photic zone
+mesopelagic zone
+twilight zone
+bathypelagic zone
+midnight zone
+abyssopelagic zone
+abyssal zone
+hadalpelagic zone
+hadal zone
+benthic zone
+pelagic zone
+neritic zone
+oceanic zone
+intertidal zone
+littoral zone
+sublittoral zone
+bathyal zone
+abyssal plain
+deep sea trench
+oceanic trench
+continental shelf
+continental slope
+continental rise
+
+# Oceanographic Features
+seafloor
+ocean floor
+seabed
+ocean basin
+mid ocean ridge
+spreading center
+hydrothermal vent
+black smoker
+white smoker
+cold seep
+submarine volcano
+seamount
+guyot
+submarine canyon
+abyssal hill
+ocean plateau
+atoll
+coral reef
+barrier reef
+fringing reef
+lagoon
+estuary
+fjord
+sound
+strait
+channel
+bay
+gulf
+cove
+inlet
+
+# Marine Life Categories
+plankton
+phytoplankton
+zooplankton
+nekton
+benthos
+neuston
+fish
+marine fish
+cartilaginous fish
+bony fish
+ray finned fish
+shark
+ray
+skate
+cetacean
+whale
+dolphin
+porpoise
+pinniped
+seal
+sea lion
+walrus
+sirenian
+manatee
+dugong
+sea otter
+marine mammal
+marine reptile
+sea turtle
+sea snake
+marine iguana
+saltwater crocodile
+
+# Marine Invertebrates
+cnidarian
+jellyfish
+coral
+sea anemone
+hydrozoan
+siphonophore
+portuguese war
+mollusk
+gastropod
+snail
+slug
+bivalve
+clam
+oyster
+mussel
+scallop
+cephalopod
+octopus
+squid
+cuttlefish
+nautilus
+echinoderm
+sea star
+starfish
+sea urchin
+sea cucumber
+brittle star
+crinoid
+crustacean
+crab
+lobster
+shrimp
+prawn
+krill
+barnacle
+copepod
+amphipod
+isopod
+worm
+polychaete
+flatworm
+ribbon worm
+sponge
+tunicate
+sea squirt
+
+# Coral Reef Ecosystem
+coral reef
+hard coral
+soft coral
+coral polyp
+coral colony
+reef building coral
+stony coral
+coral bleaching
+zooxanthellae
+symbiotic algae
+reef fish
+cleaner fish
+parrotfish
+angelfish
+butterflyfish
+surgeonfish
+damselfish
+clownfish
+grouper
+moray eel
+sea anemone
+reef shark
+reef crest
+reef flat
+lagoon
+back reef
+fore reef
+patch reef
+
+# Marine Plants and Algae
+seaweed
+kelp
+giant kelp
+bull kelp
+rockweed
+sargassum
+sea lettuce
+dulse
+nori
+kombu
+wakame
+phytoplankton
+diatom
+dinoflagellate
+coccolithophore
+cyanobacteria
+blue green algae
+red algae
+green algae
+brown algae
+seagrass
+eelgrass
+turtle grass
+mangrove
+salt marsh
+macroalgae
+
+# Ocean Currents
+ocean current
+surface current
+deep water current
+thermohaline circulation
+conveyor belt
+gulf stream
+kuroshio current
+california current
+humboldt current
+benguela current
+agulhas current
+east australian current
+equatorial current
+counter current
+upwelling
+downwelling
+eddy
+gyre
+north pacific gyre
+south pacific gyre
+north atlantic gyre
+south atlantic gyre
+indian ocean gyre
+
+# Waves and Tides
+wave
+ocean wave
+wind wave
+swell
+tsunami
+tidal wave
+rogue wave
+wave height
+wavelength
+wave period
+wave frequency
+amplitude
+crest
+trough
+breaker
+surf zone
+longshore current
+rip current
+undertow
+tide
+tidal range
+high tide
+low tide
+spring tide
+neap tide
+tidal bore
+tidal current
+flood tide
+ebb tide
+
+# Marine Navigation
+navigation
+nautical navigation
+dead reckoning
+celestial navigation
+electronic navigation
+chart
+nautical chart
+bathymetric chart
+navigation aid
+lighthouse
+lightship
+buoy
+beacon
+leading light
+range light
+sector light
+foghorn
+radio beacon
+radar beacon
+ramark
+sonar
+echo sounder
+depth finder
+fathometer
+sextant
+compass
+magnetic compass
+gyrocompass
+
+# Ship Types
+ship
+vessel
+boat
+cargo ship
+container ship
+bulk carrier
+tanker
+oil tanker
+chemical tanker
+liquefied natural gas carrier
+passenger ship
+cruise ship
+ferry
+ocean liner
+warship
+naval vessel
+aircraft carrier
+destroyer
+frigate
+corvette
+submarine
+patrol boat
+coast guard cutter
+fishing vessel
+trawler
+seiner
+longliner
+research vessel
+icebreaker
+tugboat
+barge
+yacht
+sailboat
+motorboat
+
+# Submarine Features
+submarine
+submersible
+deep diving vehicle
+remotely operated vehicle
+autonomous underwater vehicle
+bathyscaphe
+bathysphere
+pressure hull
+ballast tank
+dive plane
+periscope
+snorkel
+sonar array
+torpedo tube
+missile silo
+nuclear reactor
+diesel electric propulsion
+air independent propulsion
+diving depth
+crush depth
+test depth
+submerged
+surfaced
+
+# Oceanographic Instruments
+oceanographic instrument
+conductivity temperature depth profiler
+rosette sampler
+niskin bottle
+water sampler
+plankton net
+sediment corer
+gravity corer
+piston corer
+box corer
+dredge
+grab sampler
+current meter
+acoustic doppler current profiler
+tide gauge
+wave buoy
+weather buoy
+drifter
+float
+argo float
+glider
+mooring
+autonomous profiler
+
+# Marine Research
+oceanography
+marine science
+biological oceanography
+chemical oceanography
+physical oceanography
+geological oceanography
+marine biology
+marine ecology
+marine geology
+marine chemistry
+marine physics
+limnology
+fisheries science
+aquatic science
+maritime studies
+ocean engineering
+marine technology
+underwater acoustics
+marine geophysics
+paleoceanography
+
+# Ocean Properties
+salinity
+temperature
+density
+pressure
+dissolved oxygen
+nutrients
+nitrate
+phosphate
+silicate
+chlorophyll
+turbidity
+transparency
+secchi depth
+thermocline
+halocline
+pycnocline
+mixed layer
+deep water
+bottom water
+water mass
+ocean stratification
+vertical mixing
+horizontal mixing
+diffusion
+advection
+
+# Marine Conservation
+marine conservation
+ocean conservation
+marine protected area
+marine reserve
+sanctuary
+conservation zone
+no take zone
+fisheries management
+sustainable fishing
+overfishing
+bycatch
+discards
+ghost fishing
+illegal unreported unregulated fishing
+marine pollution
+ocean pollution
+plastic pollution
+microplastic
+oil spill
+chemical pollution
+nutrient pollution
+eutrophication
+algal bloom
+harmful algal bloom
+red tide
+dead zone
+hypoxia
+
+# Climate and Ocean
+ocean climate
+sea surface temperature
+ocean heat content
+ocean acidification
+carbon dioxide absorption
+carbonate chemistry
+aragonite saturation
+calcification
+coral bleaching
+sea level rise
+thermal expansion
+ice sheet melting
+glacier retreat
+sea ice
+polar ice cap
+permafrost thaw
+methane hydrate
+ocean circulation change
+atlantic meridional overturning circulation
+
+# Coastal Processes
+coastal erosion
+beach erosion
+coastal accretion
+sediment transport
+longshore drift
+beach nourishment
+dune formation
+barrier island
+spit
+tombolo
+headland
+cliff erosion
+wave cut platform
+marine terrace
+delta
+river delta
+alluvial fan
+tidal flat
+mudflat
+salt marsh
+mangrove swamp
+coastal wetland
+
+# Marine Resources
+marine resource
+fishery resource
+commercial fishing
+recreational fishing
+aquaculture
+mariculture
+fish farming
+shellfish farming
+seaweed farming
+offshore wind farm
+tidal energy
+wave energy
+ocean thermal energy conversion
+desalination
+seawater desalination
+mineral extraction
+deep sea mining
+polymetallic nodule
+hydrothermal deposit
+rare earth element
+oil gas
+offshore drilling
+petroleum reserve
+
+# Deep Sea Features
+deep sea
+hadal zone
+mariana trench
+challenger deep
+tonga trench
+philippine trench
+kermadec trench
+japan trench
+puerto rico trench
+south sandwich trench
+deep sea fauna
+abyssal fauna
+hadal fauna
+giant squid
+colossal squid
+vampire squid
+anglerfish
+gulper eel
+viperfish
+hatchetfish
+fangtooth
+barreleye fish
+sea pig
+giant isopod
+
+# Marine Phenomena
+bioluminescence
+phosphorescence
+red tide
+bioluminescent bay
+blue tears
+milky sea phenomenon
+marine snow
+whale fall
+cold seep
+methane seep
+submarine landslide
+turbidity current
+internal wave
+ocean vortex
+whirlpool
+maelstrom
+waterspout
+rogue wave
+freak wave
+seiche
+tsunami
+harbor wave
+tidal resonance
+
+# Nautical Terms
+port
+starboard
+bow
+stern
+fore
+aft
+amidships
+hull
+keel
+rudder
+propeller
+screw
+anchor
+mooring
+line
+hawser
+bollard
+cleat
+fender
+gangway
+ladder
+mast
+sail
+rigging
+deck
+bridge
+wheelhouse
+chart room
+engine room
+galley
+cabin
+berth
+hold
+cargo hold
+ballast
+draft
+freeboard
+displacement
+tonnage
+knot
+nautical mile
+fathom
+league
+
+# Maritime Operations
+navigation
+piloting
+helm
+steering
+course
+heading
+bearing
+speed
+knots
+log
+ship log
+position
+latitude
+longitude
+waypoint
+route
+passage
+voyage
+departure
+arrival
+port call
+anchoring
+mooring
+docking
+berthing
+loading
+unloading
+cargo handling
+bunker
+refueling
+provisioning
+crew change
+port clearance
+customs inspection
+quarantine
+maritime law
+admiralty law
+
+# Marine Safety
+maritime safety
+safety equipment
+life jacket
+life vest
+life raft
+lifeboat
+rescue boat
+distress signal
+flare
+emergency position indicating radio beacon
+personal locator beacon
+emergency locator transmitter
+survival suit
+immersion suit
+fire suppression system
+damage control
+watertight compartment
+bulkhead
+collision
+grounding
+sinking
+man overboard
+search rescue
+coast guard
+maritime rescue coordination center

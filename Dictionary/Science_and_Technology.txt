@@ -1,0 +1,802 @@
+# Science and Technology Dictionary
+# Scientific and technological terms, research, engineering, innovation
+
+# Scientific Method
+science
+scientist
+research
+laboratory
+experiment
+hypothesis
+theory
+evidence
+data
+observation
+analysis
+method
+scientific
+empirical
+quantitative
+qualitative
+variable
+control
+dependent
+independent
+sample
+population
+random
+bias
+correlation
+causation
+
+# Statistics
+statistics
+probability
+significance
+confidence interval
+deviation
+variance
+mean
+median
+mode
+range
+distribution
+normal
+skewed
+bell curve
+standard error
+
+# Scientific Disciplines
+biology
+chemistry
+physics
+astronomy
+geology
+ecology
+zoology
+botany
+microbiology
+genetics
+biochemistry
+molecular
+cellular
+
+# Taxonomy
+organism
+species
+genus
+family
+order
+class
+phylum
+kingdom
+domain
+taxonomy
+classification
+
+# Evolution and Genetics
+evolution
+natural selection
+adaptation
+mutation
+gene
+dna
+rna
+protein
+enzyme
+amino acid
+nucleotide
+chromosome
+genome
+allele
+dominant
+recessive
+heredity
+inheritance
+mendelian
+trait
+phenotype
+genotype
+
+# Cell Biology
+cell
+membrane
+nucleus
+cytoplasm
+mitochondria
+chloroplast
+ribosome
+endoplasmic reticulum
+golgi apparatus
+lysosome
+vacuole
+organelle
+prokaryote
+eukaryote
+bacteria
+archaea
+virus
+fungi
+protist
+
+# Cellular Processes
+photosynthesis
+respiration
+metabolism
+glycolysis
+krebs cycle
+electron transport chain
+atp
+adenosine triphosphate
+fermentation
+anaerobic
+aerobic
+osmosis
+diffusion
+active transport
+passive
+homeostasis
+
+# Organism Structure
+tissue
+organ
+system
+multicellular
+unicellular
+mitosis
+meiosis
+reproduction
+sexual
+asexual
+zygote
+gamete
+sperm
+egg
+embryo
+fetus
+development
+growth
+differentiation
+stem cell
+pluripotent
+totipotent
+
+# Ecology
+ecology
+ecosystem
+biome
+habitat
+niche
+population
+community
+food chain
+web
+producer
+consumer
+decomposer
+herbivore
+carnivore
+omnivore
+predator
+prey
+symbiosis
+mutualism
+commensalism
+parasitism
+competition
+succession
+primary
+secondary
+pioneer species
+climax
+biodiversity
+endangered
+extinct
+conservation
+sustainability
+
+# Biogeochemical Cycles
+carbon cycle
+nitrogen
+water
+oxygen
+phosphorus
+biogeochemical
+
+# Chemistry Fundamentals
+chemistry
+atom
+molecule
+element
+compound
+mixture
+solution
+solvent
+solute
+concentration
+molarity
+molality
+mole
+avogadro number
+periodic table
+atomic number
+mass
+isotope
+ion
+cation
+anion
+electron
+proton
+neutron
+shell
+orbital
+valence
+
+# Chemical Bonds
+chemical bond
+ionic
+covalent
+metallic
+hydrogen
+polar
+nonpolar
+electronegativity
+lewis structure
+vsepr
+geometry
+
+# Chemical Reactions
+reaction
+reactant
+product
+catalyst
+enzyme
+equilibrium
+kinetics
+thermodynamics
+enthalpy
+entropy
+gibbs free energy
+endothermic
+exothermic
+acid
+base
+neutral
+buffer
+indicator
+titration
+oxidation
+reduction
+redox
+combustion
+synthesis
+decomposition
+single replacement
+double
+precipitation
+solubility
+saturated
+unsaturated
+supersaturated
+crystallization
+
+# Organic Chemistry
+organic
+inorganic
+hydrocarbon
+alkane
+alkene
+alkyne
+aromatic
+benzene
+functional group
+alcohol
+aldehyde
+ketone
+carboxylic
+ester
+ether
+amine
+amide
+
+# Polymers
+polymer
+monomer
+polymerization
+condensation
+addition
+plastic
+nylon
+polyester
+teflon
+polystyrene
+pvc
+polyethylene
+polypropylene
+
+# Physics Mechanics
+physics
+mechanics
+kinematics
+dynamics
+force
+mass
+weight
+acceleration
+velocity
+speed
+displacement
+distance
+time
+newton law motion
+inertia
+momentum
+impulse
+friction
+gravity
+gravitational field
+potential
+kinetic energy
+work
+power
+watt
+joule
+conservation
+mechanical
+thermal
+elastic
+
+# Waves
+electromagnetic
+wave
+frequency
+wavelength
+amplitude
+period
+hertz
+sound
+ultrasound
+infrasound
+doppler effect
+light
+reflection
+refraction
+diffraction
+interference
+polarization
+spectrum
+visible
+infrared
+ultraviolet
+xray
+gamma ray
+radio
+microwave
+electromagnetic radiation
+photon
+
+# Quantum Physics
+quantum
+particle duality
+uncertainty principle
+heisenberg
+schrodinger equation
+wavefunction
+probability density
+orbital
+quantum number
+spin
+pauli exclusion
+
+# Electricity and Magnetism
+electricity
+current
+voltage
+resistance
+ohm law
+circuit
+series
+parallel
+capacitor
+inductor
+resistor
+diode
+transistor
+semiconductor
+conductor
+insulator
+superconductor
+magnetism
+magnetic field
+flux
+electromagnetic induction
+faraday
+lenz
+transformer
+generator
+motor
+alternating
+direct
+ac
+dc
+
+# Thermodynamics
+thermodynamics
+temperature
+heat
+thermal
+conduction
+convection
+radiation
+specific capacity
+latent
+fusion
+vaporization
+ideal gas
+pressure
+volume
+boyle
+charles
+avogadro
+universal constant
+entropy
+second law
+carnot cycle
+efficiency
+
+# Astronomy
+astronomy
+universe
+galaxy
+star
+planet
+moon
+satellite
+asteroid
+comet
+meteor
+meteorite
+nebula
+black hole
+neutron
+white dwarf
+red giant
+supergiant
+supernova
+pulsar
+quasar
+cosmology
+bang theory
+hubble
+expansion
+redshift
+blueshift
+doppler
+dark matter
+energy
+cosmic background radiation
+
+# Solar System
+solar system
+sun
+mercury
+venus
+earth
+mars
+jupiter
+saturn
+uranus
+neptune
+pluto
+dwarf planet
+orbit
+ellipse
+eccentricity
+perihelion
+aphelion
+eclipse
+lunar
+solar
+phase
+waxing
+waning
+crescent
+gibbous
+full
+new
+quarter
+tide
+tidal force
+gravity
+
+# Space Observation
+telescope
+optical
+radio
+space
+infrared
+ultraviolet
+xray
+hubble
+james webb
+kepler
+mission
+probe
+rover
+lander
+orbiter
+spacecraft
+rocket
+propulsion
+thrust
+payload
+
+# Geology
+geology
+earth science
+rock
+mineral
+igneous
+sedimentary
+metamorphic
+magma
+lava
+volcano
+tectonic plate
+boundary
+convergent
+divergent
+transform
+fault
+earthquake
+seismic wave
+epicenter
+magnitude
+richter scale
+tsunami
+erosion
+weathering
+deposition
+soil
+sediment
+fossil
+stratigraphy
+dating
+relative
+absolute
+radioactive decay
+halflife
+carbon dating
+geochronology
+
+# Atmosphere
+atmosphere
+troposphere
+stratosphere
+mesosphere
+thermosphere
+exosphere
+ozone layer
+greenhouse effect
+climate
+weather
+temperature
+humidity
+pressure
+wind
+precipitation
+rain
+snow
+sleet
+hail
+fog
+cloud
+cumulus
+stratus
+cirrus
+nimbus
+front
+cold
+warm
+stationary
+occluded
+cyclone
+anticyclone
+hurricane
+typhoon
+tornado
+blizzard
+drought
+flood
+meteorology
+climatology
+
+# Oceanography
+oceanography
+ocean
+sea
+marine
+salinity
+current
+gulf stream
+tide
+wave
+tsunami
+thermocline
+upwelling
+coral reef
+continental shelf
+slope
+rise
+abyssal plain
+trench
+midocean ridge
+hydrothermal vent
+
+# Engineering
+technology
+innovation
+invention
+engineering
+mechanical
+electrical
+civil
+chemical
+aerospace
+biomedical
+computer
+software
+hardware
+firmware
+processor
+microprocessor
+chip
+integrated circuit
+transistor
+semiconductor
+silicon
+
+# Nanotechnology
+nanotechnology
+nanometer
+nanoscale
+nanoparticle
+carbon nanotube
+graphene
+quantum computing
+qubit
+superposition
+entanglement
+algorithm
+encryption
+
+# Biotechnology
+biotechnology
+genetic engineering
+crispr
+gene editing
+cloning
+recombinant
+transgenic
+gmo
+biofuel
+biomass
+
+# Energy
+renewable energy
+solar
+wind
+hydroelectric
+geothermal
+nuclear
+fission
+fusion
+reactor
+sustainability
+green technology
+environmental
+conservation
+recycling
+composting
+waste management
+pollution
+contamination
+remediation
+clean technology
+efficiency
+optimization
+
+# Automation and Robotics
+automation
+robotics
+robot
+android
+humanoid
+drone
+uav
+unmanned aerial vehicle
+autonomous
+selfdriving
+
+# Artificial Intelligence
+artificial intelligence
+machine learning
+deep
+neural network
+algorithm
+data mining
+analytics
+visualization
+simulation
+modeling
+virtual reality
+augmented
+mixed
+hologram
+projection
+immersive
+interface
+sensor
+actuator
+microcontroller
+embedded system
+
+# Internet of Things
+internet things
+iot
+smart home
+city
+grid
+wearable
+fitness tracker
+smartwatch
+biometric
+fingerprint
+facial recognition
+iris scan
+voice
+
+# Blockchain and Crypto
+blockchain
+cryptocurrency
+bitcoin
+ethereum
+decentralized
+distributed ledger
+cryptography
+hash
+encryption
+
+# Cybersecurity
+cybersecurity
+firewall
+antivirus
+malware
+phishing
+ransomware
+data breach
+privacy
+gdpr
+compliance
+regulation
+standard
+certification
+quality assurance
+testing
+validation
+verification
+prototype
+
+# Intellectual Property
+patent
+trademark
+copyright
+intellectual property
+licensing
+opensource
+proprietary
+innovation
+disruptive
+incremental
+breakthrough
+revolutionary

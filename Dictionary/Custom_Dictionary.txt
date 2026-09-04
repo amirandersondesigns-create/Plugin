@@ -1,0 +1,15 @@
+# Custom_Dictionary.txt
+# Artist-specific words not found in standard categories
+# One word per line - lines starting with # are comments
+
+# ============================================
+# INSTRUCTIONS:
+# 1. Add words you frequently use in your motion graphics work
+# 2. Each word should be on its own line
+# 3. Words are case-insensitive (will match uppercase/lowercase)
+# 4. Use # at the start of a line for comments
+# 5. Leave this file blank or add your custom words below
+# ============================================
+
+# YOUR CUSTOM WORDS BELOW:
+# (Add any words specific to your projects)

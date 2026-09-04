@@ -1,0 +1,681 @@
+# Sports and Athletics Dictionary
+# Sports, competitions, athletes, training, equipment, terminology
+
+# General Sports Terms
+athlete
+team
+player
+coach
+trainer
+manager
+referee
+umpire
+official
+competition
+tournament
+championship
+league
+season
+game
+match
+race
+event
+
+# Venues
+stadium
+arena
+field
+court
+track
+pitch
+pool
+rink
+gym
+gymnasium
+
+# Training
+fitness
+training
+workout
+exercise
+practice
+drill
+warm up
+cool down
+stretch
+conditioning
+strength
+endurance
+stamina
+agility
+speed
+power
+flexibility
+balance
+coordination
+technique
+skill
+strategy
+tactics
+formation
+
+# Soccer Positions
+offense
+defense
+midfielder
+forward
+goalkeeper
+striker
+defender
+
+# Football Positions
+quarterback
+running back
+wide receiver
+tight end
+linebacker
+safety
+cornerback
+
+# Baseball Positions
+pitcher
+catcher
+infielder
+outfielder
+batter
+hitter
+runner
+
+# Basketball Positions
+point guard
+shooting
+small
+center
+
+# Tennis Terms
+serve
+volley
+forehand
+backhand
+baseline
+net
+ace
+deuce
+love
+advantage
+break
+set
+tiebreak
+grand slam
+wimbledon
+open
+french
+australian
+
+# Major Sports
+football
+soccer
+basketball
+baseball
+tennis
+golf
+hockey
+ice
+volleyball
+swimming
+diving
+
+# Track and Field
+sprinting
+marathon
+relay
+hurdles
+javelin
+discus
+shot put
+hammer throw
+pole vault
+high jump
+long
+triple
+decathlon
+heptathlon
+
+# Gymnastics
+gymnastics
+artistic
+rhythmic
+uneven bars
+beam
+floor
+pommel horse
+rings
+parallel
+horizontal bar
+trampoline
+
+# Combat Sports
+boxing
+heavyweight
+middleweight
+lightweight
+welterweight
+flyweight
+featherweight
+bantamweight
+knockout
+technical
+jab
+hook
+uppercut
+cross
+wrestling
+freestyle
+greco roman
+takedown
+pin
+submission
+grappling
+
+# Martial Arts
+martial arts
+karate
+judo
+taekwondo
+jiu jitsu
+brazilian
+muay thai
+kickboxing
+mixed
+mma
+ultimate fighting
+ufc
+belt
+black
+brown
+blue
+purple
+white
+yellow
+green
+orange
+dan
+kyu
+
+# Cycling
+cycling
+road
+mountain bike
+bmx
+velodrome
+tour france
+giro italia
+vuelta espana
+sprint
+time trial
+climbing
+descent
+peloton
+breakaway
+jersey
+polka dot
+
+# Rowing
+rowing
+sculling
+sweep
+oar
+stroke
+coxswain
+regatta
+eight
+four
+pair
+single
+double
+quad
+
+# Sailing
+sailing
+yacht
+crew
+skipper
+helm
+mainsheet
+jib
+spinnaker
+tack
+jibe
+windward
+leeward
+port
+starboard
+bow
+stern
+keel
+rudder
+mast
+boom
+rigging
+
+# Winter Sports
+skiing
+alpine
+downhill
+slalom
+giant
+super
+country
+nordic
+ski jumping
+biathlon
+snowboarding
+halfpipe
+slopestyle
+moguls
+aerial
+
+# Action Sports
+skateboarding
+street
+vert
+bowl
+ramp
+kickflip
+ollie
+grind
+manual
+nollie
+heelflip
+
+# Water Sports
+surfing
+wave
+barrel
+tube
+cutback
+carve
+bottom turn
+snap
+longboard
+shortboard
+paddleboard
+sup
+windsurfing
+kitesurfing
+bodyboarding
+
+# American Football
+american
+nfl
+national
+playoffs
+division
+conference
+afc
+nfc
+touchdown
+goal
+extra
+first
+yard
+line
+scrimmage
+fumble
+interception
+sack
+blitz
+punt
+kickoff
+onside
+two minute warning
+overtime
+sudden death
+draft
+rookie
+veteran
+pro
+all
+
+# Baseball
+mlb
+major
+world series
+playoff
+wild card
+pennant
+inning
+strike
+ball
+foul
+home run
+hit
+base
+steal
+error
+out
+strikeout
+walk
+intentional
+balk
+designated
+dh
+earned average
+era
+batting
+rbi
+runs batted
+slugging percentage
+ops
+
+# Basketball
+nba
+association
+finals
+eastern
+western
+quarter
+semifinal
+final
+three pointer
+free
+dunk
+layup
+shot
+rebound
+assist
+block
+turnover
+flagrant
+personal
+dribble
+traveling
+goaltending
+clock violation
+timeout
+substitution
+
+# Hockey
+nhl
+stanley cup
+period
+shootout
+play
+penalty
+kill
+short handed
+icing
+offside
+face off
+puck
+stick
+boards
+crease
+slot
+red
+hat trick
+shutout
+save
+goals against
+gaa
+
+# Soccer
+fifa
+uefa
+champions
+premier
+la liga
+serie
+bundesliga
+ligue
+copa america
+euro
+european
+mls
+corner kick
+handball
+var
+video referee
+stoppage
+injury
+halftime
+fulltime
+aggregate score
+away rule
+group stage
+round sixteen
+quarterfinal
+third place
+
+# Tennis Tours
+atp
+wta
+davis
+fed
+laver
+masters
+singles
+doubles
+return
+fault
+let
+lob
+smash
+drop
+slice
+topspin
+backhand
+approach
+passing
+winner
+unforced
+hold
+bagel
+breadstick
+golden
+
+# Golf
+pga
+lpga
+british
+ryder
+presidents
+solheim
+handicap
+par
+birdie
+eagle
+albatross
+bogey
+hole one
+tee
+fairway
+rough
+bunker
+sand trap
+water hazard
+driver
+wood
+iron
+wedge
+putter
+swing
+putt
+chip
+fade
+hook
+shank
+divot
+mulligan
+gimme
+fore
+caddie
+nineteeth
+clubhouse
+
+# Olympics
+olympics
+summer
+winter
+paralympics
+special
+youth
+ancient
+modern
+olympic committee
+ioc
+host city
+opening ceremony
+closing
+torch
+flame
+cauldron
+medals
+silver
+bronze
+podium
+anthem
+mascot
+logo
+motto
+faster higher stronger together
+citius altius fortius communiter
+
+# Doping
+doping
+antidoping
+wada
+anti agency
+banned substance
+blood passport
+therapeutic use exemption
+tue
+random testing
+competition
+sample
+suspension
+lifetime ban
+
+# College Sports
+college
+ncaa
+scholarship
+recruiting
+eligibility
+amateur
+professional
+combine
+scouting
+
+# Broadcasting
+espn
+highlight reel
+replay
+instant
+slow motion
+commentary
+analyst
+broadcaster
+announcer
+color
+sideline reporter
+studio
+pregame
+postgame
+show
+interview
+press
+media day
+
+# Awards
+star
+mvp
+most valuable
+year
+defensive
+offensive
+comeback
+sixth man
+executive
+hall fame
+retired number
+franchise
+dynasty
+rebuild
+tanking
+
+# Business
+salary cap
+luxury tax
+trade deadline
+waiver
+buyout
+contract extension
+guaranteed
+performance bonus
+incentive
+endorsement
+sponsorship
+merchandise
+ticket sales
+attendance
+sellout
+blackout restriction
+broadcast rights
+streaming
+ratings
+viewership
+
+# Betting
+fantasy sports
+betting
+odds
+spread
+moneyline
+over under
+parlay
+prop bet
+future wager
+sportsbook
+bookmaker
+bookie
+handicapper
+tout
+
+# Injuries
+report
+questionable
+doubtful
+probable
+list
+il
+disabled
+protocol
+concussion
+acl
+mcl
+meniscus
+achilles tendon
+groin
+shoulder
+rotator cuff
+tommy john surgery
+rehab
+rehabilitation
+physical therapy
+recovery
+pain management
+
+# Performance Enhancing
+enhancing drugs
+ped
+steroids
+hgh
+human growth hormone
+epo
+erythropoietin
+masking agent
+stimulant
+diuretic
+transfusion
+gene

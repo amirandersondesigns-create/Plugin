@@ -1,0 +1,529 @@
+# International Organizations Dictionary
+
+# United Nations
+united nations
+un
+general assembly
+security council
+economic and social council
+ecosoc
+trusteeship council
+international court of justice
+icj
+secretariat
+secretary general
+deputy secretary general
+under secretary general
+assistant secretary general
+peacekeeping operation
+peacekeeping mission
+peacebuilding commission
+human rights council
+commission on the status of women
+population fund
+unfpa
+children fund
+unicef
+development programme
+undp
+environment programme
+unep
+high commissioner for refugees
+unhcr
+relief and works agency
+unrwa
+office on drugs and crime
+unodc
+settlements programme
+un habitat
+
+# UN Specialized Agencies
+educational scientific and cultural organization
+unesco
+world health organization
+who
+food and agriculture organization
+fao
+international labour organization
+ilo
+international monetary fund
+imf
+world bank group
+international bank for reconstruction and development
+ibrd
+international development association
+ida
+international finance corporation
+ifc
+multilateral investment guarantee agency
+miga
+international centre for settlement of investment disputes
+icsid
+world trade organization
+wto
+international telecommunication union
+itu
+universal postal union
+upu
+world meteorological organization
+wmo
+international maritime organization
+imo
+world intellectual property organization
+wipo
+international fund for agricultural development
+ifad
+industrial development organization
+unido
+world tourism organization
+unwto
+international atomic energy agency
+iaea
+organization for the prohibition of chemical weapons
+opcw
+comprehensive nuclear test ban treaty organization
+ctbto
+
+# Regional Organizations
+north atlantic treaty organization
+nato
+european union
+eu
+european commission
+european parliament
+council of the european union
+european council
+court of justice of the european union
+cjeu
+european central bank
+ecb
+european investment bank
+eib
+european court of auditors
+eca
+european external action service
+eeas
+organization of american states
+oas
+inter american commission on human rights
+iachr
+inter american court of human rights
+inter american development bank
+idb
+pan american health organization
+paho
+
+# African Organizations
+african union
+au
+african union commission
+auc
+pan african parliament
+pap
+african court of justice and human rights
+peace and security council
+psc
+african development bank
+afdb
+new partnership for africa development
+nepad
+economic community of west african states
+ecowas
+southern african development community
+sadc
+east african community
+eac
+common market for eastern and southern africa
+comesa
+intergovernmental authority on development
+igad
+
+# Middle East Organizations
+arab league
+league of arab states
+gulf cooperation council
+gcc
+organization of islamic cooperation
+oic
+
+# Asian Organizations
+association of southeast asian nations
+asean
+south asian association for regional cooperation
+saarc
+asia pacific economic cooperation
+apec
+shanghai cooperation organization
+sco
+eurasian economic union
+eaeu
+commonwealth of independent states
+cis
+collective security treaty organization
+csto
+organization for security and co operation in europe
+osce
+council of europe
+coe
+european court of human rights
+echr
+nordic council
+benelux union
+visegrad group
+v4
+three seas initiative
+pacific islands forum
+pif
+caribbean community
+caricom
+organization of eastern caribbean states
+oecs
+central american integration system
+sica
+union of south american nations
+unasur
+community of latin american and caribbean states
+celac
+bolivarian alliance for the peoples of our america
+alba
+mercosur
+southern common market
+andean community
+can
+pacific alliance
+forum for east asia latin america cooperation
+fealac
+asia europe meeting
+asem
+bay of bengal initiative for multi sectoral technical and economic cooperation
+bimstec
+mekong river commission
+mrc
+regional comprehensive economic partnership
+rcep
+comprehensive and progressive agreement for trans pacific partnership
+cptpp
+african continental free trade area
+afcfta
+
+# International Groups
+group of twenty
+g20
+group of seven
+g7
+group of eight
+g8
+group of seventy seven
+g77
+brics
+brazil russia india china south africa
+mikta
+mexico indonesia korea turkey australia
+next eleven
+n11
+civets
+colombia indonesia vietnam egypt turkey south africa
+mint
+mexico indonesia nigeria turkey
+mist
+mexico indonesia south korea turkey
+
+# Cultural Organizations
+commonwealth of nations
+la francophonie
+organisation internationale de la francophonie
+oif
+community of portuguese language countries
+cplp
+lusophone commonwealth
+ibero american summit
+organization of ibero american states
+oei
+union for the mediterranean
+ufm
+black sea economic cooperation
+bsec
+economic cooperation organization
+eco
+turkic council
+organization of turkic states
+arab maghreb union
+amu
+greater arab free trade area
+gafta
+cooperation council for the arab states of the gulf
+gcc
+
+# Energy Organizations
+organization of petroleum exporting countries
+opec
+opec plus
+international energy agency
+iea
+energy charter treaty
+ect
+international renewable energy agency
+irena
+global green growth institute
+gggi
+climate vulnerable forum
+cvf
+alliance of small island states
+aosis
+least developed countries
+ldc group
+landlocked developing countries
+lldc
+small island developing states
+sids
+
+# Economic Organizations
+organization for economic co operation and development
+oecd
+development assistance committee
+dac
+paris club
+london club
+financial action task force
+fatf
+basel committee on banking supervision
+bcbs
+international organization of securities commissions
+iosco
+international association of insurance supervisors
+iais
+financial stability board
+fsb
+bank for international settlements
+bis
+international accounting standards board
+iasb
+international federation of accountants
+ifac
+world customs organization
+wco
+international civil aviation organization
+icao
+international air transport association
+iata
+international maritime organization
+imo
+international hydrographic organization
+iho
+world meteorological organization
+wmo
+
+# Environmental Organizations
+intergovernmental panel on climate change
+ipcc
+convention on biological diversity
+cbd
+convention on international trade in endangered species
+cites
+ramsar convention on wetlands
+world heritage convention
+unesco world heritage committee
+international union for conservation of nature
+iucn
+world wide fund for nature
+wwf
+greenpeace international
+friends of the earth international
+conservation international
+ci
+nature conservancy
+wildlife conservation society
+wcs
+birdlife international
+wetlands international
+rainforest alliance
+fauna and flora international
+ffi
+zoological society of london
+zsl
+frankfurt zoological society
+durrell wildlife conservation trust
+born free foundation
+international fund for animal welfare
+ifaw
+world animal protection
+humane society international
+hsi
+
+# Humanitarian Organizations
+international red cross and red crescent movement
+icrc
+international committee of the red cross
+international federation of red cross and red crescent societies
+ifrc
+medecins sans frontieres
+doctors without borders
+msf
+oxfam international
+care international
+save the children international
+world vision international
+plan international
+action aid international
+international rescue committee
+irc
+norwegian refugee council
+nrc
+danish refugee council
+drc
+international organization for migration
+iom
+
+# Human Rights Organizations
+amnesty international
+human rights watch
+hrw
+international crisis group
+icg
+transparency international
+ti
+anti corruption international
+reporters without borders
+rsf
+committee to protect journalists
+cpj
+article 19
+pen international
+index on censorship
+freedom house
+international press institute
+ipi
+international federation of journalists
+ifj
+world association of newspapers and news publishers
+wan ifra
+international publishers association
+ipa
+international authors forum
+iaf
+international confederation of music publishers
+icmp
+international federation of the phonographic industry
+ifpi
+motion picture association
+mpa
+
+# Business Organizations
+international chamber of commerce
+icc
+world economic forum
+wef
+international employers organization
+ioe
+international trade union confederation
+ituc
+world federation of trade unions
+wftu
+international cooperative alliance
+ica
+world fair trade organization
+wfto
+fairtrade international
+flo
+rainforest alliance certified
+utz certified
+forest stewardship council
+fsc
+programme for the endorsement of forest certification
+pefc
+marine stewardship council
+msc
+aquaculture stewardship council
+asc
+roundtable on sustainable palm oil
+rspo
+better cotton initiative
+bci
+organic trade association
+ota
+international federation of organic agriculture movements
+ifoam
+globalg gap
+global good agricultural practices
+safe quality food
+sqf
+british retail consortium
+brc
+international featured standard
+ifs
+
+# Standards Organizations
+iso
+international organization for standardization
+international electrotechnical commission
+iec
+institute of electrical and electronics engineers
+ieee
+american national standards institute
+ansi
+british standards institution
+bsi
+german institute for standardization
+din
+french association for normalization
+afnor
+japanese industrial standards committee
+jisc
+standards australia
+sa
+canadian standards association
+csa
+astm international
+american society for testing and materials
+underwriters laboratories
+ul
+national fire protection association
+nfpa
+international code council
+icc
+american society of mechanical engineers
+asme
+american society of civil engineers
+asce
+american institute of architects
+aia
+royal institute of british architects
+riba
+international union of architects
+uia
+world green building council
+wgbc
+leadership in energy and environmental design
+leed
+building research establishment environmental assessment method
+breeam
+international living future institute
+ilfi
+passive house institute
+phi
+international energy conservation code
+iecc
+american society of heating refrigerating and air conditioning engineers
+ashrae
+international plumbing code
+ipc
+national electrical code
+nec
+international building code
+ibc
+international residential code
+irc
+international existing building code
+iebc
+international fire code
+ifc
+international mechanical code
+imc
+international fuel gas code
+ifgc
+uniform plumbing code
+upc
+uniform mechanical code
+umc
+national plumbing code
+npc
