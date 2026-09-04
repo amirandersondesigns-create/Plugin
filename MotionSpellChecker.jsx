@@ -2051,7 +2051,7 @@ function buildUI(thisObj) {
     try { wordsLabel.graphics.font = ScriptUI.newFont("dialog", "bold", 10); } catch (e) {}
     var lstWords = pal.add("listbox", undefined, []);
     lstWords.alignment = ["fill", "top"];
-    lstWords.preferredSize = [-1, 170];
+    lstWords.preferredSize = [-1, 100];
 
     // ---------------- Selected-word detail ----------------
     var locLabel = pal.add("statictext", undefined, "Locations");
