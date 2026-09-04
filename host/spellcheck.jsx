@@ -13,6 +13,12 @@ var VERSION = "2.2";
 var AUTHOR = "Amir Anderson";
 var HIGHLIGHT_LAYER_NAME = "MSC Highlights";
 
+// Captured immediately as this file is first loaded by CEP, since $.fileName
+// only reliably reflects this script once execution enters here directly —
+// on later evalScript() calls (Scan, Verify Dictionary, etc.) $.fileName can
+// point at the anonymous eval buffer instead, breaking dictionary path lookup.
+var HOST_SCRIPT_FILE_NAME = $.fileName;
+
 // ==================== FALLBACK DICTIONARY ====================
 // Built-in word list so the checker works even before any category files
 // are dropped into /Dictionary/ (~8,100 general English + common tech/web/
@@ -925,7 +931,7 @@ function arrayIndexOf(arr, val) {
 }
 
 function getScriptFolder() {
-    try { var sf = new File($.fileName); return (sf && sf.parent) ? sf.parent.fsName : null; }
+    try { var sf = new File(HOST_SCRIPT_FILE_NAME); return (sf && sf.parent) ? sf.parent.fsName : null; }
     catch (e) { return null; }
 }
 
