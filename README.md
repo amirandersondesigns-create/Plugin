@@ -44,8 +44,15 @@ steps on their end. Nothing to sign, no installer needed.
 
 ### Dictionary files (optional)
 
-Drop plain text files into a `Dictionary` folder placed **next to**
-`MotionSpellChecker.jsx` for coverage beyond the built-in list:
+Drop plain text files into `Documents/MotionSpellChecker/Dictionary/`
+(created automatically the first time you scan) for coverage beyond the
+built-in list. This location is used regardless of where you installed
+`MotionSpellChecker.jsx` — `Scripts/ScriptUI Panels/` normally lives
+inside `Applications`/`Program Files`, which a standard user account
+usually can't write to, so a folder placed there wouldn't reliably work.
+(If a `Dictionary` folder already exists right next to the `.jsx` file
+itself, that's used instead — useful if you keep the script somewhere
+writable outside the AE install.)
 
 - One word per line → added to the "known words" list.
 - `wrongword -> correctword` → registered as a direct correction

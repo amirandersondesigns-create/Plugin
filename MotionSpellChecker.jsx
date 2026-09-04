@@ -8,8 +8,9 @@
 // or run it once via File > Scripts > Run Script File... for a floating dialog.
 //
 // Optional: drop category word-list .txt files (one word per line, or
-// "wrong -> right" correction lines) into a "Dictionary" folder placed
-// next to this script for coverage beyond the built-in ~8,100-word list.
+// "wrong -> right" correction lines) into Documents/MotionSpellChecker/
+// Dictionary/ for coverage beyond the built-in ~8,100-word list. (Created
+// automatically the first time you scan.)
 // ============================================================================
 
 (function MotionSpellChecker(thisObj) {
@@ -23,10 +24,11 @@ var HIGHLIGHT_LAYER_NAME = "MSC Highlights";
 
 // ==================== FALLBACK DICTIONARY ====================
 // Built-in word list so the checker works even before any category files
-// are dropped into /Dictionary/ (~8,100 general English + common tech/web/
-// business/place-name words). Drop .txt word lists (one word per line, or
-// "wrong -> right" correction lines) into a "Dictionary" folder next to
-// this extension for full domain-specific coverage on top of this.
+// are dropped into a Dictionary folder (~8,100 general English + common
+// tech/web/business/place-name words). Drop .txt word lists (one word per
+// line, or "wrong -> right" correction lines) into
+// Documents/MotionSpellChecker/Dictionary/ for full domain-specific
+// coverage on top of this.
 var FALLBACK_DICTIONARY = [
     "a", "aa", "aaa", "aaron", "ab", "abc", "abilities", "ability", "able", "aboriginal",
     "abortion", "about", "above", "abroad", "abs", "absence", "absent", "absolute", "absolutely", "abstract",
@@ -944,21 +946,33 @@ function ensureDir(path) {
 function getDictionaryPath() {
     if (dictionaryData.dictionaryPath) return dictionaryData.dictionaryPath;
     try {
-        var scriptFolder = getScriptFolder();
         var sep = ($.os.indexOf("Win") >= 0) ? "\\" : "/";
+
+        // If a Dictionary folder already sits next to this .jsx file, respect
+        // it (e.g. the script is kept somewhere writable outside the AE
+        // install). We never try to *create* it there: Scripts/ScriptUI
+        // Panels/ normally lives inside Applications/Program Files, which a
+        // standard user account can't write to — attempting it just fails
+        // silently and produces an inconsistent, hard-to-predict location.
+        var scriptFolder = getScriptFolder();
         if (scriptFolder) {
-            // Dictionary/ sits right next to this .jsx file.
-            var dictFolder = new Folder(scriptFolder + sep + "Dictionary");
-            if (!dictFolder.exists) { try { dictFolder.create(); } catch (ce) {} }
-            if (dictFolder.exists) {
-                dictionaryData.dictionaryPath = dictFolder.fsName + sep;
+            var siblingDict = new Folder(scriptFolder + sep + "Dictionary");
+            if (siblingDict.exists) {
+                dictionaryData.dictionaryPath = siblingDict.fsName + sep;
                 return dictionaryData.dictionaryPath;
             }
         }
+
+        // Otherwise: always the same guaranteed-writable location, so the
+        // dictionary folder is predictable regardless of where After
+        // Effects (and this script) happen to be installed.
         if (Folder.myDocuments && Folder.myDocuments.exists) {
-            var d2 = new Folder(Folder.myDocuments.fsName + sep + "MotionSpellChecker" + sep + "Dictionary");
-            if (!d2.exists) { try { d2.create(); } catch (ce2) {} }
-            if (d2.exists) { dictionaryData.dictionaryPath = d2.fsName + sep; return dictionaryData.dictionaryPath; }
+            var docsDict = new Folder(Folder.myDocuments.fsName + sep + "MotionSpellChecker" + sep + "Dictionary");
+            if (!docsDict.exists) { try { docsDict.create(); } catch (ce) {} }
+            if (docsDict.exists) {
+                dictionaryData.dictionaryPath = docsDict.fsName + sep;
+                return dictionaryData.dictionaryPath;
+            }
         }
     } catch (e) { logMessage("Error determining dictionary path: " + e.toString()); }
     return null;
@@ -2455,9 +2469,10 @@ function buildUI(thisObj) {
             "click + Dictionary to whitelist it permanently.\n\n" +
             "DICTIONARY FILES\n" +
             "Drop category word lists (one word per line, or \"wrong -> right\"\n" +
-            "correction lines) into a \"Dictionary\" folder next to this script for\n" +
-            "coverage beyond the built-in fallback list. Use Settings > Verify\n" +
-            "Dictionary to see what's currently loaded.\n\n" +
+            "correction lines) into Documents/MotionSpellChecker/Dictionary/\n" +
+            "(created automatically on first scan) for coverage beyond the\n" +
+            "built-in fallback list. Use Settings > Verify Dictionary to see\n" +
+            "what's currently loaded, including the exact folder path.\n\n" +
             "INSTALLING\n" +
             "Copy this .jsx file into Scripts/ScriptUI Panels/ for a dockable panel\n" +
             "under Window > " + APP_NAME + ", or run it once via File > Scripts >\n" +
