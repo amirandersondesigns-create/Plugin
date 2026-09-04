@@ -10,6 +10,7 @@
 
         <!-- Title bar -->
         <div class="titlebar">
+            <img class="titlebar-logo" src="./icons/src/logo-titlebar.svg" alt="" />
             <div class="titlebar-id">
                 <h1 id="appTitle">Motion Spell Checker</h1>
                 <span class="byline" id="appByline">by Amir Anderson</span>
@@ -29,6 +30,7 @@
                         <option value="selected">Selected Layers</option>
                         <option value="selectedComps">Selected Comps</option>
                     </select>
+                    <span class="field-hint">Where to scan.</span>
                 </label>
                 <label class="field">
                     <span class="field-label">Filter</span>
@@ -38,8 +40,9 @@
                         <option value="expression">Expressions</option>
                         <option value="effect">Effects</option>
                         <option value="marker">Markers</option>
-                        <option value="name">Comp</option>
+                        <option value="name">Composition &amp; Layer Names</option>
                     </select>
+                    <span class="field-hint">What kind of content to check.</span>
                 </label>
             </div>
 
