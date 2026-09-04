@@ -52,6 +52,7 @@
         wordsTitle: $("wordsTitle"),
         emptyState: $("emptyState"),
         wordsList: $("wordsList"),
+        btnCopyReport: $("btnCopyReport"),
 
         locationsTitle: $("locationsTitle"),
         locationsList: $("locationsList"),
@@ -95,6 +96,56 @@
     el.ddlFilter.addEventListener("change", function () {
         renderWordsList();
         clearDetail();
+    });
+
+    // ---------------------------------------------------------------
+    // Copy Report — a plain-text QC summary of the last scan (every
+    // misspelled word, where it appears, and suggestions), for pasting
+    // into an email, Slack, or a compliance sign-off form before air.
+    // ---------------------------------------------------------------
+    function buildReport() {
+        var lines = [];
+        lines.push("Motion Spell Checker — Scan Report");
+        lines.push("Generated: " + new Date().toLocaleString());
+        lines.push("");
+        lines.push(state.words.length + " issue(s) found:");
+        lines.push("");
+        state.words.forEach(function (w, i) {
+            lines.push((i + 1) + ". \"" + w.word + "\" (" + w.count + " occurrence" + (w.count === 1 ? "" : "s") + ")");
+            (w.locations || []).forEach(function (loc) { lines.push("   - " + loc.label); });
+            if (w.suggestions && w.suggestions.length) lines.push("   Suggestions: " + w.suggestions.join(", "));
+            lines.push("");
+        });
+        return lines.join("\n");
+    }
+
+    function copyTextFallback(text) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(ta);
+        return ok;
+    }
+
+    el.btnCopyReport.addEventListener("click", function () {
+        var text = buildReport();
+        var onDone = function () { setStatus("Report copied to clipboard (" + state.words.length + " issue(s)).", "success"); };
+        var onFail = function () { setStatus("Could not copy report — clipboard access blocked.", "warning"); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(onDone, function () {
+                if (copyTextFallback(text)) onDone(); else onFail();
+            });
+        } else if (copyTextFallback(text)) {
+            onDone();
+        } else {
+            onFail();
+        }
     });
 
     // ---------------------------------------------------------------
@@ -197,6 +248,7 @@
     function renderWordsList() {
         var visible = state.words.filter(wordMatchesFilter);
         el.wordsTitle.textContent = visible.length > 0 ? "Misspelled words (" + visible.length + ")" : "Misspelled words";
+        el.btnCopyReport.style.display = state.words.length > 0 ? "inline" : "none";
 
         el.wordsList.innerHTML = "";
 
