@@ -455,19 +455,29 @@
         applyHostTheme();
         csInterface.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, applyHostTheme);
 
-        try {
-            var extRoot = csInterface.getSystemPath("extension");
+        (function sendExtensionRoot() {
+            var extRoot = "";
+            try { extRoot = csInterface.getSystemPath("extension") || ""; } catch (e1) { extRoot = ""; }
+
             // getSystemPath can return a file:// URI (URL-encoded) instead of a
-            // plain path depending on CEP build — normalize it either way.
-            if (extRoot && extRoot.indexOf("file://") === 0) {
-                extRoot = decodeURI(extRoot.replace(/^file:\/\/localhost/, "file://").substring(7));
-            }
+            // plain path depending on CEP build — normalize it either way, but
+            // fall back to the raw value if decoding fails rather than losing
+            // it entirely.
+            var resolved = extRoot;
+            try {
+                if (extRoot && extRoot.indexOf("file://") === 0) {
+                    resolved = decodeURI(extRoot.replace(/^file:\/\/localhost/, "file://").substring(7));
+                }
+            } catch (e2) { resolved = extRoot; }
+
             // Passed as a plain quoted string, not JSON — ExtendScript's JSON
             // global isn't reliably available on this, the very first
             // evalScript() call of a fresh session.
-            var safePath = (extRoot || "").replace(/\\/g, "\\\\").replace(/"/g, '\\"');
-            csInterface.evalScript('csSetExtensionRoot("' + safePath + '")');
-        } catch (e) {}
+            try {
+                var safePath = (resolved || "").replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+                csInterface.evalScript('csSetExtensionRoot("' + safePath + '")');
+            } catch (e3) {}
+        })();
 
         callHost("csGetInfo").then(function (res) {
             if (res.ok) {
