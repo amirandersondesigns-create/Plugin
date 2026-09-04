@@ -34,17 +34,13 @@
 
         btnGearSettings: $("btnGearSettings"),
         settingsOverlay: $("settingsOverlay"),
-        btnToggleHighlightsIcon: $("btnToggleHighlightsIcon"),
         btnOpenDictFromSettings: $("btnOpenDictFromSettings"),
 
         cbIgnoreHidden: $("cbIgnoreHidden"),
         cbIgnoreLocked: $("cbIgnoreLocked"),
-        cbSelectedOnly: $("cbSelectedOnly"),
-        cbForceHighlight: $("cbForceHighlight"),
-        cbDisableHighlights: $("cbDisableHighlights"),
+        cbShowHighlights: $("cbShowHighlights"),
         cbIgnoreCaps: $("cbIgnoreCaps"),
         cbSkipNumbers: $("cbSkipNumbers"),
-        cbSmartMatch: $("cbSmartMatch"),
 
         statusDot: $("statusDot"),
         statusText: $("statusText"),
@@ -105,17 +101,18 @@
     // Scan
     // ---------------------------------------------------------------
     function gatherScanParams() {
+        var showHighlights = el.cbShowHighlights.checked;
         return {
             scope: el.ddlScope.value,
             filter: el.ddlFilter.value,
             ignoreHidden: el.cbIgnoreHidden.checked,
             ignoreLocked: el.cbIgnoreLocked.checked,
-            selectedOnly: el.cbSelectedOnly.checked,
+            selectedOnly: false,
             ignoreAllCaps: el.cbIgnoreCaps.checked,
             skipNumbers: el.cbSkipNumbers.checked,
-            smartMatching: el.cbSmartMatch.checked,
-            forceHighlightVisibility: el.cbForceHighlight.checked,
-            disableGlobalHighlights: el.cbDisableHighlights.checked
+            smartMatching: true,
+            forceHighlightVisibility: showHighlights,
+            disableGlobalHighlights: !showHighlights
         };
     }
 
@@ -179,12 +176,6 @@
     // selected, so there's no separate "scan now" action in here.
     // ---------------------------------------------------------------
     el.btnGearSettings.addEventListener("click", function () { openOverlay("settingsOverlay"); });
-
-    el.btnToggleHighlightsIcon.addEventListener("click", function () {
-        callHost("csToggleHighlights").then(function (res) {
-            if (res.ok) setStatus(res.visible ? "Highlights shown in the comp." : "Highlights hidden.", null);
-        });
-    });
 
     el.btnOpenDictFromSettings.addEventListener("click", function () {
         closeOverlay("settingsOverlay");
@@ -375,6 +366,31 @@
     });
     [el.dictOverlay, el.helpOverlay, el.settingsOverlay].forEach(function (ov) {
         ov.addEventListener("click", function (e) { if (e.target === ov) ov.classList.remove("open"); });
+    });
+
+    // ---------------------------------------------------------------
+    // Keyboard shortcuts
+    // ---------------------------------------------------------------
+    document.addEventListener("keydown", function (e) {
+        var openOverlayEl = document.querySelector(".overlay.open");
+
+        if (e.key === "Escape") {
+            if (openOverlayEl) { closeOverlay(openOverlayEl.id); e.preventDefault(); }
+            return;
+        }
+
+        if ((e.metaKey || e.ctrlKey) && (e.key === "z" || e.key === "Z")) {
+            e.preventDefault();
+            el.btnUndo.click();
+            return;
+        }
+
+        var tag = (e.target && e.target.tagName) || "";
+        var typing = tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA";
+        if (e.key === "Enter" && !openOverlayEl && !typing && !el.btnScan.disabled) {
+            e.preventDefault();
+            el.btnScan.click();
+        }
     });
 
     function verifyDictionaries() {

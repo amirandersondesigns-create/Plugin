@@ -38,7 +38,7 @@
                         <option value="expression">Expressions</option>
                         <option value="effect">Effects</option>
                         <option value="marker">Markers</option>
-                        <option value="name">Comp/Layer</option>
+                        <option value="name">Comp</option>
                     </select>
                 </label>
             </div>
@@ -113,9 +113,13 @@
                 string effect parameters, and quoted string literals inside expressions.</p>
 
                 <h3>Settings</h3>
-                <p>Word matching (Ignore ALL-CAPS, Skip words with numbers, Smart word matching),
-                layer filters (hidden / locked / selected-only), on-canvas highlighting controls,
-                and Verify Dictionary all live in Settings.</p>
+                <p>Word matching (Ignore ALL-CAPS, Skip words with numbers), layer filters
+                (hidden / locked), whether highlights show in the comp, and Verify Dictionary
+                all live in Settings.</p>
+
+                <h3>Keyboard shortcuts</h3>
+                <p>Enter runs Scan (when a dropdown or overlay isn't focused), Esc closes any open
+                dialog, and Cmd/Ctrl+Z undoes the last replacement — same as clicking Undo.</p>
 
                 <h3>Highlighting in the comp</h3>
                 <p>After a scan, every layer with a spelling error gets a red outline directly
@@ -151,20 +155,16 @@
                     <div class="check-group-label">Word matching</div>
                     <label class="checkbox"><input type="checkbox" id="cbIgnoreCaps" checked /> Ignore ALL-CAPS</label>
                     <label class="checkbox"><input type="checkbox" id="cbSkipNumbers" checked /> Skip words with numbers</label>
-                    <label class="checkbox"><input type="checkbox" id="cbSmartMatch" checked /> Smart word matching</label>
                 </div>
                 <div class="check-group">
                     <div class="check-group-label">Layer filters</div>
                     <label class="checkbox"><input type="checkbox" id="cbIgnoreHidden" /> Ignore hidden layers</label>
                     <label class="checkbox"><input type="checkbox" id="cbIgnoreLocked" /> Ignore locked layers</label>
-                    <label class="checkbox"><input type="checkbox" id="cbSelectedOnly" /> Selected layers only</label>
                 </div>
                 <div class="check-group">
-                    <div class="check-group-label">Highlight in viewer</div>
-                    <label class="checkbox"><input type="checkbox" id="cbForceHighlight" /> Force highlight visibility</label>
-                    <label class="checkbox"><input type="checkbox" id="cbDisableHighlights" /> Disable global highlights (faster)</label>
-                    <p class="help-text">Draws a red outline around every layer that contains a misspelling, directly in the Composition viewer, using a non-rendering guide layer. It never touches your actual layers.</p>
-                    <button id="btnToggleHighlightsIcon" class="btn-plain btn-block">Toggle Highlight Visibility</button>
+                    <div class="check-group-label">Highlighting</div>
+                    <label class="checkbox"><input type="checkbox" id="cbShowHighlights" checked /> Show highlights in the comp</label>
+                    <p class="help-text">Draws a red outline around every layer that contains a misspelling, directly in the Composition viewer. It never touches your actual layers.</p>
                 </div>
                 <button id="btnOpenDictFromSettings" class="btn-plain btn-block">Verify Dictionary</button>
             </div>
