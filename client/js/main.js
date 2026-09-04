@@ -394,6 +394,7 @@
             '<span><span class="num">' + r.error + '</span> errors</span>' +
             '</div>';
         html += '<p style="color:var(--muted);font-size:10.5px;margin-bottom:10px;">Folder: ' + escapeHtml(r.dictionaryPath) +
+            '<br/>Extension root (from CEP): ' + escapeHtml(r.extensionRootPath || "(not set)") +
             '<br/>Fallback list: ' + r.fallbackWords + ' words &middot; Custom dictionary: ' + r.customWords + ' words &middot; ' +
             'Category files: ' + r.fileWords + ' words / ' + r.fileCorrections + ' corrections</p>';
         r.categories.forEach(function (c) {

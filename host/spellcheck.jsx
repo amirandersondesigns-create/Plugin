@@ -1704,6 +1704,7 @@ function verifyDictionaries() {
     }
     return {
         dictionaryPath: dictPath || "(not found)",
+        extensionRootPath: EXTENSION_ROOT_PATH || "(not set)",
         categories: results,
         loaded: loaded, missing: missing, empty: empty, error: error,
         fileWords: fileWords, fileCorrections: fileCorrections,
