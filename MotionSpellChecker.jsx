@@ -2387,13 +2387,6 @@ function buildUI(thisObj) {
         var btnVerifyDict = dlg.add("button", undefined, "Verify Dictionary");
         btnVerifyDict.alignment = ["fill", "top"];
 
-        var scanRow = dlg.add("group");
-        scanRow.orientation = "column";
-        scanRow.alignChildren = ["fill", "top"];
-        scanRow.spacing = 6;
-        var btnScanActive = scanRow.add("button", undefined, "Scan Active Comp");
-        var btnScanSelectedComps = scanRow.add("button", undefined, "Scan Selected Comps");
-
         var closeRow = dlg.add("group");
         closeRow.orientation = "row";
         closeRow.alignment = ["center", "top"];
@@ -2416,20 +2409,6 @@ function buildUI(thisObj) {
         };
 
         btnVerifyDict.onClick = function () { saveSettings(); dlg.close(); showVerifyDictionary(); };
-
-        btnScanActive.onClick = function () {
-            saveSettings();
-            ddlScope.selection = 0;
-            dlg.close();
-            runScanUI();
-        };
-
-        btnScanSelectedComps.onClick = function () {
-            saveSettings();
-            ddlScope.selection = 3;
-            dlg.close();
-            runScanUI();
-        };
 
         btnClose.onClick = function () { saveSettings(); dlg.close(); };
 
@@ -2456,8 +2435,7 @@ function buildUI(thisObj) {
             "Word matching (Ignore ALL-CAPS, Skip words with numbers, Smart word\n" +
             "matching — also accepts plurals/tenses of a known word), layer\n" +
             "filters (hidden / locked / selected-only), on-canvas highlighting\n" +
-            "controls, Verify Dictionary, and one-click \"Scan Active Comp\" /\n" +
-            "\"Scan Selected Comps\" all live in Settings.\n\n" +
+            "controls, and Verify Dictionary all live in Settings.\n\n" +
             "HIGHLIGHTING IN THE COMP\n" +
             "After a scan, every layer with a spelling error gets a red outline drawn\n" +
             "directly in the Composition viewer, on a non-rendering guide layer\n" +
