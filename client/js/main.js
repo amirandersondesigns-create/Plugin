@@ -26,6 +26,7 @@
 
     var el = {
         btnHelp: $("btnHelp"),
+        btnContact: $("btnContact"),
 
         ddlScope: $("ddlScope"),
         ddlFilter: $("ddlFilter"),
@@ -420,6 +421,10 @@
     }
 
     el.btnHelp.addEventListener("click", function () { openOverlay("helpOverlay"); });
+
+    el.btnContact.addEventListener("click", function () {
+        csInterface.openURLInDefaultBrowser("https://www.linkedin.com/in/amiranderson");
+    });
 
     // ---------------------------------------------------------------
     // Host theme adaptation — matches After Effects' own UI brightness

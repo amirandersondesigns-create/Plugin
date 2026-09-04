@@ -48,6 +48,13 @@
         try { window.__adobe_cep__.closeExtension(); } catch (e) {}
     };
 
+    // Opens a URL in the user's actual default browser, not inside this
+    // panel — a plain <a href> would just navigate the embedded CEF view
+    // away from the app UI instead.
+    CSInterface.prototype.openURLInDefaultBrowser = function (url) {
+        try { window.__adobe_cep__.openURLInDefaultBrowser(url); } catch (e) {}
+    };
+
     // Passthrough to the native CEP event bridge — used here to react live to
     // host UI theme changes (com.adobe.csxs.events.ThemeColorChanged) so the
     // panel keeps matching After Effects' own brightness setting.
