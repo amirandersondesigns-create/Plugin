@@ -395,6 +395,7 @@
             '</div>';
         html += '<p style="color:var(--muted);font-size:10.5px;margin-bottom:10px;">Folder: ' + escapeHtml(r.dictionaryPath) +
             '<br/>Extension root (from CEP): ' + escapeHtml(r.extensionRootPath || "(not set)") +
+            '<br/>Raw diag: ' + escapeHtml(r.extensionRootDiag || "") +
             '<br/>Fallback list: ' + r.fallbackWords + ' words &middot; Custom dictionary: ' + r.customWords + ' words &middot; ' +
             'Category files: ' + r.fileWords + ' words / ' + r.fileCorrections + ' corrections</p>';
         r.categories.forEach(function (c) {
@@ -456,8 +457,16 @@
 
         try {
             var extRoot = csInterface.getSystemPath("extension");
-            if (extRoot) callHost("csSetExtensionRoot", { path: extRoot });
-        } catch (e) {}
+            var extRootRaw = extRoot;
+            // getSystemPath can return a file:// URI (URL-encoded) instead of a
+            // plain path depending on CEP build — normalize it either way.
+            if (extRoot && extRoot.indexOf("file://") === 0) {
+                extRoot = decodeURI(extRoot.replace(/^file:\/\/localhost/, "file://").substring(7));
+            }
+            callHost("csSetExtensionRoot", { path: extRoot || "", raw: extRootRaw || "" });
+        } catch (e) {
+            callHost("csSetExtensionRoot", { path: "", raw: "", error: e.toString() });
+        }
 
         callHost("csGetInfo").then(function (res) {
             if (res.ok) {

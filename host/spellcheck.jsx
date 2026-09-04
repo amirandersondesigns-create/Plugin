@@ -24,16 +24,18 @@ var HOST_SCRIPT_FILE_NAME = $.fileName;
 // the extension's install folder, since it comes from CEP itself rather
 // than ExtendScript's unreliable $.fileName introspection.
 var EXTENSION_ROOT_PATH = null;
+var EXTENSION_ROOT_DIAG = null;
 
 function csSetExtensionRoot(paramsJSON) {
     try {
         var p = JSON.parse(paramsJSON);
+        EXTENSION_ROOT_DIAG = p || {};
         if (p && p.path) {
             EXTENSION_ROOT_PATH = p.path;
             dictionaryData.dictionaryPath = null;
         }
         return JSON.stringify({ ok: true });
-    } catch (e) { return JSON.stringify({ ok: false, error: e.toString() }); }
+    } catch (e) { EXTENSION_ROOT_DIAG = { error: e.toString() }; return JSON.stringify({ ok: false, error: e.toString() }); }
 }
 
 // ==================== FALLBACK DICTIONARY ====================
@@ -1705,6 +1707,7 @@ function verifyDictionaries() {
     return {
         dictionaryPath: dictPath || "(not found)",
         extensionRootPath: EXTENSION_ROOT_PATH || "(not set)",
+        extensionRootDiag: EXTENSION_ROOT_DIAG ? JSON.stringify(EXTENSION_ROOT_DIAG) : "(csSetExtensionRoot never called)",
         categories: results,
         loaded: loaded, missing: missing, empty: empty, error: error,
         fileWords: fileWords, fileCorrections: fileCorrections,
