@@ -2041,10 +2041,19 @@ function csAddToDictionary(paramsJSON) {
 
 function csUndo() {
     try {
-        var id = app.findMenuCommandId("Undo");
-        if (id) app.executeCommand(id);
+        // AE's Edit > Undo menu label changes with every action ("Undo Move
+        // Layer", "Undo Text Change", etc.), so findMenuCommandId("Undo")
+        // almost never matches literal text and silently no-ops. 2103 is
+        // AE's stable numeric command ID for Undo regardless of label text.
+        app.executeCommand(2103);
         return JSON.stringify({ ok: true });
-    } catch (e) { return JSON.stringify({ ok: false, error: e.toString() }); }
+    } catch (e) {
+        try {
+            var id = app.findMenuCommandId("Undo");
+            if (id) { app.executeCommand(id); return JSON.stringify({ ok: true }); }
+        } catch (e2) {}
+        return JSON.stringify({ ok: false, error: e.toString() });
+    }
 }
 
 function csVerifyDictionaries() {
