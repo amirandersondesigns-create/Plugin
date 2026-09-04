@@ -453,6 +453,11 @@
         applyHostTheme();
         csInterface.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, applyHostTheme);
 
+        try {
+            var extRoot = csInterface.getSystemPath("extension");
+            if (extRoot) callHost("csSetExtensionRoot", { path: extRoot });
+        } catch (e) {}
+
         callHost("csGetInfo").then(function (res) {
             if (res.ok) {
                 $("appTitle").textContent = res.appName;

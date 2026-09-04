@@ -19,6 +19,23 @@ var HIGHLIGHT_LAYER_NAME = "MSC Highlights";
 // point at the anonymous eval buffer instead, breaking dictionary path lookup.
 var HOST_SCRIPT_FILE_NAME = $.fileName;
 
+// Set by the panel at startup via csSetExtensionRoot(), using CSInterface's
+// getSystemPath("extension") on the JS side — the authoritative source for
+// the extension's install folder, since it comes from CEP itself rather
+// than ExtendScript's unreliable $.fileName introspection.
+var EXTENSION_ROOT_PATH = null;
+
+function csSetExtensionRoot(paramsJSON) {
+    try {
+        var p = JSON.parse(paramsJSON);
+        if (p && p.path) {
+            EXTENSION_ROOT_PATH = p.path;
+            dictionaryData.dictionaryPath = null;
+        }
+        return JSON.stringify({ ok: true });
+    } catch (e) { return JSON.stringify({ ok: false, error: e.toString() }); }
+}
+
 // ==================== FALLBACK DICTIONARY ====================
 // Built-in word list so the checker works even before any category files
 // are dropped into /Dictionary/ (~8,100 general English + common tech/web/
@@ -942,8 +959,16 @@ function ensureDir(path) {
 function getDictionaryPath() {
     if (dictionaryData.dictionaryPath) return dictionaryData.dictionaryPath;
     try {
-        var scriptFolder = getScriptFolder();
         var sep = ($.os.indexOf("Win") >= 0) ? "\\" : "/";
+        if (EXTENSION_ROOT_PATH) {
+            var extDictFolder = new Folder(EXTENSION_ROOT_PATH + sep + "Dictionary");
+            if (!extDictFolder.exists) { try { extDictFolder.create(); } catch (ce0) {} }
+            if (extDictFolder.exists) {
+                dictionaryData.dictionaryPath = extDictFolder.fsName + sep;
+                return dictionaryData.dictionaryPath;
+            }
+        }
+        var scriptFolder = getScriptFolder();
         if (scriptFolder) {
             // host/ -> extension root -> Dictionary/
             var root = new Folder(scriptFolder).parent;
