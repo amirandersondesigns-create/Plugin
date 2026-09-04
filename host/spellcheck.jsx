@@ -2040,19 +2040,33 @@ function csAddToDictionary(paramsJSON) {
 }
 
 function csUndo() {
+    // Diagnostic build: the hardcoded command ID 2103 didn't actually undo
+    // anything even though it ran without error — meaning that ID likely
+    // doesn't map to Undo in this AE version. Try every avenue and report
+    // exactly what each one returned/did, so the real answer is visible
+    // instead of guessed at again.
+    var diag = [];
+    var foundId = null;
     try {
-        // AE's Edit > Undo menu label changes with every action ("Undo Move
-        // Layer", "Undo Text Change", etc.), so findMenuCommandId("Undo")
-        // almost never matches literal text and silently no-ops. 2103 is
-        // AE's stable numeric command ID for Undo regardless of label text.
-        app.executeCommand(2103);
-        return JSON.stringify({ ok: true });
-    } catch (e) {
+        foundId = app.findMenuCommandId("Undo");
+        diag.push("findMenuCommandId('Undo')=" + foundId);
+    } catch (e1) { diag.push("findMenuCommandId threw: " + e1.toString()); }
+
+    if (foundId) {
         try {
-            var id = app.findMenuCommandId("Undo");
-            if (id) { app.executeCommand(id); return JSON.stringify({ ok: true }); }
-        } catch (e2) {}
-        return JSON.stringify({ ok: false, error: e.toString() });
+            app.executeCommand(foundId);
+            diag.push("executeCommand(" + foundId + ") ran");
+            return JSON.stringify({ ok: true, diag: diag.join(" | ") });
+        } catch (e2) { diag.push("executeCommand(" + foundId + ") threw: " + e2.toString()); }
+    }
+
+    try {
+        app.executeCommand(2103);
+        diag.push("fallback executeCommand(2103) ran");
+        return JSON.stringify({ ok: true, diag: diag.join(" | ") });
+    } catch (e3) {
+        diag.push("executeCommand(2103) threw: " + e3.toString());
+        return JSON.stringify({ ok: false, error: diag.join(" | ") });
     }
 }
 

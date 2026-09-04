@@ -350,8 +350,11 @@
 
     el.btnUndo.addEventListener("click", function () {
         callHost("csUndo").then(function (res) {
-            if (res.ok) setStatus("Undid last change.", null);
-            else setStatus(res.error || "Nothing to undo.", "warning");
+            // Temporary: show the diagnostic (which lookup path ran, and
+            // whether it actually threw) so we can see why the underlying
+            // AE command isn't taking effect, instead of guessing again.
+            if (res.ok) setStatus("Undo: " + (res.diag || "ran"), null);
+            else setStatus("Undo failed: " + (res.diag || res.error || "unknown"), "warning");
         });
     });
 
