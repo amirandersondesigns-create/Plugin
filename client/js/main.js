@@ -457,16 +457,17 @@
 
         try {
             var extRoot = csInterface.getSystemPath("extension");
-            var extRootRaw = extRoot;
             // getSystemPath can return a file:// URI (URL-encoded) instead of a
             // plain path depending on CEP build — normalize it either way.
             if (extRoot && extRoot.indexOf("file://") === 0) {
                 extRoot = decodeURI(extRoot.replace(/^file:\/\/localhost/, "file://").substring(7));
             }
-            callHost("csSetExtensionRoot", { path: extRoot || "", raw: extRootRaw || "" });
-        } catch (e) {
-            callHost("csSetExtensionRoot", { path: "", raw: "", error: e.toString() });
-        }
+            // Passed as a plain quoted string, not JSON — ExtendScript's JSON
+            // global isn't reliably available on this, the very first
+            // evalScript() call of a fresh session.
+            var safePath = (extRoot || "").replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+            csInterface.evalScript('csSetExtensionRoot("' + safePath + '")');
+        } catch (e) {}
 
         callHost("csGetInfo").then(function (res) {
             if (res.ok) {
