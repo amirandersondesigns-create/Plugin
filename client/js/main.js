@@ -58,7 +58,6 @@
         suggestionsTitle: $("suggestionsTitle"),
         suggestionsList: $("suggestionsList"),
         btnReplace: $("btnReplace"),
-        btnUndo: $("btnUndo"),
         btnIgnore: $("btnIgnore"),
         btnAddDict: $("btnAddDict"),
 
@@ -345,16 +344,6 @@
         var lower = state.selectedLower;
         callHost("csAddToDictionary", { lower: lower }).then(function (res) {
             if (res.ok) { setStatus("Added \"" + lower + "\" to custom dictionary.", "success"); removeWordFromState(lower); }
-        });
-    });
-
-    el.btnUndo.addEventListener("click", function () {
-        callHost("csUndo").then(function (res) {
-            // Temporary: show the diagnostic (which lookup path ran, and
-            // whether it actually threw) so we can see why the underlying
-            // AE command isn't taking effect, instead of guessing again.
-            if (res.ok) setStatus("Undo: " + (res.diag || "ran"), null);
-            else setStatus("Undo failed: " + (res.diag || res.error || "unknown"), "warning");
         });
     });
 
