@@ -9,7 +9,7 @@
 // ============================================================================
 
 var APP_NAME = "Motion Spell Checker";
-var VERSION = "1.0";
+var VERSION = "1.0.1";
 var AUTHOR = "Amir Anderson";
 var HIGHLIGHT_LAYER_NAME = "MSC Highlights";
 
