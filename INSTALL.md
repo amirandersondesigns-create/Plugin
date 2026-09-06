@@ -27,7 +27,7 @@ That's it — no debug mode, no manual file copying, no Terminal commands. Those
 
 ## Adding your own words (optional)
 
-The plugin ships with a full dictionary of **80,000+ words** across 46
+The plugin ships with a full dictionary of **100,000+ words** across 46
 categories (world leaders, countries, medical terms, tech vocabulary,
 common misspelling corrections, and more) built directly into the
 plugin itself — there's no separate dictionary folder to install or go

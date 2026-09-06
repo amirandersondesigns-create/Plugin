@@ -95,7 +95,7 @@ client/js/CSInterface.js
 host/spellcheck.jsx   ExtendScript engine — same scan/replace/highlight
                        logic as MotionSpellChecker.jsx, wrapped for CEP.
 host/dictionary-data.jsx
-                       80,000+ built-in dictionary words across 46
+                       100,000+ built-in dictionary words across 46
                        categories, compiled in and pulled into
                        spellcheck.jsx via #include — no separate files,
                        no install-time dependency. Generated from
