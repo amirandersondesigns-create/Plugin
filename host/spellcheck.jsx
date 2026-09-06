@@ -581,31 +581,17 @@ function ensureDir(path) {
     try { var f = new Folder(path); if (!f.exists) { f.create(); } } catch (e) {}
 }
 
+// Only used for the small, writable files that hold words YOU add at
+// runtime (customDictionary.txt, ignoredWords.txt) — the 100,000-word
+// built-in dictionary is compiled into the extension itself (see
+// dictionary-data.jsx) and never touches this path. Documents is used
+// directly since it's reliably writable regardless of where or how the
+// extension itself was installed (a fixed, user-owned CEP install
+// folder can be read-only, especially for a system-wide install).
 function getDictionaryPath() {
     if (dictionaryData.dictionaryPath) return dictionaryData.dictionaryPath;
     try {
         var sep = ($.os.indexOf("Win") >= 0) ? "\\" : "/";
-        if (EXTENSION_ROOT_PATH) {
-            var extDictFolder = new Folder(EXTENSION_ROOT_PATH + sep + "Dictionary");
-            if (!extDictFolder.exists) { try { extDictFolder.create(); } catch (ce0) {} }
-            if (extDictFolder.exists) {
-                dictionaryData.dictionaryPath = extDictFolder.fsName + sep;
-                return dictionaryData.dictionaryPath;
-            }
-        }
-        var scriptFolder = getScriptFolder();
-        if (scriptFolder) {
-            // host/ -> extension root -> Dictionary/
-            var root = new Folder(scriptFolder).parent;
-            if (root) {
-                var dictFolder = new Folder(root.fsName + sep + "Dictionary");
-                if (!dictFolder.exists) { try { dictFolder.create(); } catch (ce) {} }
-                if (dictFolder.exists) {
-                    dictionaryData.dictionaryPath = dictFolder.fsName + sep;
-                    return dictionaryData.dictionaryPath;
-                }
-            }
-        }
         if (Folder.myDocuments && Folder.myDocuments.exists) {
             var d2 = new Folder(Folder.myDocuments.fsName + sep + "MotionSpellChecker" + sep + "Dictionary");
             if (!d2.exists) { try { d2.create(); } catch (ce2) {} }
