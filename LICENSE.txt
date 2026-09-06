@@ -1,0 +1,24 @@
+Amir Anderson Motion Spell Checker
+License & Terms of Use
+
+Copyright (c) 2026 Amir Anderson. All rights reserved.
+
+This plugin is provided free of charge for personal and studio use.
+
+You MAY:
+  - Install and use this plugin on any number of your own machines.
+  - Use it on personal, freelance, and studio/commercial projects.
+
+You MAY NOT, without written permission from the author:
+  - Redistribute, resell, or repackage this plugin (in whole or in part).
+  - Create derivative extensions or plugins based on its code.
+  - Remove or alter this license or its attribution.
+
+This software is provided "as is," without warranty of any kind, express
+or implied, including but not limited to warranties of merchantability,
+fitness for a particular purpose, and non-infringement. In no event shall
+the author be liable for any claim, damages, or other liability arising
+from the use of this software.
+
+Questions, feedback, or licensing requests:
+Amir Anderson — https://www.linkedin.com/in/amiranderson

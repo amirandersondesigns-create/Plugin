@@ -8,8 +8,8 @@ Composition viewer.
 
 ## Released build: the CEP extension (`CSXS/`, `client/`, `host/`)
 
-This is the version distributed as `MotionSpellChecker.zxp` — custom
-theme, settings drawer, host-theme adaptation, on-canvas highlighting.
+This is the version distributed as `Amir Anderson Motion Spell Checker.zxp`
+— custom theme, settings drawer, host-theme adaptation, on-canvas highlighting.
 **If you just downloaded this to install it, see [`INSTALL.md`](./INSTALL.md)
 instead of the developer notes below.**
 
@@ -94,6 +94,13 @@ client/js/CSInterface.js
                        Minimal bridge to the CEP host (evalScript, etc.)
 host/spellcheck.jsx   ExtendScript engine — same scan/replace/highlight
                        logic as MotionSpellChecker.jsx, wrapped for CEP.
+Dictionary/*.txt      46 bundled category word lists — ships pre-loaded,
+                       not something users have to add themselves.
+package-zxp.sh        Builds a clean, signed .zxp — see below.
+LICENSE.txt           Standalone terms file, distributed alongside the .zxp.
+.debug                Dev-only — opens a DevTools debug port for this
+                       panel while PlayerDebugMode is on. Deliberately
+                       excluded from the signed package by package-zxp.sh.
 ```
 
 ### Installing the CEP build for testing (unsigned / debug mode)
@@ -114,30 +121,64 @@ by its bundle ID:
 - **macOS**: `~/Library/Application Support/Adobe/CEP/extensions/com.aanders.motionspellchecker`
 - **Windows**: `%APPDATA%\Adobe\CEP\extensions\com.aanders.motionspellchecker`
 
-Restart After Effects, then open it from **Window → Extensions → Motion
-Spell Checker**.
+Restart After Effects, then open it from **Window → Extensions → Amir
+Anderson Motion Spell Checker**.
 
 ### Packaging the CEP build for distribution (signed `.zxp`)
 
-Sign it with Adobe's `ZXPSignCmd` (from
-[Adobe-CEP/CEP-Resources](https://github.com/Adobe-CEP/CEP-Resources) on
-GitHub) so it installs without debug mode:
+Use **`package-zxp.sh`** (repo root) — it downloads the latest pushed
+source fresh, stages *only* the files the running extension actually
+needs (`CSXS/`, `client/`, `host/`, `Dictionary/`), and signs that clean
+staging folder. It deliberately leaves out `.debug` (opens a DevTools
+debug port — a dev-only artifact with no reason to ship), plus
+`MotionSpellChecker.jsx`, the docs, and the PDF guide, none of which the
+running extension reads.
 
 ```bash
-ZXPSignCmd -selfSignedCert US CA "Amir Anderson" "Motion Spell Checker" password cert.p12
-ZXPSignCmd -sign . MotionSpellChecker.zxp cert.p12 password -tsa https://timestamp.digicert.com
+./package-zxp.sh YourCertPassword
 ```
 
-Run the `-sign` command from *inside* the extension folder itself (the one
-containing `CSXS/manifest.xml`) — `.` means "sign the current directory,"
-and pointing it anywhere else (e.g. your home folder) will try to sign
-everything in that folder instead. If `-tsa` fails on a flaky network,
-drop it and re-run; timestamping is optional.
+Requires the same two things as always, already set up if you've built
+this before: `~/cert.p12` (the self-signed cert) and
+`~/Downloads/ZXPSignCmd-64bit` (from
+[Adobe-CEP/CEP-Resources](https://github.com/Adobe-CEP/CEP-Resources) —
+re-download from there if it's gone; it doesn't survive between sessions
+on this machine for some reason). Output lands at
+`~/Desktop/Amir Anderson Motion Spell Checker.zxp`, and the script prints
+the final package's file listing so you can eyeball that nothing
+unwanted got in.
+
+If you need to sign by hand instead (e.g. `package-zxp.sh` isn't
+available and you're working from a manually downloaded copy), stage the
+four folders into an empty directory yourself first, then:
+
+```bash
+ZXPSignCmd -selfSignedCert US CA "Amir Anderson" "Motion Spell Checker" password cert.p12   # once
+ZXPSignCmd -sign . "Amir Anderson Motion Spell Checker.zxp" cert.p12 password -tsa https://timestamp.digicert.com
+```
+
+Run the `-sign` command from *inside* that staging folder (the one
+containing `CSXS/manifest.xml` at its root) — `.` means "sign the current
+directory," and pointing it anywhere else (e.g. your home folder, or the
+full repo checkout with the extra docs still in it) will sign whatever's
+actually there. Delete any existing output file at that exact path first
+— `ZXPSignCmd` crashes instead of overwriting. Drop `-tsa` if the
+timestamp server is unreachable; it's optional.
 
 Users then install the `.zxp` with **ZXP Installer** (zxpinstaller.com) or
 **Anastasiy's Extension Manager** — no debug mode needed on their machine.
 `INSTALL.md` in this repo is the customer-facing version of these steps —
-that's what to hand to people downloading the finished `.zxp`, not this file.
+that's what to hand to people downloading the finished `.zxp`, not this
+file. `LICENSE.txt` (repo root) is the standalone terms file to include
+alongside it.
+
+**What to actually upload to Gumroad/aescripts** (as separate files, not
+zipped together): the `.zxp` from `package-zxp.sh`,
+`Motion_Spell_Checker_Quick_Start_Guide.pdf`, `INSTALL.md`, and
+`LICENSE.txt`. Leave out the standalone `.jsx`, the unpacked source
+folders, and any loose dictionary files — they either duplicate what's
+already inside the `.zxp` or reopen the "two install methods" confusion
+this project already worked through.
 
 > **Manifest note**: `CSXS/manifest.xml`'s root `<ExtensionManifest>` tag
 > must NOT carry a default `xmlns="..."` attribute. Adding one (even
