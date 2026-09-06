@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="9.0" ExtensionBundleId="com.aanders.motionspellchecker" ExtensionBundleVersion="1.0.0" ExtensionBundleName="Motion Spell Checker">
+<ExtensionManifest Version="9.0" ExtensionBundleId="com.aanders.motionspellchecker" ExtensionBundleVersion="1.0.0" ExtensionBundleName="Amir Anderson Motion Spell Checker">
     <ExtensionList>
         <Extension Id="com.aanders.motionspellchecker.panel" Version="1.0.0" />
     </ExtensionList>
@@ -30,7 +30,7 @@
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
-                    <Menu>Motion Spell Checker</Menu>
+                    <Menu>Amir Anderson Motion Spell Checker</Menu>
                     <Geometry>
                         <Size>
                             <Height>820</Height>
