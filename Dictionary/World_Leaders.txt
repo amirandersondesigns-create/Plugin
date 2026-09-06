@@ -21,7 +21,6 @@ johnson
 
 # United Kingdom
 sunak
-johnson
 may
 cameron
 brown
@@ -191,7 +190,6 @@ sheinbaum
 milei
 fernandez
 alberto
-fernandez
 cristina
 kirchner
 nestor
@@ -314,7 +312,6 @@ kenyatta
 uhuru
 kibaki
 moi
-kenyatta
 jomo
 odinga
 raila
@@ -347,24 +344,18 @@ il
 un
 
 # North Korea
-kim
-jong
-un
-il
 sung
 
 # Taiwan
 lai
 tsai
 ing
-wen
 ma
 ying
 jeou
 chen
 shui
 bian
-lee
 teng
 hui
 
@@ -453,13 +444,6 @@ akhundzada
 haibatullah
 
 # Iran
-khamenei
-khomeini
-raisi
-rouhani
-ahmadinejad
-khatami
-rafsanjani
 
 # Ukraine
 zelensky
@@ -482,7 +466,6 @@ jaroslaw
 morawiecki
 kwasniewski
 walesa
-lech
 
 # Spain
 sanchez
@@ -496,7 +479,6 @@ felipe
 suarez
 juan
 carlos
-felipe
 vi
 letiz ia
 
@@ -532,7 +514,6 @@ maxima
 # Belgium
 de
 croo
-alexander
 michel
 charles
 leterme
@@ -540,7 +521,6 @@ verhofstadt
 guy
 martens
 wilfried
-philippe
 albert
 baudouin
 
@@ -585,7 +565,6 @@ lars
 lokke
 anders
 fogh
-schmidt
 poul
 nyrup
 margrethe
@@ -597,7 +576,6 @@ sanna
 sipila
 juha
 stubb
-alexander
 vanhanen
 matti
 niinisto
@@ -617,11 +595,9 @@ wolfgang
 van
 der
 bellen
-alexander
 
 # Switzerland
 parmelin
-guy
 maurer
 ueli
 leuthard
@@ -638,7 +614,6 @@ alain
 costa
 antonio
 coelho
-pedro
 passos
 socrates
 jose
@@ -689,7 +664,6 @@ peter
 
 # Romania
 iohannis
-klaus
 basescu
 traian
 iliescu
@@ -726,9 +700,7 @@ slobodan
 
 # Croatia
 plenkovic
-andrej
 milanovic
-zoran
 kosor
 jadranka
 sanader
@@ -744,13 +716,11 @@ janez
 pahor
 borut
 drnovsek
-janez
 
 # Slovakia
 heger
 eduard
 fico
-robert
 matovic
 igor
 dzurinda
@@ -758,9 +728,7 @@ mikulas
 
 # Chile
 boric
-gabriel
 pinera
-sebastian
 bachelet
 michelle
 lagos
@@ -775,7 +743,6 @@ gustavo
 duque
 ivan
 santos
-juan
 manuel
 uribe
 alvaro
@@ -790,13 +757,10 @@ cesar
 boluarte
 dina
 castillo
-pedro
 sagasti
 francisco
 vizcarra
-martin
 kuczynski
-pedro
 pablo
 humala
 ollanta
@@ -805,7 +769,6 @@ alan
 toledo
 alejandro
 fujimori
-alberto
 keiko
 
 # Venezuela
@@ -814,10 +777,8 @@ nicolas
 chavez
 hugo
 guaido
-juan
 capriles
 henrique
-lopez
 leopoldo
 
 # Ecuador
@@ -830,7 +791,6 @@ rafael
 gutierrez
 lucio
 noboa
-alvaro
 bucaram
 abdala
 
@@ -840,42 +800,33 @@ luis
 morales
 evo
 mesa
-carlos
-sanchez
 gonzalo
 lozada
 paz
 zamora
 jaime
 banzer
-hugo
 
 # Paraguay
-pena
 santiago
 abdo
 benitez
-mario
 cartes
 horacio
 lugo
 fernando
 duarte
 nicanor
-gonzalez
 macchi
-luis
 cubas
 raul
 
 # Uruguay
 lacalle
 pou
-luis
 vazquez
 tabare
 mujica
-jose
 sanguinetti
 julio
 batlle
@@ -890,7 +841,6 @@ hipkins
 chris
 key
 john
-clark
 helen
 shipley
 jenny
@@ -898,7 +848,6 @@ bolger
 jim
 
 # Singapore
-lee
 hsien
 loong
 goh
@@ -922,14 +871,12 @@ mahathir
 mohamad
 najib
 razak
-abdullah
 badawi
 ahmad
 
 # Ireland
 varadkar
 leo
-martin
 micheal
 kenny
 enda
@@ -938,8 +885,106 @@ brian
 ahern
 bertie
 bruton
-john
 reynolds
-albert
 higgins
 michael
+
+# --- Expanded vocabulary (added) ---
+churchill
+roosevelt
+theodore
+woodrow
+dwight
+eisenhower
+lyndon
+nixon
+gerald
+barack
+abraham
+mahatma
+jawaharlal
+theresa
+rishi
+keir
+angela
+olaf
+emmanuel
+jacques
+francois
+vladimir
+mikhail
+nikita
+leonid
+chiang
+kaishek
+shinzo
+fumio
+yoshihide
+narendra
+atal
+bihari
+recep
+tayyip
+kemal
+ataturk
+yitzhak
+golda
+meir
+ariel
+hosni
+abdel
+fattah
+el-sisi
+muammar
+gaddafi
+al-assad
+thabo
+cyril
+mugabe
+julius
+nyerere
+kwame
+nkrumah
+silva
+jair
+castro
+peron
+vicente
+enrique
+jae-in
+geun-hye
+myung-bak
+corazon
+aung
+suu
+kyi
+thein
+sein
+dalai
+lama
+middleton
+meghan
+markle
+otto
+bismarck
+kaiser
+wilhelm
+adolf
+hitler
+benito
+mussolini
+gaulle
+napoleon
+bonaparte
+xiv
+antoinette
+leon
+trotsky
+genghis
+kublai
+caesar
+augustus
+cleopatra
+ramses
+hammurabi
+nebuchadnezzar

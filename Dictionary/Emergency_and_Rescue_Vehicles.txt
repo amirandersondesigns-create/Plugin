@@ -59,7 +59,6 @@ K9 unit
 canine unit
 SWAT vehicle
 special weapons and tactics
-armored personnel carrier
 bearcat
 tactical vehicle
 command center
@@ -93,7 +92,6 @@ lifeboat
 rigid hull inflatable boat
 RHIB
 rescue cutter
-search and rescue
 SAR
 lifeguard vehicle
 beach patrol
@@ -217,7 +215,6 @@ health fair
 wellness check
 
 # Animal Services
-animal control
 spay and neuter
 pet adoption
 animal shelter
@@ -229,8 +226,6 @@ soup kitchen
 food distribution
 disaster relief
 supply distribution
-Red Cross
-Salvation Army
 canteen truck
 volunteer services
 
@@ -278,7 +273,6 @@ emergency coordinator
 homeland security
 emergency preparedness
 FEMA
-Federal Emergency Management Agency
 state emergency
 county emergency
 city emergency
@@ -430,3 +424,41 @@ police escort
 honor guard
 ceremonial duty
 color guard
+
+# --- Expanded vocabulary (added) ---
+fireengine
+firetruck
+laddertruck
+rescuetruck
+hazmatunit
+policecruiser
+squadcar
+patrolcar
+swatvan
+armoredvehicle
+coastguardcutter
+lifeboatvessel
+helicopterrescue
+medevachelicopter
+airambulance
+searchandrescue
+kunit
+bombsquadunit
+swiftwaterrescue
+disasterresponse
+urbansearch
+triageunit
+mobilecommand
+incidentcommand
+firstresponder
+dispatchcenter
+emergencyroom
+urgentcare
+traumacenter
+backboard
+oxygentank
+sirens
+floodrescueboat
+allterrain
+quickresponsevehicle
+commandvehicle

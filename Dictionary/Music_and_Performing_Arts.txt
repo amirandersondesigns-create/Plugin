@@ -2,20 +2,11 @@
 # Musical terms, instruments, genres, performance terminology (no artists, albums, or songs)
 
 # Music Fundamentals
-music
-sound
-tone
-pitch
-rhythm
 melody
 harmony
 timbre
 texture
-dynamics
 tempo
-beat
-measure
-bar
 
 # Note Values
 note
@@ -45,14 +36,12 @@ treble clef
 bass clef
 alto clef
 tenor clef
-staff
 stave
 ledger line
 grand staff
 octave
 
 # Scales and Modes
-scale
 major scale
 minor scale
 harmonic minor
@@ -62,7 +51,6 @@ chromatic scale
 whole tone scale
 pentatonic scale
 blues scale
-mode
 ionian mode
 dorian mode
 phrygian mode
@@ -74,8 +62,6 @@ locrian mode
 # Intervals
 interval
 unison
-second
-third
 fourth
 fifth
 sixth
@@ -116,8 +102,6 @@ root position
 first inversion
 second inversion
 third inversion
-progression
-cadence
 authentic cadence
 plagal cadence
 half cadence
@@ -125,7 +109,6 @@ deceptive cadence
 
 # Harmonic Functions
 tonic
-dominant
 subdominant
 mediant
 submediant
@@ -167,9 +150,7 @@ movable do
 
 # Music Theory
 music theory
-harmony
 counterpoint
-composition
 orchestration
 arrangement
 instrumentation
@@ -185,8 +166,6 @@ jazz harmony
 contemporary harmony
 
 # Musical Forms
-form
-structure
 binary form
 ternary form
 rondo form
@@ -194,29 +173,18 @@ sonata form
 sonata allegro form
 theme variations
 fugue
-canon
-round
 ostinato
 basso ostinato
 ground bass
 passacaglia
 chaconne
 suite
-movement
-exposition
-development
 recapitulation
 coda
-introduction
-bridge
-transition
 
 # Song Structure
-verse
 chorus
-refrain
 pre chorus
-hook
 breakdown
 solo section
 interlude
@@ -224,8 +192,6 @@ outro
 fade out
 
 # Classical Genres
-genre
-style
 classical music
 baroque music
 renaissance music
@@ -235,17 +201,14 @@ impressionist music
 modern music
 contemporary classical
 minimalist music
-avant garde
 experimental music
 
 # Electronic Music
 electronic music
 ambient music
-techno
 house music
 trance music
 drum bass
-dubstep
 breakbeat
 jungle
 garage music
@@ -262,7 +225,6 @@ chillout music
 lounge music
 
 # Jazz Styles
-jazz
 bebop
 cool jazz
 hard bop
@@ -310,10 +272,7 @@ art song
 opera
 aria
 recitative
-ensemble
 duet
-trio
-quartet
 quintet
 sextet
 septet
@@ -321,7 +280,6 @@ octet
 libretto
 
 # Musical Scores
-score
 full score
 vocal score
 piano reduction
@@ -341,7 +299,6 @@ sonata
 prelude
 nocturne
 etude
-study
 caprice
 scherzo
 waltz
@@ -363,7 +320,6 @@ tone poem
 symphonic poem
 oratorio
 cantata
-mass
 requiem
 magnificat
 te deum
@@ -435,7 +391,6 @@ folk music
 traditional music
 
 # World Music
-world music
 ethnic music
 celtic music
 flamenco music
@@ -452,7 +407,6 @@ bachata music
 cumbia music
 tango music
 samba music
-bossa nova
 fado music
 rembetiko music
 rebetiko music
@@ -488,8 +442,6 @@ a cappella
 unaccompanied singing
 choral music
 choir singing
-chorus
-ensemble
 
 # Voice Types
 soprano voice
@@ -511,8 +463,6 @@ portamento
 glissando
 vocal range
 tessitura
-register
-break
 passaggio
 
 # Vocal Training
@@ -521,17 +471,13 @@ breath control
 diaphragmatic breathing
 support
 resonance
-projection
 articulation
-diction
 pronunciation
 phrasing
-interpretation
 expression
 emotion
 
 # Dynamic Markings
-dynamics
 soft
 loud
 crescendo
@@ -572,7 +518,6 @@ lento
 vivace
 
 # String Instruments
-instrument
 string instrument
 bowed string
 plucked string
@@ -635,7 +580,6 @@ flute
 piccolo flute
 alto flute
 bass flute
-recorder
 soprano recorder
 alto recorder
 tenor recorder
@@ -727,7 +671,6 @@ cabasa
 guiro
 vibraslap
 castanets
-tambourine
 
 # Tuned Percussion
 bell
@@ -743,14 +686,12 @@ celesta
 
 # Keyboards
 keyboard instrument
-piano
 grand piano
 upright piano
 digital piano
 electric piano
 harpsichord
 clavichord
-organ
 pipe organ
 church organ
 hammond organ
@@ -768,10 +709,8 @@ sampler
 drum machine
 sequencer
 music box
-hurdy gurdy
 
 # Orchestra and Ensembles
-orchestra
 symphony orchestra
 chamber orchestra
 string orchestra
@@ -782,20 +721,15 @@ marching band
 brass band
 military band
 jazz band
-big band
 combo
-ensemble
 rock band
 pop band
 cover band
 tribute band
 backing band
-session musician
 studio musician
-touring musician
 
 # Musical Leadership
-conductor
 maestro
 music director
 bandleader
@@ -810,25 +744,15 @@ featured artist
 guest artist
 
 # Music Production
-composer
-songwriter
-lyricist
 arranger
 orchestrator
-music producer
 record producer
-executive producer
-mixing engineer
-mastering engineer
-audio engineer
-sound engineer
 recording engineer
 live sound engineer
 studio engineer
 
 # Recording Types
 session
-recording
 live recording
 field recording
 multitrack recording
@@ -846,7 +770,6 @@ crossfade
 
 # Audio Effects
 equalization
-compression
 dynamic range compression
 limiting
 noise gate
@@ -878,8 +801,6 @@ solid state amplifier
 modeling amplifier
 practice amplifier
 combo amplifier
-head
-cabinet
 speaker cabinet
 monitor speaker
 pa system
@@ -904,7 +825,6 @@ soundboard
 audio interface
 preamp
 preamplifier
-cable
 xlr cable
 quarter inch cable
 patch cable
@@ -912,37 +832,16 @@ instrument cable
 speaker cable
 
 # Performance Venues
-stage
-performance
-live performance
-concert
 recital
-gig
-show
-set
-encore
-soundcheck
-rehearsal
 practice session
 jam session
 open mic night
 karaoke night
-venue
-concert hall
 auditorium
 theater
 theatre
-amphitheater
-arena
-stadium
-club
 nightclub
-bar
-lounge
-cafe
 coffee house
-festival
-music festival
 arts festival
 performance space
 black box theater
@@ -953,7 +852,6 @@ thrust stage
 arena stage
 round stage
 platform stage
-riser
 stage curtain
 backdrop
 scenery
@@ -976,8 +874,6 @@ lighting cue
 gel
 color filter
 gobo
-pattern
-projection
 dimmer
 lighting console
 lighting board
@@ -991,25 +887,20 @@ sound absorption
 sound reflection
 sound diffusion
 reverberation time
-echo
 acoustic treatment
 soundproofing
 
 # Audience
-audience
 crowd
-house
 seating
 orchestra seating
 balcony seating
 mezzanine seating
 box seat
-general admission
 reserved seating
 standing room
 pit area
 vip section
-backstage
 green room
 dressing room
 wings
@@ -1023,35 +914,23 @@ house right
 house left
 
 # Ticketing
-box office
-ticket sales
 will call
-admission
-entry
-ticket
 season ticket
 subscription series
 matinee performance
 evening performance
 opening night
 closing night
-premiere
 debut performance
-tour
 concert tour
-world tour
 national tour
 regional tour
 residency performance
 
 # Performing Arts
 performing arts
-theater
-drama
-play
 musical theater
 musical theatre
-opera
 operetta
 ballet
 dance performance
@@ -1069,7 +948,6 @@ ethnic dance
 dance company
 dance troupe
 choreography
-choreographer
 dance notation
 movement vocabulary
 dance technique
@@ -1081,23 +959,12 @@ ensemble work
 stage presence
 performance quality
 artistry
-expression
-interpretation
 
 # Theater Production
 acting
-actor
-actress
-performer
-cast
-casting
-audition
-callback
-rehearsal
 blocking
 staging
 direction
-director
 assistant director
 stage manager
 assistant stage manager
@@ -1105,7 +972,6 @@ production manager
 technical director
 set designer
 scenic designer
-costume designer
 makeup designer
 hair designer
 props master
@@ -1120,22 +986,11 @@ sound operator
 lighting operator
 
 # Script and Performance
-script
-screenplay
-dialogue
-monologue
-soliloquy
-line
-delivery
 cue
 prompt book
 stage direction
 character development
-motivation
 subtext
-objective
-obstacle
-tactics
 beat work
 scene work
 given circumstances
@@ -1147,21 +1002,11 @@ gesture
 body language
 facial expression
 voice work
-vocal technique
-projection
-articulation
-characterization
 accent work
 dialect coaching
 period style
 
 # Theater Genres
-genre
-comedy
-tragedy
-farce
-melodrama
-satire
 absurdist theater
 experimental theater
 physical theater
@@ -1170,16 +1015,12 @@ pantomime
 clowning
 commedia arte
 improvisation comedy
-sketch comedy
 stand up comedy
-variety show
 vaudeville
 burlesque
 cabaret
 
 # Performance Art
-performance art
-installation art
 site specific performance
 street performance
 busking
@@ -1207,3 +1048,23 @@ contortionism
 hand balancing
 plate spinning
 hula hooping
+
+# --- Expanded vocabulary (added) ---
+chorale
+virtuoso
+soprano
+alto
+tenor
+baritone
+falsetto
+doublebass
+piccolo
+frenchhorn
+percussion
+pirouette
+arabesque
+pliet
+playwright
+dramaturge
+understudy
+matinee

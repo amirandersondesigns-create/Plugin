@@ -8,7 +8,6 @@ Europe
 North America
 South America
 Oceania
-Australia
 
 # Polar Regions
 Arctic
@@ -164,7 +163,6 @@ Magdeburg Börde
 Thuringia
 Franconia
 Vogtland
-Saxony
 Bohemia
 Moravia
 Silesia
@@ -206,10 +204,8 @@ Barta
 Notangia
 Pomesania
 Pogesania
-Warmia
 
 # Polish Regions
-Prussia
 Culmerland
 Lubawa
 Michałowo
@@ -258,8 +254,6 @@ Rzeszów
 
 # Balkan Regions
 Balkans
-Slovenia
-Croatia
 Dalmatia
 Istria
 Slavonia
@@ -274,7 +268,6 @@ Wallachia
 Muntenia
 Oltenia
 Moldavia
-Moldova
 Bessarabia
 Bukovina
 Dobruja
@@ -294,7 +287,6 @@ South Ossetia
 Kabardino-Balkaria
 Karachay-Cherkessia
 Adygea
-Abkhazia
 Adjara
 Guria
 Imereti
@@ -315,8 +307,6 @@ Khevi
 Meskheti
 
 # Armenia and Azerbaijan
-Armenia
-Azerbaijan
 Nakhchivan
 Nagorno-Karabakh
 Artsakh
@@ -360,7 +350,6 @@ Markazi
 Chaharmahal and Bakhtiari
 Kohgiluyeh and Boyer-Ahmad
 Anatolia
-Thrace
 Marmara
 Aegean Region
 Mediterranean Region
@@ -370,7 +359,6 @@ Southeastern Anatolia
 Levant
 Mesopotamia
 Phoenicia
-Palestine
 Judea
 Samaria
 Galilee
@@ -387,9 +375,7 @@ Empty Quarter
 Nafud
 Dahna
 Dhofar
-Oman
 Hadhramaut
-Yemen
 Mahra
 Socotra
 Arabia Felix
@@ -465,7 +451,6 @@ Tripura
 Meghalaya
 Arunachal Pradesh
 Sikkim
-Bhutan
 Himachal Pradesh
 Uttarakhand
 Uttaranchal
@@ -477,11 +462,9 @@ Jharkhand
 Andhra Pradesh
 Telangana
 Karnataka
-Mysore
 Kerala
 Malabar
 Travancore
-Cochin
 Tamil Nadu
 Madras
 Pondicherry
@@ -498,3 +481,34 @@ Dadra and Nagar Haveli
 Lakshadweep
 Laccadive Islands
 Andaman and Nicobar Islands
+
+# --- Expanded vocabulary (added) ---
+eurasia
+scandinavia
+caucasus
+maghreb
+sahel
+subcontinent
+polynesia
+melanesia
+mediterranean
+baltics
+mesoamerica
+patagonia
+amazonia
+siberia
+tundra
+outback
+pampas
+steppe
+savannah
+lowlands
+peninsula
+archipelago
+isthmus
+equator
+hemisphere
+tropics
+plateau
+subtropical
+temperate

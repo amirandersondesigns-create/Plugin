@@ -1,24 +1,19 @@
 # Historical Events 2000-2025 Dictionary
 
 # Millennium and Terrorism
-millennium
 y2k
 september eleven
 9/11
 september 11 attacks
-world trade center
 pentagon
 shanksville
 al qaeda
 osama bin laden
-taliban
 afghanistan war
 operation enduring freedom
 iraq war
 operation iraqi freedom
 saddam hussein
-weapons of mass destruction
-wmd
 coalition provisional authority
 
 # Arab Spring
@@ -34,17 +29,12 @@ islamic state
 daesh
 caliphate
 boko haram
-extremism
 jihadism
-counterterrorism
 
 # War on Terror
 patriot act
-homeland security
 guantanamo bay
-extraordinary rendition
 enhanced interrogation techniques
-waterboarding
 abu ghraib
 wikileaks
 julian assange
@@ -58,16 +48,13 @@ encryption debate
 
 # Natural Disasters
 hurricane katrina
-levee breach
 new orleans flooding
 fema response
-disaster relief
 indian ocean tsunami
 sumatra andaman earthquake
 boxing day tsunami
 relief effort
 haiti earthquake
-port au prince
 cholera outbreak
 tohoku earthquake
 fukushima nuclear disaster
@@ -90,21 +77,14 @@ black summer
 amazon rainforest fires
 
 # Climate Change
-climate change
-global warming
-paris agreement
-kyoto protocol
 copenhagen summit
 climate accord
 carbon emissions
 greenhouse gases
-renewable energy
 solar power
 wind energy
 electric vehicle
 tesla
-carbon neutral
-net zero
 greta thunberg
 fridays for future
 extinction rebellion
@@ -119,7 +99,6 @@ lehman brothers collapse
 bank bailout
 tarp
 troubled asset relief program
-quantitative easing
 stimulus package
 recovery act
 occupy wall street
@@ -172,10 +151,8 @@ dalai lama
 myanmar coup
 aung san suu kyi
 rohingya crisis
-ethnic cleansing
 
 # Refugee Crisis
-refugee crisis
 migrant crisis
 syrian refugees
 european migration crisis
@@ -202,7 +179,6 @@ euromaidan
 viktor yanukovych
 petro poroshenko
 volodymyr zelensky
-zelenskyy
 russian invasion of ukraine
 full scale invasion
 special military operation
@@ -211,13 +187,11 @@ kyiv offensive
 mariupol siege
 bucha massacre
 war crimes
-international criminal court
 icc referral
 sanctions on russia
 swift ban
 energy embargo
 oil embargo
-gas pipeline
 nord stream pipeline
 pipeline sabotage
 minsk agreements
@@ -226,14 +200,10 @@ vladimir putin
 dmitry medvedev
 sergey lavrov
 nato expansion
-membership
-article five
 collective defense
 
 # Russia Conflicts
 georgia war
-south ossetia
-abkhazia
 chechnya wars
 beslan school siege
 moscow theater hostage crisis
@@ -248,12 +218,8 @@ kremlin critic
 
 # Latin America
 jair bolsonaro
-brazil
 amazon deforestation
-indigenous rights
-lula
 dilma rousseff
-impeachment
 corruption scandal
 operation car wash
 lava jato
@@ -262,7 +228,6 @@ venezuela crisis
 nicolas maduro
 hugo chavez
 bolivarian revolution
-hyperinflation
 economic collapse
 venezuelan refugees
 humanitarian crisis
@@ -290,11 +255,9 @@ cartel violence
 sinaloa cartel
 el chapo
 joaquin guzman
-extradition
 
 # Cuba
 cuba relations
-normalization
 barack obama
 raul castro
 miguel diaz canel
@@ -307,9 +270,7 @@ kim jong un
 kim jong il
 missile tests
 nuclear tests
-pyongyang
 denuclearization
-summit
 singapore summit
 hanoi summit
 dmz meeting
@@ -326,8 +287,6 @@ centrifuges
 hassan rouhani
 ayatollah khamenei
 qasem soleimani
-assassination
-drone strike
 baghdad strike
 retaliation
 missile attack
@@ -337,7 +296,6 @@ base attack
 israel palestine conflict
 gaza strip
 west bank
-jerusalem
 embassy move
 recognition as capital
 two state solution
@@ -355,8 +313,6 @@ idf
 iron dome
 rocket attacks
 airstrikes
-blockade
-humanitarian crisis
 arab israeli conflict
 peace process
 oslo accords
@@ -364,9 +320,6 @@ camp david
 abraham accords
 normalization agreements
 uae
-bahrain
-morocco
-recognition
 benjamin netanyahu
 benny gantz
 naftali bennett
@@ -382,7 +335,6 @@ silk road
 made in china 2025
 trade war
 tariffs
-trade deficit
 intellectual property theft
 technology transfer
 huawei ban
@@ -421,18 +373,13 @@ bjp
 bharatiya janata party
 congress party
 citizenship amendment act
-caa
 farm laws protest
 farmers protest
 delhi protests
 
 # Africa
 ethiopia tigray war
-conflict
 abiy ahmed
-nobel peace prize
-civil war
-humanitarian crisis
 famine
 eritrea involvement
 rwanda genocide anniversary
@@ -442,7 +389,6 @@ paul kagame
 reconciliation
 commemoration
 sudan darfur
-genocide
 omar al bashir
 janjaweed militia
 icc indictment
@@ -450,8 +396,6 @@ coup
 protests
 transitional government
 south sudan independence
-secession
-civil war
 salva kiir
 riek machar
 oil resources
@@ -482,15 +426,11 @@ racial reckoning
 metoo movement
 harvey weinstein
 sexual harassment
-sexual assault
-allegations
 time up campaign
 believe women
 survivors
-empowerment
 kavanaugh hearings
 christine blasey ford
-testimony
 confirmation battle
 supreme court nomination
 
@@ -498,9 +438,6 @@ supreme court nomination
 donald trump
 trump presidency
 election 2016
-upset victory
-electoral college
-popular vote
 hillary clinton
 email scandal
 james comey letter
@@ -512,15 +449,12 @@ special counsel
 impeachment ukraine
 ukraine call
 whistleblower complaint
-quid pro quo
 abuse of power
 obstruction of congress
 senate trial
-acquittal
 second impeachment
 capitol riot
 january sixth
-insurrection
 electoral college certification
 stop the steal movement
 proud boys
@@ -528,7 +462,6 @@ oath keepers
 sedition charges
 congressional investigation
 january 6 committee
-hearing
 mike pence
 nancy pelosi
 
@@ -539,7 +472,6 @@ election 2020
 mail in voting
 pandemic election
 vote counting
-lawsuits
 challenges
 transition of power
 inauguration
@@ -557,7 +489,6 @@ longest war
 
 # COVID Pandemic
 covid pandemic
-coronavirus
 sars cov 2
 wuhan outbreak
 zoonotic origin
@@ -570,7 +501,6 @@ global pandemic
 who declaration
 lockdown measures
 stay at home orders
-social distancing
 mask mandates
 quarantine requirements
 contact tracing apps
@@ -583,7 +513,6 @@ frontline workers
 essential workers
 flattening the curve
 surge
-wave
 second wave
 third wave
 delta variant
@@ -592,11 +521,8 @@ alpha variant
 beta variant
 gamma variant
 variant of concern
-voc
-mutation
 spike protein
 transmissibility
-severity
 immune evasion
 
 # Vaccines
@@ -625,8 +551,6 @@ bivalent vaccine
 updated vaccine
 vaccine hesitancy
 anti vaxx movement
-misinformation
-disinformation
 infodemic
 conspiracy theories
 hydroxychloroquine controversy
@@ -634,19 +558,14 @@ ivermectin controversy
 remdesivir treatment
 monoclonal antibody treatment
 paxlovid antiviral
-long covid
-post acute sequelae
 persistent symptoms
 brain fog
-fatigue
 shortness of breath
-disability
 
 # Pandemic Impact
 lockdown protests
 reopening debate
 economic impact
-recession
 job losses
 unemployment surge
 business closures
@@ -684,9 +603,7 @@ section 230 debate
 content moderation
 free speech debate
 disinformation spread
-fake news
 echo chamber
-polarization
 tribalism
 
 # Culture Wars
@@ -704,7 +621,6 @@ attacks on press
 attacks on judiciary
 attacks on election integrity
 voter suppression
-gerrymandering
 filibuster reform debate
 court packing proposal
 term limits debate
@@ -715,7 +631,6 @@ state trigger laws
 reproductive rights battle
 marriage equality
 obergefell decision
-lgbtq rights
 trans rights
 bathroom bills
 sports participation debate
@@ -753,13 +668,11 @@ gun lobby
 
 # Opioid Crisis
 opioid crisis
-epidemic
 overdose deaths
 fentanyl crisis
 oxycontin scandal
 purdue pharma
 sackler family
-settlements
 addiction treatment
 harm reduction
 narcan distribution
@@ -838,3 +751,6 @@ indian space program
 chandrayaan missions
 japanese space program
 european space agency missions
+
+# --- Expanded vocabulary (added) ---
+worldcup

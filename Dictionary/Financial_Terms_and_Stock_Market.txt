@@ -1,9 +1,7 @@
 # Financial Terms and Stock Market
 
 # Basic Financial Instruments
-stock
 share
-equity
 bond
 debenture
 security
@@ -53,7 +51,6 @@ market rally
 market rebound
 market recovery
 recession
-depression
 inflation
 deflation
 stagflation
@@ -216,7 +213,6 @@ tangible book value
 net asset value
 NAV
 return on equity
-ROE
 return on assets
 ROA
 return on invested capital
@@ -498,7 +494,6 @@ IOC
 all or none
 AON
 partial fill
-execution
 slippage
 market impact
 illiquidity
@@ -547,7 +542,6 @@ net present value
 NPV
 future value
 FV
-discount rate
 hurdle rate
 required return
 internal rate of return
@@ -698,3 +692,24 @@ climate finance
 carbon credit
 carbon offset
 emissions trading
+
+# --- Expanded vocabulary (added) ---
+volatility
+liquidity
+solvency
+arbitrage
+commodity
+grossdomesticproduct
+dowjones
+standardpoors
+brokerage
+underwriting
+amortize
+annuity
+ledger
+cashflow
+restructuring
+quorum
+bylaws
+monopoly
+oligopoly

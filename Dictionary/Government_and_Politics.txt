@@ -37,14 +37,11 @@ unitarism
 centralization
 decentralization
 devolution
-autonomy
 sovereignty
 independence
 self determination
-secession
 annexation
 unification
-integration
 
 # Branches of Government
 separation of powers
@@ -148,7 +145,6 @@ deputy chairman
 # Cabinet and Ministers
 treasurer
 comptroller
-controller
 auditor
 attorney general
 solicitor general
@@ -229,8 +225,6 @@ diplomatic corps
 diplomatic immunity
 diplomatic pouch
 diplomatic relations
-recognition
-accreditation
 credentials
 letter of credence
 persona non grata
@@ -246,7 +240,6 @@ permanent mission
 treaty
 agreement
 convention
-protocol
 memorandum of understanding
 mou
 accord
@@ -254,8 +247,6 @@ pact
 compact
 charter
 covenant
-declaration
-resolution
 proclamation
 manifesto
 white paper
@@ -270,7 +261,6 @@ statute
 ordinance
 decree
 edict
-proclamation
 executive order
 presidential directive
 executive memorandum
@@ -329,7 +319,6 @@ runoff election
 two round system
 primary election
 caucus
-convention
 nomination
 candidacy
 candidate
@@ -357,7 +346,6 @@ narrow victory
 upset victory
 
 # Campaigns
-campaign
 political campaign
 election campaign
 campaign finance
@@ -379,7 +367,6 @@ transparency
 accountability
 
 # Ethics and Corruption
-ethics
 conflict of interest
 nepotism
 cronyism
@@ -417,31 +404,20 @@ third party
 splinter party
 fringe party
 single issue party
-coalition
-alliance
 bloc
-faction
-wing
 left wing
 right wing
-center
-moderate
-progressive
 liberal
 conservative
-radical
 reactionary
 revisionist
 reformist
-revolutionary
 counterrevolutionary
-establishment
 anti establishment
 insider
 outsider
 elite
 grassroots
-base
 core supporter
 activist
 volunteer
@@ -487,7 +463,6 @@ retail politics
 wholesale politics
 
 # Political Communication
-spin
 spin doctor
 talking point
 sound bite
@@ -532,23 +507,15 @@ summit
 bilateral meeting
 multilateral meeting
 conference
-forum
 dialogue
-consultation
 working group
 task force
 commission
 committee
 subcommittee
 hearing
-investigation
 inquiry
 inquest
-probe
-examination
-review
-audit
-oversight
 
 # Government Transparency
 sunshine law
@@ -556,7 +523,6 @@ freedom of information act
 foia
 open records law
 public records act
-whistleblower
 leaker
 source
 anonymous source
@@ -564,7 +530,6 @@ deep throat
 off the record
 on background
 deep background
-embargo
 news cycle
 news dump
 friday news dump
@@ -584,7 +549,6 @@ redacted
 
 # Security and Immigration
 national security
-homeland security
 public safety
 law and order
 crime prevention
@@ -595,7 +559,6 @@ intelligence agency
 secret service
 security service
 border patrol
-customs
 immigration enforcement
 deportation
 detention center
@@ -617,14 +580,10 @@ ethnicity
 race
 religion
 caste
-class
 gender
 sexual orientation
-age
-disability
 discrimination
 prejudice
-bias
 bigotry
 racism
 sexism
@@ -658,7 +617,6 @@ women suffrage
 property qualification
 literacy test
 poll tax
-grandfather clause
 gerrymandering
 redistricting
 reapportionment
@@ -667,9 +625,7 @@ reapportionment
 census
 enumeration
 headcount
-population
 demographics
-statistics
 data analysis
 polling
 opinion poll
@@ -682,11 +638,7 @@ survey
 questionnaire
 sample size
 margin of error
-confidence interval
 statistical significance
-correlation
-causation
-bias
 sampling bias
 selection bias
 response bias
@@ -696,21 +648,28 @@ confirmation bias
 cognitive bias
 heuristic
 stereotype
-prejudice
-discrimination
 
 # Policy and Equality
 affirmative action
 quota system
 diversity
-inclusion
-equity
 equality
-justice
 fairness
 impartiality
 neutrality
 objectivity
-independence
-autonomy
-sovereignty
+
+# --- Expanded vocabulary (added) ---
+bicameral
+unicameral
+councilor
+plebiscite
+nominee
+electorate
+constituency
+bipartisan
+ideology
+libertarian
+socialist
+totalitarian
+authoritarian

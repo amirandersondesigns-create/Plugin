@@ -16,12 +16,10 @@ tribune
 herald
 chronicle
 observer
-independent
 economist
 spectator
 financial times
 news corp
-network
 broadcasting corporation
 
 # News Networks
@@ -45,7 +43,6 @@ rte
 rai
 rtve
 nhk
-cctv
 xinhua
 tass
 sputnik
@@ -59,9 +56,6 @@ oann
 # Major Newspapers
 new york times
 washington post
-wall street journal
-guardian
-telegraph
 le monde
 le figaro
 la stampa
@@ -89,10 +83,7 @@ sydney morning herald
 the standard
 
 # News Magazines
-time
 newsweek
-economist
-spectator
 the week
 the atlantic
 new yorker
@@ -124,10 +115,8 @@ byline
 dateline
 headline
 subhead
-deck
 kicker
 lede
-lead
 nutgraf
 graf
 paragraph
@@ -135,63 +124,33 @@ copy
 story
 article
 piece
-feature
 profile
 investigative
 expose
 scoop
 exclusive
 breaking news
-bulletin
 alert
 flash
-update
 developing story
 ongoing coverage
-reporting
 correspondence
-dispatch
-wire
 feed
-syndicate
-column
 editorial
 opinion
-commentary
-analysis
 perspective
 viewpoint
 
 # News Gathering
-source
-attribution
 quote
 quotation
 paraphrase
-interview
-background
 on the record
-off the record
-on background
 not for attribution
-anonymous source
 confidential source
-whistleblower
-leak
-insider
-informant
-witness
 eyewitness
-testimony
-statement
 press release
-briefing
-press conference
-embargo
-pool
-stakeout
 doorstep
-scrum
 
 # Story Elements
 inverted pyramid
@@ -202,22 +161,13 @@ when
 where
 why
 how
-angle
-hook
 peg
-frame
 narrative
 arc
 character
 protagonist
 antagonist
-conflict
-resolution
-tension
-climax
 denouement
-transition
-bridge
 setup
 payoff
 callback
@@ -235,20 +185,12 @@ line editor
 fact checker
 proofreader
 revise
-revision
-draft
 rewrite
 polish
 tighten
-trim
 cut
-kill
 spike
-hold
-slug
 version
-iteration
-markup
 track changes
 comments
 queries
@@ -259,41 +201,24 @@ house style
 # News Types
 hard news
 soft news
-feature
 human interest
-investigative
 watchdog
-enterprise
 explanatory
 interpretive
-analysis
-opinion
-editorial
-column
-commentary
-review
 criticism
-profile
 obituary
-breaking news
 spot news
 news brief
 roundup
 wrap
 sidebar
-box
-infographic
-timeline
 explainer
 backgrounder
-context
 
 # Broadcast Terms
-anchor
 correspondent
 reporter
 field reporter
-producer
 assignment desk
 newsroom
 control room
@@ -307,7 +232,6 @@ package
 vosot
 voice over
 sound on tape
-sound bite
 actuality
 nat sound
 natural sound
@@ -327,9 +251,6 @@ tracking shot
 
 # Digital Media
 online
-digital
-web
-internet
 multimedia
 interactive
 hypertext
@@ -339,20 +260,9 @@ widget
 plugin
 scroll
 infinite scroll
-feed
 stream
-algorithm
 trending
-viral
-engagement
-clicks
 views
-impressions
-reach
-metrics
-analytics
-seo
-search engine optimization
 keywords
 tags
 metadata
@@ -360,14 +270,12 @@ cms
 content management system
 paywall
 subscription
-newsletter
 push notification
 
 # Social Media Terms
 tweet
 retweet
 like
-share
 comment
 reply
 thread
@@ -376,38 +284,22 @@ mention
 tag
 dm
 direct message
-story
-post
 status update
-timeline
-feed
-algorithm
-viral
-trending
 influencer
 follower
 following
-engagement
-reach
-impressions
-organic
 paid
 boosted
 sponsored
-advertisement
 
 # Photojournalism
 photographer
 photojournalist
 stringer
 freelance
-assignment
 shoot
 capture
-frame
 composition
-lighting
-exposure
 aperture
 shutter speed
 iso
@@ -421,61 +313,32 @@ landscape
 candid
 posed
 action shot
-sequence
 contact sheet
 edit
-selection
-crop
 retouch
 caption
 credit
-copyright
 usage rights
 wire photo
 stock photo
 
 # Investigative Reporting
-investigation
-investigative
-probe
-inquiry
-examination
 scrutiny
-expose
 revelation
 disclosure
 uncover
 reveal
 discover
 document
-evidence
-proof
-verification
-confirmation
-corroboration
 records
 documents
 files
-data
-database
-foia
-freedom of information act
 public records request
-subpoena
-deposition
-testimony
-interview
-source
-whistleblower
-leak
-confidential
 
 # Verification
 fact check
 verify
-verification
 authenticate
-corroborate
 confirm
 validate
 cross reference
@@ -487,43 +350,21 @@ reliable
 credible
 trustworthy
 authoritative
-evidence
-proof
-documentation
-records
-data
-statistics
-studies
-research
 experts
 specialists
 academics
 officials
-eyewitness
 firsthand
 
 # Ethics
-accuracy
-fairness
-objectivity
-impartiality
-balance
-neutrality
-bias
-conflict of interest
-transparency
-accountability
-responsibility
 integrity
 credibility
 trust
 truth
-verification
 correction
 retraction
 clarification
 apology
-ombudsman
 standards
 practices
 guidelines
@@ -531,41 +372,23 @@ code of ethics
 code of conduct
 journalism ethics
 media law
-libel
-defamation
-slander
-privacy
-copyright
 fair use
 
 # News Production
-assignment
-pitch
 story idea
-angle
-approach
-treatment
 outline
-research
-reporting
 writing
 editing
 layout
-design
 pagination
 dummy
-proof
-final
-deadline
 cycle
 edition
 morning edition
 evening edition
 weekend edition
-extra
 special edition
 supplement
-section
 front page
 above the fold
 below the fold
@@ -574,60 +397,39 @@ continued
 back page
 
 # Circulation
-circulation
 readership
 audience
 subscribers
-newsstand
-distribution
-delivery
-carrier
-route
 single copy
 bulk
-subscription
-digital
 print
 hybrid
-paywall
 metered paywall
-freemium
-premium
 membership
-donation
 supporter
 sustainer
 
 # Advertising
-advertising
-advertisement
 classified ad
 display ad
 banner ad
 native advertising
 sponsored content
 advertorial
-commercial
 spot
 preroll
 midroll
 postroll
 programmatic
-targeting
 demographic
 psychographic
 behavioral
 contextual
-retargeting
 impression
 click through rate
 ctr
-conversion
-attribution
-campaign
 media buy
 placement
-inventory
 rate card
 cpm
 cpc
@@ -638,30 +440,35 @@ freedom of the press
 freedom of speech
 freedom of expression
 censorship
-suppression
 intimidation
-harassment
 persecution
 imprisonment
-detention
-arrest
-prosecution
-conviction
 sentence
-jail
-prison
 exile
 asylum
 refuge
 protection
 shield law
 reporter privilege
-confidential source
 whistleblower protection
-transparency
 access to information
 government accountability
-watchdog
 fourth estate
-democracy
 public interest
+
+# --- Expanded vocabulary (added) ---
+editorinchief
+bureauchief
+sourcing
+factchecking
+oped
+punditry
+airtime
+wireservice
+tabloid
+broadsheet
+freelancer
+videographer
+copyeditor
+masthead
+frontpage

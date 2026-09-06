@@ -3,7 +3,6 @@
 # Agriculture Basics
 farming
 cultivation
-crop
 harvest
 plant
 seed
@@ -11,7 +10,6 @@ seed
 # Grains and Cereals
 grain
 wheat
-rice
 corn
 maize
 barley
@@ -74,7 +72,6 @@ miso
 natto
 
 # Nuts and Seeds
-peanut
 groundnut
 almond
 walnut
@@ -122,7 +119,6 @@ kale
 collard greens
 spinach
 arugula
-rocket
 watercress
 endive
 escarole
@@ -141,7 +137,6 @@ scallion
 spring onion
 shallot
 chive
-ramp
 wild leek
 kohlrabi
 radish
@@ -169,7 +164,6 @@ scotch bonnet
 ghost pepper
 carolina reaper
 poblano
-anaheim
 banana pepper
 pepperoncini
 cayenne
@@ -179,7 +173,6 @@ pimento
 
 # Squash and Gourds
 eggplant
-aubergine
 zucchini
 courgette
 squash
@@ -214,12 +207,10 @@ plantain
 
 # Citrus Fruits
 apple
-orange
 lemon
 lime
 grapefruit
 tangerine
-mandarin
 clementine
 satsuma
 kumquat
@@ -237,7 +228,6 @@ valencia orange
 # Stone Fruits
 pear
 peach
-plum
 apricot
 nectarine
 cherry
@@ -318,7 +308,6 @@ noni
 # Chocolate and Coffee
 cacao
 cocoa
-chocolate
 carob
 coffee
 tea
@@ -410,7 +399,6 @@ sage
 parsley
 cilantro
 coriander
-mint
 tarragon
 chervil
 marjoram
@@ -432,7 +420,6 @@ cinnamon
 cassia
 clove
 nutmeg
-mace
 allspice
 star anise
 vanilla
@@ -477,13 +464,11 @@ goat
 veal
 venison
 bison
-buffalo
 elk
 wild boar
 rabbit
 hare
 chicken
-turkey
 duck
 goose
 quail
@@ -509,7 +494,6 @@ tilapia
 catfish
 trout
 bass
-pike
 perch
 walleye
 snapper
@@ -567,7 +551,6 @@ uni
 # Dairy Products
 dairy
 milk
-cream
 heavy cream
 light cream
 half and half
@@ -590,7 +573,6 @@ cottage cheese
 ricotta
 mascarpone
 neufchatel
-quark
 fromage blanc
 cheddar
 mozzarella
@@ -658,7 +640,6 @@ artisan cheese
 farmstead cheese
 
 # Eggs
-egg
 scrambled egg
 fried egg
 poached egg
@@ -690,7 +671,6 @@ zabaglione
 sabayon
 
 # Oils and Vinegars
-oil
 olive oil
 extra virgin olive oil
 vegetable oil
@@ -724,7 +704,6 @@ distilled vinegar
 # Condiments
 ketchup
 catsup
-mustard
 yellow mustard
 dijon mustard
 whole grain mustard
@@ -734,7 +713,6 @@ aioli
 tartar sauce
 cocktail sauce
 worcestershire sauce
-soy sauce
 tamari
 shoyu
 hoisin sauce
@@ -743,7 +721,6 @@ ponzu
 mirin
 sake
 shaoxing wine
-tabasco
 sriracha
 sambal oelek
 gochujang
@@ -758,7 +735,6 @@ tzatziki
 raita
 chutney
 relish
-salsa
 pico de gallo
 guacamole
 chimichurri
@@ -789,7 +765,6 @@ beurre rouge
 pan sauce
 gravy
 jus
-reduction
 demi glace
 coulis
 compote
@@ -803,7 +778,6 @@ gelee
 aspic
 
 # Stocks and Soups
-stock
 broth
 bouillon
 consomme
@@ -825,3 +799,47 @@ pho
 laksa
 tom yum
 tom kha gai
+
+# --- Expanded vocabulary (added) ---
+irrigation
+fertilizer
+pesticide
+monoculture
+polyculture
+livestock
+poultry
+husbandry
+pasture
+rangeland
+orchard
+vineyard
+hydroponics
+aeroponics
+nonorganic
+granary
+plow
+tiller
+thresher
+seeder
+charcuterie
+pasteurization
+refrigeration
+marinade
+braising
+sauteing
+roasting
+grilling
+steaming
+blanching
+emulsion
+vinaigrette
+roux
+julienne
+chiffonade
+mincing
+gastronomy
+culinary
+sommelier
+patissier
+charcutier
+butcher

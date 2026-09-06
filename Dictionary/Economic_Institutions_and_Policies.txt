@@ -21,7 +21,6 @@ stimulus
 quantitative easing
 tapering
 forward guidance
-interest rate
 open market operations
 discount window
 
@@ -123,7 +122,6 @@ regional economics
 comparative advantage
 absolute advantage
 Heckscher-Ohlin Model
-Ricardo
 Ricardian theory
 terms of trade
 balance of trade
@@ -514,10 +512,6 @@ tier 1 capital
 tier 2 capital
 risk-weighted asset
 RWA
-credit risk
-market risk
-operational risk
-leverage ratio
 liquidity coverage ratio
 LCR
 net stable funding ratio
@@ -533,7 +527,6 @@ D-SIB
 capital surcharge
 counter-cyclical capital buffer
 stress test
-scenario analysis
 Comprehensive Capital Analysis and Review
 CCAR
 supervisory stress test
@@ -558,3 +551,39 @@ total loss-absorbing capacity
 TLAC
 minimum requirement for own funds and eligible liabilities
 MREL
+
+# --- Expanded vocabulary (added) ---
+worldbank
+internationalmonetaryfund
+federalreserve
+europeancentralbank
+bankofengland
+bankofjapan
+treasurydepartment
+centralbank
+keynesian
+fiscalpolicy
+monetarypolicy
+quantitativeeasing
+interestrate
+freetrade
+protectionism
+globalization
+deregulation
+privatization
+bailout
+gnp
+tradedeficit
+tradesurplus
+balanceofpayments
+exchangerate
+fixedexchange
+floatingexchange
+sovereignwealth
+progressivetax
+regressivetax
+flattax
+entitlement
+socialsecurity
+minimumwage
+labormarket

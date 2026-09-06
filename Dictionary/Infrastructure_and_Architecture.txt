@@ -3,7 +3,6 @@
 # Architecture Basics
 architecture
 building
-structure
 construction
 design
 planning
@@ -17,7 +16,6 @@ detail
 site plan
 
 # Foundation Types
-foundation
 footing
 slab
 basement
@@ -45,14 +43,11 @@ structural system
 load bearing wall
 post and beam construction
 timber frame
-steel frame
 concrete frame
 masonry structure
 column
-beam
 girder
 joist
-truss
 rafter
 purlin
 stud
@@ -68,7 +63,6 @@ curtain wall
 partition wall
 interior wall
 exterior wall
-retaining wall
 basement wall
 parapet wall
 fire wall
@@ -91,18 +85,12 @@ concentrated load
 distributed load
 point load
 uniform load
-stress
-strain
 tension
-compression
-shear
 bending moment
 torsion
 deflection
-settlement
 buckling
 creep
-fatigue
 ultimate strength
 yield strength
 elastic limit
@@ -115,7 +103,6 @@ serviceability
 durability
 stability
 rigidity
-flexibility
 
 # Building Materials
 material
@@ -124,7 +111,6 @@ construction material
 
 # Concrete
 concrete
-reinforced concrete
 prestressed concrete
 precast concrete
 cast in place concrete
@@ -187,7 +173,6 @@ hot rolled section
 cold formed section
 universal beam
 universal column
-channel
 angle
 tee section
 zed section
@@ -201,7 +186,6 @@ shs
 wide flange beam
 i beam
 h beam
-channel
 angle iron
 steel plate
 sheet steel
@@ -249,7 +233,6 @@ knee brace
 
 # Timber
 timber
-wood
 lumber
 hardwood
 softwood
@@ -260,7 +243,6 @@ glulam
 laminated veneer lumber
 lvl
 parallel strand lumber
-psl
 oriented strand board
 osb
 plywood
@@ -280,7 +262,6 @@ wood screw
 machine bolt
 carriage bolt
 timber rivet
-dowel
 shear plate
 split ring connector
 toothed plate connector
@@ -308,19 +289,16 @@ lintel block
 bond beam block
 pilaster block
 jamb block
-mortar
 cement mortar
 lime mortar
 pointing mortar
 thin bed mortar
-joint
 bed joint
 head joint
 collar joint
 control joint
 expansion joint
 movement joint
-bond
 running bond
 flemish bond
 english bond
@@ -387,7 +365,6 @@ glazing bead
 glazing gasket
 setting block
 edge block
-corner block
 spacer bar
 warm edge spacer
 desiccant
@@ -407,7 +384,6 @@ patch fitting
 spider fitting
 
 # Windows
-window
 door
 opening
 fenestration
@@ -434,20 +410,15 @@ sash
 mullion
 muntin
 stile
-rail
 meeting rail
 check rail
 parting bead
 staff bead
 weatherstripping
-threshold
 sill
-head
 jamb
-casing
 trim
 architrave
-apron
 stool
 drip cap
 flashing
@@ -460,7 +431,6 @@ reglet
 coping
 
 # Doors
-door
 entry door
 front door
 exterior door
@@ -502,7 +472,6 @@ door frame
 door jamb
 door head
 door sill
-threshold
 saddle
 door stop
 astragal
@@ -580,7 +549,6 @@ roller shutter
 accordion door
 folding door
 revolving door
-turnstile
 
 # Roofing Types
 roof
@@ -613,7 +581,6 @@ plywood deck
 osb deck
 tongue and groove deck
 structural insulated panel
-sip
 roof insulation
 thermal insulation
 rigid insulation board
@@ -639,7 +606,6 @@ self adhered membrane
 cold applied membrane
 single ply membrane
 thermoplastic polyolefin
-tpo
 polyvinyl chloride membrane
 pvc membrane
 ethylene propylene diene monomer
@@ -682,7 +648,6 @@ stone coated steel
 # Roof Features
 ridge
 hip
-valley
 eave
 rake
 gable end
@@ -708,7 +673,6 @@ gutter screen
 heating ventilation and air conditioning
 hvac
 furnace
-boiler
 heat pump
 air handler
 split system
@@ -717,9 +681,7 @@ ductless mini split
 variable refrigerant flow
 vrf
 chiller
-cooling tower
 fan coil unit
-air conditioning
 central air
 window unit
 portable air conditioner
@@ -753,7 +715,6 @@ zone damper
 
 # Plumbing
 plumbing
-water supply
 drainage system
 vent system
 water heater
@@ -774,7 +735,6 @@ cast iron pipe
 galvanized steel pipe
 black steel pipe
 stainless steel pipe
-supply line
 drain line
 waste line
 vent pipe
@@ -815,7 +775,6 @@ diverter valve
 # Fixtures
 fixture
 sink
-lavatory
 basin
 toilet
 water closet
@@ -829,7 +788,6 @@ faucet
 tap
 spout
 handle
-cartridge
 aerator
 sprayer
 showerhead
@@ -839,12 +797,35 @@ drain
 stopper
 pop up assembly
 trip lever
-overflow
 flange
-escutcheon
 supply tube
 p trap adapter
 wax ring
 toilet flange
 closet flange
 floor flange
+
+# --- Expanded vocabulary (added) ---
+skyscraper
+highrise
+cantilever
+pillar
+buttress
+cornerstone
+cornice
+pediment
+colonnade
+rotunda
+atrium
+mezzanine
+brickwork
+insulation
+wiring
+conduit
+drainage
+aqueduct
+culvert
+thoroughfare
+trussbridge
+urbanplanning
+renovation

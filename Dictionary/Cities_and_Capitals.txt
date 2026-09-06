@@ -40,7 +40,6 @@ Brasilia
 Bratislava
 Brazzaville
 Bridgetown
-Brussels
 Bucharest
 Budapest
 Buenos Aires
@@ -61,7 +60,6 @@ Damascus
 Dar es Salaam
 Dhaka
 Dili
-Djibouti
 Dodoma
 Doha
 Dubai
@@ -98,7 +96,6 @@ Jerusalem
 Juba
 
 # World Capitals - K
-Kabul
 Kampala
 Kathmandu
 Khartoum
@@ -119,10 +116,8 @@ Lome
 London
 Luanda
 Lusaka
-Luxembourg
 
 # World Capitals - M
-Madrid
 Majuro
 Malabo
 Male
@@ -134,7 +129,6 @@ Maseru
 Mexico City
 Minsk
 Mogadishu
-Monaco
 Monrovia
 Montevideo
 Moroni
@@ -188,15 +182,12 @@ Roseau
 
 # World Capitals - S
 San Jose
-San Marino
 San Salvador
 Sanaa
-Santiago
 Santo Domingo
 Sao Tome
 Sarajevo
 Seoul
-Singapore
 Skopje
 Sofia
 Stockholm
@@ -207,7 +198,6 @@ Suva
 Taipei
 Tallinn
 Tarawa
-Tashkent
 Tbilisi
 Tegucigalpa
 Tehran
@@ -223,7 +213,6 @@ Ulaanbaatar
 # World Capitals - V
 Vaduz
 Valletta
-Vatican City
 Victoria
 Vienna
 Vientiane
@@ -231,7 +220,6 @@ Vilnius
 
 # World Capitals - W
 Warsaw
-Washington
 Wellington
 Windhoek
 
@@ -246,7 +234,6 @@ Yerevan
 Zagreb
 
 # United States Major Cities
-New York
 Los Angeles
 Chicago
 Houston
@@ -255,7 +242,6 @@ Philadelphia
 San Antonio
 San Diego
 Dallas
-San Jose
 Austin
 Jacksonville
 Fort Worth
@@ -277,7 +263,6 @@ Albuquerque
 Tucson
 Fresno
 Sacramento
-Mesa
 Kansas City
 Atlanta
 Miami
@@ -310,7 +295,6 @@ Anchorage
 Plano
 Lincoln
 Newark
-Toledo
 Chula Vista
 Irvine
 Fort Wayne
@@ -332,14 +316,12 @@ Des Moines
 Tacoma
 
 # United Kingdom Cities
-London
 Birmingham
 Manchester
 Glasgow
 Liverpool
 Leeds
 Sheffield
-Edinburgh
 Bristol
 Cardiff
 Belfast
@@ -366,7 +348,6 @@ Canterbury
 Chester
 
 # European Cities
-Paris
 Marseille
 Lyon
 Toulouse
@@ -378,7 +359,6 @@ Bordeaux
 Lille
 Rennes
 Reims
-Berlin
 Hamburg
 Munich
 Cologne
@@ -392,7 +372,6 @@ Bremen
 Dresden
 Hannover
 Nuremberg
-Rome
 Milan
 Naples
 Turin
@@ -405,40 +384,24 @@ Catania
 Venice
 Verona
 Barcelona
-Madrid
-Valencia
 Seville
 Zaragoza
 Malaga
-Murcia
 Palma
 Bilbao
 Alicante
 Cordoba
-Athens
 Thessaloniki
-Amsterdam
 Rotterdam
 The Hague
 Utrecht
-Brussels
 Antwerp
 Zurich
 Geneva
 Basel
-Vienna
-Stockholm
-Copenhagen
-Oslo
-Dublin
-Prague
-Budapest
-Warsaw
-Lisbon
 Porto
 
 # Asian Cities
-Tokyo
 Yokohama
 Osaka
 Nagoya
@@ -447,7 +410,6 @@ Kobe
 Kyoto
 Fukuoka
 Shanghai
-Beijing
 Guangzhou
 Shenzhen
 Chengdu
@@ -457,65 +419,109 @@ Chongqing
 Nanjing
 Hangzhou
 Xian
-Seoul
 Busan
 Incheon
-Mumbai
-Delhi
-Bangalore
-Chennai
-Kolkata
-Hyderabad
-Pune
-Ahmedabad
 Karachi
 Lahore
-Manila
 Bangkok
-Jakarta
 Surabaya
-Singapore
-Kuala Lumpur
 Ho Chi Minh City
-Hanoi
-Taipei
-Hong Kong
 
 # African Cities
-Cairo
-Lagos
-Kinshasa
 Johannesburg
-Nairobi
 Casablanca
-Cape Town
 Durban
 Alexandria
-Addis Ababa
-Algiers
-Khartoum
-Luanda
-Dar es Salaam
 Abidjan
 Kano
 Ibadan
-Dakar
-Accra
 
 # South American Cities
 Sao Paulo
 Rio de Janeiro
-Buenos Aires
-Lima
-Bogota
-Santiago
-Caracas
 Belo Horizonte
-Brasilia
 Medellin
 Cali
 Guayaquil
-Quito
-Montevideo
-Asuncion
 La Paz
+
+# --- Expanded vocabulary (added) ---
+sanantonio
+sandiego
+sanjose
+sanfrancisco
+lasvegas
+thehague
+eindhoven
+ghent
+bruges
+lausanne
+gothenburg
+malmo
+bergen
+trondheim
+aarhus
+odense
+tampere
+turku
+krakow
+wroclaw
+gdansk
+poznan
+brno
+ostrava
+debrecen
+szeged
+patras
+braga
+guadalajara
+monterrey
+tijuana
+cancun
+cartagena
+rosario
+mendoza
+saopaulo
+riodejaneiro
+fortaleza
+belohorizonte
+manaus
+curitiba
+recife
+suzhou
+daegu
+kaohsiung
+taichung
+bandung
+medan
+faisalabad
+rawalpindi
+multan
+chittagong
+peshawar
+kandahar
+almaty
+kharkiv
+odessa
+lviv
+krivyi
+rih
+rostov
+novosibirsk
+yekaterinburg
+kazan
+samara
+omsk
+chelyabinsk
+volgograd
+perm
+voronezh
+giza
+marrakesh
+fez
+tangier
+benghazi
+addis
+ababa
+mombasakenya
+daressalaam

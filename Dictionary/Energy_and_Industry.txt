@@ -1,12 +1,6 @@
 # Energy and Industry Dictionary
 
 # Power and Electricity
-power
-electricity
-generation
-transmission
-distribution
-grid
 electrical grid
 smart grid
 microgrid
@@ -19,7 +13,6 @@ frequency regulation
 voltage control
 capacity factor
 availability
-reliability
 outage
 blackout
 brownout
@@ -35,9 +28,7 @@ ultra high voltage
 transmission tower
 pylon
 lattice tower
-monopole
 substation
-transformer
 switching station
 step up transformer
 step down transformer
@@ -62,7 +53,6 @@ fixed charge
 connection fee
 utility bill
 rate schedule
-tariff
 rate structure
 residential rate
 commercial rate
@@ -102,8 +92,6 @@ cng
 natural gas liquids
 ngl
 ethane
-propane
-butane
 pentane
 condensate
 gas processing plant
@@ -149,7 +137,6 @@ block valve
 pig launcher
 pig receiver
 pipeline integrity
-inspection
 inline inspection
 ili
 intelligent pigging
@@ -163,11 +150,8 @@ leak detection
 cathodic protection
 coating system
 right of way
-row
-easement
 land acquisition
 eminent domain
-environmental impact assessment
 
 # Drilling and Wells
 drilling
@@ -203,7 +187,6 @@ platform rig
 tender assist drilling
 tad
 derrick
-mast
 draw works
 rotary table
 kelly drive
@@ -235,7 +218,6 @@ downhole equipment
 completion
 perforation
 perforating gun
-shaped charge
 
 # Well Stimulation
 stimulation
@@ -254,7 +236,6 @@ cross linked gel
 foam based fluid
 flowback water
 produced water
-wastewater
 disposal well
 saltwater disposal
 swd
@@ -321,9 +302,7 @@ site restoration
 offshore
 shallow water
 deepwater
-continental shelf
 continental slope
-abyssal plain
 subsea manifold
 subsea end
 pipeline end termination
@@ -335,9 +314,7 @@ steel catenary riser
 scr
 tensioned riser
 ttr
-umbilical
 hydraulic line
-separation
 compression
 pumping
 offloading
@@ -355,7 +332,6 @@ gbs
 jacket platform
 
 # Gas Processing
-flare
 flare stack
 flare tip
 pilot burner
@@ -366,7 +342,6 @@ sulfur recovery
 claus process
 tail gas treatment
 acid gas removal
-dehydration
 glycol dehydration
 molecular sieve
 compressor
@@ -422,7 +397,6 @@ coal preparation
 coal washing
 beneficiation
 crushing
-screening
 jigging
 dense medium separation
 froth flotation
@@ -462,12 +436,10 @@ gas turbine
 combined cycle gas turbine
 ccgt
 aeroderivative turbine
-generator
 synchronous generator
 induction generator
 alternator
 stator
-rotor
 exciter
 
 # Cooling Systems
@@ -495,7 +467,6 @@ fgd
 scrubber
 spray tower
 selective catalytic reduction
-scr
 selective non catalytic reduction
 sncr
 nox reduction
@@ -551,7 +522,6 @@ leu
 highly enriched uranium
 heu
 weapons grade uranium
-depleted uranium
 plutonium
 moderator
 coolant
@@ -587,10 +557,39 @@ uranium concentrate
 enrichment facility
 uf6
 uranium hexafluoride
-centrifuge
 gas diffusion
 laser enrichment
 atomic vapor laser isotope separation
 avlis
 molecular laser isotope separation
 mlis
+
+# --- Expanded vocabulary (added) ---
+reservoir
+extraction
+onshore
+rig
+distillate
+naturalgas
+anthracite
+bituminous
+lignite
+uranium
+gridline
+amperage
+wattage
+kilowatt
+megawatt
+hydropower
+solarpanel
+photovoltaic
+windturbine
+windfarm
+fabrication
+foundry
+smelting
+forging
+machining
+tooling
+conveyor
+supplychain

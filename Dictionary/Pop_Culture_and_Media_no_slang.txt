@@ -2,7 +2,6 @@
 
 # Film and Cinema
 film
-movie
 cinema
 motion picture
 feature film
@@ -35,15 +34,12 @@ color film
 widescreen
 imax
 3d film
-director
 filmmaker
-producer
 executive producer
 screenwriter
 scriptwriter
 cinematographer
 director of photography
-editor
 film editor
 production designer
 costume designer
@@ -55,27 +51,20 @@ soundtrack
 actor
 actress
 performer
-cast
 ensemble cast
 leading role
 supporting role
 cameo
-extra
 stunt performer
 stunt double
 screen test
 audition
 casting
 rehearsal
-production
 preproduction
 postproduction
 filming
-shooting
 principal photography
-location
-set
-studio
 backlot
 soundstage
 premiere
@@ -94,22 +83,14 @@ box office
 opening weekend
 theatrical release
 home video
-streaming
 video on demand
 vod
 
 # Television
-television
 tv
 broadcast
 cable
-satellite
 streaming service
-network
-channel
-program
-show
-series
 television series
 tv series
 miniseries
@@ -144,18 +125,14 @@ animated series
 cartoon
 anime
 telenovela
-pilot
 pilot episode
-season
 episode
-premiere
 season premiere
 season finale
 series finale
 cliffhanger
 syndication
 rerun
-marathon
 binge watching
 streaming platform
 netflix
@@ -172,23 +149,14 @@ television production
 showrunner
 writer
 writing staff
-director
-producer
-executive producer
-cast
 regular cast
 guest star
 recurring role
 cameo appearance
-audition
-casting
-filming
 taping
 live audience
 studio audience
 laugh track
-commercial
-advertisement
 sponsor
 network television
 cable television
@@ -196,26 +164,19 @@ premium cable
 pay per view
 ppv
 on demand
-video on demand
 dvr
 digital video recorder
 timeshifting
 nielsen ratings
-viewership
-audience
-demographic
 prime time
 daytime
-late night
 morning show
 breakfast television
 public television
-pbs
 educational television
 access television
 
 # Music Industry
-music
 music industry
 recording industry
 record label
@@ -235,9 +196,7 @@ quartet
 ensemble
 orchestra
 songwriter
-composer
 lyricist
-producer
 music producer
 sound engineer
 audio engineer
@@ -257,15 +216,11 @@ live album
 compilation album
 ep
 extended play
-single
 debut album
 sophomore album
 greatest hits
 remix album
-track
 song
-recording
-demo
 master recording
 album cover
 cover art
@@ -279,7 +234,6 @@ cd
 cassette
 tape
 digital download
-streaming
 music streaming
 spotify
 apple music
@@ -293,17 +247,12 @@ record store
 music store
 concert
 live performance
-show
 gig
 tour
 world tour
 festival
 music festival
-venue
-arena
-stadium
 amphitheater
-club
 concert hall
 backstage
 soundcheck
@@ -312,29 +261,21 @@ encore
 opening act
 headliner
 sold out
-ticket
 general admission
-vip
 meet and greet
-merchandise
 merch
 fan club
 fanbase
 genre
-rock
-pop
 hip hop
 rap
-country
 jazz
 blues
 classical
-electronic
 dance
 edm
 folk
 indie
-alternative
 punk
 metal
 reggae
@@ -348,7 +289,6 @@ techno
 trance
 dubstep
 ambient
-experimental
 world music
 latin
 salsa
@@ -358,7 +298,6 @@ j pop
 mainstream
 underground
 crossover
-hit
 hit song
 chart topper
 billboard
@@ -387,17 +326,13 @@ publishing
 book publishing
 magazine publishing
 newspaper
-magazine
-journal
 periodical
 publication
 publisher
 publishing house
 imprint
-editor
 literary agent
 author
-writer
 novelist
 poet
 essayist
@@ -422,18 +357,13 @@ hardback
 paperback
 trade paperback
 mass market paperback
-ebook
 audiobook
 kindle
 nook
 kobo
 manuscript
-draft
-revision
-editing
 proofreading
 typesetting
-layout
 book design
 cover design
 dust jacket
@@ -445,7 +375,6 @@ epilogue
 acknowledgments
 dedication
 table of contents
-index
 glossary
 bibliography
 footnote
@@ -467,14 +396,12 @@ book tour
 literary festival
 book fair
 library
-bookstore
 independent bookstore
 chain bookstore
 barnes and noble
 waterstones
 online retailer
 amazon
-reading
 literacy
 book review
 literary criticism
@@ -488,119 +415,70 @@ picture book
 graphic novel
 comic book
 manga
-adaptation
 film adaptation
 television adaptation
 
 # Broadcasting and Journalism
 broadcasting
-radio
-radio station
 am radio
 fm radio
 satellite radio
-podcast
 podcasting
 streaming audio
 news
 journalism
 news media
-press
 media outlet
 news organization
 news agency
 wire service
-associated press
 ap
-reuters
-journalist
-reporter
-correspondent
 foreign correspondent
 war correspondent
 news anchor
-anchor
 news presenter
 commentator
 pundit
-columnist
-editorial
 op ed
 opinion piece
 investigative journalism
 investigative reporter
 photojournalism
-photojournalist
 broadcast journalism
 print journalism
 digital journalism
 online journalism
 multimedia journalism
 citizen journalism
-press conference
-interview
 exclusive interview
-breaking news
-developing story
-headline
 lead story
-news cycle
 24 hour news
 cable news
-cnn
-msnbc
-fox news
 bbc news
-sky news
-news program
-newscast
 evening news
 morning news
 news magazine
-current affairs
-documentary
 investigative report
 feature story
 human interest story
 news analysis
 fact checking
-verification
-attribution
-source
-anonymous source
-off the record
-on the record
-embargo
 news embargo
-press release
 media advisory
 press kit
 press credentials
-freedom of the press
 first amendment
 journalistic ethics
-objectivity
-impartiality
-bias
 media bias
-fake news
-misinformation
-disinformation
-propaganda
 public relations
-pr
 publicity
-media relations
 spokesperson
 press secretary
-spin
 damage control
 
 # Social Media
-social media
 social network
 social networking
-platform
 facebook
 twitter
 x
@@ -616,52 +494,21 @@ whatsapp
 telegram
 discord
 twitch
-clubhouse
 mastodon
 threads
 bluesky
 account
-profile
 username
-handle
 avatar
 profile picture
 bio
-biography
-post
-status update
-tweet
-retweet
-like
 favorite
-share
-comment
-reply
-mention
-tag
-hashtag
-trending
 trending topic
-viral
 going viral
 viral content
-follower
-following
 friend
-connection
 subscriber
-notification
-feed
-timeline
 newsfeed
-algorithm
-engagement
-reach
-impressions
-views
-click through rate
-ctr
-influencer
 social media influencer
 content creator
 youtuber
@@ -671,7 +518,6 @@ blogger
 vlogger
 livestream
 live streaming
-story
 stories
 ephemeral content
 reel
@@ -683,30 +529,18 @@ meme
 gif
 emoji
 emoticon
-direct message
-dm
 private message
 group chat
-community
 subreddit
-forum
 online community
-verification
 verified account
 blue checkmark
-sponsored content
-influencer marketing
-affiliate marketing
 brand partnership
-collaboration
 collab
 social media marketing
 digital marketing
 content strategy
-analytics
-metrics
 engagement rate
-growth
 organic reach
 paid promotion
 boosted post
@@ -714,33 +548,22 @@ social media advertising
 targeted advertising
 
 # Entertainment Industry
-entertainment
 entertainment industry
 show business
 showbiz
 hollywood
 bollywood
-studio
 production company
 talent agency
 casting agency
 management company
 publicist
 entertainment lawyer
-contract
 deal
-development
 greenlight
 pilot season
-pilot
-pitch
-treatment
 script
 screenplay
-adaptation
-intellectual property
-franchise
-universe
 cinematic universe
 sequel
 prequel
@@ -749,22 +572,14 @@ reboot
 remake
 reimagining
 revival
-crossover
-merchandise
-licensing
 tie in
 promotional tour
 press junket
 red carpet
-premiere
 gala
-screening
-film festival
 comic con
-convention
 fan convention
 celebrity
-star
 icon
 household name
 a list
@@ -772,9 +587,7 @@ b list
 leading man
 leading lady
 character actor
-ensemble
 breakthrough performance
-comeback
 retirement
 career
 filmography
@@ -785,11 +598,7 @@ hall of fame
 lifetime achievement
 tribute
 memorial
-retrospective
 anniversary
-milestone
-box office
-ratings
 critical acclaim
 commercial success
 cult following
@@ -802,63 +611,53 @@ zeitgeist
 nostalgia
 retro
 throwback
-classic
 timeless
 influential
 groundbreaking
-revolutionary
 innovative
-experimental
 avant garde
-mainstream
 mass appeal
 crossover appeal
-demographic
-target audience
-fanbase
 fandom
 fan
 superfan
 enthusiast
 collector
 memorabilia
-merchandise
 limited edition
-exclusive
 behind the scenes
 making of
 bonus feature
-commentary
 deleted scene
 outtake
 blooper
 easter egg
-reference
 homage
 parody
 satire
 spoof
 pastiche
-genre
 subgenre
 trope
 cliche
 formula
-convention
-criticism
-review
 critique
-rating
-score
 metacritic
 rotten tomatoes
 imdb
 award
-nomination
-winner
 ceremony
 acceptance speech
-campaign
 for your consideration
 fyc
-screener
+
+# --- Expanded vocabulary (added) ---
+spinoff
+noir
+redcarpet
+boxoffice
+merchandising
+cosplay
+collectible
+ondemand
+binge

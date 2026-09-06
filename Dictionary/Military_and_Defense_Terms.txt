@@ -78,21 +78,17 @@ aneurysm
 angina
 anxiety
 appendicitis
-arrhythmia
 arthritis
 asthma
 atherosclerosis
 autism
 
 # Bacterial and Viral
-bacteria
-virus
 viral
 infection
 infectious
 contagious
 contamination
-coronavirus
 influenza
 pneumonia
 tuberculosis
@@ -115,7 +111,6 @@ antidote
 antiseptic
 chemotherapy
 dialysis
-immunization
 inoculation
 injection
 medication
@@ -125,8 +120,6 @@ surgery
 therapy
 transplant
 treatment
-vaccination
-vaccine
 
 # Medical Conditions Continued
 benign
@@ -153,9 +146,7 @@ clot
 coma
 concussion
 congenital
-congestion
 constipation
-cough
 cramp
 cyst
 
@@ -168,7 +159,6 @@ depression
 dermatitis
 diabetes
 diagnosis
-diarrhea
 disease
 disorder
 dizziness
@@ -179,16 +169,12 @@ dyslexia
 eczema
 edema
 electrocardiogram
-embolism
 emergency
 encephalitis
 endocrine
 endoscopy
 enzyme
-epidemic
 epilepsy
-fatigue
-fever
 fibromyalgia
 fracture
 gastritis
@@ -199,7 +185,6 @@ glaucoma
 glucose
 gout
 hemorrhage
-hepatitis
 hernia
 
 # Medical Facilities
@@ -209,7 +194,6 @@ clinic
 healthcare
 medical facility
 emergency room
-intensive care
 outpatient
 operating room
 surgery center
@@ -221,25 +205,19 @@ urgent care
 hypertension
 hypoglycemia
 hypothermia
-immunization
 immunodeficiency
 impairment
 incision
 incubation
 indigestion
-infection
 infertility
 inflammation
-influenza
 inhaler
-injection
 injury
-inoculation
 insomnia
 insulin
 intensive
 intravenous
-intubation
 ischemia
 
 # Medical Conditions J-M
@@ -254,8 +232,6 @@ lupus
 lymphoma
 malignant
 mammogram
-medication
-medicine
 melanoma
 meningitis
 menopause
@@ -263,7 +239,6 @@ metabolism
 metastasis
 migraine
 miscarriage
-morbidity
 mortality
 mucus
 multiple
@@ -272,7 +247,6 @@ mutation
 myocardial
 
 # Symptoms and Conditions N-P
-nausea
 necrosis
 neoplasm
 neurology
@@ -283,18 +257,14 @@ ophthalmology
 organ
 orthopedic
 osteoporosis
-outbreak
-outpatient
 overdose
 oxygen
 pacemaker
 palliative
 palpitation
-pandemic
 paralysis
 parasite
 parkinson
-pathogen
 pathology
 patient
 pediatric
@@ -307,11 +277,9 @@ physical
 plague
 plasma
 platelet
-pneumonia
 poisoning
 polyp
 pregnancy
-prescription
 prevention
 prognosis
 prophylaxis
@@ -324,16 +292,11 @@ pulmonary
 pulse
 
 # Medical Conditions Q-S
-quarantine
-rabies
 radiation
 radiology
-rash
-recovery
 recurrence
 reflex
 regimen
-rehabilitation
 relapse
 remedy
 renal
@@ -345,9 +308,7 @@ respiratory
 resuscitation
 retina
 rheumatic
-rupture
 salmonella
-sanitation
 sarcoma
 scabies
 scar
@@ -355,27 +316,21 @@ schizophrenia
 sclerosis
 screening
 seizure
-sepsis
 septic
-serology
 shock
 sinus
-smallpox
 spasm
 specimen
 spinal
 spleen
 sprain
 staphylococcus
-sterilization
 stethoscope
 stimulant
 strain
 streptococcus
 stress
-stroke
 suction
-surgery
 suture
 swelling
 symptom
@@ -384,12 +339,8 @@ syringe
 systemic
 
 # Medical Conditions T-Z
-tachycardia
 tendonitis
-tetanus
 therapeutic
-therapy
-thrombosis
 thyroid
 tissue
 tomography
@@ -399,14 +350,10 @@ toxicity
 toxin
 trachea
 transfusion
-transplant
 trauma
-treatment
 tremor
 triage
-tuberculosis
 tumor
-typhoid
 ulcer
 ultrasound
 umbilical
@@ -416,43 +363,26 @@ urinalysis
 urine
 urology
 uterus
-vaccination
-vaccine
 varicose
 vascular
 vasectomy
 vein
-ventilator
 vertebra
 vertigo
 vessel
-viral
-virus
 visceral
 vitamin
-vomiting
 wellness
 wheelchair
 whooping
 wound
 xray
-zoonotic
 
 # Healthcare Types
-clinic
-healthcare
 wellbeing
-diagnosis
-prognosis
-prescription
-injection
-inoculation
-immunization
-vaccination
 preventive
 curative
 rehabilitative
-palliative
 holistic
 integrative
 alternative
@@ -476,9 +406,6 @@ prosthodontic
 maxillofacial
 
 # Medical Specialties
-orthopedic
-cardiovascular
-gastrointestinal
 genitourinary
 musculoskeletal
 neurological
@@ -487,16 +414,11 @@ psychological
 dermatological
 ophthalmological
 otolaryngological
-pulmonary
-renal
 hepatic
-endocrine
 immunological
 hematological
 oncological
 neonatal
-pediatric
-geriatric
 obstetric
 gynecological
 andrological
@@ -507,13 +429,9 @@ proctological
 gastroenterological
 
 # Disease Types
-infectious
 parasitic
 metabolic
-genetic
-congenital
 acquired
-chronic
 acute
 subacute
 terminal
@@ -523,38 +441,22 @@ autoimmune
 inflammatory
 allergic
 neoplastic
-benign
-malignant
 metastatic
 localized
-systemic
 primary
 secondary
 tertiary
 idiopathic
 iatrogenic
 nosocomial
-zoonotic
 endemic
-epidemic
-pandemic
 sporadic
 
 # Medical States
 remission
 exacerbation
-relapse
-recurrence
-prophylaxis
-screening
-diagnosis
-treatment
-therapy
-surgery
-medication
 intervention
 procedure
-protocol
 guideline
 algorithm
 pathway
@@ -570,8 +472,6 @@ study
 investigation
 assessment
 evaluation
-monitoring
-surveillance
 tracking
 documentation
 reporting
@@ -612,22 +512,16 @@ remote
 virtual
 artificial
 intelligence
-algorithm
 predictive
-preventive
 personalized
-precision
 genomic
 molecular
 cellular
-tissue
-organ
 system
 function
 structure
 anatomy
 physiology
-pathology
 pharmacology
 toxicology
 microbiology
@@ -647,7 +541,6 @@ ecology
 environment
 
 # Healthcare Settings
-occupational
 industrial
 community
 public
@@ -670,15 +563,9 @@ factor
 risk
 protective
 hazard
-exposure
 susceptibility
-resistance
 immunity
 tolerance
-sensitivity
-specificity
-accuracy
-precision
 reliability
 validity
 calibration
@@ -691,7 +578,6 @@ cutoff
 criterion
 parameter
 variable
-outcome
 endpoint
 measure
 score
@@ -699,13 +585,10 @@ scale
 index
 rating
 classification
-category
 stage
 grade
 level
 degree
-severity
-intensity
 duration
 frequency
 onset
@@ -714,7 +597,6 @@ pattern
 presentation
 manifestation
 sign
-symptom
 finding
 feature
 characteristic
@@ -722,4 +604,31 @@ attribute
 trait
 marker
 biomarker
-indicator
+
+# --- Expanded vocabulary (added) ---
+squadron
+garrison
+barracks
+cavalry
+infantry
+armored
+airborne
+specialforces
+navyseal
+rangerunit
+brigadier
+fieldmarshal
+battleship
+minesweeper
+torpedo
+sidearm
+humvee
+ballistic
+tactical
+nationalguard
+jointchiefs
+commandant
+quartermaster
+stealth
+airspace
+perimeter

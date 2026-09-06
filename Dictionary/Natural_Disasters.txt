@@ -179,7 +179,6 @@ flood
 flash flood
 river flooding
 coastal flooding
-storm surge
 tidal wave
 king tide
 spring tide
@@ -258,8 +257,6 @@ contact tracing
 testing
 surveillance
 monitoring
-containment
-suppression
 flattening curve
 overwhelm
 healthcare system
@@ -308,7 +305,6 @@ oxygenation
 oxygen saturation
 pulse oximeter
 fever
-cough
 shortness breath
 dyspnea
 fatigue
@@ -359,7 +355,6 @@ sequelae
 long covid
 post acute sequelae
 coronavirus
-recovery
 rehabilitation
 survivor
 victim
@@ -380,7 +375,6 @@ effective reproduction number
 doubling time
 generation time
 serial interval
-incubation period
 infectious period
 communicable period
 shedding
@@ -418,3 +412,35 @@ saliva sample
 blood sample
 serum sample
 plasma sample
+
+# --- Expanded vocabulary (added) ---
+irma
+dorian
+helene
+camille
+rita
+wilma
+ike
+isaac
+fiona
+landslide
+sinkhole
+richter
+fissure
+lahar
+pyroclasticflow
+duststorm
+heatwave
+coldsnap
+flashflood
+levee
+thawsubsidence
+stormsurge
+riptide
+kingtide
+polarvortex
+elnino
+lanina
+superstorm
+megadrought
+firenado

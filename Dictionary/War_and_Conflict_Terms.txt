@@ -29,7 +29,6 @@ victory
 defeat
 retreat
 withdrawal
-evacuation
 reinforcement
 supply line
 logistics
@@ -154,7 +153,6 @@ international court of justice
 war crimes prosecutor
 defendant
 perpetrator
-victim
 civilian casualty
 collateral damage
 friendly fire
@@ -179,10 +177,7 @@ asylum seeker
 refugee crisis
 humanitarian aid
 humanitarian relief
-humanitarian assistance
-Red Cross
 Red Crescent
-Doctors Without Borders
 United Nations peacekeeping
 peacekeeper
 blue helmet
@@ -220,7 +215,6 @@ major general
 brigadier general
 colonel
 lieutenant colonel
-major
 captain
 first lieutenant
 second lieutenant
@@ -419,7 +413,6 @@ barricade
 fortification
 bunker
 pillbox
-trench
 foxhole
 fighting position
 strongpoint
@@ -540,7 +533,6 @@ unmanned aerial vehicle
 UAV
 Predator drone
 Reaper drone
-surveillance
 intelligence surveillance reconnaissance
 ISR
 electronic warfare
@@ -680,3 +672,46 @@ hard-kill system
 soft-kill system
 smoke screen
 obscurant
+
+# --- Expanded vocabulary (added) ---
+insurgency
+combatant
+noncombatant
+skirmish
+warhead
+detonation
+shrapnel
+territorial
+belligerent
+sanctions
+ethniccleansing
+warcrime
+tribunalcourt
+conscription
+enlistment
+reservist
+wounded
+missinginaction
+prisonerofwar
+defection
+armament
+demilitarization
+noflyzone
+airstrikecampaign
+dronestrike
+peacekeeping
+frontline
+battlefront
+counteroffensive
+stalemate
+attrition
+escalation
+deescalation
+detente
+coldwar
+proxywar
+civilwar
+worldwar
+holocaust
+apartheid
+segregation

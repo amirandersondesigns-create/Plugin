@@ -4,44 +4,29 @@
 # Scientific Method
 science
 scientist
-research
-laboratory
-experiment
 hypothesis
 theory
-evidence
-data
-observation
-analysis
-method
 scientific
 empirical
 quantitative
 qualitative
-variable
-control
 dependent
 independent
 sample
-population
 random
 bias
 correlation
 causation
 
 # Statistics
-statistics
 probability
-significance
 confidence interval
 deviation
 variance
 mean
 median
 mode
-range
 distribution
-normal
 skewed
 bell curve
 standard error
@@ -52,14 +37,9 @@ chemistry
 physics
 astronomy
 geology
-ecology
 zoology
 botany
-microbiology
 genetics
-biochemistry
-molecular
-cellular
 
 # Taxonomy
 organism
@@ -72,18 +52,13 @@ phylum
 kingdom
 domain
 taxonomy
-classification
 
 # Evolution and Genetics
-evolution
 natural selection
-adaptation
-mutation
 gene
 dna
 rna
 protein
-enzyme
 amino acid
 nucleotide
 chromosome
@@ -94,7 +69,6 @@ recessive
 heredity
 inheritance
 mendelian
-trait
 phenotype
 genotype
 
@@ -113,16 +87,12 @@ vacuole
 organelle
 prokaryote
 eukaryote
-bacteria
 archaea
-virus
 fungi
 protist
 
 # Cellular Processes
 photosynthesis
-respiration
-metabolism
 glycolysis
 krebs cycle
 electron transport chain
@@ -138,9 +108,6 @@ passive
 homeostasis
 
 # Organism Structure
-tissue
-organ
-system
 multicellular
 unicellular
 mitosis
@@ -154,7 +121,6 @@ sperm
 egg
 embryo
 fetus
-development
 growth
 differentiation
 stem cell
@@ -162,13 +128,10 @@ pluripotent
 totipotent
 
 # Ecology
-ecology
 ecosystem
 biome
 habitat
 niche
-population
-community
 food chain
 web
 producer
@@ -185,8 +148,6 @@ commensalism
 parasitism
 competition
 succession
-primary
-secondary
 pioneer species
 climax
 biodiversity
@@ -199,12 +160,10 @@ sustainability
 carbon cycle
 nitrogen
 water
-oxygen
 phosphorus
 biogeochemical
 
 # Chemistry Fundamentals
-chemistry
 atom
 molecule
 element
@@ -216,19 +175,16 @@ solute
 concentration
 molarity
 molality
-mole
 avogadro number
 periodic table
 atomic number
 mass
 isotope
-ion
 cation
 anion
 electron
 proton
 neutron
-shell
 orbital
 valence
 
@@ -250,7 +206,6 @@ reaction
 reactant
 product
 catalyst
-enzyme
 equilibrium
 kinetics
 thermodynamics
@@ -263,17 +218,14 @@ acid
 base
 neutral
 buffer
-indicator
 titration
 oxidation
-reduction
 redox
 combustion
 synthesis
 decomposition
 single replacement
 double
-precipitation
 solubility
 saturated
 unsaturated
@@ -290,7 +242,6 @@ alkyne
 aromatic
 benzene
 functional group
-alcohol
 aldehyde
 ketone
 carboxylic
@@ -315,19 +266,15 @@ polyethylene
 polypropylene
 
 # Physics Mechanics
-physics
 mechanics
 kinematics
 dynamics
 force
-mass
 weight
 acceleration
 velocity
 speed
-displacement
 distance
-time
 newton law motion
 inertia
 momentum
@@ -339,9 +286,7 @@ potential
 kinetic energy
 work
 power
-watt
 joule
-conservation
 mechanical
 thermal
 elastic
@@ -349,13 +294,9 @@ elastic
 # Waves
 electromagnetic
 wave
-frequency
 wavelength
 amplitude
-period
 hertz
-sound
-ultrasound
 infrasound
 doppler effect
 light
@@ -368,7 +309,6 @@ spectrum
 visible
 infrared
 ultraviolet
-xray
 gamma ray
 radio
 microwave
@@ -383,7 +323,6 @@ heisenberg
 schrodinger equation
 wavefunction
 probability density
-orbital
 quantum number
 spin
 pauli exclusion
@@ -392,7 +331,6 @@ pauli exclusion
 electricity
 current
 voltage
-resistance
 ohm law
 circuit
 series
@@ -421,13 +359,9 @@ ac
 dc
 
 # Thermodynamics
-thermodynamics
 temperature
-heat
-thermal
 conduction
 convection
-radiation
 specific capacity
 latent
 fusion
@@ -436,21 +370,16 @@ ideal gas
 pressure
 volume
 boyle
-charles
 avogadro
 universal constant
-entropy
 second law
 carnot cycle
-efficiency
 
 # Astronomy
-astronomy
 universe
 galaxy
 star
 planet
-moon
 satellite
 asteroid
 comet
@@ -458,7 +387,6 @@ meteor
 meteorite
 nebula
 black hole
-neutron
 white dwarf
 red giant
 supergiant
@@ -507,32 +435,22 @@ new
 quarter
 tide
 tidal force
-gravity
 
 # Space Observation
-telescope
 optical
-radio
 space
-infrared
-ultraviolet
-xray
-hubble
 james webb
 kepler
-mission
 probe
 rover
 lander
 orbiter
 spacecraft
-rocket
 propulsion
 thrust
 payload
 
 # Geology
-geology
 earth science
 rock
 mineral
@@ -542,18 +460,9 @@ metamorphic
 magma
 lava
 volcano
-tectonic plate
 boundary
-convergent
-divergent
 transform
 fault
-earthquake
-seismic wave
-epicenter
-magnitude
-richter scale
-tsunami
 erosion
 weathering
 deposition
@@ -580,15 +489,10 @@ ozone layer
 greenhouse effect
 climate
 weather
-temperature
 humidity
-pressure
 wind
-precipitation
 rain
 snow
-sleet
-hail
 fog
 cloud
 cumulus
@@ -600,14 +504,7 @@ cold
 warm
 stationary
 occluded
-cyclone
 anticyclone
-hurricane
-typhoon
-tornado
-blizzard
-drought
-flood
 meteorology
 climatology
 
@@ -615,13 +512,8 @@ climatology
 oceanography
 ocean
 sea
-marine
 salinity
-current
 gulf stream
-tide
-wave
-tsunami
 thermocline
 upwelling
 coral reef
@@ -629,16 +521,11 @@ continental shelf
 slope
 rise
 abyssal plain
-trench
 midocean ridge
 hydrothermal vent
 
 # Engineering
-technology
-innovation
-invention
 engineering
-mechanical
 electrical
 civil
 chemical
@@ -652,8 +539,6 @@ processor
 microprocessor
 chip
 integrated circuit
-transistor
-semiconductor
 silicon
 
 # Nanotechnology
@@ -667,7 +552,6 @@ quantum computing
 qubit
 superposition
 entanglement
-algorithm
 encryption
 
 # Biotechnology
@@ -684,27 +568,18 @@ biomass
 
 # Energy
 renewable energy
-solar
-wind
 hydroelectric
 geothermal
 nuclear
 fission
-fusion
 reactor
-sustainability
 green technology
 environmental
-conservation
 recycling
-composting
 waste management
 pollution
-contamination
 remediation
 clean technology
-efficiency
-optimization
 
 # Automation and Robotics
 automation
@@ -713,19 +588,14 @@ robot
 android
 humanoid
 drone
-uav
-unmanned aerial vehicle
 autonomous
 selfdriving
 
 # Artificial Intelligence
-artificial intelligence
 machine learning
 deep
 neural network
-algorithm
 data mining
-analytics
 visualization
 simulation
 modeling
@@ -733,7 +603,6 @@ virtual reality
 augmented
 mixed
 hologram
-projection
 immersive
 interface
 sensor
@@ -745,9 +614,7 @@ embedded system
 internet things
 iot
 smart home
-city
 grid
-wearable
 fitness tracker
 smartwatch
 biometric
@@ -765,7 +632,6 @@ decentralized
 distributed ledger
 cryptography
 hash
-encryption
 
 # Cybersecurity
 cybersecurity
@@ -775,16 +641,7 @@ malware
 phishing
 ransomware
 data breach
-privacy
 gdpr
-compliance
-regulation
-standard
-certification
-quality assurance
-testing
-validation
-verification
 prototype
 
 # Intellectual Property
@@ -795,8 +652,18 @@ intellectual property
 licensing
 opensource
 proprietary
-innovation
 disruptive
 incremental
-breakthrough
-revolutionary
+
+# --- Expanded vocabulary (added) ---
+naturalselection
+radioactive
+relativity
+reagent
+precipitate
+peerreview
+statistically
+machinelearning
+neuralnetwork
+datascience
+quantumcomputing

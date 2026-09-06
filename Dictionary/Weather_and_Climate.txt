@@ -1,73 +1,40 @@
 # Weather and Climate Dictionary
 
 # Basic Weather Terms
-weather
-meteorology
-meteorological
-atmosphere
 atmospheric
-air
 air pressure
-barometric pressure
-atmospheric pressure
-high pressure
 low pressure
 pressure system
-anticyclone
-cyclone
-temperature
 thermometer
 celsius
 fahrenheit
 kelvin
-heat
-cold
-warm
 cool
-hot
 freezing
 below zero
 subzero
 wind chill
 heat index
-humidity
 relative humidity
 absolute humidity
 dew point
-precipitation
 moisture
-condensation
 evaporation
 transpiration
 evapotranspiration
-water vapor
 water cycle
-hydrologic cycle
 
 # Wind and Air Movement
-wind
 breeze
 gust
 gale
 squall
-wind speed
 wind direction
-windward
-leeward
 headwind
 tailwind
-crosswind
-updraft
-downdraft
-thermal
-convection
-jet stream
 polar jet stream
 subtropical jet stream
-trade winds
-westerlies
 easterlies
-polar easterlies
 prevailing wind
 doldrums
 intertropical convergence zone
@@ -87,20 +54,14 @@ santa ana wind
 mistral
 sirocco
 harmattan
-monsoon
 seasonal wind
 
 # Clouds
-cloud
 cloudiness
 cloud cover
 overcast
 partly cloudy
 mostly cloudy
-cumulus
-stratus
-cirrus
-nimbus
 cumulonimbus
 stratocumulus
 altocumulus
@@ -111,45 +72,33 @@ nimbostratus
 cloud formation
 cloud base
 cloud ceiling
-fog
 mist
 haze
-smog
 steam fog
 radiation fog
 advection fog
 upslope fog
 valley fog
 freezing fog
-visibility
 low visibility
 zero visibility
 
 # Precipitation Types
-rain
-rainfall
 drizzle
 light rain
 moderate rain
 heavy rain
 downpour
-cloudburst
-shower
 rain shower
 scattered showers
 isolated showers
 thundershower
-rain band
 rain squall
-freezing rain
 ice pellet
-sleet
-snow
 snowfall
 snow shower
 flurry
 snow squall
-blizzard
 ground blizzard
 whiteout
 powder
@@ -158,38 +107,26 @@ snowpack
 snow accumulation
 snowdrift
 avalanche
-hail
-hailstone
-hailstorm
 graupel
 ice crystal
 rime
 hoarfrost
 frost
 black ice
-glaze
 
 # Storms
-storm
 weather system
 frontal system
-front
 cold front
 warm front
 stationary front
 occluded front
 frontal boundary
-squall line
 dryline
 outflow boundary
-gust front
-thunderstorm
-supercell
 multicell
 single cell
 severe thunderstorm
-lightning
-thunder
 lightning strike
 ground strike
 cloud to ground
@@ -203,24 +140,13 @@ storm cell
 severe weather
 damaging wind
 straight line wind
-macroburst
-microburst
 downburst
-derecho
-hailstorm
-ice storm
 windstorm
 rainstorm
-snowstorm
 nor easter
 tropical system
 tropical wave
-tropical disturbance
-tropical depression
 tropical storm
-hurricane
-typhoon
-cyclone
 tropical cyclone
 extratropical cyclone
 hurricane season
@@ -230,38 +156,22 @@ category two
 category three
 category four
 category five
-saffir simpson scale
-eye
 eye wall
-rain band
-storm surge
-coastal flooding
 inland flooding
-landfall
-storm track
 
 # Tornadoes
-tornado
-twister
-funnel cloud
-waterspout
-landspout
 gustnado
 multiple vortex tornado
 wedge tornado
 rope tornado
 ef scale
-enhanced fujita scale
 ef0
 ef1
 ef2
 ef3
 ef4
 ef5
-tornado watch
-tornado warning
 tornado emergency
-tornado alley
 debris field
 damage path
 path width
@@ -270,33 +180,23 @@ supercell thunderstorm
 wall cloud
 rotating wall cloud
 hook echo
-mesocyclone
 tornado rotation
 
 # Severe Weather
-severe weather
 severe thunderstorm watch
 severe thunderstorm warning
-flash flood
 flash flood watch
 flash flood warning
-flood
 flooding
-river flooding
 urban flooding
 areal flooding
 ponding
-runoff
 high water
-flood stage
-crest
-inundation
 water level
 flash flood guidance
 excessive rainfall
 rainfall rate
 torrential rain
-damaging wind
 destructive wind
 extreme wind
 hurricane force wind
@@ -317,23 +217,15 @@ blizzard warning
 ice storm warning
 lake effect snow
 snow band
-snow squall
 freezing drizzle
 wintry mix
 mixed precipitation
-sleet
-freezing rain
 ice accumulation
-icing
-wind chill
 wind chill advisory
 wind chill warning
 extreme cold
 cold wave
-cold snap
 arctic air
-polar vortex
-frost
 hard frost
 freeze
 hard freeze
@@ -344,7 +236,6 @@ snow line
 snow depth
 snowfall rate
 snow emergency
-black ice
 slippery roads
 hazardous travel
 impassable roads
@@ -355,14 +246,11 @@ blowing snow
 drifting snow
 
 # Hot Weather
-heat
 hot weather
-heat wave
 extreme heat
 excessive heat
 heat advisory
 excessive heat warning
-high temperature
 record high
 temperature record
 heat dome
@@ -376,14 +264,12 @@ dangerous heat
 heat exhaustion
 heat stroke
 heat related illness
-dehydration
 sunburn
 uv index
 ultraviolet radiation
 sun exposure
 
 # Drought and Dry Conditions
-drought
 dry weather
 dry spell
 dry conditions
@@ -399,10 +285,8 @@ dust
 dust storm
 sandstorm
 haboob
-dust devil
 wildfire weather
 fire weather
-red flag warning
 fire danger
 extreme fire danger
 low humidity
@@ -410,29 +294,19 @@ dry air mass
 dry season
 
 # Flooding
-flood
-flooding
 river flood
-flash flood
 urban flood
 coastal flood
 tidal flood
-storm surge
 high tide
-king tide
 riverine flooding
 overbank flooding
-levee breach
-dam failure
 mudslide
 debris flow
 washout
-erosion
 water damage
 
 # Climate Terms
-climate
-climatology
 climate zone
 climate classification
 tropical climate
@@ -457,32 +331,16 @@ day night cycle
 climate data
 climate record
 climate normal
-baseline
 anomaly
 temperature anomaly
 precipitation anomaly
-climate model
-climate projection
-climate scenario
 
 # Climate Phenomena
-el nino
-la nina
 el nino southern oscillation
-enso
 neutral enso
-pacific decadal oscillation
-pdo
-atlantic multidecadal oscillation
-amo
-north atlantic oscillation
-nao
-arctic oscillation
-ao
 antarctic oscillation
 aao
 southern annular mode
-sam
 madden julian oscillation
 mjo
 quasi biennial oscillation
@@ -493,7 +351,6 @@ teleconnection
 atmospheric circulation
 ocean circulation
 thermohaline circulation
-gulf stream
 kuroshio current
 humboldt current
 california current
@@ -503,42 +360,13 @@ agulhas current
 antarctic circumpolar current
 
 # Climate Change
-climate change
-global warming
 global temperature
 global average temperature
 temperature rise
 warming trend
-climate crisis
-climate emergency
-greenhouse effect
-greenhouse gas
-carbon dioxide
-co2
-methane
-ch4
-nitrous oxide
-n2o
-water vapor
-ozone
-chlorofluorocarbon
-cfc
 carbon emission
 greenhouse gas emission
-fossil fuel
-coal
-oil
-natural gas
-combustion
-carbon footprint
-carbon neutral
 net zero
-carbon offset
-carbon sink
-carbon sequestration
-deforestation
-reforestation
-afforestation
 ice melt
 glacier retreat
 ice sheet
@@ -559,28 +387,19 @@ intense precipitation
 drought frequency
 storm intensity
 climate impact
-climate adaptation
-climate mitigation
 climate resilience
-paris agreement
-climate target
 global temperature target
 1.5 degree
 two degree
 climate science
 climate research
-climate model
-climate projection
 climate feedback
 positive feedback
 negative feedback
-tipping point
 climate tipping point
 point of no return
 
 # Weather Forecasting
-forecast
-weather forecast
 prediction
 outlook
 short term forecast
@@ -597,7 +416,6 @@ computer model
 ensemble forecast
 forecast accuracy
 forecast uncertainty
-probability
 chance of rain
 precipitation probability
 forecast discussion
@@ -615,7 +433,6 @@ short fuse warning
 
 # Meteorological Instruments
 weather station
-observation
 surface observation
 upper air observation
 radiosonde
@@ -625,14 +442,12 @@ anemometer
 wind vane
 barometer
 hygrometer
-thermometer
 max min thermometer
 psychrometer
 weather radar
 doppler radar
 dual pol radar
 phased array radar
-satellite
 weather satellite
 geostationary satellite
 polar orbiting satellite
@@ -666,7 +481,6 @@ meteorological agency
 weather service
 forecast office
 warning coordination
-emergency management
 weather emergency
 weather alert
 emergency alert system
@@ -699,13 +513,7 @@ microscale meteorology
 boundary layer
 planetary boundary layer
 free atmosphere
-stratosphere
-troposphere
-mesosphere
-thermosphere
-exosphere
 ionosphere
-ozone layer
 air mass
 continental air mass
 maritime air mass
@@ -720,18 +528,15 @@ moisture advection
 isentropic
 adiabatic process
 diabatic process
-stability
 atmospheric stability
 unstable air
 stable air
 neutral stability
 convective available potential energy
-cape
 convective inhibition
 cin
 lifted index
 k index
-shear
 wind shear
 directional shear
 speed shear
@@ -742,7 +547,26 @@ absolute vorticity
 relative vorticity
 divergence
 convergence
-subsidence
-uplift
 orographic lift
 frontal lift
+
+# --- Expanded vocabulary (added) ---
+barometric
+dewpoint
+frontal
+isobar
+isotherm
+windchill
+heatindex
+thunderhead
+windshear
+jetstream
+tradewinds
+highpressure
+lowpressure
+frontogenesis
+occlusion
+partlycloudy
+clearskies
+foggy
+misty

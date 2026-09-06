@@ -6,9 +6,7 @@
 # ---- Courts and tribunals ----
 judiciary
 judicature
-magistrate
 magistrates
-arbitration
 arbitrator
 adjudication
 adjudicate
@@ -18,7 +16,6 @@ tribunals
 appellate
 plaintiff
 plaintiffs
-defendant
 defendants
 litigant
 litigants
@@ -49,7 +46,6 @@ venue
 docket
 subpoena
 subpoenaed
-deposition
 depositions
 testimony
 testimonies
@@ -86,11 +82,9 @@ lawyer
 lawyers
 advocate
 advocates
-litigator
 paralegals
 mediator
 mediators
-ombudsman
 adjudicator
 notarize
 notarized
@@ -102,23 +96,17 @@ jurisdictional
 jurisprudence
 precedent
 precedents
-statute
 statutes
 statutory
-ordinance
 ordinances
-regulation
 regulations
 regulatory
 legislation
 legislative
-legislature
 constitutional
 unconstitutional
 constitutionality
-liability
 liabilities
-negligence
 negligent
 tort
 torts
@@ -149,7 +137,6 @@ libelous
 extradition
 extradite
 extradited
-deposition
 disposition
 dispositive
 custodial
@@ -162,7 +149,6 @@ incarceration
 incarcerated
 detainment
 detained
-detainee
 detainees
 restitution
 reparation
@@ -170,7 +156,6 @@ reparations
 damages
 compensatory
 punitive
-plaintiff
 countersuit
 counterclaim
 counterclaims
@@ -178,11 +163,9 @@ lawsuit
 lawsuits
 settlement
 settlements
-mediation
 arbitral
 contractual
 contractually
-covenant
 covenants
 breach
 breached
@@ -195,7 +178,6 @@ warrants
 warranted
 affidavit
 affidavits
-deposition
 stipulation
 stipulated
 stipulate
@@ -216,7 +198,6 @@ mistrial
 retrial
 overrule
 overruled
-sustained
 objection
 objections
 
@@ -227,10 +208,8 @@ pro
 bono
 amicus
 curiae
-subpoena
 duces
 tecum
-habeas
 corpus
 mens
 rea
@@ -238,11 +217,7 @@ actus
 reus
 ipso
 facto
-de
 jure
-de
-facto
-ad
 hoc
 bona
 fide
@@ -254,14 +229,10 @@ res
 judicata
 stare
 decisis
-voir
 dire
-certiorari
-mandamus
 nolo
 contendere
 quid
-pro
 quo
 
 # ---- Law enforcement / justice system ----
@@ -281,11 +252,9 @@ custodian
 apprehend
 apprehended
 apprehension
-surveillance
 forensic
 forensics
 evidentiary
-evidence
 corroborate
 corroborated
 corroboration
@@ -301,7 +270,6 @@ nonfeasance
 malpractice
 
 # ---- Documents and filings ----
-brief
 briefs
 motion
 motions
@@ -328,12 +296,10 @@ executor
 executrix
 beneficiary
 beneficiaries
-trustee
 trustees
 fiduciary
 fiduciaries
 notarial
-escrow
 
 # ---- Common misspelling corrections ----
 lible -> liable
@@ -383,3 +349,11 @@ custady -> custody
 parolee -> parolee
 incarserated -> incarcerated
 extraditon -> extradition
+
+# --- Expanded vocabulary (added) ---
+alimony
+crossexamination
+reasonabledoubt
+preponderanceevidence
+civillaw
+criminallaw

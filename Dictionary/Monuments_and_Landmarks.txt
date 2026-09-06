@@ -31,7 +31,6 @@ Louvre Pyramid
 # Rome Landmarks
 Colosseum
 Coliseum
-Vatican City
 Sistine Chapel
 Saint Peter's Basilica
 Trevi Fountain
@@ -133,10 +132,8 @@ Casa Batlló
 Las Ramblas
 Gothic Quarter
 Barri Gòtic
-Picasso Museum
 Joan Miró Museum
 Museu Nacional d'Art de Catalunya
-Montserrat
 Gaudí Architecture
 
 # Greek Landmarks
@@ -165,9 +162,7 @@ Knossos Palace
 Santorini
 Mykonos
 Rhodes
-Crete
 Corinth Canal
-Peloponnese
 Thermopylae
 
 # London Landmarks
@@ -208,7 +203,6 @@ Leicester Square
 Covent Garden
 Carnaby Street
 Oxford Street
-Cambridge
 Notting Hill
 Portobello Road
 Abbey Road
@@ -221,9 +215,7 @@ Greenwich
 National Maritime Museum
 Shakespeare's Globe Theatre
 Stratford-upon-Avon
-Bath
 Roman Baths
-Cotswolds
 Peak District
 Lake District
 Yorkshire Dales
@@ -279,7 +271,6 @@ SoHo
 Tribeca
 Chinatown
 Little Italy
-Harlem
 Apollo Theater
 Yankee Stadium
 Citi Field
@@ -420,3 +411,105 @@ Crater Lake National Park
 Oregon Caves
 Lava Beds National Monument
 Redwood National and State Parks
+
+# --- Expanded vocabulary (added) ---
+vatican
+sistinechapel
+stpetersbasilica
+notredame
+louvremuseum
+arcdetriomphe
+montsaintmichel
+neuschwanstein
+brandenburggate
+reichstagbuilding
+colognecathedral
+alcazar
+sagradafamilia
+parkguell
+towerbridge
+buckinghampalace
+westminsterabbey
+bigbenclock
+stonehengesite
+edinburghcastle
+blarney
+cliffsofmoher
+ringofkerry
+trevofountain
+piazzasanmarco
+doepalace
+leaningtower
+pontvecchio
+pompeii
+herculaneum
+wailingwall
+domeoftherock
+churchofthenativity
+persepolis
+baalbek
+burjkhalifa
+palmjumeirah
+sheikhzayedmosque
+tajmahal
+redfort
+qutubminar
+amberfort
+hawamahal
+goldentemple
+ajantacaves
+ellorcaves
+angkorwat
+borobudur
+forbiddencity
+greatwallchina
+terracottaarmy
+himeji
+fushimiinari
+todaiji
+kinkakuji
+mountfuji
+statueofliberty
+empirestatebuilding
+goldengatebridge
+mountrushmore
+grandcanyonpark
+yellowstonepark
+hooverdam
+spaceneedle
+freedomtower
+lincolnmemorial
+washingtonmonument
+jeffersonmemorial
+whitehousedc
+capitolbuilding
+alcatrazisland
+niagarafalls
+cntower
+parliamenthill
+christtheredeemer
+machupicchu
+nazcalines
+galapagosislands
+iguazufalls
+copacabana
+sugarloafmountain
+angelfalls
+laketiticaca
+uyuni
+pyramidsofgiza
+sphinxgiza
+abusimbel
+karnaktemple
+luxortemple
+victoriafalls
+tablemountain
+krugerpark
+serengeti
+kilimanjaro
+uluruayersrock
+sydneyoperahouse
+sydneyharbourbridge
+greatbarrierreef
+milfordsound
+fiordland

@@ -9,15 +9,11 @@ adverb
 preposition
 conjunction
 interjection
-article
 determiner
 
 # Personal Pronouns
 I
-you
-he
 she
-it
 we
 they
 me
@@ -30,13 +26,11 @@ them
 my
 your
 his
-her
 its
 our
 their
 
 # Possessive Pronouns
-mine
 yours
 hers
 ours
@@ -44,7 +38,6 @@ theirs
 
 # Reflexive Pronouns
 myself
-yourself
 himself
 herself
 itself
@@ -59,11 +52,9 @@ these
 those
 
 # Interrogative Pronouns
-who
 whom
 whose
 which
-what
 whoever
 whomever
 whichever
@@ -89,16 +80,13 @@ one
 other
 another
 both
-few
 many
 several
-all
 some
 any
 none
 most
 more
-less
 fewer
 much
 little
@@ -128,10 +116,6 @@ whereas
 if
 unless
 until
-when
-where
-why
-how
 
 # Conjunctive Adverbs
 however
@@ -148,7 +132,6 @@ otherwise
 instead
 rather
 besides
-indeed
 certainly
 surely
 perhaps
@@ -190,7 +173,6 @@ always
 ever
 forever
 still
-yet
 already
 just
 only
@@ -204,26 +186,13 @@ scarcely
 # Degree Adverbs
 too
 also
-either
-neither
-both
-all
-some
-any
-none
 every
-each
 such
-so
-thus
-as
-like
 unlike
 than
 
 # Prepositions
 except
-besides
 despite
 during
 throughout
@@ -233,16 +202,12 @@ about
 above
 below
 beneath
-under
-over
 across
 through
 along
-around
 behind
 before
 after
-against
 among
 between
 into
@@ -253,9 +218,6 @@ towards
 up
 down
 in
-out
-on
-off
 at
 by
 with
@@ -263,17 +225,11 @@ from
 to
 
 # Grammatical Terms
-subject
-object
 predicate
-clause
 phrase
-sentence
-paragraph
 sentence fragment
 run-on sentence
 comma splice
-period
 question mark
 exclamation point
 semicolon
@@ -327,155 +283,84 @@ dangling modifier
 parallel structure
 
 # Linguistic Fields
-syntax
 grammar
-semantics
 morphology
 phonology
 etymology
-diction
-vocabulary
 lexicon
 idiom
 colloquialism
 slang
 jargon
-register
-formal
 informal
-standard
 nonstandard
 dialect
-accent
-pronunciation
-articulation
 enunciation
 intonation
-stress
-emphasis
-rhythm
-cadence
-tone
-pitch
-volume
-tempo
 pace
 inflection
-modulation
-expression
 
 # Writing Qualities
 clarity
 coherence
 cohesion
 unity
-organization
-development
-support
-evidence
 reasoning
-logic
-argument
-claim
-thesis
 topic sentence
 main idea
 supporting detail
 example
-illustration
 explanation
 description
-narration
-exposition
 persuasion
 argumentation
-analysis
-synthesis
-evaluation
-interpretation
-summary
-paraphrase
-quote
-citation
-reference
-source
-bibliography
 works cited
-footnote
-endnote
 
 # Academic Integrity
 plagiarism
-copyright
-fair use
-intellectual property
 originality
-authenticity
-credibility
-reliability
-validity
-accuracy
-precision
-clarity
 conciseness
 brevity
 wordiness
-redundancy
 repetition
 variation
-diversity
 consistency
 uniformity
-style
-tone
-voice
-mood
-atmosphere
 
 # Literary Terms
-setting
-character
-plot
-conflict
-resolution
-theme
 symbol
-metaphor
-simile
-personification
-alliteration
-assonance
-consonance
-onomatopoeia
 hyperbole
 understatement
-irony
-satire
-parody
-allegory
-foreshadowing
-flashback
-point of view
-first person
-second person
-third person
 omniscient narrator
 limited narrator
 objective narrator
-narrator
-protagonist
-antagonist
-foil
-dynamic character
-static character
-round character
-flat character
 
 # Plot Structure
-setting
-exposition
-rising action
-climax
-falling action
-resolution
-denouement
+
+# --- Expanded vocabulary (added) ---
+auxiliary
+subordinate
+coordinating
+correlative
+referent
+possessive
+reflexive
+reciprocal
+interrogative
+indefinite
+subjective
+nominative
+accusative
+genitive
+dative
+vocative
+ablative
+declension
+conjugation
+subjunctive
+indicative
+transitive
+intransitive
+complement
+phonetics
+pragmatics

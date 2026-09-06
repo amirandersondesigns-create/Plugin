@@ -27,19 +27,21 @@ That's it — no debug mode, no manual file copying, no Terminal commands. Those
 
 ## Adding your own words (optional)
 
-The plugin ships with a full dictionary already installed — 46 category
-files (world leaders, countries, medical terms, tech vocabulary, common
-misspelling corrections, and more) plus a general fallback list, so it
-works out of the box with no setup. To extend it further with your own
-words (brand names, character names, industry terms specific to your
-work):
+The plugin ships with a full dictionary of **80,000+ words** across 46
+categories (world leaders, countries, medical terms, tech vocabulary,
+common misspelling corrections, and more) built directly into the
+plugin itself — there's no separate dictionary folder to install or go
+missing, so it works out of the box with no setup, on every machine.
 
-1. In the plugin, open **Settings → Verify Dictionary** to see the exact
-   `Dictionary` folder path it's using.
-2. Drop `.txt` files into that folder — one word per line, or
-   `wrongword -> correctword` lines for direct corrections. Lines starting
-   with `#` are comments.
-3. Click **Scan** again (no restart needed) — new dictionary files are
+To extend it further with your own words (brand names, character
+names, industry terms specific to your work):
+
+1. After a scan, click **+ Dictionary** next to any flagged word to
+   whitelist it permanently — the fastest way to add words as you go.
+2. For bulk additions, open **Settings → Verify Dictionary** to see the
+   folder where your added words are saved, and edit
+   `customDictionary.txt` there directly (one word per line).
+3. Click **Scan** again (no restart needed) — newly added words are
    picked up right away.
 
 ## Troubleshooting

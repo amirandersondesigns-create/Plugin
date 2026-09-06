@@ -2,9 +2,7 @@
 # Universe, celestial bodies, cosmic phenomena, astrophysics, cosmology
 
 # Universe and Space
-universe
 cosmos
-space
 outer space
 interstellar space
 intergalactic space
@@ -12,7 +10,6 @@ void
 vacuum
 
 # Galaxies
-galaxy
 milky way
 andromeda
 spiral galaxy
@@ -29,9 +26,6 @@ great wall
 filament
 
 # Stars
-star
-sun
-solar system
 protostar
 t tauri star
 brown dwarf
@@ -41,7 +35,6 @@ cepheid variable
 rr lyrae variable
 mira variable
 nova
-supernova
 type ia supernova
 type ii supernova
 core collapse supernova
@@ -49,15 +42,10 @@ supernova remnant
 
 # Stellar Types
 main sequence star
-red giant
 blue giant
-supergiant
 hypergiant
-white dwarf
 neutron star
 magnetar
-pulsar
-black hole
 supermassive black hole
 stellar black hole
 intermediate mass black hole
@@ -68,14 +56,12 @@ accretion disk
 jets
 
 # Active Galactic Nuclei
-quasar
 active galactic nucleus
 blazar
 seyfert galaxy
 radio galaxy
 
 # Nebulae
-nebula
 planetary nebula
 emission nebula
 reflection nebula
@@ -99,31 +85,12 @@ carina nebula
 tarantula nebula
 
 # Planets
-planet
-mercury
-venus
-earth
-mars
-jupiter
-saturn
-uranus
-neptune
-pluto
-dwarf planet
-asteroid
-comet
-meteor
-meteorite
 meteoroid
 
 # Moons and Satellites
-moon
-satellite
 natural satellite
-lunar
 
 # Eclipses
-eclipse
 solar eclipse
 lunar eclipse
 total eclipse
@@ -133,9 +100,7 @@ penumbra
 umbra
 
 # Orbital Mechanics
-orbit
 orbital period
-revolution
 rotation
 axial tilt
 obliquity
@@ -144,23 +109,18 @@ nutation
 libration
 synchronous rotation
 tidal locking
-aphelion
-perihelion
 apogee
 perigee
 ascending node
 descending node
 inclination
-eccentricity
 semi major axis
 orbital velocity
 escape velocity
 
 # Gravity and Relativity
 gravitational constant
-gravity
 gravitation
-gravitational field
 gravitational wave
 gravitational lensing
 general relativity
@@ -177,8 +137,6 @@ zodiac
 aries
 taurus
 gemini
-cancer
-leo
 virgo
 libra
 scorpio
@@ -190,7 +148,6 @@ ursa major
 ursa minor
 orion
 cassiopeia
-andromeda
 perseus
 cygnus
 lyra
@@ -207,7 +164,6 @@ southern cross
 canis major
 canis minor
 pegasus
-phoenix
 tucana
 hydra
 eridanus
@@ -230,7 +186,6 @@ circinus
 norma
 triangulum australe
 ara
-lupus
 
 # Celestial Coordinates
 ecliptic
@@ -243,7 +198,6 @@ azimuth
 zenith
 nadir
 meridian
-prime meridian
 hour angle
 sidereal time
 solar time
@@ -276,13 +230,9 @@ metonic cycle
 saros cycle
 
 # Brightness and Magnitude
-magnitude
 apparent magnitude
 absolute magnitude
 luminosity
-brightness
-flux
-intensity
 radiance
 irradiance
 albedo
@@ -291,21 +241,9 @@ absorption
 emission
 
 # Spectroscopy
-spectroscopy
-spectrum
 electromagnetic spectrum
 visible light
-infrared
-ultraviolet
-xray
-gamma ray
 radio wave
-microwave
-wavelength
-frequency
-energy
-photon
-electromagnetic radiation
 
 # Blackbody Radiation
 blackbody radiation
@@ -315,9 +253,6 @@ stefan boltzmann law
 wien displacement law
 
 # Doppler and Redshift
-doppler effect
-redshift
-blueshift
 cosmological redshift
 gravitational redshift
 hubble constant
@@ -327,7 +262,6 @@ accelerating expansion
 
 # Dark Matter and Energy
 dark energy
-dark matter
 cold dark matter
 warm dark matter
 hot dark matter
@@ -370,17 +304,13 @@ heavy elements
 
 # Elements
 carbon
-nitrogen
-oxygen
 iron
-silicon
 magnesium
 calcium
 sodium
 aluminum
 sulfur
 helium
-hydrogen
 deuterium
 tritium
 lithium
@@ -388,24 +318,14 @@ beryllium
 boron
 
 # Nuclear Processes
-fusion
 nuclear fusion
 proton proton chain
 cno cycle
 triple alpha process
-fission
 nuclear fission
-radioactive decay
 half life
-isotope
-element
 
 # Atomic Structure
-atom
-nucleus
-proton
-neutron
-electron
 positron
 antiparticle
 antimatter
@@ -430,7 +350,6 @@ strange quark
 top quark
 bottom quark
 lepton
-electron
 muon
 tau
 neutrino
@@ -441,7 +360,6 @@ tau neutrino
 # Bosons
 boson
 gauge boson
-photon
 gluon
 w boson
 z boson
@@ -486,7 +404,6 @@ einstein rosen bridge
 time travel
 causality
 arrow time
-entropy
 second law thermodynamics
 
 # Fate of Universe
@@ -532,26 +449,16 @@ liposome
 coacervate
 
 # Biochemistry
-nucleotide
-amino acid
-protein
-enzyme
-catalyst
 ribozyme
-dna
 deoxyribonucleic acid
-rna
 ribonucleic acid
 genetic code
 codon
 translation
 transcription
 replication
-mutation
 
 # Evolution
-natural selection
-evolution
 darwinian evolution
 lamarckian evolution
 convergent evolution
@@ -560,20 +467,10 @@ parallel evolution
 coevolution
 
 # Symbiosis
-symbiosis
-mutualism
-commensalism
-parasitism
 endosymbiosis
 endosymbiotic theory
-mitochondria
-chloroplast
 
 # Cell Types
-eukaryote
-prokaryote
-bacteria
-archaea
 
 # Extremophiles
 extremophile
@@ -590,12 +487,9 @@ chemolithotroph
 methanogen
 
 # Metabolism
-photosynthesis
 chemosynthesis
 autotroph
 heterotroph
-aerobic
-anaerobic
 facultative anaerobe
 obligate anaerobe
 obligate aerobe
@@ -603,42 +497,17 @@ obligate aerobe
 # Cellular Biology
 microorganism
 microbe
-unicellular
-multicellular
-cell
-organelle
-cytoplasm
-membrane
 cell wall
-nucleus
-ribosome
-endoplasmic reticulum
-golgi apparatus
-lysosome
 peroxisome
-vacuole
-vesicle
 centriole
 flagellum
 cilium
 pseudopod
 
 # Biological Organization
-tissue
-organ
 organ system
-organism
-species
-genus
-family
-order
-class
-phylum
-kingdom
-domain
 
 # Classification
-taxonomy
 phylogeny
 cladistics
 systematics
@@ -649,21 +518,10 @@ wallace
 mendel
 
 # Genetics
-genetics
-heredity
-trait
-allele
-genotype
-phenotype
-dominant
-recessive
 homozygous
 heterozygous
 punnett square
-chromosome
-gene
 locus
-genome
 genomics
 proteomics
 transcriptomics
@@ -674,11 +532,31 @@ systems biology
 synthetic biology
 
 # Genetic Engineering
-genetic engineering
-biotechnology
-crispr
-gene editing
-cloning
 transgenic organism
-gmo
 genetically modified organism
+
+# --- Expanded vocabulary (added) ---
+milkyway
+blackhole
+eventhorizon
+redgiant
+whitedwarf
+neutronstar
+ursamajor
+ursaminor
+solstice
+corona
+chromosphere
+photosphere
+solarflare
+solarwind
+heliosphere
+exoplanet
+habitable
+bigbang
+darkmatter
+darkenergy
+observatory
+parallax
+lightyear
+parsec

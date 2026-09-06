@@ -49,11 +49,8 @@ intertidal zone
 littoral zone
 sublittoral zone
 bathyal zone
-abyssal plain
 deep sea trench
 oceanic trench
-continental shelf
-continental slope
 continental rise
 
 # Oceanographic Features
@@ -63,7 +60,6 @@ seabed
 ocean basin
 mid ocean ridge
 spreading center
-hydrothermal vent
 black smoker
 white smoker
 cold seep
@@ -74,19 +70,13 @@ submarine canyon
 abyssal hill
 ocean plateau
 atoll
-coral reef
 barrier reef
 fringing reef
-lagoon
 estuary
 fjord
-sound
 strait
-channel
-bay
 gulf
 cove
-inlet
 
 # Marine Life Categories
 plankton
@@ -95,13 +85,11 @@ zooplankton
 nekton
 benthos
 neuston
-fish
 marine fish
 cartilaginous fish
 bony fish
 ray finned fish
 shark
-ray
 skate
 cetacean
 whale
@@ -133,35 +121,21 @@ portuguese war
 mollusk
 gastropod
 snail
-slug
 bivalve
-clam
-oyster
-mussel
-scallop
 cephalopod
-octopus
-squid
-cuttlefish
 nautilus
 echinoderm
 sea star
 starfish
-sea urchin
 sea cucumber
 brittle star
 crinoid
 crustacean
-crab
-lobster
-shrimp
-prawn
 krill
 barnacle
 copepod
 amphipod
 isopod
-worm
 polychaete
 flatworm
 ribbon worm
@@ -170,14 +144,12 @@ tunicate
 sea squirt
 
 # Coral Reef Ecosystem
-coral reef
 hard coral
 soft coral
 coral polyp
 coral colony
 reef building coral
 stony coral
-coral bleaching
 zooxanthellae
 symbiotic algae
 reef fish
@@ -188,13 +160,10 @@ butterflyfish
 surgeonfish
 damselfish
 clownfish
-grouper
 moray eel
-sea anemone
 reef shark
 reef crest
 reef flat
-lagoon
 back reef
 fore reef
 patch reef
@@ -211,7 +180,6 @@ dulse
 nori
 kombu
 wakame
-phytoplankton
 diatom
 dinoflagellate
 coccolithophore
@@ -223,7 +191,6 @@ brown algae
 seagrass
 eelgrass
 turtle grass
-mangrove
 salt marsh
 macroalgae
 
@@ -231,18 +198,10 @@ macroalgae
 ocean current
 surface current
 deep water current
-thermohaline circulation
 conveyor belt
-gulf stream
-kuroshio current
-california current
-humboldt current
-benguela current
-agulhas current
 east australian current
 equatorial current
 counter current
-upwelling
 downwelling
 eddy
 gyre
@@ -253,50 +212,36 @@ south atlantic gyre
 indian ocean gyre
 
 # Waves and Tides
-wave
 ocean wave
 wind wave
 swell
-tsunami
-tidal wave
 rogue wave
 wave height
-wavelength
 wave period
 wave frequency
-amplitude
-crest
 trough
 breaker
 surf zone
 longshore current
 rip current
 undertow
-tide
 tidal range
-high tide
 low tide
-spring tide
-neap tide
 tidal bore
 tidal current
 flood tide
 ebb tide
 
 # Marine Navigation
-navigation
 nautical navigation
 dead reckoning
 celestial navigation
 electronic navigation
-chart
 nautical chart
 bathymetric chart
 navigation aid
 lighthouse
 lightship
-buoy
-beacon
 leading light
 range light
 sector light
@@ -309,24 +254,18 @@ echo sounder
 depth finder
 fathometer
 sextant
-compass
 magnetic compass
 gyrocompass
 
 # Ship Types
-ship
-vessel
-boat
 cargo ship
 container ship
 bulk carrier
-tanker
 oil tanker
 chemical tanker
 liquefied natural gas carrier
 passenger ship
 cruise ship
-ferry
 ocean liner
 warship
 naval vessel
@@ -342,15 +281,12 @@ trawler
 seiner
 longliner
 research vessel
-icebreaker
 tugboat
 barge
-yacht
 sailboat
 motorboat
 
 # Submarine Features
-submarine
 submersible
 deep diving vehicle
 remotely operated vehicle
@@ -360,12 +296,10 @@ bathysphere
 pressure hull
 ballast tank
 dive plane
-periscope
 snorkel
 sonar array
 torpedo tube
 missile silo
-nuclear reactor
 diesel electric propulsion
 air independent propulsion
 diving depth
@@ -389,18 +323,12 @@ dredge
 grab sampler
 current meter
 acoustic doppler current profiler
-tide gauge
 wave buoy
-weather buoy
 drifter
-float
 argo float
-glider
-mooring
 autonomous profiler
 
 # Marine Research
-oceanography
 marine science
 biological oceanography
 chemical oceanography
@@ -422,10 +350,7 @@ marine geophysics
 paleoceanography
 
 # Ocean Properties
-salinity
-temperature
 density
-pressure
 dissolved oxygen
 nutrients
 nitrate
@@ -433,9 +358,7 @@ phosphate
 silicate
 chlorophyll
 turbidity
-transparency
 secchi depth
-thermocline
 halocline
 pycnocline
 mixed layer
@@ -445,17 +368,13 @@ water mass
 ocean stratification
 vertical mixing
 horizontal mixing
-diffusion
-advection
 
 # Marine Conservation
 marine conservation
 ocean conservation
-marine protected area
 marine reserve
 sanctuary
 conservation zone
-no take zone
 fisheries management
 sustainable fishing
 overfishing
@@ -465,8 +384,6 @@ ghost fishing
 illegal unreported unregulated fishing
 marine pollution
 ocean pollution
-plastic pollution
-microplastic
 oil spill
 chemical pollution
 nutrient pollution
@@ -475,25 +392,17 @@ algal bloom
 harmful algal bloom
 red tide
 dead zone
-hypoxia
 
 # Climate and Ocean
 ocean climate
 sea surface temperature
 ocean heat content
-ocean acidification
 carbon dioxide absorption
 carbonate chemistry
 aragonite saturation
 calcification
-coral bleaching
-sea level rise
-thermal expansion
 ice sheet melting
-glacier retreat
-sea ice
 polar ice cap
-permafrost thaw
 methane hydrate
 ocean circulation change
 atlantic meridional overturning circulation
@@ -513,14 +422,11 @@ headland
 cliff erosion
 wave cut platform
 marine terrace
-delta
 river delta
 alluvial fan
 tidal flat
 mudflat
-salt marsh
 mangrove swamp
-coastal wetland
 
 # Marine Resources
 marine resource
@@ -549,7 +455,6 @@ petroleum reserve
 
 # Deep Sea Features
 deep sea
-hadal zone
 mariana trench
 challenger deep
 tonga trench
@@ -576,13 +481,11 @@ giant isopod
 # Marine Phenomena
 bioluminescence
 phosphorescence
-red tide
 bioluminescent bay
 blue tears
 milky sea phenomenon
 marine snow
 whale fall
-cold seep
 methane seep
 submarine landslide
 turbidity current
@@ -590,95 +493,46 @@ internal wave
 ocean vortex
 whirlpool
 maelstrom
-waterspout
-rogue wave
 freak wave
 seiche
-tsunami
 harbor wave
 tidal resonance
 
 # Nautical Terms
-port
-starboard
-bow
-stern
-fore
-aft
 amidships
-hull
-keel
-rudder
-propeller
-screw
-anchor
-mooring
-line
 hawser
-bollard
-cleat
 fender
 gangway
 ladder
-mast
 sail
-rigging
-deck
-bridge
 wheelhouse
 chart room
 engine room
-galley
-cabin
-berth
-hold
 cargo hold
-ballast
-draft
 freeboard
-displacement
 tonnage
 knot
 nautical mile
 fathom
-league
 
 # Maritime Operations
-navigation
 piloting
-helm
 steering
-course
-heading
 bearing
-speed
 knots
 log
 ship log
-position
 latitude
 longitude
-waypoint
-route
 passage
 voyage
-departure
-arrival
 port call
 anchoring
-mooring
-docking
-berthing
-loading
-unloading
 cargo handling
-bunker
-refueling
 provisioning
 crew change
 port clearance
 customs inspection
-quarantine
 maritime law
 admiralty law
 
@@ -688,23 +542,34 @@ safety equipment
 life jacket
 life vest
 life raft
-lifeboat
 rescue boat
 distress signal
-flare
 emergency position indicating radio beacon
 personal locator beacon
 emergency locator transmitter
 survival suit
 immersion suit
 fire suppression system
-damage control
 watertight compartment
-bulkhead
-collision
 grounding
 sinking
 man overboard
 search rescue
 coast guard
 maritime rescue coordination center
+
+# --- Expanded vocabulary (added) ---
+bathymetry
+continentalshelf
+abyssalplain
+neaptide
+springtide
+shoal
+reef
+tidalpool
+intertidal
+pelagic
+benthic
+anemone
+spawning
+bilge

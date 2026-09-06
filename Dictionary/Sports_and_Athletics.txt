@@ -11,20 +11,15 @@ manager
 referee
 umpire
 official
-competition
 tournament
 championship
 league
 season
-game
 match
-race
-event
 
 # Venues
 stadium
 arena
-field
 court
 track
 pitch
@@ -35,35 +30,22 @@ gymnasium
 
 # Training
 fitness
-training
 workout
 exercise
-practice
 drill
 warm up
 cool down
 stretch
 conditioning
-strength
 endurance
 stamina
 agility
-speed
-power
 flexibility
-balance
-coordination
-technique
-skill
-strategy
-tactics
 formation
 
 # Soccer Positions
 offense
-defense
 midfielder
-forward
 goalkeeper
 striker
 defender
@@ -74,7 +56,6 @@ running back
 wide receiver
 tight end
 linebacker
-safety
 cornerback
 
 # Baseball Positions
@@ -84,13 +65,10 @@ infielder
 outfielder
 batter
 hitter
-runner
 
 # Basketball Positions
 point guard
 shooting
-small
-center
 
 # Tennis Terms
 serve
@@ -102,12 +80,10 @@ net
 ace
 deuce
 love
-advantage
 break
 set
 tiebreak
 grand slam
-wimbledon
 open
 french
 australian
@@ -136,7 +112,6 @@ shot put
 hammer throw
 pole vault
 high jump
-long
 triple
 decathlon
 heptathlon
@@ -150,7 +125,6 @@ beam
 floor
 pommel horse
 rings
-parallel
 horizontal bar
 trampoline
 
@@ -164,11 +138,9 @@ flyweight
 featherweight
 bantamweight
 knockout
-technical
 jab
 hook
 uppercut
-cross
 wrestling
 freestyle
 greco roman
@@ -186,18 +158,14 @@ jiu jitsu
 brazilian
 muay thai
 kickboxing
-mixed
 mma
 ultimate fighting
 ufc
 belt
-black
-brown
 blue
 purple
 white
 yellow
-green
 orange
 dan
 kyu
@@ -214,10 +182,8 @@ vuelta espana
 sprint
 time trial
 climbing
-descent
 peloton
 breakaway
-jersey
 polka dot
 
 # Rowing
@@ -225,20 +191,15 @@ rowing
 sculling
 sweep
 oar
-stroke
 coxswain
 regatta
-eight
 four
 pair
-single
-double
 quad
 
 # Sailing
 sailing
 yacht
-crew
 skipper
 helm
 mainsheet
@@ -248,12 +209,9 @@ tack
 jibe
 windward
 leeward
-port
 starboard
-bow
 stern
 keel
-rudder
 mast
 boom
 rigging
@@ -265,7 +223,6 @@ downhill
 slalom
 giant
 super
-country
 nordic
 ski jumping
 biathlon
@@ -280,23 +237,18 @@ skateboarding
 street
 vert
 bowl
-ramp
 kickflip
 ollie
 grind
-manual
 nollie
 heelflip
 
 # Water Sports
 surfing
-wave
-barrel
 tube
 cutback
 carve
 bottom turn
-snap
 longboard
 shortboard
 paddleboard
@@ -308,16 +260,10 @@ bodyboarding
 # American Football
 american
 nfl
-national
 playoffs
-division
-conference
 afc
 nfc
 touchdown
-goal
-extra
-first
 yard
 line
 scrimmage
@@ -334,60 +280,43 @@ sudden death
 draft
 rookie
 veteran
-pro
 all
 
 # Baseball
 mlb
-major
 world series
 playoff
 wild card
-pennant
 inning
-strike
-ball
 foul
 home run
 hit
-base
 steal
-error
 out
 strikeout
 walk
 intentional
 balk
 designated
-dh
 earned average
-era
 batting
-rbi
 runs batted
 slugging percentage
 ops
 
 # Basketball
 nba
-association
 finals
 eastern
-western
-quarter
 semifinal
-final
 three pointer
-free
 dunk
 layup
-shot
 rebound
 assist
 block
 turnover
 flagrant
-personal
 dribble
 traveling
 goaltending
@@ -398,13 +327,11 @@ substitution
 # Hockey
 nhl
 stanley cup
-period
 shootout
 play
 penalty
 kill
 short handed
-icing
 offside
 face off
 puck
@@ -423,21 +350,17 @@ gaa
 fifa
 uefa
 champions
-premier
 la liga
 serie
 bundesliga
 ligue
 copa america
 euro
-european
 mls
 corner kick
 handball
-var
 video referee
 stoppage
-injury
 halftime
 fulltime
 aggregate score
@@ -448,7 +371,6 @@ quarterfinal
 third place
 
 # Tennis Tours
-atp
 wta
 davis
 fed
@@ -456,20 +378,15 @@ laver
 masters
 singles
 doubles
-return
-fault
 let
 lob
 smash
 drop
 slice
 topspin
-backhand
-approach
 passing
 winner
 unforced
-hold
 bagel
 breadstick
 golden
@@ -491,19 +408,15 @@ hole one
 tee
 fairway
 rough
-bunker
 sand trap
 water hazard
 driver
 wood
-iron
 wedge
 putter
 swing
 putt
-chip
 fade
-hook
 shank
 divot
 mulligan
@@ -518,12 +431,10 @@ olympics
 summer
 winter
 paralympics
-special
 youth
 ancient
 modern
 olympic committee
-ioc
 host city
 opening ceremony
 closing
@@ -551,13 +462,10 @@ blood passport
 therapeutic use exemption
 tue
 random testing
-competition
-sample
 suspension
 lifetime ban
 
 # College Sports
-college
 ncaa
 scholarship
 recruiting
@@ -571,7 +479,6 @@ scouting
 espn
 highlight reel
 replay
-instant
 slow motion
 commentary
 analyst
@@ -583,17 +490,12 @@ studio
 pregame
 postgame
 show
-interview
 press
 media day
 
 # Awards
-star
 mvp
 most valuable
-year
-defensive
-offensive
 comeback
 sixth man
 executive
@@ -614,7 +516,6 @@ contract extension
 guaranteed
 performance bonus
 incentive
-endorsement
 sponsorship
 merchandise
 ticket sales
@@ -643,15 +544,10 @@ handicapper
 tout
 
 # Injuries
-report
 questionable
 doubtful
 probable
-list
-il
 disabled
-protocol
-concussion
 acl
 mcl
 meniscus
@@ -661,9 +557,7 @@ shoulder
 rotator cuff
 tommy john surgery
 rehab
-rehabilitation
 physical therapy
-recovery
 pain management
 
 # Performance Enhancing
@@ -675,7 +569,48 @@ human growth hormone
 epo
 erythropoietin
 masking agent
-stimulant
 diuretic
-transfusion
-gene
+
+# --- Expanded vocabulary (added) ---
+halfback
+fullback
+punter
+homerun
+basehit
+shortstop
+outfield
+infield
+dugout
+bullpen
+slugger
+slamdunk
+freethrow
+fastbreak
+fullcourt
+halfcourt
+powerplay
+penaltybox
+faceoff
+slapshot
+goaltender
+defenseman
+penaltykick
+cornerkick
+freekick
+yellowcard
+redcard
+extratime
+semifinals
+quarterfinals
+pentathlon
+triathlon
+fencing
+archery
+weightlifting
+powerlifting
+bodybuilding
+skating
+curling
+bobsled
+luge
+steeplechase

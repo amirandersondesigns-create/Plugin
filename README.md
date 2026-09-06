@@ -94,8 +94,13 @@ client/js/CSInterface.js
                        Minimal bridge to the CEP host (evalScript, etc.)
 host/spellcheck.jsx   ExtendScript engine — same scan/replace/highlight
                        logic as MotionSpellChecker.jsx, wrapped for CEP.
-Dictionary/*.txt      46 bundled category word lists — ships pre-loaded,
-                       not something users have to add themselves.
+host/dictionary-data.jsx
+                       80,000+ built-in dictionary words across 46
+                       categories, compiled in and pulled into
+                       spellcheck.jsx via #include — no separate files,
+                       no install-time dependency. Generated from
+                       Dictionary/*.txt (kept in the repo as the
+                       readable source; not shipped in the .zxp).
 package-zxp.sh        Builds a clean, signed .zxp — see below.
 LICENSE.txt           Standalone terms file, distributed alongside the .zxp.
 .debug                Dev-only — opens a DevTools debug port for this

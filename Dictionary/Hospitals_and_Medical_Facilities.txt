@@ -1,17 +1,12 @@
 # Hospitals and Medical Facilities Dictionary
 
 # Medical Facilities
-hospital
-clinic
 infirmary
 sanatorium
 sanitarium
-hospice
 dispensary
 polyclinic
-surgery center
 laboratory
-pharmacy
 
 # Facility Types
 ambulatory care
@@ -19,7 +14,6 @@ outpatient facility
 inpatient facility
 emergency department
 trauma center
-intensive care unit
 critical care unit
 coronary care unit
 cardiac care unit
@@ -27,9 +21,7 @@ maternity ward
 obstetric unit
 pediatric ward
 neonatal unit
-geriatric care
 psychiatric facility
-rehabilitation center
 convalescent home
 dialysis center
 radiology department
@@ -59,16 +51,11 @@ autopsy room
 # Medical Procedures
 examination
 consultation
-treatment
-procedure
-operating room
 operating theatre
 recovery room
 postoperative care
 preoperative care
 anesthesia
-sterilization
-decontamination
 isolation ward
 quarantine facility
 triage area
@@ -79,20 +66,15 @@ referral service
 transfer service
 
 # Emergency Services
-ambulance
 helicopter
 medical evacuation
-medevac
-air ambulance
 airlift
 
 # Medical Equipment
 stretcher
 gurney
-wheelchair
 walker
 crutches
-prosthesis
 orthosis
 brace
 splint
@@ -100,27 +82,17 @@ cast
 bandage
 dressing
 gauze
-suture
 staple
-catheter
 cannula
 needle
-syringe
 intravenous drip
 infusion
-transfusion
-ventilator
-respirator
-defibrillator
 monitor
 scanner
-ultrasound
 mammography
-tomography
 fluoroscopy
 
 # Diagnostic Procedures
-endoscopy
 colonoscopy
 laparoscopy
 arthroscopy
@@ -139,8 +111,6 @@ centrifuge
 incubator
 autoclave
 sterilizer
-disinfectant
-antiseptic
 sanitizer
 cleanser
 detergent
@@ -180,10 +150,8 @@ brightness
 contrast
 resolution
 magnification
-calibration
 maintenance
 inspection
-testing
 validation
 verification
 certification
@@ -195,32 +163,22 @@ authorization
 clearance
 compliance
 regulation
-standard
-protocol
-guideline
-procedure
 policy
-best practice
 quality assurance
 safety protocol
 security measures
 privacy protection
-confidentiality
 
 # Documentation
-documentation
 recording
-reporting
 notification
 communication
 coordination
 collaboration
-consultation
 referral
 transfer
 discharge
 admission
-registration
 scheduling
 appointment
 reservation
@@ -232,7 +190,6 @@ waitlist
 queue
 priority
 urgency
-emergency
 routine care
 elective procedure
 scheduled surgery
@@ -240,15 +197,11 @@ unscheduled visit
 walk in appointment
 
 # Telemedicine
-telemedicine
-telehealth
 virtual visit
 remote consultation
 distance medicine
 online consultation
-digital health
 electronic health
-mobile health
 portable device
 handheld device
 wearable device
@@ -263,11 +216,8 @@ nonsterile equipment
 # Procedure Types
 invasive procedure
 noninvasive procedure
-diagnostic test
 therapeutic procedure
-preventive care
 curative treatment
-palliative care
 supportive care
 symptomatic treatment
 prophylactic treatment
@@ -290,27 +240,14 @@ warning
 adverse event
 adverse reaction
 side effect
-outcome
 complication
 sequela
-morbidity
-mortality
 survival rate
-recovery
-improvement
 deterioration
 progression
 regression
-remission
-exacerbation
-relapse
-recurrence
 persistence
-resolution
-stabilization
-normalization
 restoration
-rehabilitation
 reintegration
 readjustment
 adaptation
@@ -319,8 +256,6 @@ compensation
 coping mechanism
 support system
 assistance
-aid
-care
 service
 
 # Healthcare Organizations
@@ -335,11 +270,8 @@ association
 society
 federation
 confederation
-alliance
-coalition
 network
 consortium
-collaboration
 partnership
 affiliation
 accreditation body
@@ -348,15 +280,10 @@ licensing board
 registration authority
 designation
 recognition
-approval
-authorization
 endorsement
 recommendation
-referral
-consultation
 second opinion
 advice
-guidance
 counseling
 education
 training
@@ -364,49 +291,29 @@ instruction
 teaching
 learning
 development
-improvement
 enhancement
 optimization
 maximization
 minimization
 reduction
-prevention
 control
 management
 administration
 supervision
 oversight
-monitoring
-surveillance
-tracking
-recording
-documentation
-reporting
-notification
 
 # Research and Analysis
-communication
 information
 data
 statistics
 analytics
-intelligence
-research
-investigation
-study
-trial
 experiment
 observation
-assessment
-evaluation
-examination
-inspection
 audit
 review
 analysis
 interpretation
 conclusion
-recommendation
 implementation
 application
 utilization
@@ -416,43 +323,27 @@ incorporation
 inclusion
 exclusion
 selection
-screening
-testing
-diagnosis
-prognosis
 treatment plan
-therapy
-intervention
-procedure
-operation
-surgery
 technique
 method
 approach
-strategy
 plan
 program
 initiative
 project
-campaign
 effort
 action
 activity
 task
-function
 role
 responsibility
 duty
 obligation
 requirement
 expectation
-standard
-criterion
-benchmark
 target
 goal
 objective
-outcome
 result
 achievement
 success
@@ -472,7 +363,6 @@ location
 site
 place
 setting
-environment
 context
 background
 history
@@ -485,28 +375,19 @@ chart
 graph
 table
 list
-index
 directory
 registry
 database
-system
-network
 platform
 infrastructure
-facility
 equipment
 instrument
 device
 tool
 apparatus
 machine
-technology
-innovation
 advancement
-development
 progress
-improvement
-enhancement
 upgrade
 update
 revision
@@ -517,13 +398,9 @@ transformation
 transition
 shift
 evolution
-revolution
 disruption
-innovation
 invention
 discovery
-breakthrough
-achievement
 milestone
 landmark
 turning point
@@ -544,28 +421,20 @@ extraordinary
 unprecedented
 unique
 distinctive
-characteristic
 typical
 common
 usual
 normal
-standard
 regular
 routine
 ordinary
 average
-moderate
-mild
-severe
 extreme
 intense
-acute
-chronic
 persistent
 recurrent
 intermittent
 episodic
-sporadic
 occasional
 frequent
 constant
@@ -582,7 +451,6 @@ short term
 long term
 
 # Time Periods
-duration
 period
 time
 moment
@@ -597,16 +465,12 @@ year
 decade
 century
 millennium
-era
 age
 generation
 lifetime
 lifespan
 longevity
-mortality
-morbidity
 disability
-impairment
 limitation
 restriction
 constraint
@@ -622,9 +486,7 @@ question
 topic
 subject
 theme
-focus
 emphasis
-priority
 importance
 significance
 relevance
@@ -635,7 +497,6 @@ worth
 benefit
 advantage
 strength
-asset
 resource
 capacity
 capability
@@ -646,22 +507,44 @@ proficiency
 expertise
 mastery
 excellence
-quality
-standard
-level
-grade
 rank
-rating
-score
-performance
-achievement
 accomplishment
-success
-outcome
-result
 effect
 impact
 influence
 consequence
 implication
 ramification
+
+# --- Expanded vocabulary (added) ---
+intensivecare
+inpatient
+cafeteria
+operatingroom
+recoveryroom
+maternityward
+neonatalunit
+pediatrics
+oncology
+cardiology
+orthopedics
+psychiatry
+dermatology
+nephrology
+gastroenterology
+endocrinology
+rheumatology
+anesthesiology
+radiotherapy
+walkinclinic
+communityhealth
+nursinghome
+assistedliving
+hospicecare
+burnunit
+poisoncontrol
+bloodbank
+dialysiscenter
+mri
+catscan
+electroencephalogram

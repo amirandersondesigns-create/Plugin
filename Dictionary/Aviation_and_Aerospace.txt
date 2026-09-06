@@ -2,20 +2,13 @@
 # Aircraft, aviation terms, flight operations, aerospace engineering
 
 # Aircraft Types
-airplane
 aeroplane
-aircraft
-jet
-airliner
-jetliner
 commercial aircraft
 passenger aircraft
 cargo aircraft
-freighter
 wide body
 narrow body
 regional jet
-turboprop
 propeller aircraft
 single engine
 twin engine
@@ -23,37 +16,24 @@ multi engine
 business jet
 private jet
 corporate jet
-helicopter
-rotorcraft
-chopper
 fighter jet
-bomber
 attack aircraft
 reconnaissance aircraft
 transport aircraft
 tanker aircraft
 trainer aircraft
-glider
-sailplane
-ultralight
 light sport aircraft
-seaplane
-floatplane
 amphibious aircraft
 
 # Aircraft Manufacturers
-boeing
 airbus
 embraer
-bombardier
 cessna
 piper
 beechcraft
 cirrus aircraft
 gulfstream
 dassault aviation
-lockheed martin
-northrop grumman
 general dynamics
 textron aviation
 pilatus aircraft
@@ -70,90 +50,59 @@ comac
 mitsubishi aircraft
 
 # Military Aircraft
-fighter
-interceptor
 air superiority fighter
 multirole fighter
 strike fighter
-bomber
 strategic bomber
 tactical bomber
 stealth bomber
-attack aircraft
 close air support
 ground attack
-reconnaissance
-surveillance
 early warning control
 awacs
 electronic warfare aircraft
-tanker
 aerial refueling
-transport
-cargo
 patrol aircraft
 maritime patrol
-trainer
 advanced trainer
 basic trainer
 
 # Aircraft Components
-fuselage
-wing
 airfoil
 leading edge
 trailing edge
 wingtip
 winglet
-aileron
-flap
-slat
-spoiler
 empennage
-tail
 horizontal stabilizer
 vertical stabilizer
-elevator
-rudder
 trim tab
 landing gear
 nose gear
 main gear
 retractable gear
 fixed gear
-wheel
-tire
 brake
 strut
 shock absorber
-door
 cargo door
 passenger door
 emergency exit
-window
-cockpit
 canopy
 windshield
 
 # Propulsion Systems
-engine
 jet engine
-turbofan
-turbojet
-turboprop
 turboshaft
 piston engine
 radial engine
 inline engine
 rotary engine
-propeller
 variable pitch propeller
 constant speed propeller
 thrust reverser
-afterburner
 reheat
 fuel system
-fuel tank
 fuel pump
 fuel line
 fuel filter
@@ -162,14 +111,9 @@ ignition system
 exhaust system
 intake
 air intake
-compressor
-combustion chamber
-turbine
-nozzle
 
 # Cockpit Instruments
 airspeed indicator
-altimeter
 vertical speed indicator
 attitude indicator
 artificial horizon
@@ -177,7 +121,6 @@ heading indicator
 directional gyro
 turn coordinator
 turn slip indicator
-magnetic compass
 tachometer
 manifold pressure gauge
 fuel gauge
@@ -190,21 +133,14 @@ primary flight display
 multi function display
 glass cockpit
 electronic flight instrument system
-autopilot
-flight director
 
 # Navigation Systems
 global positioning system
 inertial navigation system
-vor
 vhf omnidirectional range
-ndb
 non directional beacon
-dme
 distance measuring equipment
-ils
 instrument landing system
-localizer
 glide slope
 marker beacon
 outer marker
@@ -223,30 +159,13 @@ preflight inspection
 walkaround
 cockpit preparation
 engine start
-taxi
 taxiing
-takeoff
-rotation
-liftoff
-climb
-cruise
-descent
-approach
 final approach
-landing
-touchdown
-rollout
 taxiback
-shutdown
 postflight inspection
 turnaround
-departure
-arrival
 ground operations
-pushback
 towing
-marshalling
-parking
 chocks
 wheel chocks
 ground power unit
@@ -254,47 +173,34 @@ auxiliary power unit
 
 # Flight Maneuvers
 straight level flight
-climb
-descent
-turn
 bank
 coordinated turn
 steep turn
-stall
 spin recovery
-loop
 barrel roll
 aileron roll
 hammerhead turn
-split
-chandelle
 lazy eight
 slow flight
 power off stall
 power on stall
 accelerated stall
 emergency descent
-slip
 forward slip
 side slip
 ground reference maneuver
-pattern
 traffic pattern
 
 # Air Traffic Control
 air traffic control
-atc
-tower
 control tower
 ground control
 clearance delivery
 departure control
 approach control
-center
 radar control
 flight service station
 flight information service
-clearance
 taxi clearance
 takeoff clearance
 landing clearance
@@ -308,7 +214,6 @@ separation minimum
 wake turbulence separation
 
 # Airspace Classes
-class
 controlled airspace
 uncontrolled airspace
 terminal control area
@@ -326,8 +231,6 @@ flight restricted zone
 air defense identification zone
 
 # Weather and Meteorology
-weather
-meteorology
 aviation weather
 metar weather report
 taf
@@ -338,33 +241,11 @@ sigmet
 significant meteorological information
 airmet
 airmen meteorological information
-icing
-turbulence
-wind shear
-microburst
-downburst
-thunderstorm
 convective activity
-ceiling
-visibility
-cloud base
 cloud layer
-overcast
 broken
 scattered
 few
-clear
-precipitation
-rain
-snow
-sleet
-hail
-freezing rain
-fog
-mist
-crosswind
-headwind
-tailwind
 
 # Flight Planning
 flight plan
@@ -372,13 +253,10 @@ route planning
 fuel planning
 weight balance
 center gravity
-payload
 zero fuel weight
 maximum takeoff weight
 maximum landing weight
 fuel capacity
-range
-endurance
 alternate airport
 diversion airport
 minimum fuel reserve
@@ -395,8 +273,6 @@ takeoff performance
 landing performance
 climb performance
 cruise performance
-range
-endurance
 fuel consumption
 specific fuel consumption
 power setting
@@ -416,10 +292,6 @@ best glide speed
 
 # Aerodynamics
 aerodynamics
-lift
-drag
-thrust
-weight
 angle attack
 critical angle attack
 coefficient lift
@@ -436,13 +308,9 @@ total pressure
 airflow
 laminar flow
 turbulent flow
-boundary layer
-separation
-stall
 wing loading
 aspect ratio
 span
-chord
 camber
 dihedral
 anhedral
@@ -452,11 +320,9 @@ sweep angle
 hydraulic system
 hydraulic fluid
 hydraulic pump
-actuator
 accumulator
 pneumatic system
 bleed air
-air conditioning
 pressurization
 cabin pressure
 environmental control system
@@ -466,50 +332,28 @@ passenger oxygen
 deicing system
 anti icing system
 electrical system
-generator
-alternator
-battery
 inverter
-bus
 circuit breaker
 
 # Avionics
-avionics
 flight management system
-autopilot
 autothrottle
 flight control computer
 air data computer
 inertial reference system
 attitude heading reference system
 traffic collision avoidance system
-tcas
 ground proximity warning system
 gpws
 enhanced ground proximity warning system
 egpws
-weather radar
-transponder
-emergency locator transmitter
 cockpit voice recorder
 flight data recorder
 black box
 
 # Airport Infrastructure
-airport
-aerodrome
-airfield
-runway
-taxiway
-apron
-ramp
-terminal
-concourse
-gate
-hangar
 maintenance hangar
 fuel farm
-control tower
 fire station
 rescue firefighting
 fixed base operator
@@ -517,12 +361,9 @@ general aviation terminal
 cargo terminal
 customs facility
 border control
-security checkpoint
 baggage handling system
 
 # Runway Features
-runway
-threshold
 displaced threshold
 runway end
 centerline
@@ -530,15 +371,10 @@ edge marking
 touchdown zone marking
 fixed distance marking
 overrun
-stopway
-clearway
 blast pad
-shoulder
 runway strip
 safety area
 approach lighting
-precision approach path indicator
-visual approach slope indicator
 runway guard light
 taxiway light
 edge light
@@ -569,28 +405,22 @@ scheduled maintenance
 unscheduled maintenance
 preventive maintenance
 corrective maintenance
-inspection
-preflight inspection
 daily inspection
 weekly inspection
 phase inspection
 letter check
 heavy maintenance
 overhaul
-repair
-modification
 service bulletin
 airworthiness directive
 maintenance manual
 illustrated parts catalog
 troubleshooting manual
-logbook
 maintenance record
 
 # Flight Training
 flight training
 ground school
-flight simulator
 flight training device
 dual instruction
 solo flight
@@ -600,17 +430,13 @@ instrument flight
 hood time
 simulated instrument
 actual instrument
-checkride
 practical test
-oral exam
 flight test
 stage check
 progress check
-endorsement
 student pilot
 private pilot
 commercial pilot
-airline transport pilot
 certified flight instructor
 
 # Emergency Procedures
@@ -620,11 +446,8 @@ engine failure
 engine fire
 electrical fire
 cabin fire
-smoke
-fumes
 rapid decompression
 loss cabin pressure
-ditching
 forced landing
 emergency landing
 precautionary landing
@@ -632,7 +455,6 @@ rejected takeoff
 aborted takeoff
 go around
 missed approach
-emergency descent
 fuel starvation
 fuel exhaustion
 bird strike
@@ -640,7 +462,6 @@ structural damage
 control failure
 
 # Helicopter Specific
-rotor
 main rotor
 tail rotor
 rotor blade
@@ -649,12 +470,10 @@ swashplate
 collective pitch control
 cyclic pitch control
 anti torque pedal
-autorotation
 hover
 hovering
 vertical takeoff
 vertical landing
-transition
 forward flight
 sideward flight
 rearward flight
@@ -664,3 +483,17 @@ retreating blade stall
 settling with power
 vortex ring state
 dynamic rollover
+
+# --- Expanded vocabulary (added) ---
+aerofoil
+airframe
+ailerons
+elevators
+flaps
+slats
+spoilers
+undercarriage
+combustor
+yaw
+hypoxiacondition
+propellant

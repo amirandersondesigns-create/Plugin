@@ -1,35 +1,20 @@
 # Environmental and Climate Terms Dictionary
 
 # Environmental Science
-environment
-ecology
-ecosystem
-biodiversity
-habitat
-biome
 biosphere
-atmosphere
 hydrosphere
 lithosphere
 geosphere
 cryosphere
 
 # Weather
-weather
-temperature
-precipitation
-humidity
 atmospheric pressure
-wind
 wind patterns
-air circulation
 ocean currents
-gulf stream
 jet stream
 trade winds
 westerlies
 polar easterlies
-monsoon
 monsoon season
 el nino
 la nina
@@ -53,7 +38,6 @@ anthropogenic climate change
 natural climate variability
 climate forcing
 radiative forcing
-greenhouse effect
 enhanced greenhouse effect
 greenhouse gas
 carbon dioxide
@@ -66,7 +50,6 @@ water vapor
 ozone
 o3
 chlorofluorocarbon
-cfc
 hydrofluorocarbon
 hfc
 perfluorocarbon
@@ -78,7 +61,6 @@ sf6
 carbon footprint
 ecological footprint
 environmental impact
-sustainability
 sustainable development
 renewable resource
 non renewable resource
@@ -90,7 +72,6 @@ ecological deficit
 ecological reserve
 
 # Natural Cycles
-carbon cycle
 nitrogen cycle
 phosphorus cycle
 hydrologic cycle
@@ -104,8 +85,6 @@ carbon source
 net zero emissions
 carbon neutral
 carbon negative
-carbon offset
-carbon credit
 carbon trading
 emissions trading scheme
 ets
@@ -114,19 +93,16 @@ carbon tax
 carbon pricing
 
 # Climate Finance
-climate finance
 green climate fund
 gcf
 climate adaptation
 climate mitigation
 loss and damage
 climate resilience building
-vulnerability assessment
 climate risk assessment
 environmental impact assessment
 eia
 strategic environmental assessment
-sea
 life cycle assessment
 lca
 cradle to grave analysis
@@ -155,7 +131,6 @@ upcycle
 downcycle
 
 # Waste Management
-composting
 vermicomposting
 anaerobic digestion
 biogas production
@@ -171,7 +146,6 @@ municipal solid waste
 msw
 hazardous waste
 toxic waste
-electronic waste
 ewaste
 plastic waste
 marine debris
@@ -196,12 +170,10 @@ environmentally friendly
 earth friendly
 planet friendly
 green products
-organic
 chemical free
 toxin free
 hypoallergenic
 cruelty free
-vegan
 plant based
 fair trade
 ethically sourced
@@ -251,7 +223,6 @@ light pollution
 radioactive pollution
 air pollution
 water pollution
-emission
 effluent
 wastewater
 sewage
@@ -303,7 +274,6 @@ smart irrigation
 # Land Degradation
 water scarcity
 water stress
-drought
 desertification
 land degradation
 soil erosion
@@ -343,8 +313,6 @@ detention basin
 permeable pavement
 porous pavement
 pervious concrete
-stormwater management
-runoff
 infiltration
 groundwater recharge enhancement
 aquifer recharge
@@ -368,7 +336,6 @@ water budget
 # Water Resources
 watershed management
 river basin
-catchment area
 water resources management
 integrated water resources management
 iwrm
@@ -470,7 +437,6 @@ soil vapor extraction
 air sparging
 chemical oxidation
 solidification
-stabilization
 encapsulation
 capping
 landfill closure
@@ -514,7 +480,6 @@ ornamental plant
 noxious weed
 agricultural pest
 disease vector
-zoonotic disease
 emerging infectious disease
 eid
 one health approach
@@ -522,8 +487,6 @@ ecohealth
 planetary health
 
 # Indoor Environment
-public health
-occupational health
 indoor air quality
 sick building syndrome
 building related illness
@@ -532,10 +495,8 @@ air exchange rate
 radon exposure
 asbestos
 lead exposure
-mercury
 volatile organic compound
 voc
-formaldehyde
 particulate matter
 pm
 pm2.5
@@ -550,7 +511,6 @@ photochemical smog
 ground level ozone
 tropospheric ozone
 stratospheric ozone
-ozone layer
 ozone hole
 antarctic ozone hole
 montreal protocol
@@ -602,7 +562,6 @@ sip
 safe drinking water act
 sdwa
 maximum contaminant level
-mcl
 national pollutant discharge elimination system
 npdes
 total maximum daily load
@@ -611,11 +570,8 @@ point source pollution
 nonpoint source pollution
 diffuse pollution
 combined sewer overflow
-cso
 sanitary sewer overflow
-sso
 best management practice
-bmp
 low impact development
 lid
 green stormwater infrastructure
@@ -664,17 +620,42 @@ climate leadership
 climate diplomacy
 climate negotiation
 conference of the parties
-cop
 unfccc
 united nations framework convention on climate change
 kyoto protocol
 glasgow climate pact
 climate finance mechanism
 warsaw international mechanism
-loss and damage
 climate reparation
 climate debt
 historical responsibility
 common but differentiated responsibility
 climate equity
 climate fairness
+
+# --- Expanded vocabulary (added) ---
+leaching
+ecotoxicology
+nonrenewable
+fossilfuel
+carbonfootprint
+greenhouse
+sequestration
+offsetting
+rewilding
+wetland
+aquifer
+groundwater
+glacier
+icecap
+icesheet
+icefloe
+bleaching
+acidification
+poaching
+nationalpark
+ozonelayer
+uvradiation
+carbonneutral
+netzero
+upcycling

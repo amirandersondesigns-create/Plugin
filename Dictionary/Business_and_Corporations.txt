@@ -2,15 +2,11 @@
 # Business and corporate terms
 
 # Business Entities
-business
-company
 corporation
 enterprise
 firm
-organization
 startup
 venture
-partnership
 proprietorship
 llc
 limited liability company
@@ -20,17 +16,14 @@ parent company
 holding company
 conglomerate
 multinational
-franchise
 
 # Business Actions
 merger
 acquisition
 takeover
-buyout
 
 # Leadership and Management
 board of directors
-executive
 ceo
 chief executive officer
 cfo
@@ -41,20 +34,13 @@ coo
 chief operations officer
 cmo
 chief marketing officer
-president
 vice president
-chairman
 founder
 partner
-manager
-director
-supervisor
 employee
 staff
 workforce
-team
 department
-division
 headquarters
 branch office
 
@@ -66,29 +52,12 @@ investor
 # Finance and Accounting
 finance
 accounting
-revenue
-sales
-profit
-loss
-earnings
 margin
 assets
-liabilities
-equity
-capital
 debt
 budget
-forecast
 expense
-income statement
-balance sheet
-cash flow
-audit
 tax
-fiscal year
-quarter
-annual report
-dividend
 payout
 roi
 return on investment
@@ -97,21 +66,14 @@ return on investment
 marketing
 advertising
 brand
-campaign
 promotion
 customer
 client
-consumer
 target audience
 market segment
 lead generation
-conversion
 sales pipeline
-quota
-commission
-negotiation
 contract
-agreement
 terms and conditions
 proposal
 bid
@@ -121,35 +83,21 @@ tender
 procurement
 vendor
 supplier
-distribution
 wholesale
 retail
 ecommerce
 pricing
 discount
-margin
-markup
 inventory
-stock
 warehouse
-logistics
 supply chain
 shipping
-delivery
 fulfillment
 
 # Strategy and Planning
-strategy
-planning
-mission
 vision
-objective
-goal
-milestone
 kpi
 key performance indicator
-growth
-expansion
 market share
 competitive advantage
 swot analysis
@@ -159,10 +107,7 @@ opportunities
 threats
 
 # Operations Management
-operations
-production
 quality control
-efficiency
 productivity
 process improvement
 lean manufacturing
@@ -172,11 +117,7 @@ six sigma
 human resources
 recruitment
 hiring
-training
-development
 retention
-turnover
-compensation
 salary
 benefits
 payroll
@@ -184,27 +125,10 @@ performance review
 termination
 
 # Compliance and Legal
-compliance
-regulation
 legal
-policy
-procedure
-ethics
 governance
-risk management
 insurance
-liability
-intellectual property
-trademark
-patent
-copyright
-confidential
 nondisclosure agreement
-lawsuit
-litigation
-settlement
-arbitration
-mediation
 
 # Consulting
 consulting
@@ -217,73 +141,52 @@ operational planning
 project management
 agile
 scrum
-milestone
 deliverable
 timeline
 deadline
 resource allocation
-budget
-variance
-scope
 change management
 stakeholder communication
-reporting
 dashboard
 metrics
-analytics
 data driven
 decision making
 
 # Innovation
-automation
 digital transformation
-innovation
-disruption
 pivot
-scale
 scalability
 sustainable
-sustainability
 corporate social responsibility
 csr
 esg
-environmental social governance
-diversity
-equity
-inclusion
 dei
 
 # Leadership Skills
 leadership
-collaboration
 teamwork
 culture
 values
 mission statement
 vision statement
 core competency
-best practice
-benchmark
 industry standard
 
 # Competitive Analysis
 competitor analysis
 positioning
-differentiation
 value proposition
 unique selling proposition
 usp
 
 # Branding
 branding
-logo
 tagline
 slogan
 messaging
 
 # Digital Marketing
 content marketing
-social media
 seo
 search engine optimization
 sem
@@ -306,12 +209,10 @@ clicks
 conversions
 
 # Sales Funnel
-funnel
 pipeline
 crm
 customer relationship management
 customer acquisition
-retention
 churn
 loyalty
 lifetime value
@@ -322,26 +223,18 @@ net promoter score
 nps
 customer satisfaction
 feedback
-survey
 testimonial
-review
-rating
 
 # Content Types
 case study
-white paper
 ebook
 infographic
 video
 webcast
-presentation
 pitch deck
 demo
-prototype
 minimum viable product
-mvp
 iteration
-validation
 product market fit
 
 # Go to Market
@@ -349,14 +242,11 @@ go to market strategy
 gtm
 launch
 rollout
-adoption
-penetration
 maturity
 decline
 lifecycle
 
 # Portfolio Management
-portfolio
 diversification
 vertical integration
 horizontal integration
@@ -364,13 +254,9 @@ outsourcing
 offshoring
 insourcing
 joint venture
-collaboration
-alliance
-ecosystem
 network effect
 
 # Business Models
-platform
 marketplace
 aggregator
 intermediary
@@ -378,7 +264,6 @@ disintermediation
 subscription model
 freemium
 tiered pricing
-dynamic pricing
 bundle
 unbundle
 upsell
@@ -394,65 +279,49 @@ churn rate
 retention rate
 cohort analysis
 unit economics
-contribution margin
 break even
 burn rate
-runway
 
 # Funding
-fundraising
 seed round
 series a
 angel investor
 venture capital
 private equity
-valuation
 pre money
 post money
 dilution
 cap table
 term sheet
 due diligence
-closing
 exit strategy
-ipo
-initial public offering
-spac
-direct listing
 secondary market
 liquidity event
 unicorn
 decacorn
 
 # Strategy Frameworks
-disruption
-innovation
 blue ocean strategy
 red ocean strategy
 first mover advantage
 early adopter
 crossing the chasm
-moat
 defensibility
 switching cost
 lock in
 network effects
 viral coefficient
 k factor
-referral program
 gamification
 
 # Marketing Strategy
 personalization
 segmentation
 targeting
-positioning
-messaging
 channel strategy
 omnichannel
 multichannel
 attribution
-tracking
 pixel
 cookie
 remarketing
@@ -462,7 +331,6 @@ custom audience
 saved audience
 
 # Audience Targeting
-demographics
 psychographics
 behavioral targeting
 contextual targeting
@@ -475,11 +343,8 @@ qualification
 nurturing
 drip campaign
 sequence
-automation
 workflow
 trigger
-action
-condition
 branching logic
 personalization token
 dynamic content
@@ -488,34 +353,22 @@ dynamic content
 ab test
 split test
 multivariate test
-optimization
 experimentation
-hypothesis
-statistical significance
-confidence interval
-sample size
 control group
 variant
-winner
 loser
 incrementality
 lift
-baseline
 holdout group
 randomization
-bias
 confounding variable
-correlation
-causation
 
 # Analytics
-regression
 coefficient
 predictive model
 forecasting
 scenario planning
 sensitivity analysis
-monte carlo simulation
 decision tree
 
 # Business Frameworks
@@ -539,16 +392,11 @@ inflection point
 economies of scale
 economies of scope
 learning curve
-marginal cost
-fixed cost
-variable cost
-overhead
 allocation
 absorption costing
 activity based costing
 throughput accounting
 bottleneck
-constraint
 theory of constraints
 just in time
 jit
@@ -566,7 +414,6 @@ vital few
 trivial many
 
 # Performance Management
-dashboard
 scorecard
 balanced scorecard
 okr
@@ -579,13 +426,9 @@ relevant
 timebound
 cascading goals
 alignment
-transparency
-accountability
 ownership
 empowerment
 delegation
-authority
-responsibility
 span of control
 
 # Organizational Structure
@@ -599,25 +442,21 @@ product organization
 customer organization
 hybrid organization
 centralized
-decentralized
 federated
 shared services
 center of excellence
 
 # Meetings and Communication
 offsite
-retreat
 townhall
 allhands
 standup meeting
 retrospective
-postmortem
 lessons learned
 action items
 followup
 cadence
 rhythm
-checkpoint
 sync
 async
 asynchronous
@@ -637,20 +476,15 @@ parking lot
 icebreaker
 energizer
 facilitation
-moderator
 timekeeper
 scribe
 participant
 attendee
 optional
 required
-decline
 tentative
 accepted
 calendar invite
-scheduling
-booking
-availability
 timezone
 conflict
 double booking
@@ -666,8 +500,6 @@ multitasking
 prioritization
 eisenhower matrix
 urgent
-important
-delegate
 delete
 defer
 quadrant
@@ -681,56 +513,28 @@ theming
 time blocking
 
 # Optimization
-productivity
-efficiency
-effectiveness
 output
-outcome
-impact
 leverage
 force multiplier
-automation
-delegation
 elimination
 simplification
 streamlining
-optimization
 rationalization
-consolidation
-standardization
 template
 playbook
 runbook
 checklist
-procedure
-protocol
-guideline
-framework
 methodology
-approach
-technique
 tactic
-strategy
-tool
-resource
-asset
-capability
 competency
-skill
-knowledge
-expertise
-proficiency
-mastery
 
 # Skill Levels
 beginner
 intermediate
-advanced
 expert
 novice
 apprentice
 journeyman
-specialist
 generalist
 tshaped profile
 crossfunctional
@@ -739,21 +543,13 @@ multidisciplinary
 transdisciplinary
 silo
 handoff
-collaboration
 cooperation
-coordination
-communication
-transparency
-visibility
-alignment
 consensus
 buyin
 commitment
-engagement
 motivation
 morale
 satisfaction
-retention
 attraction
 
 # Employer Branding
@@ -788,17 +584,11 @@ situational interview
 case interview
 competency based interview
 star method
-situation
-task
-action
-result
 reference check
-background check
 offer letter
 acceptance
 rejection
 counteroffer
-negotiation
 relocation package
 signing bonus
 equity grant
@@ -807,11 +597,9 @@ rsu
 restricted stock units
 vesting schedule
 cliff
-acceleration
 single trigger
 double trigger
 refresher grant
-strike price
 exercise window
 409a valuation
 qualified small business stock
@@ -820,3 +608,38 @@ alternative minimum tax
 amt
 tax loss carry forward
 tax loss harvesting
+
+# --- Expanded vocabulary (added) ---
+generalmotors
+salesforce
+hewlettpackard
+nvidia
+qualcomm
+jpmorgan
+goldmansachs
+morganstanley
+wellsfargo
+citigroup
+bankofamerica
+berkshire
+hathaway
+exxon
+walmart
+costco
+kroger
+homedepot
+lowes
+starbucks
+mcdonalds
+cocacola
+pepsico
+unilever
+proctergamble
+pfizer
+moderna
+astrazeneca
+novartis
+roche
+merck
+boardroom
+downsizing

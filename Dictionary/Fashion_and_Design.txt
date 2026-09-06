@@ -3,7 +3,6 @@
 
 # Clothing Types
 dress
-gown
 skirt
 blouse
 shirt
@@ -45,7 +44,6 @@ overall
 dungarees
 suit
 tuxedo
-vest
 waistcoat
 kimono
 kaftan
@@ -64,14 +62,12 @@ backpack
 satchel
 crossbody bag
 shoulder bag
-belt
 wallet
 scarf
 necktie
 bow tie
 pocket square
 handkerchief
-gloves
 mittens
 hat
 cap
@@ -100,8 +96,6 @@ hoops
 dangles
 ring
 brooch
-pin
-badge
 
 # Footwear
 shoes
@@ -140,8 +134,6 @@ slippers
 mules
 
 # Fabrics and Materials
-cotton
-linen
 silk
 wool
 cashmere
@@ -150,8 +142,6 @@ mohair
 angora
 merino wool
 lambswool
-polyester
-nylon
 acrylic
 rayon
 viscose
@@ -165,7 +155,6 @@ velour
 suede
 faux suede
 patent leather
-canvas
 twill
 satin
 chiffon
@@ -174,7 +163,6 @@ tulle
 lace
 crochet
 knit
-jersey
 fleece
 flannel
 terry cloth
@@ -205,7 +193,6 @@ houndstooth
 herringbone
 chevron
 zigzag
-polka dot
 floral
 botanical
 paisley
@@ -215,7 +202,6 @@ animal print
 leopard print
 zebra print
 snake print
-camouflage
 camo
 tie dye
 ombre
@@ -246,21 +232,11 @@ evening wear
 cocktail attire
 black tie
 white tie
-vintage
-retro
-classic
-timeless
-modern
 contemporary
-minimalist
-maximalist
 bohemian
 boho chic
 preppy
-punk
-rock
 grunge
-gothic
 romantic
 feminine
 masculine
@@ -290,8 +266,6 @@ darted
 seamed
 paneled
 color blocked
-asymmetric
-wrap
 halter
 strapless
 spaghetti strap
@@ -317,9 +291,6 @@ low rise
 mid rise
 
 # Design Process
-design
-sketch
-illustration
 technical drawing
 flat sketch
 croquis
@@ -327,8 +298,6 @@ mood board
 inspiration board
 color palette
 fabric swatches
-sample
-prototype
 muslin
 fitting
 alterations
@@ -341,15 +310,9 @@ stitching
 hemming
 finishing
 embellishment
-trim
-detail
-hardware
 zipper
-button
-snap
 hook and eye
 velcro
-elastic
 drawstring
 lining
 interlining
@@ -366,7 +329,6 @@ assistant designer
 stylist
 personal stylist
 wardrobe stylist
-costume designer
 patternmaker
 tailor
 seamstress
@@ -392,13 +354,8 @@ fashion week
 fashion show
 runway show
 catwalk
-presentation
 trunk show
 trade fair
-exhibition
-gala
-benefit
-premiere
 launch event
 collection debut
 lookbook
@@ -408,8 +365,6 @@ press preview
 influencer event
 celebrity appearance
 front row
-backstage
-rehearsal
 model lineup
 opening look
 finale
@@ -421,33 +376,19 @@ flagship store
 concept store
 pop up shop
 department store
-outlet
 factory outlet
 discount store
 thrift store
 consignment shop
 online store
-ecommerce
-marketplace
 retail price
 wholesale price
-markup
-markdown
 sale
-clearance
-promotion
 seasonal sale
 flash sale
-limited edition
-exclusive
-collaboration
 capsule collection
 pre order
-waitlist
-sold out
 restock
-inventory
-stock
 size run
 color variant
 
@@ -491,8 +432,6 @@ fast fashion
 slow fashion
 sustainable fashion
 ethical fashion
-eco friendly
-organic
 recycled
 upcycled
 second hand
@@ -503,8 +442,6 @@ archive piece
 statement piece
 investment piece
 wardrobe staple
-basic
-essential
 trend
 microtrend
 iconic
@@ -512,19 +449,13 @@ signature style
 aesthetic
 vibe
 outfit
-ensemble
-coordination
-layering
 mixing and matching
 
 # Color Terms
-neutral
 earth tone
 jewel tone
-pastel
 neon
 fluorescent
-metallic
 matte
 glossy
 shiny
@@ -534,19 +465,14 @@ ivory
 cream
 beige
 tan
-brown
 chocolate
 camel
 khaki
 olive
-charcoal
 gray
 grey
-silver
-gold
 rose gold
 copper
-bronze
 navy
 navy blue
 cobalt
@@ -557,13 +483,9 @@ mint
 mint green
 emerald
 jade
-yellow
 mustard
 ochre
-orange
-rust
 terracotta
-red
 crimson
 scarlet
 burgundy
@@ -572,14 +494,12 @@ maroon
 pink
 fuchsia
 magenta
-purple
 lavender
 lilac
 plum
 aubergine
 
 # Garment Details
-collar
 lapel
 notched lapel
 peak lapel
@@ -594,7 +514,6 @@ gusset
 vent
 side vent
 center vent
-pocket
 patch pocket
 welt pocket
 slash pocket
@@ -607,7 +526,6 @@ french seam
 felled seam
 topstitching
 contrast stitching
-piping
 binding
 bias tape
 rickrack
@@ -617,26 +535,36 @@ pom pom
 sequin
 bead
 applique
-stud
-rivet
 grommet
 drawcord
 toggle
 buckle
 
 # Fashion Photography
-editorial
-campaign
 catalog
 product shot
 flat lay photography
 lifestyle photography
 street style
-model lineup
 hair and makeup
-lighting
 natural light
 studio light
 retouching
 color grading
-post production
+
+# --- Expanded vocabulary (added) ---
+silhouette
+textile
+garment
+wardrobe
+tailoring
+photoshoot
+readytowear
+prtporter
+haute
+denim
+tweed
+monochrome
+colorblock
+avantgarde
+typography

@@ -31,14 +31,8 @@ ula
 united launch alliance
 
 # Spacecraft Types
-rocket
 launch vehicle
 booster
-satellite
-orbiter
-lander
-rover
-probe
 flyby spacecraft
 crewed spacecraft
 capsule
@@ -58,7 +52,6 @@ single stage orbit
 
 # Launch Systems
 launch pad
-gantry
 launch tower
 mobile launcher
 crawler transporter
@@ -76,7 +69,6 @@ fueling system
 cryogenic propellant
 liquid oxygen
 liquid hydrogen
-kerosene
 hypergolic propellant
 
 # Rocket Components
@@ -91,8 +83,6 @@ flight computer
 inertial measurement unit
 reaction control system
 thrusters
-engine
-nozzle
 combustion chamber
 turbopump
 fuel tank
@@ -106,7 +96,6 @@ heat shield
 thermal protection system
 ablative material
 tiles
-blanket
 
 # Propulsion Systems
 chemical propulsion
@@ -126,13 +115,10 @@ photon propulsion
 antimatter propulsion
 fusion propulsion
 specific impulse
-thrust
-power
 exhaust velocity
 delta change velocity
 
 # Orbital Mechanics
-orbit
 trajectory
 elliptical orbit
 circular orbit
@@ -149,57 +135,31 @@ hohmann transfer orbit
 lagrange point
 halo orbit
 libration point
-escape velocity
-orbital velocity
 periapsis
 apoapsis
-perigee
-apogee
-perihelion
-aphelion
-ascending node
-descending node
-inclination
-eccentricity
 
 # Mission Phases
 prelaunch
-countdown
-ignition
 liftoff
-launch
 ascent
 max
-staging
-booster separation
 fairing jettison
 orbital insertion
 circularization burn
 phasing orbit
 rendezvous
-docking
 berthing
-departure
 deorbit burn
-reentry
 atmospheric entry
-descent
-landing
 splashdown
-touchdown
-recovery
 
 # Space Stations
-international space station
 iss
 mir space station
 skylab
 salyut
 tiangong space station
-gateway
 lunar gateway
-module
-node
 cupola
 airlock
 docking port
@@ -218,9 +178,7 @@ astronaut
 cosmonaut
 taikonaut
 spationaut
-crew member
 commander
-pilot
 mission specialist
 payload specialist
 flight engineer
@@ -233,15 +191,12 @@ pressure suit
 mobility unit
 portable life support system
 helmet
-visor
-gloves
 tether
 safety line
 manned maneuvering unit
 
 # Training
 astronaut training
-simulator
 flight simulator
 mockup trainer
 neutral buoyancy laboratory
@@ -274,7 +229,6 @@ asteroid mission
 comet mission
 interplanetary mission
 deep space mission
-sample return mission
 orbiter mission
 flyby mission
 impact mission
@@ -284,21 +238,10 @@ rover mission
 atmospheric probe
 
 # Planetary Bodies
-mercury
-venus
-earth
-mars
-jupiter
-saturn
-uranus
-neptune
-pluto
-dwarf planet
 ceres
 eris
 makemake
 haumea
-moon
 luna
 phobos
 deimos
@@ -316,18 +259,12 @@ triton
 charon
 
 # Small Bodies
-asteroid
 near earth asteroid
 potentially hazardous asteroid
-comet
 short period comet
 long period comet
-meteor
-meteoroid
-meteorite
 bolide
 fireball
-shooting star
 meteor shower
 asteroid belt
 kuiper belt
@@ -341,8 +278,6 @@ astrobiology
 exobiology
 planetary science
 planetology
-cosmology
-astrophysics
 heliophysics
 solar physics
 space weather
@@ -352,10 +287,6 @@ coronal mass ejection
 radiation belt
 van allen belt
 magnetosphere
-ionosphere
-thermosphere
-exosphere
-atmospheric science
 planetary geology
 areology
 selenology
@@ -385,9 +316,6 @@ lunar landing
 moon landing
 first step
 tranquility base
-lunar module
-command module
-service module
 lunar rover
 moon buggy
 lunar sample
@@ -398,8 +326,6 @@ highland
 crater
 rille
 lunar south pole
-lunar gateway
-artemis program
 
 # Mars Exploration
 viking lander
@@ -408,10 +334,7 @@ sojourner rover
 spirit rover
 opportunity rover
 curiosity rover
-perseverance rover
-ingenuity helicopter
 mars reconnaissance orbiter
-maven
 insight lander
 mars express
 mariner mission
@@ -424,7 +347,6 @@ terraforming
 # Satellites
 communications satellite
 relay satellite
-weather satellite
 meteorological satellite
 earth observation satellite
 remote sensing satellite
@@ -437,16 +359,9 @@ technology demonstration satellite
 cubesat
 smallsat
 miniaturized satellite
-constellation
 satellite network
-payload
-instrument
-sensor
-camera
 spectrometer
 radiometer
-altimeter
-radar
 lidar
 
 # Ground Control
@@ -461,7 +376,6 @@ retrofire officer
 telemetry communications officer
 electrical environmental power systems
 ground controller
-surgeon
 flight activities officer
 payload operations
 tracking station
@@ -470,37 +384,24 @@ ground antenna
 dish
 
 # Space Technology
-heat shield
 thermal protection
 ablative shield
-tiles
 ceramic tiles
 reinforced carbon
 solar panel
 photovoltaic array
-battery
 power system
 fuel cell
 radioisotope thermoelectric generator
-nuclear reactor
 antenna
 communications array
-transponder
-transmitter
 receiver
-avionics
-computer
-guidance system
 star tracker
 sun sensor
-gyroscope
-accelerometer
 reaction wheel
 momentum wheel
 
 # Commercial Space
-commercial spaceflight
-space tourism
 orbital tourism
 suborbital flight
 space hotel
@@ -527,11 +428,9 @@ resource extraction
 water ice mining
 rare earth elements
 platinum group metals
-helium
 solar power satellite
 space elevator
 orbital ring
-space habitat
 stanford torus
 neill cylinder
 bernal sphere
@@ -554,7 +453,6 @@ radiation exposure
 cosmic rays
 solar radiation
 galactic cosmic radiation
-radiation shielding
 micrometeorite impact
 space weathering
 thermal cycling
@@ -566,16 +464,11 @@ international cooperation
 bilateral agreement
 multilateral agreement
 memorandum understanding
-partnership
-collaboration
 joint mission
 cooperative program
-data sharing
-technology transfer
 astronaut exchange
 crew exchange
 visiting astronaut
-payload specialist
 commercial astronaut
 private astronaut
 space treaty
@@ -584,3 +477,26 @@ moon agreement
 rescue agreement
 liability convention
 registration convention
+
+# --- Expanded vocabulary (added) ---
+launchpad
+launchwindow
+spacesuit
+extravehicular
+weightlessness
+microgravity
+missioncontrol
+groundcontrol
+telemetry
+thruster
+ionengine
+cryogenic
+oxidizer
+apollo
+soyuz
+artemis
+voyager
+cassini
+webb
+spacestation
+missionspecialist
