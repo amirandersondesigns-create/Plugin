@@ -917,6 +917,13 @@ var DICT_CATEGORIES = [
     "Grammar_and_Pronouns", "General_Vocabulary", "Custom_Dictionary"
 ];
 
+// The built-in word lists themselves are compiled into dictionary-data.jsx
+// (generated from Dictionary/*.txt) and loaded via #include below, so they
+// exist the instant this script loads — no file path, install location, or
+// OS permissions involved. Only user-added custom words (typed into the
+// panel at runtime) still live in a small separate writable file.
+#include "dictionary-data.jsx"
+
 // ==================== GLOBAL STATE (persists across evalScript calls) =====
 var dictionaryData = {
     words: {}, corrections: {}, loaded: {}, loadStatus: {},
@@ -1129,47 +1136,23 @@ function loadIgnoreFile() {
 
 function loadDictionaryFile(category) {
     if (dictionaryData.loaded[category]) return { success: true, cached: true };
-    var dictPath = getDictionaryPath();
-    if (!dictPath) { dictionaryData.loadStatus[category] = { status: "missing", message: "Dictionary folder not found" }; return { success: false, missing: true }; }
-    var file = new File(dictPath + category + ".txt");
-    if (!file.exists) { dictionaryData.loadStatus[category] = { status: "notfound", message: "File not found" }; return { success: false, missing: true }; }
-    try {
-        file.encoding = "UTF-8";
-        if (!file.open("r")) { dictionaryData.loadStatus[category] = { status: "error", message: "Cannot open file" }; return { success: false }; }
-        var wordCount = 0, correctionCount = 0;
-        while (!file.eof) {
-            try {
-                var line = trimString(file.readln());
-                if (line.length === 0 || line.charAt(0) === "#") continue;
-                var arrowIndex = line.indexOf("\u2192");
-                if (arrowIndex < 0) arrowIndex = line.indexOf("->");
-                if (arrowIndex >= 0) {
-                    var sep = line.indexOf("\u2192") >= 0 ? "\u2192" : "->";
-                    var parts = line.split(sep);
-                    if (parts.length === 2) {
-                        var wrong = trimString(parts[0]).toLowerCase();
-                        var correct = trimString(parts[1]).toLowerCase();
-                        if (wrong && correct) { dictionaryData.corrections[wrong] = correct; correctionCount++; }
-                    }
-                } else {
-                    var word = line.toLowerCase();
-                    if (word) { dictionaryData.words[word] = true; wordCount++; }
-                }
-            } catch (le) {}
-        }
-        file.close();
-        if (wordCount > 0 || correctionCount > 0) {
-            dictionaryData.loaded[category] = true;
-            dictionaryData.loadStatus[category] = { status: "loaded", message: wordCount + " words, " + correctionCount + " corrections" };
-            return { success: true, words: wordCount, corrections: correctionCount };
-        }
-        dictionaryData.loadStatus[category] = { status: "empty", message: "Empty file" };
-        return { success: false, empty: true };
-    } catch (e) {
-        try { file.close(); } catch (ce) {}
-        dictionaryData.loadStatus[category] = { status: "error", message: e.toString() };
-        return { success: false };
+    var entry = EMBEDDED_DICTIONARY[category];
+    if (!entry) { dictionaryData.loadStatus[category] = { status: "missing", message: "Not embedded" }; return { success: false, missing: true }; }
+    var wordCount = 0, correctionCount = 0;
+    for (var i = 0; i < entry.words.length; i++) {
+        dictionaryData.words[entry.words[i]] = true;
+        wordCount++;
     }
+    for (var k in entry.corrections) {
+        if (entry.corrections.hasOwnProperty(k)) { dictionaryData.corrections[k] = entry.corrections[k]; correctionCount++; }
+    }
+    if (wordCount > 0 || correctionCount > 0) {
+        dictionaryData.loaded[category] = true;
+        dictionaryData.loadStatus[category] = { status: "loaded", message: wordCount + " words, " + correctionCount + " corrections" };
+        return { success: true, words: wordCount, corrections: correctionCount };
+    }
+    dictionaryData.loadStatus[category] = { status: "empty", message: "Empty" };
+    return { success: false, empty: true };
 }
 
 function loadAllDictionaries() {
@@ -1666,32 +1649,14 @@ function persistIgnoredWord(word) {
 // ==================== DICTIONARY VERIFY ====================
 function readDictionaryFileForTest(dictPath, cat) {
     var info = { name: cat, status: "missing", words: 0, corrections: 0, note: "" };
-    if (!dictPath) return info;
-    var file = new File(dictPath + cat + ".txt");
-    if (!file.exists) return info;
-    try {
-        file.encoding = "UTF-8";
-        if (!file.open("r")) { info.status = "error"; info.note = "Could not open file"; return info; }
-        var wordCount = 0, correctionCount = 0, badLines = 0;
-        while (!file.eof) {
-            var line = trimString(file.readln());
-            if (line.length === 0 || line.charAt(0) === "#") continue;
-            var arrow = line.indexOf("\u2192");
-            if (arrow < 0) arrow = line.indexOf("->");
-            if (arrow >= 0) {
-                var sep = line.indexOf("\u2192") >= 0 ? "\u2192" : "->";
-                var parts = line.split(sep);
-                if (parts.length === 2 && trimString(parts[0]) && trimString(parts[1])) correctionCount++; else badLines++;
-            } else {
-                if (/^[^\s]+$/.test(line)) wordCount++; else badLines++;
-            }
-        }
-        file.close();
-        if (wordCount > 0 || correctionCount > 0) {
-            info.status = "loaded"; info.words = wordCount; info.corrections = correctionCount;
-            if (badLines > 0) info.note = badLines + " line(s) skipped";
-        } else { info.status = "empty"; }
-    } catch (e) { info.status = "error"; info.note = e.toString(); }
+    var entry = EMBEDDED_DICTIONARY[cat];
+    if (!entry) return info;
+    var wordCount = entry.words.length;
+    var correctionCount = 0;
+    for (var k in entry.corrections) { if (entry.corrections.hasOwnProperty(k)) correctionCount++; }
+    if (wordCount > 0 || correctionCount > 0) {
+        info.status = "loaded"; info.words = wordCount; info.corrections = correctionCount;
+    } else { info.status = "empty"; }
     return info;
 }
 

@@ -1,12 +1,13 @@
 #!/bin/bash
 # Builds a clean, signed MotionSpellChecker.zxp from the latest pushed
 # source — downloads fresh from GitHub, stages ONLY the files the running
-# CEP extension actually needs (CSXS/, client/, host/, Dictionary/), and
-# signs that clean staging folder. Deliberately excludes: .debug (opens a
-# DevTools debug port — a dev-only artifact), MotionSpellChecker.jsx (the
-# separate standalone alternative), README.md / INSTALL.md /
-# PROJECT_KNOWLEDGE.md / the PDF guide (developer docs, not runtime
-# files), and .git.
+# CEP extension actually needs (CSXS/, client/, host/), and signs that
+# clean staging folder. The built-in dictionary is compiled directly into
+# host/dictionary-data.jsx, so there's no separate Dictionary/ folder to
+# ship or go missing. Deliberately excludes: .debug (opens a DevTools
+# debug port — a dev-only artifact), MotionSpellChecker.jsx (the separate
+# standalone alternative), README.md / INSTALL.md / PROJECT_KNOWLEDGE.md /
+# the PDF guide (developer docs, not runtime files), and .git.
 #
 # Usage:
 #   ./package-zxp.sh <cert-password> [output-name]
@@ -55,7 +56,6 @@ mkdir -p "$STAGE"
 cp -R "$SRC_DIR/CSXS" "$STAGE/"
 cp -R "$SRC_DIR/client" "$STAGE/"
 cp -R "$SRC_DIR/host" "$STAGE/"
-cp -R "$SRC_DIR/Dictionary" "$STAGE/"
 
 echo "==> Signing..."
 rm -f "$OUTPUT"

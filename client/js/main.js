@@ -453,11 +453,10 @@
             '<span><span class="num">' + r.missing + '</span> missing</span>' +
             '<span><span class="num">' + r.error + '</span> errors</span>' +
             '</div>';
-        html += '<p style="color:var(--muted);font-size:10.5px;margin-bottom:10px;">Folder: ' + escapeHtml(r.dictionaryPath) +
-            '<br/>Extension root (from CEP): ' + escapeHtml(r.extensionRootPath || "(not set)") +
-            '<br/>Raw diag: ' + escapeHtml(r.extensionRootDiag || "") +
-            '<br/>Fallback list: ' + r.fallbackWords + ' words &middot; Custom dictionary: ' + r.customWords + ' words &middot; ' +
-            'Category files: ' + r.fileWords + ' words / ' + r.fileCorrections + ' corrections</p>';
+        html += '<p style="color:var(--muted);font-size:10.5px;margin-bottom:10px;">Built-in dictionary: embedded in the plugin, always available.' +
+            '<br/>Your added words are saved to: ' + escapeHtml(r.dictionaryPath) +
+            '<br/>Fallback list: ' + r.fallbackWords + ' words &middot; Your added words: ' + r.customWords + ' words &middot; ' +
+            'Built-in categories: ' + r.fileWords + ' words / ' + r.fileCorrections + ' corrections</p>';
         r.categories.forEach(function (c) {
             html += '<div class="dict-row"><span class="name">' + escapeHtml(c.name.replace(/_/g, " ")) + '</span>' +
                 '<span class="status-badge ' + c.status + '">' + statusText(c) + '</span></div>';
