@@ -546,7 +546,7 @@
         callHost("csGetInfo").then(function (res) {
             if (res.ok) {
                 $("appTitle").textContent = res.appName;
-                $("appByline").textContent = "by " + res.author + " · v" + res.version;
+                $("appByline").textContent = "v" + res.version;
                 if (!res.hasProject) setStatus("Open an After Effects project to get started.", "warning");
             }
         });
