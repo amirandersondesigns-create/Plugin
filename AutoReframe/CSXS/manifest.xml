@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="9.0" ExtensionBundleId="com.aanders.autoreframe" ExtensionBundleVersion="0.1.0" ExtensionBundleName="Auto Reframe" xmlns="http://ns.adobe.com/extension/1.0">
+<ExtensionManifest Version="9.0" ExtensionBundleId="com.aanders.autoreframe" ExtensionBundleVersion="0.1.0" ExtensionBundleName="Auto Reframe">
     <ExtensionList>
         <Extension Id="com.aanders.autoreframe.panel" Version="0.1.0" />
     </ExtensionList>
