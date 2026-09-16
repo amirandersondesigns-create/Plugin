@@ -441,8 +441,22 @@ function buildRig(comp, sourceW, sourceH, targetW, targetH, mode, presetKey, sav
         // Fit All: uniform contain-scale, everything reparented straight to
         // the one controller. No recursion into precomps needed — they
         // scale as a unit along with everything else.
-        var containScale = Math.min(targetW / sourceW, targetH / sourceH);
-        mainController.property("ADBE Transform Group").property("ADBE Anchor Point").setValue([sourceW / 2, sourceH / 2]);
+        //
+        // Pivot on the comp's actual CONTENT bounding box, not the raw
+        // source frame dimensions — a graphic that doesn't fill the
+        // original frame edge-to-edge (margin around a bar graph, etc.)
+        // would otherwise get centered on the old frame's geometric
+        // middle instead of its own, and scaled down as if the empty
+        // margin were part of what needs to fit, leaving it looking
+        // small and off-center in the new format.
+        var contentBounds = groupBounds(topLayers);
+        var pivotX = contentBounds ? contentBounds.centerX : sourceW / 2;
+        var pivotY = contentBounds ? contentBounds.centerY : sourceH / 2;
+        var fitW = contentBounds && contentBounds.width > 0 ? contentBounds.width : sourceW;
+        var fitH = contentBounds && contentBounds.height > 0 ? contentBounds.height : sourceH;
+        var containScale = Math.min(targetW / fitW, targetH / fitH);
+        containScale = Math.min(containScale, 3); // guard against extreme upscale of small/isolated content
+        mainController.property("ADBE Transform Group").property("ADBE Anchor Point").setValue([pivotX, pivotY]);
         mainController.property("ADBE Transform Group").property("ADBE Position").setValue([targetW / 2, targetH / 2]);
         mainController.property("ADBE Transform Group").property("ADBE Scale").setValue([containScale * 100, containScale * 100]);
         for (var fi = 0; fi < topLayers.length; fi++) reparent(topLayers[fi], mainController);
