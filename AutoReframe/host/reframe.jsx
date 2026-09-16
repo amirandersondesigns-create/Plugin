@@ -513,6 +513,14 @@ function addSafeZoneGuides(comp) {
     shapeLayer.name = "SAFE_ZONES (guide)";
     shapeLayer.guideLayer = true;
     shapeLayer.moveToBeginning();
+    // Neutralize the layer's own transform so only each rect's own
+    // vector-group position (set in comp coordinates below) determines
+    // placement — a freshly scripted shape layer's default Position
+    // isn't guaranteed to be (0,0), and leaving it as-is was adding
+    // that default on top of the comp-center position set below,
+    // pushing the guides off-center.
+    shapeLayer.property("ADBE Transform Group").property("ADBE Anchor Point").setValue([0, 0]);
+    shapeLayer.property("ADBE Transform Group").property("ADBE Position").setValue([0, 0]);
 
     function addRect(marginPct, colorRGB, label) {
         var w = comp.width * (1 - marginPct * 2);
