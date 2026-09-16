@@ -243,16 +243,28 @@ function buildControllerNull(comp, name, makeThreeD) {
     scaleProp.name = "Scale Adjust %";
     try { scaleProp.property("Slider").setValue(100); } catch (e) {}
 
+    return nullLayer;
+}
+
+// Attaches the self-referencing Position/Scale expressions. Must run
+// AFTER the caller has set the null's base Anchor/Position/Scale via
+// setValue() — ExtendScript's setValue() does not reliably update the
+// underlying static value once expressionEnabled is already true, so
+// attaching the expression first left every generated controller
+// frozen at its layer defaults (100% scale, untouched position)
+// regardless of what buildRig computed.
+function attachPositionExpression(nullLayer) {
     try {
         nullLayer.property("ADBE Transform Group").property("ADBE Position").expression =
             "var o = effect(\"Offset Position\")(\"Point\");\ntransform.position + o;";
     } catch (e) { logMessage("position expression failed: " + e.toString()); }
+}
+
+function attachScaleExpression(nullLayer) {
     try {
         nullLayer.property("ADBE Transform Group").property("ADBE Scale").expression =
             "var s = effect(\"Scale Adjust %\")(\"Slider\") / 100;\ntransform.scale * s;";
     } catch (e) { logMessage("scale expression failed: " + e.toString()); }
-
-    return nullLayer;
 }
 
 function withUnlocked(layer, fn) {
@@ -325,25 +337,40 @@ function groupLayersByRole(layers) {
     return groups;
 }
 
-// Bounding box of a set of layers using their transform position +/- half
-// the source's own footage/comp size, scaled by the layer's own scale.
-// This is a reasonable approximation (it ignores rotation and masks) that
-// is good enough to drive placement math for a one-click starting layout.
+// Bounding box of a single layer in comp space, via sourceRectAtTime —
+// the actual AE API for a layer's rendered extent, rather than guessing
+// from layer.source.width/height (which doesn't exist at all on shape
+// or text layers, the most common case, and was silently falling back
+// to a fixed 100x100 guess). This is still an approximation (it ignores
+// rotation) but reflects real content size for every layer type AVLayer
+// covers, which is good enough to drive placement math for a one-click
+// starting layout.
 function approximateLayerBounds(layer) {
     try {
+        var t = layer.containingComp.time;
         var pos = layer.property("ADBE Transform Group").property("ADBE Position").value;
+        var anchor = layer.property("ADBE Transform Group").property("ADBE Anchor Point").value;
         var scale = layer.property("ADBE Transform Group").property("ADBE Scale").value;
-        var w = 100, h = 100;
-        if (layer.source) { w = layer.source.width || 100; h = layer.source.height || 100; }
-        else if (layer.width) { w = layer.width; h = layer.height; }
         var sx = Math.abs(scale[0]) / 100, sy = Math.abs(scale[1]) / 100;
+        var rect = layer.sourceRectAtTime(t, false);
+        var rectCenterX = rect.left + rect.width / 2;
+        var rectCenterY = rect.top + rect.height / 2;
+        var centerX = pos[0] + (rectCenterX - anchor[0]) * sx;
+        var centerY = pos[1] + (rectCenterY - anchor[1]) * sy;
+        var w = rect.width * sx, h = rect.height * sy;
         return {
-            left: pos[0] - (w * sx) / 2, right: pos[0] + (w * sx) / 2,
-            top: pos[1] - (h * sy) / 2, bottom: pos[1] + (h * sy) / 2,
-            centerX: pos[0], centerY: pos[1], width: w * sx, height: h * sy
+            left: centerX - w / 2, right: centerX + w / 2,
+            top: centerY - h / 2, bottom: centerY + h / 2,
+            centerX: centerX, centerY: centerY, width: w, height: h
         };
     } catch (e) {
-        return { left: 0, right: 0, top: 0, bottom: 0, centerX: 0, centerY: 0, width: 0, height: 0 };
+        // Layer types sourceRectAtTime can't handle (camera, light, audio-only)
+        try {
+            var pos2 = layer.property("ADBE Transform Group").property("ADBE Position").value;
+            return { left: pos2[0], right: pos2[0], top: pos2[1], bottom: pos2[1], centerX: pos2[0], centerY: pos2[1], width: 0, height: 0 };
+        } catch (e2) {
+            return { left: 0, right: 0, top: 0, bottom: 0, centerX: 0, centerY: 0, width: 0, height: 0 };
+        }
     }
 }
 
@@ -391,9 +418,14 @@ function buildRig(comp, sourceW, sourceH, targetW, targetH, mode, presetKey, sav
         // this contributes nothing.
         var frameCenter = [targetW / 2, targetH / 2];
         mainController.property("ADBE Transform Group").property("ADBE Anchor Point").setValue(frameCenter);
+        mainController.property("ADBE Transform Group").property("ADBE Scale").setValue([100, 100]);
+        // Position's expression is self-contained (hardcoded frameCenter,
+        // not a self-reference to the pre-expression value) so it's safe
+        // to attach immediately rather than needing the setValue-first
+        // ordering attachPositionExpression()/attachScaleExpression() rely on.
         mainController.property("ADBE Transform Group").property("ADBE Position").expression =
             "var o = effect(\"Offset Position\")(\"Point\");\n[" + frameCenter[0] + "," + frameCenter[1] + "] + o;";
-        mainController.property("ADBE Transform Group").property("ADBE Scale").setValue([100, 100]);
+        attachScaleExpression(mainController);
 
         var groups = groupLayersByRole(topLayers);
         for (var role in groups) {
@@ -426,10 +458,10 @@ function buildRig(comp, sourceW, sourceH, targetW, targetH, mode, presetKey, sav
             else if (layout.anchorV === "end") targetY -= halfH;
 
             sub.property("ADBE Transform Group").property("ADBE Anchor Point").setValue([bounds.centerX, bounds.centerY]);
-            sub.property("ADBE Transform Group").property("ADBE Position").expression =
-                "var o = effect(\"Offset Position\")(\"Point\");\ntransform.position + o;";
             sub.property("ADBE Transform Group").property("ADBE Position").setValue([targetX, targetY]);
             sub.property("ADBE Transform Group").property("ADBE Scale").setValue([scale * 100, scale * 100]);
+            attachPositionExpression(sub);
+            attachScaleExpression(sub);
 
             for (var li = 0; li < layers.length; li++) reparent(layers[li], sub);
 
@@ -459,6 +491,8 @@ function buildRig(comp, sourceW, sourceH, targetW, targetH, mode, presetKey, sav
         mainController.property("ADBE Transform Group").property("ADBE Anchor Point").setValue([pivotX, pivotY]);
         mainController.property("ADBE Transform Group").property("ADBE Position").setValue([targetW / 2, targetH / 2]);
         mainController.property("ADBE Transform Group").property("ADBE Scale").setValue([containScale * 100, containScale * 100]);
+        attachPositionExpression(mainController);
+        attachScaleExpression(mainController);
         for (var fi = 0; fi < topLayers.length; fi++) reparent(topLayers[fi], mainController);
     }
 
