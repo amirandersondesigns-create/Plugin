@@ -1,3 +1,16 @@
+# After Effects CEP extensions
+
+This repo holds two independent CEP extensions for After Effects. Each has
+its own manifest, panel, and ExtendScript engine, and installs separately.
+
+- **`/` (this folder)** — Motion Spell Checker, documented below.
+- **[`AutoReframe/`](./AutoReframe/README.md)** — Auto Reframe, automatic
+  aspect-ratio conversion (16:9 ↔ 9:16 ↔ 4:5 ↔ 1:1) driven by a
+  controller-null rig. Built against
+  [`docs/auto-reframe-spec.md`](./docs/auto-reframe-spec.md).
+
+---
+
 # Motion Spell Checker (CEP extension)
 
 A spell-checking panel for After Effects 2022+, rebuilt as a CEP extension

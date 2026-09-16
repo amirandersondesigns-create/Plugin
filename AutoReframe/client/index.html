@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Auto Reframe</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+    <div class="app">
+
+        <!-- Title bar -->
+        <div class="titlebar">
+            <h1 id="appTitle">Auto Reframe</h1>
+            <span class="byline" id="appByline">by Amir Anderson</span>
+            <span class="spacer"></span>
+            <button class="link-btn" id="btnRefresh">Refresh</button>
+            <button class="link-btn" id="btnHelp">Help</button>
+        </div>
+
+        <!-- Status: what's happening, right now -->
+        <div class="statusline">
+            <div class="status-dot" id="statusDot"></div>
+            <div class="status-text" id="statusText">Ready — open a composition and click Refresh.</div>
+        </div>
+
+        <div class="scroll-body">
+
+            <!-- Active comp -->
+            <div class="section">
+                <div class="section-header">Active Composition</div>
+                <div class="comp-card" id="compCard">
+                    <div class="empty-state" id="compEmpty">No composition loaded — click Refresh.</div>
+                    <div class="comp-info" id="compInfo" style="display:none;">
+                        <div class="comp-name" id="compName">—</div>
+                        <div class="comp-meta" id="compMeta">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Element roles -->
+            <div class="section">
+                <div class="section-header">
+                    Element Roles
+                    <span class="hint">optional — improves Smart Stack placement</span>
+                </div>
+                <div class="empty-state" id="rolesEmpty">Refresh to list this comp's top-level layers.</div>
+                <div class="list" id="rolesList" style="display:none;"></div>
+                <div class="row-actions" id="rolesActions" style="display:none;">
+                    <button id="btnSaveRoles" class="btn-plain">Save Roles</button>
+                </div>
+            </div>
+
+            <!-- Formats -->
+            <div class="section">
+                <div class="section-header">Target Formats</div>
+                <div class="check-row" id="formatList">
+                    <label class="checkbox"><input type="checkbox" value="16x9" class="cbFormat" /> 16:9 Landscape</label>
+                    <label class="checkbox"><input type="checkbox" value="9x16" class="cbFormat" checked /> 9:16 Vertical</label>
+                    <label class="checkbox"><input type="checkbox" value="4x5" class="cbFormat" /> 4:5 Portrait</label>
+                    <label class="checkbox"><input type="checkbox" value="1x1" class="cbFormat" /> 1:1 Square</label>
+                </div>
+            </div>
+
+            <!-- Mode & options -->
+            <div class="section">
+                <div class="section-header">Layout Mode</div>
+                <div class="radio-row">
+                    <label class="radio"><input type="radio" name="mode" value="fit" id="modeFit" checked /> Fit All <span class="hint">— scale everything to fit, no recursion</span></label>
+                    <label class="radio"><input type="radio" name="mode" value="stack" id="modeStack" /> Smart Stack <span class="hint">— reposition by Element Role</span></label>
+                </div>
+                <div class="check-group">
+                    <div class="check-row">
+                        <label class="checkbox"><input type="checkbox" id="cbRecursePrecomps" /> Reframe inside precomps (Smart Stack only)</label>
+                        <label class="checkbox"><input type="checkbox" id="cbSafeZones" checked /> Add safe-zone guides</label>
+                        <label class="checkbox"><input type="checkbox" id="cbLiveText" checked /> Live Text Link to master comp</label>
+                        <label class="checkbox"><input type="checkbox" id="cbResync" /> Resync (reuse + reapply saved adjustments)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Run -->
+            <div class="section run-section">
+                <button id="btnReframe" class="btn-primary btn-full">Generate Formats</button>
+            </div>
+
+            <!-- Results -->
+            <div class="section">
+                <div class="section-header">Results</div>
+                <div class="empty-state" id="resultsEmpty">Nothing generated yet.</div>
+                <div class="list" id="resultsList" style="display:none;"></div>
+            </div>
+
+            <!-- Render queue -->
+            <div class="section">
+                <div class="section-header">Render Queue</div>
+                <label class="field-block">
+                    <span class="field-label">Naming template</span>
+                    <input type="text" id="namingTemplate" value="{comp}" />
+                    <span class="help-text">Tokens: {comp} {preset} {width} {height}</span>
+                </label>
+                <button id="btnQueueRender" class="btn-plain btn-full">Queue Generated Comps for Render</button>
+            </div>
+
+            <!-- Audit -->
+            <div class="section">
+                <div class="section-header">
+                    Audit
+                    <span class="hint">expressions, locked layers, pixel effects, upscaled rasters</span>
+                </div>
+                <button id="btnAudit" class="btn-plain btn-full">Run Audit on Active Comp</button>
+                <div class="empty-state" id="auditEmpty" style="display:none;">No issues flagged.</div>
+                <div class="list" id="auditList" style="display:none;"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Help overlay -->
+    <div class="overlay" id="helpOverlay">
+        <div class="overlay-panel">
+            <div class="overlay-header">
+                <h2>Auto Reframe — Help</h2>
+                <button class="close-x" data-close="helpOverlay">Close</button>
+            </div>
+            <div class="overlay-body">
+                <h3>Basics</h3>
+                <p>Open the comp you want to convert, click Refresh, pick the target
+                formats, choose Fit All or Smart Stack, and click Generate Formats.
+                Each format becomes its own new comp — the original is never touched.</p>
+
+                <h3>Fit All vs. Smart Stack</h3>
+                <p><strong>Fit All</strong> scales the whole comp uniformly into the new
+                frame via one controller null — fast, safe, zero setup.
+                <strong>Smart Stack</strong> repositions layers by their Element Role
+                (background, headline, lower-third, bug, OTS, foreground) into
+                per-format safe zones — assign roles first for the best result;
+                unassigned layers are treated as foreground.</p>
+
+                <h3>Never baked, never shared</h3>
+                <p>Expressions on your layers are left exactly as they are. Full-frame
+                solids and (in Smart Stack with "Reframe inside precomps") nested
+                precomps are duplicated per format before anything is changed —
+                the broadcast master and any other comp using them is untouched.</p>
+
+                <h3>Resync</h3>
+                <p>Re-running Generate Formats with Resync checked finds the comp it
+                previously generated for that exact source + format and reapplies
+                any manual Offset/Scale Adjust nudges you made on its controller
+                nulls, so re-running after a copy change doesn't erase your tweaks.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/CSInterface.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

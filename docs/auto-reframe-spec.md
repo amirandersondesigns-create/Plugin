@@ -5,13 +5,18 @@
 > written up here. This file exists to hold spec content as it arrives so
 > nothing gets lost — it is not an implementation guide on its own.
 >
-> **Relationship to this repo:** this repo currently ships **Motion Spell
-> Checker**, an unrelated AE spell-checking CEP panel (see `README.md`,
-> `client/`, `host/spellcheck.jsx`). The tool described below — an automatic
-> aspect-ratio reframing/resize engine — is a separate product. Nothing here
-> changes or depends on the spell checker code; treat this doc as staging
-> ground until the rest of the spec (and a decision on where/whether to build
-> it) is in hand.
+> **Relationship to this repo:** this repo also ships **Motion Spell
+> Checker**, an unrelated AE spell-checking CEP panel (see root `README.md`,
+> `client/`, `host/spellcheck.jsx`). The tool described below is a separate
+> product and lives in its own extension folder: **[`AutoReframe/`](../AutoReframe/)**.
+> A first build exists there now, implementing everything in Section 17 to
+> the extent the missing sections 1–16 allow (see
+> [`AutoReframe/README.md`](../AutoReframe/README.md) for what's implemented
+> vs. simplified/heuristic). It should be re-checked against sections 1–16
+> once those are available, since this section referenced mechanisms (5.3
+> controller-null method, 5.7 solid handling, Section 7 audit, Section 8
+> metadata, Phase 3 resync) that had to be inferred rather than read
+> directly.
 
 ## 17. Competitive Benchmark & Required Differentiators
 
