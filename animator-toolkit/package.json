@@ -5,6 +5,7 @@
   "description": "After Effects CEP panel: productivity tools + learning for new animators.",
   "scripts": {
     "test": "node --test tests/host/host.test.js tests/panel/panel.test.js",
-    "package": "bash tools/package.sh"
+    "package": "bash tools/package.sh",
+    "zxp": "bash tools/build-zxp.sh"
   }
 }

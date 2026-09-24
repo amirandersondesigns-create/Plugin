@@ -8,15 +8,33 @@ It also includes micro-lessons, explained shortcuts and guided workflows.
 - **Hosts:** After Effects 2021 (18.0) and newer, macOS and Windows
 - **Tech:** CEP HTML/JS panel + ExtendScript host commands. No build step and no dependencies.
 
-## Install (unsigned, for testing)
+## Install
 
-1. Unzip `animator-toolkit-0.1.0.zip` (or use this folder directly).
-2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
-   These scripts turn on CEP *PlayerDebugMode* so AE will load an unsigned
-   panel. They then copy the extension to your user CEP extensions folder.
+**Option A: ZXP (signed, no debug mode needed)**
+
+1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
+   or Anastasiy's Extension Manager.
+2. Drag `AnimatorToolkit-0.1.0.zxp` onto it.
 3. Restart After Effects and open **Window › Extensions › Animator Toolkit**.
 
-Debugging: with the panel open, Chrome DevTools are at <http://localhost:8099>.
+The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
+may say the publisher is unverified. That's expected for a test build.
+To rebuild it, run `bash tools/build-zxp.sh`. It uses Adobe's ZXPSignCmd, run
+under Wine on Linux, and writes `dist/`. Keep `dist/cert.p12` so later builds
+install as updates.
+
+**Option B: zip + install script (unsigned, debug mode)**
+
+1. Unzip `animator-toolkit-0.1.0.zip`.
+2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
+   These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
+   then copy the extension to your user CEP extensions folder.
+3. Restart After Effects and open **Window › Extensions › Animator Toolkit**.
+
+Use only one option. If you switch, remove the other copy first: the
+uninstall script, or the installer's Remove button.
+
+Debugging (Option B install): with the panel open, Chrome DevTools are at <http://localhost:8099>.
 If you open `client/index.html` in a normal browser, the panel runs in
 **preview mode** against a simulated host. Use this for reviewing layout
 and flows; it doesn't touch After Effects.
