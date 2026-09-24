@@ -34,6 +34,18 @@ install as updates.
 Use only one option. If you switch, remove the other copy first: the
 uninstall script, or the installer's Remove button.
 
+**Panel not listed under Window › Extensions?**
+
+1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
+   It writes `AnimatorToolkit-diagnostics.txt` to your Desktop: install
+   locations, permissions, debug-mode flags and CEP log lines. It also turns on
+   detailed CEP logging, so reopen After Effects once and run it again if the
+   log section is empty.
+2. The most reliable test path is Option B. Its debug mode makes After
+   Effects skip signature checks, so if the panel appears after Option B, the
+   ZXP signature or installer was the problem.
+3. Keep only one installed copy: two folders with the same ID can conflict.
+
 Debugging (Option B install): with the panel open, Chrome DevTools are at <http://localhost:8099>.
 If you open `client/index.html` in a normal browser, the panel runs in
 **preview mode** against a simulated host. Use this for reviewing layout

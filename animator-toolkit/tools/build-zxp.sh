@@ -39,7 +39,10 @@ rm -rf stage && mkdir -p stage/com.cnn.animatortoolkit
 
 OUT="AnimatorToolkit-$VERSION.zxp"
 rm -f "$OUT"
-"${SIGN[@]}" -sign stage/com.cnn.animatortoolkit "$OUT" cert.p12 "$PASS"
+"${SIGN[@]}" -sign stage/com.cnn.animatortoolkit signed.zxp cert.p12 "$PASS"
+# Normalize the archive (mimetype first, Unix permissions), then re-verify.
+python3 ../tools/repack-zxp.py signed.zxp "$OUT"
+rm -f signed.zxp
 "${SIGN[@]}" -verify "$OUT"
 rm -rf stage
 echo "$DIST/$OUT"
