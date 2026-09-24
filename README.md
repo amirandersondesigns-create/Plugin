@@ -1,5 +1,9 @@
 # Motion Spell Checker (CEP extension)
 
+> This repo also contains **[Animator Toolkit](animator-toolkit/README.md)**,
+> a separate After Effects panel for new animators. It's a self-contained
+> extension in `animator-toolkit/` with its own installer.
+
 A spell-checking panel for After Effects 2022+, rebuilt as a CEP extension
 (HTML/CSS/JS panel + an ExtendScript back end) so the UI can look like a
 real product instead of a native ScriptUI dialog — rounded cards, a

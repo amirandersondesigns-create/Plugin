@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Motion preset thumbnails. Each keyframe set goes from the "away" state
+   (0%) to rest (100%) — the same convention as the host's preset shapes —
+   and exits simply play it in reverse. Thumbnails play on hover/focus.
+   ========================================================================== */
+
+.pv { position: relative; height: 44px; border-radius: 4px; background: var(--bg-0); overflow: hidden; display: grid; place-items: center; flex: none; }
+.pv-lg { height: 100%; }
+.pv-obj { width: 24px; height: 16px; border-radius: 3px; background: linear-gradient(180deg, #c3c7ff, #8790f2); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35); }
+.pv-lg .pv-obj { width: 34px; height: 22px; }
+.pv-floor { display: none; position: absolute; left: 20%; right: 20%; bottom: 22%; height: 1px; background: var(--line-2); }
+.pv-k-drop .pv-floor { display: block; }
+.pv-k-drop .pv-obj { margin-top: 2px; }
+.pv-text { font: 800 11px/1.1 var(--font); letter-spacing: 1px; color: var(--fg-0); display: flex; flex-direction: column; align-items: center; }
+.pv-lg .pv-text { font-size: 15px; }
+.pv-line, .pv-ch { display: inline-block; }
+.pv-k-lines .pv-text { font-size: 9px; }
+
+.pv.play .pv-obj, .pv.play .pv-text, .pv.play .pv-ch, .pv.play .pv-line {
+    animation-duration: 700ms;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation-fill-mode: both;
+}
+.pv.play.pv-out .pv-obj, .pv.play.pv-out .pv-text, .pv.play.pv-out .pv-ch, .pv.play.pv-out .pv-line {
+    animation-direction: reverse;
+    animation-timing-function: cubic-bezier(0.8, 0, 0.8, 0.2);
+    animation-fill-mode: none;
+}
+
+.pv.play .pv-fade { animation-name: pv-fade; }
+.pv.play .pv-slide-up { animation-name: pv-slide-up; }
+.pv.play .pv-slide-down { animation-name: pv-slide-down; }
+.pv.play .pv-slide-left { animation-name: pv-slide-left; }
+.pv.play .pv-slide-right { animation-name: pv-slide-right; }
+.pv.play .pv-scale { animation-name: pv-scale; }
+.pv.play .pv-slide-fade { animation-name: pv-slide-fade; }
+.pv.play .pv-blur { animation-name: pv-blur; }
+.pv.play .pv-pop { animation-name: pv-pop; animation-timing-function: ease-out; }
+.pv.play .pv-bounce { animation-name: pv-bounce; animation-duration: 1000ms; animation-timing-function: ease-in-out; }
+.pv.play .pv-drop { animation-name: pv-drop; animation-duration: 1000ms; animation-timing-function: linear; }
+.pv.play .pv-spin { animation-name: pv-spin; }
+.pv.play .pv-wipe { animation-name: pv-wipe; }
+.pv.play .pv-tracking { animation-name: pv-tracking; animation-duration: 900ms; }
+.pv.play .pv-typeon .pv-ch { animation-name: pv-fade; animation-duration: 60ms; animation-timing-function: steps(1, end); animation-delay: calc(var(--i) * 110ms); }
+.pv.play .pv-words .pv-ch, .pv.play .pv-lines .pv-line { animation-name: pv-slide-fade; animation-duration: 450ms; animation-delay: calc(var(--i) * 180ms); }
+.pv.play.pv-out .pv-typeon .pv-ch { animation-delay: calc((3 - var(--i)) * 110ms); }
+
+@keyframes pv-fade { from { opacity: 0; } }
+@keyframes pv-slide-up { from { transform: translateY(20px); } }
+@keyframes pv-slide-down { from { transform: translateY(-20px); } }
+@keyframes pv-slide-left { from { transform: translateX(34px); } }
+@keyframes pv-slide-right { from { transform: translateX(-34px); } }
+@keyframes pv-scale { from { transform: scale(0); } }
+@keyframes pv-slide-fade { from { opacity: 0; transform: translateY(9px); } }
+@keyframes pv-blur { from { filter: blur(6px); opacity: 0.2; } }
+@keyframes pv-pop { 0% { transform: scale(0); } 60% { transform: scale(1.22); } 100% { transform: scale(1); } }
+@keyframes pv-bounce { 0% { transform: scale(0); } 40% { transform: scale(1.3); } 60% { transform: scale(0.85); } 78% { transform: scale(1.08); } 90% { transform: scale(0.98); } 100% { transform: scale(1); } }
+@keyframes pv-drop {
+    0% { transform: translateY(-30px); animation-timing-function: ease-in; }
+    42% { transform: translateY(0); animation-timing-function: ease-out; }
+    60% { transform: translateY(-8px); animation-timing-function: ease-in; }
+    76% { transform: translateY(0); animation-timing-function: ease-out; }
+    87% { transform: translateY(-2.5px); animation-timing-function: ease-in; }
+    100% { transform: translateY(0); }
+}
+@keyframes pv-spin { from { transform: rotate(-90deg) scale(0); } }
+@keyframes pv-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes pv-tracking { from { letter-spacing: 9px; opacity: 0; } }

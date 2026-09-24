@@ -1,0 +1,53 @@
+/* Design tokens. Dark, After-Effects-adjacent neutrals; one accent for
+   interaction; group hues used only as small tints and dots. */
+:root {
+    --bg-0: #1a1a1c;   /* panel background */
+    --bg-1: #222225;   /* sections */
+    --bg-2: #2a2a2e;   /* controls */
+    --bg-3: #333338;   /* hover */
+    --bg-4: #3d3d43;   /* pressed / active */
+    --line: #36363b;
+    --line-2: #46464d;
+    --fg-0: #f1f1f3;
+    --fg-1: #c9c9cf;
+    --fg-2: #8e8e97;
+    --fg-3: #65656d;
+
+    --accent: #3b8cff;
+    --accent-2: #69a8ff;
+    --accent-bg: rgba(59, 140, 255, 0.14);
+    --ok: #3ecf8e;
+    --warn: #f0b429;
+    --err: #ff6b6b;
+    --fav: #ffc53d;
+
+    --c-motion: #7c8cff;
+    --c-text: #ff8fa3;
+    --c-easing: #3ecfcf;
+    --c-tools: #b0b0b8;
+    --c-camera: #ffb057;
+    --c-learn: #8fd16a;
+
+    --r-sm: 4px;
+    --r: 6px;
+    --r-lg: 10px;
+    --gap: 10px;
+    --pad: 12px;
+    --ctl-h: 30px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Adobe Clean", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", Menlo, Consolas, monospace;
+    --fs: 12px;
+    --fs-sm: 11px;
+    --fs-xs: 10px;
+
+    --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --t-fast: 120ms;
+    --t: 200ms;
+}
+
+.density-compact {
+    --gap: 6px;
+    --pad: 9px;
+    --ctl-h: 26px;
+}
