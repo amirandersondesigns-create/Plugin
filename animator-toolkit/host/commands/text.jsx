@@ -11,6 +11,10 @@
 // presets.jsx; only the per-character ones need this file.
 // ============================================================================
 
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 AT.TEXT_MN = {
     animator: "ADBE Text Animator",
     animatorProps: "ADBE Text Animator Properties",
@@ -102,3 +106,5 @@ AT.register("text.create", {
         return { result: { layer: layer.name }, feedback: "Text layer created" };
     }
 });
+
+}($["com.cnn.animatortoolkit"]));

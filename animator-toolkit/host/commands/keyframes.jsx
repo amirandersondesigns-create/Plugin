@@ -2,6 +2,10 @@
 // Animator Toolkit - keyframe tools
 // ============================================================================
 
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 AT.KEYFRAME_TARGETS = {
     position: ["position"],
     scale: ["scale"],
@@ -147,3 +151,5 @@ AT.register("layers.stagger", {
         };
     }
 });
+
+}($["com.cnn.animatortoolkit"]));

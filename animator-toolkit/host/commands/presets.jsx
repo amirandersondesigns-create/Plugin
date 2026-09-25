@@ -27,6 +27,10 @@
 // when `steps` applies several presets at once).
 // ============================================================================
 
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 // Keyframe shapes as (time fraction, value factor). For an entrance, factor
 // 0 = the "away" state and 1 = the rest value; exits are the time-reverse.
 AT.SHAPES = {
@@ -277,3 +281,5 @@ AT.register("preset.apply", {
         return { result: { layers: applied, keyframes: keyCount, skipped: skipped }, feedback: feedback };
     }
 });
+
+}($["com.cnn.animatortoolkit"]));

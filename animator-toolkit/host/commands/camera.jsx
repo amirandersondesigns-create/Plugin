@@ -7,6 +7,10 @@
 // a DOLLY (push in / pull out). The panel labels moves with both names.
 // ============================================================================
 
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 // Focal lengths on a 36mm-wide film back, like After Effects' presets.
 AT.CAMERA_LENSES = { "24mm": 24, "35mm": 35, "50mm": 50, "80mm": 80, "135mm": 135 };
 
@@ -167,3 +171,5 @@ AT.register("camera.restore", {
         return { result: {}, feedback: "Camera restored" + (AT.tprop(cam, "position").numKeys ? " (keyframed at playhead)" : "") };
     }
 });
+
+}($["com.cnn.animatortoolkit"]));

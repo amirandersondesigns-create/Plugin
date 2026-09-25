@@ -62,7 +62,12 @@
     function startPolling() {
         clearInterval(pollTimer);
         pollTimer = setInterval(function () {
-            if (document.visibilityState === "visible" && !document.querySelector(".is-busy")) refreshContext();
+            if (document.visibilityState !== "visible" || document.querySelector(".is-busy")) return;
+            if (!AT.bridge.isPreview() && !AT.bridge.status().booted) {
+                AT.bridge.boot(1).then(function () { hostBanner(null); refreshContext(); }, function () {});
+                return;
+            }
+            refreshContext();
         }, 1500);
     }
 
@@ -260,6 +265,40 @@
         AT.toast(mode === "pro" ? "Pro mode — fewer explanations, more controls" : "Beginner mode — explanations on", "info");
     }
 
+    // ---- host connection ----------------------------------------------------------------
+    // Boots the host scripts (retrying: the ExtendScript engine can still be
+    // busy while After Effects starts). On failure, a persistent banner says
+    // why and offers Retry, instead of every button silently failing.
+    function connect(retries) {
+        hostBanner(null);
+        return AT.bridge.boot(retries).then(function () {
+            refreshContext();
+            startPolling();
+        }).catch(function (err) {
+            var chip = document.getElementById("context");
+            chip.className = "context ctx-error";
+            chip.querySelector(".context-text").textContent = "Not connected to After Effects";
+            hostBanner(err.message);
+            startPolling();
+        });
+    }
+
+    function hostBanner(message) {
+        var old = document.getElementById("host-banner");
+        if (old) old.remove();
+        if (!message) return;
+        var retry = h("button.btn.btn-sm", { type: "button", text: "Retry", on: { click: function () {
+            retry.disabled = true;
+            connect(2).then(function () { if (AT.bridge.status().booted) AT.toast("✓ Connected to After Effects", "ok"); });
+        } } });
+        var banner = h("div#host-banner.host-banner", { role: "alert" }, [
+            h("div.host-banner-text", [h("strong", { text: "Buttons can't reach After Effects. " }), message]),
+            retry
+        ]);
+        var header = document.querySelector(".header");
+        header.parentNode.insertBefore(banner, header.nextSibling);
+    }
+
     // ---- boot ----------------------------------------------------------------------------------
     function buildShell() {
         var root = document.getElementById("app");
@@ -326,15 +365,7 @@
         var s = AT.store.get("settings");
         show(s.lastView && view(s.lastView).id === s.lastView ? s.lastView : "home");
         renderContext();
-        AT.bridge.boot().then(function () {
-            refreshContext();
-            startPolling();
-        }).catch(function (err) {
-            var chip = document.getElementById("context");
-            chip.className = "context ctx-error";
-            chip.querySelector(".context-text").textContent = "Host scripts didn't load";
-            AT.toast(err.message + " — try closing and reopening the panel.", "error");
-        });
+        connect(4);
         if (!s.onboarded) onboarding();
         document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") refreshContext(); });
     }
@@ -347,6 +378,7 @@
         sheet: sheet,
         closeSheet: closeSheet,
         refreshContext: refreshContext,
+        connect: connect,
         context: function () { return context; },
         setMode: setMode,
         applySettings: applySettings,

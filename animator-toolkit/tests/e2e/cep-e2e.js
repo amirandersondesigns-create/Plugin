@@ -2,8 +2,13 @@
 // End-to-end check of the real CEP code path, without After Effects:
 //
 //   real panel (Chromium) -> CSInterface -> window.__adobe_cep__.evalScript
-//   -> mock host: host/index.jsx, AT_boot(<extension root>) loading modules
-//      with $.evalFile -> AT.dispatch -> mock AE DOM
+//   -> mock host: host/index.jsx, $["com.cnn.animatortoolkit"].boot(<root>)
+//      loading modules with $.evalFile -> dispatch -> mock AE DOM
+//
+// The shared ExtendScript engine is made hostile the way a real After
+// Effects can be: other tools' globals named AT/ATJSON, an enumerable
+// Array.prototype polyfill, an engine that fails the first eval at startup,
+// and the host namespace being wiped mid-session.
 //
 // The extension is copied to a path containing spaces (like
 // ~/Library/Application Support/...) and getSystemPath returns a file://
@@ -28,7 +33,17 @@ const EXT = path.join(base, "Application Support", "Adobe", "CEP", "extensions",
 fs.mkdirSync(EXT, { recursive: true });
 for (const d of ["CSXS", "client", "host"]) fs.cpSync(path.join(SRC, d), path.join(EXT, d), { recursive: true });
 
-const host = createHost({ boot: "cep" });
+const host = createHost({
+    boot: "cep",
+    failFirstEvals: 1,
+    beforeLoad(ctx) {
+        // Another extension's globals and a sloppy polyfill, in the SAME engine.
+        require("vm").runInContext(
+            'var AT = "some other tool"; var ATJSON = null; function AT_boot() { return "wrong tool"; }' +
+            'Array.prototype.contains = function (x) { for (var i = 0; i < this.length; i++) if (this[i] === x) return true; return false; };',
+            ctx);
+    }
+});
 const comp = new CompItem({ name: "Lower Third" });
 host.app.project.activeItem = comp;
 const shape = comp.add(ShapeLayer, "Logo Bug", { inPoint: 0, outPoint: 8, position: [960, 540], rect: { left: -50, top: -50, width: 100, height: 100 } });
@@ -64,11 +79,14 @@ function check(name, ok, detail) {
     };
 
     await page.goto("file://" + encodeURI(path.join(EXT, "client", "index.html")));
-    await page.waitForTimeout(600);
+    // The first eval fails (engine not ready); the panel retries on its own.
+    await page.waitForFunction(() => window.AT && AT.bridge.status().booted, null, { timeout: 8000 }).catch(() => {});
 
     // Boot: host modules loaded through AT_boot with the decoded path.
-    check("AT_boot loaded host modules from a path with spaces", host.context.AT && host.context.AT.ready === true,
-        scripts.find((s) => s.indexOf("AT_boot") >= 0));
+    check("host booted (after a failed first eval) from a path with spaces", host.ns && host.ns.ready === true,
+        scripts.filter((s) => s.indexOf(".boot(") >= 0));
+    check("other tools' globals untouched", host.context.AT === "some other tool" && host.context.ATJSON === null);
+    check("no persistent error banner once connected", !(await page.$("#host-banner")));
     check("no preview banner inside the host", !(await page.$(".preview-banner")));
 
     // Onboarding.
@@ -151,6 +169,24 @@ function check(name, ok, detail) {
     await page.keyboard.press("Enter");
     check("search result runs the tool", /Anchor/.test(await waitToast(/Anchor/)), await toast());
 
+    // Namespace wiped mid-session (e.g. another tool reset the engine):
+    // the next click must reload the host scripts and still work.
+    delete host.context.$["com.cnn.animatortoolkit"];
+    await page.fill("#search", "");
+    await page.keyboard.press("Escape");
+    await page.click(".tab[data-view=animate]");
+    await page.click(".key-btn:has-text('Position')");
+    const t1 = await waitToast(/EvalScript|Position/);
+    await page.click(".key-btn:has-text('Position')");
+    const t2 = await waitToast(/keyframe added/);
+    check("recovers after the host namespace is wiped", /keyframe added/.test(t2) && host.ns && host.ns.ready === true, [t1, t2]);
+
+    // Connection diagnostics in Learn > About.
+    await page.click(".tab[data-view=learn]");
+    await page.click("text=Test connection");
+    await page.waitForFunction(() => /OK: After Effects|FAILED/.test(document.querySelector(".conn-out").textContent), null, { timeout: 4000 }).catch(() => {});
+    check("Test connection reports OK with the command count", /OK: After Effects 26\.0 \(mock\) · \d+ commands/.test(await page.textContent(".conn-out")), await page.textContent(".conn-out"));
+
     // Favorites persist a click and run from the Favorites tab.
     await page.fill("#search", "");
     await page.keyboard.press("Escape");
@@ -160,9 +196,10 @@ function check(name, ok, detail) {
     check("favorite card rendered", (await page.$$(".fav-card")).length === 1);
 
     check("undo groups all closed", host.undo.open === 0, host.undo.open);
-    // 3 presets, 1 refused anchor, 1 anchor, 2 easing, Type On, search anchor = 9.
+    // 3 presets, 1 refused anchor, 1 anchor, 2 easing, Type On, search anchor,
+    // Position key after the wipe (the first click fails before any group) = 10.
     // The no-selection click fails before opening a group.
-    check("every mutating click was exactly one undo group", host.undo.groups.length === 9, host.undo.groups);
+    check("every mutating click was exactly one undo group", host.undo.groups.length === 10, host.undo.groups);
     check("no page errors", errors.length === 0, errors);
 
     await browser.close();

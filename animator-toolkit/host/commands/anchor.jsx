@@ -14,6 +14,10 @@
 // silently shifting the artwork.
 // ============================================================================
 
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 AT.ANCHOR_GRID = {
     "top-left": [0, 0], "top-center": [0.5, 0], "top-right": [1, 0],
     "middle-left": [0, 0.5], "center": [0.5, 0.5], "middle-right": [1, 0.5],
@@ -134,3 +138,5 @@ AT.register("anchor.set", {
         return { result: { moved: moved, unchanged: unchanged, skipped: skipped }, feedback: feedback };
     }
 });
+
+}($["com.cnn.animatortoolkit"]));

@@ -6,7 +6,10 @@
 // "selected keyframes" query that easing and keyframe tools share.
 // ============================================================================
 
-var AT = AT || {};
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 
 AT.MN = {
     transform: "ADBE Transform Group",
@@ -123,3 +126,5 @@ AT.requireSelectedKeyframes = function (comp, minPerProp) {
 AT.plural = function (n, one, many) {
     return n + " " + (n === 1 ? one : (many || one + "s"));
 };
+
+}($["com.cnn.animatortoolkit"]));

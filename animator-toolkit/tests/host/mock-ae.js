@@ -335,7 +335,7 @@ class CompItem {
 }
 
 // opts.boot === "cep": don't preload modules. Instead evaluate host/index.jsx
-// the way CEP does and let the panel call AT_boot(<extension root>), which
+// the way CEP does and let the panel call boot(<extension root>), which
 // loads modules through a filesystem-backed $.evalFile. Used by the
 // end-to-end panel test to exercise the real loader and path handling.
 function createHost(opts) {
@@ -369,11 +369,16 @@ function createHost(opts) {
             const file = typeof f === "string" ? f : f.fsName;
             return vm.runInContext(fs.readFileSync(file, "utf8"), context, { filename: file });
         };
+        if (opts.beforeLoad) opts.beforeLoad(context);
         vm.runInContext(fs.readFileSync(path.join(hostDir, "index.jsx"), "utf8"), context, { filename: "index.jsx" });
+        const failFirst = { n: opts.failFirstEvals || 0 };
         return {
             context, app, undo,
+            get ns() { return context.$["com.cnn.animatortoolkit"]; },
             // What CEP's evalScript does: run a script, hand back String(result).
             evalScript(script) {
+                // Simulates an engine that isn't ready yet at panel startup.
+                if (failFirst.n > 0) { failFirst.n--; return "EvalScript error."; }
                 try {
                     const r = vm.runInContext(script, context);
                     return r === undefined ? "undefined" : String(r);
@@ -383,12 +388,15 @@ function createHost(opts) {
             }
         };
     }
-    const index = fs.readFileSync(path.join(hostDir, "index.jsx"), "utf8");
-    const modules = vm.runInContext(index.split("function AT_boot")[0] + "; AT_MODULES", context);
-    for (const m of modules) {
+    // index.jsx creates the namespace (its self-boot is a no-op here because
+    // $.fileName is empty), then each module is evaluated into it.
+    vm.runInContext(fs.readFileSync(path.join(hostDir, "index.jsx"), "utf8"), context, { filename: "index.jsx" });
+    const ns = context.$["com.cnn.animatortoolkit"];
+    for (const m of ns.MODULES) {
         const src = fs.readFileSync(path.join(hostDir, m), "utf8");
         vm.runInContext(src, context, { filename: m });
     }
+    context.AT = ns;
     let n = 0;
     function call(command, payload, version) {
         const req = JSON.stringify({ version: version || 1, requestId: "t" + ++n, command, payload: payload || {} });

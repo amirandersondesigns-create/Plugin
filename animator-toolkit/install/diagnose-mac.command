@@ -39,6 +39,12 @@ for f in $(ls -t "$HOME"/Library/Logs/CSXS/CEP*AEFT*.log 2>/dev/null | head -3);
     echo "--- $f"
     grep -i -E "animatortoolkit|signature|manifest|error|invalid" "$f" | tail -40
 done
+echo
+echo "== Animator Toolkit panel engine logs (JavaScript errors, bridge calls) =="
+for f in $(ls -t "$HOME"/Library/Logs/CSXS/CEPHtmlEngine*animatortoolkit*.log 2>/dev/null | head -2); do
+    echo "--- $f"
+    tail -60 "$f"
+done
 } > "$OUT" 2>&1
 echo "Report saved to: $OUT"
 open "$OUT"

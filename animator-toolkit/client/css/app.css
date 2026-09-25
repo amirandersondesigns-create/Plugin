@@ -527,3 +527,10 @@ kbd { font: 600 var(--fs-xs)/1 var(--mono); background: var(--bg-3); border: 1px
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
 }
+
+/* host connection problems: persistent, not a vanishing toast */
+.host-banner { flex: none; display: flex; align-items: center; gap: 8px; padding: 8px var(--pad); background: rgba(255, 107, 107, 0.12); border-bottom: 1px solid rgba(255, 107, 107, 0.45); color: var(--fg-0); font-size: var(--fs-sm); user-select: text; }
+.host-banner-text { flex: 1; min-width: 0; }
+.about-conn { align-items: flex-start; }
+.conn { flex-direction: column; align-items: flex-start; flex: 1; min-width: 0; }
+.conn-out { white-space: pre-wrap; word-break: break-all; font-size: var(--fs-xs); user-select: text; }

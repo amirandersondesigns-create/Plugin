@@ -3,6 +3,10 @@
 // pre-compose, markers, motion blur.
 // ============================================================================
 
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 // Visual bounds of a layer in its parent's space (the comp, when
 // unparented), at `time`: the four corners of sourceRectAtTime pushed
 // through Position/Anchor/Scale/Rotation.
@@ -205,3 +209,5 @@ AT.register("layers.motionBlur", {
         return { result: { on: on }, feedback: "Motion blur " + (on ? "on" : "off") + " for " + AT.plural(ctx.layers.length, "layer") };
     }
 });
+
+}($["com.cnn.animatortoolkit"]));

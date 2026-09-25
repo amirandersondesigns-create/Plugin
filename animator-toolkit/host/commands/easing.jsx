@@ -13,6 +13,10 @@
 // what "ease out" means in the whole toolkit.
 // ============================================================================
 
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 AT.EASE_DEFAULT_INFLUENCE = 33.33;
 
 AT.easeArray = function (length, speed, influence) {
@@ -191,3 +195,5 @@ AT.ownerLayer = function (prop) {
         return null;
     }
 };
+
+}($["com.cnn.animatortoolkit"]));

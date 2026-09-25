@@ -6,7 +6,7 @@
     "use strict";
 
     var h = AT.h;
-    var VERSION = "0.1.1";
+    var VERSION = "0.1.2";
     var sub = "lessons";
     var scFilter = "all";
     var focusId = null;
@@ -163,8 +163,41 @@
                     function (v) { AT.store.update("settings", function (x) { x.density = v; }); AT.app.applySettings(); }, { cls: "seg-sm", label: "Density" })
             ])]),
             h("div.about-row", [h("span.about-k", { text: "Version" }), h("span.about-v.muted", { text: VERSION + (AT.bridge.isPreview() ? " · preview mode" : "") })]),
+            connectionRow(),
             h("div.about-row", [h("span.about-k", { text: "Welcome" }), h("button.btn.btn-sm", { type: "button", text: "Replay the welcome", on: { click: function () { AT.app.onboarding(); } } })])
         ]);
+    }
+
+    // Shows exactly what the panel knows about its link to After Effects, and
+    // runs a round trip on demand. The first thing to check if buttons fail.
+    function connectionRow() {
+        var out = h("div.conn-out.muted");
+        function show() {
+            var st = AT.bridge.status();
+            var lines = [
+                "Mode: " + st.mode + (st.mode === "host" ? (st.booted ? " · host scripts loaded" : " · host scripts NOT loaded") : ""),
+                st.bootResult && st.bootResult !== "ok" ? "Load result: " + st.bootResult : null,
+                st.root ? "Extension: " + st.root : null,
+                st.lastError ? "Last error: " + st.lastError : null
+            ].filter(Boolean);
+            out.textContent = lines.join("\n");
+        }
+        var btn = h("button.btn.btn-sm", { type: "button", text: "Test connection", on: { click: function () {
+            btn.disabled = true;
+            AT.bridge.boot(1).then(function () { return AT.bridge.run("system.ping"); }, function (e) { return { ok: false, error: { message: e.message } }; }).then(function (res) {
+                btn.disabled = false;
+                show();
+                if (res.ok) {
+                    var r = res.result || {};
+                    out.textContent += "\nOK: After Effects " + (r.aeVersion || "?") + " · " + (r.commands ? r.commands.length : 0) + " commands";
+                    AT.toast("✓ Connected to After Effects", "ok");
+                } else {
+                    out.textContent += "\nFAILED: " + (res.error && res.error.message);
+                }
+            });
+        } } });
+        show();
+        return h("div.about-row.about-conn", [h("span.about-k", { text: "Connection" }), h("div.about-v.conn", [btn, out])]);
     }
 
     function render(page) {

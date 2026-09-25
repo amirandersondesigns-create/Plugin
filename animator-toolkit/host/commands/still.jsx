@@ -8,6 +8,10 @@
 // Queue, so it can't accidentally render other queued items.
 // ============================================================================
 
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 AT.defaultStillFolder = function () {
     return Folder.desktop.fsName + "/Animator Toolkit Stills";
 };
@@ -86,3 +90,5 @@ AT.register("still.reveal", {
         return { result: {}, feedback: "Opened " + folder.displayName };
     }
 });
+
+}($["com.cnn.animatortoolkit"]));

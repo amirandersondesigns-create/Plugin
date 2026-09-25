@@ -12,7 +12,10 @@
 // Commands register themselves from host/commands/*.jsx via AT.register().
 // ============================================================================
 
-var AT = AT || {};
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 
 AT.PROTOCOL_VERSION = 1;
 AT.commands = AT.commands || {};
@@ -74,13 +77,13 @@ AT.buildContext = function (needs) {
 };
 
 AT.errorResult = function (requestId, code, message) {
-    return ATJSON.stringify({ ok: false, requestId: requestId, error: { code: code, message: message } });
+    return AT.JSON.stringify({ ok: false, requestId: requestId, error: { code: code, message: message } });
 };
 
 AT.dispatch = function (requestText) {
     var request;
     try {
-        request = ATJSON.parse(String(requestText));
+        request = AT.JSON.parse(String(requestText));
     } catch (e) {
         return AT.errorResult(null, "bad-request", "The panel sent a malformed request (" + e.message + ").");
     }
@@ -105,7 +108,7 @@ AT.dispatch = function (requestText) {
             undoOpen = true;
         }
         var out = spec.run(payload, ctx) || {};
-        return ATJSON.stringify({
+        return AT.JSON.stringify({
             ok: true,
             requestId: requestId,
             result: out.result || {},
@@ -141,3 +144,5 @@ AT.register("system.ping", {
         };
     }
 });
+
+}($["com.cnn.animatortoolkit"]));

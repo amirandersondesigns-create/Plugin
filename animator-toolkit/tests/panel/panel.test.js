@@ -119,7 +119,7 @@ test("bridge serializes requests as one inert string literal", () => {
     assert.equal(JSON.parse(back).payload.name, nasty);
     // And the host's own parser reads it identically.
     const h = createHost();
-    assert.equal(h.context.ATJSON.parse(back).payload.name, nasty);
+    assert.equal(h.context.AT.JSON.parse(back).payload.name, nasty);
 });
 
 test("store persists to disk atomically and survives a corrupt file", () => {

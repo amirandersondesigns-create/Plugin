@@ -6,6 +6,10 @@
 // needs selecting before a button can work.
 // ============================================================================
 
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
 AT.register("context.inspect", {
     needs: "none",
     run: function () {
@@ -33,3 +37,5 @@ AT.register("context.inspect", {
         return { result: out };
     }
 });
+
+}($["com.cnn.animatortoolkit"]));

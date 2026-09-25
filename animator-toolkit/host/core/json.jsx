@@ -6,7 +6,11 @@
 // from the panel can only ever become data, never code.
 // ============================================================================
 
-var ATJSON = (function () {
+// Everything lives in one uniquely named namespace: After Effects runs all
+// extensions and scripts in a single shared ExtendScript global scope.
+(function (AT) {
+
+AT.JSON = (function () {
     var ESC = { '"': '\\"', "\\": "\\\\", "\b": "\\b", "\f": "\\f", "\n": "\\n", "\r": "\\r", "\t": "\\t" };
 
     function quote(s) {
@@ -164,3 +168,5 @@ var ATJSON = (function () {
 
     return { stringify: stringify, parse: parse };
 })();
+
+}($["com.cnn.animatortoolkit"]));

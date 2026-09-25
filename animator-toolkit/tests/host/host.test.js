@@ -28,7 +28,7 @@ function toParent(layer, p, t = 0) {
 
 test("JSON encoder/decoder round-trips unicode and rejects junk", () => {
     const { AT, context } = setup();
-    const J = context.ATJSON;
+    const J = context.AT.JSON;
     const v = { s: "Tom's \"quote\" — ✓\n", n: [1, -2.5, 3e2], b: true, z: null };
     assert.deepEqual(JSON.parse(J.stringify(v)), v);
     assert.deepEqual(JSON.parse(JSON.stringify(J.parse(JSON.stringify(v)))), v);

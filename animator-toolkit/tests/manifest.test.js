@@ -59,3 +59,11 @@ for (const [name, m] of Object.entries(MANIFESTS)) {
         }
     });
 }
+
+test("no source file contains raw U+2028/U+2029 (breaks regex/string literals)", () => {
+    const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+        e.isDirectory() ? walk(path.join(d, e.name)) : /\.(js|jsx)$/.test(e.name) ? [path.join(d, e.name)] : []);
+    for (const f of walk(path.join(ROOT, "client")).concat(walk(path.join(ROOT, "host")))) {
+        assert.doesNotMatch(fs.readFileSync(f, "utf8"), /[\u2028\u2029]/, f);
+    }
+});
