@@ -36,6 +36,11 @@ uninstall script, or the installer's Remove button.
 
 **Panel not listed under Window › Extensions?**
 
+First check `~/Library/Logs/CSXS/CEP12-AEFT.log` for `Unsupported Manifest version`.
+That error means the manifest can't be parsed. Up to 0.1.0 the manifest
+declared a default XML namespace, which After Effects 2026 rejects. 0.1.1
+matches Adobe's schema, and `tests/manifest.test.js` guards against a repeat.
+
 1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
    It writes `AnimatorToolkit-diagnostics.txt` to your Desktop: install
    locations, permissions, debug-mode flags and CEP log lines. It also turns on
@@ -130,10 +135,11 @@ If it needs a new keyframe shape or kind, add it to `AT.SHAPES` or
 ## Tests
 
 ```
-npm test
+npm test          # 42 unit/contract tests (Node, no dependencies)
+npm run test:e2e  # 22 end-to-end checks (needs Playwright + Chromium)
 ```
 
-37 tests run in Node against `tests/host/mock-ae.js`, a strict mock of the AE
+The unit tests run in Node against `tests/host/mock-ae.js`, a strict mock of the AE
 scripting DOM. The mock throws where AE throws, for example on `setValue` on
 a keyframed property or a temporal-ease array of the wrong length. The tests cover:
 
@@ -148,6 +154,12 @@ a keyframed property or a temporal-ease array of the wrong length. The tests cov
 - text animators, align/distribute, reverse keys, camera push, null parenting
 - search stemming and ranking, the storage backends and corrupt-file recovery,
   and bridge escaping (hostile strings stay data)
+
+`test:e2e` loads the real panel in Chromium with a fake `__adobe_cep__`
+wired to the mock host. It boots the host scripts through `AT_boot` and
+`$.evalFile` from a path with spaces, like the real "Application Support"
+folder, then clicks through Animate, Easing, Text, search and Favorites.
+After each click it checks the resulting keyframes, markers and undo groups.
 
 A mock is not After Effects. Before relying on a release, check these in
 real AE (2024 and 2025/26, on macOS and Windows):

@@ -36,19 +36,20 @@
                             <Height>720</Height>
                             <Width>360</Width>
                         </Size>
-                        <MinSize>
-                            <Height>320</Height>
-                            <Width>280</Width>
-                        </MinSize>
                         <MaxSize>
                             <Height>2400</Height>
                             <Width>1200</Width>
                         </MaxSize>
+                        <MinSize>
+                            <Height>320</Height>
+                            <Width>280</Width>
+                        </MinSize>
                     </Geometry>
                     <Icons>
                         <Icon Type="Normal">./client/icons/icon.png</Icon>
                         <Icon Type="RollOver">./client/icons/icon.png</Icon>
-                        <Icon Type="Darkest">./client/icons/icon.png</Icon>
+                        <Icon Type="DarkNormal">./client/icons/icon.png</Icon>
+                        <Icon Type="DarkRollOver">./client/icons/icon.png</Icon>
                     </Icons>
                 </UI>
             </DispatchInfo>

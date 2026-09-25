@@ -13,8 +13,16 @@ for v in 9 10 11 12 13; do
 done
 echo "✓ Debug mode enabled (CSXS 9-13)"
 
+# Replace any previous copy completely (plain cp: no rsync dependency).
+rm -rf "$DEST"
 mkdir -p "$DEST"
-rsync -a --delete --exclude tests --exclude '.git*' --exclude 'package.json' "$SRC/" "$DEST/"
+for item in CSXS client host install README.md .debug; do
+    [ -e "$SRC/$item" ] && cp -R "$SRC/$item" "$DEST/"
+done
+if [ ! -f "$DEST/CSXS/manifest.xml" ]; then
+    echo "✗ Copy failed - run this script from inside the unzipped com.cnn.animatortoolkit folder."
+    exit 1
+fi
 echo "✓ Installed to: $DEST"
 if [ -d "/Library/Application Support/Adobe/CEP/extensions/com.cnn.animatortoolkit" ]; then
     echo

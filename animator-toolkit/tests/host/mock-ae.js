@@ -334,7 +334,12 @@ class CompItem {
     }
 }
 
-function createHost() {
+// opts.boot === "cep": don't preload modules. Instead evaluate host/index.jsx
+// the way CEP does and let the panel call AT_boot(<extension root>), which
+// loads modules through a filesystem-backed $.evalFile. Used by the
+// end-to-end panel test to exercise the real loader and path handling.
+function createHost(opts) {
+    opts = opts || {};
     const undo = { open: 0, groups: [] };
     const app = {
         version: "26.0 (mock)",
@@ -356,6 +361,28 @@ function createHost() {
     context.Folder.desktop = { fsName: "/Users/mock/Desktop" };
     vm.createContext(context);
     const hostDir = path.join(__dirname, "..", "..", "host");
+    if (opts.boot === "cep") {
+        context.Folder = function (p) { this.fsName = path.resolve(String(p)); this.exists = fs.existsSync(this.fsName); };
+        context.File = function (p) { this.fsName = path.resolve(String(p)); this.exists = fs.existsSync(this.fsName); };
+        context.Folder.desktop = { fsName: "/Users/mock/Desktop" };
+        context.$.evalFile = function (f) {
+            const file = typeof f === "string" ? f : f.fsName;
+            return vm.runInContext(fs.readFileSync(file, "utf8"), context, { filename: file });
+        };
+        vm.runInContext(fs.readFileSync(path.join(hostDir, "index.jsx"), "utf8"), context, { filename: "index.jsx" });
+        return {
+            context, app, undo,
+            // What CEP's evalScript does: run a script, hand back String(result).
+            evalScript(script) {
+                try {
+                    const r = vm.runInContext(script, context);
+                    return r === undefined ? "undefined" : String(r);
+                } catch (e) {
+                    return "EvalScript error.";
+                }
+            }
+        };
+    }
     const index = fs.readFileSync(path.join(hostDir, "index.jsx"), "utf8");
     const modules = vm.runInContext(index.split("function AT_boot")[0] + "; AT_MODULES", context);
     for (const m of modules) {

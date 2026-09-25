@@ -41,3 +41,21 @@ test("targets After Effects and every referenced file exists", () => {
     assert.match(xml, /--enable-nodejs/);
     assert.match(xml, /--mixed-context/);
 });
+
+// Rules from Adobe's ExtensionManifest XSD that CEP enforces when parsing.
+const MANIFESTS = {
+    "Animator Toolkit": xml,
+    "Motion Spell Checker": fs.readFileSync(path.join(ROOT, "..", "CSXS", "manifest.xml"), "utf8")
+};
+for (const [name, m] of Object.entries(MANIFESTS)) {
+    test(name + ": schema rules (no default xmlns, Geometry order, icon types)", () => {
+        assert.doesNotMatch(m.match(/<ExtensionManifest\b[^>]*>/)[0], /\sxmlns\s*=/);
+        const geo = m.match(/<Geometry>([\s\S]*?)<\/Geometry>/)[1];
+        const order = ["ScreenPercentage", "Size", "MaxSize", "MinSize"].filter((t) => geo.includes("<" + t + ">"));
+        const seen = [...geo.matchAll(/<(ScreenPercentage|Size|MaxSize|MinSize)>/g)].map((x) => x[1]);
+        assert.deepEqual(seen, order, "Geometry children must be in XSD order");
+        for (const t of m.matchAll(/<Icon Type="([^"]+)"/g)) {
+            assert.ok(["Normal", "Disabled", "RollOver", "DarkNormal", "DarkRollOver"].includes(t[1]), "invalid icon type " + t[1]);
+        }
+    });
+}

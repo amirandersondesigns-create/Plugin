@@ -47,7 +47,7 @@ AT.anchorBlocker = function (layer) {
         return "Scale or Rotation has an expression";
     }
     if (scale.numKeys > 0 || rotation.numKeys > 0) {
-        return "Scale or Rotation is animated, so no single offset keeps it in place";
+        return "its Scale or Rotation is animated (e.g. by Pop or Bounce). Set the anchor first, then add the animation - or delete the Scale/Rotation keyframes, set the anchor and re-apply the preset";
     }
     if (layer.threeDLayer) {
         var o = AT.tprop(layer, "orientation").value;
