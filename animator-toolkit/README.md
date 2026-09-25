@@ -14,7 +14,7 @@ It also includes micro-lessons, explained shortcuts and guided workflows.
 
 1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
    or Anastasiy's Extension Manager.
-2. Drag `AnimatorToolkit-0.1.2.zxp` onto it.
+2. Drag `AnimatorToolkit-0.1.4.zxp` onto it.
 3. Restart After Effects and open **Window › Extensions › Animator Toolkit**.
 
 The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
@@ -25,7 +25,7 @@ install as updates.
 
 **Option B: zip + install script (unsigned, debug mode)**
 
-1. Unzip `animator-toolkit-0.1.2.zip`.
+1. Unzip `animator-toolkit-0.1.4.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
    These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
    then copy the extension to your user CEP extensions folder.
@@ -39,11 +39,14 @@ uninstall script, or the installer's Remove button.
 Open **Learn › About this panel › Test connection**. It reports whether the
 host scripts loaded, the extension path, and the last error. A red banner
 under the header also appears whenever the panel can't reach After Effects.
-Up to 0.1.1, one failed first contact with the host (for example while After
-Effects was still starting) broke every button silently until the panel was
-reopened. The host also used generic global names (`AT`, `ATJSON`) in After
-Effects' shared script engine, where other tools can overwrite them. 0.1.2
-retries, recovers, and keeps everything in `$["com.cnn.animatortoolkit"]`.
+Up to 0.1.1, and again in a VS Code-edited 0.1.3, one failed first
+contact with the host (for example while After Effects was still starting)
+broke every button until the panel was reopened. Those builds also used
+generic global names (`AT`, `ATJSON`) in After Effects' shared script
+engine, where other tools can overwrite them. From 0.1.2 on, the panel
+retries and recovers, and the host keeps everything in
+`$["com.cnn.animatortoolkit"]`. `npm run test:e2e` reproduces that failure
+(`E2E_SRC=<folder>` runs it against any other build).
 For full detail, open DevTools at <http://localhost:8099>: every command and
 reply is logged in its console.
 
@@ -51,7 +54,7 @@ reply is logged in its console.
 
 First check `~/Library/Logs/CSXS/CEP12-AEFT.log` for `Unsupported Manifest version`.
 That error means the manifest can't be parsed. Up to 0.1.0 the manifest
-declared a default XML namespace, which After Effects 2026 rejects. 0.1.2
+declared a default XML namespace, which After Effects 2026 rejects. 0.1.4
 matches Adobe's schema, and `tests/manifest.test.js` guards against a repeat.
 
 1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
@@ -149,7 +152,8 @@ If it needs a new keyframe shape or kind, add it to `AT.SHAPES` or
 
 ```
 npm test          # 43 unit/contract tests (Node, no dependencies)
-npm run test:e2e  # 26 end-to-end checks (needs Playwright + Chromium)
+npm run test:e2e  # 26 end-to-end checks (needs Playwright + Chromium);
+                  # E2E_FRIENDLY=1 for ideal conditions, E2E_SRC=<dir> for another build
 ```
 
 The unit tests run in Node against `tests/host/mock-ae.js`, a strict mock of the AE

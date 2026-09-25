@@ -27,7 +27,8 @@ try {
 }
 const { createHost, CompItem, TextLayer, ShapeLayer } = require("../host/mock-ae");
 
-const SRC = path.join(__dirname, "..", "..");
+// E2E_SRC=<folder> runs the same checks against another build of the extension.
+const SRC = process.env.E2E_SRC || path.join(__dirname, "..", "..");
 const base = fs.mkdtempSync(path.join(os.tmpdir(), "at-e2e-"));
 const EXT = path.join(base, "Application Support", "Adobe", "CEP", "extensions", "com.cnn.animatortoolkit");
 fs.mkdirSync(EXT, { recursive: true });
@@ -35,8 +36,12 @@ for (const d of ["CSXS", "client", "host"]) fs.cpSync(path.join(SRC, d), path.jo
 
 const host = createHost({
     boot: "cep",
-    failFirstEvals: 1,
+    hostDir: path.join(EXT, "host"), // evaluate the installed copy, like CEP
+    // E2E_FRIENDLY=1: ideal conditions (no failed first eval, no foreign globals).
+    failFirstEvals: process.env.E2E_FRIENDLY ? 0 : 1,
+    scriptPathBoot: !!process.env.E2E_FRIENDLY,
     beforeLoad(ctx) {
+        if (process.env.E2E_FRIENDLY) return;
         // Another extension's globals and a sloppy polyfill, in the SAME engine.
         require("vm").runInContext(
             'var AT = "some other tool"; var ATJSON = null; function AT_boot() { return "wrong tool"; }' +
@@ -85,7 +90,11 @@ function check(name, ok, detail) {
     // Boot: host modules loaded through AT_boot with the decoded path.
     check("host booted (after a failed first eval) from a path with spaces", host.ns && host.ns.ready === true,
         scripts.filter((s) => s.indexOf(".boot(") >= 0));
-    check("other tools' globals untouched", host.context.AT === "some other tool" && host.context.ATJSON === null);
+    if (process.env.E2E_FRIENDLY) {
+        // ScriptPath already loaded the 12 modules; the panel must not load them again.
+        check("host modules loaded once at startup (no double load)", host.context.$.evalCount === 12, host.context.$.evalCount);
+    }
+    if (!process.env.E2E_FRIENDLY) check("other tools' globals untouched", host.context.AT === "some other tool" && host.context.ATJSON === null);
     check("no persistent error banner once connected", !(await page.$("#host-banner")));
     check("no preview banner inside the host", !(await page.$(".preview-banner")));
 
@@ -196,10 +205,13 @@ function check(name, ok, detail) {
     check("favorite card rendered", (await page.$$(".fav-card")).length === 1);
 
     check("undo groups all closed", host.undo.open === 0, host.undo.open);
-    // 3 presets, 1 refused anchor, 1 anchor, 2 easing, Type On, search anchor,
-    // Position key after the wipe (the first click fails before any group) = 10.
-    // The no-selection click fails before opening a group.
-    check("every mutating click was exactly one undo group", host.undo.groups.length === 10, host.undo.groups);
+    // 3 presets, 1 refused anchor, 1 anchor, 2 easing, Type On, search anchor = 9,
+    // plus 1-2 Position keys after the namespace wipe: 1 if that first click hit
+    // the wiped host, 2 if background polling had already reconnected. The
+    // no-selection click fails before opening a group.
+    const keyGroups = host.undo.groups.filter((g) => /Add Keyframes/.test(g)).length;
+    check("every mutating click was exactly one undo group",
+        host.undo.groups.length - keyGroups === 9 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
     check("no page errors", errors.length === 0, errors);
 
     await browser.close();

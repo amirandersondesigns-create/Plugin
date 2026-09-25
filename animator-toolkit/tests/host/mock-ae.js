@@ -360,16 +360,21 @@ function createHost(opts) {
     };
     context.Folder.desktop = { fsName: "/Users/mock/Desktop" };
     vm.createContext(context);
-    const hostDir = path.join(__dirname, "..", "..", "host");
+    const hostDir = opts.hostDir || path.join(__dirname, "..", "..", "host");
     if (opts.boot === "cep") {
         context.Folder = function (p) { this.fsName = path.resolve(String(p)); this.exists = fs.existsSync(this.fsName); };
         context.File = function (p) { this.fsName = path.resolve(String(p)); this.exists = fs.existsSync(this.fsName); };
         context.Folder.desktop = { fsName: "/Users/mock/Desktop" };
+        context.$.evalCount = 0;
         context.$.evalFile = function (f) {
             const file = typeof f === "string" ? f : f.fsName;
+            context.$.evalCount++;
             return vm.runInContext(fs.readFileSync(file, "utf8"), context, { filename: file });
         };
         if (opts.beforeLoad) opts.beforeLoad(context);
+        // scriptPathBoot: like CEP evaluating the manifest's ScriptPath, where
+        // $.fileName is set and index.jsx boots itself before the panel asks.
+        if (opts.scriptPathBoot) context.$.fileName = path.join(hostDir, "index.jsx");
         vm.runInContext(fs.readFileSync(path.join(hostDir, "index.jsx"), "utf8"), context, { filename: "index.jsx" });
         const failFirst = { n: opts.failFirstEvals || 0 };
         return {

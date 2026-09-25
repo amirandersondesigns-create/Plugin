@@ -48,27 +48,39 @@
         chip.title = AT.bridge.isPreview() ? "Preview mode — not connected to After Effects" : d.text;
     }
 
+    // One inspect at a time: if After Effects is busy (rendering, a long
+    // operation) requests must not pile up in its script queue.
+    var inspecting = null;
     function refreshContext() {
-        return AT.bridge.run("context.inspect").then(function (res) {
+        if (inspecting) return inspecting;
+        inspecting = AT.bridge.run("context.inspect").then(function (res) {
+            inspecting = null;
             if (!res.ok) return;
             var before = JSON.stringify(context);
             context = res.result;
-            renderContext();
+            renderContext(); // cheap: one chip's text
+            // Views only re-render when the selection actually changed.
             if (before !== JSON.stringify(context) && current && current.onContext) current.onContext(context);
-        });
+        }, function () { inspecting = null; });
+        return inspecting;
     }
 
     // Poll only while the panel is visible: CEP has no selection events.
+    // While disconnected, retry the host at most every 10 s (a boot loads
+    // 12 script files, so it must not run on every tick).
+    var lastBootTry = 0;
     function startPolling() {
         clearInterval(pollTimer);
         pollTimer = setInterval(function () {
             if (document.visibilityState !== "visible" || document.querySelector(".is-busy")) return;
             if (!AT.bridge.isPreview() && !AT.bridge.status().booted) {
+                if (Date.now() - lastBootTry < 10000) return;
+                lastBootTry = Date.now();
                 AT.bridge.boot(1).then(function () { hostBanner(null); refreshContext(); }, function () {});
                 return;
             }
             refreshContext();
-        }, 1500);
+        }, 2000);
     }
 
     // ---- views ---------------------------------------------------------------------
@@ -87,7 +99,9 @@
         current.render(page, context);
         main.scrollTop = 0;
         requestAnimationFrame(function () { page.classList.add("in"); });
-        AT.store.update("settings", function (s) { s.lastView = current.id; });
+        if (AT.store.get("settings").lastView !== current.id) {
+            AT.store.update("settings", function (s) { s.lastView = current.id; });
+        }
     }
 
     function rerender() {

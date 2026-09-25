@@ -68,6 +68,9 @@
         var r = literal(root);
         var script = "(function(){var a=" + NS + ";" +
             "if(!a||!a.boot){var f=new File(" + r + "+'/host/index.jsx');if(!f.exists)return 'missing:host/index.jsx';$.evalFile(f);a=" + NS + ";}" +
+            // Already loaded from this folder (by CEP's ScriptPath at panel
+            // open)? Don't evaluate all 12 modules a second time.
+            "if(a&&a.ready&&a.root===" + r + "&&typeof a.dispatch==='function')return 'ok';" +
             "return (a&&a.boot)?a.boot(" + r + "):'no-loader';})()";
         return evalScript(script, 15000).then(function (r) {
             var res = r.timeout ? "timeout" : String(r.raw);
