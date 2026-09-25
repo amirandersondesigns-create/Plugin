@@ -14,7 +14,7 @@ It also includes micro-lessons, explained shortcuts and guided workflows.
 
 1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
    or Anastasiy's Extension Manager.
-2. Drag `AnimatorToolkit-0.1.0.zxp` onto it.
+2. Drag `AnimatorToolkit-0.1.1.zxp` onto it.
 3. Restart After Effects and open **Window › Extensions › Animator Toolkit**.
 
 The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
@@ -25,7 +25,7 @@ install as updates.
 
 **Option B: zip + install script (unsigned, debug mode)**
 
-1. Unzip `animator-toolkit-0.1.0.zip`.
+1. Unzip `animator-toolkit-0.1.1.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
    These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
    then copy the extension to your user CEP extensions folder.

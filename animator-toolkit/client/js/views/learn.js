@@ -6,7 +6,7 @@
     "use strict";
 
     var h = AT.h;
-    var VERSION = "0.1.0";
+    var VERSION = "0.1.1";
     var sub = "lessons";
     var scFilter = "all";
     var focusId = null;
