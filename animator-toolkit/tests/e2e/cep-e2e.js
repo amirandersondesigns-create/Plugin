@@ -331,11 +331,20 @@ function check(name, ok, detail) {
     // Preview: Auto resolution matches the viewer zoom (50% -> Half); the
     // Preview panel settings (Skip, Frame Rate, Cache...) are listed.
     await page.click(".tab[data-view=preview]");
-    await page.waitForSelector(".option:has-text('Auto')");
-    await page.click(".option:has-text('Auto')");
+    await page.waitForSelector(".res-cards .option:has-text('Auto')");
+    check("resolution cards: Auto, Full, Half, Third, Quarter", (await page.$$eval(".res-cards .res-name", (e) => e.map((x) => x.textContent).join(","))) === "Auto,Full,Half,Third,Quarter");
+    await page.click(".res-cards .option:has-text('Quarter')");
+    check("Quarter card sets Quarter", comp.resolutionFactor[0] === 4 && !!(await page.$(".res-cards .option.on:has-text('Quarter')")));
+    await page.click(".res-cards .option:has-text('Auto')");
     check("Auto resolution matches 50% zoom (Half)", /Auto: Half/.test(await waitToast(/Auto:/)) && comp.resolutionFactor[0] === 2, await toast());
-    const pp = await page.textContent(".pp-table");
-    check("Preview panel settings listed (Skip, Frame Rate, Cache)", /Skip/.test(pp) && /Frame Rate/.test(pp) && /Cache Before Playback/.test(pp), null);
+    const pp = await page.textContent(".pp-grid");
+    check("Preview panel settings listed (Skip, Frame Rate, Cache)", /Skip/.test(pp) && /Frame Rate/.test(pp) && /Cache/.test(pp), null);
+    const skip = () => page.textContent(".pp-tile:has-text('Skip') .pp-val");
+    const s1 = await skip();
+    await page.click(".pp-seg .seg-btn:has-text('Final check')");
+    check("Preview panel flips to final-check values (Skip 1 -> 0)", s1 === "1" && (await skip()) === "0", s1 + " -> " + (await skip()));
+    await page.click(".pp-tile:has-text('Cache')");
+    check("tapping a tile explains it", /renders the range first/.test(await page.textContent(".pp-why")));
 
     // Home: quick actions can be removed, added back and reset.
     await page.click(".tab[data-view=home]");

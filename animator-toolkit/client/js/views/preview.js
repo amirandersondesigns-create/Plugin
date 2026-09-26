@@ -1,8 +1,8 @@
 /*
- * Preview: animate at real-time speed. Laid out as simple steps:
- * one-click setups, then each setting as a single row of choices with one
- * line of explanation, speed tools, and the Preview-panel settings
- * (which scripting can't change) folded away.
+ * Preview: animate at real-time speed. One-click setups and resolution
+ * cards (each shows how blocky the picture gets), choice rows with one line
+ * of explanation, and the Preview-panel settings (which scripting can't
+ * change) as a compact Animating / Final check board.
  */
 (function (AT) {
     "use strict";
@@ -11,11 +11,12 @@
 
     // A row of mutually exclusive choices. Clicking runs the tool; the line
     // below always explains the active (or hovered) choice.
-    function optionRow(ids, isOn, label, onPick) {
+    function optionRow(ids, isOn, label, onPick, rowCls) {
         var items = ids.map(function (id) { return AT.catalog.get(id); });
         var active = items.filter(isOn)[0] || items[0];
         var line = h("p.option-why", { text: active.why });
-        var row = h("div.option-row", { role: "radiogroup" }, items.map(function (item) {
+        var row = h("div.option-row" + (rowCls ? "." + rowCls : ""), { role: "radiogroup" }, items.map(function (item) {
+            var content = label(item);
             var b = h("button.option" + (item === active ? ".on" : ""), { type: "button", title: item.summary, on: {
                 click: function () {
                     AT.run(item, null, b).then(function (res) {
@@ -29,22 +30,109 @@
                 },
                 mouseenter: function () { line.textContent = item.why; },
                 mouseleave: function () { line.textContent = active.why; }
-            } }, [h("span", { text: label(item) }), item.tag ? h("sup.opt-tag", { text: item.tag }) : null]);
+            } }, typeof content === "string" ? [h("span", { text: content }), item.tag ? h("sup.opt-tag", { text: item.tag }) : null] : content);
             return b;
         }));
         return h("div", [row, line]);
     }
 
+    // A lit ball drawn on a 36x36 grid in blocks: roughly how the viewer
+    // looks at Full (1), Half (3), Third (4) and Quarter (6); exaggerated
+    // a little so the difference reads at icon size.
+    var SVGNS = "http://www.w3.org/2000/svg";
+    var BLOCK = { 1: 1, 2: 3, 3: 4, 4: 6 };
+    function pixelArt(f, cls) {
+        var b = BLOCK[f], R = 15;
+        var svg = document.createElementNS(SVGNS, "svg");
+        svg.setAttribute("viewBox", "0 0 36 36");
+        svg.setAttribute("class", "res-art" + (cls ? " " + cls : ""));
+        svg.setAttribute("aria-hidden", "true");
+        for (var y = 0; y < 36; y += b) {
+            for (var x = 0; x < 36; x += b) {
+                var cx = x + b / 2 - 18, cy = y + b / 2 - 18;
+                if (Math.sqrt(cx * cx + cy * cy) > R) continue;
+                // Light from the top-left.
+                var lx = cx + 6, ly = cy + 6, l = Math.sqrt(lx * lx + ly * ly) / R;
+                var r = document.createElementNS(SVGNS, "rect");
+                r.setAttribute("x", x); r.setAttribute("y", y);
+                r.setAttribute("width", b); r.setAttribute("height", b);
+                r.setAttribute("class", l < 0.35 ? "px-hi" : l < 0.8 ? "px-mid" : "px-lo");
+                svg.appendChild(r);
+            }
+        }
+        return svg;
+    }
+
+    var RES_CARD = {
+        auto: { name: "Auto", note: "follows zoom" },
+        1: { name: "Full", note: "every pixel" },
+        2: { name: "Half", note: "\u00bc the pixels" },
+        3: { name: "Third", note: "1/9 the pixels" },
+        4: { name: "Quarter", note: "1/16 the pixels" }
+    };
+    function resCard(item) {
+        var key = item.payload.auto ? "auto" : item.payload.factor;
+        var art = key === "auto"
+            ? h("span.res-stage.res-auto", [pixelArt(4, "a4"), pixelArt(3, "a3"), pixelArt(2, "a2"), pixelArt(1, "a1"), h("span.res-zoom", AT.icon("search"))])
+            : h("span.res-stage", pixelArt(key));
+        return [art, h("span.res-name", { text: RES_CARD[key].name }), h("span.res-note", { text: RES_CARD[key].note })];
+    }
+
     // Preview panel settings: [setting, animating, final check, what it does].
     var PANEL = [
-        ["Frame Rate", "Auto", "Auto", "Auto plays at the comp's rate. A lower rate plays sooner but looks choppy."],
-        ["Skip", "1", "0", "Frames skipped between rendered ones. 1 = every other frame: twice as fast, choppier."],
-        ["Resolution", "Auto", "Full", "The preview's own resolution. Auto follows the viewer."],
-        ["Cache Before Playback", "Off", "On", "On renders the range first, then plays in true real time."],
-        ["Range", "Work Area + Current Time", "Work Area", "What plays. Keep the work area short (B and N set it)."],
-        ["Play From", "Current Time", "Start of Range", "Where playback starts."],
-        ["Full Screen", "Off", "Optional", "Plays the comp alone on screen, like a client would see it."]
+        ["Frame Rate", "Auto", "Auto", "Frame Rate: Auto plays at the comp's rate. A lower rate plays sooner but looks choppy."],
+        ["Skip", "1", "0", "Skip: frames skipped between rendered ones. 1 = every other frame: twice as fast, choppier."],
+        ["Resolution", "Auto", "Full", "Resolution: the preview's own. Auto follows the viewer."],
+        ["Cache", "Off", "On", "Cache Before Playback: On renders the range first, then plays in true real time."],
+        ["Range", "Work Area + Time", "Work Area", "Range: what plays. Work Area Extended by Current Time while animating. Keep the work area short (B and N set it)."],
+        ["Play From", "Current Time", "Range Start", "Play From: where playback starts."]
     ];
+
+    // Recommended Preview-panel values as a compact board: flip between
+    // Animating and Final check; tiles that change get a dot; tap a tile
+    // (or hover) to read what it does.
+    function panelBoard() {
+        var mode = 1, picked = 1; // 1 = animating, 2 = final check; picked = Skip
+        var why = h("p.option-why.pp-why");
+        var grid = h("div.pp-grid");
+        var tiles = PANEL.map(function (r, i) {
+            var val = h("span.pp-val");
+            var t = h("button.pp-tile" + (r[1] !== r[2] ? ".changes" : ""), { type: "button", "aria-label": r[0], on: {
+                click: function () { picked = i; paint(); },
+                mouseenter: function () { why.textContent = r[3]; },
+                mouseleave: function () { why.textContent = PANEL[picked][3]; }
+            } }, [h("span.pp-name", { text: r[0] }), val]);
+            t.val = val;
+            grid.appendChild(t);
+            return t;
+        });
+        function paint() {
+            tiles.forEach(function (t, i) {
+                var v = PANEL[i][mode];
+                if (t.val.textContent !== v) {
+                    t.val.textContent = v;
+                    t.val.classList.remove("flip");
+                    void t.val.offsetWidth; // restart the animation
+                    t.val.classList.add("flip");
+                }
+                t.classList.toggle("on", i === picked);
+            });
+            why.textContent = PANEL[picked][3];
+        }
+        var changes = PANEL.filter(function (r) { return r[1] !== r[2]; }).length;
+        var seg = AT.ui.segmented([{ value: 1, label: "Animating", icon: "bolt" }, { value: 2, label: "Final check", icon: "check" }], mode,
+            function (v) { mode = v; paint(); }, { cls: "pp-seg", label: "Preview panel values for" });
+        paint();
+        return h("div", [
+            seg,
+            grid,
+            why,
+            h("div.pp-foot", [
+                h("span.pp-legend", [h("span.pp-dot"), h("span", { text: changes + " settings change for the final check" })]),
+                h("span.pp-keys", [AT.ui.keycaps("Space"), h("span", { text: "play" }), AT.ui.keycaps("Numpad 0"), h("span", { text: "cache + play" })])
+            ])
+        ]);
+    }
 
     function setupCard(id, cls) {
         var item = AT.catalog.get(id);
@@ -70,8 +158,9 @@
                 h("div.sub-label", { text: "Resolution (Down Sample Factor)" }),
                 optionRow(["preview.res.auto", "preview.res.1", "preview.res.2", "preview.res.3", "preview.res.4"],
                     function (it) { return it.payload.auto ? auto : !auto && it.payload.factor === (st.resolution || 1); },
-                    function (it) { return it.title.replace(" Resolution", ""); },
-                    function (it) { auto = !!it.payload.auto; AT.store.update("settings", function (x) { x.previewResAuto = auto; }); }),
+                    resCard,
+                    function (it) { auto = !!it.payload.auto; AT.store.update("settings", function (x) { x.previewResAuto = auto; }); },
+                    "res-cards"),
                 h("details.more", [h("summary", { text: "Custom and shortcuts" }), h("p", { text: "Custom sets any factor, e.g. every 6th pixel for heavy comps (Ctrl/Cmd+Alt+J). Shortcuts: Ctrl/Cmd+J Full, Ctrl/Cmd+Shift+J Half, Ctrl/Cmd+Alt+Shift+J Quarter. After Effects' own live Auto is in the viewer's resolution menu." })])
             ])));
 
@@ -85,17 +174,7 @@
                     function (it) { return it.payload.bits === (st.bpc || 8); },
                     function (it) { return it.title; })));
 
-            body.appendChild(AT.ui.section("Preview panel", { icon: "gauge", hint: "Window > Preview · Ctrl/Cmd+3" }, h("div", [
-                h("p.hint", { text: "Set these by hand in the Preview panel (scripts can't change them). Recommended values:" }),
-                h("table.pp-table", [
-                    h("thead", h("tr", [h("th", { text: "Setting" }), h("th", { text: "Animating" }), h("th", { text: "Final check" })])),
-                    h("tbody", PANEL.map(function (r) {
-                        return h("tr", [h("td", [h("strong", { text: r[0] }), h("span", { text: r[3] })]), h("td", { text: r[1] }), h("td", { text: r[2] })]);
-                    }))
-                ]),
-                h("div.sc-row.sc-compact", [h("span.sc-title", { text: "Play / stop" }), AT.ui.keycaps("Space")]),
-                h("div.sc-row.sc-compact", [h("span.sc-title", { text: "Cache, then play in real time" }), AT.ui.keycaps("Numpad 0")])
-            ])));
+            body.appendChild(AT.ui.section("Preview panel", { icon: "gauge", hint: "Ctrl/Cmd+3 \u00b7 set by hand" }, panelBoard()));
 
             body.appendChild(AT.ui.section("Speed tools", { icon: "clock" },
                 h("div.tool-grid", ["preview.draft3d", "preview.workArea.90", "preview.workArea.180", "preview.purge"].map(function (id) { return AT.ui.toolButton(id); }))));
