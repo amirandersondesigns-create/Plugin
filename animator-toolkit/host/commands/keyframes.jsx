@@ -57,6 +57,7 @@ AT.register("keyframes.add", {
 });
 
 AT.register("keyframes.delete", {
+    validate: function (p, ctx) { AT.requireSelectedKeyframes(ctx.comp, 2); },
     label: "Delete Keyframes",
     mutating: true,
     needs: "comp",
@@ -93,6 +94,7 @@ AT.snapshotKey = function (prop, k) {
 // Mirrors the selected keyframes in time. In/out sides swap, so an ease
 // that used to slow into a key now slows out of its mirror.
 AT.register("keyframes.reverse", {
+    validate: function (p, ctx) { AT.requireSelectedKeyframes(ctx.comp, 2); },
     label: "Reverse Keyframes",
     mutating: true,
     needs: "comp",
@@ -132,22 +134,29 @@ AT.register("keyframes.reverse", {
 
 // Staggers selected layers in selection order by N frames - the classic
 // "cascade" for lists, lower-third elements and bullet points.
+// Staggers selected layers in selection order by an amount in frames or
+// seconds - the classic "cascade" for lists, lower thirds and bullets.
 AT.register("layers.stagger", {
+    validate: function (p, ctx) { if (ctx.layers.length < 2) AT.fail("too-few-layers", "Select two or more layers to stagger."); },
     label: "Stagger Layers",
     mutating: true,
     needs: "layers",
     run: function (payload, ctx) {
         if (ctx.layers.length < 2) AT.fail("too-few-layers", "Select two or more layers to stagger.");
-        var step = AT.frames(ctx.comp, payload.frames || 3);
+        var unit = payload.unit === "seconds" ? "seconds" : "frames";
+        var amount = typeof payload.amount === "number" ? payload.amount : (payload.frames || 3);
+        if (!(amount >= 0)) AT.fail("bad-payload", "Stagger amount must be zero or more.");
+        var step = unit === "seconds" ? amount : AT.frames(ctx.comp, amount);
         var base = ctx.layers[0].inPoint;
         for (var i = 0; i < ctx.layers.length; i++) {
             var layer = ctx.layers[i];
             // Shift startTime so keyframes move with the layer.
             layer.startTime += (base + i * step) - layer.inPoint;
         }
+        var label = unit === "seconds" ? amount + (amount === 1 ? " second" : " seconds") : AT.plural(amount, "frame");
         return {
-            result: { layers: ctx.layers.length },
-            feedback: AT.plural(ctx.layers.length, "layer") + " staggered by " + AT.plural(payload.frames || 3, "frame")
+            result: { layers: ctx.layers.length, step: step },
+            feedback: AT.plural(ctx.layers.length, "layer") + " staggered by " + label
         };
     }
 });

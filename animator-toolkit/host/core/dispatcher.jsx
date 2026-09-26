@@ -103,6 +103,10 @@ AT.dispatch = function (requestText) {
     var undoOpen = false;
     try {
         var ctx = AT.buildContext(spec.needs || "comp");
+        // Preconditions (e.g. "select keyframes", "needs a camera") are
+        // checked BEFORE the undo group opens, so a refused click never
+        // leaves an empty "Undo ..." entry in After Effects' Edit menu.
+        if (spec.validate) spec.validate(payload, ctx);
         if (spec.mutating) {
             app.beginUndoGroup("Animator Toolkit: " + (spec.label || request.command));
             undoOpen = true;

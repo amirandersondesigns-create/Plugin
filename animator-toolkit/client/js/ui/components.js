@@ -165,7 +165,10 @@
         }
         el("rect", { x: pad, y: pad, width: W - 2 * pad, height: H - 2 * pad, class: "curve-frame" });
         var d;
-        if (!bez) {
+        if (opts.points) {
+            // Physics shapes: [[time, value], ...] where value may overshoot 1.
+            d = opts.points.map(function (p, i) { return (i ? "L" : "M") + gx(p[0]) + " " + gy(p[1] / 1.3); }).join(" ");
+        } else if (!bez) {
             d = "M" + gx(0) + " " + gy(0) + " H" + gx(1) + " V" + gy(1);
         } else {
             d = "M" + gx(0) + " " + gy(0) + " C" + gx(bez[0]) + " " + gy(bez[1]) + " " + gx(bez[2]) + " " + gy(bez[3]) + " " + gx(1) + " " + gy(1);
@@ -343,10 +346,16 @@
     function keycaps(keys) {
         var mac = navigator.platform.indexOf("Mac") === 0;
         var map = mac ? { Mod: "⌘", Alt: "⌥", Shift: "⇧" } : { Mod: "Ctrl", Alt: "Alt", Shift: "Shift" };
-        return h("span.keys", keys.split(/\s*\+\s*/).map(function (k, i) {
-            var parts = [];
-            if (i) parts.push(h("span.key-plus", { text: "+" }));
-            parts.push(h("kbd", { text: map[k] || k }));
+        // "Mod + A / Mod + Shift + A" = two alternatives; menu paths stay text.
+        if (/ > |\b(box|button|menu|name|switch)\b/i.test(keys)) {
+            return h("span.keys", h("span.key-menu", { text: keys }));
+        }
+        return h("span.keys", keys.split(/\s+\/\s+/).map(function (alt, a) {
+            var parts = a ? [h("span.key-plus", { text: "or" })] : [];
+            alt.split(/\s*\+\s*/).forEach(function (k, i) {
+                if (i) parts.push(h("span.key-plus", { text: "+" }));
+                parts.push(h("kbd", { text: map[k] || k }));
+            });
             return parts;
         }));
     }

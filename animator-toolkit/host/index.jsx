@@ -27,6 +27,9 @@ $["com.cnn.animatortoolkit"] = $["com.cnn.animatortoolkit"] || {};
         "commands/keyframes.jsx",
         "commands/layers.jsx",
         "commands/camera.jsx",
+        "commands/mask.jsx",
+        "commands/threed.jsx",
+        "commands/preview.jsx",
         "commands/still.jsx",
         "commands/context.jsx"
     ];

@@ -66,3 +66,51 @@
 @keyframes pv-spin { from { transform: rotate(-90deg) scale(0); } }
 @keyframes pv-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes pv-tracking { from { letter-spacing: 9px; opacity: 0; } }
+
+/* ---- 0.2 presets ---- */
+.pv.play .pv-zoom { animation-name: pv-zoom; }
+.pv.play .pv-soft-scale { animation-name: pv-soft-scale; }
+.pv.play .pv-grow-x { animation-name: pv-grow-x; transform-origin: left center; }
+.pv.play .pv-grow-y { animation-name: pv-grow-y; transform-origin: center bottom; }
+.pv.play .pv-slide-left-fade { animation-name: pv-slide-left-fade; }
+.pv.play .pv-elastic { animation-name: pv-elastic; animation-duration: 1100ms; animation-timing-function: ease-in-out; }
+.pv.play .pv-swing { animation-name: pv-swing; animation-duration: 1000ms; transform-origin: center top; animation-timing-function: ease-in-out; }
+.pv.play .pv-whip { animation-name: pv-whip; animation-duration: 380ms; animation-timing-function: cubic-bezier(0.1, 0.9, 0.2, 1); }
+.pv.play .pv-anticipate { animation-name: pv-anticipate; animation-duration: 800ms; animation-timing-function: ease-in-out; }
+.pv.play .pv-stretch { animation-name: pv-stretch; animation-duration: 1000ms; transform-origin: left center; animation-timing-function: ease-in-out; }
+.pv.play .pv-wipe-down { animation-name: pv-wipe-down; }
+.pv-k-flip, .pv-k-tumble, .pv-k-door, .pv-k-depth { perspective: 120px; }
+.pv.play .pv-flip { animation-name: pv-flip; }
+.pv.play .pv-tumble { animation-name: pv-tumble; }
+.pv.play .pv-door { animation-name: pv-door; transform-origin: left center; animation-duration: 900ms; }
+.pv.play .pv-depth { animation-name: pv-depth; }
+.pv.play .pv-mask-right { animation-name: pv-wipe; }
+.pv.play .pv-mask-left { animation-name: pv-mask-left; }
+.pv.play .pv-mask-up { animation-name: pv-mask-up; }
+.pv.play .pv-mask-down { animation-name: pv-wipe-down; }
+.pv.play .pv-iris { animation-name: pv-iris; }
+.pv.play .pv-split-h { animation-name: pv-split-h; }
+.pv.play .pv-split-v { animation-name: pv-split-v; }
+.pv-k-mask-right .pv-obj, .pv-k-mask-left .pv-obj, .pv-k-mask-up .pv-obj, .pv-k-mask-down .pv-obj,
+.pv-k-iris .pv-obj, .pv-k-split-h .pv-obj, .pv-k-split-v .pv-obj { width: 34px; height: 20px; background: linear-gradient(135deg, #c3c7ff, #6f7ae8); }
+
+@keyframes pv-zoom { from { transform: scale(1.8); opacity: 0; } }
+@keyframes pv-soft-scale { from { transform: scale(0.8); opacity: 0; } }
+@keyframes pv-grow-x { from { transform: scaleX(0); } }
+@keyframes pv-grow-y { from { transform: scaleY(0); } }
+@keyframes pv-slide-left-fade { from { transform: translateX(16px); opacity: 0; } }
+@keyframes pv-elastic { 0% { transform: scale(0); } 30% { transform: scale(1.35); } 45% { transform: scale(0.82); } 60% { transform: scale(1.12); } 73% { transform: scale(0.95); } 86% { transform: scale(1.03); } 100% { transform: scale(1); } }
+@keyframes pv-swing { 0% { transform: rotate(-35deg); opacity: 0; } 30% { transform: rotate(14deg); opacity: 1; } 50% { transform: rotate(-7deg); } 70% { transform: rotate(3deg); } 100% { transform: rotate(0); } }
+@keyframes pv-whip { from { transform: translateX(46px); filter: blur(4px); } }
+@keyframes pv-anticipate { 0% { transform: translateY(18px); } 25% { transform: translateY(22px); } 75% { transform: translateY(-2px); } 100% { transform: translateY(0); } }
+@keyframes pv-stretch { 0% { transform: scaleX(0); } 30% { transform: scaleX(1.3); } 45% { transform: scaleX(0.85); } 60% { transform: scaleX(1.1); } 80% { transform: scaleX(0.97); } 100% { transform: scaleX(1); } }
+@keyframes pv-wipe-down { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes pv-flip { from { transform: rotateY(-90deg); opacity: 0; } }
+@keyframes pv-tumble { from { transform: rotateX(90deg); opacity: 0; } }
+@keyframes pv-door { from { transform: rotateY(-110deg); } }
+@keyframes pv-depth { from { transform: translateZ(-300px); opacity: 0; } }
+@keyframes pv-mask-left { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+@keyframes pv-mask-up { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes pv-iris { from { clip-path: circle(0% at 50% 50%); } to { clip-path: circle(75% at 50% 50%); } }
+@keyframes pv-split-h { from { clip-path: inset(0 50% 0 50%); } to { clip-path: inset(0 0 0 0); } }
+@keyframes pv-split-v { from { clip-path: inset(50% 0 50% 0); } to { clip-path: inset(0 0 0 0); } }

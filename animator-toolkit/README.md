@@ -14,7 +14,7 @@ It also includes micro-lessons, explained shortcuts and guided workflows.
 
 1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
    or Anastasiy's Extension Manager.
-2. Drag `AnimatorToolkit-0.1.4.zxp` onto it.
+2. Drag `AnimatorToolkit-0.2.0.zxp` onto it.
 3. Restart After Effects and open **Window › Extensions › Animator Toolkit**.
 
 The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
@@ -25,7 +25,7 @@ install as updates.
 
 **Option B: zip + install script (unsigned, debug mode)**
 
-1. Unzip `animator-toolkit-0.1.4.zip`.
+1. Unzip `animator-toolkit-0.2.0.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
    These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
    then copy the extension to your user CEP extensions folder.
@@ -54,7 +54,7 @@ reply is logged in its console.
 
 First check `~/Library/Logs/CSXS/CEP12-AEFT.log` for `Unsupported Manifest version`.
 That error means the manifest can't be parsed. Up to 0.1.0 the manifest
-declared a default XML namespace, which After Effects 2026 rejects. 0.1.4
+declared a default XML namespace, which After Effects 2026 rejects. 0.2.0
 matches Adobe's schema, and `tests/manifest.test.js` guards against a repeat.
 
 1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
@@ -76,14 +76,17 @@ and flows; it doesn't touch After Effects.
 
 | Tab | What it does |
 |---|---|
-| **Home** | Suggestions based on the current selection (text, camera, keyframes, multiple layers), quick-action icons, favorites, recent tools and the 5 essential skills |
-| **Animate** | Layout dock: a 3×3 anchor grid (the layer doesn't move) plus Align/Distribute to comp. Also: keyframe strip (P S R T A All, delete, reverse, stagger), the motion library (Essentials plus More effects: Pop, **Bounce**, Drop, Spin, Wipe) and layer tools (Null + Parent, Pre-compose, Motion Blur, Marker) |
-| **Easing** | Live curve with a moving-ball comparison against linear. "Read selected keys" draws the curve of your real keyframes. Also: Easy Ease / In / Out / Linear / Hold, strength chips and **In/Out influence sliders** |
-| **Text** | New centered text, plus text motion: layer presets and real Text Animator presets (Tracking, Type On, Word/Line Reveal, Soft Letters, **Bounce**) |
-| **Camera** | Create camera (lens, one-node, make selected 3D), push/pull/truck/pedestal moves with distance, duration and feel, and saved camera positions |
-| **Capture** | Grab Still (PNG of the current frame), with folder choice and optional import or add-to-comp |
-| **Favorites** | Cards with live previews, curves or icons. Filter by group, rename, reorder, remove. Saved between sessions |
-| **Learn** | 16 micro-lessons, 43 explained shortcuts, 5 guided workflows. **About this panel** holds Panel (mode, density), Version and Replay the welcome |
+| **Home** | Suggestions for the current selection, quick actions, favorites, recent tools, and the 5 essential skills |
+| **Animate** | Anchor grid and Align/Distribute, keyframe strip, **Stagger** (frames or seconds), motion library (13 essentials, 11 more effects, each In and Out), and layer tools including **Continuous Rasterize** |
+| **Easing** | Live curve and moving ball. Easy Ease/In/Out/Linear/Hold, strength chips, 8 **curve presets** (Sine to Expo, Smooth Stop/Start, Snap, Glide), **physics** (Overshoot, Bounce, Elastic keyframes between selected keys), and In/Out sliders |
+| **Text** | New text, plus 11 essentials and 13 more effects (per-letter rise/pop/spin/random, word blur, type on and more) |
+| **Mask** | Real animated mask reveals (wipes, soft wipe, iris, split), mask tools (rectangle, ellipse, invert, feather), and the "can't see my mask path" fix |
+| **3D** | Make 3D/2D, spread in depth, 3D motion (flip, tumble, door swing, fly from depth, card flip), extruded 3D text with a renderer switch, and quick camera moves |
+| **Camera** | Create, moves, **lens & focus** (DOF, aperture, focus on layer, lens zoom), **rigs** (orbit null, wiggle shake), and saved positions |
+| **Capture** | Grab Still |
+| **Preview** | Resolution/Down Sample Factor, Fast Previews, 8/16/32 bpc, Draft 3D, work area, purge cache, and recommended Preview-panel settings. **Audio** sub-tab: level guide for TV, streaming and ads, level/fade buttons |
+| **Favorites** | Cards with previews, groups, rename, reorder |
+| **Learn** | Lessons, including "Stuck? Quick fixes" (invisible mask paths, empty viewer, finding anything, guides, getting around) and production topics (preview speed, rasterize, bpc, audio, 3D). Also 79 shortcuts in 9 categories (Preview & Render, View & Guides, Getting Around and Find & Fix are new) and guides |
 
 Search (`/`) covers every tool, preset, lesson, shortcut, guide and favorite
 (including favorites you've renamed). Beginner mode shows explanations.
@@ -151,8 +154,8 @@ If it needs a new keyframe shape or kind, add it to `AT.SHAPES` or
 ## Tests
 
 ```
-npm test          # 43 unit/contract tests (Node, no dependencies)
-npm run test:e2e  # 26 end-to-end checks (needs Playwright + Chromium);
+npm test          # 54 unit/contract tests (Node, no dependencies)
+npm run test:e2e  # 40 end-to-end checks (needs Playwright + Chromium);
                   # E2E_FRIENDLY=1 for ideal conditions, E2E_SRC=<dir> for another build
 ```
 

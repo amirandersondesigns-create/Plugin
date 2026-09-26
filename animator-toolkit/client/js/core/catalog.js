@@ -41,8 +41,16 @@
             return { folder: s.stillFolder || "", importToProject: !!s.stillImport, addToComp: !!s.stillAddToComp };
         }
         if (item.command === "layers.stagger") {
-            return { frames: s.staggerFrames || 3 };
+            return { amount: typeof s.staggerAmount === "number" ? s.staggerAmount : (s.staggerFrames || 3), unit: s.staggerUnit || "frames" };
         }
+        if (item.command === "camera.orbit") return { degrees: s.orbitDegrees || 30, durationFrames: s.cameraFrames || 48 };
+        if (item.command === "camera.shake" && !(item.payload && item.payload.remove)) return { amount: s.shakeAmount || 12, frequency: s.shakeFrequency || 2 };
+        if (item.command === "camera.lensZoom") return { durationFrames: s.cameraFrames || 48 };
+        if (item.command === "camera.dof") return { aperture: s.cameraAperture || 60 };
+        if (item.command === "threed.depthSpread") return { spacing: s.depthSpacing || 300 };
+        if (item.command === "text.extrude") return { depth: s.extrudeDepth || 40 };
+        if (item.command === "mask.feather") return { amount: s.maskFeather || 20 };
+        if (item.command === "audio.fade") return { durationFrames: s.audioFadeFrames || 15 };
         return {};
     }
 

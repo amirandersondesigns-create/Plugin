@@ -27,6 +27,26 @@ class MarkerValue {
     }
 }
 
+class Shape {
+    constructor() { this.vertices = []; this.inTangents = []; this.outTangents = []; this.closed = true; }
+}
+const MaskMode = { NONE: 6812, ADD: 6813, SUBTRACT: 6814 };
+const FastPreviewType = { FP_OFF: 1, FP_ADAPTIVE_RESOLUTION: 2, FP_DRAFT: 3, FP_FAST_DRAFT: 4, FP_WIREFRAME: 5 };
+const PurgeTarget = { ALL_CACHES: 1 };
+
+function maskFactory(mn, probe) {
+    if (mn !== "ADBE Mask Atom") return null;
+    if (probe) return true;
+    const m = new PropertyGroup("Mask 1", mn);
+    m.maskMode = MaskMode.ADD;
+    m.inverted = false;
+    m.add(new Property("Mask Path", "ADBE Mask Shape", { value: new Shape() }));
+    m.add(new Property("Mask Feather", "ADBE Mask Feather", { value: [0, 0], dims: 2 }));
+    m.add(new Property("Mask Opacity", "ADBE Mask Opacity", { value: 100 }));
+    m.add(new Property("Mask Expansion", "ADBE Mask Offset", { value: 0 }));
+    return m;
+}
+
 const EPS = 1e-6;
 const clone = (v) => (Array.isArray(v) ? v.slice() : v);
 
@@ -193,6 +213,8 @@ function animatorPropFactory(mn, probe) {
         "ADBE Text Opacity": ["Opacity", 100, 1],
         "ADBE Text Position 3D": ["Position", [0, 0, 0], 3],
         "ADBE Text Tracking Amount": ["Tracking Amount", 0, 1],
+        "ADBE Text Scale 3D": ["Scale", [100, 100, 100], 3],
+        "ADBE Text Rotation": ["Rotation", 0, 1],
         "ADBE Text Blur": ["Blur", [0, 0], 2]
     };
     const d = defs[mn];
@@ -210,6 +232,7 @@ function selectorFactory(mn, probe) {
     g.add(new Property("Offset", "ADBE Text Percent Offset", { value: 0 }));
     const adv = g.add(new PropertyGroup("Advanced", "ADBE Text Range Advanced"));
     adv.add(new Property("Based On", "ADBE Text Range Type2", { value: 1, canVaryOverTime: false }));
+    adv.add(new Property("Randomize Order", "ADBE Text Randomize Order", { value: 0, canVaryOverTime: false }));
     return g;
 }
 
@@ -229,9 +252,10 @@ class Layer extends PropertyGroup {
         super(name, "ADBE AV Layer");
         opts = opts || {};
         this.comp = comp;
-        this.inPoint = opts.inPoint || 0;
-        this.outPoint = opts.outPoint || comp.duration;
+        // Like After Effects: In/Out points move with startTime.
         this.startTime = 0;
+        this._in = opts.inPoint || 0;
+        this._out = opts.outPoint || comp.duration;
         this.locked = false;
         this.selected = false;
         this.parent = null;
@@ -257,7 +281,22 @@ class Layer extends PropertyGroup {
         t.add(new Property("Opacity", "ADBE Opacity", { value: 100 }));
         this.add(new PropertyGroup("Effects", "ADBE Effect Parade", (mn, probe) => (probe ? !!effect(mn) : effect(mn))));
         this.add(new Property("Marker", "ADBE Marker", { value: null }));
+        this.add(new PropertyGroup("Masks", "ADBE Mask Parade", maskFactory));
+        this.collapseTransformation = false;
+        this.hasAudio = !!opts.audio;
+        if (opts.audio) {
+            const a = this.add(new PropertyGroup("Audio", "ADBE Audio Group"));
+            a.add(new Property("Audio Levels", "ADBE Audio Levels", { value: [0, 0], dims: 2 }));
+        }
+        if (opts.extrudable) {
+            const g = this.add(new PropertyGroup("Geometry Options", "ADBE Extrsn Options Group"));
+            g.add(new Property("Extrusion Depth", "ADBE Extrsn Depth", { value: 0 }));
+        }
     }
+    get inPoint() { return this.startTime + this._in; }
+    set inPoint(v) { this._in = v - this.startTime; }
+    get outPoint() { return this.startTime + this._out; }
+    set outPoint(v) { this._out = v - this.startTime; }
     get threeDLayer() { return this._threeD; }
     set threeDLayer(v) {
         this._threeD = v;
@@ -293,6 +332,9 @@ class CameraLayer extends Layer {
         this.threeDLayer = true;
         const o = this.add(new PropertyGroup("Camera Options", "ADBE Camera Options Group"));
         o.add(new Property("Zoom", "ADBE Camera Zoom", { value: 1000 }));
+        o.add(new Property("Depth of Field", "ADBE Camera Depth of Field", { value: 0 }));
+        o.add(new Property("Focus Distance", "ADBE Camera Focus Distance", { value: 1000 }));
+        o.add(new Property("Aperture", "ADBE Camera Aperture", { value: 25 }));
     }
 }
 class LightLayer extends Layer {}
@@ -311,6 +353,12 @@ class CompItem {
         this.layerList = [];
         this.selectedProperties = [];
         this.markerProperty = new Property("Marker", "ADBE Marker", { value: null });
+        this.resolutionFactor = [1, 1];
+        this.draft3d = false;
+        this.workAreaStart = 0;
+        this.workAreaDuration = this.duration;
+        this.renderers = opts.renderers || ["ADBE Advanced 3d", "ADBE Ernst"];
+        this.renderer = this.renderers[0];
         const comp = this;
         this.layers = {
             addNull() { const l = new AVLayer(comp, "Null 1"); l.nullLayer = true; comp.layerList.unshift(l); return l; },
@@ -343,12 +391,15 @@ function createHost(opts) {
     const undo = { open: 0, groups: [] };
     const app = {
         version: "26.0 (mock)",
-        project: { activeItem: null, importFile: (o) => ({ name: "still" }) },
+        project: { activeItem: null, bitsPerChannel: 8, importFile: (o) => ({ name: "still" }) },
+        activeViewer: { views: [{ options: { fastPreview: FastPreviewType.FP_OFF } }] },
+        purged: 0,
+        purge() { this.purged++; },
         beginUndoGroup(name) { undo.open++; undo.groups.push(name); },
         endUndoGroup() { undo.open--; }
     };
     const context = {
-        app, KeyframeEase, KeyframeInterpolationType, AutoOrientType, MarkerValue,
+        app, KeyframeEase, KeyframeInterpolationType, AutoOrientType, MarkerValue, Shape, MaskMode, FastPreviewType, PurgeTarget,
         CompItem, AVLayer, TextLayer, ShapeLayer, CameraLayer, LightLayer, Property, PropertyGroup,
         SolidSource: function () {},
         ParagraphJustification: { CENTER_JUSTIFY: 7415 },
@@ -412,4 +463,4 @@ function createHost(opts) {
     return { context, app, undo, call, AT: context.AT };
 }
 
-module.exports = { createHost, CompItem, AVLayer, TextLayer, ShapeLayer, CameraLayer, KeyframeInterpolationType };
+module.exports = { createHost, CompItem, AVLayer, TextLayer, ShapeLayer, CameraLayer, KeyframeInterpolationType, Shape };

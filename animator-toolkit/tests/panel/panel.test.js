@@ -60,7 +60,7 @@ test("every panel tool maps to a registered host command", () => {
 
 test("every preset (in and out) applies cleanly on the host, stacked on one layer", () => {
     const w = loadPanel(CONTENT);
-    for (const group of ["graphic", "text"]) {
+    for (const group of ["graphic", "text", "threed", "mask"]) {
         const h = createHost();
         const comp = new CompItem();
         h.app.project.activeItem = comp;
@@ -75,7 +75,8 @@ test("every preset (in and out) applies cleanly on the host, stacked on one laye
         // After stacking every entrance and exit, the layer still rests at its
         // original transform in the middle of its life.
         const T = (k) => layer.property("ADBE Transform Group").property(k).valueAtTime(4);
-        assert.deepEqual(plain(T("ADBE Position").map(Math.round)), [960, 540]);
+        // 3D presets make the layer 3D (Position gains z = 0); compare X/Y.
+        assert.deepEqual(plain(T("ADBE Position").slice(0, 2).map(Math.round)), [960, 540]);
         assert.deepEqual(plain(T("ADBE Scale").map(Math.round)), [100, 100, 100]);
         assert.equal(Math.round(T("ADBE Opacity")), 100);
         assert.equal(Math.round(T("ADBE Rotate Z")), 0);
@@ -95,7 +96,8 @@ test("search finds tools, lessons and shortcuts; stems ease/easing", () => {
     assert.ok(ids("easing").includes("ease.in"));
     const anchor = ids("anchor");
     assert.ok(anchor.includes("anchor.center") && anchor.includes("lesson.anchor") && anchor.includes("sc.anchor"));
-    assert.equal(ids("bounce")[0].startsWith("motion.bounce"), true);
+    assert.match(ids("bounce")[0], /^(motion\.bounce|ease\.physics\.bounce)/);
+    assert.ok(ids("bounce").includes("motion.bounce.in"));
     assert.ok(ids("lower third").includes("workflow.lower-third"));
     assert.deepEqual(plain(ids("zzzz")), []);
 });

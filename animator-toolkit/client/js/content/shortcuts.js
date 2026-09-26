@@ -53,7 +53,47 @@
         ["sc.split", "timeline", "Mod + Shift + D", "Split layer", "Splits the layer at the playhead into two."],
         ["sc.work-area", "timeline", "B / N", "Work area", "Sets the start and end of the preview range."],
         ["sc.zoom-time", "timeline", "= / -", "Zoom timeline", "Zooms the timeline in and out in time."],
-        ["sc.new-comp", "timeline", "Mod + N", "New composition", "Creates a new composition."]
+        ["sc.new-comp", "timeline", "Mod + N", "New composition", "Creates a new composition."],
+        // Preview & render
+        ["sc.preview", "preview", "Space", "Preview (play)", "Plays from the playhead. The green bar in the timeline shows frames already cached; those play in real time."],
+        ["sc.preview-num0", "preview", "Numpad 0", "Preview with cache settings", "Uses the Numpad 0 settings in the Preview panel (e.g. Cache Before Playback)."],
+        ["sc.preview-alt", "preview", "Shift + Numpad 0", "Preview (alternate settings)", "A second set of Preview panel settings, e.g. every other frame at half resolution."],
+        ["sc.preview-audio", "preview", "Numpad .", "Preview audio only", "Plays just the audio from the playhead: quick timing checks against voice-over."],
+        ["sc.res-full", "preview", "Mod + J", "Resolution: Full", "Sets the viewer's Resolution/Down Sample Factor to Full."],
+        ["sc.res-half", "preview", "Mod + Shift + J", "Resolution: Half", "Half resolution: previews render about 4 times faster."],
+        ["sc.res-quarter", "preview", "Mod + Alt + Shift + J", "Resolution: Quarter", "Quarter resolution: about 16 times fewer pixels."],
+        ["sc.res-custom", "preview", "Mod + Alt + J", "Resolution: Custom", "Pick any down sample factor."],
+        ["sc.caps", "preview", "Caps Lock", "Freeze viewer updates", "Stops the viewer redrawing while you make changes. A red bar reminds you it's on."],
+        ["sc.render-queue", "preview", "Mod + M", "Add to Render Queue", "Queues the comp for rendering inside After Effects."],
+        ["sc.render-ame", "preview", "Mod + Alt + M", "Add to Media Encoder", "Sends the comp to Adobe Media Encoder (keeps After Effects free while it renders)."],
+        ["sc.save-frame", "preview", "Mod + Alt + S", "Save Frame As", "Adds the current frame to the Render Queue as a still image."],
+        // View & guides
+        ["sc.layer-controls", "view", "Mod + Shift + H", "Show/hide layer controls", "Mask paths, shape paths and handles vanished? This toggles them. Also try the 'Toggle Mask and Shape Path Visibility' button under the viewer."],
+        ["sc.guides", "view", "Mod + ;", "Show/hide guides", "Drag guides out of the rulers to line things up."],
+        ["sc.rulers", "view", "Mod + R", "Show/hide rulers", "Needed to drag out guides."],
+        ["sc.snap-guides", "view", "Mod + Shift + ;", "Snap to guides", "Layers snap to guides as you drag."],
+        ["sc.lock-guides", "view", "Mod + Alt + Shift + ;", "Lock guides", "Stops guides moving by accident."],
+        ["sc.grid", "view", "Mod + '", "Show/hide grid", "A proportional grid over the viewer."],
+        ["sc.safe", "view", "'", "Title/action safe", "Shows the safe-area guides. Keep text inside the inner (title safe) box for broadcast."],
+        ["sc.transparency", "view", "Transparency grid button", "Checkerboard background", "Shows transparency as a checkerboard instead of the comp colour, so you can see what's really empty."],
+        // Getting around
+        ["sc.maximize", "navigate", "~", "Maximize panel", "Fills the window with the panel under the mouse. Press again to restore."],
+        ["sc.zoom-viewer", "navigate", ", / .", "Zoom viewer out / in", "Zooms the Composition viewer."],
+        ["sc.fit", "navigate", "Shift + /", "Fit comp in viewer", "Fits the whole comp in the viewer."],
+        ["sc.in-out", "navigate", "I / O", "Go to layer In / Out", "Jumps the playhead to the selected layer's first or last frame."],
+        ["sc.work-start", "navigate", "Shift + Home / Shift + End", "Work area start / end", "Jumps to the start or end of the work area."],
+        ["sc.scroll-layer", "navigate", "X", "Scroll to selected layer", "Scrolls the timeline so the selected layer is at the top."],
+        ["sc.flowchart", "navigate", "Tab", "Comp mini-flowchart", "Shows how comps nest; click to jump between them."],
+        ["sc.select-all", "navigate", "Mod + A / Mod + Shift + A", "Select all / deselect all", "Deselecting first avoids changing the wrong layers."],
+        ["sc.comp-settings", "navigate", "Mod + K", "Composition settings", "Size, frame rate, duration and 3D renderer."],
+        // Find & fix
+        ["sc.find", "find", "Mod + F", "Search the timeline", "Filters layers and properties by name, e.g. 'opacity' shows every Opacity."],
+        ["sc.effects-panel", "find", "Mod + 5", "Effects & Presets panel", "Type in its search field to find any effect or preset instantly."],
+        ["sc.project-panel", "find", "Mod + 0", "Project panel", "Has its own search field for footage and comps."],
+        ["sc.help-search", "find", "Help search box", "Search After Effects help", "The search box at the top right of After Effects searches Adobe's help and tutorials."],
+        ["sc.workspace", "find", "Window > Workspace > Reset", "Reset the workspace", "Panels missing or moved? Resetting puts every panel back where it belongs."],
+        ["sc.window-menu", "find", "Window menu", "Open any panel", "Every panel (Align, Character, Preview, Effect Controls...) is listed under Window."],
+        ["sc.effect-controls", "find", "F3", "Effect Controls", "Shows the effects on the selected layer."]
     ];
 
     AT.content = AT.content || {};
@@ -62,7 +102,11 @@
         { id: "keyframes", title: "Keyframes" },
         { id: "layers", title: "Layers" },
         { id: "tools", title: "Tools" },
-        { id: "timeline", title: "Timeline" }
+        { id: "timeline", title: "Timeline" },
+        { id: "preview", title: "Preview & Render" },
+        { id: "view", title: "View & Guides" },
+        { id: "navigate", title: "Getting Around" },
+        { id: "find", title: "Find & Fix" }
     ];
     AT.content.shortcuts = S.map(function (s) {
         return {

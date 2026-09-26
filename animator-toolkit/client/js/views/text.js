@@ -17,6 +17,8 @@
         var lib = h("div");
         AT.motionLibrary.render(lib, "text");
         page.appendChild(AT.ui.section("Text motion", { icon: "motion" }, lib));
+        page.appendChild(h("p.tip", [AT.icon("cube"), h("span", ["Want 3D type? Extrusion, flips and depth live in the ",
+            h("button.link", { type: "button", text: "3D tab", on: { click: function () { AT.app.show("threed"); } } }), "."])]));
     }
 
     AT.registerView({

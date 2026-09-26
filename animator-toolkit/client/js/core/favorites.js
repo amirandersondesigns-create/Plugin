@@ -24,7 +24,9 @@
     }
 
     function groupFor(item) {
-        if (item.type === "preset") return item.view === "text" ? "text" : "motion";
+        if (item.type === "preset") return item.view === "text" ? "text" : item.view === "threed" ? "camera" : "motion";
+        if (item.view === "threed") return "camera";
+        if (item.view === "mask") return "motion";
         if (item.type === "lesson" || item.type === "workflow" || item.type === "shortcut") return "learn";
         if (item.view === "easing") return "easing";
         if (item.view === "camera" || item.view === "capture") return "camera";

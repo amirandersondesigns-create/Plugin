@@ -25,7 +25,7 @@ try {
 } catch (e) {
     ({ chromium } = require(path.join(execSync("npm root -g").toString().trim(), "playwright")));
 }
-const { createHost, CompItem, TextLayer, ShapeLayer } = require("../host/mock-ae");
+const { createHost, CompItem, TextLayer, ShapeLayer, AVLayer } = require("../host/mock-ae");
 
 // E2E_SRC=<folder> runs the same checks against another build of the extension.
 const SRC = process.env.E2E_SRC || path.join(__dirname, "..", "..");
@@ -92,7 +92,7 @@ function check(name, ok, detail) {
         scripts.filter((s) => s.indexOf(".boot(") >= 0));
     if (process.env.E2E_FRIENDLY) {
         // ScriptPath already loaded the 12 modules; the panel must not load them again.
-        check("host modules loaded once at startup (no double load)", host.context.$.evalCount === 12, host.context.$.evalCount);
+        check("host modules loaded once at startup (no double load)", host.context.$.evalCount === host.ns.MODULES.length, [host.context.$.evalCount, host.ns.MODULES.length]);
     }
     if (!process.env.E2E_FRIENDLY) check("other tools' globals untouched", host.context.AT === "some other tool" && host.context.ATJSON === null);
     check("no persistent error banner once connected", !(await page.$("#host-banner")));
@@ -103,8 +103,9 @@ function check(name, ok, detail) {
     await page.click("text=New to After Effects");
     await page.click("text=Start working");
 
-    await page.waitForFunction(() => /Logo Bug/.test(document.querySelector("#context").textContent), null, { timeout: 4000 }).catch(() => {});
-    check("context chip shows the selected layer", /Logo Bug/.test(await page.textContent("#context")), await page.textContent("#context"));
+    await page.waitForFunction(() => /Layer selected/.test((document.querySelector(".suggest-title") || {}).textContent || ""), null, { timeout: 5000 }).catch(() => {});
+    check("Home reflects the live selection", /Layer selected/.test(await page.textContent(".suggest-title")), await page.textContent(".suggest-title"));
+    check("no connection chip in the header", !(await page.$("#context")));
 
     // Animate > More effects > Bounce In, then Exit > Bounce Out.
     await page.click(".tab[data-view=animate]");
@@ -196,6 +197,71 @@ function check(name, ok, detail) {
     await page.waitForFunction(() => /OK: After Effects|FAILED/.test(document.querySelector(".conn-out").textContent), null, { timeout: 4000 }).catch(() => {});
     check("Test connection reports OK with the command count", /OK: After Effects 26\.0 \(mock\) · \d+ commands/.test(await page.textContent(".conn-out")), await page.textContent(".conn-out"));
 
+    // ---- 0.2 features, clicked through the real UI ----
+    const bar = comp.add(ShapeLayer, "Bar", { inPoint: 0, outPoint: 8, position: [960, 900], rect: { left: 0, top: 0, width: 600, height: 80 } });
+    const bar2 = comp.add(ShapeLayer, "Bar 2", { inPoint: 0, outPoint: 8, position: [960, 980], rect: { left: 0, top: 0, width: 600, height: 80 } });
+    comp.layerList.forEach((l) => { l.selected = false; });
+    bar.selected = bar2.selected = true;
+    await page.click(".tab[data-view=animate]");
+    check("Delete Keys button removed", !(await page.$(".key-row-edit :text('Delete')")));
+    await page.fill(".stagger .num-input", "0.5");
+    await page.click(".stagger .seg-btn:has-text('seconds')");
+    await page.click(".stagger .btn-primary");
+    check("stagger by 0.5 seconds", /staggered by 0.5 seconds/.test(await waitToast(/staggered/)) && Math.abs(bar2.inPoint - bar.inPoint - 0.5) < 1e-6, await toast());
+
+    bar2.selected = false;
+    await page.click(".tab[data-view=mask]");
+    await page.click(".preset:has-text('Mask Wipe Right')");
+    await waitToast(/Mask Wipe/);
+    const masks = bar.property("ADBE Mask Parade");
+    check("Mask tab: wipe reveal built a real mask", masks.numProperties === 1 && masks.property(1).property("ADBE Mask Shape").numKeys === 2, masks.numProperties);
+
+    await page.click(".tab[data-view=threed]");
+    await page.click(".preset:has-text('Flip In')");
+    await waitToast(/Flip In/);
+    check("3D tab: Flip In made the layer 3D and keyed Y Rotation", bar.threeDLayer === true && T(bar, "ADBE Rotate Y").numKeys === 2);
+
+    const op2 = T(bar, "ADBE Opacity");
+    op2.selectedKeys = [1, 2];
+    comp.selectedProperties = [op2];
+    await page.click(".tab[data-view=easing]");
+    await page.click(".ease-btn:has-text('Bounce')");
+    check("Easing: physics Bounce added settle keys", /Bounce added/.test(await waitToast(/Bounce/)) && op2.numKeys > 2, await toast());
+    await page.click(".ease-btn:has-text('Smooth Stop')");
+    check("Easing: curve preset applied", /Ease In 85% . Out 0%/.test(await waitToast(/Ease In 85/)), await toast());
+    comp.selectedProperties = [];
+
+    await page.click(".tab[data-view=preview]");
+    await page.waitForSelector(".choice-btn", { timeout: 4000 }).catch(() => {});
+    await page.click(".choice-btn:has-text('Half')");
+    await waitToast(/Half/);
+    check("Preview: resolution set to Half", comp.resolutionFactor[0] === 2, comp.resolutionFactor);
+    await page.click(".choice-btn:has-text('16 bpc')");
+    await waitToast(/16 bpc/);
+    check("Preview: color depth 16 bpc", host.app.project.bitsPerChannel === 16);
+    const vo = comp.add(AVLayer, "VO", { audio: true, inPoint: 0, outPoint: 8 });
+    comp.layerList.forEach((l) => { l.selected = false; });
+    vo.selected = true;
+    await page.click(".seg-tabs .seg-btn:has-text('Audio')");
+    await page.click(".tool:has-text('Audio Fade In')");
+    check("Audio: fade in keyed levels", /Audio Fade In/.test(await waitToast(/Audio Fade/)) && vo.property("ADBE Audio Group").property("ADBE Audio Levels").numKeys === 2, await toast());
+
+    vo.selected = false;
+    await page.click(".tab[data-view=camera]");
+    await page.click(".tool:has-text('Orbit Left')");
+    check("Camera: orbit without a camera explains what to do", /Create Camera first/.test(await waitToast(/camera/i)), await toast());
+    await page.click(".card .btn-primary:has-text('Create Camera')");
+    await waitToast(/camera created/);
+    await page.click(".tool:has-text('Orbit Left')");
+    check("Camera: orbit rig created", /Orbit/.test(await waitToast(/Orbit/)) && comp.layerList.some((l) => l.name === "AT Camera Orbit"), await toast());
+
+    await page.click(".tab[data-view=learn]");
+    check("Learn: quick-fix lessons listed", /My mask path disappeared/.test(await page.textContent(".learn-body")));
+    await page.click(".seg-tabs .seg-btn:has-text('Shortcuts')");
+    const scText = await page.textContent(".learn-body");
+    check("Learn: preview, render and guide shortcuts", /Preview with cache settings/.test(scText) && /Add to Render Queue/.test(scText) && /Show\/hide guides/.test(scText), null);
+    await page.click(".seg-tabs .seg-btn:has-text('Lessons')");
+
     // Favorites persist a click and run from the Favorites tab.
     await page.fill("#search", "");
     await page.keyboard.press("Escape");
@@ -209,9 +275,11 @@ function check(name, ok, detail) {
     // plus 1-2 Position keys after the namespace wipe: 1 if that first click hit
     // the wiped host, 2 if background polling had already reconnected. The
     // no-selection click fails before opening a group.
+    // 0.2 clicks: stagger, mask wipe, flip, bounce, curve, 16 bpc, audio fade,
+    // create camera, orbit = 9 more (resolution is a viewer setting, not an undo step).
     const keyGroups = host.undo.groups.filter((g) => /Add Keyframes/.test(g)).length;
     check("every mutating click was exactly one undo group",
-        host.undo.groups.length - keyGroups === 9 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+        host.undo.groups.length - keyGroups === 18 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
     check("no page errors", errors.length === 0, errors);
 
     await browser.close();

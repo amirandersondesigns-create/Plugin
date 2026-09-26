@@ -84,6 +84,7 @@ AT.keyMove = function (prop, t0, t1, delta, profile) {
 };
 
 AT.register("camera.move", {
+    validate: function (p, ctx) { AT.targetCamera(ctx.comp); },
     label: "Camera Move",
     mutating: true,
     needs: "comp",
@@ -158,6 +159,7 @@ AT.setOrKey = function (prop, t, value) {
 };
 
 AT.register("camera.restore", {
+    validate: function (p, ctx) { AT.targetCamera(ctx.comp); },
     label: "Restore Camera",
     mutating: true,
     needs: "comp",
@@ -169,6 +171,121 @@ AT.register("camera.restore", {
         if (AT.isTwoNode(cam) && payload.pointOfInterest) AT.setOrKey(AT.tprop(cam, "anchor"), t, payload.pointOfInterest);
         if (payload.zoom) AT.setOrKey(AT.cameraZoom(cam), t, payload.zoom);
         return { result: {}, feedback: "Camera restored" + (AT.tprop(cam, "position").numKeys ? " (keyframed at playhead)" : "") };
+    }
+});
+
+// ---- lens, focus, shake, orbit ----------------------------------------------------
+
+AT.cameraOpt = function (cam, mn) {
+    return cam.property(AT.MN.cameraOptions).property(mn);
+};
+
+// Depth of field: things away from the focus distance blur, like a real lens.
+AT.register("camera.dof", {
+    validate: function (p, ctx) { AT.targetCamera(ctx.comp); },
+    label: "Depth of Field",
+    mutating: true,
+    needs: "comp",
+    run: function (payload, ctx) {
+        var cam = AT.targetCamera(ctx.comp);
+        var on = payload.on !== false;
+        AT.cameraOpt(cam, "ADBE Camera Depth of Field").setValue(on ? 1 : 0);
+        if (on && typeof payload.aperture === "number") AT.setOrKey(AT.cameraOpt(cam, "ADBE Camera Aperture"), ctx.comp.time, payload.aperture);
+        return { result: { on: on }, feedback: "Depth of field " + (on ? "on" : "off") + " for " + cam.name };
+    }
+});
+
+// Sets focus distance to the selected (non-camera) layer, turning DOF on.
+AT.register("camera.focusSelected", {
+    validate: function (p, ctx) { AT.targetCamera(ctx.comp); },
+    label: "Focus on Layer",
+    mutating: true,
+    needs: "comp",
+    run: function (payload, ctx) {
+        var cam = AT.targetCamera(ctx.comp);
+        var target = null;
+        var sel = ctx.comp.selectedLayers;
+        for (var i = 0; i < sel.length; i++) if (!(sel[i] instanceof CameraLayer) && AT.isVisualLayer(sel[i])) { target = sel[i]; break; }
+        if (!target) AT.fail("no-selection", "Select the layer to focus on (plus the camera, or the comp's active camera is used).");
+        var t = ctx.comp.time;
+        var c = AT.tprop(cam, "position").valueAtTime(t, false);
+        var p = AT.tprop(target, "position").valueAtTime(t, false);
+        var dist = AT.valueDistance([c[0], c[1], c[2]], [p[0], p[1], p.length > 2 ? p[2] : 0]);
+        AT.cameraOpt(cam, "ADBE Camera Depth of Field").setValue(1);
+        AT.setOrKey(AT.cameraOpt(cam, "ADBE Camera Focus Distance"), t, dist);
+        return { result: { distance: dist }, feedback: "Focused on " + target.name + " (" + Math.round(dist) + "px)" };
+    }
+});
+
+// Handheld shake as a wiggle() expression: editable, removable, no keys.
+AT.SHAKE_TAG = "// AT shake";
+AT.register("camera.shake", {
+    validate: function (p, ctx) { AT.targetCamera(ctx.comp); },
+    label: "Camera Shake",
+    mutating: true,
+    needs: "comp",
+    run: function (payload, ctx) {
+        var cam = AT.targetCamera(ctx.comp);
+        var pos = AT.tprop(cam, "position");
+        var ours = pos.expression.indexOf(AT.SHAKE_TAG) === 0;
+        if (pos.expression && !ours) AT.fail("expression", "The camera's Position already has an expression. Remove it first.");
+        if (payload.remove) {
+            if (!ours) AT.fail("no-shake", "This camera has no toolkit shake.");
+            pos.expression = "";
+            return { result: {}, feedback: "Camera shake removed" };
+        }
+        var freq = payload.frequency || 2, amt = payload.amount || 12;
+        pos.expression = AT.SHAKE_TAG + "\nwiggle(" + freq + ", " + amt + ");";
+        return { result: {}, feedback: "Shake added (" + freq + "x/sec, " + amt + "px). Edit it in Position's expression." };
+    }
+});
+
+// Orbit: parents the camera to a 3D null at the comp centre and rotates the
+// null. Rotating a parent is the reliable way to circle a subject.
+AT.register("camera.orbit", {
+    validate: function (p, ctx) { AT.targetCamera(ctx.comp); },
+    label: "Camera Orbit",
+    mutating: true,
+    needs: "comp",
+    run: function (payload, ctx) {
+        var comp = ctx.comp;
+        var cam = AT.targetCamera(comp);
+        var rig = cam.parent;
+        if (rig && rig.name !== "AT Camera Orbit") AT.fail("parented", "This camera is already parented to " + rig.name + ". Unparent it to use Orbit.");
+        if (!rig) {
+            rig = comp.layers.addNull(comp.duration);
+            rig.name = "AT Camera Orbit";
+            rig.threeDLayer = true;
+            AT.tprop(rig, "position").setValue([comp.width / 2, comp.height / 2, 0]);
+            rig.moveBefore(cam);
+            cam.parent = rig;
+        }
+        var deg = (payload.degrees || 30) * (payload.direction === "right" ? -1 : 1);
+        var t0 = comp.time;
+        var t1 = t0 + AT.frames(comp, payload.durationFrames || 72);
+        AT.keyMove(AT.tprop(rig, "rotationY"), t0, t1, [deg], AT.profile(payload.easing || "smooth"));
+        AT.addMarker(cam, t0, t1 - t0, "Orbit " + (payload.direction === "right" ? "Right" : "Left"));
+        return { result: {}, feedback: "Orbit " + Math.abs(deg) + " deg added (rotates the 'AT Camera Orbit' null)" };
+    }
+});
+
+// Lens zoom: animates Zoom (focal length), not position - the view narrows
+// and flattens instead of travelling.
+AT.register("camera.lensZoom", {
+    validate: function (p, ctx) { AT.targetCamera(ctx.comp); },
+    label: "Lens Zoom",
+    mutating: true,
+    needs: "comp",
+    run: function (payload, ctx) {
+        var cam = AT.targetCamera(ctx.comp);
+        var pct = typeof payload.percent === "number" ? payload.percent : 30;
+        var zoom = AT.cameraZoom(cam);
+        var t0 = ctx.comp.time;
+        var t1 = t0 + AT.frames(ctx.comp, payload.durationFrames || 48);
+        var z0 = zoom.valueAtTime(t0, true);
+        AT.keyMove(zoom, t0, t1, [z0 * pct / 100], AT.profile(payload.easing || "smooth"));
+        AT.addMarker(cam, t0, t1 - t0, pct >= 0 ? "Lens Zoom In" : "Lens Zoom Out");
+        return { result: {}, feedback: "Lens zoom " + (pct >= 0 ? "in " : "out ") + Math.abs(pct) + "% added" };
     }
 });
 

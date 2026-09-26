@@ -32,6 +32,7 @@
         if (req.command === "easing.read") result = { property: "Position", layer: "Headline", curve: { x1: 0.15, y1: 0, x2: 0.25, y2: 1 } };
         if (req.command === "camera.read") result = { camera: "Camera 1", position: [960, 540, -2666.7], pointOfInterest: [960, 540, 0], zoom: 2666.7 };
         if (req.command === "still.capture") result = { path: "~/Desktop/Animator Toolkit Stills/Lower Third_f00036.png", folder: "~/Desktop/Animator Toolkit Stills" };
+        if (req.command === "preview.read") result = { resolution: 2, bpc: 8, draft3d: false, fastPreview: "adaptive" };
         if (req.command === "still.chooseFolder") result = { folder: "~/Desktop/Stills" };
         return new Promise(function (resolve) {
             setTimeout(function () {

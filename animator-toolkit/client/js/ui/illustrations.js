@@ -74,6 +74,21 @@
         favorites:
             '<path class="i-acc ill-pop" d="M80 12l7 14 15.5 2.2-11.2 11 2.6 15.4L80 47.3l-13.9 7.3 2.6-15.4-11.2-11L73 26z"/>' +
             '<rect class="i-fill i-dim" x="22" y="58" width="30" height="16" rx="3"/><rect class="i-fill i-dim" x="65" y="62" width="30" height="12" rx="3"/><rect class="i-fill i-dim" x="108" y="58" width="30" height="16" rx="3"/>',
+        preview:
+            '<rect class="i-grid" x="10" y="8" width="64" height="52" rx="3"/>' +
+            [0, 1, 2, 3].map(function (r) { return [0, 1, 2, 3].map(function (c) { return '<rect class="i-fill' + ((r + c) % 2 ? ' i-dim' : '') + '" x="' + (14 + c * 14) + '" y="' + (12 + r * 12) + '" width="13" height="11"/>'; }).join(""); }).join("") +
+            '<rect class="i-grid" x="86" y="8" width="64" height="52" rx="3"/><rect class="i-fill" x="90" y="12" width="56" height="44" rx="2"/>' +
+            '<text class="i-cap" x="42" y="76">Quarter: fast</text><text class="i-cap" x="118" y="76">Full: final</text>',
+        audio:
+            '<path class="i-line" d="M10 44h140"/>' +
+            [18, 30, 46, 22, 58, 40, 26, 50, 34, 20, 44, 28, 16, 38, 24].map(function (hgt, i) { return '<rect class="' + (hgt > 50 ? 'i-acc' : 'i-fill') + ' ill-meter" style="animation-delay:' + (i * 0.07) + 's" x="' + (14 + i * 9) + '" y="' + (44 - hgt / 2) + '" width="5" height="' + hgt + '" rx="2"/>'; }).join("") +
+            '<path class="i-acc-line i-dash" d="M10 19h140"/><text class="i-cap" x="140" y="16">-6 dB</text>',
+        cube:
+            '<g class="ill-spin3d"><path class="i-fill" d="M80 10 112 26v34L80 76 48 60V26z"/><path class="i-dim i-fill" d="M80 42 112 26v34L80 76z"/><path class="i-acc-line" d="M48 26 80 42 112 26M80 42v34"/></g>',
+        mask:
+            '<rect class="i-fill i-dim" x="20" y="16" width="120" height="48" rx="3"/>' +
+            '<rect class="i-fill ill-wipe" x="20" y="16" width="120" height="48" rx="3" style="opacity:1"/>' +
+            '<rect class="i-acc-line i-dash" x="20" y="16" width="120" height="48" rx="3" fill="none"/>',
         capture:
             '<rect class="i-grid" x="10" y="8" width="140" height="66" rx="3"/>' +
             '<path class="i-acc-line" d="M18 20v-6h8M142 20v-6h-8M18 62v6h8M142 62v6h-8"/>' +

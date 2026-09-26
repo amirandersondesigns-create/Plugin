@@ -97,6 +97,7 @@ AT.EASE_LABELS = {
 };
 
 AT.register("easing.apply", {
+    validate: function (p, ctx) { AT.requireSelectedKeyframes(ctx.comp); },
     label: "Apply Easing",
     mutating: true,
     needs: "comp",
@@ -178,6 +179,59 @@ AT.register("easing.read", {
             };
         }
         return { result: { curve: null } };
+    }
+});
+
+// Physics easing between selected keyframes. A plain ease can only slow a
+// move down; overshoot, bounce and elastic need extra keyframes past the
+// target. For each pair of consecutive selected keys, this inserts the
+// settle keys (shapes from presets.jsx) between them, eased so the motion
+// reads as one gesture. The artist sees the real keys it made.
+AT.PHYSICS = { overshoot: "pop", bounce: "bounce", elastic: "elastic" };
+
+AT.register("easing.physics", {
+    validate: function (p, ctx) { AT.requireSelectedKeyframes(ctx.comp, 2); },
+    label: "Physics Easing",
+    mutating: true,
+    needs: "comp",
+    run: function (payload, ctx) {
+        var shapeName = AT.PHYSICS[payload.shape];
+        if (!shapeName) AT.fail("bad-payload", "Unknown physics ease: " + payload.shape);
+        var shape = AT.SHAPES[shapeName];
+        var sel = AT.requireSelectedKeyframes(ctx.comp, 2);
+        var segments = 0;
+        for (var i = 0; i < sel.length; i++) {
+            var prop = sel[i].prop;
+            var v0 = prop.keyValue(sel[i].keys[0]);
+            if (typeof v0 !== "number" && !(v0 instanceof Array)) continue; // text, markers, paths
+            var times = [];
+            var keys = sel[i].keys.slice(0).sort(function (a, b) { return a - b; });
+            for (var k = 0; k < keys.length; k++) times.push(prop.keyTime(keys[k]));
+            for (var j = times.length - 2; j >= 0; j--) {
+                var t1 = times[j], t2 = times[j + 1];
+                var a = prop.valueAtTime(t1, true), b = prop.valueAtTime(t2, true);
+                AT.clearWindow(prop, t1, t2);
+                for (var n = 1; n < shape.length - 1; n++) {
+                    prop.setValueAtTime(t1 + shape[n][0] * (t2 - t1), AT.lerpValue(a, b, shape[n][1]));
+                }
+                var first = prop.nearestKeyIndex(t1), last = prop.nearestKeyIndex(t2);
+                for (var q = first; q <= last; q++) {
+                    if (prop.isSpatial) {
+                        var zero = [];
+                        for (var z = 0; z < a.length; z++) zero.push(0);
+                        prop.setSpatialAutoBezierAtKey(q, false);
+                        prop.setSpatialTangentsAtKey(q, zero, zero);
+                    }
+                    if (q === first) AT.applyEase(prop, q, "out", 20);
+                    else if (q === last) AT.applyEase(prop, q, "in", 60);
+                    else AT.applyEase(prop, q, "both", 40);
+                }
+                segments++;
+            }
+        }
+        if (!segments) AT.fail("unsupported", "Physics easing works on number and position properties (not text, markers or paths).");
+        var title = payload.shape.charAt(0).toUpperCase() + payload.shape.slice(1);
+        return { result: { segments: segments }, feedback: title + " added to " + AT.plural(segments, "move") };
     }
 });
 

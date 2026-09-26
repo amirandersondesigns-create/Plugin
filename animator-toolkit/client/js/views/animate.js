@@ -77,23 +77,46 @@
                 return b;
             })),
             h("div.key-row.key-row-edit", [
-                AT.ui.toolButton("keys.delete", { cls: "tool-sm", fav: false, label: "Delete" }),
-                AT.ui.toolButton("keys.reverse", { cls: "tool-sm", fav: false, label: "Reverse" }),
-                AT.ui.toolButton("layers.stagger", { cls: "tool-sm", fav: false, label: "Stagger" })
-            ])
+                AT.ui.toolButton("keys.reverse", { cls: "tool-sm", fav: false, label: "Reverse Keys" })
+            ]),
+            staggerControl()
+        ]);
+    }
+
+    // Stagger: amount + unit (frames or seconds), remembered between sessions.
+    function staggerControl() {
+        var s = AT.store.get("settings");
+        var unit = s.staggerUnit || "frames";
+        var amount = typeof s.staggerAmount === "number" ? s.staggerAmount : (s.staggerFrames || 3);
+        var input = h("input.num-input", { type: "number", min: "0", step: unit === "seconds" ? "0.1" : "1", value: String(amount), "aria-label": "Stagger amount" });
+        function save() {
+            var v = parseFloat(input.value);
+            if (!(v >= 0)) { v = 0; input.value = "0"; }
+            AT.store.update("settings", function (x) { x.staggerAmount = v; x.staggerUnit = unit; });
+        }
+        input.addEventListener("change", save);
+        var run = h("button.btn.btn-primary.btn-sm", { type: "button", on: { click: function () {
+            save();
+            AT.run("layers.stagger", null, run);
+        } } }, [AT.icon("stagger"), h("span", { text: "Stagger" })]);
+        return h("div.stagger", [
+            h("span.stagger-label", { text: "Stagger layers by" }),
+            input,
+            AT.ui.segmented([{ value: "frames", label: "frames" }, { value: "seconds", label: "seconds" }], unit, function (v) {
+                unit = v;
+                input.step = v === "seconds" ? "0.1" : "1";
+                save();
+            }, { cls: "seg-sm", label: "Stagger unit" }),
+            run,
+            AT.ui.favButton("layers.stagger")
         ]);
     }
 
     function layerTools() {
-        var s = AT.store.get("settings");
         return h("div", [
-            h("div.tool-grid", ["layers.nullParent", "layers.precompose", "layers.motionBlur", "layers.marker", "layers.null"].map(function (id) {
+            h("div.tool-grid", ["layers.nullParent", "layers.precompose", "layers.motionBlur", "layers.rasterize", "layers.marker", "layers.null"].map(function (id) {
                 return AT.ui.toolButton(id);
-            })),
-            AT.ui.isBeginner() ? null : AT.ui.slider({
-                label: "Stagger", min: 1, max: 12, value: s.staggerFrames || 3, unit: "f",
-                onChange: function (v) { AT.store.update("settings", function (x) { x.staggerFrames = v; }); }
-            })
+            }))
         ]);
     }
 

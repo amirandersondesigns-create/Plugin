@@ -289,9 +289,6 @@
             refreshContext();
             startPolling();
         }).catch(function (err) {
-            var chip = document.getElementById("context");
-            chip.className = "context ctx-error";
-            chip.querySelector(".context-text").textContent = "Not connected to After Effects";
             hostBanner(err.message);
             startPolling();
         });
@@ -339,7 +336,7 @@
         var header = h("header.header", [
             h("div.header-row", [
                 h("div.brand", [h("span.brand-mark", AT.icon("animate")), h("span.brand-name", { text: "Animator Toolkit" })]),
-                h("div#context.context", [h("span.context-dot"), h("span.context-text", { text: "Connecting…" })]),
+                h("span.header-spacer"),
                 h("button#mode.mode-btn", { type: "button", title: "Switch Beginner / Pro mode", on: { click: function () {
                     setMode(AT.store.get("settings").mode === "pro" ? "beginner" : "pro");
                 } } })

@@ -40,7 +40,11 @@ AT.SHAPES = {
     // Drop: falls in, hits rest, rebounds with decaying height. Factor is
     // "fraction of the way from away to rest", so >1 never happens and the
     // ground contacts are exact.
-    "drop": [[0, 0], [0.42, 1], [0.6, 0.78], [0.76, 1], [0.87, 0.93], [1, 1]]
+    "drop": [[0, 0], [0.42, 1], [0.6, 0.78], [0.76, 1], [0.87, 0.93], [1, 1]],
+    // Elastic: springy decaying oscillation around rest.
+    "elastic": [[0, 0], [0.3, 1.25], [0.45, 0.85], [0.6, 1.1], [0.73, 0.95], [0.86, 1.03], [1, 1]],
+    // Anticipate: dips away from rest first, then shoots in and settles.
+    "anticipate": [[0, 0], [0.25, -0.12], [0.75, 1.06], [1, 1]]
 };
 
 AT.presetWindow = function (layer, comp, def) {
@@ -180,13 +184,32 @@ AT.PRESET_KINDS = {
     slide: function (layer, win, def) {
         return AT.animatePosition(layer, win, def);
     },
+    // axis: "x" | "y" scales one dimension only (Grow); default both.
     scale: function (layer, win, def) {
         var from = (def.from === undefined ? 0 : def.from) / 100;
+        var ax = def.axis === "x" ? 0 : def.axis === "y" ? 1 : -1;
         return AT.animateProperty(AT.tprop(layer, "scale"), win, def, function (r) {
             var v = [];
-            for (var i = 0; i < r.length; i++) v.push(i < 2 ? r[i] * from : r[i]);
+            for (var i = 0; i < r.length; i++) v.push(i < 2 && (ax === -1 || ax === i) ? r[i] * from : r[i]);
             return v;
         });
+    },
+    // 3D flips/tumbles. Turns the layer 3D if it isn't (the only way X/Y
+    // rotation shows); the anchor point is the hinge.
+    rotate3d: function (layer, win, def) {
+        if (!layer.threeDLayer) layer.threeDLayer = true;
+        var angle = def.angle || 90;
+        return AT.animateProperty(AT.tprop(layer, def.axis === "x" ? "rotationX" : "rotationY"), win, def, function (r) { return r - angle; });
+    },
+    // Flies in from (or out to) depth along Z.
+    depth: function (layer, win, def) {
+        if (!layer.threeDLayer) layer.threeDLayer = true;
+        var dz = def.distance || 800;
+        var position = AT.tprop(layer, "position");
+        if (position.dimensionsSeparated) {
+            return AT.animateProperty(AT.tprop(layer, "positionZ"), win, def, function (r) { return r + dz; });
+        }
+        return AT.animateProperty(position, win, def, function (r) { return [r[0], r[1], (r.length > 2 ? r[2] : 0) + dz]; });
     },
     rotate: function (layer, win, def) {
         var angle = def.angle || 90;

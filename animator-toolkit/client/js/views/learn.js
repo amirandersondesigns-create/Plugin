@@ -6,11 +6,12 @@
     "use strict";
 
     var h = AT.h;
-    var VERSION = "0.1.4";
+    var VERSION = "0.2.0";
     var sub = "lessons";
     var scFilter = "all";
     var focusId = null;
-    var LEVELS = [["essential", "Essentials"], ["basics", "After Effects basics"], ["principles", "Animation principles"]];
+    var LEVELS = [["fixes", "Stuck? Quick fixes"], ["essential", "Essentials"], ["basics", "After Effects basics"],
+        ["principles", "Animation principles"], ["production", "Production speed & delivery"]];
 
     function progress() { return AT.store.get("progress"); }
 

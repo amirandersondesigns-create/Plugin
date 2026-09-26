@@ -96,10 +96,36 @@
         return h("div", [h("div.row", [saveBtn, AT.ui.toolButton("camera.select", { cls: "tool-sm", fav: false })]), list]);
     }
 
+    function setting(key, label, min, max, step, def, unit) {
+        var s = AT.store.get("settings");
+        return AT.ui.slider({ label: label, min: min, max: max, step: step, value: typeof s[key] === "number" ? s[key] : def, unit: unit,
+            onChange: function (v) { AT.store.update("settings", function (x) { x[key] = v; }); } });
+    }
+
+    function lensFocus() {
+        return h("div", [
+            h("div.tool-grid", ["camera.dof.on", "camera.dof.off", "camera.focus", "camera.lens-in", "camera.lens-out"].map(function (id) { return AT.ui.toolButton(id); })),
+            setting("cameraAperture", "Aperture (blur)", 5, 300, 5, 60, "px"),
+            AT.ui.isBeginner() ? h("p.hint", { text: "Select the subject layer, then Focus on Layer: it stays sharp while nearer and farther layers blur. Bigger aperture = more blur. DOF renders slowly, so switch it off while animating." }) : null
+        ]);
+    }
+
+    function rigs() {
+        return h("div", [
+            h("div.tool-grid", ["camera.orbit-left", "camera.orbit-right", "camera.shake", "camera.shake.remove"].map(function (id) { return AT.ui.toolButton(id); })),
+            setting("orbitDegrees", "Orbit angle", 5, 180, 5, 30, "\u00b0"),
+            setting("shakeAmount", "Shake amount", 1, 60, 1, 12, "px"),
+            setting("shakeFrequency", "Shake speed", 0.5, 10, 0.5, 2, "/s"),
+            AT.ui.isBeginner() ? h("p.hint", { text: "Orbit parents the camera to a 3D null ('AT Camera Orbit') at the comp centre and rotates it. Move that null to orbit around something else." }) : null
+        ]);
+    }
+
     function render(page) {
         page.appendChild(AT.ui.lead("Cameras only see 3D layers. Moves start at the playhead and use the active camera (or the selected one)."));
         page.appendChild(AT.ui.section("Create", { icon: "camera" }, createCard()));
         page.appendChild(AT.ui.section("Moves", { icon: "motion", hint: "from the playhead" }, moves()));
+        page.appendChild(AT.ui.section("Lens & focus", { icon: "sparkle" }, lensFocus()));
+        page.appendChild(AT.ui.section("Rigs & shake", { icon: "reverse", hint: "orbit uses the Duration above" }, rigs()));
         page.appendChild(AT.ui.section("Saved positions", { icon: "folder" }, saved()));
     }
 

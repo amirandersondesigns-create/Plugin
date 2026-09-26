@@ -30,10 +30,13 @@
         var svg = null;
         var start = performance.now();
 
+        var points = null;
+        // b: a bezier, null for Hold, or { points } for a physics shape.
         function set(b, text) {
-            bez = b;
+            points = b && b.points ? b.points : null;
+            bez = points ? null : b;
             graphWrap.innerHTML = "";
-            svg = AT.ui.curve(b, { width: 150, height: 110, handles: true, dot: true, cls: "curve-hero" });
+            svg = AT.ui.curve(points ? null : b, { width: 150, height: 110, handles: !points, dot: true, cls: "curve-hero", points: points });
             graphWrap.appendChild(svg);
             caption.textContent = text;
             start = performance.now();
@@ -44,12 +47,12 @@
             var period = 1800, pause = 500;
             var t = ((now - start) % (period + pause)) / period;
             var x = Math.min(1, t);
-            var y = bez ? AT.ui.yForX(bez, x) : (x < 1 ? 0 : 1);
+            var y = points ? piecewise(points, x) : bez ? AT.ui.yForX(bez, x) : (x < 1 ? 0 : 1);
             ball.style.setProperty("--p", String(y));
             ghost.style.setProperty("--p", String(x));
             if (svg && svg._dot) {
                 svg._dot.setAttribute("cx", svg._geom.gx(x));
-                svg._dot.setAttribute("cy", svg._geom.gy(y));
+                svg._dot.setAttribute("cy", svg._geom.gy(points ? y / 1.3 : y));
             }
             requestAnimationFrame(frame);
         }
@@ -57,16 +60,33 @@
         return { el: el, set: set, get: function () { return bez; } };
     }
 
+    // Smooth-ish playback of a physics shape (eased between its keys).
+    function piecewise(pts, x) {
+        for (var i = 1; i < pts.length; i++) {
+            if (x <= pts[i][0]) {
+                var a = pts[i - 1], b = pts[i];
+                var f = (x - a[0]) / (b[0] - a[0] || 1);
+                f = f * f * (3 - 2 * f);
+                return a[1] + (b[1] - a[1]) * f;
+            }
+        }
+        return pts[pts.length - 1][1];
+    }
+
+    function curveOrPoints(item) {
+        return item.points ? { points: item.points } : item.curve;
+    }
+
     function presetButton(id) {
         var item = AT.catalog.get(id);
         var b = h("button.ease-btn", {
             type: "button", title: item.summary,
             on: {
-                click: function () { AT.run(item, null, b); hero.set(item.curve, item.title + " — " + item.summary); },
-                mouseenter: function () { hero.set(item.curve, item.title + " — " + item.summary); }
+                click: function () { AT.run(item, null, b); hero.set(curveOrPoints(item), item.title + " — " + item.summary); },
+                mouseenter: function () { hero.set(curveOrPoints(item), item.title + " — " + item.summary); }
             }
         }, [
-            AT.ui.curve(item.curve, { width: 64, height: 40, pad: 4, cls: "curve-mini" }),
+            AT.ui.curve(item.points ? null : item.curve, { width: 64, height: 40, pad: 4, cls: "curve-mini", points: item.points }),
             h("span.ease-name", { text: item.title }),
             AT.ui.favButton(id)
         ]);
@@ -136,6 +156,12 @@
                 return b;
             }))));
 
+        var curves = AT.content.actions.filter(function (a) { return a.tier === "curve"; }).map(function (a) { return a.id; });
+        page.appendChild(AT.ui.section("Curves", { icon: "ease", hint: "custom In/Out influence, one click" },
+            h("div.ease-grid", curves.map(presetButton))));
+        var physics = AT.content.actions.filter(function (a) { return a.tier === "physics"; }).map(function (a) { return a.id; });
+        page.appendChild(AT.ui.section("Physics", { icon: "motion", hint: "adds settle keyframes between selected keys" },
+            h("div.ease-grid", physics.map(presetButton))));
         page.appendChild(AT.ui.section("Sliders", { icon: "easing" }, sliders()));
     }
 

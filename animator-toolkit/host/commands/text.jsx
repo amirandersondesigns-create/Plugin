@@ -26,7 +26,10 @@ AT.TEXT_MN = {
     opacity: "ADBE Text Opacity",
     position: "ADBE Text Position 3D",
     tracking: "ADBE Text Tracking Amount",
-    blur: "ADBE Text Blur"
+    blur: "ADBE Text Blur",
+    scale: "ADBE Text Scale 3D",
+    rotation: "ADBE Text Rotation",
+    randomize: "ADBE Text Randomize Order"
 };
 
 AT.BASED_ON = { characters: 1, words: 3, lines: 4 };
@@ -74,16 +77,22 @@ AT.PRESET_KINDS["text-reveal"] = function (layer, win, def) {
     var props = [AT.TEXT_MN.opacity];
     if (def.offsetY) props.push(AT.TEXT_MN.position);
     if (def.blur) props.push(AT.TEXT_MN.blur);
+    if (def.scale !== undefined) props.push(AT.TEXT_MN.scale);
+    if (def.rotation) props.push(AT.TEXT_MN.rotation);
     var get = AT.textAnimator(layer, AT.animatorTitle(def), props, true);
 
+    // Static animator values = the hidden state of each character.
     var ap = function () { return get().property(AT.TEXT_MN.animatorProps); };
-    ap().property(AT.TEXT_MN.opacity).setValue(0);
+    ap().property(AT.TEXT_MN.opacity).setValue(def.opacity === undefined ? 0 : def.opacity);
     if (def.offsetY) ap().property(AT.TEXT_MN.position).setValue([0, def.offsetY, 0]);
     if (def.blur) ap().property(AT.TEXT_MN.blur).setValue([def.blur, def.blur]);
+    if (def.scale !== undefined) ap().property(AT.TEXT_MN.scale).setValue([def.scale, def.scale, 100]);
+    if (def.rotation) ap().property(AT.TEXT_MN.rotation).setValue(def.rotation);
 
     var selector = function () { return get().property(AT.TEXT_MN.selectors).property(1); };
-    var basedOn = selector().property(AT.TEXT_MN.advanced).property(AT.TEXT_MN.basedOn);
-    basedOn.setValue(AT.BASED_ON[def.basedOn || "characters"]);
+    var advanced = function () { return selector().property(AT.TEXT_MN.advanced); };
+    advanced().property(AT.TEXT_MN.basedOn).setValue(AT.BASED_ON[def.basedOn || "characters"]);
+    if (def.random) advanced().property(AT.TEXT_MN.randomize).setValue(1);
 
     // Start = 100 selects nothing (all visible); 0 selects everything.
     var start = selector().property(AT.TEXT_MN.start);

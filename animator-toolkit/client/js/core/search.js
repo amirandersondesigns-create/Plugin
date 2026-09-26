@@ -66,6 +66,7 @@
                 else return; // every word must match somewhere
             }
             if (e.rawTitle.indexOf(raw) === 0) score += 6;
+            if (e.rawTitle === raw) score += 2; // exact name wins ties
             score += e.favorite ? TYPE_WEIGHT.favorite : TYPE_WEIGHT[e.item.type] || 0;
             results.push({ item: e.item, favorite: e.favorite || null, score: score });
         });

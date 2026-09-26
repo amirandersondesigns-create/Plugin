@@ -9,6 +9,7 @@ function setup(opts) {
     h.app.project.activeItem = comp;
     return Object.assign(h, { comp });
 }
+const plain = (v) => JSON.parse(JSON.stringify(v));
 const T = (layer, key) => layer.property("ADBE Transform Group").property(key);
 const close = (a, b, eps = 1e-6) => {
     if (Array.isArray(a)) a.forEach((x, i) => assert.ok(Math.abs(x - b[i]) < eps, `${a} != ${b}`));
@@ -366,4 +367,190 @@ test("context.inspect summarises selection", () => {
     const r = h.call("context.inspect");
     assert.equal(r.result.kinds.text, 1);
     assert.equal(r.result.comp.width, 1920);
+});
+
+// ---- 0.2: stagger units, physics easing, masks, 3D, camera, preview, audio ----
+
+test("stagger in frames or seconds", () => {
+    const h = setup();
+    const a = h.comp.add(AVLayer, "A"), b = h.comp.add(AVLayer, "B"), c = h.comp.add(AVLayer, "C");
+    a.selected = b.selected = c.selected = true;
+    assert.equal(h.call("layers.stagger", { amount: 0.5, unit: "seconds" }).ok, true);
+    close(b.inPoint - a.inPoint, 0.5);
+    close(c.inPoint - a.inPoint, 1);
+    const r = h.call("layers.stagger", { amount: 6, unit: "frames" });
+    close(b.inPoint - a.inPoint, 6 / 30);
+    assert.match(r.feedback, /6 frames/);
+});
+
+test("physics bounce inserts settle keys between the selected pair", () => {
+    const h = setup();
+    const o = keyedOpacity(h);
+    const r = h.call("easing.physics", { shape: "bounce" });
+    assert.equal(r.ok, true, JSON.stringify(r));
+    assert.ok(o.numKeys > 2);
+    assert.ok(o.keys.some((k) => k.value > 100), "overshoots past the target");
+    close(o.valueAtTime(1), 100);
+    close(o.valueAtTime(0), 0);
+});
+
+function maskLayer(h) {
+    const l = h.comp.add(ShapeLayer, "Bar", { inPoint: 0, outPoint: 6, rect: { left: 0, top: 0, width: 400, height: 100 } });
+    l.selected = true;
+    return l;
+}
+
+test("mask wipe in + out share one mask and stack", () => {
+    const h = setup();
+    const l = maskLayer(h);
+    assert.equal(h.call("preset.apply", { title: "Mask Wipe In", kind: "mask-wipe", direction: "right", phase: "in", durationFrames: 15 }).ok, true);
+    assert.equal(h.call("preset.apply", { title: "Mask Wipe Out", kind: "mask-wipe", direction: "right", phase: "out", durationFrames: 15 }).ok, true);
+    const masks = l.property("ADBE Mask Parade");
+    assert.equal(masks.numProperties, 1);
+    const path = masks.property(1).property("ADBE Mask Shape");
+    assert.equal(path.numKeys, 4);
+    const width = (s) => s.vertices[1][0] - s.vertices[0][0];
+    close(width(path.keys[0].value), 0);
+    close(width(path.keys[1].value), 404);
+    close(width(path.keys[3].value), 0);
+    assert.equal(l.property("ADBE Marker").numKeys, 2);
+});
+
+test("mask iris opens with expansion; split and tools work", () => {
+    const h = setup();
+    const l = maskLayer(h);
+    assert.equal(h.call("preset.apply", { title: "Iris In", kind: "mask-iris", phase: "in", durationFrames: 15 }).ok, true);
+    const iris = l.property("ADBE Mask Parade").property("AT Mask Iris");
+    assert.ok(iris.property("ADBE Mask Offset").valueAtTime(0) < -200);
+    close(iris.property("ADBE Mask Offset").valueAtTime(3), 0);
+    assert.equal(iris.property("ADBE Mask Shape").value.vertices.length, 4);
+    assert.equal(h.call("preset.apply", { title: "Split", kind: "mask-split", phase: "in" }).ok, true);
+    assert.equal(h.call("mask.add", { shape: "ellipse" }).ok, true);
+    assert.equal(l.property("ADBE Mask Parade").numProperties, 3);
+    assert.equal(h.call("mask.invert").ok, true);
+    assert.equal(l.property("ADBE Mask Parade").property(3).inverted, true);
+    assert.equal(h.call("mask.feather", { amount: 30 }).ok, true);
+    close(l.property("ADBE Mask Parade").property(3).property("ADBE Mask Feather").value, [30, 30]);
+});
+
+test("3D flip and depth presets make the layer 3D and animate it", () => {
+    const h = setup();
+    const l = layerForPresets(h);
+    assert.equal(h.call("preset.apply", { title: "Flip In", kind: "rotate3d", axis: "y", angle: 90, phase: "in" }).ok, true);
+    assert.equal(l.threeDLayer, true);
+    close(T(l, "ADBE Rotate Y").valueAtTime(1), -90);
+    close(T(l, "ADBE Rotate Y").valueAtTime(4), 0);
+    assert.equal(h.call("preset.apply", { title: "From Depth", kind: "depth", distance: 800, phase: "in" }).ok, true);
+    close(T(l, "ADBE Position").valueAtTime(1), [960, 540, 800]);
+    close(T(l, "ADBE Position").valueAtTime(4), [960, 540, 0]);
+});
+
+test("depth spread, renderer and extrude", () => {
+    const h = setup();
+    const ls = ["A", "B", "C"].map((n) => { const l = h.comp.add(TextLayer, n, { extrudable: n !== "C" }); l.selected = true; return l; });
+    assert.equal(h.call("threed.depthSpread", { spacing: 250 }).ok, true);
+    assert.deepEqual(ls.map((l) => T(l, "ADBE Position").value[2]), [0, 250, 500]);
+    const r = h.call("threed.renderer", { kind: "extrude" });
+    assert.equal(r.ok, true);
+    assert.equal(h.comp.renderer, "ADBE Ernst");
+    ls[2].selected = false;
+    assert.equal(h.call("text.extrude", { depth: 30 }).ok, true);
+    assert.equal(ls[0].property("ADBE Extrsn Options Group").property("ADBE Extrsn Depth").value, 30);
+    ls[0].selected = ls[1].selected = false;
+    ls[2].selected = true;
+    assert.match(h.call("text.extrude", {}).error.message, /Advanced 3D/);
+});
+
+test("camera DOF, focus, shake, orbit and lens zoom", () => {
+    const h = setup();
+    h.call("camera.create", { lens: "50mm" });
+    const cam = h.comp.activeCamera;
+    const opt = (mn) => cam.property("ADBE Camera Options Group").property(mn);
+    assert.equal(h.call("camera.dof", { on: true, aperture: 60 }).ok, true);
+    assert.equal(opt("ADBE Camera Depth of Field").value, 1);
+    assert.equal(opt("ADBE Camera Aperture").value, 60);
+    const subject = h.comp.add(AVLayer, "Subject", { position: [960, 540, 500] });
+    subject.selected = true;
+    assert.equal(h.call("camera.focusSelected").ok, true);
+    close(opt("ADBE Camera Focus Distance").value, 500 + 50 * 1920 / 36);
+    subject.selected = false;
+    assert.equal(h.call("camera.shake", { amount: 10, frequency: 3 }).ok, true);
+    assert.match(T(cam, "ADBE Position").expression, /wiggle\(3, 10\)/);
+    assert.equal(h.call("camera.shake", { remove: true }).ok, true);
+    assert.equal(T(cam, "ADBE Position").expression, "");
+    assert.equal(h.call("camera.orbit", { direction: "left", degrees: 45, durationFrames: 30 }).ok, true);
+    assert.equal(cam.parent.name, "AT Camera Orbit");
+    close(T(cam.parent, "ADBE Rotate Y").valueAtTime(1), 45);
+    h.call("camera.orbit", { direction: "right", degrees: 10 });
+    assert.equal(h.comp.layerList.filter((l) => l.name === "AT Camera Orbit").length, 1, "reuses the rig");
+    const z0 = opt("ADBE Camera Zoom").value;
+    assert.equal(h.call("camera.lensZoom", { percent: 50, durationFrames: 30 }).ok, true);
+    close(opt("ADBE Camera Zoom").valueAtTime(1), z0 * 1.5);
+});
+
+test("preview settings, color depth, work area, purge, rasterize", () => {
+    const h = setup();
+    const l = h.comp.add(ShapeLayer, "S");
+    l.selected = true;
+    assert.equal(h.call("preview.resolution", { factor: 3 }).ok, true);
+    assert.deepEqual(plain(h.comp.resolutionFactor), [3, 3]);
+    assert.equal(h.call("project.bpc", { bits: 16 }).ok, true);
+    assert.equal(h.app.project.bitsPerChannel, 16);
+    assert.equal(h.call("preview.fast", { mode: "adaptive" }).ok, true);
+    assert.equal(h.app.activeViewer.views[0].options.fastPreview, 2);
+    assert.equal(h.call("preview.draft3d").result.on, true);
+    h.comp.time = 2;
+    h.call("preview.workArea", { seconds: 3 });
+    close(h.comp.workAreaStart, 2);
+    close(h.comp.workAreaDuration, 3);
+    assert.equal(h.call("preview.purge").ok, true);
+    assert.equal(h.app.purged, 1);
+    assert.equal(h.call("layers.rasterize").result.on, true);
+    assert.equal(l.collapseTransformation, true);
+    const read = h.call("preview.read").result;
+    assert.equal(read.resolution, 3);
+    assert.equal(read.bpc, 16);
+    assert.equal(read.fastPreview, "adaptive");
+});
+
+test("audio levels and fades on audio layers only", () => {
+    const h = setup();
+    const a = h.comp.add(AVLayer, "VO", { audio: true, inPoint: 0, outPoint: 5 });
+    a.selected = true;
+    const lv = () => a.property("ADBE Audio Group").property("ADBE Audio Levels");
+    assert.equal(h.call("audio.levels", { db: -6 }).ok, true);
+    close(lv().value, [-6, -6]);
+    assert.equal(h.call("audio.levels", { delta: -3 }).ok, true);
+    close(lv().value, [-9, -9]);
+    assert.equal(h.call("audio.fade", { phase: "in", durationFrames: 15 }).ok, true);
+    close(lv().valueAtTime(0), [-48, -48]);
+    close(lv().valueAtTime(1), [-9, -9]);
+    a.selected = false;
+    const v = h.comp.add(AVLayer, "Video");
+    v.selected = true;
+    assert.equal(h.call("audio.levels", { db: 0 }).error.code, "no-audio");
+});
+
+test("text reveal options: scale, rotation, random order", () => {
+    const h = setup();
+    const l = layerForPresets(h, TextLayer);
+    const r = h.call("preset.apply", { title: "Pop Letters", kind: "text-reveal", requires: "text", phase: "in", scale: 0, rotation: 45, random: true });
+    assert.equal(r.ok, true, JSON.stringify(r));
+    const anim = l.property("ADBE Text Properties").property("ADBE Text Animators").property(1);
+    const props = anim.property("ADBE Text Animator Properties");
+    assert.deepEqual(plain(props.property("ADBE Text Scale 3D").value), [0, 0, 100]);
+    assert.equal(props.property("ADBE Text Rotation").value, 45);
+    assert.equal(anim.property("ADBE Text Selectors").property(1).property("ADBE Text Range Advanced").property("ADBE Text Randomize Order").value, 1);
+});
+
+test("refused preconditions never open an undo group (no empty 'Undo' entries)", () => {
+    const h = setup();
+    assert.equal(h.call("easing.apply", { mode: "both" }).error.code, "no-keyframes");
+    assert.equal(h.call("easing.physics", { shape: "bounce" }).error.code, "no-keyframes");
+    assert.equal(h.call("camera.orbit", {}).error.code, "no-camera");
+    assert.equal(h.call("camera.shake", {}).error.code, "no-camera");
+    const l = h.comp.add(AVLayer, "One");
+    l.selected = true;
+    assert.equal(h.call("layers.stagger", { amount: 3 }).error.code, "too-few-layers");
+    assert.deepEqual(h.undo.groups, []);
 });
