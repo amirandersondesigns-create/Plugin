@@ -49,8 +49,9 @@
         }
     }
 
+    // Pro mode was removed: explanations are always shown.
     function isBeginner() {
-        return AT.store.get("settings").mode !== "pro";
+        return true;
     }
 
     // ---- feedback ------------------------------------------------------------
@@ -335,6 +336,45 @@
         return wrap;
     }
 
+    // Duration: a number plus a frames/seconds switch, saved as
+    // settings[key + "Value"] / settings[key + "Unit"]. allowAuto: empty or 0
+    // means "each preset's own length".
+    function duration(o) {
+        var s = AT.store.get("settings");
+        var unit = s[o.key + "Unit"] || "frames";
+        var value = typeof s[o.key + "Value"] === "number" ? s[o.key + "Value"] : (o.allowAuto ? 0 : o.defaultFrames);
+        var input = h("input.num-input", { type: "number", min: "0", step: unit === "seconds" ? "0.1" : "1", "aria-label": o.label,
+            placeholder: o.allowAuto ? "Auto" : "", value: value > 0 ? String(value) : (o.allowAuto ? "" : String(value)) });
+        function save() {
+            var v = parseFloat(input.value);
+            if (!(v > 0)) {
+                v = 0;
+                if (!o.allowAuto) { v = unit === "seconds" ? Math.round(o.defaultFrames / 30 * 10) / 10 : o.defaultFrames; input.value = String(v); }
+                else input.value = "";
+            }
+            AT.store.update("settings", function (x) { x[o.key + "Value"] = v; x[o.key + "Unit"] = unit; });
+        }
+        input.addEventListener("change", save);
+        var seg = segmented([{ value: "frames", label: "frames" }, { value: "seconds", label: "seconds" }], unit, function (v) {
+            // Convert the number so the length stays roughly the same (30 fps).
+            var cur = parseFloat(input.value);
+            if (cur > 0) input.value = String(v === "seconds" ? Math.round(cur / 30 * 100) / 100 : Math.round(cur * 30));
+            unit = v;
+            input.step = v === "seconds" ? "0.1" : "1";
+            save();
+        }, { cls: "seg-sm", label: o.label + " unit" });
+        return h("div.duration", [h("span.duration-label", { text: o.label }), input, seg,
+            o.allowAuto ? h("span.duration-hint", { text: "empty = Auto" }) : null]);
+    }
+
+    // Converts a saved duration setting into a host payload fragment.
+    function durationParams(key, defaultFrames) {
+        var s = AT.store.get("settings");
+        var v = s[key + "Value"];
+        if (!(v > 0)) return { durationFrames: defaultFrames };
+        return (s[key + "Unit"] || "frames") === "seconds" ? { durationSeconds: v } : { durationFrames: v };
+    }
+
     function toggle(label, checked, onChange) {
         var input = h("input", { type: "checkbox" });
         input.checked = !!checked;
@@ -373,7 +413,7 @@
     AT.ui = {
         h: h, pulse: pulse, explain: explain, infoButton: infoButton, favButton: favButton, curve: curve,
         yForX: yForX, preview: preview, section: section, lead: lead, toolButton: toolButton, iconButton: iconButton,
-        presetTile: presetTile, segmented: segmented, slider: slider, toggle: toggle, keycaps: keycaps, empty: empty,
+        presetTile: presetTile, segmented: segmented, slider: slider, toggle: toggle, duration: duration, durationParams: durationParams, keycaps: keycaps, empty: empty,
         isBeginner: isBeginner
     };
 })(window.AT = window.AT || {});

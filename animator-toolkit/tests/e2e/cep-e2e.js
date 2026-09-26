@@ -57,6 +57,7 @@ shape.selected = true;
 const T = (l, k) => l.property("ADBE Transform Group").property(k);
 
 const results = [];
+const toasts = [];
 function check(name, ok, detail) {
     results.push({ name, ok: !!ok });
     console.log((ok ? "PASS " : "FAIL ") + name + (ok || detail === undefined ? "" : "  -> " + JSON.stringify(detail)));
@@ -69,6 +70,12 @@ function check(name, ok, detail) {
     page.on("pageerror", (e) => errors.push(e.message));
     const scripts = [];
     await page.exposeFunction("__cepEval", (script) => { scripts.push(script); return host.evalScript(script); });
+    await page.addInitScript(() => {
+        document.addEventListener("DOMContentLoaded", () => {
+            const t = window.AT.toast;
+            window.AT.toast = function (msg, kind, item) { try { window.__toastSeen(kind || "info", String(msg)); } catch (e) {} return t.apply(this, arguments); };
+        });
+    });
     await page.addInitScript(({ ext }) => {
         window.__adobe_cep__ = {
             evalScript(script, cb) { window.__cepEval(script).then(cb); },
@@ -78,6 +85,8 @@ function check(name, ok, detail) {
     }, { ext: EXT });
 
     const toast = async () => (await page.textContent("#toast")) || "";
+    // Every toast the panel shows, so we can prove no success shows an error.
+    await page.exposeFunction("__toastSeen", (kind, text) => { toasts.push({ kind, text }); });
     const waitToast = async (re) => {
         await page.waitForFunction((src) => new RegExp(src).test(document.querySelector("#toast").textContent), re.source, { timeout: 4000 }).catch(() => {});
         return toast();
@@ -100,7 +109,6 @@ function check(name, ok, detail) {
 
     // Onboarding.
     await page.click("text=Get started");
-    await page.click("text=New to After Effects");
     await page.click("text=Start working");
 
     await page.waitForFunction(() => /Layer selected/.test((document.querySelector(".suggest-title") || {}).textContent || ""), null, { timeout: 5000 }).catch(() => {});
@@ -191,11 +199,9 @@ function check(name, ok, detail) {
     const t2 = await waitToast(/keyframe added/);
     check("recovers after the host namespace is wiped", /keyframe added/.test(t2) && host.ns && host.ns.ready === true, [t1, t2]);
 
-    // Connection diagnostics in Learn > About.
+    // Learn > About no longer has a connection test or Pro mode.
     await page.click(".tab[data-view=learn]");
-    await page.click("text=Test connection");
-    await page.waitForFunction(() => /OK: After Effects|FAILED/.test(document.querySelector(".conn-out").textContent), null, { timeout: 4000 }).catch(() => {});
-    check("Test connection reports OK with the command count", /OK: After Effects 26\.0 \(mock\) · \d+ commands/.test(await page.textContent(".conn-out")), await page.textContent(".conn-out"));
+    check("no Test connection, no Pro mode, no Guides", !(await page.$("text=Test connection")) && !(await page.$("#mode")) && !(await page.$(".seg-btn:has-text('Guides')")));
 
     // ---- 0.2 features, clicked through the real UI ----
     const bar = comp.add(ShapeLayer, "Bar", { inPoint: 0, outPoint: 8, position: [960, 900], rect: { left: 0, top: 0, width: 600, height: 80 } });
@@ -232,17 +238,19 @@ function check(name, ok, detail) {
     comp.selectedProperties = [];
 
     await page.click(".tab[data-view=preview]");
-    await page.waitForSelector(".choice-btn", { timeout: 4000 }).catch(() => {});
-    await page.click(".choice-btn:has-text('Half')");
+    await page.waitForSelector(".option", { timeout: 4000 }).catch(() => {});
+    await page.click(".option:has-text('Half')");
     await waitToast(/Half/);
     check("Preview: resolution set to Half", comp.resolutionFactor[0] === 2, comp.resolutionFactor);
-    await page.click(".choice-btn:has-text('16 bpc')");
+    await page.click(".option:has-text('16 bpc')");
     await waitToast(/16 bpc/);
     check("Preview: color depth 16 bpc", host.app.project.bitsPerChannel === 16);
     const vo = comp.add(AVLayer, "VO", { audio: true, inPoint: 0, outPoint: 8 });
     comp.layerList.forEach((l) => { l.selected = false; });
     vo.selected = true;
-    await page.click(".seg-tabs .seg-btn:has-text('Audio')");
+    await page.click(".setup:has-text('Animate Fast')");
+    check("Preview: one-click Animate Fast", /Animate fast/.test(await waitToast(/Animate fast/)) && comp.resolutionFactor[0] === 2 && comp.draft3d === true, await toast());
+    await page.click(".tab[data-view=audio]");
     await page.click(".tool:has-text('Audio Fade In')");
     check("Audio: fade in keyed levels", /Audio Fade In/.test(await waitToast(/Audio Fade/)) && vo.property("ADBE Audio Group").property("ADBE Audio Levels").numKeys === 2, await toast());
 
@@ -262,6 +270,25 @@ function check(name, ok, detail) {
     check("Learn: preview, render and guide shortcuts", /Preview with cache settings/.test(scText) && /Add to Render Queue/.test(scText) && /Show\/hide guides/.test(scText), null);
     await page.click(".seg-tabs .seg-btn:has-text('Lessons')");
 
+    // Frames/seconds on animation presets: 1.5 seconds on a Fade In.
+    const dl = comp.add(ShapeLayer, "Dur", { inPoint: 0, outPoint: 8, position: [960, 540] });
+    comp.layerList.forEach((l) => { l.selected = false; });
+    dl.selected = true;
+    await page.click(".tab[data-view=animate]");
+    await page.click(".motion-controls .duration .seg-btn:has-text('seconds')");
+    await page.fill(".motion-controls .duration .num-input", "1.5");
+    await page.press(".motion-controls .duration .num-input", "Tab");
+    await page.click(".seg-phase .seg-btn:has-text('Entrance')");
+    await page.click(".preset:has-text('Fade In')");
+    await waitToast(/Fade In/);
+    const dop = T(dl, "ADBE Opacity");
+    check("Duration in seconds drives presets", dop.numKeys === 2 && Math.abs(dop.keys[1].time - dop.keys[0].time - 1.5) < 1e-6, dop.keys.map((k) => k.time));
+
+    // Quick actions include Rasterize.
+    await page.click(".tab[data-view=home]");
+    await page.click(".quick-grid .icon-tool:has-text('Rasterize')");
+    check("Quick actions: Rasterize", /Continuous Rasterize on/.test(await waitToast(/Rasterize/)) && dl.collapseTransformation === true, await toast());
+
     // Favorites persist a click and run from the Favorites tab.
     await page.fill("#search", "");
     await page.keyboard.press("Escape");
@@ -279,7 +306,12 @@ function check(name, ok, detail) {
     // create camera, orbit = 9 more (resolution is a viewer setting, not an undo step).
     const keyGroups = host.undo.groups.filter((g) => /Add Keyframes/.test(g)).length;
     check("every mutating click was exactly one undo group",
-        host.undo.groups.length - keyGroups === 18 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+        host.undo.groups.length - keyGroups === 20 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+    // Only the deliberate failures may show error toasts.
+    const expected = /Anchor not moved|Select one or more layers|Create Camera first|couldn't run the command/;
+    const bad = toasts.filter((t) => t.kind === "error" && !expected.test(t.text));
+    check("toast recorder saw the run (" + toasts.length + " toasts, " + toasts.filter((t) => t.kind === "error").length + " expected errors)", toasts.length > 20);
+    check("no error toasts on successful clicks (no 'empty reply')", bad.length === 0, bad);
     check("no page errors", errors.length === 0, errors);
 
     await browser.close();

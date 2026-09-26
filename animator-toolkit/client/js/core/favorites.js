@@ -30,6 +30,7 @@
         if (item.type === "lesson" || item.type === "workflow" || item.type === "shortcut") return "learn";
         if (item.view === "easing") return "easing";
         if (item.view === "camera" || item.view === "capture") return "camera";
+        if (item.view === "audio" || item.view === "preview") return "tools";
         if (item.view === "text") return "text";
         return "tools";
     }

@@ -67,3 +67,12 @@ test("no source file contains raw U+2028/U+2029 (breaks regex/string literals)",
         assert.doesNotMatch(fs.readFileSync(f, "utf8"), /[\u2028\u2029]/, f);
     }
 });
+
+test("host code has no try/finally (ExtendScript can drop `return` values through finally)", () => {
+    const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+        e.isDirectory() ? walk(path.join(d, e.name)) : /\.jsx$/.test(e.name) ? [path.join(d, e.name)] : []);
+    for (const f of walk(path.join(ROOT, "host"))) {
+        const code = fs.readFileSync(f, "utf8").split("\n").filter((l) => !/^\s*\/\//.test(l)).join("\n");
+        assert.doesNotMatch(code, /\bfinally\b/, f);
+    }
+});

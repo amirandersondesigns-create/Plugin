@@ -117,7 +117,7 @@
         }
         var text = r.raw === undefined || r.raw === null ? "" : String(r.raw);
         if (!text) {
-            return { ok: false, requestId: requestId, error: { code: "empty-response", message: "After Effects returned an empty reply." } };
+            return { ok: false, requestId: requestId, error: { code: "empty-response", message: "After Effects didn't confirm this action. Check the timeline: it may have worked; if not, try again." } };
         }
         if (text === "EvalScript error.") {
             // Usually means the host namespace was wiped (e.g. another script

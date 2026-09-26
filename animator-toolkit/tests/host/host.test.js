@@ -554,3 +554,49 @@ test("refused preconditions never open an undo group (no empty 'Undo' entries)",
     assert.equal(h.call("layers.stagger", { amount: 3 }).error.code, "too-few-layers");
     assert.deepEqual(h.undo.groups, []);
 });
+
+test("durations in seconds for presets, camera moves and audio fades", () => {
+    const h = setup();
+    const l = layerForPresets(h);
+    assert.equal(h.call("preset.apply", { title: "Fade In", kind: "fade", phase: "in", durationSeconds: 1.5 }).ok, true);
+    const o = T(l, "ADBE Opacity");
+    close(o.keys[1].time - o.keys[0].time, 1.5);
+    h.call("preset.apply", { title: "Slide Up + Fade", steps: [{ kind: "fade", phase: "out" }, { kind: "slide", direction: "up", phase: "out" }], durationSeconds: 0.5 });
+    const p = T(l, "ADBE Position");
+    close(p.keys[p.numKeys - 1].time - p.keys[p.numKeys - 2].time, 0.5);
+    h.call("camera.create", {});
+    h.comp.time = 0;
+    h.call("camera.move", { move: "push", durationSeconds: 2 });
+    const cp = T(h.comp.activeCamera, "ADBE Position");
+    close(cp.keys[1].time - cp.keys[0].time, 2);
+    const a = h.comp.add(AVLayer, "VO", { audio: true, inPoint: 0, outPoint: 5 });
+    h.comp.layerList.forEach((x) => { x.selected = false; });
+    a.selected = true;
+    h.call("audio.fade", { phase: "in", durationSeconds: 1 });
+    const lv = a.property("ADBE Audio Group").property("ADBE Audio Levels");
+    close(lv.keys[1].time - lv.keys[0].time, 1);
+});
+
+test("one-click preview setups", () => {
+    const h = setup();
+    const r = h.call("preview.mode", { mode: "fast" });
+    assert.equal(r.ok, true);
+    assert.deepEqual(plain(h.comp.resolutionFactor), [2, 2]);
+    assert.equal(h.comp.draft3d, true);
+    assert.equal(h.app.activeViewer.views[0].options.fastPreview, 2);
+    h.call("preview.mode", { mode: "final" });
+    assert.deepEqual(plain(h.comp.resolutionFactor), [1, 1]);
+    assert.equal(h.comp.draft3d, false);
+    assert.equal(h.app.activeViewer.views[0].options.fastPreview, 1);
+    assert.equal(h.undo.groups.length, 0, "viewer setups aren't undo steps");
+});
+
+test("every command returns a non-empty JSON reply (success and failure)", () => {
+    const h = setup();
+    for (const [cmd, payload] of [["system.ping", {}], ["context.inspect", {}], ["preview.read", {}], ["easing.apply", { mode: "both" }], ["nope", {}]]) {
+        const raw = h.context.AT.dispatch(JSON.stringify({ version: 1, requestId: "x", command: cmd, payload }));
+        assert.equal(typeof raw, "string");
+        assert.ok(raw.length > 10, cmd);
+        JSON.parse(raw);
+    }
+});

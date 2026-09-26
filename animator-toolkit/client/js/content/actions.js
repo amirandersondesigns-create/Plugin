@@ -141,7 +141,7 @@
         why: "Real cameras blur fast motion. A touch of motion blur makes animation look filmed instead of computer-perfect.",
         keywords: "motion blur switch smooth fast" });
 
-    add({ id: "layers.rasterize", title: "Continuous Rasterize", icon: "sparkle", view: "animate", command: "layers.rasterize",
+    add({ id: "layers.rasterize", title: "Continuous Rasterize", icon: "sun", view: "animate", command: "layers.rasterize",
         summary: "Toggles Continuous Rasterize (shape/Illustrator/solids) or Collapse Transformations (pre-comps).",
         why: "Vector art scaled above 100% looks soft unless this switch (the sun icon in the timeline) is on. On pre-comps it passes 3D and blending through. It can slow previews, so use it where you need it.",
         keywords: "continuous rasterize collapse transformations sharp blurry vector illustrator scale switch" });
@@ -242,21 +242,27 @@
         summary: "Sets the work area to 3 seconds from the playhead.", why: "Previews only render the work area. A short range around what you're animating plays back almost instantly.", keywords: "work area preview range b n" });
     add({ id: "preview.workArea.6", title: "Work Area 6s", icon: "clock", view: "preview", command: "preview.workArea", payload: { seconds: 6 },
         summary: "Sets the work area to 6 seconds from the playhead.", why: "Previews only render the work area.", keywords: "work area preview range" });
+    add({ id: "preview.mode.fast", title: "Animate Fast", icon: "bolt", view: "preview", command: "preview.mode", payload: { mode: "fast" },
+        summary: "Half resolution, Adaptive fast previews and Draft 3D in one click.", why: "The quickest way to get real-time playback while you animate. Timing is unchanged.",
+        keywords: "preview fast speed setup animate half adaptive draft" });
+    add({ id: "preview.mode.final", title: "Final Check", icon: "check", view: "preview", command: "preview.mode", payload: { mode: "final" },
+        summary: "Full resolution, full-quality previews, Draft 3D off.", why: "Switch back before you judge detail, text edges or render.",
+        keywords: "preview final full quality check" });
     add({ id: "preview.purge", title: "Purge Cache", icon: "trash", view: "preview", command: "preview.purge",
         summary: "Clears RAM and disk preview cache.", why: "When previews stutter or show stale frames, purging frees memory. Edit > Purge > All Memory & Disk Cache.", keywords: "purge cache memory ram disk clear" });
 
     // ---- audio ----
-    add({ id: "audio.minus3", title: "-3 dB", icon: "down", view: "preview", command: "audio.levels", payload: { delta: -3 },
+    add({ id: "audio.minus3", title: "-3 dB", icon: "down", view: "audio", command: "audio.levels", payload: { delta: -3 },
         summary: "Lowers selected audio layers by 3 dB.", why: "-6 dB sounds about half as loud. Small moves are usually enough.", keywords: "audio level volume lower quieter db" });
-    add({ id: "audio.plus3", title: "+3 dB", icon: "up", view: "preview", command: "audio.levels", payload: { delta: 3 },
+    add({ id: "audio.plus3", title: "+3 dB", icon: "up", view: "audio", command: "audio.levels", payload: { delta: 3 },
         summary: "Raises selected audio layers by 3 dB.", why: "Watch the meter: peaks must never reach 0 dB.", keywords: "audio level volume louder db" });
-    add({ id: "audio.bed", title: "Bed -12 dB", icon: "down", view: "preview", command: "audio.levels", payload: { db: -12 },
+    add({ id: "audio.bed", title: "Bed -12 dB", icon: "down", view: "audio", command: "audio.levels", payload: { db: -12 },
         summary: "Sets selected audio to -12 dB (Audio Levels).", why: "A common starting point for music under voice-over; then adjust by ear.", keywords: "audio music bed under voice over 12 db" });
-    add({ id: "audio.reset", title: "Reset 0 dB", icon: "reverse", view: "preview", command: "audio.levels", payload: { reset: true },
+    add({ id: "audio.reset", title: "Reset 0 dB", icon: "reverse", view: "audio", command: "audio.levels", payload: { reset: true },
         summary: "Resets Audio Levels to 0 dB (the file's own level).", why: "0 dB here means unchanged, not 'maximum'.", keywords: "audio reset level 0 db" });
-    add({ id: "audio.fadeIn", title: "Audio Fade In", icon: "up", view: "preview", command: "audio.fade", payload: { phase: "in" },
+    add({ id: "audio.fadeIn", title: "Audio Fade In", icon: "up", view: "audio", command: "audio.fade", payload: { phase: "in" },
         summary: "Fades audio up at the layer's start.", why: "Hard audio cuts click. A few frames of fade hides the edit.", keywords: "audio fade in" });
-    add({ id: "audio.fadeOut", title: "Audio Fade Out", icon: "down", view: "preview", command: "audio.fade", payload: { phase: "out" },
+    add({ id: "audio.fadeOut", title: "Audio Fade Out", icon: "down", view: "audio", command: "audio.fade", payload: { phase: "out" },
         summary: "Fades audio down at the layer's end.", why: "Hard audio cuts click. A few frames of fade hides the edit.", keywords: "audio fade out" });
 
     // ---- capture -----------------------------------------------------------

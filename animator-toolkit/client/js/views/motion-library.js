@@ -10,11 +10,7 @@
 
     function controls(onPhase) {
         var s = AT.store.get("settings");
-        var dur = AT.ui.slider({
-            label: "Duration", min: 0, max: 60, value: s.durationFrames || 0,
-            format: function (v) { return v === 0 ? "Auto" : v + "f"; },
-            onChange: function (v) { AT.store.update("settings", function (x) { x.durationFrames = v; }); }
-        });
+        var dur = AT.ui.duration({ key: "presetDur", label: "Duration", allowAuto: true });
         return h("div.motion-controls", [
             AT.ui.segmented([
                 { value: "in", label: "Entrance", icon: "up" },

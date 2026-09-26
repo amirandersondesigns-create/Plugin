@@ -1,12 +1,12 @@
 /*
- * Learn: micro-lessons, explained shortcuts and guided workflows, plus the
- * panel's own settings (mode, density), version and "replay the welcome".
+ * Learn: micro-lessons and explained shortcuts, plus the
+ * panel's own settings (density), version and "replay the welcome".
  */
 (function (AT) {
     "use strict";
 
     var h = AT.h;
-    var VERSION = "0.2.0";
+    var VERSION = "0.2.1";
     var sub = "lessons";
     var scFilter = "all";
     var focusId = null;
@@ -98,120 +98,29 @@
         AT.app.rerender();
     }
 
-    // ---- workflows -------------------------------------------------------------------------
-    function workflows() {
-        return h("div.wf-list", AT.content.workflows.map(function (w) {
-            var p = progress().workflows[w.id] || {};
-            var n = Object.keys(p).filter(function (k) { return p[k]; }).length;
-            return h("button.wf", { type: "button", on: { click: function () { openWorkflow(w); } } }, [
-                AT.illustration(w.illo, "wf-illo"),
-                h("span.wf-main", [
-                    h("span.wf-title", { text: w.title }),
-                    h("span.wf-sub", { text: w.summary }),
-                    h("span.wf-bar", h("i", { style: { width: Math.round(n / w.steps.length * 100) + "%" } }))
-                ]),
-                h("span.wf-meta", { text: w.minutes + " min" })
-            ]);
-        }));
-    }
-
-    function openWorkflow(w) {
-        var p = progress().workflows[w.id] || {};
-        var ol = h("ol.stepper");
-        w.steps.forEach(function (st, i) {
-            var check = h("input", { type: "checkbox", "aria-label": "Step " + (i + 1) + " done" });
-            check.checked = !!p[i];
-            check.addEventListener("change", function () {
-                AT.store.update("progress", function (pr) {
-                    pr.workflows[w.id] = pr.workflows[w.id] || {};
-                    pr.workflows[w.id][i] = check.checked;
-                });
-                li.classList.toggle("done", check.checked);
-            });
-            var content = [];
-            if (st["do"]) {
-                var it = AT.catalog.get(st["do"]);
-                var b = h("button.chip", { type: "button", on: { click: function () {
-                    AT.run(it, null, b).then(function (res) {
-                        if (res.ok && !check.checked) { check.checked = true; check.dispatchEvent(new Event("change")); }
-                    });
-                } } }, [it.type === "preset" ? AT.ui.preview(it.preview, it.phase) : AT.icon(it.icon), h("span", { text: it.title })]);
-                content.push(b);
-            } else if (st.learn) {
-                var l = AT.catalog.get(st.learn);
-                content.push(h("button.chip", { type: "button", on: { click: function () { openLesson(l); } } }, [AT.icon("learn"), h("span", { text: "Read: " + l.title })]));
-            }
-            if (st.text) content.push(h("p.step-text", { text: st.text }));
-            if (st.note) content.push(h("p.step-note", { text: st.note }));
-            var li = h("li.step" + (check.checked ? ".done" : ""), [h("label.step-check", [check, h("span.step-n", { text: String(i + 1) })]), h("div.step-body", content)]);
-            ol.appendChild(li);
-        });
-        AT.app.sheet(w.title, [AT.illustration(w.illo, "sheet-illo"), h("p", { text: w.summary }), ol,
-            h("button.btn.btn-block", { type: "button", text: "Reset checklist", on: { click: function () {
-                AT.store.update("progress", function (pr) { delete pr.workflows[w.id]; });
-                openWorkflow(w);
-            } } })]);
-    }
-
     // ---- about this panel ------------------------------------------------------------------------
     function about() {
         var s = AT.store.get("settings");
         return h("div.about", [
             h("div.about-row", [h("span.about-k", { text: "Panel" }), h("div.about-v", [
-                AT.ui.segmented([{ value: "beginner", label: "Beginner" }, { value: "pro", label: "Pro" }], s.mode === "pro" ? "pro" : "beginner",
-                    function (v) { AT.app.setMode(v); }, { cls: "seg-sm", label: "Mode" }),
                 AT.ui.segmented([{ value: "comfortable", label: "Roomy" }, { value: "compact", label: "Compact" }], s.density || "comfortable",
                     function (v) { AT.store.update("settings", function (x) { x.density = v; }); AT.app.applySettings(); }, { cls: "seg-sm", label: "Density" })
             ])]),
             h("div.about-row", [h("span.about-k", { text: "Version" }), h("span.about-v.muted", { text: VERSION + (AT.bridge.isPreview() ? " · preview mode" : "") })]),
-            connectionRow(),
             h("div.about-row", [h("span.about-k", { text: "Welcome" }), h("button.btn.btn-sm", { type: "button", text: "Replay the welcome", on: { click: function () { AT.app.onboarding(); } } })])
         ]);
-    }
-
-    // Shows exactly what the panel knows about its link to After Effects, and
-    // runs a round trip on demand. The first thing to check if buttons fail.
-    function connectionRow() {
-        var out = h("div.conn-out.muted");
-        function show() {
-            var st = AT.bridge.status();
-            var lines = [
-                "Mode: " + st.mode + (st.mode === "host" ? (st.booted ? " · host scripts loaded" : " · host scripts NOT loaded") : ""),
-                st.bootResult && st.bootResult !== "ok" ? "Load result: " + st.bootResult : null,
-                st.root ? "Extension: " + st.root : null,
-                st.lastError ? "Last error: " + st.lastError : null
-            ].filter(Boolean);
-            out.textContent = lines.join("\n");
-        }
-        var btn = h("button.btn.btn-sm", { type: "button", text: "Test connection", on: { click: function () {
-            btn.disabled = true;
-            AT.bridge.boot(1).then(function () { return AT.bridge.run("system.ping"); }, function (e) { return { ok: false, error: { message: e.message } }; }).then(function (res) {
-                btn.disabled = false;
-                show();
-                if (res.ok) {
-                    var r = res.result || {};
-                    out.textContent += "\nOK: After Effects " + (r.aeVersion || "?") + " · " + (r.commands ? r.commands.length : 0) + " commands";
-                    AT.toast("✓ Connected to After Effects", "ok");
-                } else {
-                    out.textContent += "\nFAILED: " + (res.error && res.error.message);
-                }
-            });
-        } } });
-        show();
-        return h("div.about-row.about-conn", [h("span.about-k", { text: "Connection" }), h("div.about-v.conn", [btn, out])]);
     }
 
     function render(page) {
         page.appendChild(AT.ui.segmented([
             { value: "lessons", label: "Lessons", icon: "learn" },
-            { value: "shortcuts", label: "Shortcuts", icon: "key" },
-            { value: "workflows", label: "Guides", icon: "list" }
+            { value: "shortcuts", label: "Shortcuts", icon: "key" }
         ], sub, function (v) { sub = v; AT.app.rerender(); }, { cls: "seg-tabs", label: "Learn section" }));
-        var body = sub === "shortcuts" ? shortcuts() : sub === "workflows" ? workflows() : lessons();
+        var body = sub === "shortcuts" ? shortcuts() : lessons();
         page.appendChild(h("div.learn-body", body));
         page.appendChild(AT.ui.section("About this panel", { icon: "info", cls: "sec-about" }, about()));
     }
 
-    AT.learn = { openLesson: openLesson, openWorkflow: openWorkflow, focusShortcut: focusShortcut, VERSION: VERSION };
+    AT.learn = { openLesson: openLesson, focusShortcut: focusShortcut, VERSION: VERSION };
     AT.registerView({ id: "learn", title: "Learn", icon: "learn", render: render });
 })(window.AT = window.AT || {});

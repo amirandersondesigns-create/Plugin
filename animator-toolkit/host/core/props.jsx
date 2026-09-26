@@ -66,6 +66,13 @@ AT.frames = function (comp, n) {
     return n * comp.frameDuration;
 };
 
+// Duration in seconds from a payload that gives either durationSeconds or
+// durationFrames (the panel lets artists choose frames or seconds).
+AT.durationOf = function (comp, p, defaultFrames) {
+    if (typeof p.durationSeconds === "number" && p.durationSeconds > 0) return p.durationSeconds;
+    return AT.frames(comp, p.durationFrames || defaultFrames);
+};
+
 AT.addArrays = function (a, b) {
     if (typeof a === "number") return a + b[0];
     var out = [];

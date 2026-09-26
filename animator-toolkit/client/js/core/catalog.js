@@ -1,7 +1,7 @@
 /*
  * Catalog: one lookup for every tool, preset, lesson, shortcut and
- * workflow, plus AT.run(), the single way anything in the panel executes.
- * Views, search results, favorites and workflow steps all call AT.run with
+ * plus AT.run(), the single way anything in the panel executes.
+ * Views, search results and favorites all call AT.run with
  * a catalog id, so behaviour and feedback are identical everywhere.
  */
 (function (AT) {
@@ -12,7 +12,7 @@
     function build() {
         byId = {};
         var c = AT.content;
-        [c.actions, c.presets, c.lessons, c.shortcuts, c.workflows].forEach(function (list) {
+        [c.actions, c.presets, c.lessons, c.shortcuts].forEach(function (list) {
             list.forEach(function (item) { byId[item.id] = item; });
         });
     }
@@ -29,13 +29,15 @@
     // the same options the artist set in the tab it lives in.
     function paramsFor(item) {
         var s = AT.store.get("settings");
+        var dur = AT.ui.durationParams;
         if (item.type === "preset") {
             var p = { timing: s.presetTiming || "layer" };
-            p.durationFrames = s.durationFrames > 0 ? s.durationFrames : item.duration;
+            var d = dur("presetDur", item.duration); // Auto = the preset's own length
+            if (d.durationSeconds) p.durationSeconds = d.durationSeconds; else p.durationFrames = d.durationFrames;
             return p;
         }
         if (item.command === "camera.move") {
-            return { distance: s.cameraDistance || 300, durationFrames: s.cameraFrames || 48, easing: s.cameraEasing || "smooth" };
+            return assign({ distance: s.cameraDistance || 300, easing: s.cameraEasing || "smooth" }, dur("cameraDur", 48));
         }
         if (item.command === "still.capture") {
             return { folder: s.stillFolder || "", importToProject: !!s.stillImport, addToComp: !!s.stillAddToComp };
@@ -43,14 +45,14 @@
         if (item.command === "layers.stagger") {
             return { amount: typeof s.staggerAmount === "number" ? s.staggerAmount : (s.staggerFrames || 3), unit: s.staggerUnit || "frames" };
         }
-        if (item.command === "camera.orbit") return { degrees: s.orbitDegrees || 30, durationFrames: s.cameraFrames || 48 };
+        if (item.command === "camera.orbit") return assign({ degrees: s.orbitDegrees || 30 }, dur("cameraDur", 72));
         if (item.command === "camera.shake" && !(item.payload && item.payload.remove)) return { amount: s.shakeAmount || 12, frequency: s.shakeFrequency || 2 };
-        if (item.command === "camera.lensZoom") return { durationFrames: s.cameraFrames || 48 };
+        if (item.command === "camera.lensZoom") return dur("cameraDur", 48);
         if (item.command === "camera.dof") return { aperture: s.cameraAperture || 60 };
         if (item.command === "threed.depthSpread") return { spacing: s.depthSpacing || 300 };
         if (item.command === "text.extrude") return { depth: s.extrudeDepth || 40 };
         if (item.command === "mask.feather") return { amount: s.maskFeather || 20 };
-        if (item.command === "audio.fade") return { durationFrames: s.audioFadeFrames || 15 };
+        if (item.command === "audio.fade") return dur("audioFadeDur", 15);
         return {};
     }
 
@@ -70,6 +72,11 @@
             s.recent = recent.slice(0, 6);
         });
     }
+
+    var NEEDS_CODES = {
+        "no-selection": 1, "no-keyframes": 1, "too-few-keyframes": 1, "too-few-layers": 1, "no-camera": 1,
+        "no-comp": 1, "no-project": 1, "unsupported-layer": 1, "no-audio": 1, "no-masks": 1, "renderer": 1
+    };
 
     // Runs a catalog item. Returns the bridge response. `overrides` lets a
     // view pass live control values (e.g. slider positions).
@@ -100,7 +107,10 @@
                 if (source) AT.ui.pulse(source);
                 AT.app.refreshContext();
             } else {
-                AT.toast(res.error.message, "error", item);
+                // The "What does this tool need?" link only makes sense when the
+                // problem is the selection or a missing precondition.
+                var hint = NEEDS_CODES[res.error.code] ? item : null;
+                AT.toast(res.error.message, "error", hint);
             }
             return res;
         });

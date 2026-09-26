@@ -3,7 +3,7 @@
 A dockable After Effects panel for designers moving into motion. It does
 common jobs in one click and explains each one as it goes: anchor points,
 keyframes, easing, motion presets, text animation, cameras and still capture.
-It also includes micro-lessons, explained shortcuts and guided workflows.
+It also includes micro-lessons and explained shortcuts.
 
 - **Hosts:** After Effects 2021 (18.0) and newer, macOS and Windows
 - **Tech:** CEP HTML/JS panel + ExtendScript host commands. No build step and no dependencies.
@@ -14,7 +14,7 @@ It also includes micro-lessons, explained shortcuts and guided workflows.
 
 1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
    or Anastasiy's Extension Manager.
-2. Drag `AnimatorToolkit-0.2.0.zxp` onto it.
+2. Drag `AnimatorToolkit-0.2.1.zxp` onto it.
 3. Restart After Effects and open **Window › Extensions › Animator Toolkit**.
 
 The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
@@ -25,7 +25,7 @@ install as updates.
 
 **Option B: zip + install script (unsigned, debug mode)**
 
-1. Unzip `animator-toolkit-0.2.0.zip`.
+1. Unzip `animator-toolkit-0.2.1.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
    These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
    then copy the extension to your user CEP extensions folder.
@@ -36,9 +36,9 @@ uninstall script, or the installer's Remove button.
 
 **Panel opens but buttons do nothing?**
 
-Open **Learn › About this panel › Test connection**. It reports whether the
-host scripts loaded, the extension path, and the last error. A red banner
-under the header also appears whenever the panel can't reach After Effects.
+A red banner under the header appears (with the reason and a Retry button)
+only when the panel can't reach After Effects; otherwise it reconnects on
+its own.
 Up to 0.1.1, and again in a VS Code-edited 0.1.3, one failed first
 contact with the host (for example while After Effects was still starting)
 broke every button until the panel was reopened. Those builds also used
@@ -50,11 +50,17 @@ retries and recovers, and the host keeps everything in
 For full detail, open DevTools at <http://localhost:8099>: every command and
 reply is logged in its console.
 
+**"After Effects returned an empty reply" on buttons that worked?** Fixed
+in 0.2.1. ExtendScript can drop a function's `return` value when it passes
+through a `try/finally`. The dispatcher used one to close undo groups, so
+commands ran but the panel never got the result. It now closes the group
+without `finally`, and a test bans `finally` from host code.
+
 **Panel not listed under Window › Extensions?**
 
 First check `~/Library/Logs/CSXS/CEP12-AEFT.log` for `Unsupported Manifest version`.
 That error means the manifest can't be parsed. Up to 0.1.0 the manifest
-declared a default XML namespace, which After Effects 2026 rejects. 0.2.0
+declared a default XML namespace, which After Effects 2026 rejects. 0.2.1
 matches Adobe's schema, and `tests/manifest.test.js` guards against a repeat.
 
 1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
@@ -76,7 +82,7 @@ and flows; it doesn't touch After Effects.
 
 | Tab | What it does |
 |---|---|
-| **Home** | Suggestions for the current selection, quick actions, favorites, recent tools, and the 5 essential skills |
+| **Home** | Suggestions for the current selection, 16 quick actions (incl. Stagger, Rasterize, Make 3D, Animate Fast), favorites, recent tools, and the 5 essential skills |
 | **Animate** | Anchor grid and Align/Distribute, keyframe strip, **Stagger** (frames or seconds), motion library (13 essentials, 11 more effects, each In and Out), and layer tools including **Continuous Rasterize** |
 | **Easing** | Live curve and moving ball. Easy Ease/In/Out/Linear/Hold, strength chips, 8 **curve presets** (Sine to Expo, Smooth Stop/Start, Snap, Glide), **physics** (Overshoot, Bounce, Elastic keyframes between selected keys), and In/Out sliders |
 | **Text** | New text, plus 11 essentials and 13 more effects (per-letter rise/pop/spin/random, word blur, type on and more) |
@@ -84,13 +90,15 @@ and flows; it doesn't touch After Effects.
 | **3D** | Make 3D/2D, spread in depth, 3D motion (flip, tumble, door swing, fly from depth, card flip), extruded 3D text with a renderer switch, and quick camera moves |
 | **Camera** | Create, moves, **lens & focus** (DOF, aperture, focus on layer, lens zoom), **rigs** (orbit null, wiggle shake), and saved positions |
 | **Capture** | Grab Still |
-| **Preview** | Resolution/Down Sample Factor, Fast Previews, 8/16/32 bpc, Draft 3D, work area, purge cache, and recommended Preview-panel settings. **Audio** sub-tab: level guide for TV, streaming and ads, level/fade buttons |
+| **Preview** | One-click **Animate Fast / Final Check**, then Resolution (Down Sample Factor), Fast Previews and 8/16/32 bpc as simple choice rows, speed tools (Draft 3D, work area, purge cache), and recommended Preview-panel settings |
+| **Audio** | Level/fade tools for selected audio and the level guide for TV, streaming, podcasts and ads |
 | **Favorites** | Cards with previews, groups, rename, reorder |
-| **Learn** | Lessons, including "Stuck? Quick fixes" (invisible mask paths, empty viewer, finding anything, guides, getting around) and production topics (preview speed, rasterize, bpc, audio, 3D). Also 79 shortcuts in 9 categories (Preview & Render, View & Guides, Getting Around and Find & Fix are new) and guides |
+| **Learn** | Lessons, including "Stuck? Quick fixes" (invisible mask paths, empty viewer, finding anything, guides, getting around) and production topics (preview speed, rasterize, bpc, audio, 3D). 79 shortcuts in 9 categories. About: density, version, replay the welcome |
 
-Search (`/`) covers every tool, preset, lesson, shortcut, guide and favorite
-(including favorites you've renamed). Beginner mode shows explanations.
-Pro mode is compact and hides them.
+Search (`/`) covers every tool, preset, lesson, shortcut and favorite
+(including favorites you've renamed). Every animation option (presets,
+camera moves, orbit, lens zoom, audio fades, stagger) takes a duration in
+frames or seconds.
 
 ## How presets stack
 
@@ -134,7 +142,7 @@ client/
   js/core/search.js        stemmed, weighted search index
   js/core/favorites.js     favorites reference ids (never copies)
   js/content/*.js          data only: tools, motion presets, lessons,
-                           shortcuts, workflows
+                           shortcuts
   js/ui/*.js               icons, illustrations, component kit
   js/views/*.js            one file per tab (tab order = script order in index.html)
   css/                     tokens, layout/components, preset preview animations
@@ -154,8 +162,8 @@ If it needs a new keyframe shape or kind, add it to `AT.SHAPES` or
 ## Tests
 
 ```
-npm test          # 54 unit/contract tests (Node, no dependencies)
-npm run test:e2e  # 40 end-to-end checks (needs Playwright + Chromium);
+npm test          # 58 unit/contract tests (Node, no dependencies)
+npm run test:e2e  # 45 end-to-end checks (needs Playwright + Chromium);
                   # E2E_FRIENDLY=1 for ideal conditions, E2E_SRC=<dir> for another build
 ```
 

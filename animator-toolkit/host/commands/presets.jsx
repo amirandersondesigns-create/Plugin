@@ -48,7 +48,7 @@ AT.SHAPES = {
 };
 
 AT.presetWindow = function (layer, comp, def) {
-    var dur = AT.frames(comp, def.durationFrames || 15);
+    var dur = AT.durationOf(comp, def, 15);
     var start;
     if (def.timing === "playhead") {
         start = comp.time;
@@ -285,6 +285,7 @@ AT.register("preset.apply", {
                 var def = steps[s];
                 if (payload.timing && !def.timing) def.timing = payload.timing;
                 if (payload.durationFrames && !def.durationFrames) def.durationFrames = payload.durationFrames;
+                if (payload.durationSeconds && !def.durationSeconds) def.durationSeconds = payload.durationSeconds;
                 var r = AT.applyPresetToLayer(layer, ctx.comp, def);
                 if (r.skipped) {
                     skipped.push({ layer: layer.name, reason: r.skipped });

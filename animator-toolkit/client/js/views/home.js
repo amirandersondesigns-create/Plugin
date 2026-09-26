@@ -8,13 +8,17 @@
     var h = AT.h;
     var suggestBox = null;
 
-    var QUICK = ["anchor.center", "anchor.bottom-center", "ease.both", "ease.in", "ease.out", "keys.all",
-        "layers.nullParent", "layers.precompose", "layers.marker", "layers.motionBlur", "camera.create", "still.capture"];
+    // Everyday one-click tools, whatever tab they live in.
+    var QUICK = ["anchor.center", "anchor.bottom-center", "ease.both", "ease.in",
+        "ease.out", "keys.all", "layers.stagger", "layers.nullParent",
+        "layers.precompose", "layers.rasterize", "layers.motionBlur", "layers.marker",
+        "threed.make", "camera.create", "preview.mode.fast", "still.capture"];
 
     var QUICK_CAPTIONS = {
         "anchor.center": "Center", "anchor.bottom-center": "Bottom", "ease.both": "Easy Ease", "ease.in": "Ease In",
-        "ease.out": "Ease Out", "keys.all": "Key All", "layers.nullParent": "Null+Parent", "layers.precompose": "Precomp",
-        "camera.create": "Camera", "still.capture": "Grab Still"
+        "ease.out": "Ease Out", "keys.all": "Key All", "layers.stagger": "Stagger", "layers.nullParent": "Null+Parent",
+        "layers.precompose": "Precomp", "layers.rasterize": "Rasterize", "layers.motionBlur": "Motion Blur", "layers.marker": "Marker",
+        "threed.make": "Make 3D", "camera.create": "Camera", "preview.mode.fast": "Fast Preview", "still.capture": "Grab Still"
     };
 
     function suggestions(c) {

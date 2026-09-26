@@ -101,6 +101,11 @@ AT.dispatch = function (requestText) {
 
     var payload = request.payload || {};
     var undoOpen = false;
+    var response;
+    // NO try/finally here: in ExtendScript a `return` inside `try` with a
+    // `finally` can hand back undefined, so the command ran but the panel got
+    // an empty reply ("After Effects returned an empty reply"). Build the
+    // response in try/catch, close the undo group after, then return.
     try {
         var ctx = AT.buildContext(spec.needs || "comp");
         // Preconditions (e.g. "select keyframes", "needs a camera") are
@@ -112,7 +117,7 @@ AT.dispatch = function (requestText) {
             undoOpen = true;
         }
         var out = spec.run(payload, ctx) || {};
-        return AT.JSON.stringify({
+        response = AT.JSON.stringify({
             ok: true,
             requestId: requestId,
             result: out.result || {},
@@ -120,16 +125,19 @@ AT.dispatch = function (requestText) {
         });
     } catch (err) {
         if (err instanceof AT.UserError) {
-            return AT.errorResult(requestId, err.code, err.message);
+            response = AT.errorResult(requestId, err.code, err.message);
+        } else {
+            var where = err && err.line ? " (line " + err.line + ")" : "";
+            response = AT.errorResult(requestId, "host-exception",
+                "After Effects reported an error: " + (err && err.message ? err.message : String(err)) + where);
         }
-        var where = err && err.line ? " (line " + err.line + ")" : "";
-        return AT.errorResult(requestId, "host-exception",
-            "After Effects reported an error: " + (err && err.message ? err.message : String(err)) + where);
-    } finally {
-        // Always close the group, even on failure, so a half-finished
-        // operation is still one Cmd/Ctrl+Z away from gone.
-        if (undoOpen) app.endUndoGroup();
     }
+    // Always close the group, even on failure, so a half-finished operation
+    // is still one Cmd/Ctrl+Z away from gone.
+    if (undoOpen) {
+        try { app.endUndoGroup(); } catch (e) { /* nothing more to do */ }
+    }
+    return response;
 };
 
 AT.register("system.ping", {

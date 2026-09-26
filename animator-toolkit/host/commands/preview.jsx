@@ -119,6 +119,26 @@ AT.register("preview.workArea", {
     }
 });
 
+// One-click setups. "fast": Half resolution + Adaptive fast previews + Draft
+// 3D, for animating. "final": Full + Off + Draft 3D off, for checking.
+AT.register("preview.mode", {
+    label: "Preview Setup",
+    mutating: false,
+    needs: "comp",
+    run: function (payload, ctx) {
+        var fast = payload.mode !== "final";
+        ctx.comp.resolutionFactor = fast ? [2, 2] : [1, 1];
+        if (ctx.comp.draft3d !== undefined) ctx.comp.draft3d = fast;
+        var types = AT.fastPreviewTypes();
+        var opts = AT.viewOptions();
+        var fp = false;
+        if (types && opts) { opts.fastPreview = fast ? types.adaptive : types.off; fp = true; }
+        return { result: { mode: fast ? "fast" : "final" },
+            feedback: fast ? "Animate fast: Half resolution, Adaptive previews" + (fp ? "" : " (click the viewer to set Fast Previews)") + ", Draft 3D on"
+                : "Final check: Full resolution, full-quality previews, Draft 3D off" };
+    }
+});
+
 AT.register("preview.purge", {
     needs: "none",
     run: function () {
@@ -189,7 +209,7 @@ AT.register("audio.fade", {
     needs: "layers",
     run: function (payload, ctx) {
         var layers = AT.audioLayers(ctx);
-        var def = { phase: payload.phase === "out" ? "out" : "in", durationFrames: payload.durationFrames || 15, easing: "smooth",
+        var def = { phase: payload.phase === "out" ? "out" : "in", durationFrames: payload.durationFrames || 15, durationSeconds: payload.durationSeconds, easing: "smooth",
             title: payload.phase === "out" ? "Audio Fade Out" : "Audio Fade In", timing: payload.timing };
         for (var i = 0; i < layers.length; i++) {
             var win = AT.presetWindow(layers[i], ctx.comp, def);

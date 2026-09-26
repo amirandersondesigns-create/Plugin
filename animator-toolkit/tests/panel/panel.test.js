@@ -24,20 +24,16 @@ function loadPanel(files, extra) {
     return ctx;
 }
 
-const CONTENT = ["content/actions.js", "content/motions.js", "content/lessons.js", "content/shortcuts.js", "content/workflows.js"];
+const CONTENT = ["content/actions.js", "content/motions.js", "content/lessons.js", "content/shortcuts.js"];
 const plain = (v) => JSON.parse(JSON.stringify(v));
 
 test("catalog ids are unique and every reference resolves", () => {
     const w = loadPanel(CONTENT);
     const c = w.AT.content;
-    const all = [].concat(c.actions, c.presets, c.lessons, c.shortcuts, c.workflows);
+    const all = [].concat(c.actions, c.presets, c.lessons, c.shortcuts);
     const ids = new Set();
     all.forEach((i) => { assert.ok(!ids.has(i.id), "duplicate id " + i.id); ids.add(i.id); });
     c.lessons.forEach((l) => l.tryIt.concat(l.shortcuts).forEach((r) => assert.ok(ids.has(r), l.id + " -> " + r)));
-    c.workflows.forEach((wf) => wf.steps.forEach((s) => {
-        if (s.do) assert.ok(ids.has(s.do), wf.id + " -> " + s.do);
-        if (s.learn) assert.ok(ids.has(s.learn), wf.id + " -> " + s.learn);
-    }));
     c.essentials.forEach((e) => assert.ok(ids.has(e)));
 });
 
@@ -98,7 +94,7 @@ test("search finds tools, lessons and shortcuts; stems ease/easing", () => {
     assert.ok(anchor.includes("anchor.center") && anchor.includes("lesson.anchor") && anchor.includes("sc.anchor"));
     assert.match(ids("bounce")[0], /^(motion\.bounce|ease\.physics\.bounce)/);
     assert.ok(ids("bounce").includes("motion.bounce.in"));
-    assert.ok(ids("lower third").includes("workflow.lower-third"));
+    assert.ok(ids("mask path").includes("lesson.mask-visibility"));
     assert.deepEqual(plain(ids("zzzz")), []);
 });
 

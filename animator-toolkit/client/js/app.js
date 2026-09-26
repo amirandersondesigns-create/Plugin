@@ -1,5 +1,5 @@
 /*
- * Application shell: header (context + search + mode), tab bar, view
+ * Application shell: header (brand + search), tab bar, view
  * switching, global search, selection polling, onboarding and the
  * lesson / workflow detail sheet.
  */
@@ -114,7 +114,7 @@
     }
 
     // ---- search ----------------------------------------------------------------------
-    var TYPE_LABEL = { action: "Tool", preset: "Preset", lesson: "Lesson", shortcut: "Shortcut", workflow: "Guide" };
+    var TYPE_LABEL = { action: "Tool", preset: "Preset", lesson: "Lesson", shortcut: "Shortcut" };
 
     function runSearch(q) {
         var panel = document.getElementById("search-results");
@@ -191,7 +191,6 @@
     function open(item) {
         closeSearch();
         if (item.type === "lesson") return AT.learn.openLesson(item);
-        if (item.type === "workflow") return AT.learn.openWorkflow(item);
         if (item.type === "shortcut") {
             show("learn");
             AT.learn.focusShortcut(item);
@@ -208,31 +207,12 @@
             wrap.innerHTML = "";
             var card = h("div.onboard-card");
             wrap.appendChild(card);
-            var dots = h("div.onboard-dots", [0, 1, 2].map(function (i) { return h("span" + (i === step ? ".on" : "")); }));
+            var dots = h("div.onboard-dots", [0, 1].map(function (i) { return h("span" + (i === step ? ".on" : "")); }));
             if (step === 0) {
                 card.appendChild(AT.illustration("welcome", "onboard-illo"));
                 card.appendChild(h("h2", { text: "Welcome to the Animator Toolkit" }));
                 card.appendChild(h("p", { text: "Fast tools for the things you do all day in After Effects — and a short explanation of each, so you learn the program while you work." }));
                 card.appendChild(h("button.btn.btn-primary.btn-block", { type: "button", text: "Get started", on: { click: function () { step = 1; render(); } } }));
-            } else if (step === 1) {
-                card.appendChild(h("h2", { text: "What describes you?" }));
-                card.appendChild(h("p", { text: "This only sets how much explanation you see. Change it any time under Learn." }));
-                [
-                    ["beginner", "New to After Effects", "Explanations on, fewer controls"],
-                    ["beginner", "Comfortable with After Effects", "Explanations on, all tools"],
-                    ["pro", "Experienced animator", "Compact, no explanations"]
-                ].forEach(function (o, i) {
-                    card.appendChild(h("button.choice", { type: "button", on: { click: function () {
-                        AT.store.update("settings", function (s) {
-                            s.mode = o[0];
-                            s.density = o[0] === "pro" ? "compact" : "comfortable";
-                            s.level = i;
-                        });
-                        applySettings();
-                        step = 2;
-                        render();
-                    } } }, [h("span.choice-title", { text: o[1] }), h("span.choice-sub", { text: o[2] })]));
-                });
             } else {
                 card.appendChild(h("h2", { text: "Start with 5 essential skills" }));
                 card.appendChild(h("p", { text: "Each takes about a minute. They're always under Learn." }));
@@ -262,22 +242,12 @@
     // ---- settings ------------------------------------------------------------------------------
     function applySettings() {
         var s = AT.store.get("settings");
-        document.body.classList.toggle("mode-pro", s.mode === "pro");
-        document.body.classList.toggle("mode-beginner", s.mode !== "pro");
+        // One mode for everyone: explanations stay on (Pro mode was removed).
+        document.body.classList.remove("mode-pro");
+        document.body.classList.add("mode-beginner");
         document.body.classList.toggle("density-compact", s.density === "compact");
-        var m = document.getElementById("mode");
-        if (m) {
-            m.textContent = s.mode === "pro" ? "Pro" : "Beginner";
-            m.setAttribute("aria-pressed", s.mode === "pro" ? "true" : "false");
-        }
     }
 
-    function setMode(mode) {
-        AT.store.update("settings", function (s) { s.mode = mode; s.density = mode === "pro" ? "compact" : "comfortable"; });
-        applySettings();
-        rerender();
-        AT.toast(mode === "pro" ? "Pro mode — fewer explanations, more controls" : "Beginner mode — explanations on", "info");
-    }
 
     // ---- host connection ----------------------------------------------------------------
     // Boots the host scripts (retrying: the ExtendScript engine can still be
@@ -336,10 +306,7 @@
         var header = h("header.header", [
             h("div.header-row", [
                 h("div.brand", [h("span.brand-mark", AT.icon("animate")), h("span.brand-name", { text: "Animator Toolkit" })]),
-                h("span.header-spacer"),
-                h("button#mode.mode-btn", { type: "button", title: "Switch Beginner / Pro mode", on: { click: function () {
-                    setMode(AT.store.get("settings").mode === "pro" ? "beginner" : "pro");
-                } } })
+                h("span.header-spacer")
             ]),
             h("div.search", [AT.icon("search", "search-ico"), searchEl])
         ]);
@@ -391,7 +358,6 @@
         refreshContext: refreshContext,
         connect: connect,
         context: function () { return context; },
-        setMode: setMode,
         applySettings: applySettings,
         onboarding: onboarding,
         describeContext: describeContext

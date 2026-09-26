@@ -94,7 +94,7 @@ AT.register("camera.move", {
         var cam = AT.targetCamera(ctx.comp);
         var dist = payload.distance || 300;
         var t0 = ctx.comp.time;
-        var t1 = t0 + AT.frames(ctx.comp, payload.durationFrames || 48);
+        var t1 = t0 + AT.durationOf(ctx.comp, payload, 48);
         var profile = AT.profile(payload.easing || "smooth");
         var position = AT.tprop(cam, "position");
         if (position.dimensionsSeparated) AT.fail("unsupported", "Camera Position has separated dimensions. Join them to use camera moves.");
@@ -262,7 +262,7 @@ AT.register("camera.orbit", {
         }
         var deg = (payload.degrees || 30) * (payload.direction === "right" ? -1 : 1);
         var t0 = comp.time;
-        var t1 = t0 + AT.frames(comp, payload.durationFrames || 72);
+        var t1 = t0 + AT.durationOf(comp, payload, 72);
         AT.keyMove(AT.tprop(rig, "rotationY"), t0, t1, [deg], AT.profile(payload.easing || "smooth"));
         AT.addMarker(cam, t0, t1 - t0, "Orbit " + (payload.direction === "right" ? "Right" : "Left"));
         return { result: {}, feedback: "Orbit " + Math.abs(deg) + " deg added (rotates the 'AT Camera Orbit' null)" };
@@ -281,7 +281,7 @@ AT.register("camera.lensZoom", {
         var pct = typeof payload.percent === "number" ? payload.percent : 30;
         var zoom = AT.cameraZoom(cam);
         var t0 = ctx.comp.time;
-        var t1 = t0 + AT.frames(ctx.comp, payload.durationFrames || 48);
+        var t1 = t0 + AT.durationOf(ctx.comp, payload, 48);
         var z0 = zoom.valueAtTime(t0, true);
         AT.keyMove(zoom, t0, t1, [z0 * pct / 100], AT.profile(payload.easing || "smooth"));
         AT.addMarker(cam, t0, t1 - t0, pct >= 0 ? "Lens Zoom In" : "Lens Zoom Out");
