@@ -1,4 +1,7 @@
-# Animator Toolkit (CEP panel for After Effects)
+# Amir Anderson Animator Toolkit (CEP panel for After Effects)
+
+By Amir Anderson · [LinkedIn](https://www.linkedin.com/in/amiranderson). Shares its
+logo, palette and button style with Amir Anderson Motion Spell Checker.
 
 A dockable After Effects panel for designers moving into motion. It does
 common jobs in one click and explains each one as it goes: anchor points,
@@ -14,8 +17,8 @@ It also includes micro-lessons and explained shortcuts.
 
 1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
    or Anastasiy's Extension Manager.
-2. Drag `AnimatorToolkit-0.2.2.zxp` onto it.
-3. Restart After Effects and open **Window › Extensions › Animator Toolkit**.
+2. Drag `Amir_Anderson_Animator_Toolkit-0.3.0.zxp` onto it.
+3. Restart After Effects and open **Window › Extensions › Amir Anderson Animator Toolkit**.
 
 The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
 may say the publisher is unverified. That's expected for a test build.
@@ -25,14 +28,19 @@ install as updates.
 
 **Option B: zip + install script (unsigned, debug mode)**
 
-1. Unzip `animator-toolkit-0.2.2.zip`.
+1. Unzip `Amir_Anderson_Animator_Toolkit-0.3.0.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
    These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
    then copy the extension to your user CEP extensions folder.
-3. Restart After Effects and open **Window › Extensions › Animator Toolkit**.
+3. Restart After Effects and open **Window › Extensions › Amir Anderson Animator Toolkit**.
 
 Use only one option. If you switch, remove the other copy first: the
 uninstall script, or the installer's Remove button.
+
+**Upgrading from 0.2.x:** 0.3.0 has a new ID (`com.aanders.animatortoolkit`,
+was `com.cnn.animatortoolkit`). The install scripts remove the old copy; if
+you installed 0.2.x with a ZXP installer, remove "Animator Toolkit" there
+first, or you'll see two panels. Favorites and settings carry over.
 
 **Panel opens but buttons do nothing?**
 
@@ -45,7 +53,7 @@ broke every button until the panel was reopened. Those builds also used
 generic global names (`AT`, `ATJSON`) in After Effects' shared script
 engine, where other tools can overwrite them. From 0.1.2 on, the panel
 retries and recovers, and the host keeps everything in
-`$["com.cnn.animatortoolkit"]`. `npm run test:e2e` reproduces that failure
+`$["com.aanders.animatortoolkit"]`. `npm run test:e2e` reproduces that failure
 (`E2E_SRC=<folder>` runs it against any other build).
 For full detail, open DevTools at <http://localhost:8099>: every command and
 reply is logged in its console.
@@ -63,7 +71,7 @@ unconfirmed result shows a short info note instead.
 
 First check `~/Library/Logs/CSXS/CEP12-AEFT.log` for `Unsupported Manifest version`.
 That error means the manifest can't be parsed. Up to 0.1.0 the manifest
-declared a default XML namespace, which After Effects 2026 rejects. 0.2.2
+declared a default XML namespace, which After Effects 2026 rejects. 0.3.0
 matches Adobe's schema, and `tests/manifest.test.js` guards against a repeat.
 
 1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
@@ -86,7 +94,7 @@ and flows; it doesn't touch After Effects.
 | Tab | What it does |
 |---|---|
 | **Home** | Suggestions for the current selection, 16 quick actions (incl. Stagger, Rasterize, Make 3D, Animate Fast), favorites, recent tools, and the 5 essential skills |
-| **Animate** | Anchor grid and Align/Distribute, keyframe strip, **Stagger** (in frames), motion library (13 essentials, 11 more effects, each In and Out), and layer tools including **Continuous Rasterize** |
+| **Animate** | Anchor grid and Align/Distribute, keyframe strip, **Stagger** (frames slider), motion library (13 essentials, 11 more effects, each In and Out), and layer tools including **Continuous Rasterize** |
 | **Easing** | Live curve and moving ball. Easy Ease/In/Out/Linear/Hold, strength chips, 8 **curve presets** (Sine to Expo, Smooth Stop/Start, Snap, Glide), **physics** (Overshoot, Bounce, Elastic keyframes between selected keys), and In/Out sliders |
 | **Text** | New text, plus 11 essentials and 13 more effects (per-letter rise/pop/spin/random, word blur, type on and more) |
 | **Mask** | Real animated mask reveals (wipes, soft wipe, iris, split), mask tools (rectangle, ellipse, invert, feather), and the "can't see my mask path" fix |
@@ -94,14 +102,15 @@ and flows; it doesn't touch After Effects.
 | **Camera** | Create, moves, **lens & focus** (DOF, aperture, focus on layer, lens zoom), **rigs** (orbit null, wiggle shake), and saved positions |
 | **Capture** | Grab Still. Every Grab Still button (including Home) opens a pop-up with the image, file name and folder, plus Open folder |
 | **Preview** | One-click **Animate Fast / Final Check**, then Resolution (Down Sample Factor), Fast Previews and 8/16/32 bpc as simple choice rows, speed tools (Draft 3D, 90f/180f work area, purge cache), and recommended Preview-panel settings |
-| **Audio** | -3/+3 dB, bed at -12 dB, reset, fades with a length in frames, and two shortcuts |
+| **Audio** | -3/+3 dB, bed at -12 dB, reset, fades with a length slider in frames, and two shortcuts |
 | **Favorites** | Cards with previews, groups, rename, reorder |
-| **Learn** | Lessons, including "Stuck? Quick fixes" (invisible mask paths, empty viewer, finding anything, guides, getting around) and production topics (preview speed, rasterize, bpc, audio, 3D). 79 shortcuts in 9 categories. About: density, version, replay the welcome |
+| **Learn** | Lessons, including "Stuck? Quick fixes" (invisible mask paths, empty viewer, finding anything, guides, getting around) and production topics (preview speed, rasterize, bpc, audio, 3D). 79 shortcuts in 9 categories. About: density, version, author with LinkedIn link, replay the welcome |
 
 Search (`/`) covers every tool, preset, lesson, shortcut and favorite
 (including favorites you've renamed). Every animation option (presets,
 camera moves, orbit, lens zoom, audio fades, stagger) takes a duration in
-frames (animators count frames); a small hint shows the equivalent seconds.
+frames (animators count frames) on a slider; type in the box for an exact or
+longer value. A small hint shows the equivalent seconds.
 
 ## How presets stack
 
@@ -166,7 +175,7 @@ If it needs a new keyframe shape or kind, add it to `AT.SHAPES` or
 
 ```
 npm test          # 58 unit/contract tests (Node, no dependencies)
-npm run test:e2e  # 51 end-to-end checks (52 with E2E_DROP=1) (needs Playwright + Chromium);
+npm run test:e2e  # 54 end-to-end checks (55 with E2E_DROP=1) (needs Playwright + Chromium);
                   # E2E_FRIENDLY=1 for ideal conditions, E2E_DROP=1 for lost
                   # return values, E2E_SRC=<dir> for another build
 ```

@@ -2,7 +2,7 @@
 // End-to-end check of the real CEP code path, without After Effects:
 //
 //   real panel (Chromium) -> CSInterface -> window.__adobe_cep__.evalScript
-//   -> mock host: host/index.jsx, $["com.cnn.animatortoolkit"].boot(<root>)
+//   -> mock host: host/index.jsx, $["com.aanders.animatortoolkit"].boot(<root>)
 //      loading modules with $.evalFile -> dispatch -> mock AE DOM
 //
 // The shared ExtendScript engine is made hostile the way a real After
@@ -30,7 +30,7 @@ const { createHost, CompItem, TextLayer, ShapeLayer, AVLayer } = require("../hos
 // E2E_SRC=<folder> runs the same checks against another build of the extension.
 const SRC = process.env.E2E_SRC || path.join(__dirname, "..", "..");
 const base = fs.mkdtempSync(path.join(os.tmpdir(), "at-e2e-"));
-const EXT = path.join(base, "Application Support", "Adobe", "CEP", "extensions", "com.cnn.animatortoolkit");
+const EXT = path.join(base, "Application Support", "Adobe", "CEP", "extensions", "com.aanders.animatortoolkit");
 fs.mkdirSync(EXT, { recursive: true });
 for (const d of ["CSXS", "client", "host"]) fs.cpSync(path.join(SRC, d), path.join(EXT, d), { recursive: true });
 
@@ -84,6 +84,8 @@ function check(name, ok, detail) {
             getSystemPath(type) { return type === "extension" ? "file://" + encodeURI(ext) : "file:///tmp/userdata"; },
             getHostEnvironment() { return "{}"; }
         };
+        window.__opened = [];
+        window.cep = { util: { openURLInDefaultBrowser(u) { window.__opened.push(u); } } };
     }, { ext: EXT });
 
     const toast = async () => (await page.textContent("#toast")) || "";
@@ -191,7 +193,7 @@ function check(name, ok, detail) {
 
     // Namespace wiped mid-session (e.g. another tool reset the engine):
     // the next click must reload the host scripts and still work.
-    delete host.context.$["com.cnn.animatortoolkit"];
+    delete host.context.$["com.aanders.animatortoolkit"];
     await page.fill("#search", "");
     await page.keyboard.press("Escape");
     await page.click(".tab[data-view=animate]");
@@ -213,6 +215,10 @@ function check(name, ok, detail) {
     await page.click(".tab[data-view=animate]");
     check("Delete Keys button removed", !(await page.$(".key-row-edit :text('Delete')")));
     check("no seconds switch (frames only)", !(await page.$(".stagger .seg-btn:has-text('seconds')")) && !(await page.$(".duration .seg-btn:has-text('seconds')")));
+    // Slider: dragging (keyboard on the range) updates the frames box and hint.
+    await page.focus(".stagger .slider-input");
+    await page.keyboard.press("End");
+    check("stagger slider drives the frames box", (await page.inputValue(".stagger .num-input")) === "30" && /1 s/.test(await page.textContent(".stagger .duration-hint")), await page.inputValue(".stagger .num-input"));
     await page.fill(".stagger .num-input", "15");
     await page.press(".stagger .num-input", "Tab");
     check("stagger shows the seconds equivalent", /0\.5 s/.test(await page.textContent(".stagger .duration-hint")), await page.textContent(".stagger .duration-hint"));
@@ -271,6 +277,9 @@ function check(name, ok, detail) {
     check("Learn: quick-fix lessons listed", /My mask path disappeared/.test(await page.textContent(".learn-body")));
     await page.click(".seg-tabs .seg-btn:has-text('Shortcuts')");
     const scText = await page.textContent(".learn-body");
+    check("brand logo loads", await page.$eval(".brand-logo", (i) => i.complete && i.naturalWidth > 0) && /Amir Anderson Animator Toolkit/.test(await page.textContent(".brand-name")));
+    await page.click(".linkedin");
+    check("LinkedIn opens in the browser", (await page.evaluate(() => window.__opened)).includes("https://www.linkedin.com/in/amiranderson"));
     check("Learn: preview, render and guide shortcuts", /Preview with cache settings/.test(scText) && /Add to Render Queue/.test(scText) && /Show\/hide guides/.test(scText), null);
     await page.click(".seg-tabs .seg-btn:has-text('Lessons')");
 

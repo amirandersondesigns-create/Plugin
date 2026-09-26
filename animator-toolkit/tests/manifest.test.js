@@ -21,7 +21,7 @@ test("root element has no default namespace (else CEP reads Version as '')", () 
 test("manifest version, bundle id and versions are set and consistent", () => {
     assert.match(attr(rootTag, "Version"), /^\d+\.\d+$/);
     const id = attr(rootTag, "ExtensionBundleId");
-    assert.equal(id, "com.cnn.animatortoolkit");
+    assert.equal(id, "com.aanders.animatortoolkit");
     const pkg = require(path.join(ROOT, "package.json"));
     assert.equal(attr(rootTag, "ExtensionBundleVersion"), pkg.version);
     const ext = xml.match(/<ExtensionList>\s*<Extension\b[^>]*>/)[0];

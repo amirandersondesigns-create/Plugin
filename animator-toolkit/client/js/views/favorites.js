@@ -104,7 +104,7 @@
             ]));
 
             var chips = h("div.filter-chips", { role: "tablist" });
-            [{ id: "all", title: "All", color: "#8e8e97" }].concat(AT.favorites.GROUPS.filter(function (g) { return counts[g.id]; })).forEach(function (g) {
+            [{ id: "all", title: "All", color: "#8a8a8a" }].concat(AT.favorites.GROUPS.filter(function (g) { return counts[g.id]; })).forEach(function (g) {
                 chips.appendChild(h("button.filter-chip" + (filter === g.id ? ".on" : ""), {
                     type: "button", role: "tab", style: { "--g": g.color, "--gt": AT.favorites.tint(g.color, 0.14) },
                     on: { click: function () { filter = g.id; redraw(); } }

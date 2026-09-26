@@ -3,7 +3,7 @@
 //
 // After Effects runs every extension and script in ONE shared ExtendScript
 // global scope. To avoid colliding with other tools, the toolkit defines no
-// globals of its own: everything lives on $["com.cnn.animatortoolkit"]
+// globals of its own: everything lives on $["com.aanders.animatortoolkit"]
 // (the pattern Adobe partners recommend for shared-engine hosts).
 //
 // CEP evaluates this file when the panel opens. It loads the core and every
@@ -13,7 +13,7 @@
 // Keep host files pure ASCII: ExtendScript's file decoding varies by host.
 // ============================================================================
 
-$["com.cnn.animatortoolkit"] = $["com.cnn.animatortoolkit"] || {};
+$["com.aanders.animatortoolkit"] = $["com.aanders.animatortoolkit"] || {};
 
 (function (AT) {
     AT.MODULES = [
@@ -58,4 +58,4 @@ $["com.cnn.animatortoolkit"] = $["com.cnn.animatortoolkit"] || {};
         var here = new File($.fileName);
         if (here.exists) AT.boot(here.parent.parent.fsName);
     } catch (e) {}
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

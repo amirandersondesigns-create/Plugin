@@ -250,4 +250,4 @@ AT.ownerLayer = function (prop) {
     }
 };
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

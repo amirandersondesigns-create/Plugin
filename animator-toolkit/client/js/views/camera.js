@@ -46,7 +46,7 @@
             })),
             AT.ui.slider({ label: "Distance", min: 50, max: 1500, step: 25, value: s.cameraDistance || 300, unit: "px",
                 onChange: function (v) { AT.store.update("settings", function (x) { x.cameraDistance = v; }); } }),
-            AT.ui.duration({ key: "cameraDur", label: "Duration", defaultFrames: 48 }),
+            AT.ui.duration({ key: "cameraDur", label: "Duration", defaultFrames: 48, max: 240 }),
             h("div.field", [h("span.field-label", { text: "Feel" }), AT.ui.segmented([
                 { value: "smooth", label: "Smooth" }, { value: "decelerate", label: "Settle" }, { value: "linear", label: "Linear" }
             ], s.cameraEasing || "smooth", function (v) { AT.store.update("settings", function (x) { x.cameraEasing = v; }); }, { cls: "seg-sm" })])

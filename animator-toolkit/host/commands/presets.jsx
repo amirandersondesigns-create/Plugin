@@ -306,4 +306,4 @@ AT.register("preset.apply", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

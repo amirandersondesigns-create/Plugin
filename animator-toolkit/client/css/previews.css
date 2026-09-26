@@ -6,7 +6,7 @@
 
 .pv { position: relative; height: 44px; border-radius: 4px; background: var(--bg-0); overflow: hidden; display: grid; place-items: center; flex: none; }
 .pv-lg { height: 100%; }
-.pv-obj { width: 24px; height: 16px; border-radius: 3px; background: linear-gradient(180deg, #c3c7ff, #8790f2); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35); }
+.pv-obj { width: 24px; height: 16px; border-radius: 3px; background: linear-gradient(180deg, #c5dcf0, #6fa8da); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35); }
 .pv-lg .pv-obj { width: 34px; height: 22px; }
 .pv-floor { display: none; position: absolute; left: 20%; right: 20%; bottom: 22%; height: 1px; background: var(--line-2); }
 .pv-k-drop .pv-floor { display: block; }
@@ -92,7 +92,7 @@
 .pv.play .pv-split-h { animation-name: pv-split-h; }
 .pv.play .pv-split-v { animation-name: pv-split-v; }
 .pv-k-mask-right .pv-obj, .pv-k-mask-left .pv-obj, .pv-k-mask-up .pv-obj, .pv-k-mask-down .pv-obj,
-.pv-k-iris .pv-obj, .pv-k-split-h .pv-obj, .pv-k-split-v .pv-obj { width: 34px; height: 20px; background: linear-gradient(135deg, #c3c7ff, #6f7ae8); }
+.pv-k-iris .pv-obj, .pv-k-split-h .pv-obj, .pv-k-split-v .pv-obj { width: 34px; height: 20px; background: linear-gradient(135deg, #c5dcf0, #4a90d9); }
 
 @keyframes pv-zoom { from { transform: scale(1.8); opacity: 0; } }
 @keyframes pv-soft-scale { from { transform: scale(0.8); opacity: 0; } }

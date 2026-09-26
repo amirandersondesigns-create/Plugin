@@ -139,4 +139,4 @@ AT.register("anchor.set", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

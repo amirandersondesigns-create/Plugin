@@ -38,4 +38,4 @@ AT.register("context.inspect", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

@@ -195,4 +195,4 @@ AT.register("mask.feather", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

@@ -289,4 +289,4 @@ AT.register("camera.lensZoom", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

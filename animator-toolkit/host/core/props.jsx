@@ -134,4 +134,4 @@ AT.plural = function (n, one, many) {
     return n + " " + (n === 1 ? one : (many || one + "s"));
 };
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

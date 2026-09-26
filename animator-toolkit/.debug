@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtensionList>
-    <Extension Id="com.cnn.animatortoolkit.panel">
+    <Extension Id="com.aanders.animatortoolkit.panel">
         <HostList>
             <Host Name="AEFT" Port="8099" />
         </HostList>

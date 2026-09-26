@@ -4,14 +4,17 @@
 # the extension into your user CEP extensions folder.
 set -e
 SRC="$(cd "$(dirname "$0")/.." && pwd)"
-DEST="$HOME/Library/Application Support/Adobe/CEP/extensions/com.cnn.animatortoolkit"
+DEST="$HOME/Library/Application Support/Adobe/CEP/extensions/com.aanders.animatortoolkit"
 
-echo "Animator Toolkit installer"
-echo "--------------------------"
+echo "Amir Anderson Animator Toolkit installer"
+echo "----------------------------------------"
 for v in 9 10 11 12 13; do
     defaults write "com.adobe.CSXS.$v" PlayerDebugMode 1
 done
 echo "✓ Debug mode enabled (CSXS 9-13)"
+
+# Remove the pre-0.3 copy (old ID), which would show up as a second panel.
+rm -rf "$HOME/Library/Application Support/Adobe/CEP/extensions/com.cnn.animatortoolkit"
 
 # Replace any previous copy completely (plain cp: no rsync dependency).
 rm -rf "$DEST"
@@ -20,11 +23,11 @@ for item in CSXS client host install README.md .debug; do
     [ -e "$SRC/$item" ] && cp -R "$SRC/$item" "$DEST/"
 done
 if [ ! -f "$DEST/CSXS/manifest.xml" ]; then
-    echo "✗ Copy failed - run this script from inside the unzipped com.cnn.animatortoolkit folder."
+    echo "✗ Copy failed - run this script from inside the unzipped com.aanders.animatortoolkit folder."
     exit 1
 fi
 echo "✓ Installed to: $DEST"
-if [ -d "/Library/Application Support/Adobe/CEP/extensions/com.cnn.animatortoolkit" ]; then
+if [ -d "/Library/Application Support/Adobe/CEP/extensions/com.aanders.animatortoolkit" ]; then
     echo
     echo "! A ZXP-installed copy also exists in /Library/Application Support/Adobe/CEP/extensions."
     echo "  Two copies with the same ID can stop the panel loading. Remove that one with"
@@ -32,6 +35,6 @@ if [ -d "/Library/Application Support/Adobe/CEP/extensions/com.cnn.animatortoolk
 fi
 echo
 echo "Next: quit and reopen After Effects, then open"
-echo "      Window > Extensions > Animator Toolkit"
+echo "      Window > Extensions > Amir Anderson Animator Toolkit"
 echo
 read -n 1 -s -r -p "Press any key to close."

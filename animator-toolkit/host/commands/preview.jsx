@@ -221,4 +221,4 @@ AT.register("audio.fade", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

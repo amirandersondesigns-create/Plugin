@@ -10,7 +10,7 @@
 
     function controls(onPhase) {
         var s = AT.store.get("settings");
-        var dur = AT.ui.duration({ key: "presetDur", label: "Duration", allowAuto: true });
+        var dur = AT.ui.duration({ key: "presetDur", label: "Duration", allowAuto: true, max: 90 });
         return h("div.motion-controls", [
             AT.ui.segmented([
                 { value: "in", label: "Entrance", icon: "up" },

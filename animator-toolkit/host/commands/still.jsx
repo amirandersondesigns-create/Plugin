@@ -91,4 +91,4 @@ AT.register("still.reveal", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

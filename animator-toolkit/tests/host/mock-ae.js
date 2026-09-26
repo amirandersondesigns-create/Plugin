@@ -446,7 +446,7 @@ function createHost(opts) {
         const failFirst = { n: opts.failFirstEvals || 0 };
         return {
             context, app, undo,
-            get ns() { return context.$["com.cnn.animatortoolkit"]; },
+            get ns() { return context.$["com.aanders.animatortoolkit"]; },
             // What CEP's evalScript does: run a script, hand back String(result).
             evalScript(script) {
                 // Simulates an engine that isn't ready yet at panel startup.
@@ -467,7 +467,7 @@ function createHost(opts) {
     // index.jsx creates the namespace (its self-boot is a no-op here because
     // $.fileName is empty), then each module is evaluated into it.
     vm.runInContext(fs.readFileSync(path.join(hostDir, "index.jsx"), "utf8"), context, { filename: "index.jsx" });
-    const ns = context.$["com.cnn.animatortoolkit"];
+    const ns = context.$["com.aanders.animatortoolkit"];
     for (const m of ns.MODULES) {
         const src = fs.readFileSync(path.join(hostDir, m), "utf8");
         vm.runInContext(src, context, { filename: m });

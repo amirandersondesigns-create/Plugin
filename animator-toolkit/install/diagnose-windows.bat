@@ -6,7 +6,7 @@ REM detailed CEP logging; if the log section is empty, reopen After Effects
 REM once and run this again.
 setlocal
 set "OUT=%USERPROFILE%\Desktop\AnimatorToolkit-diagnostics.txt"
-set "ID=com.cnn.animatortoolkit"
+set "ID=com.aanders.animatortoolkit"
 (
 echo Animator Toolkit diagnostics - %DATE% %TIME%
 ver

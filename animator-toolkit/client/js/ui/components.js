@@ -355,32 +355,48 @@
         return s[key + "Unit"] === "seconds" ? Math.max(1, Math.round(v * fps())) : v;
     }
 
+    // A frames slider: drag for feel, or type an exact number in the box.
+    // Values past the slider's range can still be typed. allowAuto makes 0
+    // (far left) mean "Auto". onChange(frames) fires when a value settles.
+    function frameSlider(o) {
+        var min = o.allowAuto ? 0 : (o.min || 0), max = o.max || 120;
+        var hint = h("span.duration-hint");
+        var box = h("input.num-input", { type: "number", min: String(min), step: "1", "aria-label": o.label + " in frames",
+            placeholder: o.allowAuto ? "Auto" : "" });
+        var range = h("input.slider-input", { type: "range", min: String(min), max: String(max), step: "1", "aria-label": o.label });
+        function show(v, fromBox) {
+            if (!fromBox) box.value = v > 0 || !o.allowAuto ? String(v) : "";
+            range.value = String(Math.max(min, Math.min(max, v || 0)));
+            range.style.setProperty("--pct", ((range.value - min) / (max - min)) * 100 + "%");
+            hint.textContent = v > 0 ? secondsHint(v) : (o.allowAuto ? "each preset's own length" : "");
+        }
+        function settle(v) {
+            v = Math.round(v);
+            if (!(v >= min) || (!o.allowAuto && !(v > 0) && min > 0)) v = o.allowAuto ? 0 : (o.fallback != null ? o.fallback : min);
+            show(v);
+            if (o.onChange) o.onChange(v);
+        }
+        range.addEventListener("input", function () { show(+range.value); });
+        range.addEventListener("change", function () { settle(+range.value); });
+        box.addEventListener("input", function () { var v = parseFloat(box.value); show(v > 0 ? v : 0, true); });
+        box.addEventListener("change", function () { settle(parseFloat(box.value)); });
+        show(o.value || 0);
+        var wrap = h("div.fslider" + (o.cls ? "." + o.cls : ""), [
+            h("div.fslider-head", [h("span.fslider-label", { text: o.label }), h("span.fslider-read", [box, h("span.duration-unit", { text: "frames" })])]),
+            range,
+            h("div.fslider-foot", [h("span", { text: o.allowAuto ? "Auto" : String(min) }), hint, h("span", { text: max + "f" })])
+        ]);
+        return wrap;
+    }
+
     // Duration in FRAMES (how animators count timing), with the seconds
-    // equivalent as a hint. allowAuto: empty = each preset's own length.
+    // equivalent as a hint. allowAuto: Auto = each preset's own length.
     function duration(o) {
         var value = savedFrames(o.key) || (o.allowAuto ? 0 : o.defaultFrames);
-        var hint = h("span.duration-hint");
-        var input = h("input.num-input", { type: "number", min: "0", step: "1", "aria-label": o.label + " in frames",
-            placeholder: o.allowAuto ? "Auto" : "", value: value > 0 ? String(value) : "" });
-        function paint() {
-            var v = parseFloat(input.value);
-            hint.textContent = v > 0 ? secondsHint(v) : (o.allowAuto ? "empty = each preset's own length" : "");
-        }
-        function save() {
-            var v = Math.round(parseFloat(input.value));
-            if (!(v > 0)) {
-                v = o.allowAuto ? 0 : o.defaultFrames;
-                input.value = v ? String(v) : "";
-            } else {
-                input.value = String(v);
-            }
-            AT.store.update("settings", function (x) { x[o.key + "Value"] = v; x[o.key + "Unit"] = "frames"; });
-            paint();
-        }
-        input.addEventListener("input", paint);
-        input.addEventListener("change", save);
-        paint();
-        return h("div.duration", [h("span.duration-label", { text: o.label }), input, h("span.duration-unit", { text: "frames" }), hint]);
+        var el = frameSlider({ label: o.label, value: value, allowAuto: o.allowAuto, min: 1, max: o.max || 120, fallback: o.defaultFrames,
+            onChange: function (v) { AT.store.update("settings", function (x) { x[o.key + "Value"] = v; x[o.key + "Unit"] = "frames"; }); } });
+        el.classList.add("duration");
+        return el;
     }
 
     // Converts a saved duration setting into a host payload fragment.
@@ -427,7 +443,7 @@
     AT.ui = {
         h: h, pulse: pulse, explain: explain, infoButton: infoButton, favButton: favButton, curve: curve,
         yForX: yForX, preview: preview, section: section, lead: lead, toolButton: toolButton, iconButton: iconButton,
-        presetTile: presetTile, segmented: segmented, slider: slider, toggle: toggle, duration: duration, durationParams: durationParams, secondsHint: secondsHint, keycaps: keycaps, empty: empty,
+        presetTile: presetTile, segmented: segmented, slider: slider, toggle: toggle, duration: duration, frameSlider: frameSlider, durationParams: durationParams, secondsHint: secondsHint, keycaps: keycaps, empty: empty,
         isBeginner: isBeginner
     };
 })(window.AT = window.AT || {});

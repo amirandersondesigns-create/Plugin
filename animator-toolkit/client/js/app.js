@@ -210,7 +210,7 @@
             var dots = h("div.onboard-dots", [0, 1].map(function (i) { return h("span" + (i === step ? ".on" : "")); }));
             if (step === 0) {
                 card.appendChild(AT.illustration("welcome", "onboard-illo"));
-                card.appendChild(h("h2", { text: "Welcome to the Animator Toolkit" }));
+                card.appendChild(h("h2", { text: "Welcome to the Amir Anderson Animator Toolkit" }));
                 card.appendChild(h("p", { text: "Fast tools for the things you do all day in After Effects — and a short explanation of each, so you learn the program while you work." }));
                 card.appendChild(h("button.btn.btn-primary.btn-block", { type: "button", text: "Get started", on: { click: function () { step = 1; render(); } } }));
             } else {
@@ -305,7 +305,7 @@
 
         var header = h("header.header", [
             h("div.header-row", [
-                h("div.brand", [h("span.brand-mark", AT.icon("animate")), h("span.brand-name", { text: "Animator Toolkit" })]),
+                h("div.brand", [h("img.brand-logo", { src: "icons/logo.svg", alt: "" }), h("span.brand-name", { text: "Amir Anderson Animator Toolkit" })]),
                 h("span.header-spacer")
             ]),
             h("div.search", [AT.icon("search", "search-ico"), searchEl])

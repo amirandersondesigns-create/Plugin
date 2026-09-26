@@ -6,7 +6,9 @@
     "use strict";
 
     var h = AT.h;
-    var VERSION = "0.2.2";
+    var VERSION = "0.3.0";
+    var AUTHOR = "Amir Anderson";
+    var LINKEDIN = "https://www.linkedin.com/in/amiranderson";
     var sub = "lessons";
     var scFilter = "all";
     var focusId = null;
@@ -107,6 +109,11 @@
                     function (v) { AT.store.update("settings", function (x) { x.density = v; }); AT.app.applySettings(); }, { cls: "seg-sm", label: "Density" })
             ])]),
             h("div.about-row", [h("span.about-k", { text: "Version" }), h("span.about-v.muted", { text: VERSION + (AT.bridge.isPreview() ? " · preview mode" : "") })]),
+            h("div.about-row", [h("span.about-k", { text: "Made by" }), h("div.about-v.credit", [
+                h("img", { src: "icons/logo.svg", alt: "" }),
+                h("div.credit-text", [h("strong", { text: AUTHOR }), h("span", { text: "Motion designer" })]),
+                h("button.btn.btn-sm.linkedin", { type: "button", title: LINKEDIN, on: { click: function () { AT.bridge.openURL(LINKEDIN); } } }, [AT.icon("linkedin"), h("span", { text: "LinkedIn" })])
+            ])]),
             h("div.about-row", [h("span.about-k", { text: "Welcome" }), h("button.btn.btn-sm", { type: "button", text: "Replay the welcome", on: { click: function () { AT.app.onboarding(); } } })])
         ]);
     }
@@ -121,6 +128,6 @@
         page.appendChild(AT.ui.section("About this panel", { icon: "info", cls: "sec-about" }, about()));
     }
 
-    AT.learn = { openLesson: openLesson, focusShortcut: focusShortcut, VERSION: VERSION };
+    AT.learn = { openLesson: openLesson, focusShortcut: focusShortcut, VERSION: VERSION, LINKEDIN: LINKEDIN };
     AT.registerView({ id: "learn", title: "Learn", icon: "learn", render: render });
 })(window.AT = window.AT || {});

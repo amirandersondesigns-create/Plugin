@@ -6,7 +6,7 @@
 # It also turns on detailed CEP logging (LogLevel 6) so the log has reasons;
 # if the log section is empty, reopen After Effects once and run this again.
 OUT="$HOME/Desktop/AnimatorToolkit-diagnostics.txt"
-ID="com.cnn.animatortoolkit"
+ID="com.aanders.animatortoolkit"
 {
 echo "Animator Toolkit diagnostics - $(date)"
 echo "macOS $(sw_vers -productVersion) ($(uname -m))"

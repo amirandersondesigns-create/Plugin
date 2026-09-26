@@ -116,4 +116,4 @@ AT.register("text.extrude", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

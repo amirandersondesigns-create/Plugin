@@ -10,12 +10,12 @@
     // Hex colors (not CSS vars) so tints can be computed: CEP's Chromium
     // predates color-mix().
     var GROUPS = [
-        { id: "motion", title: "Motion", color: "#7c8cff" },
-        { id: "text", title: "Text", color: "#ff8fa3" },
-        { id: "easing", title: "Easing", color: "#3ecfcf" },
-        { id: "tools", title: "Tools", color: "#b0b0b8" },
-        { id: "camera", title: "Camera", color: "#ffb057" },
-        { id: "learn", title: "Learning", color: "#8fd16a" }
+        { id: "motion", title: "Motion", color: "#6fa8da" },
+        { id: "text", title: "Text", color: "#c4849a" },
+        { id: "easing", title: "Easing", color: "#5fa8a0" },
+        { id: "tools", title: "Tools", color: "#9a9a9a" },
+        { id: "camera", title: "Camera", color: "#c9974a" },
+        { id: "learn", title: "Learning", color: "#6a9955" }
     ];
 
     function tint(hex, alpha) {

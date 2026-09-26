@@ -5,7 +5,7 @@
  *
  * Requests are versioned JSON, serialized twice so they arrive in
  * ExtendScript as one inert string literal; the host parses it with a real
- * JSON parser (no eval). The host lives in the $["com.cnn.animatortoolkit"]
+ * JSON parser (no eval). The host lives in the $["com.aanders.animatortoolkit"]
  * namespace because After Effects shares one ExtendScript global scope
  * between every extension.
  *
@@ -22,7 +22,7 @@
     "use strict";
 
     var PROTOCOL_VERSION = 1;
-    var NS = '$["com.cnn.animatortoolkit"]';
+    var NS = '$["com.aanders.animatortoolkit"]';
     var TIMEOUT_MS = 20000;
     var cs = new CSInterface();
     var counter = 0;
@@ -177,8 +177,18 @@
         });
     }
 
+    // Opens a web link in the user's browser (CEP's own call; a normal
+    // browser tab in preview mode).
+    function openURL(url) {
+        try {
+            if (window.cep && window.cep.util && window.cep.util.openURLInDefaultBrowser) return window.cep.util.openURLInDefaultBrowser(url);
+        } catch (e) {}
+        window.open(url, "_blank");
+    }
+
     AT.bridge = {
         run: run,
+        openURL: openURL,
         boot: boot,
         status: function () { return status; },
         isPreview: function () { return !cs.isInHost(); },

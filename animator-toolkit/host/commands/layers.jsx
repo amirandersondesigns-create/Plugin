@@ -210,4 +210,4 @@ AT.register("layers.motionBlur", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

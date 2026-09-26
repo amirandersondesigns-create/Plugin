@@ -11,7 +11,7 @@
 
         page.appendChild(AT.ui.section("Adjust selected audio", { icon: "audio" }, h("div", [
             h("div.tool-grid", ["audio.minus3", "audio.plus3", "audio.bed", "audio.reset", "audio.fadeIn", "audio.fadeOut"].map(function (id) { return AT.ui.toolButton(id); })),
-            AT.ui.duration({ key: "audioFadeDur", label: "Fade length", defaultFrames: 15 })
+            AT.ui.duration({ key: "audioFadeDur", label: "Fade length", defaultFrames: 15, max: 60 })
         ])));
 
         page.appendChild(AT.ui.section("Shortcuts", { icon: "key" }, h("div", [

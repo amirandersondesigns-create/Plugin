@@ -169,4 +169,4 @@ AT.JSON = (function () {
     return { stringify: stringify, parse: parse };
 })();
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

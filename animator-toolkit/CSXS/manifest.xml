@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="9.0" ExtensionBundleId="com.cnn.animatortoolkit" ExtensionBundleVersion="0.2.2" ExtensionBundleName="Animator Toolkit" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest Version="9.0" ExtensionBundleId="com.aanders.animatortoolkit" ExtensionBundleVersion="0.3.0" ExtensionBundleName="Amir Anderson Animator Toolkit" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ExtensionList>
-        <Extension Id="com.cnn.animatortoolkit.panel" Version="0.2.2" />
+        <Extension Id="com.aanders.animatortoolkit.panel" Version="0.3.0" />
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
@@ -15,7 +15,7 @@
         </RequiredRuntimeList>
     </ExecutionEnvironment>
     <DispatchInfoList>
-        <Extension Id="com.cnn.animatortoolkit.panel">
+        <Extension Id="com.aanders.animatortoolkit.panel">
             <DispatchInfo>
                 <Resources>
                     <MainPath>./client/index.html</MainPath>
@@ -30,7 +30,7 @@
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
-                    <Menu>Animator Toolkit</Menu>
+                    <Menu>Amir Anderson Animator Toolkit</Menu>
                     <Geometry>
                         <Size>
                             <Height>720</Height>
@@ -46,10 +46,10 @@
                         </MinSize>
                     </Geometry>
                     <Icons>
-                        <Icon Type="Normal">./client/icons/icon.png</Icon>
-                        <Icon Type="RollOver">./client/icons/icon.png</Icon>
-                        <Icon Type="DarkNormal">./client/icons/icon.png</Icon>
-                        <Icon Type="DarkRollOver">./client/icons/icon.png</Icon>
+                        <Icon Type="Normal">./client/icons/icon-normal.png</Icon>
+                        <Icon Type="RollOver">./client/icons/icon-rollover.png</Icon>
+                        <Icon Type="DarkNormal">./client/icons/icon-darkest.png</Icon>
+                        <Icon Type="DarkRollOver">./client/icons/icon-rollover.png</Icon>
                     </Icons>
                 </UI>
             </DispatchInfo>

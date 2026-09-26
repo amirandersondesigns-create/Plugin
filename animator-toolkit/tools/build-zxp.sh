@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builds a self-signed dist/AnimatorToolkit-<version>.zxp with Adobe's
+# Builds a self-signed dist/Amir_Anderson_Animator_Toolkit-<version>.zxp with Adobe's
 # ZXPSignCmd. On macOS/Windows use the native ZXPSignCmd (put it on PATH or
 # set ZXPSIGN). On Linux it runs the Windows build under Wine.
 #
@@ -32,14 +32,14 @@ fi
 # signer are relative (inside dist/): under Wine an absolute "/home/..."
 # path reads as a Windows command-line switch.
 cd "$DIST"
-rm -rf stage && mkdir -p stage/com.cnn.animatortoolkit
-(cd .. && cp -R CSXS client host README.md "$DIST/stage/com.cnn.animatortoolkit/")
+rm -rf stage && mkdir -p stage/com.aanders.animatortoolkit
+(cd .. && cp -R CSXS client host README.md "$DIST/stage/com.aanders.animatortoolkit/")
 
 [ -f cert.p12 ] || "${SIGN[@]}" -selfSignedCert US NY "Animator Toolkit" "Animator Toolkit" "$PASS" cert.p12 -validityDays 3650
 
-OUT="AnimatorToolkit-$VERSION.zxp"
+OUT="Amir_Anderson_Animator_Toolkit-$VERSION.zxp"
 rm -f "$OUT"
-"${SIGN[@]}" -sign stage/com.cnn.animatortoolkit signed.zxp cert.p12 "$PASS"
+"${SIGN[@]}" -sign stage/com.aanders.animatortoolkit signed.zxp cert.p12 "$PASS"
 # Normalize the archive (mimetype first, Unix permissions), then re-verify.
 python3 ../tools/repack-zxp.py signed.zxp "$OUT"
 rm -f signed.zxp

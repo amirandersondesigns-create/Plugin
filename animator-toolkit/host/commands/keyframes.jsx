@@ -161,4 +161,4 @@ AT.register("layers.stagger", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));

@@ -162,4 +162,4 @@ AT.register("system.ping", {
     }
 });
 
-}($["com.cnn.animatortoolkit"]));
+}($["com.aanders.animatortoolkit"]));
