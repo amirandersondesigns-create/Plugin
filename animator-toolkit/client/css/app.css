@@ -837,3 +837,6 @@ button:focus-visible, .btn:focus-visible { outline: 1.5px solid var(--accent); o
 .pp-trio .pp-label { margin-bottom: 4px; }
 .pp-sep { height: 1px; margin: 4px 0; background: var(--line); }
 .pp-why { margin-top: 8px; }
+.gg-item.on { background: var(--accent-bg); border-color: rgba(74, 144, 217, 0.45); color: var(--fg-0); }
+.gg-item.on .gg-title { font-weight: 600; }
+.toast-action { font-weight: 600; }

@@ -547,7 +547,15 @@ test("preview settings, color depth, work area, purge, rasterize", () => {
     delete h.app.menus["Snap to Grid"];
     const miss = h.call("view.toggle", { item: "snapGrid" });
     assert.equal(miss.ok, false);
-    assert.equal(miss.error.code, "unsupported");
+    assert.equal(miss.error.code, "manual");
+    // The viewer-menu items run their command when After Effects exposes it,
+    // and otherwise explain the shortcut.
+    assert.equal(h.call("view.toggle", { item: "safe" }).ok, true);
+    assert.ok(h.app.executed.includes(3046));
+    delete h.app.menus["Title/Action Safe"];
+    const safe = h.call("view.toggle", { item: "safe" });
+    assert.equal(safe.error.code, "manual");
+    assert.match(safe.error.message, /press ' \(apostrophe\)/);
     assert.equal(h.call("project.bpc", { bits: 16 }).ok, true);
     assert.equal(h.app.project.bitsPerChannel, 16);
     assert.equal(h.call("preview.fast", { mode: "adaptive" }).ok, true);
@@ -671,4 +679,20 @@ test("one-click setup reports exactly which parts took", () => {
     assert.equal(r.ok, true);
     assert.deepEqual(plain(r.result.applied), { resolution: 2, fastPreview: null, draft3d: true });
     assert.match(r.feedback, /Click the Composition viewer, then press again to set Fast Previews/);
+});
+
+test("every undoable action reports its Edit > Undo name, and app.undo only undoes the toolkit's own step", () => {
+    const h = setup();
+    const l = h.comp.add(ShapeLayer, "S", { inPoint: 0, outPoint: 8 });
+    l.selected = true;
+    const r = h.call("threed.make");
+    assert.equal(r.undo, "Animator Toolkit: Make 3D");
+    assert.equal(h.call("preview.read").undo, "", "read-only commands have no undo step");
+    const u = h.call("app.undo", { name: r.undo });
+    assert.equal(u.ok, true);
+    assert.deepEqual(plain(h.app.undone), ["Animator Toolkit: Make 3D"]);
+    // Not the latest step any more (or never was): refuse, don't undo something else.
+    const again = h.call("app.undo", { name: r.undo });
+    assert.equal(again.ok, false);
+    assert.equal(again.error.code, "manual");
 });

@@ -399,10 +399,19 @@ function createHost(opts) {
         version: "26.0 (mock)",
         project: { activeItem: null, bitsPerChannel: 8, importFile: (o) => ({ name: "still" }) },
         activeViewer: { active: 0, setActive() { this.active++; return true; }, views: [{ options: { fastPreview: FastPreviewType.FP_OFF, zoom: 0.5, checkerboards: false, rulers: false, guidesVisibility: true, guidesSnap: false, guidesLocked: false } }] },
-        menus: { "Snap to Guides": 3040, "Snap to Grid": 3041, "Show Grid": 3042, "Show Rulers": 3043, "Show Guides": 3044, "Lock Guides": 3045 },
+        menus: { "Snap to Guides": 3040, "Snap to Grid": 3041, "Show Grid": 3042, "Show Rulers": 3043, "Show Guides": 3044, "Lock Guides": 3045,
+            "Title/Action Safe": 3046, "Proportional Grid": 3047, "3D Reference Axes": 3048 },
         executed: [],
-        findMenuCommandId(name) { return this.menus[name] || 0; },
-        executeCommand(id) { this.executed.push(id); },
+        undone: [],
+        // Edit > Undo shows "Undo <last group>" like After Effects.
+        findMenuCommandId(name) {
+            if (name.indexOf("Undo ") === 0) return undo.groups.length && name === "Undo " + undo.groups[undo.groups.length - 1] ? 16 : 0;
+            return this.menus[name] || 0;
+        },
+        executeCommand(id) {
+            this.executed.push(id);
+            if (id === 16 && undo.groups.length) this.undone.push(undo.groups.pop());
+        },
         purged: 0,
         purge() { this.purged++; },
         beginUndoGroup(name) { undo.open++; undo.groups.push(name); },

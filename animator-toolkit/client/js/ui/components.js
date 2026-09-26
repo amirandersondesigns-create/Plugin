@@ -56,13 +56,20 @@
 
     // ---- feedback ------------------------------------------------------------
     var toastTimer = null;
-    AT.toast = function (message, kind, item) {
+    // action: optional { label, run } shown as a button (e.g. Undo).
+    AT.toast = function (message, kind, item, action) {
         var region = document.getElementById("toast");
         if (!region) return;
         region.innerHTML = "";
         var t = h("div.toast.toast-" + (kind || "info"), { role: kind === "error" ? "alert" : "status" }, [
             h("span.toast-msg", { text: message })
         ]);
+        if (action) {
+            t.appendChild(h("button.toast-link.toast-action", { type: "button", text: action.label, on: { click: function () {
+                t.classList.remove("in");
+                action.run();
+            } } }));
+        }
         if (kind === "error" && item && item.why) {
             t.appendChild(h("button.toast-link", { type: "button", text: "What does this tool need?", on: { click: function () { AT.ui.explain(item); } } }));
         }
@@ -72,7 +79,7 @@
         toastTimer = setTimeout(function () {
             t.classList.remove("in");
             setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 200);
-        }, kind === "error" ? 6000 : 2200);
+        }, kind === "error" ? 6000 : action ? 5000 : 2200);
     };
 
     function pulse(el) {

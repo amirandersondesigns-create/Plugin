@@ -103,7 +103,9 @@
         return AT.bridge.run(command, payload).then(function (res) {
             if (source) source.classList.remove("is-busy");
             if (res.ok) {
-                AT.toast("✓ " + (res.feedback || item.title), "ok");
+                var entry = historyEntry(item, command, payload, res);
+                if (entry) history.push(entry);
+                AT.toast("✓ " + (res.feedback || item.title), "ok", null, entry ? { label: "Undo", run: function () { undo(entry); } } : null);
                 // Stills open a pop-up showing the frame and where it was saved,
                 // whichever button captured them.
                 if (command === "still.capture" && res.result && res.result.path && AT.stills) AT.stills.captured(res.result);
@@ -116,6 +118,9 @@
                 AT.toast(item.title + " sent to After Effects", "info");
                 remember(item.id);
                 AT.app.refreshContext();
+            } else if (res.error && res.error.code === "manual") {
+                // Something only the artist can do in After Effects: say how.
+                AT.toast(res.error.message, "info");
             } else {
                 // The "What does this tool need?" link only makes sense when the
                 // problem is the selection or a missing precondition.
@@ -125,6 +130,68 @@
             return res;
         });
     }
+
+    // ---- undo --------------------------------------------------------------------
+    // Project changes are undone with After Effects' own Edit > Undo (only if
+    // the toolkit's step is still the latest). Viewer toggles (grid, guides,
+    // snapping, safe areas, transparency) aren't in After Effects' undo list
+    // at all, so the panel undoes them by switching them back.
+    var history = [];
+    var VIEWER_TOGGLES = { "view.toggle": 1, "viewer.transparency": 1 };
+
+    // Remembered on/off for viewer toggles After Effects doesn't report, so a
+    // pressed toggle stays highlighted until it's pressed again.
+    function rememberView(key, res) {
+        var on = res && res.result ? res.result.on : undefined;
+        AT.store.update("settings", function (x) {
+            x.viewToggles = x.viewToggles || {};
+            x.viewToggles[key] = typeof on === "boolean" ? on : !x.viewToggles[key];
+        });
+    }
+    AT.viewToggleState = function (key) { return !!((AT.store.get("settings").viewToggles || {})[key]); };
+
+    function historyEntry(item, command, payload, res) {
+        if (VIEWER_TOGGLES[command]) {
+            var key = command === "viewer.transparency" ? "transparency" : payload.item;
+            rememberView(key, res);
+            var on = res.result ? res.result.on : undefined;
+            var back = assign({}, payload);
+            if (typeof on === "boolean") back.on = !on; else delete back.on; // unknown state: toggle again
+            return { kind: "viewer", title: item.title, command: command, payload: back, key: key };
+        }
+        if (res.undo) return { kind: "project", title: item.title, name: res.undo };
+        return null;
+    }
+
+    function undo(entry) {
+        var i = history.indexOf(entry);
+        if (i >= 0) history.splice(i, 1);
+        if (entry.kind === "viewer") {
+            return AT.bridge.run(entry.command, entry.payload).then(function (res) {
+                if (AT.worked(res)) {
+                    rememberView(entry.key, res);
+                    AT.toast("\u21a9 " + entry.title + " switched back", "ok");
+                    if (AT.app.rerender && /^(animate|preview)$/.test(AT.app.current())) AT.app.rerender();
+                } else if (res.error) AT.toast(res.error.message, res.error.code === "manual" ? "info" : "error");
+                return res;
+            });
+        }
+        return AT.bridge.run("app.undo", { name: entry.name }).then(function (res) {
+            if (res.ok) {
+                AT.toast("\u21a9 " + res.feedback, "ok");
+                AT.app.refreshContext();
+                if (AT.app.rerender) AT.app.rerender();
+            } else if (res.unconfirmed) AT.toast("Undo sent to After Effects", "info");
+            else AT.toast(res.error.message, "info");
+            return res;
+        });
+    }
+    // Ctrl/Cmd+Z in the panel: undo the toolkit's last action.
+    AT.undoLast = function () {
+        var last = history[history.length - 1];
+        if (!last) { AT.toast("Nothing from the toolkit to undo. Use Edit > Undo in After Effects.", "info"); return; }
+        undo(last);
+    };
 
     AT.catalog = { build: build, get: get, all: all, paramsFor: paramsFor };
     AT.run = run;

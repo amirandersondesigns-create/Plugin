@@ -423,8 +423,30 @@ function check(name, ok, detail) {
     await page.click(".gg-item:has-text('Show Rulers')");
     await page.click(".gg-item:has-text('Snap to Grid')");
     check("Snap to Grid runs View > Snap to Grid", /Snap to Grid/.test(await waitToast(/Snap to Grid/)) && host.app.executed.includes(3041), await toast());
-    await page.click(".gg-item:has-text('Title/Action Safe')");
-    check("Title/Action Safe explains the ' key", /press ' \(apostrophe\)/.test(await waitToast(/Title\/Action Safe/)), await toast());
+    // Every row is clickable and stays highlighted until pressed again, even
+    // the toggles After Effects doesn't report (Grid, Title/Action Safe...).
+    const lit = (t) => page.$eval(".gg-item[data-item=" + t + "]", (e) => e.classList.contains("on"));
+    await page.click(".gg-item[data-item=safe]");
+    await page.waitForTimeout(300);
+    const safeOn = host.app.executed.includes(3046) && (await lit("safe"));
+    await page.click(".gg-item[data-item=grid]");
+    await page.waitForTimeout(300);
+    const gridOn = await lit("grid");
+    await page.click(".tab[data-view=text]");
+    await page.click(".tab[data-view=animate]");
+    await page.waitForSelector(".gg-item[data-item=grid]");
+    const stillLit = (await lit("grid")) && (await lit("safe"));
+    await page.click(".gg-item[data-item=grid]");
+    await page.click(".gg-item[data-item=safe]");
+    await page.waitForTimeout(300);
+    const offAgain = !(await lit("grid")) && !(await lit("safe"));
+    check("Grid & guides rows are clickable, stay highlighted until pressed again", safeOn && gridOn && stillLit && offAgain, [safeOn, gridOn, stillLit, offAgain]);
+    // Undo from the message switches a viewer toggle back.
+    await page.click(".gg-item[data-item=snapGuides]");
+    await waitToast(/Snap to Guides on/);
+    await page.click(".toast-action");
+    await page.waitForTimeout(400);
+    check("Undo in the message switches Snap to Guides back off", gv.guidesSnap === false && !(await lit("snapGuides")) && /switched back/.test(await toast()), [gv.guidesSnap, await toast()]);
     await page.click(".gg-toggle");
 
     // Home: quick actions can be removed, added back and reset.
@@ -512,6 +534,20 @@ function check(name, ok, detail) {
         && !!(await page.$(".res-cards .option.on:has-text('Half')")) && !!(await page.$(".option.on:has-text('Adaptive')"));
     check("highlights switch to the button you press, in every group (" + hlClicks + " clicks)", badGroups.length === 0 && hlClicks > 40, badGroups);
     check("Animate Fast / Final Check highlight themselves and update Resolution + Fast Previews", finalOk && fastOk, [finalOk, fastOk]);
+
+    // Ctrl/Cmd+Z in the panel undoes the toolkit's last project change via
+    // Edit > Undo (only when it's still the latest step).
+    await page.click(".tab[data-view=threed]");
+    comp.layerList.forEach((l) => { l.selected = false; });
+    const flat = comp.add(ShapeLayer, "Flat", { inPoint: 0, outPoint: 8 });
+    flat.selected = true;
+    await page.click(".tool:has-text('Make 3D')");
+    await waitToast(/3D/);
+    const made3d = flat.threeDLayer === true && !!(await page.$(".toast-action"));
+    await page.focus(".tab[data-view=threed]");
+    await page.keyboard.press(process.platform === "darwin" ? "Meta+z" : "Control+z");
+    await page.waitForTimeout(400);
+    check("Ctrl/Cmd+Z in the panel runs Edit > Undo for the toolkit's step", made3d && host.app.undone.includes("Animator Toolkit: Make 3D") && /Undid Make 3D/.test(await toast()), [made3d, host.app.undone, await toast()]);
 
     if (process.env.E2E_DROP) {
         const fallbacks = scripts.filter((x) => /\.lastResponse$/.test(x)).length;

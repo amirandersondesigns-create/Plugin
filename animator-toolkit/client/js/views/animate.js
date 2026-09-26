@@ -62,13 +62,9 @@
     }
 
     // Like After Effects' "Choose grid and guide options" menu under the viewer.
-    // Real on/off states where After Effects reports them; the three items
-    // scripts can't reach say exactly what to press.
-    var VIEWER_ONLY = [
-        { title: "Title/Action Safe", icon: "safe", keys: "'", how: "Click the Composition viewer, then press ' (apostrophe)." },
-        { title: "Proportional Grid", icon: "thirds", keys: "Alt + '", how: "Click the Composition viewer, then press Alt/Option + ' ." },
-        { title: "3D Reference Axes", icon: "axes", keys: null, how: "Use the grid-and-guides button under the Composition viewer (3D comps)." }
-    ];
+    // Every row is a real toggle with its shortcut. A row stays highlighted
+    // while it's on: After Effects' own state where it reports it, otherwise
+    // the state the toolkit remembers from your presses.
     var gridOpen = false;
     function gridGuidesMenu() {
         var menu = h("div.gg-menu", { role: "menu" });
@@ -78,36 +74,40 @@
         } } }, [AT.icon("guides"), h("span", { text: "Grid & guides" }), h("span.gg-sub", { text: "safe areas, grid, guides, rulers, snapping" }), AT.icon("chevron", "gg-chev")]);
         menu.hidden = !gridOpen;
         toggle.classList.toggle("open", gridOpen);
-        var state = {};
+        var reported = {};
         var rows = [];
+        function isOn(key) { return typeof reported[key] === "boolean" ? reported[key] : AT.viewToggleState(key); }
         function row(it) {
+            var key = it.payload.item;
             var st = h("span.gg-state");
-            var b = h("button.gg-item", { type: "button", role: "menuitemcheckbox", title: it.why || it.how, on: { click: function () {
-                if (!it.command) return AT.toast(it.title + ": " + it.how, "info");
-                AT.run(it, null, b).then(function (res) { if (AT.worked(res)) readState(); });
-            } } }, [st, AT.icon(it.icon), h("span.gg-title", { text: it.title }), it.keys ? AT.ui.keycaps(it.keys) : h("span.gg-note", { text: "viewer menu" })]);
+            var b = h("button.gg-item", { type: "button", role: "menuitemcheckbox", title: it.why, "data-item": key, on: { click: function () {
+                AT.run(it, null, b).then(function (res) {
+                    if (res.ok && res.result && typeof res.result.on === "boolean") reported[key] = res.result.on;
+                    paintAll();
+                });
+            } } }, [st, AT.icon(it.icon), h("span.gg-title", { text: it.title }), it.keys ? AT.ui.keycaps(it.keys) : h("span.gg-note", { text: "no shortcut" })]);
             b.paint = function () {
-                var key = it.payload && it.payload.item, on = key ? state[key] : undefined;
+                var on = isOn(key);
                 st.innerHTML = "";
-                b.classList.toggle("on", on === true);
-                b.setAttribute("aria-checked", on === true ? "true" : on === false ? "false" : "mixed");
-                if (on === true) st.appendChild(AT.icon("check"));
+                b.classList.toggle("on", on);
+                b.setAttribute("aria-checked", on ? "true" : "false");
+                if (on) st.appendChild(AT.icon("check"));
             };
             rows.push(b);
             return b;
         }
-        VIEWER_ONLY.forEach(function (it) { menu.appendChild(row(it)); });
-        ["view.grid", "view.guides", "view.rulers"].forEach(function (id) { menu.appendChild(row(AT.catalog.get(id))); });
+        function paintAll() { rows.forEach(function (r) { r.paint(); }); }
+        ["view.safe", "view.propGrid", "view.axes", "view.grid", "view.guides", "view.rulers"].forEach(function (id) { menu.appendChild(row(AT.catalog.get(id))); });
         menu.appendChild(h("div.gg-sep"));
         ["view.snapGuides", "view.snapGrid", "view.lockGuides"].forEach(function (id) { menu.appendChild(row(AT.catalog.get(id))); });
-        menu.appendChild(h("p.hint.gg-hint", { text: "A check shows what's on. Grid and Snap to Grid are View-menu toggles After Effects doesn't report, so they switch without a check. Layer snapping is the Snapping checkbox in the Tools bar (hold Ctrl/Cmd while dragging to flip it)." }));
+        menu.appendChild(h("p.hint.gg-hint", { text: "Click to turn on (it stays highlighted), click again to turn off. Undo in the message, or Ctrl/Cmd+Z here, switches it back. After Effects keeps viewer settings out of Edit > Undo. Layer snapping is the Snapping checkbox in the Tools bar." }));
         function readState() {
             AT.bridge.run("preview.read").then(function (res) {
-                if (res.ok && res.result && res.result.view) state = res.result.view;
-                rows.forEach(function (r) { r.paint(); });
+                if (res.ok && res.result && res.result.view) reported = res.result.view;
+                paintAll();
             });
         }
-        rows.forEach(function (r) { r.paint(); });
+        paintAll();
         if (gridOpen) readState();
         return h("div.gg", [toggle, menu]);
     }

@@ -329,6 +329,8 @@
         document.addEventListener("keydown", function (e) {
             var typing = /input|textarea|select/i.test(e.target.tagName) || e.target.isContentEditable;
             if (typing) return;
+            // Ctrl/Cmd+Z while the panel is focused undoes the toolkit's last action.
+            if ((e.metaKey || e.ctrlKey) && !e.shiftKey && (e.key === "z" || e.key === "Z")) { e.preventDefault(); AT.undoLast(); return; }
             if (e.key === "/") { e.preventDefault(); searchEl.focus(); }
             var n = parseInt(e.key, 10);
             if (n >= 1 && n <= views.length && !e.metaKey && !e.ctrlKey) show(views[n - 1].id);

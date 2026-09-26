@@ -113,8 +113,10 @@ AT.dispatch = function (requestText) {
         // checked BEFORE the undo group opens, so a refused click never
         // leaves an empty "Undo ..." entry in After Effects' Edit menu.
         if (spec.validate) spec.validate(payload, ctx);
+        var undoName = "";
         if (spec.mutating) {
-            app.beginUndoGroup("Animator Toolkit: " + (spec.label || request.command));
+            undoName = "Animator Toolkit: " + (spec.label || request.command);
+            app.beginUndoGroup(undoName);
             undoOpen = true;
         }
         var out = spec.run(payload, ctx) || {};
@@ -122,7 +124,9 @@ AT.dispatch = function (requestText) {
             ok: true,
             requestId: requestId,
             result: out.result || {},
-            feedback: out.feedback || ""
+            feedback: out.feedback || "",
+            // The Edit menu entry this created, so the panel can offer Undo.
+            undo: undoName
         });
     } catch (err) {
         if (err instanceof AT.UserError) {

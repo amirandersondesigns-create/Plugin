@@ -129,7 +129,12 @@ AT.VIEW_ITEMS = {
     snapGuides:  { name: "Snap to Guides",  option: "guidesSnap",       menus: ["Snap to Guides"] },
     lockGuides:  { name: "Lock Guides",     option: "guidesLocked",     menus: ["Lock Guides"] },
     grid:        { name: "Grid",            option: null,               menus: ["Show Grid", "Hide Grid"] },
-    snapGrid:    { name: "Snap to Grid",    option: null,               menus: ["Snap to Grid"] }
+    snapGrid:    { name: "Snap to Grid",    option: null,               menus: ["Snap to Grid"] },
+    // Items of the viewer's own grid-and-guides menu. Not every version
+    // exposes them to scripts; then the panel shows the shortcut instead.
+    safe:        { name: "Title/Action Safe", option: null, menus: ["Title/Action Safe"], manual: "Click the Composition viewer, then press ' (apostrophe)." },
+    propGrid:    { name: "Proportional Grid", option: null, menus: ["Proportional Grid"], manual: "Click the Composition viewer, then press Alt/Option + ' ." },
+    axes:        { name: "3D Reference Axes", option: null, menus: ["3D Reference Axes"], manual: "Use the grid-and-guides button under the Composition viewer (3D comps)." }
 };
 
 AT.viewItemState = function (opts, key) {
@@ -154,10 +159,26 @@ AT.register("view.toggle", {
         }
         var id = 0;
         for (var m = 0; m < it.menus.length && !id; m++) id = app.findMenuCommandId(it.menus[m]);
-        if (!id) AT.fail("unsupported", "This version of After Effects has no View > " + it.menus[0] + " command.");
+        if (!id) AT.fail("manual", it.manual ? it.name + ": " + it.manual : "This version of After Effects has no View > " + it.menus[0] + " command.");
         try { if (app.activeViewer) app.activeViewer.setActive(); } catch (e) {}
         app.executeCommand(id);
         return { result: { item: payload.item, on: null }, feedback: "Toggled View > " + it.name };
+    }
+});
+
+// Undo for the panel's Undo buttons and Ctrl/Cmd+Z: runs Edit > Undo only
+// when the top of After Effects' undo list is still the toolkit's own step,
+// so it can never undo something else by mistake.
+AT.register("app.undo", {
+    label: "Undo",
+    mutating: false,
+    needs: "project",
+    run: function (payload) {
+        var name = String(payload.name || "");
+        var id = name ? app.findMenuCommandId("Undo " + name) : 0;
+        if (!id) AT.fail("manual", "That's no longer the last step in Edit > Undo. Use Edit > Undo in After Effects.");
+        app.executeCommand(id);
+        return { result: { undone: name }, feedback: "Undid " + name.replace("Animator Toolkit: ", "") };
     }
 });
 
