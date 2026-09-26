@@ -6,7 +6,7 @@
     "use strict";
 
     var h = AT.h;
-    var VERSION = "0.3.2";
+    var VERSION = "0.3.3";
     var AUTHOR = "Amir Anderson";
     var LINKEDIN = "https://www.linkedin.com/in/amiranderson";
     var sub = "lessons";

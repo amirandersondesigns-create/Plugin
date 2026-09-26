@@ -13,7 +13,7 @@
         if (c && c.comp && !hasText) {
             page.appendChild(h("div.notice", [AT.icon("info"), h("span", { text: "No text layer selected. Presets like Type On only work on text; layer presets (Fade, Slide, Bounce…) work on anything." })]));
         }
-        page.appendChild(AT.ui.section("Create", { icon: "text" }, h("div.tool-grid", [AT.ui.toolButton("text.create"), AT.ui.toolButton("anchor.center", { label: "Center anchor" })])));
+        page.appendChild(AT.ui.section("Create", { icon: "text" }, h("div.tool-grid", [AT.ui.toolButton("text.create")])));
         var lib = h("div");
         AT.motionLibrary.render(lib, "text");
         page.appendChild(AT.ui.section("Text motion", { icon: "motion" }, lib));

@@ -61,8 +61,10 @@ AT.register("threed.depthSpread", {
 // what this comp actually offers.
 AT.RENDERER_HINTS = {
     classic: ["ADBE Advanced 3d"],
-    extrude: ["ADBE Mercury 3D", "ADBE Ernst", "ADBE Calder"]
+    extrude: ["ADBE Calder", "ADBE Mercury 3D", "ADBE Ernst"] // Advanced 3D first, then Cinema 4D
 };
+AT.RENDERER_NAMES = { "ADBE Advanced 3d": "Classic 3D", "ADBE Calder": "Advanced 3D", "ADBE Mercury 3D": "Advanced 3D", "ADBE Ernst": "Cinema 4D" };
+AT.rendererName = function (id) { return AT.RENDERER_NAMES[id] || id; };
 
 AT.register("threed.renderer", {
     label: "3D Renderer",
@@ -76,11 +78,11 @@ AT.register("threed.renderer", {
                 if (available[a] === want[w]) {
                     ctx.comp.renderer = available[a];
                     return { result: { renderer: available[a], available: available },
-                        feedback: payload.kind === "classic" ? "Classic 3D renderer set" : "3D renderer set for extrusion (" + available[a] + ")" };
+                        feedback: payload.kind === "classic" ? "Classic 3D renderer set" : AT.rendererName(available[a]) + " renderer set: text and shapes can now be extruded" };
                 }
             }
         }
-        AT.fail("unsupported", "Couldn't find that renderer in this version. Set it in Composition > Composition Settings > 3D Renderer. Available: " + available.join(", "));
+        AT.fail("unsupported", "Couldn't find that renderer in this version. Set it in Composition > Composition Settings > 3D Renderer. Available: " + (function () { var n = []; for (var i = 0; i < available.length; i++) n.push(AT.rendererName(available[i])); return n.join(", "); }()));
     }
 });
 
@@ -105,7 +107,7 @@ AT.register("text.extrude", {
                 prop = geo ? geo.property("ADBE Extrsn Depth") : null;
             } catch (e) { prop = null; }
             if (!prop) {
-                AT.fail("renderer", "Extrusion needs the Advanced 3D (or Cinema 4D) renderer. Use '3D renderer for extrusion' first, or set it in Composition Settings > 3D Renderer.");
+                AT.fail("renderer", "Extrusion needs the Advanced 3D (or Cinema 4D) renderer. Click Advanced 3D in the 3D tab first, or set it in Composition Settings > 3D Renderer.");
             }
             if (prop.numKeys > 0) prop.setValueAtTime(ctx.comp.time, depth);
             else prop.setValue(depth);

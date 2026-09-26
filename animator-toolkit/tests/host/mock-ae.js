@@ -398,7 +398,11 @@ function createHost(opts) {
     const app = {
         version: "26.0 (mock)",
         project: { activeItem: null, bitsPerChannel: 8, importFile: (o) => ({ name: "still" }) },
-        activeViewer: { views: [{ options: { fastPreview: FastPreviewType.FP_OFF, zoom: 0.5 } }] },
+        activeViewer: { active: 0, setActive() { this.active++; return true; }, views: [{ options: { fastPreview: FastPreviewType.FP_OFF, zoom: 0.5, checkerboards: false } }] },
+        menus: { "Snap to Guides": 3040, "Snap to Grid": 3041 },
+        executed: [],
+        findMenuCommandId(name) { return this.menus[name] || 0; },
+        executeCommand(id) { this.executed.push(id); },
         purged: 0,
         purge() { this.purged++; },
         beginUndoGroup(name) { undo.open++; undo.groups.push(name); },

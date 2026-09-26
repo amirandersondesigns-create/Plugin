@@ -38,8 +38,8 @@
         add({
             id: "keys." + k[0], title: "Key " + k[1], short: k[2], icon: "key", view: "animate",
             command: "keyframes.add", payload: { property: k[0] },
-            summary: "Adds a " + k[1] + " keyframe at the playhead on selected layers.",
-            why: "A keyframe records a value at a moment in time. Two keyframes with different values = animation. The shortcut in After Effects is Alt/Option+Shift+" + (k[2] === "⇧" ? "P/S/R/T" : k[2]) + ".",
+            summary: (k[0] === "all" ? "Adds Anchor Point, Position, Scale, Rotation and Opacity keyframes" : "Adds " + (/^[AEIOU]/.test(k[1]) ? "an " : "a ") + k[1] + " keyframe") + " at the playhead on selected layers.",
+            why: "A keyframe records a value at a moment in time. Two keyframes with different values = animation. The shortcut in After Effects is Alt/Option+Shift+" + (k[2] === "⇧" ? "A/P/S/R/T" : k[2]) + ".",
             keywords: "keyframe add record " + k[1].toLowerCase()
         });
     });
@@ -70,21 +70,13 @@
     add({ id: "ease.hold", title: "Hold", icon: "hold", view: "easing", command: "easing.apply", payload: { mode: "hold" }, curve: null,
         summary: "Freezes the value until the next keyframe, then jumps.", why: "For instant changes — a number that flips, a color that cuts — with no in-between frames.",
         keywords: "hold freeze step jump toggle hold keyframe" });
-    [["gentle", "Gentle", 33], ["smooth", "Smooth", 50], ["strong", "Strong", 75], ["extreme", "Extreme", 90]].forEach(function (s) {
-        add({ id: "ease." + s[0], title: s[1] + " Ease", icon: "ease", view: "easing", command: "easing.apply", payload: { mode: "both", influence: s[2] },
-            curve: [s[2] / 100, 0, 1 - s[2] / 100, 1], pro: s[0] === "extreme",
-            summary: "Easy Ease with " + s[2] + "% influence on both sides.",
-            why: "Influence is how long the slowdown lasts. Higher = a longer, more dramatic glide into place.",
-            keywords: "ease influence strength " + s[1].toLowerCase() });
-    });
-
     // Curve presets: independent In/Out influence (see the Easing sliders).
     // curve = the value-graph bezier the panel draws.
     function curveOf(inf, outf) {
         return [outf > 0 ? outf / 100 : 1 / 3, outf > 0 ? 0 : 1 / 3, inf > 0 ? 1 - inf / 100 : 2 / 3, inf > 0 ? 1 : 2 / 3];
     }
-    [["sine", "Sine", 33, 33, "Gentle, even ease. The safe default for UI-like motion."],
-     ["quad", "Quad", 50, 50, "A little more pronounced than Sine. Good for most moves."],
+    [["sine", "Sine", 20, 20, "Lighter than Easy Ease: a subtle, even ease for UI-like motion."],
+     ["quad", "Quad", 50, 50, "Stronger than Easy Ease. Good for most moves."],
      ["cubic", "Cubic", 70, 70, "Confident: quick in the middle, soft at both ends."],
      ["expo", "Expo", 90, 90, "Dramatic: almost still at the ends, very fast in the middle."],
      ["stop", "Smooth Stop", 85, 0, "Starts at full speed, glides to a stop. Perfect for entrances."],
@@ -142,8 +134,8 @@
         keywords: "motion blur switch smooth fast" });
 
     add({ id: "layers.rasterize", title: "Continuous Rasterize", icon: "sun", view: "animate", command: "layers.rasterize",
-        summary: "Toggles Continuous Rasterize (shape/Illustrator/solids) or Collapse Transformations (pre-comps).",
-        why: "Vector art scaled above 100% looks soft unless this switch (the sun icon in the timeline) is on. On pre-comps it passes 3D and blending through. It can slow previews, so use it where you need it.",
+        summary: "Toggles Continuous Rasterize (Illustrator/vector art) or Collapse Transformations (pre-comps).",
+        why: "Illustrator art scaled above 100% looks soft unless this switch (the sun icon in the timeline) is on. On pre-comps it passes 3D and blending through. It can slow previews, so use it where you need it.",
         keywords: "continuous rasterize collapse transformations sharp blurry vector illustrator scale switch" });
 
     // ---- masks ----
@@ -160,15 +152,15 @@
     // ---- 3D ----
     add({ id: "threed.make", title: "Make 3D", icon: "cube", view: "threed", command: "threed.make", payload: { on: true },
         summary: "Turns on the 3D switch (the cube) for selected layers.", why: "3D layers get X/Y rotation, a Z position, and are seen by cameras and lights.", keywords: "3d switch cube make layer" });
-    add({ id: "threed.make2d", title: "Make 2D", icon: "layers", view: "threed", command: "threed.make", payload: { on: false },
+    add({ id: "threed.make2d", title: "Make 2D", icon: "flat", view: "threed", command: "threed.make", payload: { on: false },
         summary: "Turns the 3D switch off.", why: "Back to flat: cameras ignore 2D layers.", keywords: "2d flat switch" });
-    add({ id: "threed.depthSpread", title: "Spread in Depth", icon: "dist-v", view: "threed", command: "threed.depthSpread",
+    add({ id: "threed.depthSpread", title: "Spread in Depth", icon: "depth", view: "threed", command: "threed.depthSpread",
         summary: "Places selected layers one behind another in Z (first selected in front).", why: "Layers at different depths move at different speeds when the camera moves: that's parallax, the core of a 3D look.", keywords: "3d depth z spread parallax distribute" });
     add({ id: "threed.renderer.extrude", title: "Extrude Renderer", icon: "cube", view: "threed", command: "threed.renderer", payload: { kind: "extrude" },
         summary: "Switches the comp to a 3D renderer that can extrude (Advanced 3D / Cinema 4D).", why: "Classic 3D can't make real depth. Extrusion needs Composition Settings > 3D Renderer set to Advanced 3D or Cinema 4D.", keywords: "3d renderer advanced cinema 4d extrude" });
     add({ id: "threed.renderer.classic", title: "Classic Renderer", icon: "cube", view: "threed", command: "threed.renderer", payload: { kind: "classic" },
         summary: "Switches the comp back to the Classic 3D renderer.", why: "Classic 3D is fastest and supports every effect; use it when you don't need extrusion.", keywords: "3d renderer classic" });
-    add({ id: "text.extrude", title: "Extrude", icon: "cube", view: "threed", command: "text.extrude",
+    add({ id: "text.extrude", title: "Extrude", icon: "extrude", view: "threed", command: "text.extrude",
         summary: "Gives selected text/shape layers real 3D depth.", why: "Extruded type catches light and shows its sides as the camera moves. Needs the extrusion renderer.", keywords: "3d text extrude depth bevel geometry" });
 
     // ---- text --------------------------------------------------------------
@@ -180,7 +172,7 @@
     // ---- camera ------------------------------------------------------------
     add({ id: "camera.create", title: "Create Camera", icon: "camera", view: "camera", command: "camera.create", payload: { lens: "50mm", oneNode: true, make3D: true },
         summary: "Adds a 50mm one-node camera and makes the selected layers 3D.",
-        why: "Cameras only see 3D layers. A one-node camera has no point of interest, so moves are easy to predict.",
+        why: "Cameras only affect 3D layers. A one-node camera has no point of interest, so moves are easy to predict.",
         keywords: "camera create 3d lens" });
     [["push", "Push In", "Dolly toward the subject — builds focus and tension."],
      ["pull", "Pull Out", "Dolly away — reveals context or ends a scene."],
@@ -192,23 +184,23 @@
             summary: m[1] + " from the playhead, eased.", why: m[2],
             keywords: "camera move " + m[1].toLowerCase() + " dolly pan tilt truck" });
     });
-    add({ id: "camera.dof.on", title: "Focus Blur On", icon: "camera", view: "camera", command: "camera.dof", payload: { on: true },
+    add({ id: "camera.dof.on", title: "Focus Blur On", icon: "aperture", view: "camera", command: "camera.dof", payload: { on: true },
         summary: "Turns on depth of field for the camera.", why: "Blurs things nearer or farther than the focus distance, like a real lens. Pair with Focus on Layer.", keywords: "camera depth of field dof blur focus bokeh" });
-    add({ id: "camera.dof.off", title: "Focus Blur Off", icon: "camera", view: "camera", command: "camera.dof", payload: { on: false },
+    add({ id: "camera.dof.off", title: "Focus Blur Off", icon: "aperture-off", view: "camera", command: "camera.dof", payload: { on: false },
         summary: "Turns depth of field off.", why: "DOF looks great but renders slower; switch it off while animating.", keywords: "camera depth of field off" });
-    add({ id: "camera.focus", title: "Focus on Layer", icon: "sparkle", view: "camera", command: "camera.focusSelected",
+    add({ id: "camera.focus", title: "Focus on Layer", icon: "target", view: "camera", command: "camera.focusSelected",
         summary: "Sets focus distance to the selected layer (and turns DOF on).", why: "Keeps the subject sharp while the background falls off.", keywords: "camera focus distance layer sharp dof" });
-    add({ id: "camera.shake", title: "Add Shake", icon: "bolt", view: "camera", command: "camera.shake",
+    add({ id: "camera.shake", title: "Add Shake", icon: "shake", view: "camera", command: "camera.shake",
         summary: "Adds a handheld shake (a wiggle expression on Position).", why: "A little shake makes a 3D move feel filmed. It's an expression, so change the numbers any time.", keywords: "camera shake handheld wiggle expression" });
     add({ id: "camera.shake.remove", title: "Remove Shake", icon: "close", view: "camera", command: "camera.shake", payload: { remove: true },
         summary: "Removes the toolkit's camera shake.", why: "Gets the locked-off camera back.", keywords: "camera shake remove" });
-    add({ id: "camera.orbit-left", title: "Orbit Left", icon: "reverse", view: "camera", command: "camera.orbit", payload: { direction: "left" },
-        summary: "Circles the camera around the comp centre (rotates an 'AT Camera Orbit' null).", why: "Orbiting shows the sides of 3D layers. It's done by parenting the camera to a null and rotating the null.", keywords: "camera orbit rotate around circle rig null" });
-    add({ id: "camera.orbit-right", title: "Orbit Right", icon: "reverse", view: "camera", command: "camera.orbit", payload: { direction: "right" },
+    add({ id: "camera.orbit-left", title: "Orbit Left", icon: "orbit-left", view: "camera", command: "camera.orbit", payload: { direction: "left" },
+        summary: "Circles the camera around the comp center (rotates an 'AT Camera Orbit' null).", why: "Orbiting shows the sides of 3D layers. It's done by parenting the camera to a null and rotating the null.", keywords: "camera orbit rotate around circle rig null" });
+    add({ id: "camera.orbit-right", title: "Orbit Right", icon: "orbit-right", view: "camera", command: "camera.orbit", payload: { direction: "right" },
         summary: "Circles the camera the other way.", why: "Orbiting shows the sides of 3D layers. It's done by parenting the camera to a null and rotating the null.", keywords: "camera orbit rotate around circle rig null" });
-    add({ id: "camera.lens-in", title: "Lens Zoom In", icon: "cam-push", view: "camera", command: "camera.lensZoom", payload: { percent: 30 },
+    add({ id: "camera.lens-in", title: "Lens Zoom In", icon: "zoom-in", view: "camera", command: "camera.lensZoom", payload: { percent: 30 },
         summary: "Animates the lens (Zoom) tighter, without moving the camera.", why: "A lens zoom flattens and magnifies; a dolly (Push In) travels and changes perspective. Knowing the difference is basic camera language.", keywords: "camera lens zoom focal length in" });
-    add({ id: "camera.lens-out", title: "Lens Zoom Out", icon: "cam-pull", view: "camera", command: "camera.lensZoom", payload: { percent: -25 },
+    add({ id: "camera.lens-out", title: "Lens Zoom Out", icon: "zoom-out", view: "camera", command: "camera.lensZoom", payload: { percent: -25 },
         summary: "Animates the lens wider.", why: "Widening reveals more of the scene without moving the camera.", keywords: "camera lens zoom wide out" });
     add({ id: "camera.select", title: "Select Camera", icon: "camera", view: "camera", command: "camera.select",
         summary: "Selects the comp's active camera layer.", why: "Handy when the camera is buried under dozens of layers.",
@@ -237,9 +229,21 @@
     [8, 16, 32].forEach(function (b) {
         add({ id: "project.bpc." + b, title: b + " bpc", icon: "sparkle", view: "preview", command: "project.bpc", payload: { bits: b },
             summary: "Project color depth: " + b + " bits per channel.",
-            why: b === 8 ? "Fastest. Standard for broadcast graphics; fine unless gradients band." : b === 16 ? "Smoother gradients, about twice as slow. Use when you see banding." : "Float/HDR light and glows. Much slower; only when you need it.",
+            why: b === 8 ? "Fastest. Standard for broadcast graphics; fine unless gradients band." : b === 16 ? "Smoother gradients, but slower. Use when you see banding." : "Float/HDR light and glows. Much slower; only when you need it.",
             keywords: "color depth bpc bits per channel 8 16 32 banding " + b });
     });
+    add({ id: "viewer.transparency", title: "Transparency Grid", icon: "checker", view: "preview", command: "viewer.transparency",
+        summary: "Toggles the transparency grid (checkerboard) in the Composition viewer.",
+        why: "Shows empty areas as a checkerboard instead of the background color, so you can see what's really transparent before you export with alpha.",
+        keywords: "transparency grid checkerboard alpha background toggle viewer" });
+    add({ id: "view.snap.guides", title: "Snap to Guides", icon: "magnet", view: "animate", command: "view.snap", payload: { target: "guides" },
+        summary: "Toggles View > Snap to Guides (Ctrl/Cmd+Shift+;).",
+        why: "Layers click onto your guides as you drag them, so things line up exactly. Drag guides out of the rulers (Ctrl/Cmd+R).",
+        keywords: "snap snapping guides align toggle view" });
+    add({ id: "view.snap.grid", title: "Snap to Grid", icon: "magnet", view: "animate", command: "view.snap", payload: { target: "grid" },
+        summary: "Toggles View > Snap to Grid (Ctrl/Cmd+Shift+').",
+        why: "Layers snap to the grid (show it with Ctrl/Cmd+') for even spacing.",
+        keywords: "snap snapping grid align toggle view" });
     add({ id: "preview.draft3d", title: "Draft 3D", icon: "cube", view: "preview", command: "preview.draft3d",
         summary: "Toggles Draft 3D: fast 3D previews without lights/shadows/DOF detail.", why: "3D is the slowest thing to preview. Draft 3D keeps the timing while you animate.", keywords: "draft 3d fast preview" });
     add({ id: "preview.workArea.90", title: "Work Area 90f", icon: "clock", view: "preview", command: "preview.workArea", payload: { frames: 90 },
@@ -257,7 +261,7 @@
 
     // ---- audio ----
     add({ id: "audio.minus3", title: "-3 dB", icon: "down", view: "audio", command: "audio.levels", payload: { delta: -3 },
-        summary: "Lowers selected audio layers by 3 dB.", why: "-6 dB sounds about half as loud. Small moves are usually enough.", keywords: "audio level volume lower quieter db" });
+        summary: "Lowers selected audio layers by 3 dB.", why: "Small moves are usually enough: -6 dB halves the signal, and about -10 dB sounds half as loud.", keywords: "audio level volume lower quieter db" });
     add({ id: "audio.plus3", title: "+3 dB", icon: "up", view: "audio", command: "audio.levels", payload: { delta: 3 },
         summary: "Raises selected audio layers by 3 dB.", why: "Watch the meter: peaks must never reach 0 dB.", keywords: "audio level volume louder db" });
     add({ id: "audio.bed", title: "Bed -12 dB", icon: "down", view: "audio", command: "audio.levels", payload: { db: -12 },

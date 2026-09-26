@@ -37,6 +37,35 @@ test("catalog ids are unique and every reference resolves", () => {
     c.essentials.forEach((e) => assert.ok(ids.has(e)));
 });
 
+test("no duplicates: tool names, tabs, shortcut keys, lesson images", () => {
+    const w = loadPanel(CONTENT);
+    const c = w.AT.content;
+    const titles = new Set();
+    c.actions.forEach((a) => { assert.ok(!titles.has(a.title), "two tools named " + a.title); titles.add(a.title); });
+    // Each tool appears in exactly one tab (Home and Favorites are hubs).
+    const seen = {};
+    for (const f of fs.readdirSync(path.join(CLIENT, "views"))) {
+        if (/^(home|favorites|learn|motion-library)\.js$/.test(f)) continue;
+        const src = fs.readFileSync(path.join(CLIENT, "views", f), "utf8");
+        c.actions.forEach((a) => {
+            if (src.includes('"' + a.id + '"')) {
+                assert.ok(!seen[a.id] || seen[a.id] === f, a.id + " is in both " + seen[a.id] + " and " + f);
+                seen[a.id] = f;
+            }
+        });
+    }
+    const keys = new Set();
+    c.shortcuts.forEach((s) => { assert.ok(!keys.has(s.keys), "shortcut listed twice: " + s.keys); keys.add(s.keys); });
+    const illos = new Set();
+    c.lessons.forEach((l) => { assert.ok(!illos.has(l.illo), "two lessons share the image " + l.illo); illos.add(l.illo); });
+    // Every preset preview is unique within its tab and group of look-alikes.
+    const pv = {};
+    c.presets.filter((p) => p.phase === "in").forEach((p) => {
+        const k = p.groups.join() + ":" + p.preview + ":" + JSON.stringify(p.def || p.steps || "");
+        assert.ok(!pv[k], p.title + " duplicates " + pv[k]); pv[k] = p.title;
+    });
+});
+
 test("Bounce is offered under More effects in both Animate and Text", () => {
     const w = loadPanel(CONTENT);
     const bounce = w.AT.content.presets.filter((p) => p.motionId === "bounce");

@@ -134,6 +134,15 @@
         ]);
     }
 
+    // Real on/off switch; snaps back if After Effects refuses.
+    function transparencyToggle(on) {
+        var tg = AT.ui.toggle("Transparency grid (checkerboard)", on, function (v) {
+            AT.run("viewer.transparency", { on: v }).then(function (res) { if (!res.ok) tg.querySelector("input").checked = !v; });
+        });
+        tg.classList.add("tg-transparency");
+        return tg;
+    }
+
     function setupCard(id, cls) {
         var item = AT.catalog.get(id);
         var b = h("button.setup" + (cls ? "." + cls : ""), { type: "button", on: { click: function () { AT.run(item, null, b); } } }, [
@@ -162,6 +171,10 @@
                     function (it) { auto = !!it.payload.auto; AT.store.update("settings", function (x) { x.previewResAuto = auto; }); },
                     "res-cards"),
                 h("details.more", [h("summary", { text: "Custom and shortcuts" }), h("p", { text: "Custom sets any factor, e.g. every 6th pixel for heavy comps (Ctrl/Cmd+Alt+J). Shortcuts: Ctrl/Cmd+J Full, Ctrl/Cmd+Shift+J Half, Ctrl/Cmd+Alt+Shift+J Quarter. After Effects' own live Auto is in the viewer's resolution menu." })])
+            ])));
+
+            body.appendChild(AT.ui.section("Viewer", { icon: "checker", hint: "buttons under the viewer" }, h("div", [
+                transparencyToggle(!!st.transparency)
             ])));
 
             body.appendChild(AT.ui.section("Fast Previews", { icon: "bolt", hint: "how the viewer draws while you drag" },

@@ -145,17 +145,6 @@
         page.appendChild(AT.ui.section("Presets", { icon: "ease", hint: "F9 · Shift+F9 · Ctrl/Cmd+Shift+F9" },
             h("div.ease-grid", ["ease.both", "ease.in", "ease.out", "ease.linear", "ease.hold"].map(presetButton))));
 
-        var strengths = ["ease.gentle", "ease.smooth", "ease.strong", "ease.extreme"];
-        page.appendChild(AT.ui.section("Strength", { icon: "bolt", hint: "Easy Ease with more influence" },
-            h("div.chips", strengths.map(function (id) {
-                var it = AT.catalog.get(id);
-                var b = h("button.chip.chip-curve", { type: "button", title: it.summary, on: {
-                    click: function () { AT.run(it, null, b); },
-                    mouseenter: function () { hero.set(it.curve, it.title + " — " + it.summary); }
-                } }, [AT.ui.curve(it.curve, { width: 28, height: 18, pad: 2, cls: "curve-chip" }), h("span", { text: it.title.replace(" Ease", "") })]);
-                return b;
-            }))));
-
         var curves = AT.content.actions.filter(function (a) { return a.tier === "curve"; }).map(function (a) { return a.id; });
         page.appendChild(AT.ui.section("Curves", { icon: "ease", hint: "custom In/Out influence, one click" },
             h("div.ease-grid", curves.map(presetButton))));

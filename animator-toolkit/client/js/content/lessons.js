@@ -48,33 +48,33 @@
               "Each layer also has a span in time: its bar in the timeline. Where a layer starts and ends is its In and Out point."
           ],
           tryIt: [], shortcuts: ["sc.new-comp", "sc.trim-in"] },
-        { id: "lesson.timeline", title: "The Timeline", level: "basics", seconds: 45, illo: "keyframes",
+        { id: "lesson.timeline", title: "The Timeline", level: "basics", seconds: 45, illo: "timeline",
           body: [
               "The blue playhead (current time indicator) shows the frame you're looking at. Drag it, or use Page Up/Down to step one frame.",
               "Press Space to preview, or 0 on the number pad for a full RAM preview. B and N set the preview work area."
           ],
-          tryIt: [], shortcuts: ["sc.space", "sc.home", "sc.next-frame"] },
-        { id: "lesson.graph", title: "The Graph Editor", level: "basics", seconds: 90, illo: "easing",
+          tryIt: [], shortcuts: ["sc.preview", "sc.home", "sc.next-frame"] },
+        { id: "lesson.graph", title: "The Graph Editor", level: "basics", seconds: 90, illo: "graph",
           body: [
               "The Graph Editor (Shift+F3) shows how a value or its speed changes over time. Flat = still, steep = fast.",
               "The speed graph makes easing visible: an eased move starts and ends at zero speed, like a hill.",
               "Drag the yellow handles to shape the curve by hand once presets aren't enough."
           ],
-          tryIt: ["ease.strong"], shortcuts: ["sc.graph"] },
+          tryIt: ["ease.curve.cubic"], shortcuts: ["sc.graph"] },
         { id: "lesson.masks", title: "Masks & Track Mattes", level: "basics", seconds: 75, illo: "matte",
           body: [
               "A mask is a path drawn on a layer that hides everything outside it. Draw one with the Pen (G) or a shape tool (Q) with the layer selected.",
-              "A track matte uses one layer's alpha or brightness to show another. Put the matte directly above and set the Track Matte menu — it's how most text reveals behind a bar are made."
+              "A track matte uses one layer's alpha or brightness to show another. In After Effects 2023 and later, pick the matte layer in the Track Matte column (older versions need it directly above). It's how most text reveals behind a bar are made."
           ],
-          tryIt: ["motion.wipe.in"], shortcuts: ["sc.pen", "sc.shape"] },
-        { id: "lesson.nulls", title: "Null Objects", level: "basics", seconds: 45, illo: "parenting",
+          tryIt: ["motion.mask-wipe-right.in", "mask.rect"], shortcuts: ["sc.pen", "sc.shape"] },
+        { id: "lesson.nulls", title: "Null Objects", level: "basics", seconds: 45, illo: "null",
           body: [
               "A null is an invisible layer with a transform. It never renders; it's a handle for moving other layers through parenting."
           ],
           tryIt: ["layers.null", "layers.nullParent"], shortcuts: [] },
         { id: "lesson.cameras", title: "Cameras", level: "basics", seconds: 90, illo: "camera",
           body: [
-              "A camera only sees 3D layers (the cube switch). Move the camera instead of the artwork to get real parallax.",
+              "Cameras only affect 3D layers (the cube switch); 2D layers stay flat on screen. Move the camera instead of the artwork to get real parallax.",
               "Push/pull (dolly) moves toward or away. Truck moves sideways, pedestal up and down. A pan or tilt rotates the camera instead.",
               "One-node cameras just point where they face; two-node cameras always look at a point of interest."
           ],
@@ -84,7 +84,7 @@
               "Motion blur smears fast-moving layers like a real camera shutter would. It needs two switches: on the layer, and the comp's master switch at the top of the timeline."
           ],
           tryIt: ["layers.motionBlur"], shortcuts: [] },
-        { id: "lesson.frame-rate", title: "Frame Rate & Timing", level: "principles", seconds: 60, illo: "timing",
+        { id: "lesson.frame-rate", title: "Frame Rate & Timing", level: "principles", seconds: 60, illo: "fps",
           body: [
               "US broadcast runs at 29.97 fps. Six frames is 1/5 of a second — a quick hit; 15 frames is a relaxed half-second move; 30 frames is a slow, deliberate one.",
               "Match text on-screen time to reading speed: a rule of thumb is a second for every three to four words, plus a second."
@@ -96,13 +96,13 @@
               "Turn on the motion path in the comp viewer — the dots show spacing for Position."
           ],
           tryIt: ["ease.both"], shortcuts: [] },
-        { id: "lesson.overshoot", title: "Overshoot & Settle", level: "principles", seconds: 45, illo: "bounce",
+        { id: "lesson.overshoot", title: "Overshoot & Settle", level: "principles", seconds: 45, illo: "overshoot",
           body: [
               "Real objects have momentum: they go slightly past where they're going, then settle back. A little overshoot makes motion feel physical.",
               "Pop and Bounce presets add that overshoot for you — look at the extra keyframes they create."
           ],
           tryIt: ["motion.pop.in", "motion.bounce.in"], shortcuts: [] },
-        { id: "lesson.anticipation", title: "Anticipation & Follow-through", level: "principles", seconds: 45, illo: "bounce",
+        { id: "lesson.anticipation", title: "Anticipation & Follow-through", level: "principles", seconds: 45, illo: "anticipate",
           body: [
               "Anticipation is a small move the opposite way before the main action — a crouch before a jump. Follow-through is parts that keep moving after the main body stops.",
               "Staggering related elements by a few frames is the simplest follow-through there is."
@@ -120,7 +120,7 @@
               "Also: the layer must be selected to see its paths. Press M with it selected to find the Mask Path property."
           ],
           tryIt: [], shortcuts: ["sc.layer-controls", "sc.mask"] },
-        { id: "lesson.nothing-visible", title: "Nothing shows in my viewer", level: "fixes", seconds: 60, illo: "layers",
+        { id: "lesson.nothing-visible", title: "Nothing shows in my viewer", level: "fixes", seconds: 60, illo: "empty",
           body: [
               "Work down this list and you'll find it:",
               "Is the playhead inside the layer's bar? Layers only exist between their In and Out points. Press I to jump to the layer's start.",
@@ -131,7 +131,7 @@
               "Caps Lock on (red bar)? The viewer is frozen. Resolution very low? Press Ctrl/Cmd+J for Full."
           ],
           tryIt: [], shortcuts: ["sc.in-out", "sc.u", "sc.caps", "sc.res-full"] },
-        { id: "lesson.find-anything", title: "Finding anything in After Effects", level: "fixes", seconds: 45, illo: "welcome",
+        { id: "lesson.find-anything", title: "Finding anything in After Effects", level: "fixes", seconds: 45, illo: "find",
           body: [
               "Timeline: Ctrl/Cmd+F searches layers and properties by name. Type 'scale' to see every Scale.",
               "Effects: the Effects & Presets panel (Ctrl/Cmd+5) has a search field; double-click a result to apply it.",
@@ -139,14 +139,14 @@
               "Missing panel? It's under the Window menu. Panels all over the place? Window > Workspace > Reset."
           ],
           tryIt: [], shortcuts: ["sc.find", "sc.effects-panel", "sc.workspace", "sc.window-menu"] },
-        { id: "lesson.guides", title: "Guides, rulers & safe areas", level: "fixes", seconds: 45, illo: "lowerthird",
+        { id: "lesson.guides", title: "Guides, rulers & safe areas", level: "fixes", seconds: 45, illo: "guides",
           body: [
               "Rulers (Ctrl/Cmd+R) let you drag guides out onto the viewer. Show/hide guides with Ctrl/Cmd+; and turn on snapping with Ctrl/Cmd+Shift+;.",
               "Press ' (apostrophe) for title/action safe. Broadcast text belongs inside the inner title-safe box.",
               "Guides don't render. They're only for you."
           ],
           tryIt: ["align.center"], shortcuts: ["sc.rulers", "sc.guides", "sc.snap-guides", "sc.safe"] },
-        { id: "lesson.get-around", title: "Getting around fast", level: "fixes", seconds: 45, illo: "timing",
+        { id: "lesson.get-around", title: "Getting around fast", level: "fixes", seconds: 45, illo: "navigate",
           body: [
               "~ (tilde) maximizes whatever panel is under the mouse. Great for the timeline.",
               "Viewer: , and . zoom, Shift+/ fits the comp. Timeline: X scrolls to the selected layer, I and O jump to its ends.",
@@ -163,17 +163,17 @@
               "Stale or stuttering previews? Edit > Purge > All Memory & Disk Cache."
           ],
           tryIt: ["preview.res.2", "preview.workArea.90", "preview.draft3d"], shortcuts: ["sc.res-half", "sc.preview-num0", "sc.work-area", "sc.caps"] },
-        { id: "lesson.rasterize", title: "Continuous Rasterize", level: "production", seconds: 45, illo: "matte",
+        { id: "lesson.rasterize", title: "Continuous Rasterize", level: "production", seconds: 45, illo: "rasterize",
           body: [
-              "Vector layers (shapes, Illustrator art, solids) are drawn at 100% and then scaled, so blowing them up looks soft.",
+              "Illustrator, PDF and EPS art is drawn at 100% and then scaled, so blowing it up looks soft. (Shape and text layers already stay sharp when scaled.)",
               "Continuous Rasterize (the sun switch in the timeline) redraws them at every size so they stay sharp. On a pre-comp the same switch is Collapse Transformations: it passes 3D and blending modes through the pre-comp.",
               "It can slow previews, so turn it on where you need it."
           ],
           tryIt: ["layers.rasterize"], shortcuts: [] },
-        { id: "lesson.bpc", title: "Color depth: 8, 16, 32 bpc", level: "production", seconds: 45, illo: "blur",
+        { id: "lesson.bpc", title: "Color depth: 8, 16, 32 bpc", level: "production", seconds: 45, illo: "bpc",
           body: [
               "Bits per channel set how many shades each color can have. Click the '8 bpc' label at the bottom of the Project panel to change it.",
-              "8 bpc: fastest, standard for broadcast graphics. 16 bpc: smooth gradients, about twice as slow; use it when gradients band. 32 bpc: float, for HDR light and glows; much slower."
+              "8 bpc: fastest, standard for broadcast graphics. 16 bpc: smoother gradients, noticeably slower; use it when gradients band. 32 bpc: float, for HDR light and glows; much slower."
           ],
           tryIt: ["project.bpc.8", "project.bpc.16"], shortcuts: [] },
         { id: "lesson.audio", title: "Audio levels", level: "production", seconds: 30, illo: "audio",

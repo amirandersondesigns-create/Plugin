@@ -32,7 +32,7 @@
     function moves() {
         var s = AT.store.get("settings");
         var ids = ["camera.push", "camera.pull", "camera.truck-left", "camera.truck-right", "camera.pedestal-up", "camera.pedestal-down"];
-        var aka = { "camera.truck-left": "a.k.a. pan", "camera.truck-right": "a.k.a. pan", "camera.pedestal-up": "a.k.a. tilt", "camera.pedestal-down": "a.k.a. tilt", "camera.push": "dolly in", "camera.pull": "dolly out" };
+        var aka = { "camera.push": "dolly in", "camera.pull": "dolly out", "camera.truck-left": "slide sideways", "camera.truck-right": "slide sideways", "camera.pedestal-up": "raise", "camera.pedestal-down": "lower" };
         return h("div", [
             h("div.move-grid", ids.map(function (id) {
                 var item = AT.catalog.get(id);
@@ -120,7 +120,7 @@
     }
 
     function render(page) {
-        page.appendChild(AT.ui.lead("Cameras only see 3D layers. Moves start at the playhead."));
+        page.appendChild(AT.ui.lead("Cameras only affect 3D layers. Moves start at the playhead."));
         page.appendChild(AT.ui.section("Create", { icon: "camera" }, createCard()));
         page.appendChild(AT.ui.section("Moves", { icon: "motion", hint: "from the playhead" }, moves()));
         page.appendChild(AT.ui.section("Lens & focus", { icon: "sparkle" }, lensFocus()));

@@ -114,3 +114,16 @@
 @keyframes pv-iris { from { clip-path: circle(0% at 50% 50%); } to { clip-path: circle(75% at 50% 50%); } }
 @keyframes pv-split-h { from { clip-path: inset(0 50% 0 50%); } to { clip-path: inset(0 0 0 0); } }
 @keyframes pv-split-v { from { clip-path: inset(50% 0 50% 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* 0.3.3: distinct per-letter / per-word text previews */
+.pv-text.pv-row { flex-direction: row; gap: 4px; }
+.pv.play .pv-chars-soft .pv-ch { animation-name: pv-blur; animation-duration: 420ms; animation-delay: calc(var(--i) * 120ms); }
+.pv.play .pv-chars-rise .pv-ch { animation-name: pv-slide-fade; animation-duration: 380ms; animation-delay: calc(var(--i) * 110ms); }
+.pv.play .pv-words-blur .pv-ch { animation-name: pv-blur; animation-duration: 500ms; animation-delay: calc(var(--i) * 260ms); }
+.pv.play .pv-chars-pop .pv-ch { animation-name: pv-pop; animation-duration: 380ms; animation-delay: calc(var(--i) * 110ms); }
+.pv.play .pv-chars-spin .pv-ch { animation-name: pv-char-spin; animation-duration: 420ms; animation-delay: calc(var(--i) * 110ms); }
+.pv.play .pv-chars-random .pv-ch { animation-name: pv-fade; animation-duration: 60ms; animation-timing-function: steps(1, end); animation-delay: calc(var(--i) * 140ms); }
+.pv.play.pv-out .pv-chars-soft .pv-ch, .pv.play.pv-out .pv-chars-rise .pv-ch, .pv.play.pv-out .pv-chars-pop .pv-ch,
+.pv.play.pv-out .pv-chars-spin .pv-ch, .pv.play.pv-out .pv-chars-random .pv-ch { animation-delay: calc((3 - var(--i)) * 110ms); }
+.pv.play.pv-out .pv-words-blur .pv-ch { animation-delay: calc((1 - var(--i)) * 260ms); }
+@keyframes pv-char-spin { from { opacity: 0; transform: rotate(90deg) scale(0); } }

@@ -14,7 +14,7 @@
     }
 
     function render(page) {
-        page.appendChild(AT.ui.lead("Make layers 3D, spread them in depth, then move a camera."));
+        page.appendChild(AT.ui.lead("Make layers 3D, spread them in depth, then add a camera in the Camera tab."));
 
         page.appendChild(AT.ui.section("Setup", { icon: "cube" }, h("div", [
             h("div.tool-grid", ["threed.make", "threed.make2d", "threed.depthSpread"].map(function (id) { return AT.ui.toolButton(id); })),
@@ -26,15 +26,17 @@
         page.appendChild(AT.ui.section("3D motion", { icon: "motion", hint: "the anchor point is the hinge" }, lib));
 
         page.appendChild(AT.ui.section("3D text", { icon: "text" }, h("div", [
-            h("div.tool-grid", ["threed.renderer.extrude", "text.extrude", "threed.renderer.classic"].map(function (id) { return AT.ui.toolButton(id); })),
+            h("div.tool-grid", [AT.ui.toolButton("threed.renderer.extrude", { label: "Advanced 3D" }), AT.ui.toolButton("text.extrude"), AT.ui.toolButton("threed.renderer.classic", { label: "Classic 3D" })]),
             setting("extrudeDepth", "Extrusion depth", 1, 400, 1, 40, "px"),
-            AT.ui.isBeginner() ? h("p.hint", { text: "Set the extrusion renderer first, then select text and Extrude." }) : null
+            AT.ui.isBeginner() ? h("p.hint", { text: "Switch the comp to Advanced 3D first, then select text or shapes and Extrude." }) : null
         ])));
 
-        page.appendChild(AT.ui.section("Camera", {
-            icon: "camera",
-            right: h("button.link", { type: "button", text: "All camera tools", on: { click: function () { AT.app.show("camera"); } } })
-        }, h("div.tool-grid", ["camera.create", "camera.push", "camera.orbit-left", "camera.orbit-right", "camera.focus"].map(function (id) { return AT.ui.toolButton(id); }))));
+        // Camera tools live only in the Camera tab (no duplicate buttons here).
+        page.appendChild(h("button.next-card", { type: "button", on: { click: function () { AT.app.show("camera"); } } }, [
+            h("span.next-ico", AT.icon("camera")),
+            h("span.next-text", [h("strong", { text: "Next: add a camera" }), h("span", { text: "Create, push, orbit and focus in the Camera tab." })]),
+            AT.icon("chevron", "next-arrow")
+        ]));
     }
 
     AT.registerView({ id: "threed", title: "3D", icon: "cube", render: render });

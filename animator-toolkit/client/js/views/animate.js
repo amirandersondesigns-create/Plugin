@@ -106,7 +106,15 @@
 
     function render(page) {
         page.appendChild(AT.ui.lead("Select layers in the timeline, then click. Every action is a single undo (Ctrl/Cmd+Z)."));
-        page.appendChild(AT.ui.section("Layout", { icon: "grid", cls: "sec-dock" }, h("div.dock", [anchorGrid(), alignCell()])));
+        page.appendChild(AT.ui.section("Layout", { icon: "grid", cls: "sec-dock" }, h("div", [
+            h("div.dock", [anchorGrid(), alignCell()]),
+            h("div.snap-row", [
+                h("span.snap-label", [AT.icon("magnet"), h("span", { text: "Snapping" })]),
+                AT.ui.toolButton("view.snap.guides", { label: "Guides" }),
+                AT.ui.toolButton("view.snap.grid", { label: "Grid" })
+            ]),
+            h("p.hint.snap-hint", { text: "Layer snapping is the Snapping checkbox in the Tools bar; hold Ctrl/Cmd while dragging to flip it for one move." })
+        ])));
         page.appendChild(AT.ui.section("Keyframes", { icon: "key", hint: "at the playhead" }, keyStrip()));
         var lib = h("div");
         AT.motionLibrary.render(lib, "graphic");

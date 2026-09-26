@@ -453,6 +453,12 @@ test("depth spread, renderer and extrude", () => {
     const r = h.call("threed.renderer", { kind: "extrude" });
     assert.equal(r.ok, true);
     assert.equal(h.comp.renderer, "ADBE Ernst");
+    assert.match(r.feedback, /^Cinema 4D renderer set/);
+    // Advanced 3D is preferred when this version has it.
+    h.comp.renderers = ["ADBE Advanced 3d", "ADBE Ernst", "ADBE Calder"];
+    assert.match(h.call("threed.renderer", { kind: "extrude" }).feedback, /^Advanced 3D renderer set/);
+    assert.equal(h.comp.renderer, "ADBE Calder");
+    h.comp.renderer = "ADBE Ernst";
     ls[2].selected = false;
     assert.equal(h.call("text.extrude", { depth: 30 }).ok, true);
     assert.equal(ls[0].property("ADBE Extrsn Options Group").property("ADBE Extrsn Depth").value, 30);
@@ -511,6 +517,18 @@ test("preview settings, color depth, work area, purge, rasterize", () => {
     assert.equal(r.error.code, "no-viewer");
     h.app.activeViewer.views[0].options.zoom = 0.5;
     h.call("preview.resolution", { factor: 3 });
+    // Transparency grid is a real viewer toggle; snapping runs the View menu command.
+    assert.equal(h.call("viewer.transparency").result.on, true);
+    assert.equal(h.app.activeViewer.views[0].options.checkerboards, true);
+    assert.equal(h.call("viewer.transparency", { on: false }).result.on, false);
+    assert.equal(h.app.activeViewer.views[0].options.checkerboards, false);
+    assert.equal(h.call("view.snap", { target: "guides" }).ok, true);
+    assert.equal(h.call("view.snap", { target: "grid" }).ok, true);
+    assert.deepEqual(plain(h.app.executed), [3040, 3041]);
+    delete h.app.menus["Snap to Grid"];
+    const miss = h.call("view.snap", { target: "grid" });
+    assert.equal(miss.ok, false);
+    assert.equal(miss.error.code, "unsupported");
     assert.equal(h.call("project.bpc", { bits: 16 }).ok, true);
     assert.equal(h.app.project.bitsPerChannel, 16);
     assert.equal(h.call("preview.fast", { mode: "adaptive" }).ok, true);

@@ -337,6 +337,8 @@ function check(name, ok, detail) {
     check("Quarter card sets Quarter", comp.resolutionFactor[0] === 4 && !!(await page.$(".res-cards .option.on:has-text('Quarter')")));
     await page.click(".res-cards .option:has-text('Auto')");
     check("Auto resolution matches 50% zoom (Half)", /Auto: Half/.test(await waitToast(/Auto:/)) && comp.resolutionFactor[0] === 2, await toast());
+    await page.click(".tg-transparency");
+    check("Transparency grid toggle switches the viewer checkerboard", host.app.activeViewer.views[0].options.checkerboards === true);
     const pp = await page.textContent(".pp-grid");
     check("Preview panel settings listed (Skip, Frame Rate, Cache)", /Skip/.test(pp) && /Frame Rate/.test(pp) && /Cache/.test(pp), null);
     const skip = () => page.textContent(".pp-tile:has-text('Skip') .pp-val");
@@ -345,6 +347,10 @@ function check(name, ok, detail) {
     check("Preview panel flips to final-check values (Skip 1 -> 0)", s1 === "1" && (await skip()) === "0", s1 + " -> " + (await skip()));
     await page.click(".pp-tile:has-text('Cache')");
     check("tapping a tile explains it", /renders the range first/.test(await page.textContent(".pp-why")));
+
+    await page.click(".tab[data-view=animate]");
+    await page.click(".snap-row .tool:has-text('Guides')");
+    check("Snap to Guides runs View > Snap to Guides", /Snap to Guides/.test(await waitToast(/Snap to Guides/)) && host.app.executed.includes(3040), await toast());
 
     // Home: quick actions can be removed, added back and reset.
     await page.click(".tab[data-view=home]");
@@ -394,6 +400,7 @@ function check(name, ok, detail) {
     // Only the deliberate failures may show error toasts.
     const expected = /Anchor not moved|Select one or more layers|Create Camera first|couldn't run the command/;
     const bad = toasts.filter((t) => t.kind === "error" && !expected.test(t.text));
+    if (process.env.E2E_LIST_ERRORS) console.log(toasts.filter((t) => t.kind === "error").map((t) => t.text).join("\n"));
     check("toast recorder saw the run (" + toasts.length + " toasts, " + toasts.filter((t) => t.kind === "error").length + " expected errors)", toasts.length > 20);
     check("no error toasts on successful clicks (no 'empty reply')", bad.length === 0, bad);
     check("no page errors", errors.length === 0, errors);

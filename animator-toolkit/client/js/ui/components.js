@@ -211,11 +211,17 @@
         opts = opts || {};
         var stage = h("div.pv" + (opts.large ? ".pv-lg" : ""), { "aria-hidden": "true" });
         var obj;
-        if (name === "tracking" || name === "typeon" || name === "words" || name === "lines") {
-            var label = name === "lines" ? ["Breaking", "News"] : ["NEWS"];
-            obj = h("div.pv-text.pv-" + name, label.map(function (w, wi) {
+        var textKind = /^(tracking|typeon|words|lines|chars-|words-)/.test(name);
+        if (textKind) {
+            // Word previews need two words; "chars-random" shows letters in a
+            // scrambled order, like Randomize Order does.
+            var byWord = /^(words|lines)/.test(name);
+            var label = name === "lines" ? ["Breaking", "News"] : byWord ? ["BIG", "NEWS"] : ["NEWS"];
+            var order = [2, 0, 3, 1];
+            obj = h("div.pv-text.pv-" + name + (byWord && name !== "lines" ? ".pv-row" : ""), label.map(function (w, wi) {
                 return h("span.pv-line", w.split("").map(function (ch, i) {
-                    return h("span.pv-ch", { style: { "--i": String(name === "words" || name === "lines" ? wi : i) }, text: ch });
+                    var n = byWord ? wi : name === "chars-random" ? order[i % 4] : i;
+                    return h("span.pv-ch", { style: { "--i": String(n) }, text: ch });
                 }));
             }));
         } else {

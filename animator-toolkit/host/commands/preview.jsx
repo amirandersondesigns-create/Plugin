@@ -48,6 +48,7 @@ AT.register("preview.read", {
             bpc: app.project.bitsPerChannel,
             draft3d: !!c.draft3d,
             fastPreview: fast,
+            transparency: !!(opts && opts.checkerboards),
             workAreaStart: c.workAreaStart,
             workAreaDuration: c.workAreaDuration
         } };
@@ -74,6 +75,38 @@ AT.register("preview.resolution", {
         if (!AT.RES_NAMES[f]) AT.fail("bad-payload", "Resolution must be Full, Half, Third or Quarter.");
         ctx.comp.resolutionFactor = [f, f];
         return { result: { factor: f }, feedback: "Resolution: " + AT.RES_NAMES[f] + " (renders 1 of every " + (f * f) + " pixels)" };
+    }
+});
+
+// Transparency grid (the checkerboard button under the viewer).
+AT.register("viewer.transparency", {
+    label: "Transparency Grid",
+    mutating: false, // viewer setting, not part of undo history
+    needs: "comp",
+    run: function (payload) {
+        var opts = AT.viewOptions();
+        if (!opts) AT.fail("no-viewer", "Click the Composition viewer once, then try again.");
+        var on = payload.on === undefined ? !opts.checkerboards : !!payload.on;
+        opts.checkerboards = on;
+        return { result: { on: on }, feedback: "Transparency grid " + (on ? "on: empty areas show as a checkerboard" : "off") };
+    }
+});
+
+// View > Snap to Guides / Snap to Grid are menu toggles; scripts can run
+// them but can't read whether they're on.
+AT.SNAP_MENUS = { guides: "Snap to Guides", grid: "Snap to Grid" };
+AT.register("view.snap", {
+    label: "Snapping",
+    mutating: false,
+    needs: "comp",
+    run: function (payload) {
+        var name = AT.SNAP_MENUS[payload.target];
+        if (!name) AT.fail("bad-payload", "Snap target must be guides or grid.");
+        var id = app.findMenuCommandId(name);
+        if (!id) AT.fail("unsupported", "This version of After Effects has no View > " + name + " command.");
+        try { if (app.activeViewer) app.activeViewer.setActive(); } catch (e) {}
+        app.executeCommand(id);
+        return { result: { target: payload.target }, feedback: "Toggled View > " + name };
     }
 });
 
@@ -175,7 +208,7 @@ AT.register("layers.rasterize", {
             if (!AT.isVisualLayer(l) || AT.layerKind(l) === "text" || l.nullLayer) continue;
             try { l.collapseTransformation = on; n++; } catch (e) { /* not available on this layer */ }
         }
-        if (!n) AT.fail("unsupported-layer", "Continuous Rasterize applies to shape, Illustrator, solid and pre-comp layers (text is always sharp).");
+        if (!n) AT.fail("unsupported-layer", "Continuous Rasterize applies to Illustrator/vector art and pre-comp layers (text and shapes already stay sharp).");
         return { result: { on: on, layers: n }, feedback: "Continuous Rasterize " + (on ? "on" : "off") + " for " + AT.plural(n, "layer") };
     }
 });
