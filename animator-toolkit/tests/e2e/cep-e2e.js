@@ -374,25 +374,36 @@ function check(name, ok, detail) {
     check("Transparency grid turns on, off and on again (switch matches the viewer)", onOk && offOk && cb() === true && (await sw()) === true, [onOk, offOk, cb()]);
     await page.click(".tg-transparency");
     await page.waitForTimeout(400);
-    const pp = await page.textContent(".pp-grid");
-    check("Preview panel settings listed (Skip, Frame Rate, Cache)", /Skip/.test(pp) && /Frame Rate/.test(pp) && /Cache/.test(pp), null);
-    const skip = () => page.textContent(".pp-tile:has-text('Skip') .pp-val");
-    const s1 = await skip();
-    await page.click(".pp-seg .seg-btn:has-text('Final check')");
-    check("Preview panel flips to final-check values (Skip 1 -> 0)", s1 === "1" && (await skip()) === "0", s1 + " -> " + (await skip()));
-    await page.click(".pp-tile:has-text('Cache')");
-    check("tapping a tile explains it", /renders the range first/.test(await page.textContent(".pp-why")));
-    // Values are choosable: Skip 1 -> 2 while animating, remembered, and reset.
-    await page.click(".pp-seg .seg-btn:has-text('Animating')");
-    await page.click(".pp-tile:has-text('Skip')");
-    await page.click(".pp-choices .option:has-text('2')");
-    const skip2 = (await skip()) === "2" && /1 of every 3 frames/.test(await page.textContent(".pp-why"));
+    // The Preview panel copy matches After Effects' own (Window > Preview).
+    const ppText = await page.textContent(".pp-form");
+    const ppHas = ["Shortcut", "Include:", "Cache Before Playback", "Range", "Play From", "Frame Rate", "Skip", "Resolution", "Full Screen", "If caching, play cached frames", "Move time to preview time"].every((t) => ppText.includes(t));
+    const ppOpts = (k) => page.$$eval(".pp-select[data-key=" + k + "] option", (o) => o.map((x) => x.value).join(","));
+    const skipOpts = await ppOpts("skip"), rangeOpts = await ppOpts("range"), resOpts = await ppOpts("res");
+    check("Preview panel matches After Effects: every control, Skip 0/1/2/5, all 4 Ranges, Auto-Quarter",
+        ppHas && skipOpts === "0,1,2,5" && rangeOpts === "Work Area,Work Area Extended By Current Time,Entire Duration,Play Around Current Time" && resOpts === "Auto,Full,Half,Third,Quarter", [ppHas, skipOpts, rangeOpts, resOpts]);
+    const ppVal = (k) => page.$eval(".pp-select[data-key=" + k + "]", (e) => e.value);
+    const ppBox = (k) => page.$eval(".pp-check input[data-key=" + k + "]", (e) => e.checked);
+    await page.selectOption(".pp-select[data-key=skip]", "2");
+    const ppSkip2 = (await ppVal("skip")) === "2" && /1 of every 3 frames/.test(await page.textContent(".pp-why"));
+    await page.click(".pp-fill[data-preset=final]");
+    const ppFinalOk = (await ppBox("cache")) === true && (await ppVal("skip")) === "0" && (await ppVal("res")) === "Full" && (await ppVal("range")) === "Work Area";
+    // Each shortcut keeps its own settings, and they survive leaving the tab.
+    await page.selectOption(".pp-shortcut", "Numpad 0");
+    const numpadFresh = (await ppBox("cache")) === false && (await ppVal("skip")) === "0" && /On \(Numpad 0\) Stop/.test(await page.textContent(".pp-form"));
+    await page.selectOption(".pp-select[data-key=skip]", "5");
     await page.click(".tab[data-view=audio]");
     await page.click(".tab[data-view=preview]");
-    await page.waitForSelector(".pp-grid");
-    const kept = (await skip()) === "2";
+    await page.waitForSelector(".pp-form");
+    const keptNumpad = (await page.$eval(".pp-shortcut", (e) => e.value)) === "Numpad 0" && (await ppVal("skip")) === "5";
+    await page.selectOption(".pp-shortcut", "Spacebar");
+    const keptSpace = (await ppBox("cache")) === true && (await ppVal("res")) === "Full";
     await page.click(".pp-reset");
-    check("Preview panel: Skip set to 2, remembered, and reset to recommended", skip2 && kept && (await skip()) === "1", [skip2, kept]);
+    const ppReset = (await ppBox("cache")) === false && (await ppVal("skip")) === "0" && (await ppVal("res")) === "Auto" && (await ppBox("moveTime")) === true;
+    await page.click(".pp-inc[data-key=audio]");
+    const incOff = (await page.$eval(".pp-inc[data-key=audio]", (e) => e.classList.contains("on"))) === false;
+    check("Preview panel: choose values, fill in Final check, separate per shortcut, remembered, reset", ppSkip2 && ppFinalOk && numpadFresh && keptNumpad && keptSpace && ppReset && incOff,
+        [ppSkip2, ppFinalOk, numpadFresh, keptNumpad, keptSpace, ppReset, incOff]);
+    await page.click(".pp-reset");
 
     await page.click(".tab[data-view=animate]");
     // Grid & guides menu: real on/off with a check mark; items scripts can't
@@ -462,7 +473,7 @@ function check(name, ok, detail) {
         host.undo.groups.length - keyGroups === 29 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
     // Highlights: in every group of choices on every tab, clicking a button
     // lights exactly that one and turns the others off.
-    const groupSel = ".seg, .option-row, .filter-chips, .pp-grid, .anchor-box";
+    const groupSel = ".seg, .option-row, .filter-chips, .anchor-box";
     const badGroups = [];
     let hlClicks = 0;
     for (const tab of ["animate", "easing", "text", "mask", "threed", "camera", "preview", "favorites", "learn"]) {

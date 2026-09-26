@@ -811,3 +811,29 @@ button:focus-visible, .btn:focus-visible { outline: 1.5px solid var(--accent); o
 .pp-choices .option { flex: 1 1 auto; }
 .pp-note { margin: 4px 0 6px; }
 .pp-keys { margin-top: 6px; }
+
+/* 0.3.6: Preview panel replica (matches Window > Preview) */
+.pp-presets { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.pp-presets .pp-reset { margin-left: auto; }
+.pp-fill .ico { width: 13px; height: 13px; }
+.pp-form { display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: var(--r); border: 1px solid var(--line); background: var(--bg-0); }
+.pp-label { font-size: var(--fs-sm); color: var(--fg-1); }
+.pp-form > .pp-label { margin-top: 2px; margin-bottom: -2px; }
+.pp-select { -webkit-appearance: none; appearance: none; width: 100%; min-width: 0; height: 28px; padding: 0 26px 0 8px; border-radius: var(--r); border: 1px solid var(--line-2); color: var(--fg-0); font: inherit; font-size: var(--fs-sm);
+    background: var(--bg-2) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%23d8d8d8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 9px center / 10px 6px;
+    text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.pp-select:hover { border-color: #565656; }
+.pp-select:focus { outline: none; border-color: var(--accent); }
+.pp-select option { background: var(--bg-2); color: var(--fg-0); }
+.pp-inc-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 2px 0; }
+.pp-incs { display: inline-flex; gap: 4px; }
+.pp-inc { width: 30px; height: 26px; display: grid; place-items: center; border-radius: var(--r); border: 1px solid transparent; background: transparent; color: var(--fg-2); }
+.pp-inc:hover { border-color: var(--accent); color: var(--fg-0); }
+.pp-inc.on { background: var(--bg-4); color: var(--fg-0); }
+.pp-inc .ico { width: 16px; height: 16px; }
+.pp-check { display: flex; align-items: center; gap: 8px; font-size: var(--fs-sm); color: var(--fg-0); cursor: pointer; }
+.pp-check input { width: 14px; height: 14px; margin: 0; accent-color: var(--accent); }
+.pp-trio { display: grid; grid-template-columns: 1.15fr 0.85fr 1.1fr; gap: 6px; }
+.pp-trio .pp-label { margin-bottom: 4px; }
+.pp-sep { height: 1px; margin: 4px 0; background: var(--line); }
+.pp-why { margin-top: 8px; }

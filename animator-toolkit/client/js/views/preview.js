@@ -95,103 +95,155 @@
         return [art, h("span.res-name", { text: RES_CARD[key].name }), h("span.res-note", { text: RES_CARD[key].note })];
     }
 
-    // Preview panel settings (Window > Preview). After Effects doesn't let
-    // plugins change these, so the board is a chooser: pick values for
-    // Animating and for Final check, and copy them into the Preview panel.
-    // [key, label, options, recommended animating, recommended final, what it does]
-    function skipWhy(n) { return n === 0 ? "Skip 0: every frame is rendered: true timing." : "Skip " + n + ": renders 1 of every " + (n + 1) + " frames, about " + (n + 1) + "x faster, choppier."; }
-    var PANEL = [
-        { key: "fps", name: "Frame Rate", options: ["Auto", "12", "15", "24", "25", "29.97", "30"], anim: "Auto", final: "Auto",
-          why: function (v) { return v === "Auto" ? "Frame Rate: Auto plays at the comp's rate." : "Frame Rate " + v + ": plays " + v + " frames a second; lower plays sooner but choppier. Timing isn't changed."; } },
-        { key: "skip", name: "Skip", options: ["0", "1", "2", "3", "4"], anim: "1", final: "0",
-          why: function (v) { return skipWhy(+v); } },
-        { key: "res", name: "Resolution", options: ["Auto", "Full", "Half", "Third", "Quarter"], anim: "Auto", final: "Full",
-          why: function (v) { return v === "Auto" ? "Resolution Auto: the preview follows the viewer's resolution." : "Resolution " + v + ": " + ({ Full: "every pixel.", Half: "1/4 of the pixels.", Third: "1/9 of the pixels.", Quarter: "1/16 of the pixels." })[v]; } },
-        { key: "cache", name: "Cache", options: ["Off", "On"], anim: "Off", final: "On",
-          why: function (v) { return v === "On" ? "Cache Before Playback On: renders the range first, then plays in true real time." : "Cache Before Playback Off: plays straight away, as fast as frames render."; } },
-        { key: "range", name: "Range", options: ["Work Area + Time", "Work Area", "Entire Duration", "Around Time"], anim: "Work Area + Time", final: "Work Area",
-          why: function (v) { return ({ "Work Area + Time": "Range: Work Area Extended by Current Time: the work area, stretched to include the playhead.", "Work Area": "Range: Work Area only. Set it with B and N.", "Entire Duration": "Range: the whole comp. Slowest to cache.", "Around Time": "Range: Play Around Current Time: a few seconds either side of the playhead." })[v]; } },
-        { key: "from", name: "Play From", options: ["Current Time", "Range Start"], anim: "Current Time", final: "Range Start",
-          why: function (v) { return v === "Current Time" ? "Play From: the playhead." : "Play From: the start of the range, every time."; } }
-    ];
-    function panelValues() {
-        var saved = AT.store.get("settings").previewPanel || {};
-        var out = { anim: {}, final: {} };
-        PANEL.forEach(function (r) {
-            ["anim", "final"].forEach(function (m) {
-                var v = saved[m] && saved[m][r.key];
-                out[m][r.key] = r.options.indexOf(v) >= 0 ? v : r[m];
-            });
-        });
-        return out;
+    // A copy of After Effects' Preview panel (Window > Preview), laid out
+    // the same way: Shortcut, Include, Cache Before Playback, Range, Play
+    // From, Frame Rate / Skip / Resolution, Full Screen and the "On Stop"
+    // options. After Effects doesn't let plugins read or change this panel,
+    // so it's a planner: set it here per shortcut, then copy it across.
+    var SHORTCUTS = ["Spacebar", "Shift + Spacebar", "Numpad 0", "Shift + Numpad 0", "Alt + Numpad 0"];
+    var PP_FIELDS = {
+        range: { label: "Range", options: ["Work Area", "Work Area Extended By Current Time", "Entire Duration", "Play Around Current Time"] },
+        from: { label: "Play From", options: ["Current Time", "Start of Range"] },
+        fps: { label: "Frame Rate", options: ["Auto", "8", "12", "15", "23.976", "24", "25", "29.97", "30", "50", "59.94", "60"] },
+        skip: { label: "Skip", options: ["0", "1", "2", "5"] },
+        res: { label: "Resolution", options: ["Auto", "Full", "Half", "Third", "Quarter"] }
+    };
+    // After Effects' own starting values (as in its Spacebar shortcut).
+    var PP_DEFAULT = { video: true, audio: true, overlays: false, external: false, cache: false,
+        range: "Work Area Extended By Current Time", from: "Current Time", fps: "Auto", skip: "0", res: "Auto",
+        fullScreen: false, playCached: false, moveTime: true };
+    var PP_PRESETS = {
+        animating: { cache: false, range: "Work Area Extended By Current Time", from: "Current Time", fps: "Auto", skip: "1", res: "Auto", playCached: true },
+        final: { cache: true, range: "Work Area", from: "Start of Range", fps: "Auto", skip: "0", res: "Full", playCached: false }
+    };
+    function ppWhy(key, v, fps) {
+        switch (key) {
+            case "video": return "Include video: " + (v ? "on. The frames play." : "off. Only audio plays.");
+            case "audio": return "Include audio: " + (v ? "on. Sound plays with the preview." : "off. Silent previews start sooner.");
+            case "overlays": return "Include overlays and layer controls: " + (v ? "on. Handles, paths and guides stay visible while it plays." : "off. A clean picture while it plays.");
+            case "external": return "Include external video (Mercury Transmit): " + (v ? "on. Also plays on a connected video monitor." : "off.");
+            case "cache": return "Cache Before Playback: " + (v ? "on. Renders the whole range first, then plays in true real time." : "off. Plays straight away, as fast as frames render.");
+            case "range": return { "Work Area": "Range: Work Area only. Set it with B and N.", "Work Area Extended By Current Time": "Range: the work area, stretched to include the playhead if it's outside.", "Entire Duration": "Range: the whole comp. Slowest to cache.", "Play Around Current Time": "Range: a few seconds either side of the playhead." }[v];
+            case "from": return v === "Current Time" ? "Play From: the playhead." : "Play From: the start of the range, every time.";
+            case "fps": return v === "Auto" ? "Frame Rate (" + fps + "): Auto plays at the comp's own rate." : "Frame Rate " + v + ": plays " + v + " frames a second. Lower plays sooner but choppier; timing isn't changed.";
+            case "skip": return v === "0" ? "Skip 0: every frame is rendered: true timing." : "Skip " + v + ": renders 1 of every " + (+v + 1) + " frames, about " + (+v + 1) + "x faster, choppier.";
+            case "res": return v === "Auto" ? "Resolution Auto: the preview follows the viewer's resolution." : "Resolution " + v + ": " + { Full: "every pixel.", Half: "1/4 of the pixels.", Third: "1/9 of the pixels.", Quarter: "1/16 of the pixels." }[v];
+            case "fullScreen": return "Full Screen: " + (v ? "on. Plays the comp alone on screen." : "off.");
+            case "playCached": return "If caching, play cached frames: " + (v ? "on. Stopping while it caches plays what's ready." : "off. Stopping while it caches just stops.");
+            case "moveTime": return "Move time to preview time: " + (v ? "on. The playhead stays where you stopped." : "off. The playhead jumps back to where it started.");
+        }
+        return "";
     }
     function panelBoard() {
-        var mode = "anim", picked = 1; // Skip
-        var vals = panelValues();
-        var why = h("p.option-why.pp-why");
-        var grid = h("div.pp-grid");
-        var chooser = h("div.option-row.pp-choices", { role: "radiogroup" });
-        var legend = h("span");
-        function save() { AT.store.update("settings", function (x) { x.previewPanel = vals; }); }
-        var tiles = PANEL.map(function (r, i) {
-            var val = h("span.pp-val");
-            var t = h("button.pp-tile", { type: "button", "aria-label": r.name, on: {
-                click: function () { picked = i; paint(); },
-                mouseenter: function () { why.textContent = r.why(vals[mode][r.key]); },
-                mouseleave: function () { why.textContent = PANEL[picked].why(vals[mode][PANEL[picked].key]); }
-            } }, [h("span.pp-name", { text: r.name }), val]);
-            t.val = val;
-            grid.appendChild(t);
-            return t;
-        });
-        function paint() {
-            var changes = 0;
-            tiles.forEach(function (t, i) {
-                var r = PANEL[i], v = vals[mode][r.key];
-                if (t.val.textContent !== v) {
-                    t.val.textContent = v;
-                    t.val.classList.remove("flip");
-                    void t.val.offsetWidth; // restart the animation
-                    t.val.classList.add("flip");
-                }
-                var differs = vals.anim[r.key] !== vals.final[r.key];
-                if (differs) changes++;
-                t.classList.toggle("changes", differs);
-                t.classList.toggle("on", i === picked);
-            });
-            // The picked setting's choices, current one lit.
-            var r = PANEL[picked];
-            chooser.innerHTML = "";
-            chooser.setAttribute("aria-label", r.name);
-            r.options.forEach(function (o) {
-                var on = vals[mode][r.key] === o;
-                chooser.appendChild(h("button.option" + (on ? ".on" : ""), { type: "button", role: "radio", "aria-checked": on ? "true" : "false", on: {
-                    click: function () { vals[mode][r.key] = o; save(); paint(); },
-                    mouseenter: function () { why.textContent = r.why(o); },
-                    mouseleave: function () { why.textContent = r.why(vals[mode][r.key]); }
-                } }, h("span", { text: o })));
-            });
-            why.textContent = r.why(vals[mode][r.key]);
-            legend.textContent = changes + " settings change for the final check";
+        var mac = /Mac/.test(navigator.platform);
+        var saved = AT.store.get("settings").previewPanel2 || {};
+        var shortcut = saved.last && SHORTCUTS.indexOf(saved.last) >= 0 ? saved.last : "Spacebar";
+        var fps = (AT.app && AT.app.context && AT.app.context() && AT.app.context().comp && AT.app.context().comp.fps) || 29.97;
+        function vals() {
+            var v = {}, s2 = (AT.store.get("settings").previewPanel2 || {})[shortcut] || {};
+            for (var k in PP_DEFAULT) v[k] = s2[k] !== undefined ? s2[k] : PP_DEFAULT[k];
+            return v;
         }
-        var seg = AT.ui.segmented([{ value: "anim", label: "Animating", icon: "bolt" }, { value: "final", label: "Final check", icon: "check" }], mode,
-            function (v) { mode = v; paint(); }, { cls: "pp-seg", label: "Preview panel values for" });
-        paint();
+        var cur = vals();
+        var why = h("p.option-why.pp-why");
+        var form = h("div.pp-form");
+        function save() {
+            AT.store.update("settings", function (x) {
+                x.previewPanel2 = x.previewPanel2 || {};
+                x.previewPanel2[shortcut] = cur;
+                x.previewPanel2.last = shortcut;
+            });
+        }
+        function set(key, v) { cur[key] = v; save(); why.textContent = ppWhy(key, v, fps); draw(); }
+        function explain(el, key) {
+            el.addEventListener("mouseenter", function () { why.textContent = ppWhy(key, cur[key], fps); });
+            el.addEventListener("focus", function () { why.textContent = ppWhy(key, cur[key], fps); });
+        }
+        function select(key, extraCls) {
+            var f = PP_FIELDS[key];
+            var sel = h("select.pp-select" + (extraCls ? "." + extraCls : ""), { "aria-label": f.label, "data-key": key });
+            f.options.forEach(function (o) {
+                var label = key === "fps" && o === "Auto" ? "(" + fps + ")" : key === "range" && o === "Play Around Current Time" ? "Play Around Current Time..." : o;
+                var opt = h("option", { value: o, text: label });
+                if (cur[key] === o) opt.selected = true;
+                sel.appendChild(opt);
+            });
+            sel.addEventListener("change", function () { set(key, sel.value); });
+            explain(sel, key);
+            return sel;
+        }
+        function check(key, label) {
+            var box = h("input", { type: "checkbox", "data-key": key });
+            box.checked = !!cur[key];
+            box.addEventListener("change", function () { set(key, box.checked); });
+            var l = h("label.pp-check", [box, h("span", { text: label })]);
+            explain(l, key);
+            return l;
+        }
+        function include(key, icon, label) {
+            var b = h("button.pp-inc" + (cur[key] ? ".on" : ""), { type: "button", title: label, "aria-label": label, "aria-pressed": cur[key] ? "true" : "false", "data-key": key,
+                on: { click: function () { set(key, !cur[key]); } } }, AT.icon(icon));
+            explain(b, key);
+            return b;
+        }
+        function shortcutLabel(sc) { return mac ? sc.replace("Alt", "Option") : sc; }
+        function draw() {
+            form.innerHTML = "";
+            var sc = h("select.pp-select.pp-shortcut", { "aria-label": "Shortcut" }, SHORTCUTS.map(function (x) {
+                var o = h("option", { value: x, text: shortcutLabel(x) }); if (x === shortcut) o.selected = true; return o;
+            }));
+            sc.addEventListener("change", function () {
+                shortcut = sc.value; cur = vals();
+                AT.store.update("settings", function (x) { x.previewPanel2 = x.previewPanel2 || {}; x.previewPanel2.last = shortcut; });
+                why.textContent = "Settings for the " + shortcutLabel(shortcut) + " shortcut. Each shortcut keeps its own.";
+                draw();
+            });
+            form.appendChild(h("div.pp-label", { text: "Shortcut" }));
+            form.appendChild(sc);
+            form.appendChild(h("div.pp-inc-row", [h("span.pp-label", { text: "Include:" }), h("span.pp-incs", [
+                include("video", "eye", "Include video"), include("audio", "audio", "Include audio"),
+                include("overlays", "overlays", "Include overlays and layer controls"), include("external", "external", "Include external video")
+            ])]));
+            form.appendChild(check("cache", "Cache Before Playback"));
+            form.appendChild(h("div.pp-label", { text: "Range" }));
+            form.appendChild(select("range"));
+            form.appendChild(h("div.pp-label", { text: "Play From" }));
+            form.appendChild(select("from"));
+            form.appendChild(h("div.pp-trio", [
+                h("div", [h("div.pp-label", { text: "Frame Rate" }), select("fps")]),
+                h("div", [h("div.pp-label", { text: "Skip" }), select("skip")]),
+                h("div", [h("div.pp-label", { text: "Resolution" }), select("res")])
+            ]));
+            form.appendChild(check("fullScreen", "Full Screen"));
+            form.appendChild(h("div.pp-sep"));
+            form.appendChild(h("div.pp-label", { text: "On (" + shortcutLabel(shortcut) + ") Stop:" }));
+            form.appendChild(check("playCached", "If caching, play cached frames"));
+            form.appendChild(check("moveTime", "Move time to preview time"));
+        }
+        function apply(preset) {
+            var p = PP_PRESETS[preset];
+            for (var k in p) cur[k] = p[k];
+            save();
+            draw();
+            why.textContent = preset === "animating"
+                ? "Filled in for animating: Skip 1, Resolution Auto, no caching, playing from the playhead."
+                : "Filled in for a final check: Cache Before Playback on, Skip 0, Full resolution, the whole work area from its start.";
+        }
+        draw();
+        why.textContent = ppWhy("skip", cur.skip, fps);
         return h("div", [
-            seg,
-            grid,
-            h("div.sub-label.pp-choose-label", { text: "Choose a value" }),
-            chooser,
-            why,
-            h("p.hint.pp-note", { text: "After Effects doesn't let plugins change the Preview panel, so copy these into Window > Preview (Ctrl/Cmd+3). Your picks are saved here." }),
-            h("div.pp-foot", [
-                h("span.pp-legend", [h("span.pp-dot"), legend]),
-                h("button.link.pp-reset", { type: "button", text: "Reset to recommended", on: { click: function () {
-                    AT.store.update("settings", function (x) { delete x.previewPanel; });
-                    vals = panelValues(); paint();
+            h("div.pp-presets", [
+                h("span.pp-label", { text: "Fill in for:" }),
+                h("button.btn.btn-sm.pp-fill", { type: "button", "data-preset": "animating", on: { click: function () { apply("animating"); } } }, [AT.icon("bolt"), h("span", { text: "Animating" })]),
+                h("button.btn.btn-sm.pp-fill", { type: "button", "data-preset": "final", on: { click: function () { apply("final"); } } }, [AT.icon("check"), h("span", { text: "Final check" })]),
+                h("button.link.pp-reset", { type: "button", text: "Reset", on: { click: function () {
+                    cur = {}; for (var k in PP_DEFAULT) cur[k] = PP_DEFAULT[k]; save(); draw();
+                    why.textContent = "Back to After Effects' own starting values.";
                 } } })
             ]),
-            h("div.pp-keys", [AT.ui.keycaps("Space"), h("span", { text: "play" }), AT.ui.keycaps("Numpad 0"), h("span", { text: "cache + play" })])
+            form,
+            why,
+            h("p.hint.pp-note", { text: "Plugins can't change After Effects' Preview panel, so set these in Window > Preview (Ctrl/Cmd+3). Your settings are saved here for each shortcut." })
         ]);
     }
 
@@ -315,7 +367,7 @@
                     function (it) { return it.title; },
                     function (it) { st.bpc = it.payload.bits; })));
 
-            body.appendChild(AT.ui.section("Preview panel", { icon: "gauge", hint: "Ctrl/Cmd+3 \u00b7 set by hand" }, panelBoard()));
+            body.appendChild(AT.ui.section("Preview panel", { icon: "gauge", hint: "Window > Preview \u00b7 Ctrl/Cmd+3" }, panelBoard()));
 
             body.appendChild(AT.ui.section("Speed tools", { icon: "clock" },
                 h("div.tool-grid", ["preview.draft3d", "preview.workArea.90", "preview.workArea.180", "preview.purge"].map(function (id) { return AT.ui.toolButton(id); }))));

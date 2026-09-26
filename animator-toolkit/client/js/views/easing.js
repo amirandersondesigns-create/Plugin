@@ -1,8 +1,6 @@
 /*
- * Easing: a live curve + motion preview, one-click presets, strength chips
- * and In/Out influence sliders. The preview can read the real curve from
- * the selected keyframes (easing.read), so it teaches with the artist's own
- * animation.
+ * Easing: a live curve + motion preview (hover any ease to compare),
+ * one-click presets, curves, physics and In/Out influence sliders.
  */
 (function (AT) {
     "use strict";
@@ -128,18 +126,7 @@
         hero.set([0.33, 0, 0.67, 1], "Easy Ease — hover a preset to compare");
         page.appendChild(AT.ui.lead("Select keyframes, then pick an ease. On the graph, flat = slow and steep = fast."));
         page.appendChild(AT.ui.section("Preview", {
-            icon: "easing",
-            right: h("button.link", { type: "button", text: "Read selected keys", on: { click: function (e) {
-                var btn = e.currentTarget;
-                AT.bridge.run("easing.read").then(function (res) {
-                    if (!res.ok) return AT.readFailed(res);
-                    var r = res.result;
-                    if (!r.curve) return AT.toast("Select two keyframes on one property to see their curve.", "info");
-                    var c = r.curve;
-                    hero.set(c.hold ? null : [c.x1, c.y1, c.x2, c.y2], "Your keys: " + r.layer + " › " + r.property);
-                    AT.ui.pulse(btn);
-                });
-            } } })
+            icon: "easing"
         }, hero.el));
 
         page.appendChild(AT.ui.section("Presets", { icon: "ease", hint: "F9 · Shift+F9 · Ctrl/Cmd+Shift+F9" },
