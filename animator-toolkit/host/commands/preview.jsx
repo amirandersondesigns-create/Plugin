@@ -41,17 +41,23 @@ AT.setViewOption = function (key, value) {
     var v = null;
     try { v = app.activeViewer; } catch (e) {}
     if (!v || !v.views || !v.views.length) return false;
-    var view = v.views[0];
-    try { view.options[key] = value; } catch (e1) {}
-    try { if (view.options[key] === value) return true; } catch (e2) {}
-    try {
-        var o = view.options;
-        o[key] = value;
-        view.options = o;
-        return view.options[key] === value;
-    } catch (e3) {
-        return false;
+    function attempt() {
+        var view = v.views[0];
+        try { view.options[key] = value; } catch (e1) {}
+        try { if (view.options[key] === value) return true; } catch (e2) {}
+        try {
+            var o = view.options;
+            o[key] = value;
+            view.options = o;
+            return view.options[key] === value;
+        } catch (e3) {
+            return false;
+        }
     }
+    if (attempt()) return true;
+    // Some settings only take while the viewer is the active panel.
+    try { v.setActive(); } catch (e4) {}
+    return attempt();
 };
 
 // Current state, so the panel can highlight what's active.
@@ -66,7 +72,7 @@ AT.register("preview.read", {
         return { result: {
             resolution: c.resolutionFactor ? c.resolutionFactor[0] : 1,
             bpc: app.project.bitsPerChannel,
-            draft3d: !!c.draft3d,
+            draft3d: (function () { try { return !!c.draft3d; } catch (e) { return false; } }()),
             fastPreview: fast,
             transparency: !!(opts && opts.checkerboards),
             view: (function () { var o = {}; for (var k in AT.VIEW_ITEMS) if (AT.VIEW_ITEMS.hasOwnProperty(k)) o[k] = AT.viewItemState(opts, k); return o; }()),
@@ -78,7 +84,7 @@ AT.register("preview.read", {
 
 AT.register("preview.resolution", {
     label: "Preview Resolution",
-    mutating: false, // viewer setting, not part of undo history
+    mutating: true, // the comp's resolution is saved in the project: one Ctrl/Cmd+Z
     needs: "comp",
     run: function (payload, ctx) {
         var f = payload.factor;
@@ -214,19 +220,28 @@ AT.register("preview.workArea", {
 // 3D, for animating. "final": Full + Off + Draft 3D off, for checking.
 AT.register("preview.mode", {
     label: "Preview Setup",
-    mutating: false,
+    mutating: true, // resolution + Draft 3D undo together (Fast Previews is a viewer setting)
     needs: "comp",
     run: function (payload, ctx) {
         var fast = payload.mode !== "final";
-        ctx.comp.resolutionFactor = fast ? [2, 2] : [1, 1];
-        if (ctx.comp.draft3d !== undefined) ctx.comp.draft3d = fast;
+        var c = ctx.comp;
+        // Each part is applied on its own and reported back, so the panel
+        // can tick exactly what took.
+        var applied = { resolution: null, fastPreview: null, draft3d: null };
+        try { c.resolutionFactor = fast ? [2, 2] : [1, 1]; applied.resolution = c.resolutionFactor[0]; } catch (e1) {}
+        try { if (c.draft3d !== undefined) { c.draft3d = fast; applied.draft3d = !!c.draft3d; } } catch (e2) {}
         var types = AT.fastPreviewTypes();
-        var opts = AT.viewOptions();
-        var fp = false;
-        if (types && opts) fp = AT.setViewOption("fastPreview", fast ? types.adaptive : types.off);
-        return { result: { mode: fast ? "fast" : "final" },
-            feedback: fast ? "Animate fast: Half resolution, Adaptive previews" + (fp ? "" : " (click the viewer to set Fast Previews)") + ", Draft 3D on"
-                : "Final check: Full resolution, full-quality previews, Draft 3D off" };
+        if (types && AT.setViewOption("fastPreview", fast ? types.adaptive : types.off)) applied.fastPreview = fast ? "adaptive" : "off";
+        if (applied.resolution === null) AT.fail("unsupported", "After Effects didn't change the resolution. Click the Composition viewer once, then try again.");
+        var missing = [];
+        if (applied.fastPreview === null) missing.push("Fast Previews");
+        if (c.draft3d !== undefined && applied.draft3d !== fast) missing.push("Draft 3D");
+        var name = fast ? "Animate Fast" : "Final Check";
+        return { result: { mode: fast ? "fast" : "final", applied: applied },
+            feedback: name + " set: " + (fast ? "Half resolution" : "Full resolution") +
+                (applied.fastPreview ? ", Fast Previews " + (fast ? "Adaptive" : "Off") : "") +
+                (applied.draft3d !== null ? ", Draft 3D " + (applied.draft3d ? "on" : "off") : "") +
+                (missing.length ? ". Click the Composition viewer, then press again to set " + missing.join(" and ") + "." : "") };
     }
 });
 

@@ -642,7 +642,11 @@ test("one-click preview setups", () => {
     assert.deepEqual(plain(h.comp.resolutionFactor), [1, 1]);
     assert.equal(h.comp.draft3d, false);
     assert.equal(h.app.activeViewer.views[0].options.fastPreview, 1);
-    assert.equal(h.undo.groups.length, 0, "viewer setups aren't undo steps");
+    // Resolution and Draft 3D are project settings: each press is one undo step.
+    assert.deepEqual(plain(h.undo.groups), ["Animator Toolkit: Preview Setup", "Animator Toolkit: Preview Setup"]);
+    assert.equal(h.undo.open, 0);
+    h.call("preview.resolution", { factor: 3 });
+    assert.equal(h.undo.groups[2], "Animator Toolkit: Preview Resolution");
 });
 
 test("every command returns a non-empty JSON reply (success and failure)", () => {
@@ -653,4 +657,18 @@ test("every command returns a non-empty JSON reply (success and failure)", () =>
         assert.ok(raw.length > 10, cmd);
         JSON.parse(raw);
     }
+});
+
+test("one-click setup reports exactly which parts took", () => {
+    const h = setup();
+    let r = h.call("preview.mode", { mode: "fast" });
+    assert.deepEqual(plain(r.result.applied), { resolution: 2, fastPreview: "adaptive", draft3d: true });
+    r = h.call("preview.mode", { mode: "final" });
+    assert.deepEqual(plain(r.result.applied), { resolution: 1, fastPreview: "off", draft3d: false });
+    // No usable viewer: resolution and Draft 3D still apply; Fast Previews is named as missing.
+    h.app.activeViewer = null;
+    r = h.call("preview.mode", { mode: "fast" });
+    assert.equal(r.ok, true);
+    assert.deepEqual(plain(r.result.applied), { resolution: 2, fastPreview: null, draft3d: true });
+    assert.match(r.feedback, /Click the Composition viewer, then press again to set Fast Previews/);
 });

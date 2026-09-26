@@ -259,7 +259,29 @@ function check(name, ok, detail) {
     comp.layerList.forEach((l) => { l.selected = false; });
     vo.selected = true;
     await page.click(".setup:has-text('Animate Fast')");
-    check("Preview: one-click Animate Fast", /Animate fast/.test(await waitToast(/Animate fast/)) && comp.resolutionFactor[0] === 2 && comp.draft3d === true, await toast());
+    check("Preview: one-click Animate Fast", /Animate Fast set/.test(await waitToast(/Animate Fast set/)) && comp.resolutionFactor[0] === 2 && comp.draft3d === true, await toast());
+    // The pressed setup card lights, lists its settings ticked, and moves the
+    // Resolution / Fast Previews highlights; Final Check does the same.
+    const setupState = async () => page.evaluate(() => ({
+        fast: !!document.querySelector(".setup.on") && /Animate Fast/.test(document.querySelector(".setup.on").textContent),
+        final: !!document.querySelector(".setup.on") && /Final Check/.test(document.querySelector(".setup.on").textContent),
+        ticks: document.querySelectorAll(".setup.on .setup-part.ok").length,
+        res: (document.querySelector(".res-cards .option.on .res-name") || {}).textContent,
+        fp: (Array.from(document.querySelectorAll(".option-row:not(.res-cards) .option.on")).map((b) => b.textContent)[0] || "")
+    }));
+    let ss = await setupState();
+    const fastLit = ss.fast && !ss.final && ss.ticks === 3 && ss.res === "Half" && /Adaptive/.test(ss.fp);
+    await page.click(".setup:has-text('Final Check')");
+    await waitToast(/Final Check set/);
+    ss = await setupState();
+    const finalLit = ss.final && !ss.fast && ss.ticks === 3 && ss.res === "Full" && /^Off/.test(ss.fp) && comp.resolutionFactor[0] === 1 && comp.draft3d === false;
+    await page.click(".res-cards .option:has-text('Third')");
+    await waitToast(/Third/);
+    ss = await setupState();
+    const custom = !ss.fast && !ss.final && ss.res === "Third";
+    check("One-click setup: the pressed card lights with 3 ticks; Final Check works; a hand-picked resolution clears it", fastLit && finalLit && custom, [fastLit, finalLit, custom, ss]);
+    await page.click(".setup:has-text('Animate Fast')");
+    await waitToast(/Animate Fast set/);
     await page.click(".tab[data-view=audio]");
     await page.click(".tool:has-text('Audio Fade In')");
     check("Audio: fade in keyed levels", /Audio Fade In/.test(await waitToast(/Audio Fade/)) && vo.property("ADBE Audio Group").property("ADBE Audio Levels").numKeys === 2, await toast());
@@ -360,6 +382,17 @@ function check(name, ok, detail) {
     check("Preview panel flips to final-check values (Skip 1 -> 0)", s1 === "1" && (await skip()) === "0", s1 + " -> " + (await skip()));
     await page.click(".pp-tile:has-text('Cache')");
     check("tapping a tile explains it", /renders the range first/.test(await page.textContent(".pp-why")));
+    // Values are choosable: Skip 1 -> 2 while animating, remembered, and reset.
+    await page.click(".pp-seg .seg-btn:has-text('Animating')");
+    await page.click(".pp-tile:has-text('Skip')");
+    await page.click(".pp-choices .option:has-text('2')");
+    const skip2 = (await skip()) === "2" && /1 of every 3 frames/.test(await page.textContent(".pp-why"));
+    await page.click(".tab[data-view=audio]");
+    await page.click(".tab[data-view=preview]");
+    await page.waitForSelector(".pp-grid");
+    const kept = (await skip()) === "2";
+    await page.click(".pp-reset");
+    check("Preview panel: Skip set to 2, remembered, and reset to recommended", skip2 && kept && (await skip()) === "1", [skip2, kept]);
 
     await page.click(".tab[data-view=animate]");
     // Grid & guides menu: real on/off with a check mark; items scripts can't
@@ -403,16 +436,15 @@ function check(name, ok, detail) {
     await page.click(".quick-edit");
     check("quick actions reset to defaults", (await page.$$(".quick-tile")).length === nQuick && !!(await page.$(".quick-tile:has-text('Marker')")));
 
-    // Essential skills: collapse, hide, and bring back from Learn > About.
+    // Essential skills: a collapsible drop-down (no hide / About toggle).
     await page.click(".sec-essentials .collapse-btn");
     check("essential skills collapse", await page.$eval(".sec-essentials .essential-row", (e) => e.offsetParent === null));
-    await page.click(".sec-essentials .collapse-btn");
-    await page.click(".essentials-hide");
-    check("essential skills hidden from Home", !(await page.$(".sec-essentials")));
     await page.click(".tab[data-view=learn]");
-    await page.click(".about .toggle:has-text('Show 5 essential skills')");
+    check("no essential-skills toggle in Learn > About", !(await page.$(".about .toggle:has-text('essential')")) && !(await page.$(".essentials-hide")));
     await page.click(".tab[data-view=home]");
-    check("essential skills restored from Learn > About", !!(await page.$(".sec-essentials .essential")));
+    check("collapsed state remembered, then expands again", await page.$eval(".sec-essentials .essential-row", (e) => e.offsetParent === null));
+    await page.click(".sec-essentials .collapse-btn");
+    check("essential skills expand", !!(await page.$eval(".sec-essentials .essential-row", (e) => e.offsetParent !== null)));
 
     check("undo groups all closed", host.undo.open === 0, host.undo.open);
     // 3 presets, 1 refused anchor, 1 anchor, 2 easing, Type On, search anchor = 9,
@@ -420,10 +452,14 @@ function check(name, ok, detail) {
     // the wiped host, 2 if background polling had already reconnected. The
     // no-selection click fails before opening a group.
     // 0.2 clicks: stagger, mask wipe, flip, bounce, curve, 16 bpc, audio fade,
-    // create camera, orbit = 9 more (resolution is a viewer setting, not an undo step).
+    // create camera, orbit = 9 more. 0.3.5: resolution and one-click setup are
+    // undoable too: 4 resolution clicks + 3 setup clicks = 7 more.
     const keyGroups = host.undo.groups.filter((g) => /Add Keyframes/.test(g)).length;
+    if (process.env.E2E_LIST_UNDO) console.log(JSON.stringify(host.undo.groups.filter((g) => /Preview/.test(g))), host.undo.groups.length);
+    check("resolution and one-click setup are undo steps (one per press)",
+        host.undo.groups.filter((g) => /Preview Resolution/.test(g)).length === 4 && host.undo.groups.filter((g) => /Preview Setup/.test(g)).length === 3);
     check("every mutating click was exactly one undo group",
-        host.undo.groups.length - keyGroups === 22 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+        host.undo.groups.length - keyGroups === 29 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
     // Highlights: in every group of choices on every tab, clicking a button
     // lights exactly that one and turns the others off.
     const groupSel = ".seg, .option-row, .filter-chips, .pp-grid, .anchor-box";

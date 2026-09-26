@@ -105,10 +105,10 @@
 
     function essentialsSection() {
         var s = AT.store.get("settings");
-        if (s.essentialsHidden) return null;
         var progress = AT.store.get("progress").lessons;
         var done = AT.content.essentials.filter(function (id) { return progress[id]; }).length;
-        var open = !s.essentialsCollapsed;
+        // Collapsible only (no hiding). Hidden in an older build = folded.
+        var open = !s.essentialsCollapsed && !s.essentialsHidden;
         var body = h("div", [
             h("div.essential-row", AT.content.essentials.map(function (id, i) {
                 var l = AT.catalog.get(id);
@@ -117,12 +117,7 @@
                     h("span.essential-n", { text: progress[id] ? "\u2713" : String(i + 1) }),
                     h("span.essential-t", { text: l.title })
                 ]);
-            })),
-            h("button.link.essentials-hide", { type: "button", text: "Hide from Home", on: { click: function () {
-                AT.store.update("settings", function (x) { x.essentialsHidden = true; });
-                AT.toast("Essential skills hidden. Bring them back any time in Learn \u203a About.", "info");
-                AT.app.rerender();
-            } } })
+            }))
         ]);
         body.hidden = !open;
         var toggle = h("button.collapse-btn" + (open ? ".open" : ""), { type: "button", "aria-expanded": open ? "true" : "false", "aria-label": open ? "Collapse" : "Expand", on: { click: function () {
@@ -130,7 +125,7 @@
             body.hidden = !open;
             toggle.classList.toggle("open", open);
             toggle.setAttribute("aria-expanded", open ? "true" : "false");
-            AT.store.update("settings", function (x) { x.essentialsCollapsed = !open; });
+            AT.store.update("settings", function (x) { x.essentialsCollapsed = !open; x.essentialsHidden = false; });
         } } }, AT.icon("chevron"));
         return AT.ui.section("5 essential skills", { icon: "learn", cls: "sec-essentials", right: h("span.quick-links", [h("span.pill", { text: done + " / 5" }), toggle]) }, body);
     }
