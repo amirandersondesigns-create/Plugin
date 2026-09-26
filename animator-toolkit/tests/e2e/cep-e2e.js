@@ -540,6 +540,29 @@ function check(name, ok, detail) {
             }
         }
     }
+    // Switches never shift the panel: clicking any toggle (e.g. Easing > Link)
+    // used to scroll the whole page and push the header off screen.
+    const shifted = [];
+    let toggles = 0;
+    for (const tab of ["easing", "camera", "capture", "preview", "animate"]) {
+        await page.click(".tab[data-view=" + tab + "]");
+        await page.waitForTimeout(300);
+        const n = (await page.$$("#view .toggle")).length;
+        for (let i = 0; i < n; i++) {
+            await page.evaluate(() => { const v = document.getElementById("view"); v.scrollTop = v.scrollHeight; });
+            const t = (await page.$$("#view .toggle"))[i];
+            if (!t || !(await t.isVisible())) continue;
+            await t.click();
+            toggles++;
+            await page.waitForTimeout(150);
+            const pos = await page.evaluate(() => ({ doc: document.scrollingElement.scrollTop, header: document.querySelector(".header").getBoundingClientRect().top }));
+            if (pos.doc !== 0 || pos.header < 0) shifted.push(tab + " toggle " + i + " " + JSON.stringify(pos));
+            await t.click(); // put it back
+            await page.waitForTimeout(150);
+        }
+    }
+    check("switches never shift the panel (" + toggles + " switches, incl. Easing > Link)", shifted.length === 0 && toggles >= 5, shifted);
+
     // Animate Fast / Final Check move the Resolution and Fast Previews highlights too.
     await page.click(".tab[data-view=preview]");
     await page.waitForSelector(".setup");

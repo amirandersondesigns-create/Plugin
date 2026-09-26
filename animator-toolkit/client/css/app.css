@@ -845,3 +845,11 @@ button:focus-visible, .btn:focus-visible { outline: 1.5px solid var(--accent); o
 .gg-item.is-busy { opacity: 0.6; }
 .sec-viewer-gg .gg, .gg + .toggle, .gg ~ .tg-transparency { margin-top: 10px; }
 .section-body > div > .gg:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
+/* 0.3.10: switches kept their hidden checkbox outside any positioned box, so
+   clicking one (e.g. Easing > Link) scrolled the whole panel and pushed the
+   header off screen. Anchor it inside the switch, and never let the page
+   itself scroll: only the content area does. */
+html, body { overflow: hidden; }
+.toggle { position: relative; }
+.toggle input { top: 0; left: 0; width: 1px; height: 1px; margin: 0; }

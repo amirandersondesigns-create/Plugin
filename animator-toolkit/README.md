@@ -17,7 +17,7 @@ It also includes micro-lessons and explained shortcuts.
 
 1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
    or Anastasiy's Extension Manager.
-2. Drag `Amir_Anderson_Animator_Toolkit-0.3.9.zxp` onto it.
+2. Drag `Amir_Anderson_Animator_Toolkit-0.3.10.zxp` onto it.
 3. Restart After Effects and open **Window › Extensions › Amir Anderson Animator Toolkit**.
 
 The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
@@ -28,7 +28,7 @@ install as updates.
 
 **Option B: zip + install script (unsigned, debug mode)**
 
-1. Unzip `Amir_Anderson_Animator_Toolkit-0.3.9.zip`.
+1. Unzip `Amir_Anderson_Animator_Toolkit-0.3.10.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
    These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
    then copy the extension to your user CEP extensions folder.
@@ -71,7 +71,7 @@ unconfirmed result shows a short info note instead.
 
 First check `~/Library/Logs/CSXS/CEP12-AEFT.log` for `Unsupported Manifest version`.
 That error means the manifest can't be parsed. Up to 0.1.0 the manifest
-declared a default XML namespace, which After Effects 2026 rejects. 0.3.9
+declared a default XML namespace, which After Effects 2026 rejects. 0.3.10
 matches Adobe's schema, and `tests/manifest.test.js` guards against a repeat.
 
 1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
@@ -175,7 +175,7 @@ If it needs a new keyframe shape or kind, add it to `AT.SHAPES` or
 
 ```
 npm test          # 64 unit/contract tests (Node, no dependencies)
-npm run test:e2e  # 79 end-to-end checks (80 with E2E_DROP=1) (needs Playwright + Chromium);
+npm run test:e2e  # 80 end-to-end checks (81 with E2E_DROP=1) (needs Playwright + Chromium);
                   # E2E_FRIENDLY=1 for ideal conditions, E2E_DROP=1 for lost
                   # return values, E2E_SRC=<dir> for another build
 ```
