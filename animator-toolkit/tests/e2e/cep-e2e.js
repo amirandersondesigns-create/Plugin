@@ -328,6 +328,46 @@ function check(name, ok, detail) {
     await page.click(".tab[data-view=favorites]");
     check("favorite card rendered", (await page.$$(".fav-card")).length === 1);
 
+    // Preview: Auto resolution matches the viewer zoom (50% -> Half); the
+    // Preview panel settings (Skip, Frame Rate, Cache...) are listed.
+    await page.click(".tab[data-view=preview]");
+    await page.waitForSelector(".option:has-text('Auto')");
+    await page.click(".option:has-text('Auto')");
+    check("Auto resolution matches 50% zoom (Half)", /Auto: Half/.test(await waitToast(/Auto:/)) && comp.resolutionFactor[0] === 2, await toast());
+    const pp = await page.textContent(".pp-table");
+    check("Preview panel settings listed (Skip, Frame Rate, Cache)", /Skip/.test(pp) && /Frame Rate/.test(pp) && /Cache Before Playback/.test(pp), null);
+
+    // Home: quick actions can be removed, added back and reset.
+    await page.click(".tab[data-view=home]");
+    const nQuick = (await page.$$(".quick-tile")).length;
+    await page.click(".quick-edit");
+    await page.click(".quick-tile:has-text('Marker')");
+    check("quick action removed", (await page.$$(".quick-tile")).length === nQuick - 1 && !(await page.$(".quick-tile:has-text('Marker')")));
+    await page.click(".quick-add");
+    await page.fill(".picker-search", "bounce in");
+    await page.click(".picker-row:has-text('Bounce In') >> nth=0");
+    await page.click(".sheet-close");
+    await page.click(".quick-edit");
+    check("quick action added from the picker", !!(await page.$(".quick-tile:has-text('Bounce In')")) && !(await page.$(".quick-tile.editing")));
+    await page.click(".tab[data-view=animate]");
+    await page.click(".tab[data-view=home]");
+    check("quick actions remembered", !!(await page.$(".quick-tile:has-text('Bounce In')")) && !(await page.$(".quick-tile:has-text('Marker')")));
+    await page.click(".quick-edit");
+    await page.click(".quick-reset");
+    await page.click(".quick-edit");
+    check("quick actions reset to defaults", (await page.$$(".quick-tile")).length === nQuick && !!(await page.$(".quick-tile:has-text('Marker')")));
+
+    // Essential skills: collapse, hide, and bring back from Learn > About.
+    await page.click(".sec-essentials .collapse-btn");
+    check("essential skills collapse", await page.$eval(".sec-essentials .essential-row", (e) => e.offsetParent === null));
+    await page.click(".sec-essentials .collapse-btn");
+    await page.click(".essentials-hide");
+    check("essential skills hidden from Home", !(await page.$(".sec-essentials")));
+    await page.click(".tab[data-view=learn]");
+    await page.click(".about .toggle:has-text('Show 5 essential skills')");
+    await page.click(".tab[data-view=home]");
+    check("essential skills restored from Learn > About", !!(await page.$(".sec-essentials .essential")));
+
     check("undo groups all closed", host.undo.open === 0, host.undo.open);
     // 3 presets, 1 refused anchor, 1 anchor, 2 easing, Type On, search anchor = 9,
     // plus 1-2 Position keys after the namespace wipe: 1 if that first click hit

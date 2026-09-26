@@ -6,7 +6,7 @@
     "use strict";
 
     var h = AT.h;
-    var VERSION = "0.3.0";
+    var VERSION = "0.3.1";
     var AUTHOR = "Amir Anderson";
     var LINKEDIN = "https://www.linkedin.com/in/amiranderson";
     var sub = "lessons";
@@ -108,10 +108,13 @@
                 AT.ui.segmented([{ value: "comfortable", label: "Roomy" }, { value: "compact", label: "Compact" }], s.density || "comfortable",
                     function (v) { AT.store.update("settings", function (x) { x.density = v; }); AT.app.applySettings(); }, { cls: "seg-sm", label: "Density" })
             ])]),
+            h("div.about-row", [h("span.about-k", { text: "Home" }), h("div.about-v", [
+                AT.ui.toggle("Show 5 essential skills", !s.essentialsHidden, function (on) { AT.store.update("settings", function (x) { x.essentialsHidden = !on; x.essentialsCollapsed = false; }); })
+            ])]),
             h("div.about-row", [h("span.about-k", { text: "Version" }), h("span.about-v.muted", { text: VERSION + (AT.bridge.isPreview() ? " · preview mode" : "") })]),
             h("div.about-row", [h("span.about-k", { text: "Made by" }), h("div.about-v.credit", [
                 h("img", { src: "icons/logo.svg", alt: "" }),
-                h("div.credit-text", [h("strong", { text: AUTHOR }), h("span", { text: "Motion designer" })]),
+                h("div.credit-text", [h("strong", { text: AUTHOR })]),
                 h("button.btn.btn-sm.linkedin", { type: "button", title: LINKEDIN, on: { click: function () { AT.bridge.openURL(LINKEDIN); } } }, [AT.icon("linkedin"), h("span", { text: "LinkedIn" })])
             ])]),
             h("div.about-row", [h("span.about-k", { text: "Welcome" }), h("button.btn.btn-sm", { type: "button", text: "Replay the welcome", on: { click: function () { AT.app.onboarding(); } } })])

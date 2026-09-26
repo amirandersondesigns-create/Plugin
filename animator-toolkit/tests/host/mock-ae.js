@@ -398,7 +398,7 @@ function createHost(opts) {
     const app = {
         version: "26.0 (mock)",
         project: { activeItem: null, bitsPerChannel: 8, importFile: (o) => ({ name: "still" }) },
-        activeViewer: { views: [{ options: { fastPreview: FastPreviewType.FP_OFF } }] },
+        activeViewer: { views: [{ options: { fastPreview: FastPreviewType.FP_OFF, zoom: 0.5 } }] },
         purged: 0,
         purge() { this.purged++; },
         beginUndoGroup(name) { undo.open++; undo.groups.push(name); },

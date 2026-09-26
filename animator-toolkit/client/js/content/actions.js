@@ -192,9 +192,9 @@
             summary: m[1] + " from the playhead, eased.", why: m[2],
             keywords: "camera move " + m[1].toLowerCase() + " dolly pan tilt truck" });
     });
-    add({ id: "camera.dof.on", title: "Depth of Field On", icon: "camera", view: "camera", command: "camera.dof", payload: { on: true },
+    add({ id: "camera.dof.on", title: "Focus Blur On", icon: "camera", view: "camera", command: "camera.dof", payload: { on: true },
         summary: "Turns on depth of field for the camera.", why: "Blurs things nearer or farther than the focus distance, like a real lens. Pair with Focus on Layer.", keywords: "camera depth of field dof blur focus bokeh" });
-    add({ id: "camera.dof.off", title: "Depth of Field Off", icon: "camera", view: "camera", command: "camera.dof", payload: { on: false },
+    add({ id: "camera.dof.off", title: "Focus Blur Off", icon: "camera", view: "camera", command: "camera.dof", payload: { on: false },
         summary: "Turns depth of field off.", why: "DOF looks great but renders slower; switch it off while animating.", keywords: "camera depth of field off" });
     add({ id: "camera.focus", title: "Focus on Layer", icon: "sparkle", view: "camera", command: "camera.focusSelected",
         summary: "Sets focus distance to the selected layer (and turns DOF on).", why: "Keeps the subject sharp while the background falls off.", keywords: "camera focus distance layer sharp dof" });
@@ -215,20 +215,24 @@
         keywords: "camera select find active" });
 
     // ---- preview & render speed ----
+    add({ id: "preview.res.auto", title: "Auto Resolution", icon: "grid", view: "preview", command: "preview.resolution", payload: { auto: true },
+        summary: "Matches the resolution to the viewer's zoom (50% zoom = Half).",
+        why: "Matches your zoom now: 50% = Half, 33% = Third, 25% = Quarter, so you never render pixels you can't see. Click again after zooming.",
+        keywords: "preview resolution auto zoom down sample speed" });
     [[1, "Full"], [2, "Half"], [3, "Third"], [4, "Quarter"]].forEach(function (r) {
         add({ id: "preview.res." + r[0], title: r[1] + " Resolution", icon: "grid", view: "preview", command: "preview.resolution", payload: { factor: r[0] },
             summary: "Sets the comp's Resolution/Down Sample Factor to " + r[1] + ".",
             why: r[0] === 1 ? "Every pixel is rendered: use for final checks." : "Renders 1 in " + (r[0] * r[0]) + " pixels, so previews play far sooner. Timing is identical; only detail drops.",
             keywords: "preview resolution down sample downsample factor " + r[1].toLowerCase() + " speed" });
     });
-    [["off", "Off (Final Quality)", "Always full quality. Use for final checks."],
-     ["adaptive", "Adaptive Resolution", "Drops resolution only while you drag or scrub, then sharpens. The best everyday setting."],
-     ["draft", "Draft", "Fast 3D preview: simplified lights, shadows and depth of field."],
-     ["fastDraft", "Fast Draft", "Draft plus lower resolution while interacting. For heavy 3D scenes."],
-     ["wireframe", "Wireframe", "Layers drawn as outlines while you interact. Instant, for blocking out motion."]].forEach(function (f) {
+    [["off", "Off (Final Quality)", "Off: the viewer always shows full quality, even while you drag. Slowest to interact with; what you see is exactly what renders."],
+     ["adaptive", "Adaptive Resolution", "Works on everything (2D and 3D): drops resolution only while you drag a layer or scrub, then sharpens when you stop. The best everyday setting."],
+     ["draft", "Draft", "3D only: previews 3D layers with a quicker, rougher 3D render (simpler lights, shadows, depth of field). 2D layers look the same."],
+     ["fastDraft", "Fast Draft", "3D only: the fastest 3D preview, for heavy 3D scenes and extruded text. 2D layers look the same."],
+     ["wireframe", "Wireframe", "Works on everything: while you drag, layers are drawn as outline boxes, then redraw when you stop. Instant, for blocking out motion."]].forEach(function (f) {
         add({ id: "preview.fast." + f[0], title: f[1], icon: "bolt", view: "preview", command: "preview.fast", payload: { mode: f[0] },
-            summary: "Fast Previews: " + f[1] + ".", why: f[2],
-            keywords: "fast previews adaptive draft wireframe viewer speed " + f[0] });
+            summary: "Fast Previews: " + f[1] + ".", why: f[2], tag: /draft/i.test(f[0]) ? "3D" : "",
+            keywords: "fast previews adaptive draft wireframe viewer speed 3d " + f[0] });
     });
     [8, 16, 32].forEach(function (b) {
         add({ id: "project.bpc." + b, title: b + " bpc", icon: "sparkle", view: "preview", command: "project.bpc", payload: { bits: b },

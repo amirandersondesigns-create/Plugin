@@ -4,7 +4,8 @@
 // Everything here maps to a real After Effects setting the artist could
 // change by hand; the panel explains each one. Settings that scripting
 // can't reach (the Preview panel's Cache Before Playback / Skip frames,
-// the viewer's "Auto" resolution) are taught in the panel instead.
+// the viewer's live "Auto" resolution) are taught in the panel instead;
+// "Auto" here matches the resolution to the current zoom once.
 // ============================================================================
 
 // Everything lives in one uniquely named namespace: After Effects runs all
@@ -59,6 +60,17 @@ AT.register("preview.resolution", {
     needs: "comp",
     run: function (payload, ctx) {
         var f = payload.factor;
+        if (payload.auto) {
+            // The viewer's live "Auto" mode has no scripting API, so match
+            // the current zoom once: 50% -> Half, 33% -> Third, 25% -> Quarter.
+            var opts = AT.viewOptions(), zoom = null;
+            try { zoom = opts ? opts.zoom : null; } catch (e) {}
+            if (!(zoom > 0)) AT.fail("no-viewer", "Click the Composition viewer once so After Effects knows which view to match, then try Auto again.");
+            f = Math.max(1, Math.min(4, Math.floor(1 / zoom + 0.01)));
+            ctx.comp.resolutionFactor = [f, f];
+            return { result: { factor: f, auto: true, zoom: zoom },
+                feedback: "Auto: " + AT.RES_NAMES[f] + " resolution to match " + Math.round(zoom * 100) + "% zoom" };
+        }
         if (!AT.RES_NAMES[f]) AT.fail("bad-payload", "Resolution must be Full, Half, Third or Quarter.");
         ctx.comp.resolutionFactor = [f, f];
         return { result: { factor: f }, feedback: "Resolution: " + AT.RES_NAMES[f] + " (renders 1 of every " + (f * f) + " pixels)" };

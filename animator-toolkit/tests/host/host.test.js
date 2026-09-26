@@ -494,6 +494,23 @@ test("preview settings, color depth, work area, purge, rasterize", () => {
     l.selected = true;
     assert.equal(h.call("preview.resolution", { factor: 3 }).ok, true);
     assert.deepEqual(plain(h.comp.resolutionFactor), [3, 3]);
+    // Auto matches the viewer zoom once: 50% -> Half, 25% -> Quarter, 100% -> Full.
+    let r = h.call("preview.resolution", { auto: true });
+    assert.equal(r.ok, true);
+    assert.deepEqual(plain(h.comp.resolutionFactor), [2, 2]);
+    assert.match(r.feedback, /Half.*50% zoom/);
+    h.app.activeViewer.views[0].options.zoom = 0.25;
+    h.call("preview.resolution", { auto: true });
+    assert.deepEqual(plain(h.comp.resolutionFactor), [4, 4]);
+    h.app.activeViewer.views[0].options.zoom = 1;
+    h.call("preview.resolution", { auto: true });
+    assert.deepEqual(plain(h.comp.resolutionFactor), [1, 1]);
+    h.app.activeViewer.views[0].options.zoom = undefined;
+    r = h.call("preview.resolution", { auto: true });
+    assert.equal(r.ok, false);
+    assert.equal(r.error.code, "no-viewer");
+    h.app.activeViewer.views[0].options.zoom = 0.5;
+    h.call("preview.resolution", { factor: 3 });
     assert.equal(h.call("project.bpc", { bits: 16 }).ok, true);
     assert.equal(h.app.project.bitsPerChannel, 16);
     assert.equal(h.call("preview.fast", { mode: "adaptive" }).ok, true);
