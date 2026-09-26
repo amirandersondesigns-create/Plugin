@@ -522,11 +522,30 @@ test("preview settings, color depth, work area, purge, rasterize", () => {
     assert.equal(h.app.activeViewer.views[0].options.checkerboards, true);
     assert.equal(h.call("viewer.transparency", { on: false }).result.on, false);
     assert.equal(h.app.activeViewer.views[0].options.checkerboards, false);
-    assert.equal(h.call("view.snap", { target: "guides" }).ok, true);
-    assert.equal(h.call("view.snap", { target: "grid" }).ok, true);
-    assert.deepEqual(plain(h.app.executed), [3040, 3041]);
+    // Grid & guides: exact on/off where the viewer reports it, View menu otherwise.
+    const vo = h.app.activeViewer.views[0].options;
+    assert.equal(h.call("view.toggle", { item: "rulers" }).result.on, true);
+    assert.equal(vo.rulers, true);
+    assert.equal(h.call("view.toggle", { item: "rulers" }).result.on, false);
+    assert.equal(h.call("view.toggle", { item: "snapGuides", on: true }).result.on, true);
+    assert.equal(vo.guidesSnap, true);
+    assert.equal(h.call("view.toggle", { item: "guides" }).result.on, false);
+    assert.equal(h.call("view.toggle", { item: "lockGuides" }).result.on, true);
+    assert.equal(h.call("preview.read").result.view.snapGuides, true);
+    assert.equal(h.call("view.toggle", { item: "grid" }).result.on, null);
+    assert.equal(h.call("view.toggle", { item: "snapGrid" }).ok, true);
+    assert.deepEqual(plain(h.app.executed), [3042, 3041]);
+    // A version that hands out a COPY of the view options still toggles.
+    let stored = { fastPreview: 0, checkerboards: false, zoom: 0.5 };
+    h.app.activeViewer.views[0] = { get options() { return Object.assign({}, stored); }, set options(o) { stored = Object.assign({}, o); } };
+    assert.equal(h.call("viewer.transparency", { on: true }).result.on, true);
+    assert.equal(stored.checkerboards, true);
+    assert.equal(h.call("viewer.transparency", { on: false }).result.on, false);
+    assert.equal(stored.checkerboards, false);
+    assert.equal(h.call("preview.fast", { mode: "wireframe" }).ok, true);
+    assert.equal(h.call("preview.read").result.fastPreview, "wireframe");
     delete h.app.menus["Snap to Grid"];
-    const miss = h.call("view.snap", { target: "grid" });
+    const miss = h.call("view.toggle", { item: "snapGrid" });
     assert.equal(miss.ok, false);
     assert.equal(miss.error.code, "unsupported");
     assert.equal(h.call("project.bpc", { bits: 16 }).ok, true);

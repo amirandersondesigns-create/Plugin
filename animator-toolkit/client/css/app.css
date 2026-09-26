@@ -579,7 +579,7 @@ kbd { font: 600 var(--fs-xs)/1 var(--mono); background: var(--bg-3); border: 1px
 .setup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .setup { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px; text-align: left; border-radius: var(--r-lg); border: 1px solid var(--line-2); background: var(--bg-2); transition: background var(--t-fast), border-color var(--t-fast); }
 .setup:hover { background: var(--bg-3); border-color: var(--accent); }
-.setup-fast { background: var(--accent-bg); border-color: var(--accent); }
+
 .setup-icon { color: var(--accent-2); display: grid; }
 .setup-title { color: var(--fg-0); font-weight: 650; }
 .setup-sub { color: var(--fg-2); font-size: var(--fs-xs); line-height: 1.35; }
@@ -766,3 +766,25 @@ button:focus-visible, .btn:focus-visible { outline: 1.5px solid var(--accent); o
 .snap-label { display: inline-flex; align-items: center; gap: 6px; min-width: 84px; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-2); }
 .snap-label .ico { width: 14px; height: 14px; }
 .snap-hint { margin: 6px 0 0; }
+.setup.on { background: var(--accent-bg); border-color: var(--accent); }
+.setup.on .setup-title::after { content: " \2713"; color: var(--accent-2); }
+
+/* 0.3.5: Grid & guides menu (like the viewer's grid-and-guide options) */
+.gg { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.gg-toggle { display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto; column-gap: 8px; align-items: center; width: 100%; padding: 8px 10px; border-radius: var(--r); border: 1px solid var(--line); background: var(--bg-2); text-align: left; color: var(--fg-0); transition: background-color 120ms ease, border-color 120ms ease; }
+.gg-toggle > .ico:first-child { grid-row: span 2; color: var(--accent-2); }
+.gg-toggle:hover, .gg-toggle.open { border-color: var(--accent); background: var(--bg-3); }
+.gg-sub { grid-column: 2; font-size: var(--fs-xs); color: var(--fg-2); }
+.gg-chev { grid-column: 3; grid-row: 1 / span 2; transition: transform 120ms ease; color: var(--fg-2); }
+.gg-toggle.open .gg-chev { transform: rotate(180deg); }
+.gg-menu { margin-top: 4px; padding: 4px; border-radius: var(--r); border: 1px solid var(--line-2); background: var(--bg-0); }
+.gg-item { display: grid; grid-template-columns: 16px 16px 1fr auto; align-items: center; gap: 8px; width: 100%; padding: 6px 8px; border: 1px solid transparent; border-radius: var(--r-sm); background: transparent; text-align: left; color: var(--fg-1); font-size: var(--fs-sm); }
+.gg-item:hover { background: var(--bg-3); border-color: var(--accent); color: var(--fg-0); }
+.gg-item.on { color: var(--fg-0); }
+.gg-item > .ico { color: var(--fg-2); }
+.gg-item.on > .ico { color: var(--accent-2); }
+.gg-state { display: grid; place-items: center; color: var(--accent-2); }
+.gg-state .ico { width: 13px; height: 13px; }
+.gg-note { font-size: var(--fs-xs); color: var(--fg-3); }
+.gg-sep { height: 1px; margin: 4px 6px; background: var(--line); }
+.gg-hint { margin: 6px 6px 2px; }

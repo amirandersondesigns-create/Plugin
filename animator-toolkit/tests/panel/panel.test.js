@@ -173,3 +173,45 @@ test("store falls back to localStorage outside After Effects", () => {
     w.AT.store.update("settings", (s) => { s.mode = "pro"; });
     assert.equal(w.AT.store.get("settings").mode, "pro");
 });
+
+// Every tool button, pushed through the real host code with the payload the
+// panel really sends: each must succeed in at least one realistic scene.
+test("every tool button works in a suitable scene", () => {
+    const w = loadPanel(CONTENT);
+    w.AT.store = { get: () => ({}) };
+    w.AT.ui = { durationParams: (k, d) => ({ durationFrames: d }) };
+    vm.runInContext(fs.readFileSync(path.join(CLIENT, "core", "catalog.js"), "utf8"), w, { filename: "catalog.js" });
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "at-buttons-"));
+    const scenes = {
+        layer(h, comp) { const l = comp.add(ShapeLayer, "S", { inPoint: 0, outPoint: 8, position: [900, 500], rect: { left: 0, top: 0, width: 200, height: 100 } }); l.selected = true; },
+        keys(h, comp) {
+            const l = comp.add(ShapeLayer, "K", { inPoint: 0, outPoint: 8 }); l.selected = true;
+            const p = l.property("ADBE Transform Group").property("ADBE Position");
+            p.setValueAtTime(0, [100, 100]); p.setValueAtTime(1, [500, 100]); p.selectedKeys = [1, 2];
+            comp.selectedProperties = [p];
+        },
+        three(h, comp) { [0, 1, 2].forEach((i) => { const l = comp.add(ShapeLayer, "L" + i, { inPoint: 0, outPoint: 8, position: [200 + i * 300, 300 + i * 50], rect: { left: 0, top: 0, width: 100, height: 60 } }); l.selected = true; }); },
+        text(h, comp) { comp.renderer = "ADBE Ernst"; const l = comp.add(TextLayer, "T", { inPoint: 0, outPoint: 8, extrudable: true }); l.selected = true; },
+        camera(h, comp) { const l = comp.add(ShapeLayer, "S", { inPoint: 0, outPoint: 8 }); l.selected = true; h.call("camera.create", {}); comp.layerList.forEach((x) => { x.selected = x.name === "S"; }); },
+        audio(h, comp) { const l = comp.add(AVLayer, "VO", { audio: true, inPoint: 0, outPoint: 5 }); l.selected = true; },
+        masked(h, comp) { const l = comp.add(ShapeLayer, "M", { inPoint: 0, outPoint: 8 }); l.selected = true; h.call("mask.add", { shape: "rect" }); },
+        shaken(h, comp) { scenes.camera(h, comp); h.call("camera.shake", { amount: 12, frequency: 2 }); }
+    };
+    const failures = [];
+    for (const a of w.AT.content.actions) {
+        const payload = Object.assign({}, plain(a.payload || {}), plain(w.AT.catalog.paramsFor(a)));
+        if (a.command === "still.capture") payload.folder = tmp;
+        let last = null;
+        const ok = Object.keys(scenes).some((name) => {
+            const h = createHost({ fs: true, desktop: tmp });
+            const comp = new CompItem();
+            h.app.project.activeItem = comp;
+            scenes[name](h, comp);
+            const r = h.call(a.command, payload);
+            last = name + ": " + JSON.stringify(r.error);
+            return r.ok;
+        });
+        if (!ok) failures.push(a.id + " (" + last + ")");
+    }
+    assert.deepEqual(failures, []);
+});

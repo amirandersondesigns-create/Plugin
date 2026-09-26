@@ -128,4 +128,12 @@
 
     AT.catalog = { build: build, get: get, all: all, paramsFor: paramsFor };
     AT.run = run;
+    // A click "worked" for UI purposes when AE confirmed it, or when AE ran
+    // it but its reply got lost (unconfirmed). Only real failures are false.
+    AT.worked = function (res) { return !!(res && (res.ok || res.unconfirmed)); };
+    // Read commands need data back; a lost reply is a gentle retry note.
+    AT.readFailed = function (res) {
+        if (res.unconfirmed) return AT.toast("After Effects didn't send the values back. Try again.", "info");
+        return AT.toast(res.error && res.error.message ? res.error.message : "That didn't work. Try again.", "error");
+    };
 })(window.AT = window.AT || {});

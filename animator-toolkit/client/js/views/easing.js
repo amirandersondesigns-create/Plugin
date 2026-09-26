@@ -132,7 +132,7 @@
             right: h("button.link", { type: "button", text: "Read selected keys", on: { click: function (e) {
                 var btn = e.currentTarget;
                 AT.bridge.run("easing.read").then(function (res) {
-                    if (!res.ok) return AT.toast(res.error.message, "error");
+                    if (!res.ok) return AT.readFailed(res);
                     var r = res.result;
                     if (!r.curve) return AT.toast("Select two keyframes on one property to see their curve.", "info");
                     var c = r.curve;

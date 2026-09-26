@@ -67,8 +67,9 @@
                     h("button.btn.btn-sm", { type: "button", text: "Restore", on: { click: function (e) {
                         var b = e.currentTarget;
                         AT.bridge.run("camera.restore", cam).then(function (res) {
-                            AT.toast(res.ok ? "✓ " + res.feedback : res.error.message, res.ok ? "ok" : "error");
-                            if (res.ok) AT.ui.pulse(b);
+                            if (res.ok) { AT.toast("✓ " + res.feedback, "ok"); AT.ui.pulse(b); }
+                            else if (res.unconfirmed) AT.toast("Camera position sent to After Effects", "info");
+                            else AT.readFailed(res);
                         });
                     } } }),
                     h("button.icon-btn", { type: "button", "aria-label": "Delete", title: "Delete", on: { click: function () {
@@ -81,7 +82,7 @@
         draw();
         var saveBtn = h("button.btn", { type: "button", on: { click: function () {
             AT.bridge.run("camera.read").then(function (res) {
-                if (!res.ok) return AT.toast(res.error.message, "error");
+                if (!res.ok) return AT.readFailed(res);
                 var r = res.result;
                 var ctx = AT.app.context();
                 AT.store.update("cameras", function (c) {

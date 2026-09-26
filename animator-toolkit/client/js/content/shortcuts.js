@@ -71,6 +71,7 @@
         ["sc.guides", "view", "Mod + ;", "Show/hide guides", "Drag guides out of the rulers to line things up."],
         ["sc.rulers", "view", "Mod + R", "Show/hide rulers", "Needed to drag out guides."],
         ["sc.snap-guides", "view", "Mod + Shift + ;", "Snap to guides", "Layers snap to guides as you drag."],
+        ["sc.prop-grid", "view", "Alt + '", "Proportional grid", "Rule-of-thirds style grid over the viewer."],
         ["sc.snap-grid", "view", "Mod + Shift + '", "Snap to grid", "Layers snap to the grid as you drag (show the grid with Mod + ')."],
         ["sc.snapping", "view", "Hold Mod while dragging", "Flip layer snapping", "Temporarily turns the Tools bar's Snapping checkbox on or off for one drag."],
         ["sc.lock-guides", "view", "Mod + Alt + Shift + ;", "Lock guides", "Stops guides moving by accident."],

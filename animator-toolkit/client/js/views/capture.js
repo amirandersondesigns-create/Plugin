@@ -57,7 +57,7 @@
         var illo = AT.illustration("capture", "capture-illo");
         var grab = h("button.btn.btn-primary.btn-hero", { type: "button", on: { click: function () {
             AT.run("still.capture", null, grab).then(function (res) {
-                if (!res.ok) return;
+                if (!AT.worked(res)) return;
                 illo.classList.remove("flash");
                 void illo.offsetWidth;
                 illo.classList.add("flash");

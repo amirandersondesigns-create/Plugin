@@ -236,14 +236,18 @@
         summary: "Toggles the transparency grid (checkerboard) in the Composition viewer.",
         why: "Shows empty areas as a checkerboard instead of the background color, so you can see what's really transparent before you export with alpha.",
         keywords: "transparency grid checkerboard alpha background toggle viewer" });
-    add({ id: "view.snap.guides", title: "Snap to Guides", icon: "magnet", view: "animate", command: "view.snap", payload: { target: "guides" },
-        summary: "Toggles View > Snap to Guides (Ctrl/Cmd+Shift+;).",
-        why: "Layers click onto your guides as you drag them, so things line up exactly. Drag guides out of the rulers (Ctrl/Cmd+R).",
-        keywords: "snap snapping guides align toggle view" });
-    add({ id: "view.snap.grid", title: "Snap to Grid", icon: "magnet", view: "animate", command: "view.snap", payload: { target: "grid" },
-        summary: "Toggles View > Snap to Grid (Ctrl/Cmd+Shift+').",
-        why: "Layers snap to the grid (show it with Ctrl/Cmd+') for even spacing.",
-        keywords: "snap snapping grid align toggle view" });
+    // Grid & guides (the viewer's "Choose grid and guide options" menu).
+    [["grid", "Show Grid", "grid", "Mod + '", "A square grid over the viewer for even spacing."],
+     ["guides", "Show Guides", "guides", "Mod + ;", "Shows the guides you've dragged out of the rulers. Guides never render."],
+     ["rulers", "Show Rulers", "ruler", "Mod + R", "Rulers along the viewer edges; drag from them to make guides."],
+     ["snapGuides", "Snap to Guides", "magnet", "Mod + Shift + ;", "Layers click onto your guides as you drag them, so things line up exactly."],
+     ["snapGrid", "Snap to Grid", "magnet", "Mod + Shift + '", "Layers snap to the grid as you drag, for even spacing."],
+     ["lockGuides", "Lock Guides", "lock", "Mod + Alt + Shift + ;", "Stops guides moving when you click near them."]].forEach(function (g) {
+        add({ id: "view." + g[0], title: g[1], icon: g[2], view: "animate", command: "view.toggle", payload: { item: g[0] }, keys: g[3],
+            summary: "Turns " + g[1].replace("Show ", "") + " on or off in the Composition viewer (" + g[3].replace(/Mod/g, "Ctrl/Cmd") + ").",
+            why: g[4] + " A viewer setting: click again to turn it off (it isn't an undo step).",
+            keywords: "grid guides rulers snap snapping lock viewer toggle " + g[1].toLowerCase() });
+    });
     add({ id: "preview.draft3d", title: "Draft 3D", icon: "cube", view: "preview", command: "preview.draft3d",
         summary: "Toggles Draft 3D: fast 3D previews without lights/shadows/DOF detail.", why: "3D is the slowest thing to preview. Draft 3D keeps the timing while you animate.", keywords: "draft 3d fast preview" });
     add({ id: "preview.workArea.90", title: "Work Area 90f", icon: "clock", view: "preview", command: "preview.workArea", payload: { frames: 90 },

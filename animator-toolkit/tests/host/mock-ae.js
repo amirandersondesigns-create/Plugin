@@ -398,8 +398,8 @@ function createHost(opts) {
     const app = {
         version: "26.0 (mock)",
         project: { activeItem: null, bitsPerChannel: 8, importFile: (o) => ({ name: "still" }) },
-        activeViewer: { active: 0, setActive() { this.active++; return true; }, views: [{ options: { fastPreview: FastPreviewType.FP_OFF, zoom: 0.5, checkerboards: false } }] },
-        menus: { "Snap to Guides": 3040, "Snap to Grid": 3041 },
+        activeViewer: { active: 0, setActive() { this.active++; return true; }, views: [{ options: { fastPreview: FastPreviewType.FP_OFF, zoom: 0.5, checkerboards: false, rulers: false, guidesVisibility: true, guidesSnap: false, guidesLocked: false } }] },
+        menus: { "Snap to Guides": 3040, "Snap to Grid": 3041, "Show Grid": 3042, "Show Rulers": 3043, "Show Guides": 3044, "Lock Guides": 3045 },
         executed: [],
         findMenuCommandId(name) { return this.menus[name] || 0; },
         executeCommand(id) { this.executed.push(id); },
@@ -422,7 +422,7 @@ function createHost(opts) {
     context.Folder.desktop = { fsName: "/Users/mock/Desktop" };
     vm.createContext(context);
     const hostDir = opts.hostDir || path.join(__dirname, "..", "..", "host");
-    if (opts.boot === "cep") {
+    if (opts.boot === "cep" || opts.fs) {
         // Filesystem-backed File/Folder, like ExtendScript's.
         function FsItem(p) { this.fsName = path.resolve(String(p)); }
         Object.defineProperty(FsItem.prototype, "exists", { get() { return fs.existsSync(this.fsName); } });
@@ -436,6 +436,8 @@ function createHost(opts) {
         context.File.prototype = Object.create(FsItem.prototype);
         const desktop = opts.desktop || fs.mkdtempSync(path.join(require("os").tmpdir(), "at-desktop-"));
         context.Folder.desktop = new context.Folder(desktop);
+    }
+    if (opts.boot === "cep") {
         context.$.evalCount = 0;
         context.$.evalFile = function (f) {
             const file = typeof f === "string" ? f : f.fsName;

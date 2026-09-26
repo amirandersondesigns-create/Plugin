@@ -8,6 +8,11 @@
     "use strict";
 
     var h = AT.h;
+    // Every highlighted control on this tab registers a sync function; after
+    // any click the tab re-reads After Effects' real settings and re-syncs
+    // them all, so exactly the right choices are lit (e.g. Animate Fast also
+    // moves the Resolution and Fast Previews highlights).
+    var syncs = [], refresh = function () {}, stRef = {};
 
     // A row of mutually exclusive choices. Clicking runs the tool; the line
     // below always explains the active (or hovered) choice.
@@ -17,15 +22,13 @@
         var line = h("p.option-why", { text: active.why });
         var row = h("div.option-row" + (rowCls ? "." + rowCls : ""), { role: "radiogroup" }, items.map(function (item) {
             var content = label(item);
-            var b = h("button.option" + (item === active ? ".on" : ""), { type: "button", title: item.summary, on: {
+            var b = h("button.option" + (item === active ? ".on" : ""), { type: "button", role: "radio", "aria-checked": item === active ? "true" : "false", title: item.summary, on: {
                 click: function () {
                     AT.run(item, null, b).then(function (res) {
-                        if (!res.ok) return;
+                        if (!AT.worked(res)) return;
                         if (onPick) onPick(item);
-                        active = item;
-                        row.querySelectorAll(".option").forEach(function (x) { x.classList.remove("on"); });
-                        b.classList.add("on");
-                        line.textContent = item.why;
+                        mark(item);
+                        refresh();
                     });
                 },
                 mouseenter: function () { line.textContent = item.why; },
@@ -33,6 +36,13 @@
             } }, typeof content === "string" ? [h("span", { text: content }), item.tag ? h("sup.opt-tag", { text: item.tag }) : null] : content);
             return b;
         }));
+        var buttons = row.children;
+        function mark(item) {
+            active = item;
+            items.forEach(function (it, i) { buttons[i].classList.toggle("on", it === item); buttons[i].setAttribute("aria-checked", it === item ? "true" : "false"); });
+            line.textContent = item.why;
+        }
+        syncs.push(function () { var a = items.filter(isOn)[0]; if (a) mark(a); });
         return h("div", [row, line]);
     }
 
@@ -136,20 +146,34 @@
 
     // Real on/off switch; snaps back if After Effects refuses.
     function transparencyToggle(on) {
+        // Sends the exact state wanted (not "flip"), then shows what After
+        // Effects reports, so the switch can't drift out of step with the
+        // viewer even if a reply is lost. Not an undo step: click to turn off.
         var tg = AT.ui.toggle("Transparency grid (checkerboard)", on, function (v) {
-            AT.run("viewer.transparency", { on: v }).then(function (res) { if (!res.ok) tg.querySelector("input").checked = !v; });
+            var input = tg.querySelector("input");
+            AT.run("viewer.transparency", { on: v }).then(function (res) {
+                if (res.ok && res.result) input.checked = !!res.result.on;
+                else if (!res.unconfirmed) input.checked = !v;
+                refresh(); // then show what After Effects really reports
+            });
         });
         tg.classList.add("tg-transparency");
+        syncs.push(function () { if (stRef.transparency !== undefined) tg.querySelector("input").checked = !!stRef.transparency; });
         return tg;
     }
 
-    function setupCard(id, cls) {
+    function setupCard(id, isOn, onDone) {
         var item = AT.catalog.get(id);
-        var b = h("button.setup" + (cls ? "." + cls : ""), { type: "button", on: { click: function () { AT.run(item, null, b); } } }, [
+        var b = h("button.setup", { type: "button", on: { click: function () {
+            AT.run(item, null, b).then(function (res) { if (AT.worked(res)) { if (onDone) onDone(); refresh(); } });
+        } } }, [
             h("span.setup-icon", AT.icon(item.icon)),
             h("span.setup-title", { text: item.title }),
             h("span.setup-sub", { text: item.summary })
         ]);
+        var sync = function () { var on = isOn(); b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); };
+        syncs.push(sync);
+        sync();
         return b;
     }
 
@@ -157,13 +181,25 @@
         page.appendChild(AT.ui.lead("Animate fast, then check at full quality before you render. Timing never changes."));
         var body = h("div");
         page.appendChild(body);
+        syncs = [];
         AT.bridge.run("preview.read").then(function (res) {
             if (!document.body.contains(body)) return;
             var st = res.ok ? res.result : {};
+            stRef = st;
+            refresh = function () {
+                return AT.bridge.run("preview.read").then(function (r) {
+                    if (!r.ok || !document.body.contains(body)) return;
+                    for (var k in r.result) if (r.result.hasOwnProperty(k)) st[k] = r.result[k];
+                    syncs.forEach(function (fn) { fn(); });
+                });
+            };
+            function isFast() { return st.resolution === 2 && st.fastPreview === "adaptive" && !!st.draft3d; }
+            function isFinal() { return st.resolution === 1 && (st.fastPreview === "off" || !st.fastPreview) && !st.draft3d; }
+            function notAuto() { auto = false; AT.store.update("settings", function (x) { x.previewResAuto = false; }); }
 
             var auto = !!AT.store.get("settings").previewResAuto;
             body.appendChild(AT.ui.section("One-click setup", { icon: "bolt" }, h("div", [
-                h("div.setup-row", [setupCard("preview.mode.fast", "setup-fast"), setupCard("preview.mode.final")]),
+                h("div.setup-row", [setupCard("preview.mode.fast", isFast, notAuto), setupCard("preview.mode.final", isFinal, notAuto)]),
                 h("div.sub-label", { text: "Resolution (Down Sample Factor)" }),
                 optionRow(["preview.res.auto", "preview.res.1", "preview.res.2", "preview.res.3", "preview.res.4"],
                     function (it) { return it.payload.auto ? auto : !auto && it.payload.factor === (st.resolution || 1); },

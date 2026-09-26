@@ -337,8 +337,21 @@ function check(name, ok, detail) {
     check("Quarter card sets Quarter", comp.resolutionFactor[0] === 4 && !!(await page.$(".res-cards .option.on:has-text('Quarter')")));
     await page.click(".res-cards .option:has-text('Auto')");
     check("Auto resolution matches 50% zoom (Half)", /Auto: Half/.test(await waitToast(/Auto:/)) && comp.resolutionFactor[0] === 2, await toast());
+    // On, then off again (it's a viewer setting, not an undo step), and the
+    // switch always matches the viewer, even when AE's reply is lost.
+    const cb = () => host.app.activeViewer.views[0].options.checkerboards;
+    const sw = () => page.$eval(".tg-transparency input", (i) => i.checked);
     await page.click(".tg-transparency");
-    check("Transparency grid toggle switches the viewer checkerboard", host.app.activeViewer.views[0].options.checkerboards === true);
+    await page.waitForTimeout(400);
+    const onOk = cb() === true && (await sw()) === true;
+    await page.click(".tg-transparency");
+    await page.waitForTimeout(400);
+    const offOk = cb() === false && (await sw()) === false;
+    await page.click(".tg-transparency");
+    await page.waitForTimeout(400);
+    check("Transparency grid turns on, off and on again (switch matches the viewer)", onOk && offOk && cb() === true && (await sw()) === true, [onOk, offOk, cb()]);
+    await page.click(".tg-transparency");
+    await page.waitForTimeout(400);
     const pp = await page.textContent(".pp-grid");
     check("Preview panel settings listed (Skip, Frame Rate, Cache)", /Skip/.test(pp) && /Frame Rate/.test(pp) && /Cache/.test(pp), null);
     const skip = () => page.textContent(".pp-tile:has-text('Skip') .pp-val");
@@ -349,8 +362,26 @@ function check(name, ok, detail) {
     check("tapping a tile explains it", /renders the range first/.test(await page.textContent(".pp-why")));
 
     await page.click(".tab[data-view=animate]");
-    await page.click(".snap-row .tool:has-text('Guides')");
-    check("Snap to Guides runs View > Snap to Guides", /Snap to Guides/.test(await waitToast(/Snap to Guides/)) && host.app.executed.includes(3040), await toast());
+    // Grid & guides menu: real on/off with a check mark; items scripts can't
+    // reach explain what to press.
+    const gv = host.app.activeViewer.views[0].options;
+    await page.click(".gg-toggle");
+    await page.click(".gg-item:has-text('Snap to Guides')");
+    await page.waitForTimeout(400);
+    const snapOn = gv.guidesSnap === true && !!(await page.$(".gg-item.on:has-text('Snap to Guides')"));
+    await page.click(".gg-item:has-text('Snap to Guides')");
+    await page.waitForTimeout(400);
+    const snapOff = gv.guidesSnap === false && !(await page.$(".gg-item.on:has-text('Snap to Guides')"));
+    check("Snap to Guides turns on (checked) and off again", snapOn && snapOff, [snapOn, snapOff]);
+    await page.click(".gg-item:has-text('Show Rulers')");
+    await page.waitForTimeout(400);
+    check("Show Rulers turns rulers on", gv.rulers === true && !!(await page.$(".gg-item.on:has-text('Show Rulers')")));
+    await page.click(".gg-item:has-text('Show Rulers')");
+    await page.click(".gg-item:has-text('Snap to Grid')");
+    check("Snap to Grid runs View > Snap to Grid", /Snap to Grid/.test(await waitToast(/Snap to Grid/)) && host.app.executed.includes(3041), await toast());
+    await page.click(".gg-item:has-text('Title/Action Safe')");
+    check("Title/Action Safe explains the ' key", /press ' \(apostrophe\)/.test(await waitToast(/Title\/Action Safe/)), await toast());
+    await page.click(".gg-toggle");
 
     // Home: quick actions can be removed, added back and reset.
     await page.click(".tab[data-view=home]");
@@ -393,6 +424,48 @@ function check(name, ok, detail) {
     const keyGroups = host.undo.groups.filter((g) => /Add Keyframes/.test(g)).length;
     check("every mutating click was exactly one undo group",
         host.undo.groups.length - keyGroups === 22 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+    // Highlights: in every group of choices on every tab, clicking a button
+    // lights exactly that one and turns the others off.
+    const groupSel = ".seg, .option-row, .filter-chips, .pp-grid, .anchor-box";
+    const badGroups = [];
+    let hlClicks = 0;
+    for (const tab of ["animate", "easing", "text", "mask", "threed", "camera", "preview", "favorites", "learn"]) {
+        await page.click(".tab[data-view=" + tab + "]");
+        await page.waitForTimeout(250);
+        const n = (await page.$$(groupSel)).length;
+        for (let g = 0; g < n; g++) {
+            const grp = (await page.$$(groupSel))[g];
+            if (!grp) continue;
+            const count = (await grp.$$(":scope > button")).length;
+            for (let i = 0; i < count; i++) {
+                const cur = (await page.$$(groupSel))[g];
+                if (!cur) break;
+                const btn = (await cur.$$(":scope > button"))[i];
+                if (!btn || !(await btn.isVisible())) continue;
+                await btn.click();
+                hlClicks++;
+                await page.waitForTimeout(250);
+                const again = (await page.$$(groupSel))[g];
+                if (!again) break; // the tab re-rendered (e.g. Learn's switch)
+                const lit = await again.$$eval(":scope > button", (bs) => bs.map((b, k) => b.classList.contains("on") ? k : -1).filter((k) => k >= 0));
+                if (lit.length !== 1 || lit[0] !== i) badGroups.push(tab + " group " + g + " button " + i + " -> lit " + JSON.stringify(lit));
+            }
+        }
+    }
+    // Animate Fast / Final Check move the Resolution and Fast Previews highlights too.
+    await page.click(".tab[data-view=preview]");
+    await page.waitForSelector(".setup");
+    await page.click(".setup:has-text('Final Check')");
+    await page.waitForTimeout(500);
+    const finalOk = !!(await page.$(".setup.on:has-text('Final Check')")) && !(await page.$(".setup.on:has-text('Animate Fast')"))
+        && !!(await page.$(".res-cards .option.on:has-text('Full')")) && !!(await page.$(".option.on:has-text('Off')"));
+    await page.click(".setup:has-text('Animate Fast')");
+    await page.waitForTimeout(500);
+    const fastOk = !!(await page.$(".setup.on:has-text('Animate Fast')")) && !(await page.$(".setup.on:has-text('Final Check')"))
+        && !!(await page.$(".res-cards .option.on:has-text('Half')")) && !!(await page.$(".option.on:has-text('Adaptive')"));
+    check("highlights switch to the button you press, in every group (" + hlClicks + " clicks)", badGroups.length === 0 && hlClicks > 40, badGroups);
+    check("Animate Fast / Final Check highlight themselves and update Resolution + Fast Previews", finalOk && fastOk, [finalOk, fastOk]);
+
     if (process.env.E2E_DROP) {
         const fallbacks = scripts.filter((x) => /\.lastResponse$/.test(x)).length;
         check("empty replies recovered from the stored reply (" + fallbacks + " times)", fallbacks > 20, fallbacks);

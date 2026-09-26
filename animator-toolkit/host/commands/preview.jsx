@@ -34,6 +34,26 @@ AT.viewOptions = function () {
     }
 };
 
+// Sets one viewer option and reads it back. Some After Effects versions hand
+// out a copy of the view options, so a plain assignment can be lost; then
+// the whole options object is written back. Returns true when it stuck.
+AT.setViewOption = function (key, value) {
+    var v = null;
+    try { v = app.activeViewer; } catch (e) {}
+    if (!v || !v.views || !v.views.length) return false;
+    var view = v.views[0];
+    try { view.options[key] = value; } catch (e1) {}
+    try { if (view.options[key] === value) return true; } catch (e2) {}
+    try {
+        var o = view.options;
+        o[key] = value;
+        view.options = o;
+        return view.options[key] === value;
+    } catch (e3) {
+        return false;
+    }
+};
+
 // Current state, so the panel can highlight what's active.
 AT.register("preview.read", {
     needs: "comp",
@@ -49,6 +69,7 @@ AT.register("preview.read", {
             draft3d: !!c.draft3d,
             fastPreview: fast,
             transparency: !!(opts && opts.checkerboards),
+            view: (function () { var o = {}; for (var k in AT.VIEW_ITEMS) if (AT.VIEW_ITEMS.hasOwnProperty(k)) o[k] = AT.viewItemState(opts, k); return o; }()),
             workAreaStart: c.workAreaStart,
             workAreaDuration: c.workAreaDuration
         } };
@@ -87,26 +108,50 @@ AT.register("viewer.transparency", {
         var opts = AT.viewOptions();
         if (!opts) AT.fail("no-viewer", "Click the Composition viewer once, then try again.");
         var on = payload.on === undefined ? !opts.checkerboards : !!payload.on;
-        opts.checkerboards = on;
+        if (!AT.setViewOption("checkerboards", on)) AT.fail("no-viewer", "After Effects didn't change the transparency grid. Click the Composition viewer once, then try again.");
         return { result: { on: on }, feedback: "Transparency grid " + (on ? "on: empty areas show as a checkerboard" : "off") };
     }
 });
 
-// View > Snap to Guides / Snap to Grid are menu toggles; scripts can run
-// them but can't read whether they're on.
-AT.SNAP_MENUS = { guides: "Snap to Guides", grid: "Snap to Grid" };
-AT.register("view.snap", {
-    label: "Snapping",
-    mutating: false,
+// Grid & guides. Where After Effects exposes the setting on the viewer
+// (ViewOptions.rulers / guidesVisibility / guidesSnap / guidesLocked, AE
+// 22.5+) it's set exactly and read back; otherwise the View menu command
+// is run (a toggle whose state scripts can't read).
+AT.VIEW_ITEMS = {
+    rulers:      { name: "Rulers",          option: "rulers",           menus: ["Show Rulers", "Hide Rulers"] },
+    guides:      { name: "Guides",          option: "guidesVisibility", menus: ["Show Guides", "Hide Guides"] },
+    snapGuides:  { name: "Snap to Guides",  option: "guidesSnap",       menus: ["Snap to Guides"] },
+    lockGuides:  { name: "Lock Guides",     option: "guidesLocked",     menus: ["Lock Guides"] },
+    grid:        { name: "Grid",            option: null,               menus: ["Show Grid", "Hide Grid"] },
+    snapGrid:    { name: "Snap to Grid",    option: null,               menus: ["Snap to Grid"] }
+};
+
+AT.viewItemState = function (opts, key) {
+    var it = AT.VIEW_ITEMS[key];
+    if (!opts || !it || !it.option) return null;
+    try { var v = opts[it.option]; return typeof v === "boolean" ? v : null; } catch (e) { return null; }
+};
+
+AT.register("view.toggle", {
+    label: "Grid & Guides",
+    mutating: false, // viewer display settings are never in After Effects' undo history
     needs: "comp",
     run: function (payload) {
-        var name = AT.SNAP_MENUS[payload.target];
-        if (!name) AT.fail("bad-payload", "Snap target must be guides or grid.");
-        var id = app.findMenuCommandId(name);
-        if (!id) AT.fail("unsupported", "This version of After Effects has no View > " + name + " command.");
+        var it = AT.VIEW_ITEMS[payload.item];
+        if (!it) AT.fail("bad-payload", "Unknown grid/guide option: " + payload.item);
+        var opts = AT.viewOptions();
+        var now = AT.viewItemState(opts, payload.item);
+        if (now !== null) {
+            var want = payload.on === undefined ? !now : !!payload.on;
+            if (!AT.setViewOption(it.option, want)) AT.fail("no-viewer", "After Effects didn't change " + it.name + ". Click the Composition viewer once, then try again.");
+            return { result: { item: payload.item, on: want }, feedback: it.name + (want ? " on" : " off") };
+        }
+        var id = 0;
+        for (var m = 0; m < it.menus.length && !id; m++) id = app.findMenuCommandId(it.menus[m]);
+        if (!id) AT.fail("unsupported", "This version of After Effects has no View > " + it.menus[0] + " command.");
         try { if (app.activeViewer) app.activeViewer.setActive(); } catch (e) {}
         app.executeCommand(id);
-        return { result: { target: payload.target }, feedback: "Toggled View > " + name };
+        return { result: { item: payload.item, on: null }, feedback: "Toggled View > " + it.name };
     }
 });
 
@@ -131,7 +176,7 @@ AT.register("preview.fast", {
         var opts = AT.viewOptions();
         if (!types || !opts) AT.fail("unsupported", "Click in the Composition viewer first (Fast Previews is a viewer setting), then try again.");
         if (types[payload.mode] === undefined) AT.fail("bad-payload", "Unknown Fast Previews mode: " + payload.mode);
-        opts.fastPreview = types[payload.mode];
+        if (!AT.setViewOption("fastPreview", types[payload.mode])) AT.fail("no-viewer", "After Effects didn't change Fast Previews. Click the Composition viewer once, then try again.");
         var names = { off: "Off (Final Quality)", adaptive: "Adaptive Resolution", draft: "Draft", fastDraft: "Fast Draft", wireframe: "Wireframe" };
         return { result: { mode: payload.mode }, feedback: "Fast Previews: " + names[payload.mode] };
     }
@@ -178,7 +223,7 @@ AT.register("preview.mode", {
         var types = AT.fastPreviewTypes();
         var opts = AT.viewOptions();
         var fp = false;
-        if (types && opts) { opts.fastPreview = fast ? types.adaptive : types.off; fp = true; }
+        if (types && opts) fp = AT.setViewOption("fastPreview", fast ? types.adaptive : types.off);
         return { result: { mode: fast ? "fast" : "final" },
             feedback: fast ? "Animate fast: Half resolution, Adaptive previews" + (fp ? "" : " (click the viewer to set Fast Previews)") + ", Draft 3D on"
                 : "Final check: Full resolution, full-quality previews, Draft 3D off" };

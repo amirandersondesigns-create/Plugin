@@ -22,7 +22,7 @@
                 on: {
                     click: function () {
                         AT.run(item, null, dot).then(function (res) {
-                            if (!res.ok) return;
+                            if (!AT.worked(res)) return;
                             lastAnchor = pos;
                             box.querySelectorAll(".anchor-dot").forEach(function (d) { d.classList.remove("on"); });
                             dot.classList.add("on");
@@ -59,6 +59,57 @@
                 AT.ui.iconButton("distribute.v", { caption: "Space V" })
             ])
         ]);
+    }
+
+    // Like After Effects' "Choose grid and guide options" menu under the viewer.
+    // Real on/off states where After Effects reports them; the three items
+    // scripts can't reach say exactly what to press.
+    var VIEWER_ONLY = [
+        { title: "Title/Action Safe", icon: "safe", keys: "'", how: "Click the Composition viewer, then press ' (apostrophe)." },
+        { title: "Proportional Grid", icon: "thirds", keys: "Alt + '", how: "Click the Composition viewer, then press Alt/Option + ' ." },
+        { title: "3D Reference Axes", icon: "axes", keys: null, how: "Use the grid-and-guides button under the Composition viewer (3D comps)." }
+    ];
+    var gridOpen = false;
+    function gridGuidesMenu() {
+        var menu = h("div.gg-menu", { role: "menu" });
+        var toggle = h("button.gg-toggle", { type: "button", "aria-haspopup": "true", on: { click: function () {
+            gridOpen = !gridOpen; menu.hidden = !gridOpen; toggle.classList.toggle("open", gridOpen);
+            if (gridOpen) readState();
+        } } }, [AT.icon("guides"), h("span", { text: "Grid & guides" }), h("span.gg-sub", { text: "safe areas, grid, guides, rulers, snapping" }), AT.icon("chevron", "gg-chev")]);
+        menu.hidden = !gridOpen;
+        toggle.classList.toggle("open", gridOpen);
+        var state = {};
+        var rows = [];
+        function row(it) {
+            var st = h("span.gg-state");
+            var b = h("button.gg-item", { type: "button", role: "menuitemcheckbox", title: it.why || it.how, on: { click: function () {
+                if (!it.command) return AT.toast(it.title + ": " + it.how, "info");
+                AT.run(it, null, b).then(function (res) { if (AT.worked(res)) readState(); });
+            } } }, [st, AT.icon(it.icon), h("span.gg-title", { text: it.title }), it.keys ? AT.ui.keycaps(it.keys) : h("span.gg-note", { text: "viewer menu" })]);
+            b.paint = function () {
+                var key = it.payload && it.payload.item, on = key ? state[key] : undefined;
+                st.innerHTML = "";
+                b.classList.toggle("on", on === true);
+                b.setAttribute("aria-checked", on === true ? "true" : on === false ? "false" : "mixed");
+                if (on === true) st.appendChild(AT.icon("check"));
+            };
+            rows.push(b);
+            return b;
+        }
+        VIEWER_ONLY.forEach(function (it) { menu.appendChild(row(it)); });
+        ["view.grid", "view.guides", "view.rulers"].forEach(function (id) { menu.appendChild(row(AT.catalog.get(id))); });
+        menu.appendChild(h("div.gg-sep"));
+        ["view.snapGuides", "view.snapGrid", "view.lockGuides"].forEach(function (id) { menu.appendChild(row(AT.catalog.get(id))); });
+        menu.appendChild(h("p.hint.gg-hint", { text: "A check shows what's on. Grid and Snap to Grid are View-menu toggles After Effects doesn't report, so they switch without a check. Layer snapping is the Snapping checkbox in the Tools bar (hold Ctrl/Cmd while dragging to flip it)." }));
+        function readState() {
+            AT.bridge.run("preview.read").then(function (res) {
+                if (res.ok && res.result && res.result.view) state = res.result.view;
+                rows.forEach(function (r) { r.paint(); });
+            });
+        }
+        rows.forEach(function (r) { r.paint(); });
+        if (gridOpen) readState();
+        return h("div.gg", [toggle, menu]);
     }
 
     function keyStrip() {
@@ -108,12 +159,7 @@
         page.appendChild(AT.ui.lead("Select layers in the timeline, then click. Every action is a single undo (Ctrl/Cmd+Z)."));
         page.appendChild(AT.ui.section("Layout", { icon: "grid", cls: "sec-dock" }, h("div", [
             h("div.dock", [anchorGrid(), alignCell()]),
-            h("div.snap-row", [
-                h("span.snap-label", [AT.icon("magnet"), h("span", { text: "Snapping" })]),
-                AT.ui.toolButton("view.snap.guides", { label: "Guides" }),
-                AT.ui.toolButton("view.snap.grid", { label: "Grid" })
-            ]),
-            h("p.hint.snap-hint", { text: "Layer snapping is the Snapping checkbox in the Tools bar; hold Ctrl/Cmd while dragging to flip it for one move." })
+            gridGuidesMenu()
         ])));
         page.appendChild(AT.ui.section("Keyframes", { icon: "key", hint: "at the playhead" }, keyStrip()));
         var lib = h("div");

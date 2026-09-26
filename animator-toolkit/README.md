@@ -17,7 +17,7 @@ It also includes micro-lessons and explained shortcuts.
 
 1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
    or Anastasiy's Extension Manager.
-2. Drag `Amir_Anderson_Animator_Toolkit-0.3.3.zxp` onto it.
+2. Drag `Amir_Anderson_Animator_Toolkit-0.3.4.zxp` onto it.
 3. Restart After Effects and open **Window › Extensions › Amir Anderson Animator Toolkit**.
 
 The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
@@ -28,7 +28,7 @@ install as updates.
 
 **Option B: zip + install script (unsigned, debug mode)**
 
-1. Unzip `Amir_Anderson_Animator_Toolkit-0.3.3.zip`.
+1. Unzip `Amir_Anderson_Animator_Toolkit-0.3.4.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
    These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
    then copy the extension to your user CEP extensions folder.
@@ -71,7 +71,7 @@ unconfirmed result shows a short info note instead.
 
 First check `~/Library/Logs/CSXS/CEP12-AEFT.log` for `Unsupported Manifest version`.
 That error means the manifest can't be parsed. Up to 0.1.0 the manifest
-declared a default XML namespace, which After Effects 2026 rejects. 0.3.3
+declared a default XML namespace, which After Effects 2026 rejects. 0.3.4
 matches Adobe's schema, and `tests/manifest.test.js` guards against a repeat.
 
 1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
@@ -94,7 +94,7 @@ and flows; it doesn't touch After Effects.
 | Tab | What it does |
 |---|---|
 | **Home** | Suggestions for the current selection, **Quick actions** you can edit (Edit: remove tiles, + Add any tool or preset from a searchable list, Reset to defaults), favorites, recent tools, and the 5 essential skills (collapsible; hide it, and bring it back in Learn › About) |
-| **Animate** | Anchor grid, Align/Distribute and **Snapping** (View › Snap to Guides / Grid), keyframe strip, **Stagger** (frames slider), motion library (13 essentials, 9 more effects, each In and Out; wipes live in the Mask tab), and layer tools including **Continuous Rasterize** |
+| **Animate** | Anchor grid, Align/Distribute, a **Grid & guides** menu (Title/Action Safe, Proportional Grid, Grid, Guides, Rulers, 3D Reference Axes, Snap to Guides/Grid, Lock Guides; real on/off checks where After Effects reports them), keyframe strip, **Stagger** (frames slider), motion library (13 essentials, 9 more effects, each In and Out; wipes live in the Mask tab), and layer tools including **Continuous Rasterize** |
 | **Easing** | Live curve and moving ball. Easy Ease/In/Out/Linear/Hold, 8 **curve presets** (Sine to Expo, Smooth Stop/Start, Snap, Glide), **physics** (Overshoot, Bounce, Elastic keyframes between selected keys), and In/Out sliders |
 | **Text** | New text, plus 11 essentials and 13 more effects (per-letter rise/pop/spin/random, word blur, type on and more) |
 | **Mask** | Real animated mask reveals (wipes, soft wipe, iris, split), mask tools (rectangle, ellipse, invert, feather), and the "can't see my mask path" fix |
@@ -174,8 +174,8 @@ If it needs a new keyframe shape or kind, add it to `AT.SHAPES` or
 ## Tests
 
 ```
-npm test          # 59 unit/contract tests (Node, no dependencies)
-npm run test:e2e  # 69 end-to-end checks (70 with E2E_DROP=1) (needs Playwright + Chromium);
+npm test          # 60 unit/contract tests (Node, no dependencies)
+npm run test:e2e  # 74 end-to-end checks (75 with E2E_DROP=1) (needs Playwright + Chromium);
                   # E2E_FRIENDLY=1 for ideal conditions, E2E_DROP=1 for lost
                   # return values, E2E_SRC=<dir> for another build
 ```
@@ -213,7 +213,7 @@ real AE (2024 and 2025/26, on macOS and Windows):
 - [ ] Text presets on point text and paragraph text; animators appear named "AT …".
 - [ ] Easing on Position (spatial), Scale (3D ease arrays) and effect properties.
 - [ ] Camera moves on one-node and two-node cameras.
-- [ ] Mask Wipe Right reveals left-to-right; Snap to Guides / Grid toggle the View menu items.
+- [ ] Mask Wipe Right reveals left-to-right; Grid & guides items toggle on and off; Transparency grid turns on and off.
 - [ ] Grab Still, with and without "import", on a comp with transparency.
 - [ ] Favorites and settings survive an AE restart.
 

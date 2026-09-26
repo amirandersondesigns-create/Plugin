@@ -230,7 +230,7 @@ AT.register("camera.shake", {
         var ours = pos.expression.indexOf(AT.SHAKE_TAG) === 0;
         if (pos.expression && !ours) AT.fail("expression", "The camera's Position already has an expression. Remove it first.");
         if (payload.remove) {
-            if (!ours) AT.fail("no-shake", "This camera has no toolkit shake.");
+            if (!ours) AT.fail("no-shake", "There's no shake on this camera to remove.");
             pos.expression = "";
             return { result: {}, feedback: "Camera shake removed" };
         }
