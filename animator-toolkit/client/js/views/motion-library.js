@@ -49,7 +49,7 @@
         if (AT.ui.isBeginner()) {
             container.appendChild(h("p.tip", [
                 AT.icon("info"),
-                h("span", { text: "Presets stack: add an Entrance and an Exit (or Fade + Slide + Blur) to the same layer. Each one leaves a labelled marker on the layer so you can see where it lands. Hover a tile to preview it." })
+                h("span", { text: "Presets stack on one layer and each leaves a timeline marker. Hover a tile to preview." })
             ]));
         }
         container.appendChild(tiles);

@@ -40,6 +40,8 @@ const host = createHost({
     // E2E_FRIENDLY=1: ideal conditions (no failed first eval, no foreign globals).
     failFirstEvals: process.env.E2E_FRIENDLY ? 0 : 1,
     scriptPathBoot: !!process.env.E2E_FRIENDLY,
+    // E2E_DROP=1: every function-return reply comes back empty.
+    dropReturns: !!process.env.E2E_DROP,
     beforeLoad(ctx) {
         if (process.env.E2E_FRIENDLY) return;
         // Another extension's globals and a sloppy polyfill, in the SAME engine.
@@ -210,10 +212,12 @@ function check(name, ok, detail) {
     bar.selected = bar2.selected = true;
     await page.click(".tab[data-view=animate]");
     check("Delete Keys button removed", !(await page.$(".key-row-edit :text('Delete')")));
-    await page.fill(".stagger .num-input", "0.5");
-    await page.click(".stagger .seg-btn:has-text('seconds')");
+    check("no seconds switch (frames only)", !(await page.$(".stagger .seg-btn:has-text('seconds')")) && !(await page.$(".duration .seg-btn:has-text('seconds')")));
+    await page.fill(".stagger .num-input", "15");
+    await page.press(".stagger .num-input", "Tab");
+    check("stagger shows the seconds equivalent", /0\.5 s/.test(await page.textContent(".stagger .duration-hint")), await page.textContent(".stagger .duration-hint"));
     await page.click(".stagger .btn-primary");
-    check("stagger by 0.5 seconds", /staggered by 0.5 seconds/.test(await waitToast(/staggered/)) && Math.abs(bar2.inPoint - bar.inPoint - 0.5) < 1e-6, await toast());
+    check("stagger by 15 frames", /staggered by 15 frames/.test(await waitToast(/staggered/)) && Math.abs(bar2.inPoint - bar.inPoint - 0.5) < 1e-6, await toast());
 
     bar2.selected = false;
     await page.click(".tab[data-view=mask]");
@@ -270,24 +274,42 @@ function check(name, ok, detail) {
     check("Learn: preview, render and guide shortcuts", /Preview with cache settings/.test(scText) && /Add to Render Queue/.test(scText) && /Show\/hide guides/.test(scText), null);
     await page.click(".seg-tabs .seg-btn:has-text('Lessons')");
 
-    // Frames/seconds on animation presets: 1.5 seconds on a Fade In.
+    // Preset duration in frames: 45 frames (1.5 s at 30 fps) on a Fade In.
     const dl = comp.add(ShapeLayer, "Dur", { inPoint: 0, outPoint: 8, position: [960, 540] });
     comp.layerList.forEach((l) => { l.selected = false; });
     dl.selected = true;
     await page.click(".tab[data-view=animate]");
-    await page.click(".motion-controls .duration .seg-btn:has-text('seconds')");
-    await page.fill(".motion-controls .duration .num-input", "1.5");
+    await page.fill(".motion-controls .duration .num-input", "45");
     await page.press(".motion-controls .duration .num-input", "Tab");
     await page.click(".seg-phase .seg-btn:has-text('Entrance')");
     await page.click(".preset:has-text('Fade In')");
     await waitToast(/Fade In/);
     const dop = T(dl, "ADBE Opacity");
-    check("Duration in seconds drives presets", dop.numKeys === 2 && Math.abs(dop.keys[1].time - dop.keys[0].time - 1.5) < 1e-6, dop.keys.map((k) => k.time));
+    check("Duration in frames drives presets", dop.numKeys === 2 && Math.abs(dop.keys[1].time - dop.keys[0].time - 1.5) < 1e-6, dop.keys.map((k) => k.time));
 
     // Quick actions include Rasterize.
     await page.click(".tab[data-view=home]");
     await page.click(".quick-grid .icon-tool:has-text('Rasterize')");
     check("Quick actions: Rasterize", /Continuous Rasterize on/.test(await waitToast(/Rasterize/)) && dl.collapseTransformation === true, await toast());
+
+    // Grab Still from Quick actions: pop-up with the real image and its path.
+    await page.click(".tab[data-view=home]");
+    await page.click(".quick-grid .icon-tool:has-text('Grab Still')");
+    await page.waitForSelector(".sheet .still-img", { timeout: 5000 }).catch(() => {});
+    await page.waitForFunction(() => { const i = document.querySelector(".sheet .still-img"); return i && i.complete && i.naturalWidth > 0; }, null, { timeout: 5000 }).catch(() => {});
+    const stillOk = await page.evaluate(() => { const i = document.querySelector(".sheet .still-img"); return !!(i && i.naturalWidth > 0); });
+    const stillPath = (await page.textContent(".sheet .still-path").catch(() => "")) || "";
+    check("Quick Grab Still opens a pop-up showing the still", stillOk && /Animator Toolkit Stills/.test(stillPath), stillPath);
+    await page.click(".sheet .btn-primary:has-text('Open folder')");
+    await page.waitForTimeout(300);
+    check("pop-up 'Open folder' reveals the stills folder", /Animator Toolkit Stills/.test(host.app.revealed || ""), host.app.revealed);
+    await page.click(".sheet .btn:has-text('Capture settings')");
+    await page.waitForTimeout(300);
+    check("Capture tab lists the quick-action still", /Lower Third_f/.test(await page.textContent(".capture-list")), await page.textContent(".capture-list"));
+    await page.click(".btn-hero:has-text('Grab Still')");
+    await page.waitForSelector(".sheet .still-img", { timeout: 5000 }).catch(() => {});
+    check("Capture tab Grab Still shows the same pop-up", !!(await page.$(".sheet .still-name")) && comp.savedFrames === 2, comp.savedFrames);
+    await page.click(".sheet-close");
 
     // Favorites persist a click and run from the Favorites tab.
     await page.fill("#search", "");
@@ -306,7 +328,11 @@ function check(name, ok, detail) {
     // create camera, orbit = 9 more (resolution is a viewer setting, not an undo step).
     const keyGroups = host.undo.groups.filter((g) => /Add Keyframes/.test(g)).length;
     check("every mutating click was exactly one undo group",
-        host.undo.groups.length - keyGroups === 20 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+        host.undo.groups.length - keyGroups === 22 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+    if (process.env.E2E_DROP) {
+        const fallbacks = scripts.filter((x) => /\.lastResponse$/.test(x)).length;
+        check("empty replies recovered from the stored reply (" + fallbacks + " times)", fallbacks > 20, fallbacks);
+    }
     // Only the deliberate failures may show error toasts.
     const expected = /Anchor not moved|Select one or more layers|Create Camera first|couldn't run the command/;
     const bad = toasts.filter((t) => t.kind === "error" && !expected.test(t.text));

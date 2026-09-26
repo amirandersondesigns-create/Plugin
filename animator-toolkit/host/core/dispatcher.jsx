@@ -77,7 +77,8 @@ AT.buildContext = function (needs) {
 };
 
 AT.errorResult = function (requestId, code, message) {
-    return AT.JSON.stringify({ ok: false, requestId: requestId, error: { code: code, message: message } });
+    AT.lastResponse = AT.JSON.stringify({ ok: false, requestId: requestId, error: { code: code, message: message } });
+    return AT.lastResponse;
 };
 
 AT.dispatch = function (requestText) {
@@ -137,6 +138,10 @@ AT.dispatch = function (requestText) {
     if (undoOpen) {
         try { app.endUndoGroup(); } catch (e) { /* nothing more to do */ }
     }
+    // Also keep the reply in the namespace. If After Effects hands the panel
+    // an empty evalScript result, the panel reads it from here instead of
+    // reporting a failure for an action that worked.
+    AT.lastResponse = response;
     return response;
 };
 

@@ -32,8 +32,7 @@
         var dur = AT.ui.durationParams;
         if (item.type === "preset") {
             var p = { timing: s.presetTiming || "layer" };
-            var d = dur("presetDur", item.duration); // Auto = the preset's own length
-            if (d.durationSeconds) p.durationSeconds = d.durationSeconds; else p.durationFrames = d.durationFrames;
+            p.durationFrames = dur("presetDur", item.duration).durationFrames; // Auto = the preset's own length
             return p;
         }
         if (item.command === "camera.move") {
@@ -43,7 +42,9 @@
             return { folder: s.stillFolder || "", importToProject: !!s.stillImport, addToComp: !!s.stillAddToComp };
         }
         if (item.command === "layers.stagger") {
-            return { amount: typeof s.staggerAmount === "number" ? s.staggerAmount : (s.staggerFrames || 3), unit: s.staggerUnit || "frames" };
+            var st = typeof s.staggerAmount === "number" ? s.staggerAmount : (s.staggerFrames || 3);
+            if (s.staggerUnit === "seconds") st = Math.round(st * 29.97);
+            return { amount: st, unit: "frames" };
         }
         if (item.command === "camera.orbit") return assign({ degrees: s.orbitDegrees || 30 }, dur("cameraDur", 72));
         if (item.command === "camera.shake" && !(item.payload && item.payload.remove)) return { amount: s.shakeAmount || 12, frequency: s.shakeFrequency || 2 };
@@ -103,8 +104,17 @@
             if (source) source.classList.remove("is-busy");
             if (res.ok) {
                 AT.toast("✓ " + (res.feedback || item.title), "ok");
+                // Stills open a pop-up showing the frame and where it was saved,
+                // whichever button captured them.
+                if (command === "still.capture" && res.result && res.result.path && AT.stills) AT.stills.captured(res.result);
                 remember(item.id);
                 if (source) AT.ui.pulse(source);
+                AT.app.refreshContext();
+            } else if (res.unconfirmed) {
+                // No reply at all (not an error from After Effects): the action
+                // almost always ran. Say so quietly instead of alarming.
+                AT.toast(item.title + " sent to After Effects", "info");
+                remember(item.id);
                 AT.app.refreshContext();
             } else {
                 // The "What does this tool need?" link only makes sense when the

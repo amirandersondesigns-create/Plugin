@@ -55,8 +55,8 @@
             h("div.align-grid", ids.map(function (id) { return AT.ui.iconButton(id); })),
             h("div.align-row", [
                 AT.ui.iconButton("align.center", { caption: "Center" }),
-                AT.ui.iconButton("distribute.h", { caption: "Space" }),
-                AT.ui.iconButton("distribute.v", { caption: "Space" })
+                AT.ui.iconButton("distribute.h", { caption: "Space H" }),
+                AT.ui.iconButton("distribute.v", { caption: "Space V" })
             ])
         ]);
     }
@@ -83,18 +83,24 @@
         ]);
     }
 
-    // Stagger: amount + unit (frames or seconds), remembered between sessions.
+    // Stagger in frames (with the seconds equivalent), remembered between sessions.
     function staggerControl() {
         var s = AT.store.get("settings");
-        var unit = s.staggerUnit || "frames";
         var amount = typeof s.staggerAmount === "number" ? s.staggerAmount : (s.staggerFrames || 3);
-        var input = h("input.num-input", { type: "number", min: "0", step: unit === "seconds" ? "0.1" : "1", value: String(amount), "aria-label": "Stagger amount" });
+        if (s.staggerUnit === "seconds") amount = Math.round(amount * 29.97);
+        var hint = h("span.duration-hint");
+        var input = h("input.num-input", { type: "number", min: "0", step: "1", value: String(amount), "aria-label": "Stagger in frames" });
+        function paint() { hint.textContent = AT.ui.secondsHint(parseFloat(input.value)); }
         function save() {
-            var v = parseFloat(input.value);
-            if (!(v >= 0)) { v = 0; input.value = "0"; }
-            AT.store.update("settings", function (x) { x.staggerAmount = v; x.staggerUnit = unit; });
+            var v = Math.round(parseFloat(input.value));
+            if (!(v >= 0)) v = 0;
+            input.value = String(v);
+            AT.store.update("settings", function (x) { x.staggerAmount = v; x.staggerUnit = "frames"; });
+            paint();
         }
+        input.addEventListener("input", paint);
         input.addEventListener("change", save);
+        paint();
         var run = h("button.btn.btn-primary.btn-sm", { type: "button", on: { click: function () {
             save();
             AT.run("layers.stagger", null, run);
@@ -102,11 +108,8 @@
         return h("div.stagger", [
             h("span.stagger-label", { text: "Stagger layers by" }),
             input,
-            AT.ui.segmented([{ value: "frames", label: "frames" }, { value: "seconds", label: "seconds" }], unit, function (v) {
-                unit = v;
-                input.step = v === "seconds" ? "0.1" : "1";
-                save();
-            }, { cls: "seg-sm", label: "Stagger unit" }),
+            h("span.duration-unit", { text: "frames" }),
+            hint,
             run,
             AT.ui.favButton("layers.stagger")
         ]);

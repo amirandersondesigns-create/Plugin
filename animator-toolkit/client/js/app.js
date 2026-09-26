@@ -357,6 +357,7 @@
         closeSheet: closeSheet,
         refreshContext: refreshContext,
         connect: connect,
+        current: function () { return current ? current.id : null; },
         context: function () { return context; },
         applySettings: applySettings,
         onboarding: onboarding,

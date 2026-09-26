@@ -9,7 +9,7 @@
 
     function render(page, c) {
         var hasText = c && c.kinds && c.kinds.text;
-        page.appendChild(AT.ui.lead("Select one or more text layers. Tiles showing lettering build a real Text Animator — twirl it open in the timeline to see how it works."));
+        page.appendChild(AT.ui.lead("Select text layers, then pick a preset. Lettering tiles build a real Text Animator you can twirl open."));
         if (c && c.comp && !hasText) {
             page.appendChild(h("div.notice", [AT.icon("info"), h("span", { text: "No text layer selected. Presets like Type On only work on text; layer presets (Fade, Slide, Bounce…) work on anything." })]));
         }

@@ -8,6 +8,50 @@
     var h = AT.h;
     var session = [];
 
+    // file:// URL for a local path (macOS "/Users/..." or Windows "C:\\...").
+    function fileUrl(path) {
+        var p = String(path).replace(/\\/g, "/");
+        return "file://" + (p.charAt(0) === "/" ? "" : "/") + encodeURI(p).replace(/#/g, "%23").replace(/\?/g, "%3F");
+    }
+
+    // Shared by every "Grab Still" button (Capture tab, Quick actions, search,
+    // favorites): remember it and show where it went, with a thumbnail.
+    function captured(result) {
+        var s = AT.store.get("settings");
+        var name = String(result.path).split(/[\\/]/).pop();
+        session.unshift({ path: result.path, folder: result.folder, at: new Date() });
+        var img = h("img.still-img", { alt: "Captured still: " + name });
+        var tries = 0;
+        img.addEventListener("error", function () {
+            // The PNG can still be flushing to disk; retry briefly.
+            if (tries++ < 4) setTimeout(function () { img.src = fileUrl(result.path) + "?t=" + Date.now(); }, 400);
+            else img.replaceWith(h("div.still-missing", { text: "Preview not available yet. The file is in the folder below." }));
+        });
+        img.src = fileUrl(result.path);
+        var imported = s.stillAddToComp ? "Also added as a layer in this comp." : s.stillImport ? "Also imported into the project." : null;
+        AT.app.sheet("Still saved", [
+            h("div.still-frame", img),
+            h("div.still-name", { text: name }),
+            h("div.still-path", { text: result.folder || result.path, title: result.path }),
+            imported ? h("p.hint", { text: imported }) : null,
+            h("div.row.still-actions", [
+                h("button.btn.btn-primary", { type: "button", on: { click: function () {
+                    AT.bridge.run("still.reveal", { folder: result.folder });
+                } } }, [AT.icon("folder"), h("span", { text: "Open folder" })]),
+                h("button.btn", { type: "button", on: { click: function (e) {
+                    AT.app.closeSheet();
+                    AT.run("still.capture", null, e.currentTarget);
+                } } }, [AT.icon("capture"), h("span", { text: "Grab another" })]),
+                h("button.btn", { type: "button", text: "Capture settings", on: { click: function () {
+                    AT.app.closeSheet();
+                    AT.app.show("capture");
+                } } })
+            ])
+        ]);
+        if (AT.app.current && AT.app.current() === "capture") AT.app.rerender();
+    }
+    AT.stills = { captured: captured, session: function () { return session; }, fileUrl: fileUrl };
+
     function render(page, c) {
         var s = AT.store.get("settings");
         var illo = AT.illustration("capture", "capture-illo");
@@ -17,7 +61,6 @@
                 illo.classList.remove("flash");
                 void illo.offsetWidth;
                 illo.classList.add("flash");
-                session.unshift({ path: res.result.path, at: new Date() });
                 drawRecent();
             });
         } } }, [AT.icon("capture"), h("span", { text: "Grab Still" })]);

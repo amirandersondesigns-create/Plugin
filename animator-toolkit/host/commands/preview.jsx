@@ -110,12 +110,13 @@ AT.register("preview.workArea", {
     needs: "comp",
     run: function (payload, ctx) {
         var c = ctx.comp;
-        var secs = typeof payload.seconds === "number" ? payload.seconds : 3;
+        // Frames (how the panel counts time); seconds still accepted.
+        var secs = typeof payload.frames === "number" ? AT.frames(c, payload.frames) : typeof payload.seconds === "number" ? payload.seconds : 3;
         var start = Math.min(c.time, Math.max(0, c.duration - c.frameDuration));
         var dur = Math.max(c.frameDuration, Math.min(secs, c.duration - start));
         c.workAreaStart = start;
         c.workAreaDuration = dur;
-        return { result: {}, feedback: "Work area: " + (Math.round(dur * 10) / 10) + "s from the playhead" };
+        return { result: {}, feedback: "Work area: " + Math.round(dur / c.frameDuration) + " frames from the playhead" };
     }
 });
 

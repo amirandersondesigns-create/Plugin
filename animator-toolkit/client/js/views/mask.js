@@ -8,7 +8,7 @@
     var h = AT.h;
 
     function render(page) {
-        page.appendChild(AT.ui.lead("Select a layer, then pick a reveal. Each one builds a real mask named 'AT Mask …' (press M on the layer to see it) and leaves a timeline marker."));
+        page.appendChild(AT.ui.lead("Select a layer, then pick a reveal. Each builds a real mask (press M to see it)."));
         var lib = h("div");
         AT.motionLibrary.render(lib, "mask");
         page.appendChild(AT.ui.section("Mask reveals", { icon: "mask" }, lib));

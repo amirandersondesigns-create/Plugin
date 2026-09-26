@@ -73,6 +73,12 @@
             "if(a&&a.ready&&a.root===" + r + "&&typeof a.dispatch==='function')return 'ok';" +
             "return (a&&a.boot)?a.boot(" + r + "):'no-loader';})()";
         return evalScript(script, 15000).then(function (r) {
+            if (!r.timeout && (r.raw === undefined || r.raw === null || r.raw === "" || r.raw === "undefined")) {
+                // Empty reply: ask the host directly whether it's loaded.
+                return evalScript("(" + NS + "&&" + NS + ".ready&&typeof " + NS + ".dispatch==='function')?'ok':'not-ready'", 5000);
+            }
+            return r;
+        }).then(function (r) {
             var res = r.timeout ? "timeout" : String(r.raw);
             status.bootResult = res;
             log("boot", root, "->", res);
@@ -116,6 +122,7 @@
             return { ok: false, requestId: requestId, error: { code: "timeout", message: "After Effects didn't respond. If a dialog is open in After Effects, close it and try again." } };
         }
         var text = r.raw === undefined || r.raw === null ? "" : String(r.raw);
+        if (text === "undefined") text = "";
         if (!text) {
             return { ok: false, requestId: requestId, error: { code: "empty-response", message: "After Effects didn't confirm this action. Check the timeline: it may have worked; if not, try again." } };
         }
@@ -141,9 +148,23 @@
         };
         return boot().then(function (env) {
             if (env.mode === "preview") return AT.previewHost.handle(request);
-            var script = "(function(){var a=" + NS + ";return (a&&a.dispatch)?a.dispatch(" + literal(JSON.stringify(request)) + "):'EvalScript error.';})()";
+            // The reply comes back two ways: the function's return value, and
+            // lastResponse stored in the host namespace. If After Effects hands
+            // back an empty result, we read the stored reply (with a plain
+            // expression, no function return involved) instead of reporting
+            // a failure for an action that worked.
+            var script = "(function(){var a=" + NS + ";if(!a||!a.dispatch)return 'EvalScript error.';a.lastResponse='';" +
+                "var r=a.dispatch(" + literal(JSON.stringify(request)) + ");return (r&&r.length)?r:a.lastResponse;})()";
             return evalScript(script).then(function (r) {
+                if (r.timeout || (r.raw !== undefined && r.raw !== null && String(r.raw) !== "" && String(r.raw) !== "undefined")) return r;
+                log(command, "empty reply; reading stored reply");
+                return evalScript(NS + ".lastResponse", 5000);
+            }).then(function (r) {
                 var res = parseResponse(r, request.requestId);
+                if (!res.ok && res.error && res.error.code === "empty-response") res.unconfirmed = true;
+                if (res.requestId && res.requestId !== request.requestId) {
+                    res = { ok: false, unconfirmed: true, requestId: request.requestId, error: { code: "empty-response", message: "" } };
+                }
                 if (command !== "context.inspect") log(command, payload, "->", res);
                 return res;
             });

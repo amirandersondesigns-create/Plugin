@@ -14,7 +14,7 @@ It also includes micro-lessons and explained shortcuts.
 
 1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
    or Anastasiy's Extension Manager.
-2. Drag `AnimatorToolkit-0.2.1.zxp` onto it.
+2. Drag `AnimatorToolkit-0.2.2.zxp` onto it.
 3. Restart After Effects and open **Window › Extensions › Animator Toolkit**.
 
 The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
@@ -25,7 +25,7 @@ install as updates.
 
 **Option B: zip + install script (unsigned, debug mode)**
 
-1. Unzip `animator-toolkit-0.2.1.zip`.
+1. Unzip `animator-toolkit-0.2.2.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
    These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
    then copy the extension to your user CEP extensions folder.
@@ -54,13 +54,16 @@ reply is logged in its console.
 in 0.2.1. ExtendScript can drop a function's `return` value when it passes
 through a `try/finally`. The dispatcher used one to close undo groups, so
 commands ran but the panel never got the result. It now closes the group
-without `finally`, and a test bans `finally` from host code.
+without `finally`, and a test bans `finally` from host code. From 0.2.2 the
+host also stores every reply, and if AE still loses the return value the panel
+reads the stored reply back. Only a real failure shows an error; an
+unconfirmed result shows a short info note instead.
 
 **Panel not listed under Window › Extensions?**
 
 First check `~/Library/Logs/CSXS/CEP12-AEFT.log` for `Unsupported Manifest version`.
 That error means the manifest can't be parsed. Up to 0.1.0 the manifest
-declared a default XML namespace, which After Effects 2026 rejects. 0.2.1
+declared a default XML namespace, which After Effects 2026 rejects. 0.2.2
 matches Adobe's schema, and `tests/manifest.test.js` guards against a repeat.
 
 1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
@@ -83,22 +86,22 @@ and flows; it doesn't touch After Effects.
 | Tab | What it does |
 |---|---|
 | **Home** | Suggestions for the current selection, 16 quick actions (incl. Stagger, Rasterize, Make 3D, Animate Fast), favorites, recent tools, and the 5 essential skills |
-| **Animate** | Anchor grid and Align/Distribute, keyframe strip, **Stagger** (frames or seconds), motion library (13 essentials, 11 more effects, each In and Out), and layer tools including **Continuous Rasterize** |
+| **Animate** | Anchor grid and Align/Distribute, keyframe strip, **Stagger** (in frames), motion library (13 essentials, 11 more effects, each In and Out), and layer tools including **Continuous Rasterize** |
 | **Easing** | Live curve and moving ball. Easy Ease/In/Out/Linear/Hold, strength chips, 8 **curve presets** (Sine to Expo, Smooth Stop/Start, Snap, Glide), **physics** (Overshoot, Bounce, Elastic keyframes between selected keys), and In/Out sliders |
 | **Text** | New text, plus 11 essentials and 13 more effects (per-letter rise/pop/spin/random, word blur, type on and more) |
 | **Mask** | Real animated mask reveals (wipes, soft wipe, iris, split), mask tools (rectangle, ellipse, invert, feather), and the "can't see my mask path" fix |
 | **3D** | Make 3D/2D, spread in depth, 3D motion (flip, tumble, door swing, fly from depth, card flip), extruded 3D text with a renderer switch, and quick camera moves |
 | **Camera** | Create, moves, **lens & focus** (DOF, aperture, focus on layer, lens zoom), **rigs** (orbit null, wiggle shake), and saved positions |
-| **Capture** | Grab Still |
-| **Preview** | One-click **Animate Fast / Final Check**, then Resolution (Down Sample Factor), Fast Previews and 8/16/32 bpc as simple choice rows, speed tools (Draft 3D, work area, purge cache), and recommended Preview-panel settings |
-| **Audio** | Level/fade tools for selected audio and the level guide for TV, streaming, podcasts and ads |
+| **Capture** | Grab Still. Every Grab Still button (including Home) opens a pop-up with the image, file name and folder, plus Open folder |
+| **Preview** | One-click **Animate Fast / Final Check**, then Resolution (Down Sample Factor), Fast Previews and 8/16/32 bpc as simple choice rows, speed tools (Draft 3D, 90f/180f work area, purge cache), and recommended Preview-panel settings |
+| **Audio** | -3/+3 dB, bed at -12 dB, reset, fades with a length in frames, and two shortcuts |
 | **Favorites** | Cards with previews, groups, rename, reorder |
 | **Learn** | Lessons, including "Stuck? Quick fixes" (invisible mask paths, empty viewer, finding anything, guides, getting around) and production topics (preview speed, rasterize, bpc, audio, 3D). 79 shortcuts in 9 categories. About: density, version, replay the welcome |
 
 Search (`/`) covers every tool, preset, lesson, shortcut and favorite
 (including favorites you've renamed). Every animation option (presets,
 camera moves, orbit, lens zoom, audio fades, stagger) takes a duration in
-frames or seconds.
+frames (animators count frames); a small hint shows the equivalent seconds.
 
 ## How presets stack
 
@@ -163,8 +166,9 @@ If it needs a new keyframe shape or kind, add it to `AT.SHAPES` or
 
 ```
 npm test          # 58 unit/contract tests (Node, no dependencies)
-npm run test:e2e  # 45 end-to-end checks (needs Playwright + Chromium);
-                  # E2E_FRIENDLY=1 for ideal conditions, E2E_SRC=<dir> for another build
+npm run test:e2e  # 51 end-to-end checks (52 with E2E_DROP=1) (needs Playwright + Chromium);
+                  # E2E_FRIENDLY=1 for ideal conditions, E2E_DROP=1 for lost
+                  # return values, E2E_SRC=<dir> for another build
 ```
 
 The unit tests run in Node against `tests/host/mock-ae.js`, a strict mock of the AE
@@ -192,7 +196,7 @@ After each click it checks the resulting keyframes, markers and undo groups.
 A mock is not After Effects. Before relying on a release, check these in
 real AE (2024 and 2025/26, on macOS and Windows):
 
-- [ ] Panel loads. The context chip shows the open comp and selection.
+- [ ] Panel loads and Home suggestions follow the selection.
 - [ ] Anchor grid on text, shape, footage, a parented layer, a rotated layer, a
       2D layer and an unrotated 3D layer: the artwork must not move.
 - [ ] Every button is one Cmd/Ctrl+Z, and redo restores it.

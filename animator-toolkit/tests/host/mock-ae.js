@@ -373,6 +373,12 @@ class CompItem {
         };
     }
     layer(i) { return this.layerList[i - 1]; }
+    saveFrameToPng(time, file) {
+        const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFklEQVR4nGNgYGD4z8DAwMDAwMDAAAAPAAHmJ5xQAAAAAElFTkSuQmCC", "base64");
+        fs.mkdirSync(path.dirname(file.fsName), { recursive: true });
+        fs.writeFileSync(file.fsName, png);
+        this.savedFrames = (this.savedFrames || 0) + 1;
+    }
     get selectedLayers() { return this.layerList.filter((l) => l.selected); }
     get activeCamera() { return this.layerList.find((l) => l instanceof CameraLayer) || null; }
     add(LayerClass, name, opts) {
@@ -413,9 +419,19 @@ function createHost(opts) {
     vm.createContext(context);
     const hostDir = opts.hostDir || path.join(__dirname, "..", "..", "host");
     if (opts.boot === "cep") {
-        context.Folder = function (p) { this.fsName = path.resolve(String(p)); this.exists = fs.existsSync(this.fsName); };
-        context.File = function (p) { this.fsName = path.resolve(String(p)); this.exists = fs.existsSync(this.fsName); };
-        context.Folder.desktop = { fsName: "/Users/mock/Desktop" };
+        // Filesystem-backed File/Folder, like ExtendScript's.
+        function FsItem(p) { this.fsName = path.resolve(String(p)); }
+        Object.defineProperty(FsItem.prototype, "exists", { get() { return fs.existsSync(this.fsName); } });
+        Object.defineProperty(FsItem.prototype, "displayName", { get() { return path.basename(this.fsName); } });
+        Object.defineProperty(FsItem.prototype, "parent", { get() { return new context.Folder(path.dirname(this.fsName)); } });
+        context.Folder = function (p) { FsItem.call(this, p); };
+        context.Folder.prototype = Object.create(FsItem.prototype);
+        context.Folder.prototype.create = function () { fs.mkdirSync(this.fsName, { recursive: true }); return true; };
+        context.Folder.prototype.execute = function () { app.revealed = this.fsName; return true; };
+        context.File = function (p) { FsItem.call(this, p); };
+        context.File.prototype = Object.create(FsItem.prototype);
+        const desktop = opts.desktop || fs.mkdtempSync(path.join(require("os").tmpdir(), "at-desktop-"));
+        context.Folder.desktop = new context.Folder(desktop);
         context.$.evalCount = 0;
         context.$.evalFile = function (f) {
             const file = typeof f === "string" ? f : f.fsName;
@@ -437,6 +453,10 @@ function createHost(opts) {
                 if (failFirst.n > 0) { failFirst.n--; return "EvalScript error."; }
                 try {
                     const r = vm.runInContext(script, context);
+                    // dropReturns: the script runs, but the panel gets an empty
+                    // result - what a lost ExtendScript return looks like. Plain
+                    // expressions (no function call) still come through.
+                    if (opts.dropReturns && /\(function\(\)/.test(script)) return "";
                     return r === undefined ? "undefined" : String(r);
                 } catch (e) {
                     return "EvalScript error.";

@@ -336,43 +336,57 @@
         return wrap;
     }
 
-    // Duration: a number plus a frames/seconds switch, saved as
-    // settings[key + "Value"] / settings[key + "Unit"]. allowAuto: empty or 0
-    // means "each preset's own length".
-    function duration(o) {
+    // Frame rate of the open comp (for "15f = 0.5 s" hints); 29.97 otherwise.
+    function fps() {
+        var c = AT.app && AT.app.context ? AT.app.context() : null;
+        return c && c.comp && c.comp.fps ? c.comp.fps : 29.97;
+    }
+
+    function secondsHint(frames) {
+        if (!(frames > 0)) return "";
+        return "\u2248 " + (Math.round(frames / fps() * 100) / 100) + " s";
+    }
+
+    // Saved duration in frames. Older builds could save seconds; convert.
+    function savedFrames(key) {
         var s = AT.store.get("settings");
-        var unit = s[o.key + "Unit"] || "frames";
-        var value = typeof s[o.key + "Value"] === "number" ? s[o.key + "Value"] : (o.allowAuto ? 0 : o.defaultFrames);
-        var input = h("input.num-input", { type: "number", min: "0", step: unit === "seconds" ? "0.1" : "1", "aria-label": o.label,
-            placeholder: o.allowAuto ? "Auto" : "", value: value > 0 ? String(value) : (o.allowAuto ? "" : String(value)) });
-        function save() {
+        var v = s[key + "Value"];
+        if (!(v > 0)) return 0;
+        return s[key + "Unit"] === "seconds" ? Math.max(1, Math.round(v * fps())) : v;
+    }
+
+    // Duration in FRAMES (how animators count timing), with the seconds
+    // equivalent as a hint. allowAuto: empty = each preset's own length.
+    function duration(o) {
+        var value = savedFrames(o.key) || (o.allowAuto ? 0 : o.defaultFrames);
+        var hint = h("span.duration-hint");
+        var input = h("input.num-input", { type: "number", min: "0", step: "1", "aria-label": o.label + " in frames",
+            placeholder: o.allowAuto ? "Auto" : "", value: value > 0 ? String(value) : "" });
+        function paint() {
             var v = parseFloat(input.value);
-            if (!(v > 0)) {
-                v = 0;
-                if (!o.allowAuto) { v = unit === "seconds" ? Math.round(o.defaultFrames / 30 * 10) / 10 : o.defaultFrames; input.value = String(v); }
-                else input.value = "";
-            }
-            AT.store.update("settings", function (x) { x[o.key + "Value"] = v; x[o.key + "Unit"] = unit; });
+            hint.textContent = v > 0 ? secondsHint(v) : (o.allowAuto ? "empty = each preset's own length" : "");
         }
+        function save() {
+            var v = Math.round(parseFloat(input.value));
+            if (!(v > 0)) {
+                v = o.allowAuto ? 0 : o.defaultFrames;
+                input.value = v ? String(v) : "";
+            } else {
+                input.value = String(v);
+            }
+            AT.store.update("settings", function (x) { x[o.key + "Value"] = v; x[o.key + "Unit"] = "frames"; });
+            paint();
+        }
+        input.addEventListener("input", paint);
         input.addEventListener("change", save);
-        var seg = segmented([{ value: "frames", label: "frames" }, { value: "seconds", label: "seconds" }], unit, function (v) {
-            // Convert the number so the length stays roughly the same (30 fps).
-            var cur = parseFloat(input.value);
-            if (cur > 0) input.value = String(v === "seconds" ? Math.round(cur / 30 * 100) / 100 : Math.round(cur * 30));
-            unit = v;
-            input.step = v === "seconds" ? "0.1" : "1";
-            save();
-        }, { cls: "seg-sm", label: o.label + " unit" });
-        return h("div.duration", [h("span.duration-label", { text: o.label }), input, seg,
-            o.allowAuto ? h("span.duration-hint", { text: "empty = Auto" }) : null]);
+        paint();
+        return h("div.duration", [h("span.duration-label", { text: o.label }), input, h("span.duration-unit", { text: "frames" }), hint]);
     }
 
     // Converts a saved duration setting into a host payload fragment.
     function durationParams(key, defaultFrames) {
-        var s = AT.store.get("settings");
-        var v = s[key + "Value"];
-        if (!(v > 0)) return { durationFrames: defaultFrames };
-        return (s[key + "Unit"] || "frames") === "seconds" ? { durationSeconds: v } : { durationFrames: v };
+        var v = savedFrames(key);
+        return { durationFrames: v > 0 ? v : defaultFrames };
     }
 
     function toggle(label, checked, onChange) {
@@ -413,7 +427,7 @@
     AT.ui = {
         h: h, pulse: pulse, explain: explain, infoButton: infoButton, favButton: favButton, curve: curve,
         yForX: yForX, preview: preview, section: section, lead: lead, toolButton: toolButton, iconButton: iconButton,
-        presetTile: presetTile, segmented: segmented, slider: slider, toggle: toggle, duration: duration, durationParams: durationParams, keycaps: keycaps, empty: empty,
+        presetTile: presetTile, segmented: segmented, slider: slider, toggle: toggle, duration: duration, durationParams: durationParams, secondsHint: secondsHint, keycaps: keycaps, empty: empty,
         isBeginner: isBeginner
     };
 })(window.AT = window.AT || {});

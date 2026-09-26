@@ -48,7 +48,7 @@
         why: "Build an entrance, copy it to the end of the layer and reverse it to get a matching exit. Easing flips with it.",
         keywords: "reverse time flip mirror keyframes" });
     add({ id: "layers.stagger", title: "Stagger", icon: "stagger", view: "animate", command: "layers.stagger",
-        summary: "Offsets selected layers one after another (frames or seconds), in the order you selected them.",
+        summary: "Offsets selected layers one after another by a number of frames, in the order you selected them.",
         why: "Staggering (cascading) lets several elements share one animation but arrive one after another — the eye reads them in order.",
         keywords: "stagger cascade offset sequence layers delay" });
 
@@ -238,10 +238,10 @@
     });
     add({ id: "preview.draft3d", title: "Draft 3D", icon: "cube", view: "preview", command: "preview.draft3d",
         summary: "Toggles Draft 3D: fast 3D previews without lights/shadows/DOF detail.", why: "3D is the slowest thing to preview. Draft 3D keeps the timing while you animate.", keywords: "draft 3d fast preview" });
-    add({ id: "preview.workArea.3", title: "Work Area 3s", icon: "clock", view: "preview", command: "preview.workArea", payload: { seconds: 3 },
-        summary: "Sets the work area to 3 seconds from the playhead.", why: "Previews only render the work area. A short range around what you're animating plays back almost instantly.", keywords: "work area preview range b n" });
-    add({ id: "preview.workArea.6", title: "Work Area 6s", icon: "clock", view: "preview", command: "preview.workArea", payload: { seconds: 6 },
-        summary: "Sets the work area to 6 seconds from the playhead.", why: "Previews only render the work area.", keywords: "work area preview range" });
+    add({ id: "preview.workArea.90", title: "Work Area 90f", icon: "clock", view: "preview", command: "preview.workArea", payload: { frames: 90 },
+        summary: "Sets the work area to 90 frames from the playhead.", why: "Previews only render the work area. A short range around what you're animating plays back almost instantly.", keywords: "work area preview range b n frames" });
+    add({ id: "preview.workArea.180", title: "Work Area 180f", icon: "clock", view: "preview", command: "preview.workArea", payload: { frames: 180 },
+        summary: "Sets the work area to 180 frames from the playhead.", why: "Previews only render the work area.", keywords: "work area preview range frames" });
     add({ id: "preview.mode.fast", title: "Animate Fast", icon: "bolt", view: "preview", command: "preview.mode", payload: { mode: "fast" },
         summary: "Half resolution, Adaptive fast previews and Draft 3D in one click.", why: "The quickest way to get real-time playback while you animate. Timing is unchanged.",
         keywords: "preview fast speed setup animate half adaptive draft" });

@@ -162,7 +162,7 @@
               "8 bpc is the fastest color depth. Only raise it when gradients band.",
               "Stale or stuttering previews? Edit > Purge > All Memory & Disk Cache."
           ],
-          tryIt: ["preview.res.2", "preview.workArea.3", "preview.draft3d"], shortcuts: ["sc.res-half", "sc.preview-num0", "sc.work-area", "sc.caps"] },
+          tryIt: ["preview.res.2", "preview.workArea.90", "preview.draft3d"], shortcuts: ["sc.res-half", "sc.preview-num0", "sc.work-area", "sc.caps"] },
         { id: "lesson.rasterize", title: "Continuous Rasterize", level: "production", seconds: 45, illo: "matte",
           body: [
               "Vector layers (shapes, Illustrator art, solids) are drawn at 100% and then scaled, so blowing them up looks soft.",
@@ -176,11 +176,10 @@
               "8 bpc: fastest, standard for broadcast graphics. 16 bpc: smooth gradients, about twice as slow; use it when gradients band. 32 bpc: float, for HDR light and glows; much slower."
           ],
           tryIt: ["project.bpc.8", "project.bpc.16"], shortcuts: [] },
-        { id: "lesson.audio", title: "Audio levels for TV, web & ads", level: "production", seconds: 60, illo: "audio",
+        { id: "lesson.audio", title: "Audio levels", level: "production", seconds: 30, illo: "audio",
           body: [
-              "Watch the Audio panel's meter while previewing. Peaks must never hit 0 dB (red). Keep dialogue peaking around -12 to -6 dB, and music under voice-over around -18 to -24.",
-              "Delivery specs measure average loudness (LUFS/LKFS) with a loudness meter in your editor or Audition: US broadcast and commercials (ATSC A/85, CALM Act) -24 LKFS; European broadcast (EBU R128) -23 LUFS; YouTube and streaming about -14 LUFS; podcasts about -16 LUFS. Keep true peaks under -1 to -2 dB.",
-              "Always follow your network's own spec sheet when you have one."
+              "Watch the Audio panel's meter while previewing (Numpad . plays audio only). Keep dialogue peaking around -12 dB and never let it hit 0 dB (red).",
+              "In Audio Levels, 0 dB means 'as recorded', not 'maximum'. Lower music under voice-over, and add a few frames of fade to hide hard cuts."
           ],
           tryIt: ["audio.bed", "audio.fadeIn"], shortcuts: ["sc.preview-audio"] },
         { id: "lesson.3d", title: "Easy 3D: layers, renderer, extrusion", level: "production", seconds: 75, illo: "cube",

@@ -595,3 +595,14 @@ details.more p { margin: 6px 0 0; }
 .duration-label { font-size: var(--fs-sm); color: var(--fg-2); min-width: 56px; }
 .duration-hint { font-size: var(--fs-xs); color: var(--fg-3); }
 .motion-opts { grid-template-columns: 1fr; }
+
+.duration-unit { font-size: var(--fs-sm); color: var(--fg-2); }
+
+/* still-captured pop-up */
+.still-frame { border-radius: var(--r); overflow: hidden; background:
+    repeating-conic-gradient(#2a2a2e 0% 25%, #222225 0% 50%) 0 0 / 16px 16px; border: 1px solid var(--line-2); display: grid; place-items: center; min-height: 120px; }
+.still-img { display: block; max-width: 100%; max-height: 260px; }
+.still-missing { padding: 24px; color: var(--fg-2); font-size: var(--fs-sm); text-align: center; }
+.still-name { margin-top: 10px; color: var(--fg-0); font-weight: 600; word-break: break-all; }
+.still-path { color: var(--fg-2); font-size: var(--fs-xs); word-break: break-all; user-select: text; }
+.still-actions { margin-top: 12px; }

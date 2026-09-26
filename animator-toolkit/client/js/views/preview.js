@@ -45,7 +45,7 @@
     }
 
     function render(page) {
-        page.appendChild(AT.ui.lead("Previews play in real time once frames are cached (the green bar over the timeline). Animate fast, then check at full quality before you render. Timing never changes."));
+        page.appendChild(AT.ui.lead("Animate fast, then check at full quality before you render. Timing never changes."));
         var body = h("div");
         page.appendChild(body);
         AT.bridge.run("preview.read").then(function (res) {
@@ -73,9 +73,9 @@
                     function (it) { return it.title; })));
 
             body.appendChild(AT.ui.section("Speed tools", { icon: "clock" },
-                h("div.tool-grid", ["preview.draft3d", "preview.workArea.3", "preview.workArea.6", "preview.purge"].map(function (id) { return AT.ui.toolButton(id); }))));
+                h("div.tool-grid", ["preview.draft3d", "preview.workArea.90", "preview.workArea.180", "preview.purge"].map(function (id) { return AT.ui.toolButton(id); }))));
 
-            body.appendChild(AT.ui.section("Preview panel settings", { icon: "gauge", hint: "Window > Preview (Ctrl/Cmd+3)" }, h("details.more", [
+            body.appendChild(AT.ui.section("Preview panel settings", { icon: "gauge", hint: "Ctrl/Cmd+3" }, h("details.more", [
                 h("summary", { text: "Recommended settings (set by hand)" }),
                 h("dl.explain", [
                     ["Cache Before Playback", "On for reviews: renders the range, then plays in real time."],

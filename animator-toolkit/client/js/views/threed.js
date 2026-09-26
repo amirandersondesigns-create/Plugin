@@ -14,7 +14,7 @@
     }
 
     function render(page) {
-        page.appendChild(AT.ui.lead("3D in three steps: make layers 3D, spread them in depth, then move a camera. The flips below turn layers 3D for you."));
+        page.appendChild(AT.ui.lead("Make layers 3D, spread them in depth, then move a camera."));
 
         page.appendChild(AT.ui.section("Setup", { icon: "cube" }, h("div", [
             h("div.tool-grid", ["threed.make", "threed.make2d", "threed.depthSpread"].map(function (id) { return AT.ui.toolButton(id); })),
@@ -28,7 +28,7 @@
         page.appendChild(AT.ui.section("3D text", { icon: "text" }, h("div", [
             h("div.tool-grid", ["threed.renderer.extrude", "text.extrude", "threed.renderer.classic"].map(function (id) { return AT.ui.toolButton(id); })),
             setting("extrudeDepth", "Extrusion depth", 1, 400, 1, 40, "px"),
-            AT.ui.isBeginner() ? h("p.hint", { text: "Extrusion needs the Advanced 3D (or Cinema 4D) renderer: set it first, then select text and Extrude. Add a light and a camera orbit to show the sides." }) : null
+            AT.ui.isBeginner() ? h("p.hint", { text: "Set the extrusion renderer first, then select text and Extrude." }) : null
         ])));
 
         page.appendChild(AT.ui.section("Camera", {

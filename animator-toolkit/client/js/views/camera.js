@@ -105,7 +105,7 @@
         return h("div", [
             h("div.tool-grid", ["camera.dof.on", "camera.dof.off", "camera.focus", "camera.lens-in", "camera.lens-out"].map(function (id) { return AT.ui.toolButton(id); })),
             setting("cameraAperture", "Aperture (blur)", 5, 300, 5, 60, "px"),
-            AT.ui.isBeginner() ? h("p.hint", { text: "Select the subject layer, then Focus on Layer: it stays sharp while nearer and farther layers blur. Bigger aperture = more blur. DOF renders slowly, so switch it off while animating." }) : null
+            AT.ui.isBeginner() ? h("p.hint", { text: "Select the subject, then Focus on Layer. Bigger aperture = more blur." }) : null
         ]);
     }
 
@@ -115,12 +115,12 @@
             setting("orbitDegrees", "Orbit angle", 5, 180, 5, 30, "\u00b0"),
             setting("shakeAmount", "Shake amount", 1, 60, 1, 12, "px"),
             setting("shakeFrequency", "Shake speed", 0.5, 10, 0.5, 2, "/s"),
-            AT.ui.isBeginner() ? h("p.hint", { text: "Orbit parents the camera to a 3D null ('AT Camera Orbit') at the comp centre and rotates it. Move that null to orbit around something else." }) : null
+            AT.ui.isBeginner() ? h("p.hint", { text: "Orbit rotates an 'AT Camera Orbit' null the camera is parented to. Move the null to orbit something else." }) : null
         ]);
     }
 
     function render(page) {
-        page.appendChild(AT.ui.lead("Cameras only see 3D layers. Moves start at the playhead and use the active camera (or the selected one)."));
+        page.appendChild(AT.ui.lead("Cameras only see 3D layers. Moves start at the playhead."));
         page.appendChild(AT.ui.section("Create", { icon: "camera" }, createCard()));
         page.appendChild(AT.ui.section("Moves", { icon: "motion", hint: "from the playhead" }, moves()));
         page.appendChild(AT.ui.section("Lens & focus", { icon: "sparkle" }, lensFocus()));

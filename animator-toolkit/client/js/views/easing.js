@@ -119,14 +119,14 @@
                 AT.ui.toggle("Link", linked, function (v) { linked = v; save(); }),
                 apply
             ]),
-            AT.ui.isBeginner() ? h("p.hint", { text: "0% leaves that side linear. Out shapes how motion leaves each selected keyframe; In shapes how it arrives. Higher = longer, softer slowdown." }) : null
+            AT.ui.isBeginner() ? h("p.hint", { text: "Out = leaving each key, In = arriving. 0% = linear, higher = softer." }) : null
         ]);
     }
 
     function render(page) {
         hero = Hero();
         hero.set([0.33, 0, 0.67, 1], "Easy Ease — hover a preset to compare");
-        page.appendChild(AT.ui.lead("Select two or more keyframes in the timeline, then pick an ease. The graph is the Graph Editor's value curve: flat = slow, steep = fast."));
+        page.appendChild(AT.ui.lead("Select keyframes, then pick an ease. On the graph, flat = slow and steep = fast."));
         page.appendChild(AT.ui.section("Preview", {
             icon: "easing",
             right: h("button.link", { type: "button", text: "Read selected keys", on: { click: function (e) {
