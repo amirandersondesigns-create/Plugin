@@ -163,9 +163,15 @@
         return null;
     }
 
+    // For panel-side actions (e.g. a pressed viewer shortcut): Undo runs revert().
+    AT.pushUndo = function (entry) { entry.kind = "custom"; history.push(entry); return entry; };
+    AT.undoEntry = function (entry) { return undo(entry); };
+    AT.rememberView = function (key, on) { AT.store.update("settings", function (x) { x.viewToggles = x.viewToggles || {}; x.viewToggles[key] = on; }); };
+
     function undo(entry) {
         var i = history.indexOf(entry);
         if (i >= 0) history.splice(i, 1);
+        if (entry.kind === "custom") return Promise.resolve(entry.revert());
         if (entry.kind === "viewer") {
             return AT.bridge.run(entry.command, entry.payload).then(function (res) {
                 if (AT.worked(res)) {

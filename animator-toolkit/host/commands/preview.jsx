@@ -78,9 +78,10 @@ AT.register("preview.read", {
             view: (function () {
                 var o = {}, k;
                 for (k in AT.VIEW_ITEMS) if (AT.VIEW_ITEMS.hasOwnProperty(k)) o[k] = AT.viewItemState(opts, k);
-                for (k in AT.OVERLAYS) if (AT.OVERLAYS.hasOwnProperty(k)) o[k] = AT.overlayLayers(c, k).length > 0;
                 return o;
             }()),
+            // Guide layers drawn by 0.3.8, so the panel can offer to remove them.
+            oldOverlays: (function () { var n = 0; for (var k in AT.OVERLAYS) if (AT.OVERLAYS.hasOwnProperty(k)) n += AT.overlayLayers(c, k).length; return n; }()),
             workAreaStart: c.workAreaStart,
             workAreaDuration: c.workAreaDuration
         } };
@@ -133,8 +134,29 @@ AT.VIEW_ITEMS = {
     guides:      { name: "Guides",          option: "guidesVisibility", menus: ["Show Guides", "Hide Guides"] },
     snapGuides:  { name: "Snap to Guides",  option: "guidesSnap",       menus: ["Snap to Guides"] },
     lockGuides:  { name: "Lock Guides",     option: "guidesLocked",     menus: ["Lock Guides"] },
-    snapGrid:    { name: "Snap to Grid",    option: null,               menus: ["Snap to Grid"] }
+    snapGrid:    { name: "Snap to Grid",    option: null,               menus: ["Snap to Grid"] },
+    // The viewer's grid-and-guides menu items. The panel presses their
+    // shortcuts (see client/js/core/keys.js); these entries are the fallback.
+    safe:        { name: "Title/Action Safe", option: null, menus: ["Title/Action Safe"], manual: "Click the Composition viewer, then press ' (apostrophe)." },
+    propGrid:    { name: "Proportional Grid", option: null, menus: ["Proportional Grid"], manual: "Click the Composition viewer, then press Alt/Option + ' ." },
+    grid:        { name: "Grid",              option: null, menus: ["Show Grid", "Hide Grid"], manual: "Click the Composition viewer, then press Ctrl/Cmd + ' ." },
+    axes:        { name: "3D Reference Axes", option: null, menus: ["3D Reference Axes"], manual: "3D Reference Axes has no shortcut: use the grid-and-guides button under the Composition viewer." }
 };
+
+// Brings the Composition viewer to the front with keyboard focus, so a
+// shortcut the panel presses next goes to it.
+AT.register("viewer.focus", {
+    mutating: false,
+    needs: "comp",
+    run: function (payload, ctx) {
+        var v = null;
+        try { v = app.activeViewer; } catch (e) {}
+        if (!v) { try { v = ctx.comp.openInViewer(); } catch (e2) {} }
+        if (!v) AT.fail("no-viewer", "Open the comp in the Composition viewer first.");
+        try { v.setActive(); } catch (e3) {}
+        return { result: { focused: true } };
+    }
+});
 
 // ---- overlays: guide layers ------------------------------------------------------
 // Title/Action Safe, Proportional Grid, Grid and 3D Reference Axes are drawn

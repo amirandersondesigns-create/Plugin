@@ -840,3 +840,8 @@ button:focus-visible, .btn:focus-visible { outline: 1.5px solid var(--accent); o
 .gg-item.on { background: var(--accent-bg); border-color: rgba(74, 144, 217, 0.45); color: var(--fg-0); }
 .gg-item.on .gg-title { font-weight: 600; }
 .toast-action { font-weight: 600; }
+.gg-group { margin: 8px 8px 2px; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); }
+.gg-cleanup { margin: 4px 6px 0; }
+.gg-item.is-busy { opacity: 0.6; }
+.sec-viewer-gg .gg, .gg + .toggle, .gg ~ .tg-transparency { margin-top: 10px; }
+.section-body > div > .gg:first-child { margin-top: 0; padding-top: 0; border-top: 0; }

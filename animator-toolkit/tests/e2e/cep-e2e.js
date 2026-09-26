@@ -85,6 +85,8 @@ function check(name, ok, detail) {
             getHostEnvironment() { return "{}"; }
         };
         window.__opened = [];
+        window.__pressed = [];
+        window.__atKeyPress = (combo) => { window.__pressed.push(combo); return { ok: true }; };
         window.cep = { util: { openURLInDefaultBrowser(u) { window.__opened.push(u); } } };
     }, { ext: EXT });
 
@@ -379,8 +381,10 @@ function check(name, ok, detail) {
     const ppHas = ["Shortcut", "Include:", "Cache Before Playback", "Range", "Play From", "Frame Rate", "Skip", "Resolution", "Full Screen", "If caching, play cached frames", "Move time to preview time"].every((t) => ppText.includes(t));
     const ppOpts = (k) => page.$$eval(".pp-select[data-key=" + k + "] option", (o) => o.map((x) => x.value).join(","));
     const skipOpts = await ppOpts("skip"), rangeOpts = await ppOpts("range"), resOpts = await ppOpts("res");
+    const fpsOpts = await ppOpts("fps");
     check("Preview panel matches After Effects: every control, Skip 0/1/2/5, all 4 Ranges, Auto-Quarter",
-        ppHas && skipOpts === "0,1,2,5" && rangeOpts === "Work Area,Work Area Extended By Current Time,Entire Duration,Play Around Current Time" && resOpts === "Auto,Full,Half,Third,Quarter", [ppHas, skipOpts, rangeOpts, resOpts]);
+        ppHas && skipOpts === "0,1,2,5" && rangeOpts === "Work Area,Work Area Extended By Current Time,Entire Duration,Play Around Current Time" && resOpts === "Auto,Full,Half,Third,Quarter"
+        && fpsOpts === "Auto,15,24,25,29.97,30,59.94,60,120", [ppHas, skipOpts, rangeOpts, resOpts, fpsOpts]);
     const ppVal = (k) => page.$eval(".pp-select[data-key=" + k + "]", (e) => e.value);
     const ppBox = (k) => page.$eval(".pp-check input[data-key=" + k + "]", (e) => e.checked);
     await page.selectOption(".pp-select[data-key=skip]", "2");
@@ -405,9 +409,7 @@ function check(name, ok, detail) {
         [ppSkip2, ppFinalOk, numpadFresh, keptNumpad, keptSpace, ppReset, incOff]);
     await page.click(".pp-reset");
 
-    await page.click(".tab[data-view=animate]");
-    // Grid & guides menu: real on/off with a check mark; items scripts can't
-    // reach explain what to press.
+    // Grid & guides (Preview > Viewer, next to the transparency grid).
     const gv = host.app.activeViewer.views[0].options;
     await page.click(".gg-toggle");
     await page.click(".gg-item:has-text('Snap to Guides')");
@@ -417,37 +419,52 @@ function check(name, ok, detail) {
     await page.waitForTimeout(400);
     const snapOff = gv.guidesSnap === false && !(await page.$(".gg-item.on:has-text('Snap to Guides')"));
     check("Snap to Guides turns on (checked) and off again", snapOn && snapOff, [snapOn, snapOff]);
-    await page.click(".gg-item:has-text('Show Rulers')");
+    await page.click(".gg-item[data-item=rulers]");
     await page.waitForTimeout(400);
-    check("Show Rulers turns rulers on", gv.rulers === true && !!(await page.$(".gg-item.on:has-text('Show Rulers')")));
-    await page.click(".gg-item:has-text('Show Rulers')");
+    check("Show Rulers turns rulers on", gv.rulers === true && !!(await page.$(".gg-item.on[data-item=rulers]")));
+    await page.click(".gg-item[data-item=rulers]");
     await page.click(".gg-item:has-text('Snap to Grid')");
-    check("Snap to Grid runs View > Snap to Grid", /Snap to Grid/.test(await waitToast(/Snap to Grid/)) && host.app.executed.includes(3041), await toast());
+    check("Snap to Grid presses After Effects' shortcut (Mod + Shift + ')", /Snap to Grid on/.test(await waitToast(/Snap to Grid/)) && (await page.evaluate(() => window.__pressed.slice(-1)[0])) === "Mod + Shift + '", await toast());
+    await page.click(".gg-item:has-text('Snap to Grid')");
+    await page.waitForTimeout(400);
     // Every row is clickable and stays highlighted until pressed again, even
     // the toggles After Effects doesn't report (Grid, Title/Action Safe...).
     const lit = (t) => page.$eval(".gg-item[data-item=" + t + "]", (e) => e.classList.contains("on"));
+    // Items After Effects doesn't expose: the toolkit activates the viewer and
+    // presses After Effects' own shortcut. Rows stay lit until pressed again.
+    const base = (await page.evaluate(() => window.__pressed.length));
+    const pressed = () => page.evaluate((n) => window.__pressed.slice(n), base);
+    const focusBefore = host.app.activeViewer.active;
     await page.click(".gg-item[data-item=safe]");
-    await page.waitForTimeout(300);
-    const hasLayer = (n) => comp.layerList.some((l) => l.name === n && l.guideLayer && l.locked);
-    const safeOn = hasLayer("AT Title/Action Safe") && (await lit("safe"));
+    await page.waitForTimeout(500);
+    const safeOn = (await lit("safe")) && (await pressed()).join("|") === "'" && host.app.activeViewer.active > focusBefore;
+    await page.click(".gg-item[data-item=propGrid]");
     await page.click(".gg-item[data-item=grid]");
-    await page.waitForTimeout(300);
-    const gridOn = (await lit("grid")) && hasLayer("AT Grid");
+    await page.click(".gg-item[data-item=rulers]");
+    await page.waitForTimeout(800);
+    const keysOk = (await pressed()).join("|") === "'|Alt + '|Mod + '";
+    const rulersViaViewer = gv.rulers === true && (await lit("rulers")); // reported by the viewer: set exactly, no key press
     await page.click(".tab[data-view=text]");
-    await page.click(".tab[data-view=animate]");
+    await page.click(".tab[data-view=preview]");
     await page.waitForSelector(".gg-item[data-item=grid]");
-    const stillLit = (await lit("grid")) && (await lit("safe"));
+    const stillLit = (await lit("grid")) && (await lit("safe")) && (await lit("propGrid"));
     await page.click(".gg-item[data-item=grid]");
-    await page.click(".gg-item[data-item=safe]");
-    await page.waitForTimeout(300);
-    const offAgain = !(await lit("grid")) && !(await lit("safe")) && !hasLayer("AT Grid") && !hasLayer("AT Title/Action Safe");
-    check("Grid & guides rows are clickable, stay highlighted until pressed again", safeOn && gridOn && stillLit && offAgain, [safeOn, gridOn, stillLit, offAgain]);
-    // Undo from the message switches a viewer toggle back.
+    await page.waitForTimeout(500);
+    const gridOff = !(await lit("grid")) && (await pressed()).slice(-1)[0] === "Mod + '";
+    check("Grid & guides: presses After Effects' shortcuts, rows stay lit until pressed again", safeOn && keysOk && rulersViaViewer && stillLit && gridOff, [safeOn, keysOk, rulersViaViewer, stillLit, gridOff, await pressed()]);
+    // Undo in the message presses the shortcut again.
+    await page.click(".gg-item[data-item=propGrid]");
+    await waitToast(/Proportional Grid off/);
+    await page.click(".toast-action");
+    await page.waitForTimeout(500);
+    check("Undo in the message switches Proportional Grid back on", (await lit("propGrid")) && (await pressed()).slice(-2).join("|") === "Alt + '|Alt + '", await pressed());
     await page.click(".gg-item[data-item=snapGuides]");
     await waitToast(/Snap to Guides on/);
     await page.click(".toast-action");
     await page.waitForTimeout(400);
-    check("Undo in the message switches Snap to Guides back off", gv.guidesSnap === false && !(await lit("snapGuides")) && /switched back/.test(await toast()), [gv.guidesSnap, await toast()]);
+    check("Undo in the message switches Snap to Guides back off", gv.guidesSnap === false && !(await lit("snapGuides")), [gv.guidesSnap, await toast()]);
+    for (const k of ["safe", "propGrid", "rulers"]) await page.click(".gg-item[data-item=" + k + "]");
+    await page.waitForTimeout(600);
     await page.click(".gg-toggle");
 
     // Home: quick actions can be removed, added back and reset.
@@ -487,14 +504,14 @@ function check(name, ok, detail) {
     // no-selection click fails before opening a group.
     // 0.2 clicks: stagger, mask wipe, flip, bounce, curve, 16 bpc, audio fade,
     // create camera, orbit = 9 more. 0.3.5: resolution and one-click setup are
-    // undoable too: 4 resolution clicks + 3 setup clicks = 7 more. 0.3.8:
-    // 4 overlay clicks (Title/Action Safe and Grid on, then off) = 4 more.
+    // undoable too: 4 resolution clicks + 3 setup clicks = 7 more. (Grid &
+    // guides are viewer settings: no undo steps.)
     const keyGroups = host.undo.groups.filter((g) => /Add Keyframes/.test(g)).length;
     if (process.env.E2E_LIST_UNDO) console.log(JSON.stringify(host.undo.groups.filter((g) => /Preview/.test(g))), host.undo.groups.length);
     check("resolution and one-click setup are undo steps (one per press)",
         host.undo.groups.filter((g) => /Preview Resolution/.test(g)).length === 4 && host.undo.groups.filter((g) => /Preview Setup/.test(g)).length === 3);
     check("every mutating click was exactly one undo group",
-        host.undo.groups.length - keyGroups === 33 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+        host.undo.groups.length - keyGroups === 29 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
     // Highlights: in every group of choices on every tab, clicking a button
     // lights exactly that one and turns the others off.
     const groupSel = ".seg, .option-row, .filter-chips, .anchor-box";

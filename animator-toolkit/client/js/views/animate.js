@@ -61,57 +61,6 @@
         ]);
     }
 
-    // Like After Effects' "Choose grid and guide options" menu under the viewer.
-    // Every row is a real toggle with its shortcut. A row stays highlighted
-    // while it's on: After Effects' own state where it reports it, otherwise
-    // the state the toolkit remembers from your presses.
-    var gridOpen = false;
-    function gridGuidesMenu() {
-        var menu = h("div.gg-menu", { role: "menu" });
-        var toggle = h("button.gg-toggle", { type: "button", "aria-haspopup": "true", on: { click: function () {
-            gridOpen = !gridOpen; menu.hidden = !gridOpen; toggle.classList.toggle("open", gridOpen);
-            if (gridOpen) readState();
-        } } }, [AT.icon("guides"), h("span", { text: "Grid & guides" }), h("span.gg-sub", { text: "safe areas, grid, guides, rulers, snapping" }), AT.icon("chevron", "gg-chev")]);
-        menu.hidden = !gridOpen;
-        toggle.classList.toggle("open", gridOpen);
-        var reported = {};
-        var rows = [];
-        function isOn(key) { return typeof reported[key] === "boolean" ? reported[key] : AT.viewToggleState(key); }
-        function row(it) {
-            var key = it.payload.item;
-            var st = h("span.gg-state");
-            var b = h("button.gg-item", { type: "button", role: "menuitemcheckbox", title: it.why, "data-item": key, on: { click: function () {
-                AT.run(it, null, b).then(function (res) {
-                    if (res.ok && res.result && typeof res.result.on === "boolean") reported[key] = res.result.on;
-                    paintAll();
-                });
-            } } }, [st, AT.icon(it.icon), h("span.gg-title", { text: it.title }), it.keys ? AT.ui.keycaps(it.keys) : h("span.gg-note", { text: "no shortcut" })]);
-            b.paint = function () {
-                var on = isOn(key);
-                st.innerHTML = "";
-                b.classList.toggle("on", on);
-                b.setAttribute("aria-checked", on ? "true" : "false");
-                if (on) st.appendChild(AT.icon("check"));
-            };
-            rows.push(b);
-            return b;
-        }
-        function paintAll() { rows.forEach(function (r) { r.paint(); }); }
-        ["view.safe", "view.propGrid", "view.axes", "view.grid", "view.guides", "view.rulers"].forEach(function (id) { menu.appendChild(row(AT.catalog.get(id))); });
-        menu.appendChild(h("div.gg-sep"));
-        ["view.snapGuides", "view.snapGrid", "view.lockGuides"].forEach(function (id) { menu.appendChild(row(AT.catalog.get(id))); });
-        menu.appendChild(h("p.hint.gg-hint", { text: "Click to turn on (it stays highlighted), click again to turn off. Safe areas, grids and axes are drawn as locked guide layers named \"AT ...\" (they never render; Ctrl/Cmd+Z undoes them). The shortcuts shown switch After Effects' own versions. Layer snapping is the Snapping checkbox in the Tools bar." }));
-        function readState() {
-            AT.bridge.run("preview.read").then(function (res) {
-                if (res.ok && res.result && res.result.view) reported = res.result.view;
-                paintAll();
-            });
-        }
-        paintAll();
-        if (gridOpen) readState();
-        return h("div.gg", [toggle, menu]);
-    }
-
     function keyStrip() {
         var keys = ["keys.position", "keys.scale", "keys.rotation", "keys.opacity", "keys.anchor", "keys.all"];
         return h("div.key-strip", [
@@ -157,10 +106,7 @@
 
     function render(page) {
         page.appendChild(AT.ui.lead("Select layers in the timeline, then click. Every action is a single undo (Ctrl/Cmd+Z)."));
-        page.appendChild(AT.ui.section("Layout", { icon: "grid", cls: "sec-dock" }, h("div", [
-            h("div.dock", [anchorGrid(), alignCell()]),
-            gridGuidesMenu()
-        ])));
+        page.appendChild(AT.ui.section("Layout", { icon: "grid", cls: "sec-dock" }, h("div.dock", [anchorGrid(), alignCell()])));
         page.appendChild(AT.ui.section("Keyframes", { icon: "key", hint: "at the playhead" }, keyStrip()));
         var lib = h("div");
         AT.motionLibrary.render(lib, "graphic");

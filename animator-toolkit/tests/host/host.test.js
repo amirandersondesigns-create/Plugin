@@ -689,7 +689,7 @@ test("every undoable action reports its Edit > Undo name, and app.undo only undo
     assert.equal(again.error.code, "manual");
 });
 
-test("Title/Action Safe, Proportional Grid, Grid and 3D Axes are locked guide layers, toggled and undoable", () => {
+test("old 0.3.8 guide-layer overlays: counted by preview.read and removable (clean-up link)", () => {
     const h = setup();
     const keep = h.comp.add(ShapeLayer, "Artwork", { inPoint: 0, outPoint: 8 });
     keep.selected = true;
@@ -703,8 +703,8 @@ test("Title/Action Safe, Proportional Grid, Grid and 3D Axes are locked guide la
         ls.forEach((l) => { assert.equal(l.guideLayer, true); assert.equal(l.locked, true); });
         const contents = ls[0].property("ADBE Root Vectors Group").property(1).property("ADBE Vectors Group");
         assert.ok(contents.numProperties >= 2, item + " draws paths and a stroke");
-        assert.equal(h.call("preview.read").result.view[item], true);
     }
+    assert.equal(h.call("preview.read").result.oldOverlays, 6);
     // Safe areas: action safe 90% and title safe 80% of a 1920x1080 frame.
     const safe = h.comp.layerList.find((l) => l.name === "AT Title/Action Safe");
     const paths = safe.property("ADBE Root Vectors Group").property(1).property("ADBE Vectors Group");
@@ -717,8 +717,21 @@ test("Title/Action Safe, Proportional Grid, Grid and 3D Axes are locked guide la
     // Press again: removed (even though locked); the artwork is untouched.
     for (const item of ["safe", "propGrid", "grid", "axes"]) {
         assert.equal(h.call("view.overlay", { item }).result.on, false);
-        assert.equal(h.call("preview.read").result.view[item], false);
     }
+    assert.equal(h.call("preview.read").result.oldOverlays, 0);
     assert.deepEqual(h.comp.layerList.map((l) => l.name), ["Artwork"]);
     assert.equal(h.undo.open, 0);
+});
+
+test("grid-and-guides items: viewer.focus activates the viewer; menu fallback explains the shortcut", () => {
+    const h = setup();
+    assert.equal(h.call("viewer.focus").ok, true);
+    h.app.activeViewer = null;
+    assert.equal(h.call("viewer.focus").ok, true, "opens the comp in a viewer when none is active");
+    for (const [item, key] of [["safe", /' \(apostrophe\)/], ["propGrid", /Alt\/Option \+ '/], ["grid", /Ctrl\/Cmd \+ '/], ["axes", /no shortcut/]]) {
+        delete h.app.menus[{ safe: "Title/Action Safe", propGrid: "Proportional Grid", grid: "Show Grid", axes: "3D Reference Axes" }[item]];
+        const r = h.call("view.toggle", { item });
+        assert.equal(r.error.code, "manual", item);
+        assert.match(r.error.message, key, item);
+    }
 });

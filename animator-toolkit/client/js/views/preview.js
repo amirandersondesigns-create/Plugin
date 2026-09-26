@@ -104,7 +104,7 @@
     var PP_FIELDS = {
         range: { label: "Range", options: ["Work Area", "Work Area Extended By Current Time", "Entire Duration", "Play Around Current Time"] },
         from: { label: "Play From", options: ["Current Time", "Start of Range"] },
-        fps: { label: "Frame Rate", options: ["Auto", "8", "12", "15", "23.976", "24", "25", "29.97", "30", "50", "59.94", "60"] },
+        fps: { label: "Frame Rate", options: ["Auto", "15", "24", "25", "29.97", "30", "59.94", "60", "120"] }, // as in After Effects' list
         skip: { label: "Skip", options: ["0", "1", "2", "5"] },
         res: { label: "Resolution", options: ["Auto", "Full", "Half", "Third", "Quarter"] }
     };
@@ -264,6 +264,109 @@
         return tg;
     }
 
+    // Like After Effects' "Choose grid and guide options" menu under the
+    // viewer, same items and order. These overlays have no scripting API, so
+    // the toolkit activates the Composition viewer and presses After
+    // Effects' own shortcut (js/core/keys.js). Where After Effects does
+    // report a setting (Guides, Rulers and snapping on some versions) that
+    // real state is used; otherwise the highlight follows your presses.
+    var gridOpen = false;
+    function gridGuidesMenu() {
+        var menu = h("div.gg-menu", { role: "menu" });
+        var toggle = h("button.gg-toggle", { type: "button", "aria-haspopup": "true", on: { click: function () {
+            gridOpen = !gridOpen; menu.hidden = !gridOpen; toggle.classList.toggle("open", gridOpen);
+            if (gridOpen) readState();
+        } } }, [AT.icon("guides"), h("span", { text: "Grid & guides" }), h("span.gg-sub", { text: "safe areas, grid, guides, rulers, snapping" }), AT.icon("chevron", "gg-chev")]);
+        menu.hidden = !gridOpen;
+        toggle.classList.toggle("open", gridOpen);
+        var reported = {};
+        var rows = [];
+        var cleanup = h("div.gg-cleanup");
+        function isOn(key) { return typeof reported[key] === "boolean" ? reported[key] : AT.viewToggleState(key); }
+
+        // Press the item's After Effects shortcut in the Composition viewer.
+        function pressShortcut(it, key, b) {
+            b.classList.add("is-busy");
+            return AT.bridge.run("viewer.focus").then(function (res) {
+                if (!AT.worked(res)) { b.classList.remove("is-busy"); AT.toast(res.error.message, "info"); return false; }
+                return new Promise(function (r) { setTimeout(r, 150); }).then(function () { return AT.keys.press(it.keys); }).then(function (k) {
+                    b.classList.remove("is-busy");
+                    if (!k.ok) { AT.toast(k.message, "info"); return false; }
+                    return true;
+                });
+            });
+        }
+        function flip(it, key, b, isUndo) {
+            var was = isOn(key);
+            var viaViewer = typeof reported[key] === "boolean";
+            var go = viaViewer
+                ? AT.bridge.run("view.toggle", { item: key, on: !was }).then(function (res) {
+                    if (res.ok && res.result && typeof res.result.on === "boolean") { reported[key] = res.result.on; return true; }
+                    if (!AT.worked(res)) AT.toast(res.error.message, res.error.code === "manual" ? "info" : "error");
+                    return AT.worked(res);
+                })
+                : it.keys ? pressShortcut(it, key, b)
+                : AT.bridge.run("view.toggle", { item: key }).then(function (res) {   // 3D Reference Axes: no shortcut
+                    if (!AT.worked(res)) { AT.toast(res.error.message, "info"); return false; }
+                    return true;
+                });
+            return go.then(function (ok) {
+                if (!ok) return;
+                var now = !was;
+                AT.rememberView(key, now);
+                if (!viaViewer) reported[key] = undefined;
+                paintAll();
+                if (isUndo) { AT.toast("↩ " + it.title + (now ? " on" : " off"), "ok"); return; }
+                var entry = AT.pushUndo({ title: it.title, revert: function () { return flip(it, key, b, true); } });
+                AT.toast("✓ " + it.title + (now ? " on" : " off"), "ok", null, { label: "Undo", run: function () { AT.undoEntry(entry); } });
+            });
+        }
+        function row(id) {
+            var it = AT.catalog.get(id), key = it.payload.item;
+            var st = h("span.gg-state");
+            var b = h("button.gg-item", { type: "button", role: "menuitemcheckbox", title: it.why, "data-item": key, on: { click: function () { flip(it, key, b); } } },
+                [st, AT.icon(it.icon), h("span.gg-title", { text: it.title }), it.keys ? AT.ui.keycaps(it.keys) : h("span.gg-note", { text: "viewer menu only" })]);
+            b.paint = function () {
+                var on = isOn(key);
+                st.innerHTML = "";
+                b.classList.toggle("on", on);
+                b.setAttribute("aria-checked", on ? "true" : "false");
+                if (on) st.appendChild(AT.icon("check"));
+            };
+            rows.push(b);
+            return b;
+        }
+        function paintAll() { rows.forEach(function (r) { r.paint(); }); }
+        // Same order and dividers as After Effects' menu.
+        ["view.safe", "view.propGrid"].forEach(function (id) { menu.appendChild(row(id)); });
+        menu.appendChild(h("div.gg-sep"));
+        ["view.grid", "view.guides", "view.rulers"].forEach(function (id) { menu.appendChild(row(id)); });
+        menu.appendChild(h("div.gg-sep"));
+        menu.appendChild(row("view.axes"));
+        menu.appendChild(h("div.gg-group", { text: "Snapping (View menu)" }));
+        ["view.snapGuides", "view.snapGrid", "view.lockGuides"].forEach(function (id) { menu.appendChild(row(id)); });
+        menu.appendChild(cleanup);
+        menu.appendChild(h("p.hint.gg-hint", { text: "Each row switches After Effects' own setting by pressing its shortcut in the Composition viewer. The highlight follows your presses here (After Effects doesn't report most of these); if you change one in After Effects directly, press it here once to line up. Viewer settings aren't in Edit > Undo: press again, or Undo in the message." }));
+        function readState() {
+            AT.bridge.run("preview.read").then(function (res) {
+                if (res.ok && res.result) {
+                    reported = res.result.view || {};
+                    cleanup.innerHTML = "";
+                    if (res.result.oldOverlays > 0) {
+                        cleanup.appendChild(h("button.link.gg-clean", { type: "button", text: "Remove the toolkit's old \"AT\" guide layers from this comp", on: { click: function () {
+                            ["safe", "propGrid", "grid", "axes"].reduce(function (p, k) { return p.then(function () { return AT.bridge.run("view.overlay", { item: k, on: false }); }); }, Promise.resolve())
+                                .then(function () { cleanup.innerHTML = ""; AT.toast("✓ Old guide layers removed", "ok"); });
+                        } } }));
+                    }
+                }
+                paintAll();
+            });
+        }
+        paintAll();
+        if (gridOpen) readState();
+        return h("div.gg", [toggle, menu]);
+    }
+
     // One-click setup card. It lists exactly what it sets; while it's the
     // active setup each part is ticked, or flagged if After Effects didn't
     // take it (Fast Previews needs the Composition viewer).
@@ -320,7 +423,7 @@
     }
 
     function render(page) {
-        page.appendChild(AT.ui.lead("Animate fast, then check at full quality before you render. Timing never changes."));
+        page.appendChild(AT.ui.lead("Animate fast, then check at full quality before you render (timing never changes). The viewer's grid, guides and transparency are here too."));
         var body = h("div");
         page.appendChild(body);
         syncs = [];
@@ -350,7 +453,8 @@
                 h("details.more", [h("summary", { text: "Custom and shortcuts" }), h("p", { text: "Custom sets any factor, e.g. every 6th pixel for heavy comps (Ctrl/Cmd+Alt+J). Shortcuts: Ctrl/Cmd+J Full, Ctrl/Cmd+Shift+J Half, Ctrl/Cmd+Alt+Shift+J Quarter. After Effects' own live Auto is in the viewer's resolution menu." })])
             ])));
 
-            body.appendChild(AT.ui.section("Viewer", { icon: "checker", hint: "buttons under the viewer" }, h("div", [
+            body.appendChild(AT.ui.section("Viewer", { icon: "checker", hint: "the buttons under the Composition viewer" }, h("div", [
+                gridGuidesMenu(),
                 transparencyToggle(!!st.transparency),
                 h("p.hint.tg-note", { text: "A viewer setting, like the button under the viewer: click again to turn it off. After Effects doesn't put viewer settings in Undo." })
             ])));
@@ -361,6 +465,9 @@
                     function (it) { return it.title.replace(" (Final Quality)", "").replace(" Resolution", ""); },
                     function (it) { st.fastPreview = it.payload.mode; handPicked(); })));
 
+            body.appendChild(AT.ui.section("Speed tools", { icon: "clock" },
+                h("div.tool-grid", ["preview.draft3d", "preview.workArea.90", "preview.workArea.180", "preview.purge"].map(function (id) { return AT.ui.toolButton(id); }))));
+
             body.appendChild(AT.ui.section("Color depth", { icon: "sparkle", hint: "project-wide" },
                 optionRow(["project.bpc.8", "project.bpc.16", "project.bpc.32"],
                     function (it) { return it.payload.bits === (st.bpc || 8); },
@@ -369,8 +476,6 @@
 
             body.appendChild(AT.ui.section("Preview panel", { icon: "gauge", hint: "Window > Preview \u00b7 Ctrl/Cmd+3" }, panelBoard()));
 
-            body.appendChild(AT.ui.section("Speed tools", { icon: "clock" },
-                h("div.tool-grid", ["preview.draft3d", "preview.workArea.90", "preview.workArea.180", "preview.purge"].map(function (id) { return AT.ui.toolButton(id); }))));
 
             syncAll();
             var lesson = AT.catalog.get("lesson.preview-speed");

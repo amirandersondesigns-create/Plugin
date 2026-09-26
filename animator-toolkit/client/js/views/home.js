@@ -18,7 +18,7 @@
         "anchor.center": "Center", "anchor.bottom-center": "Bottom", "ease.both": "Easy Ease", "ease.in": "Ease In",
         "ease.out": "Ease Out", "keys.all": "Key All", "layers.stagger": "Stagger", "layers.nullParent": "Null+Parent",
         "layers.precompose": "Precomp", "layers.rasterize": "Rasterize", "layers.motionBlur": "Motion Blur", "layers.marker": "Marker",
-        "threed.make": "Make 3D", "camera.create": "Camera", "preview.mode.fast": "Fast Preview", "still.capture": "Grab Still"
+        "threed.make": "Make 3D", "camera.create": "Camera", "preview.mode.fast": "Animate Fast", "still.capture": "Grab Still"
     };
 
     var VIEW_NAMES = { home: "Home", animate: "Animate", easing: "Easing", text: "Text", mask: "Mask", threed: "3D", camera: "Camera",

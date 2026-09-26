@@ -408,6 +408,7 @@ class CompItem {
     }
     layer(i) { return this.layerList[i - 1]; }
     get numLayers() { return this.layerList.length; }
+    openInViewer() { return { setActive() { return true; } }; }
     saveFrameToPng(time, file) {
         const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFklEQVR4nGNgYGD4z8DAwMDAwMDAAAAPAAHmJ5xQAAAAAElFTkSuQmCC", "base64");
         fs.mkdirSync(path.dirname(file.fsName), { recursive: true });
