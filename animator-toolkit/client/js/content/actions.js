@@ -246,9 +246,10 @@
      ["snapGuides", "Snap to Guides", "magnet", "Mod + Shift + ;", "Layers click onto your guides as you drag them, so things line up exactly."],
      ["snapGrid", "Snap to Grid", "magnet", "Mod + Shift + '", "Layers snap to the grid as you drag, for even spacing."],
      ["lockGuides", "Lock Guides", "lock", "Mod + Alt + Shift + ;", "Stops guides moving when you click near them."]].forEach(function (g) {
-        add({ id: "view." + g[0], title: g[1], icon: g[2], view: "animate", command: "view.toggle", payload: { item: g[0] }, keys: g[3],
+        var overlay = /^(safe|propGrid|axes|grid)$/.test(g[0]);
+        add({ id: "view." + g[0], title: g[1], icon: g[2], view: "animate", command: overlay ? "view.overlay" : "view.toggle", payload: { item: g[0] }, keys: g[3],
             summary: "Turns " + g[1].replace("Show ", "") + " on or off in the Composition viewer" + (g[3] ? " (" + g[3].replace(/Mod/g, "Ctrl/Cmd") + ")" : "") + ".",
-            why: g[4] + " Stays highlighted while it's on; press again to turn it off, or Undo.",
+            why: g[4] + (overlay ? " Drawn as a locked guide layer: it shows in the viewer but never renders. Stays highlighted while it's on; press again to remove it, or Ctrl/Cmd+Z." : " Stays highlighted while it's on; press again to turn it off, or Undo."),
             keywords: "grid guides rulers snap snapping lock viewer toggle " + g[1].toLowerCase() });
     });
     add({ id: "preview.draft3d", title: "Draft 3D", icon: "cube", view: "preview", command: "preview.draft3d",

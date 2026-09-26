@@ -75,7 +75,12 @@ AT.register("preview.read", {
             draft3d: (function () { try { return !!c.draft3d; } catch (e) { return false; } }()),
             fastPreview: fast,
             transparency: !!(opts && opts.checkerboards),
-            view: (function () { var o = {}; for (var k in AT.VIEW_ITEMS) if (AT.VIEW_ITEMS.hasOwnProperty(k)) o[k] = AT.viewItemState(opts, k); return o; }()),
+            view: (function () {
+                var o = {}, k;
+                for (k in AT.VIEW_ITEMS) if (AT.VIEW_ITEMS.hasOwnProperty(k)) o[k] = AT.viewItemState(opts, k);
+                for (k in AT.OVERLAYS) if (AT.OVERLAYS.hasOwnProperty(k)) o[k] = AT.overlayLayers(c, k).length > 0;
+                return o;
+            }()),
             workAreaStart: c.workAreaStart,
             workAreaDuration: c.workAreaDuration
         } };
@@ -128,14 +133,98 @@ AT.VIEW_ITEMS = {
     guides:      { name: "Guides",          option: "guidesVisibility", menus: ["Show Guides", "Hide Guides"] },
     snapGuides:  { name: "Snap to Guides",  option: "guidesSnap",       menus: ["Snap to Guides"] },
     lockGuides:  { name: "Lock Guides",     option: "guidesLocked",     menus: ["Lock Guides"] },
-    grid:        { name: "Grid",            option: null,               menus: ["Show Grid", "Hide Grid"] },
-    snapGrid:    { name: "Snap to Grid",    option: null,               menus: ["Snap to Grid"] },
-    // Items of the viewer's own grid-and-guides menu. Not every version
-    // exposes them to scripts; then the panel shows the shortcut instead.
-    safe:        { name: "Title/Action Safe", option: null, menus: ["Title/Action Safe"], manual: "Click the Composition viewer, then press ' (apostrophe)." },
-    propGrid:    { name: "Proportional Grid", option: null, menus: ["Proportional Grid"], manual: "Click the Composition viewer, then press Alt/Option + ' ." },
-    axes:        { name: "3D Reference Axes", option: null, menus: ["3D Reference Axes"], manual: "Use the grid-and-guides button under the Composition viewer (3D comps)." }
+    snapGrid:    { name: "Snap to Grid",    option: null,               menus: ["Snap to Grid"] }
 };
+
+// ---- overlays: guide layers ------------------------------------------------------
+// Title/Action Safe, Proportional Grid, Grid and 3D Reference Axes are drawn
+// as locked GUIDE layers (visible in the viewer, never rendered). Unlike the
+// viewer's own overlays, which scripts can't switch, these always work, show
+// their real state (the layer exists or not) and are one Ctrl/Cmd+Z.
+AT.OVERLAYS = {
+    safe:     { name: "AT Title/Action Safe", label: "Title/Action Safe" },
+    propGrid: { name: "AT Proportional Grid", label: "Proportional Grid" },
+    grid:     { name: "AT Grid", label: "Grid" },
+    axes:     { name: "AT 3D Reference Axes", label: "3D Reference Axes" }
+};
+
+AT.overlayLayers = function (comp, key) {
+    var n = AT.OVERLAYS[key].name, out = [];
+    for (var i = 1; i <= comp.numLayers; i++) {
+        var l = comp.layer(i);
+        if (l.name === n || l.name.indexOf(n + " ") === 0) out.push(l);
+    }
+    return out;
+};
+
+// One locked guide shape layer; paths are [[x, y], ...] in comp pixels.
+AT.guideLayer = function (comp, name, paths, color, width, opacity) {
+    var l = comp.layers.addShape();
+    l.name = name;
+    var cx = comp.width / 2, cy = comp.height / 2; // a new shape layer sits at the comp centre
+    var contents = l.property("ADBE Root Vectors Group").addProperty("ADBE Vector Group").property("ADBE Vectors Group");
+    for (var p = 0; p < paths.length; p++) {
+        var sh = new Shape(), v = [];
+        for (var k = 0; k < paths[p].pts.length; k++) v.push([paths[p].pts[k][0] - cx, paths[p].pts[k][1] - cy]);
+        sh.vertices = v;
+        sh.closed = !!paths[p].closed;
+        contents.addProperty("ADBE Vector Shape - Group").property("ADBE Vector Shape").setValue(sh);
+    }
+    var st = contents.addProperty("ADBE Vector Graphic - Stroke");
+    try { st.property("ADBE Vector Stroke Color").setValue(color); } catch (e) { st.property("ADBE Vector Stroke Color").setValue([color[0], color[1], color[2]]); }
+    st.property("ADBE Vector Stroke Width").setValue(width);
+    st.property("ADBE Vector Stroke Opacity").setValue(opacity);
+    l.guideLayer = true;
+    l.selected = false;
+    l.locked = true;
+    return l;
+};
+
+AT.drawOverlay = function (comp, key) {
+    var w = comp.width, h = comp.height, n = AT.OVERLAYS[key].name, paths = [], i;
+    function rect(m) { return { pts: [[w * m, h * m], [w * (1 - m), h * m], [w * (1 - m), h * (1 - m)], [w * m, h * (1 - m)]], closed: true }; }
+    function line(x1, y1, x2, y2) { return { pts: [[x1, y1], [x2, y2]] }; }
+    if (key === "safe") {
+        // After Effects' defaults: action safe 10% (5% each side), title safe 20%.
+        var c = Math.min(w, h) * 0.02;
+        paths = [rect(0.05), rect(0.1), line(w / 2 - c, h / 2, w / 2 + c, h / 2), line(w / 2, h / 2 - c, w / 2, h / 2 + c)];
+        AT.guideLayer(comp, n, paths, [0.55, 0.8, 1, 1], 2, 80);
+    } else if (key === "propGrid") {
+        paths = [line(w / 3, 0, w / 3, h), line(2 * w / 3, 0, 2 * w / 3, h), line(0, h / 3, w, h / 3), line(0, 2 * h / 3, w, 2 * h / 3)];
+        AT.guideLayer(comp, n, paths, [1, 1, 1, 1], 1.5, 55);
+    } else if (key === "grid") {
+        var step = Math.max(10, Math.round(w / 16));
+        for (i = step; i < w; i += step) paths.push(line(i, 0, i, h));
+        for (i = step; i < h; i += step) paths.push(line(0, i, w, i));
+        AT.guideLayer(comp, n, paths, [1, 1, 1, 1], 1, 30);
+    } else if (key === "axes") {
+        var len = Math.min(w, h) * 0.25, x = AT.guideLayer(comp, n, [line(w / 2, h / 2, w / 2 + len, h / 2)], [1, 0.3, 0.3, 1], 3, 100);
+        var y = AT.guideLayer(comp, n + " Y", [line(w / 2, h / 2, w / 2, h / 2 - len)], [0.4, 0.9, 0.4, 1], 3, 100);
+        var z = AT.guideLayer(comp, n + " Z", [line(w / 2, h / 2, w / 2 + len, h / 2)], [0.4, 0.6, 1, 1], 3, 100);
+        var ls = [x, y, z];
+        for (i = 0; i < 3; i++) { ls[i].locked = false; ls[i].threeDLayer = true; }
+        z.property("ADBE Transform Group").property("ADBE Rotate Y").setValue(-90); // its X line now points along Z
+        for (i = 0; i < 3; i++) ls[i].locked = true;
+    }
+};
+
+AT.register("view.overlay", {
+    label: "Grid & Guides",
+    mutating: true, // real guide layers, so Ctrl/Cmd+Z removes or restores them
+    needs: "comp",
+    run: function (payload, ctx) {
+        var o = AT.OVERLAYS[payload.item];
+        if (!o) AT.fail("bad-payload", "Unknown overlay: " + payload.item);
+        var have = AT.overlayLayers(ctx.comp, payload.item);
+        var want = payload.on === undefined ? !have.length : !!payload.on;
+        if (want && !have.length) AT.drawOverlay(ctx.comp, payload.item);
+        if (!want) {
+            for (var i = 0; i < have.length; i++) { have[i].locked = false; have[i].remove(); }
+        }
+        return { result: { item: payload.item, on: want },
+            feedback: o.label + (want ? " on (a guide layer: shows in the viewer, never renders)" : " off") };
+    }
+});
 
 AT.viewItemState = function (opts, key) {
     var it = AT.VIEW_ITEMS[key];

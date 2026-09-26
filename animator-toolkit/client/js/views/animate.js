@@ -100,7 +100,7 @@
         ["view.safe", "view.propGrid", "view.axes", "view.grid", "view.guides", "view.rulers"].forEach(function (id) { menu.appendChild(row(AT.catalog.get(id))); });
         menu.appendChild(h("div.gg-sep"));
         ["view.snapGuides", "view.snapGrid", "view.lockGuides"].forEach(function (id) { menu.appendChild(row(AT.catalog.get(id))); });
-        menu.appendChild(h("p.hint.gg-hint", { text: "Click to turn on (it stays highlighted), click again to turn off. Undo in the message, or Ctrl/Cmd+Z here, switches it back. After Effects keeps viewer settings out of Edit > Undo. Layer snapping is the Snapping checkbox in the Tools bar." }));
+        menu.appendChild(h("p.hint.gg-hint", { text: "Click to turn on (it stays highlighted), click again to turn off. Safe areas, grids and axes are drawn as locked guide layers named \"AT ...\" (they never render; Ctrl/Cmd+Z undoes them). The shortcuts shown switch After Effects' own versions. Layer snapping is the Snapping checkbox in the Tools bar." }));
         function readState() {
             AT.bridge.run("preview.read").then(function (res) {
                 if (res.ok && res.result && res.result.view) reported = res.result.view;

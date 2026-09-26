@@ -428,10 +428,11 @@ function check(name, ok, detail) {
     const lit = (t) => page.$eval(".gg-item[data-item=" + t + "]", (e) => e.classList.contains("on"));
     await page.click(".gg-item[data-item=safe]");
     await page.waitForTimeout(300);
-    const safeOn = host.app.executed.includes(3046) && (await lit("safe"));
+    const hasLayer = (n) => comp.layerList.some((l) => l.name === n && l.guideLayer && l.locked);
+    const safeOn = hasLayer("AT Title/Action Safe") && (await lit("safe"));
     await page.click(".gg-item[data-item=grid]");
     await page.waitForTimeout(300);
-    const gridOn = await lit("grid");
+    const gridOn = (await lit("grid")) && hasLayer("AT Grid");
     await page.click(".tab[data-view=text]");
     await page.click(".tab[data-view=animate]");
     await page.waitForSelector(".gg-item[data-item=grid]");
@@ -439,7 +440,7 @@ function check(name, ok, detail) {
     await page.click(".gg-item[data-item=grid]");
     await page.click(".gg-item[data-item=safe]");
     await page.waitForTimeout(300);
-    const offAgain = !(await lit("grid")) && !(await lit("safe"));
+    const offAgain = !(await lit("grid")) && !(await lit("safe")) && !hasLayer("AT Grid") && !hasLayer("AT Title/Action Safe");
     check("Grid & guides rows are clickable, stay highlighted until pressed again", safeOn && gridOn && stillLit && offAgain, [safeOn, gridOn, stillLit, offAgain]);
     // Undo from the message switches a viewer toggle back.
     await page.click(".gg-item[data-item=snapGuides]");
@@ -486,13 +487,14 @@ function check(name, ok, detail) {
     // no-selection click fails before opening a group.
     // 0.2 clicks: stagger, mask wipe, flip, bounce, curve, 16 bpc, audio fade,
     // create camera, orbit = 9 more. 0.3.5: resolution and one-click setup are
-    // undoable too: 4 resolution clicks + 3 setup clicks = 7 more.
+    // undoable too: 4 resolution clicks + 3 setup clicks = 7 more. 0.3.8:
+    // 4 overlay clicks (Title/Action Safe and Grid on, then off) = 4 more.
     const keyGroups = host.undo.groups.filter((g) => /Add Keyframes/.test(g)).length;
     if (process.env.E2E_LIST_UNDO) console.log(JSON.stringify(host.undo.groups.filter((g) => /Preview/.test(g))), host.undo.groups.length);
     check("resolution and one-click setup are undo steps (one per press)",
         host.undo.groups.filter((g) => /Preview Resolution/.test(g)).length === 4 && host.undo.groups.filter((g) => /Preview Setup/.test(g)).length === 3);
     check("every mutating click was exactly one undo group",
-        host.undo.groups.length - keyGroups === 29 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+        host.undo.groups.length - keyGroups === 33 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
     // Highlights: in every group of choices on every tab, clicking a button
     // lights exactly that one and turns the others off.
     const groupSel = ".seg, .option-row, .filter-chips, .anchor-box";

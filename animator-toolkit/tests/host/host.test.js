@@ -532,9 +532,8 @@ test("preview settings, color depth, work area, purge, rasterize", () => {
     assert.equal(h.call("view.toggle", { item: "guides" }).result.on, false);
     assert.equal(h.call("view.toggle", { item: "lockGuides" }).result.on, true);
     assert.equal(h.call("preview.read").result.view.snapGuides, true);
-    assert.equal(h.call("view.toggle", { item: "grid" }).result.on, null);
     assert.equal(h.call("view.toggle", { item: "snapGrid" }).ok, true);
-    assert.deepEqual(plain(h.app.executed), [3042, 3041]);
+    assert.deepEqual(plain(h.app.executed), [3041]);
     // A version that hands out a COPY of the view options still toggles.
     let stored = { fastPreview: 0, checkerboards: false, zoom: 0.5 };
     h.app.activeViewer.views[0] = { get options() { return Object.assign({}, stored); }, set options(o) { stored = Object.assign({}, o); } };
@@ -548,14 +547,7 @@ test("preview settings, color depth, work area, purge, rasterize", () => {
     const miss = h.call("view.toggle", { item: "snapGrid" });
     assert.equal(miss.ok, false);
     assert.equal(miss.error.code, "manual");
-    // The viewer-menu items run their command when After Effects exposes it,
-    // and otherwise explain the shortcut.
-    assert.equal(h.call("view.toggle", { item: "safe" }).ok, true);
-    assert.ok(h.app.executed.includes(3046));
-    delete h.app.menus["Title/Action Safe"];
-    const safe = h.call("view.toggle", { item: "safe" });
-    assert.equal(safe.error.code, "manual");
-    assert.match(safe.error.message, /press ' \(apostrophe\)/);
+
     assert.equal(h.call("project.bpc", { bits: 16 }).ok, true);
     assert.equal(h.app.project.bitsPerChannel, 16);
     assert.equal(h.call("preview.fast", { mode: "adaptive" }).ok, true);
@@ -695,4 +687,38 @@ test("every undoable action reports its Edit > Undo name, and app.undo only undo
     const again = h.call("app.undo", { name: r.undo });
     assert.equal(again.ok, false);
     assert.equal(again.error.code, "manual");
+});
+
+test("Title/Action Safe, Proportional Grid, Grid and 3D Axes are locked guide layers, toggled and undoable", () => {
+    const h = setup();
+    const keep = h.comp.add(ShapeLayer, "Artwork", { inPoint: 0, outPoint: 8 });
+    keep.selected = true;
+    for (const item of ["safe", "propGrid", "grid", "axes"]) {
+        const on = h.call("view.overlay", { item });
+        assert.equal(on.ok, true, item);
+        assert.equal(on.result.on, true);
+        assert.match(on.undo, /^Animator Toolkit: /, "an undo step");
+        const ls = h.comp.layerList.filter((l) => l.name.indexOf(h.AT.OVERLAYS[item].name) === 0);
+        assert.equal(ls.length, item === "axes" ? 3 : 1, item);
+        ls.forEach((l) => { assert.equal(l.guideLayer, true); assert.equal(l.locked, true); });
+        const contents = ls[0].property("ADBE Root Vectors Group").property(1).property("ADBE Vectors Group");
+        assert.ok(contents.numProperties >= 2, item + " draws paths and a stroke");
+        assert.equal(h.call("preview.read").result.view[item], true);
+    }
+    // Safe areas: action safe 90% and title safe 80% of a 1920x1080 frame.
+    const safe = h.comp.layerList.find((l) => l.name === "AT Title/Action Safe");
+    const paths = safe.property("ADBE Root Vectors Group").property(1).property("ADBE Vectors Group");
+    assert.deepEqual(plain(paths.property(1).property("ADBE Vector Shape").value.vertices[0]), [-864, -486]);
+    assert.deepEqual(plain(paths.property(2).property("ADBE Vector Shape").value.vertices[0]), [-768, -432]);
+    // 3D axes: the Z line is a 3D layer turned 90 degrees on Y.
+    const z = h.comp.layerList.find((l) => l.name === "AT 3D Reference Axes Z");
+    assert.equal(z.threeDLayer, true);
+    assert.equal(z.property("ADBE Transform Group").property("ADBE Rotate Y").value, -90);
+    // Press again: removed (even though locked); the artwork is untouched.
+    for (const item of ["safe", "propGrid", "grid", "axes"]) {
+        assert.equal(h.call("view.overlay", { item }).result.on, false);
+        assert.equal(h.call("preview.read").result.view[item], false);
+    }
+    assert.deepEqual(h.comp.layerList.map((l) => l.name), ["Artwork"]);
+    assert.equal(h.undo.open, 0);
 });

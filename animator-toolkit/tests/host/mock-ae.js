@@ -257,6 +257,7 @@ class Layer extends PropertyGroup {
         this._in = opts.inPoint || 0;
         this._out = opts.outPoint || comp.duration;
         this.locked = false;
+        this.guideLayer = false;
         this.selected = false;
         this.parent = null;
         this.motionBlur = false;
@@ -293,6 +294,12 @@ class Layer extends PropertyGroup {
             g.add(new Property("Extrusion Depth", "ADBE Extrsn Depth", { value: 0 }));
         }
     }
+    // Like After Effects: a locked layer can't be deleted.
+    remove() {
+        if (this.locked) throw new Error("Can not remove a locked layer");
+        const list = this.comp.layerList;
+        list.splice(list.indexOf(this), 1);
+    }
     get inPoint() { return this.startTime + this._in; }
     set inPoint(v) { this._in = v - this.startTime; }
     get outPoint() { return this.startTime + this._out; }
@@ -324,7 +331,33 @@ class TextLayer extends AVLayer {
         text.add(new PropertyGroup("Animators", "ADBE Text Animators", animatorFactory));
     }
 }
-class ShapeLayer extends AVLayer {}
+// Shape layer contents: groups, paths and strokes, as After Effects builds them.
+function vectorFactory(mn) {
+    if (mn === "ADBE Vector Group") {
+        const g = new PropertyGroup("Group", mn);
+        g.add(new PropertyGroup("Contents", "ADBE Vectors Group", vectorFactory));
+        return g;
+    }
+    if (mn === "ADBE Vector Shape - Group") {
+        const g = new PropertyGroup("Path", mn);
+        g.add(new Property("Path", "ADBE Vector Shape", { value: new Shape() }));
+        return g;
+    }
+    if (mn === "ADBE Vector Graphic - Stroke") {
+        const g = new PropertyGroup("Stroke", mn);
+        g.add(new Property("Color", "ADBE Vector Stroke Color", { value: [1, 1, 1, 1] }));
+        g.add(new Property("Opacity", "ADBE Vector Stroke Opacity", { value: 100 }));
+        g.add(new Property("Stroke Width", "ADBE Vector Stroke Width", { value: 2 }));
+        return g;
+    }
+    return null;
+}
+class ShapeLayer extends AVLayer {
+    constructor(comp, name, opts) {
+        super(comp, name, opts);
+        this.add(new PropertyGroup("Contents", "ADBE Root Vectors Group", vectorFactory));
+    }
+}
 class CameraLayer extends Layer {
     constructor(comp, name, opts) {
         super(comp, name, opts);
@@ -362,6 +395,7 @@ class CompItem {
         const comp = this;
         this.layers = {
             addNull() { const l = new AVLayer(comp, "Null 1"); l.nullLayer = true; comp.layerList.unshift(l); return l; },
+            addShape() { const l = new ShapeLayer(comp, "Shape Layer 1", { position: [comp.width / 2, comp.height / 2] }); comp.layerList.unshift(l); return l; },
             addText(txt) { const l = new TextLayer(comp, txt); comp.layerList.unshift(l); return l; },
             addCamera(name, c) {
                 const l = new CameraLayer(comp, name, { position: [c[0], c[1], -1000], anchor: [c[0], c[1], 0] });
@@ -373,6 +407,7 @@ class CompItem {
         };
     }
     layer(i) { return this.layerList[i - 1]; }
+    get numLayers() { return this.layerList.length; }
     saveFrameToPng(time, file) {
         const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFklEQVR4nGNgYGD4z8DAwMDAwMDAAAAPAAHmJ5xQAAAAAElFTkSuQmCC", "base64");
         fs.mkdirSync(path.dirname(file.fsName), { recursive: true });
