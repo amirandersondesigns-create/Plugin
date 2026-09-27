@@ -16,11 +16,11 @@ echo "✓ Debug mode enabled (CSXS 9-13)"
 # Replace any previous copy completely (plain cp: no rsync dependency).
 rm -rf "$DEST"
 mkdir -p "$DEST"
-for item in CSXS client host install README.md LICENSE.txt .debug; do
+for item in CSXS client host install INSTALL.md LICENSE.txt .debug; do
     [ -e "$SRC/$item" ] && cp -R "$SRC/$item" "$DEST/"
 done
 if [ ! -f "$DEST/CSXS/manifest.xml" ]; then
-    echo "✗ Copy failed - run this script from inside the unzipped com.aanders.animatortoolkit folder."
+    echo "✗ Copy failed - run this script from inside the unzipped Amir_Anderson_Animator_Toolkit folder."
     exit 1
 fi
 echo "✓ Installed to: $DEST"

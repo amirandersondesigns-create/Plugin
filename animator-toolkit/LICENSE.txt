@@ -1,5 +1,6 @@
 Amir Anderson Animator Toolkit
 Free License & Terms of Use
+Version 1.0
 
 Copyright (c) 2026 Amir Anderson. All rights reserved.
 
@@ -10,22 +11,26 @@ domain: Amir Anderson keeps all rights to the Software not expressly granted
 below.
 
 2. Ownership
-The Software, including its source code, scripts, interface design, layout,
-graphics, icons, illustrations, text, presets, lessons and documentation, is
-the exclusive property of Amir Anderson and is protected by copyright and
+The Software, including its source code, scripts, install scripts,
+interface design, layout, graphics, icons, illustrations, text, presets,
+lessons and documentation (including the Quick Start Guide and INSTALL.md),
+is the exclusive property of Amir Anderson and is protected by copyright and
 other intellectual property laws.
 
 3. License granted
 You are granted a free, personal, non-exclusive, non-transferable, revocable
 license to install and use the Software in Adobe After Effects for personal
-and commercial projects, including client work. The animations, renders and
-stills you make with the Software belong to you.
+and commercial projects, including client work. You may install it on the computers you use and keep
+a backup copy for yourself. The animations, renders and stills you make with
+the Software belong to you. Anyone else who wants the Software should
+download it from the official link.
 
 4. Not permitted
 Without the prior written permission of Amir Anderson, you may not, and may
 not permit anyone else to:
   a. copy, reproduce, recreate, clone or imitate the Software, in whole or in
-     part, including its code, features, workflows, interface or design;
+     part, including its code, features, workflows, interface or design,
+     except to install and use it as allowed in section 3;
   b. modify, adapt, translate, reverse engineer, decompile or disassemble
      the Software, or create derivative works based on it;
   c. sell the Software, charge for it, bundle it with other products, or
@@ -60,7 +65,7 @@ damages arising from the use of, or inability to use, the Software,
 including loss of data, project files, time or revenue. Save your work and
 keep backups.
 
-9. Third-party software
+9. Trademarks
 Adobe and After Effects are trademarks of Adobe Inc. The Software is an
 independent product and is not affiliated with or endorsed by Adobe Inc.
 

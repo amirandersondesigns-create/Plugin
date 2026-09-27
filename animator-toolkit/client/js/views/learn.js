@@ -105,8 +105,8 @@
     // ---- license & terms (full text: LICENSE.txt) ----------------------------------------
     var TERMS = [
         ["Free to use", "The toolkit is free. Free doesn't mean open source: Amir Anderson keeps all rights to it."],
-        ["Your license", "A free, personal, non-transferable license to use the toolkit in After Effects for personal and commercial projects, including client work. What you make with it is yours."],
-        ["Not permitted", "Copying, recreating, cloning or imitating the toolkit or its design; modifying, reverse engineering or creating derivative works; selling it or charging for it; re-uploading its files (share the official download link instead); or using it to build a competing product, without written permission from Amir Anderson."],
+        ["Your license", "A free, personal, non-transferable license to use the toolkit in After Effects for personal and commercial projects, including client work. Install it on the computers you use; what you make with it is yours."],
+        ["Not permitted", "Copying (beyond installing it for your own use), recreating, cloning or imitating the toolkit or its design; modifying, reverse engineering or creating derivative works; selling it or charging for it; re-uploading its files (share the official download link instead); or using it to build a competing product, without written permission from Amir Anderson."],
         ["Enforcement", "Unauthorized copying, recreation, redistribution or sale violates these terms and copyright law, ends your license immediately, and may result in takedown notices and legal action. Being free doesn't reduce these rights."],
         ["No warranty", "Free and provided \"as is\", without warranty. Updates and support aren't guaranteed, and Amir Anderson isn't liable for lost work. Save often and keep backups."],
         ["Adobe", "Adobe and After Effects are trademarks of Adobe Inc. This is an independent product, not affiliated with or endorsed by Adobe."]

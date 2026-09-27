@@ -32,7 +32,7 @@ fi
 # path reads as a Windows command-line switch.
 cd "$DIST"
 rm -rf stage && mkdir -p stage/com.aanders.animatortoolkit
-(cd .. && cp -R CSXS client host README.md LICENSE.txt "$DIST/stage/com.aanders.animatortoolkit/")
+(cd .. && cp -R CSXS client host LICENSE.txt "$DIST/stage/com.aanders.animatortoolkit/" && cp README.md "$DIST/stage/com.aanders.animatortoolkit/INSTALL.md")
 
 [ -f cert.p12 ] || "${SIGN[@]}" -selfSignedCert US NY "Amir Anderson" "Amir Anderson Animator Toolkit" "$PASS" cert.p12 -validityDays 3650
 
