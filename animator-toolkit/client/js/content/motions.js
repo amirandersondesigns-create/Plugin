@@ -153,16 +153,16 @@
           summary: "A feathered mask wipe with a soft leading edge.", why: "Feather turns a hard wipe into a light-like sweep." },
         { id: "mask-iris", titleIn: "Iris Open", titleOut: "Iris Close", title: "Iris", groups: ["mask"], tier: "more", preview: "iris", duration: 18,
           def: { kind: "mask-iris" },
-          summary: "A circular mask opens from the centre.", why: "Animated with Mask Expansion, so the circle keeps its shape." },
+          summary: "A circular mask opens from the center.", why: "Animated with Mask Expansion, so the circle keeps its shape." },
         { id: "mask-iris-pop", titleIn: "Iris Pop", titleOut: "Iris Pop Out", title: "Iris Pop", groups: ["mask"], tier: "more", preview: "iris", duration: 18,
           def: { kind: "mask-iris", shape: "pop" },
           summary: "Iris with a small overshoot.", why: "Adds snap to photo and avatar reveals." },
         { id: "mask-split-h", titleIn: "Split Open", titleOut: "Split Close", title: "Split Open", groups: ["mask"], tier: "more", preview: "split-h", duration: 15,
           def: { kind: "mask-split", direction: "horizontal" },
-          summary: "Opens from a vertical centre line out to both sides.", why: "Symmetrical reveal for centred titles." },
+          summary: "Opens from a vertical center line out to both sides.", why: "Symmetrical reveal for centered titles." },
         { id: "mask-split-v", titleIn: "Split Open Vertical", titleOut: "Split Close Vertical", title: "Split Open Vertical", groups: ["mask"], tier: "more", preview: "split-v", duration: 15,
           def: { kind: "mask-split", direction: "vertical" },
-          summary: "Opens from a horizontal centre line up and down.", why: "Letterbox-style opening for full screens." }
+          summary: "Opens from a horizontal center line up and down.", why: "Letterbox-style opening for full screens." }
     ];
 
     function variant(m, phase) {
@@ -198,7 +198,10 @@
             requires: m.requires || null,
             def: def,
             view: { text: "text", threed: "threed", mask: "mask" }[m.groups[0]] || "animate",
-            summary: (phase === "in" ? "Entrance: " : "Exit: ") + m.summary.charAt(0).toLowerCase() + m.summary.slice(1),
+            // An exit is its entrance mirrored in time, so it says so rather
+            // than reusing the entrance's wording.
+            summary: phase === "in" ? "Entrance: " + m.summary.charAt(0).toLowerCase() + m.summary.slice(1)
+                : "Exit: " + (m.titleIn || m.title) + " in reverse, so the layer leaves the way it came in.",
             why: m.why,
             keywords: [m.title, title, m.id, phase === "in" ? "entrance in reveal" : "exit out leave", m.groups.join(" "), m.def.kind || "", m.def.shape || ""].join(" ").toLowerCase()
         };

@@ -92,7 +92,7 @@
             var all = AT.favorites.items();
             if (!all.length) {
                 body.appendChild(AT.ui.empty("favorites", "Build your kit",
-                    "Tap the ☆ on any tool, preset or lesson and it lands here — ready in one click, remembered between sessions.",
+                    "Click the ☆ on any tool, preset or lesson and it lands here — ready in one click, remembered between sessions.",
                     [h("div.starter", [
                         h("div.starter-title", { text: "Popular to start with" }),
                         h("div.starter-grid", STARTERS.map(function (id) {

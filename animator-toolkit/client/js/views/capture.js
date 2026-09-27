@@ -91,7 +91,7 @@
             folderRow,
             AT.ui.toggle("Import into project", s.stillImport, function (v) { AT.store.update("settings", function (x) { x.stillImport = v; }); })
         ])));
-        page.appendChild(h("p.fine", { text: "Experimental: renders through the active camera at the current time, for approvals and reference. For a deliverable still use Composition › Save Frame As › File (Render Queue)." }));
+        page.appendChild(h("p.fine", { text: "Experimental: renders through the active camera at the current time, for approvals and reference. For a deliverable still, use Composition › Save Frame As › File (Render Queue)." }));
     }
 
     AT.registerView({

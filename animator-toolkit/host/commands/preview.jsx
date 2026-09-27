@@ -146,7 +146,7 @@ AT.register("view.toggle", {
     needs: "comp",
     run: function (payload) {
         var it = AT.VIEW_ITEMS[payload.item];
-        if (!it) AT.fail("bad-payload", "Unknown grid/guide option: " + payload.item);
+        if (!it) AT.fail("bad-payload", "Unknown viewer option: " + payload.item);
         var opts = AT.viewOptions();
         var now = AT.viewItemState(opts, payload.item);
         if (now !== null) {

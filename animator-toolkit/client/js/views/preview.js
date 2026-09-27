@@ -128,7 +128,7 @@
             case "range": return { "Work Area": "Range: Work Area only. Set it with B and N.", "Work Area Extended By Current Time": "Range: the work area, stretched to include the playhead if it's outside.", "Entire Duration": "Range: the whole comp. Slowest to cache.", "Play Around Current Time": "Range: a few seconds either side of the playhead." }[v];
             case "from": return v === "Current Time" ? "Play From: the playhead." : "Play From: the start of the range, every time.";
             case "fps": return v === "Auto" ? "Frame Rate (" + fps + "): Auto plays at the comp's own rate." : "Frame Rate " + v + ": plays " + v + " frames a second. Lower plays sooner but choppier; timing isn't changed.";
-            case "skip": return v === "0" ? "Skip 0: every frame is rendered: true timing." : "Skip " + v + ": renders 1 of every " + (+v + 1) + " frames, about " + (+v + 1) + "x faster, choppier.";
+            case "skip": return v === "0" ? "Skip 0: every frame is rendered, so timing is exact." : "Skip " + v + ": renders 1 of every " + (+v + 1) + " frames, about " + (+v + 1) + "x faster, choppier.";
             case "res": return v === "Auto" ? "Resolution Auto: the preview follows the viewer's resolution." : "Resolution " + v + ": " + { Full: "every pixel.", Half: "1/4 of the pixels.", Third: "1/9 of the pixels.", Quarter: "1/16 of the pixels." }[v];
             case "fullScreen": return "Full Screen: " + (v ? "on. Plays the comp alone on screen." : "off.");
             case "playCached": return "If caching, play cached frames: " + (v ? "on. Stopping while it caches plays what's ready." : "off. Stopping while it caches just stops.");

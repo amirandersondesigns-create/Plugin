@@ -178,8 +178,8 @@
         keywords: "camera create 3d lens" });
     [["push", "Push In", "Dolly toward the subject — builds focus and tension."],
      ["pull", "Pull Out", "Dolly away — reveals context or ends a scene."],
-     ["truck-left", "Truck Left", "Slides the camera sideways. Often called a “pan”, but a true pan rotates the camera."],
-     ["truck-right", "Truck Right", "Slides the camera sideways. Often called a “pan”, but a true pan rotates the camera."],
+     ["truck-left", "Truck Left", "Slides the camera to the left. Often called a “pan”, but a true pan rotates the camera."],
+     ["truck-right", "Truck Right", "Slides the camera to the right. Often called a “pan”, but a true pan rotates the camera."],
      ["pedestal-up", "Pedestal Up", "Raises the camera. Often called a “tilt”, but a true tilt rotates the camera."],
      ["pedestal-down", "Pedestal Down", "Lowers the camera. Often called a “tilt”, but a true tilt rotates the camera."]].forEach(function (m) {
         add({ id: "camera." + m[0], title: m[1], icon: "cam-" + m[0], view: "camera", command: "camera.move", payload: { move: m[0] },
@@ -273,9 +273,9 @@
     add({ id: "audio.reset", title: "Reset 0 dB", icon: "reverse", view: "audio", command: "audio.levels", payload: { reset: true },
         summary: "Resets Audio Levels to 0 dB (the file's own level).", why: "0 dB here means unchanged, not 'maximum'.", keywords: "audio reset level 0 db" });
     add({ id: "audio.fadeIn", title: "Audio Fade In", icon: "up", view: "audio", command: "audio.fade", payload: { phase: "in" },
-        summary: "Fades audio up at the layer's start.", why: "Hard audio cuts click. A few frames of fade hides the edit.", keywords: "audio fade in" });
+        summary: "Fades audio up at the layer's start.", why: "Hard audio cuts click. A fade of a few frames hides the edit.", keywords: "audio fade in" });
     add({ id: "audio.fadeOut", title: "Audio Fade Out", icon: "down", view: "audio", command: "audio.fade", payload: { phase: "out" },
-        summary: "Fades audio down at the layer's end.", why: "Hard audio cuts click. A few frames of fade hides the edit.", keywords: "audio fade out" });
+        summary: "Fades audio down at the layer's end.", why: "Hard audio cuts click. A fade of a few frames hides the edit.", keywords: "audio fade out" });
 
     // ---- capture -----------------------------------------------------------
     add({ id: "still.capture", title: "Grab Still", icon: "capture", view: "capture", command: "still.capture",

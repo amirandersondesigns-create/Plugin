@@ -79,7 +79,7 @@
         ["sc.lock-guides", "view", "Mod + Alt + Shift + ;", "Lock guides", "Stops guides moving by accident."],
         ["sc.grid", "view", "Mod + '", "Show/hide grid", "A square grid over the viewer for even spacing."],
         ["sc.safe", "view", "'", "Title/action safe", "Shows the safe-area guides. Keep text inside the inner (title safe) box for broadcast."],
-        ["sc.transparency", "view", "Transparency grid button", "Checkerboard background", "Shows transparency as a checkerboard instead of the comp colour, so you can see what's really empty."],
+        ["sc.transparency", "view", "Transparency grid button", "Checkerboard background", "Shows transparency as a checkerboard instead of the comp color, so you can see what's really empty."],
         // Getting around
         ["sc.maximize", "navigate", "~", "Maximize panel", "Fills the window with the panel under the mouse. Press again to restore."],
         ["sc.zoom-viewer", "navigate", ", / .", "Zoom viewer out / in", "Zooms the Composition viewer."],
