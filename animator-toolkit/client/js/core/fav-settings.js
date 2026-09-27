@@ -40,7 +40,6 @@
         if (c === "mask.feather") return [["amount", "Feather", "slider", { min: 0, max: 200, step: 1, unit: "px" }]];
         if (c === "preview.workArea") return [["frames", "Work area length", "frames", { min: 15, max: 600 }]];
         if (c === "still.capture") return [
-            ["scale", "Size", "seg", { values: [[1, "Full"], [2, "Half"], [3, "Third"], [4, "Quarter"]] }],
             ["importToProject", "Import into project", "toggle", {}]
         ];
         if (c === "easing.apply" && p.mode === "custom") return [

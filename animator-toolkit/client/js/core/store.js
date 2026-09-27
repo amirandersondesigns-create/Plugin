@@ -16,7 +16,7 @@
 
     var SCHEMA = 1;
     var DEFAULTS = {
-        settings: { onboarded: false, mode: "beginner", density: "comfortable", presetTiming: "layer", durationFrames: 0, stillFolder: "", stillImport: false, stillScale: 1 },
+        settings: { onboarded: false, mode: "beginner", density: "comfortable", presetTiming: "layer", durationFrames: 0, stillFolder: "", stillImport: false },
         favorites: { items: [] },
         progress: { lessons: {}, workflows: {} },
         cameras: { saved: [] }

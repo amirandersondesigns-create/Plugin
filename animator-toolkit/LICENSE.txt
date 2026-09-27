@@ -1,54 +1,68 @@
 Amir Anderson Animator Toolkit
-License & Terms of Use
+Free License & Terms of Use
 
 Copyright (c) 2026 Amir Anderson. All rights reserved.
 
-1. Ownership
-Amir Anderson Animator Toolkit (the "Software"), including its source code,
-scripts, interface design, layout, graphics, icons, illustrations, text,
-presets, lessons and documentation, is the exclusive property of Amir
-Anderson and is protected by copyright and other intellectual property
-laws. The Software is licensed, not sold.
+1. Free to use
+Amir Anderson Animator Toolkit (the "Software") is free. There is no charge
+to download, install or use it. Free does not mean open source or public
+domain: Amir Anderson keeps all rights to the Software not expressly granted
+below.
 
-2. License granted
-You are granted a personal, non-exclusive, non-transferable, revocable
-license to install and use the Software in Adobe After Effects for your own
-personal and studio work, subject to these terms.
+2. Ownership
+The Software, including its source code, scripts, interface design, layout,
+graphics, icons, illustrations, text, presets, lessons and documentation, is
+the exclusive property of Amir Anderson and is protected by copyright and
+other intellectual property laws.
 
-3. Restrictions
+3. License granted
+You are granted a free, personal, non-exclusive, non-transferable, revocable
+license to install and use the Software in Adobe After Effects for personal
+and commercial projects, including client work. The animations, renders and
+stills you make with the Software belong to you.
+
+4. Not permitted
 Without the prior written permission of Amir Anderson, you may not, and may
 not permit anyone else to:
   a. copy, reproduce, recreate, clone or imitate the Software, in whole or in
      part, including its code, features, workflows, interface or design;
   b. modify, adapt, translate, reverse engineer, decompile or disassemble
      the Software, or create derivative works based on it;
-  c. distribute, share, publish, sell, resell, rent, lease, sublicense or
-     otherwise make the Software available to any third party;
-  d. use the Software, or any part of it, to build or train a competing
+  c. sell the Software, charge for it, bundle it with other products, or
+     rent, lease or sublicense it;
+  d. re-upload, mirror or host the Software's files elsewhere. To share the
+     Software, share the official download link instead;
+  e. use the Software, or any part of it, to build or train a competing
      product, extension, script or service;
-  e. remove, alter or obscure any copyright, trademark or other notices.
+  f. remove, alter or obscure any copyright, trademark or other notices, or
+     present the Software as your own work.
 
-4. Enforcement
-Any unauthorized copying, recreation, reproduction, distribution or other
-use of the Software is a violation of these terms and of applicable
-copyright law. Such violations will result in immediate termination of this
-license and may result in legal action, including claims for damages,
-injunctive relief and recovery of legal fees, to the fullest extent
-permitted by law.
+5. Enforcement
+Any unauthorized copying, recreation, redistribution or sale of the
+Software is a violation of these terms and of applicable copyright law.
+Such violations will result in immediate termination of this license and
+may result in takedown notices and legal action, to the fullest extent
+permitted by law. The Software being free does not reduce these rights.
 
-5. Termination
+6. Termination
 This license ends automatically if you breach any of these terms. On
 termination you must stop using the Software and delete all copies.
 
-6. Disclaimer
-The Software is provided "as is", without warranty of any kind. To the
-fullest extent permitted by law, Amir Anderson is not liable for any
-damages arising from its use, including loss of data or project files.
-Save your work and keep backups.
+7. No warranty
+The Software is provided free of charge and "as is", without warranty of
+any kind, express or implied, including fitness for a particular purpose.
+Updates and support are offered at Amir Anderson's discretion and are not
+guaranteed.
 
-7. Third-party software
+8. Limitation of liability
+To the fullest extent permitted by law, Amir Anderson is not liable for any
+damages arising from the use of, or inability to use, the Software,
+including loss of data, project files, time or revenue. Save your work and
+keep backups.
+
+9. Third-party software
 Adobe and After Effects are trademarks of Adobe Inc. The Software is an
 independent product and is not affiliated with or endorsed by Adobe Inc.
 
-8. Contact
+10. Contact
 For licensing, permissions or questions: linkedin.com/in/amiranderson

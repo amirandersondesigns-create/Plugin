@@ -359,18 +359,8 @@ function check(name, ok, detail) {
     await page.waitForSelector(".sheet .still-img", { timeout: 5000 }).catch(() => {});
     check("Capture tab Grab Still shows the same pop-up", !!(await page.$(".sheet .still-name")) && comp.savedFrames === 2, comp.savedFrames);
     await page.click(".sheet-close");
-    // Still size cards: Half saves a half-size still and puts the comp's
-    // resolution back afterwards.
-    const resBefore = comp.resolutionFactor.slice();
-    await page.click(".size-cards .option[data-scale='2']");
-    await page.click(".btn-hero:has-text('Grab Still')");
-    await page.waitForSelector(".sheet .still-name", { timeout: 5000 }).catch(() => {});
-    const halfName = (await page.textContent(".sheet .still-name")) || "";
-    const halfOk = /_half\.png$/.test(halfName) && comp.resolutionFactor.join() === resBefore.join() && (await page.$$(".size-cards .option.on")).length === 1;
-    await page.click(".sheet-close");
-    check("Capture: Half size card grabs a half-size still, resolution restored; no 'add as layer' option",
-        halfOk && !(await page.$("text=Also add as a layer")) && /1920\u00d71080|960\u00d7540/.test(await page.textContent(".size-cards")), [halfName, comp.resolutionFactor]);
-    await page.click(".size-cards .option[data-scale='1']");
+    check("Capture: no still size or 'add as layer' options; new illustration",
+        !(await page.$(".size-cards")) && !(await page.$("text=Also add as a layer")) && !!(await page.$(".capture-illo .i-still")));
 
     // Favorites persist a click and run from the Favorites tab.
     await page.fill("#search", "");
@@ -516,7 +506,7 @@ function check(name, ok, detail) {
     check("resolution and one-click setup are undo steps (one per press)",
         host.undo.groups.filter((g) => /Preview Resolution/.test(g)).length === 4 && host.undo.groups.filter((g) => /Preview Setup/.test(g)).length === 3);
     check("every mutating click was exactly one undo group",
-        host.undo.groups.length - keyGroups === 34 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
+        host.undo.groups.length - keyGroups === 33 && keyGroups >= 1 && keyGroups <= 2, host.undo.groups);
     // Highlights: in every group of choices on every tab, clicking a button
     // lights exactly that one and turns the others off.
     const groupSel = ".seg, .option-row, .filter-chips, .anchor-box";

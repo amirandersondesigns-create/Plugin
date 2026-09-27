@@ -104,16 +104,16 @@
 
     // ---- license & terms (full text: LICENSE.txt) ----------------------------------------
     var TERMS = [
-        ["Ownership", "Amir Anderson Animator Toolkit, including its code, interface design, graphics, presets, lessons and documentation, is the exclusive property of Amir Anderson and is protected by copyright. It is licensed, not sold."],
-        ["Your license", "A personal, non-transferable license to use the toolkit in After Effects for your own personal and studio work."],
-        ["Not permitted", "Copying, recreating, cloning or imitating the toolkit or its design; modifying, reverse engineering or creating derivative works; sharing, selling, renting or sublicensing it; or using it to build a competing product, without written permission from Amir Anderson."],
-        ["Enforcement", "Unauthorized copying, recreation or distribution violates these terms and copyright law, ends your license immediately, and may result in legal action, including claims for damages, injunctive relief and legal fees."],
-        ["No warranty", "Provided \"as is\", without warranty. Save your work and keep backups."],
+        ["Free to use", "The toolkit is free. Free doesn't mean open source: Amir Anderson keeps all rights to it."],
+        ["Your license", "A free, personal, non-transferable license to use the toolkit in After Effects for personal and commercial projects, including client work. What you make with it is yours."],
+        ["Not permitted", "Copying, recreating, cloning or imitating the toolkit or its design; modifying, reverse engineering or creating derivative works; selling it or charging for it; re-uploading its files (share the official download link instead); or using it to build a competing product, without written permission from Amir Anderson."],
+        ["Enforcement", "Unauthorized copying, recreation, redistribution or sale violates these terms and copyright law, ends your license immediately, and may result in takedown notices and legal action. Being free doesn't reduce these rights."],
+        ["No warranty", "Free and provided \"as is\", without warranty. Updates and support aren't guaranteed, and Amir Anderson isn't liable for lost work. Save often and keep backups."],
         ["Adobe", "Adobe and After Effects are trademarks of Adobe Inc. This is an independent product, not affiliated with or endorsed by Adobe."]
     ];
     function showTerms() {
         AT.app.sheet("License & Terms", [
-            h("p.terms-lead", { text: "\u00a9 2026 Amir Anderson. All rights reserved." }),
+            h("p.terms-lead", { text: "\u00a9 2026 Amir Anderson. Free to use. All rights reserved." }),
             h("dl.terms", TERMS.map(function (t) { return [h("dt", { text: t[0] }), h("dd", { text: t[1] })]; })),
             h("p.hint", { text: "The full terms are in LICENSE.txt in the plugin folder." }),
             h("button.btn.btn-sm", { type: "button", on: { click: function () { AT.bridge.openURL(LINKEDIN); } } }, [AT.icon("linkedin"), h("span", { text: "Permissions & questions" })])
@@ -135,7 +135,7 @@
                 h("button.btn.btn-sm.linkedin", { type: "button", title: LINKEDIN, on: { click: function () { AT.bridge.openURL(LINKEDIN); } } }, [AT.icon("linkedin"), h("span", { text: "LinkedIn" })])
             ])]),
             h("div.about-row", [h("span.about-k", { text: "License" }), h("div.about-v.license", [
-                h("span.muted", { text: "\u00a9 2026 Amir Anderson. All rights reserved." }),
+                h("span.muted", { text: "\u00a9 2026 Amir Anderson. Free to use. All rights reserved." }),
                 h("button.btn.btn-sm", { type: "button", text: "Terms", on: { click: showTerms } })
             ])]),
             h("div.about-row", [h("span.about-k", { text: "Welcome" }), h("button.btn.btn-sm", { type: "button", text: "Replay the welcome", on: { click: function () { AT.app.onboarding(); } } })])

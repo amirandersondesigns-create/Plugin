@@ -41,7 +41,7 @@
             return assign({ distance: s.cameraDistance || 300, easing: s.cameraEasing || "smooth" }, dur("cameraDur", 48));
         }
         if (item.command === "still.capture") {
-            return { folder: s.stillFolder || "", importToProject: !!s.stillImport, scale: s.stillScale || 1 };
+            return { folder: s.stillFolder || "", importToProject: !!s.stillImport };
         }
         if (item.command === "layers.stagger") {
             var st = typeof s.staggerAmount === "number" ? s.staggerAmount : (s.staggerFrames || 3);

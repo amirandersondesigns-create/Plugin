@@ -162,17 +162,19 @@
             '<defs><linearGradient id="at-bpc-g"><stop offset="0" style="stop-color:var(--brand);stop-opacity:.15"/><stop offset="1" style="stop-color:var(--brand);stop-opacity:1"/></linearGradient></defs>' +
             '<rect x="12" y="44" width="136" height="20" fill="url(#at-bpc-g)"/>' +
             '<text class="i-cap" x="80" y="40">banding (can happen at 8 bpc)</text><text class="i-cap" x="80" y="76">smooth (16 or 32 bpc)</text>',
-        // Capture: a viewfinder framing a small comp (hills, sun, lower third),
-        // with a focus box and the shutter flash.
+        // Capture: frames of an animation on a timeline; the one under the
+        // playhead is lifted out as a PNG still (light blue, like the
+        // Production lessons). The still flashes when a grab lands.
         capture:
-            '<rect class="i-grid" x="10" y="8" width="140" height="66" rx="3"/>' +
-            '<rect class="i-fill i-dim" x="22" y="15" width="116" height="52" rx="2"/>' +
-            '<path class="i-fill" style="opacity:.35" d="M22 60 44 42l14 10 20-18 26 22 12-8 22 14v5H22z"/>' +
-            '<circle class="i-acc" cx="116" cy="27" r="5"/>' +
-            '<rect class="i-fill" x="30" y="47" width="34" height="4" rx="1"/><rect class="i-acc" x="30" y="53" width="50" height="6" rx="1"/>' +
-            '<rect class="i-mut-line i-dash" x="70" y="32" width="20" height="16"/>' +
-            '<path class="i-acc-line i-thick" d="M16 20v-6h8M144 20v-6h-8M16 62v6h8M144 62v6h-8"/>' +
-            '<rect class="i-flash" x="10" y="8" width="140" height="66" rx="3"/>'
+            '<rect class="i-brand" x="8" y="20" width="18" height="24" rx="2" style="opacity:0.3"/><circle class="i-hole" cx="13" cy="38" r="3"/><rect class="i-brand" x="30" y="20" width="18" height="24" rx="2" style="opacity:0.5"/><circle class="i-hole" cx="37" cy="33" r="3"/><rect class="i-fill" x="52" y="20" width="18" height="24" rx="2"/><circle class="i-hole" cx="66" cy="29" r="3"/><rect class="i-brand" x="74" y="20" width="18" height="24" rx="2" style="opacity:0.5"/><circle class="i-hole" cx="86" cy="26" r="3"/>' +
+            '<path class="i-grid" d="M8 52h88M19 50v4M41 50v4M63 50v4M85 50v4"/>' +
+            '<path class="i-acc-line i-thick" d="M61 12v44"/><path class="i-acc" d="M56 8h10v5l-5 4-5-4z"/>' +
+            '<path class="i-acc-line" d="M98 32c6 0 8-2 12-6M106 24l4 2-1 4"/>' +
+            '<g class="i-still ill-rise"><path class="i-fill" d="M116 12h26l10 10v40a2 2 0 0 1-2 2h-34a2 2 0 0 1-2-2V14a2 2 0 0 1 2-2z"/>' +
+            '<path class="i-brand" d="M142 12v8a2 2 0 0 0 2 2h8z"/><circle class="i-hole" cx="138" cy="33" r="6"/>' +
+            '<text class="i-png" x="133" y="57">PNG</text>' +
+            '<rect class="i-flash" x="114" y="12" width="38" height="52" rx="2"/></g>' +
+            '<text class="i-cap" x="52" y="76">frame at the playhead</text><text class="i-cap" x="133" y="76">still</text>'
     };
 
     AT.illustration = function (name, cls) {

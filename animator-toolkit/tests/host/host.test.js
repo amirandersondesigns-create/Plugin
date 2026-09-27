@@ -700,20 +700,18 @@ test("work area buttons move the work area from anywhere (After Effects checks s
     assert.equal(h.undo.open, 0);
 });
 
-test("Grab Still sizes: Half/Third/Quarter save smaller stills and restore the comp's resolution", () => {
+test("Grab Still saves a full-size PNG and can import it", () => {
     const fs = require("fs"), os = require("os"), path = require("path");
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "at-still-"));
     const h = createHost({ fs: true, desktop: dir });
     const comp = new CompItem();
     h.app.project.activeItem = comp;
     comp.resolutionFactor = [2, 2];
-    for (const [scale, suffix, w] of [[1, "", 1920], [2, "_half", 960], [3, "_third", 640], [4, "_quarter", 480]]) {
-        const r = h.call("still.capture", { folder: dir, scale });
-        assert.equal(r.ok, true, JSON.stringify(r.error));
-        assert.equal(r.result.width, w);
-        assert.ok(r.result.path.endsWith(suffix + ".png"), r.result.path);
-        assert.deepEqual(plain(comp.resolutionFactor), [2, 2], "resolution put back");
-    }
+    const r = h.call("still.capture", { folder: dir });
+    assert.equal(r.ok, true, JSON.stringify(r.error));
+    assert.equal(r.result.width, 1920);
+    assert.ok(r.result.path.endsWith(".png"), r.result.path);
+    assert.deepEqual(plain(comp.resolutionFactor), [2, 2], "comp resolution untouched");
     const imp = h.call("still.capture", { folder: dir, importToProject: true, addToComp: true });
     assert.match(imp.feedback, /imported$/, "imports; no longer adds a layer");
     assert.equal(comp.layerList.length, 0);

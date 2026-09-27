@@ -9,6 +9,7 @@ capture) and explains each one as it goes, with short lessons and shortcuts.
 
 - **Works with:** After Effects 2021 (18.0) and newer, macOS and Windows
 - **Version:** 1.0.0
+- **Price:** free
 
 ## Install
 
@@ -47,7 +48,7 @@ To remove it, use your ZXP installer's Remove button, or
 | **Mask** | Animated mask reveals (wipes, iris, split) and mask tools |
 | **3D** | Make 3D/2D, spread in depth, 3D motion, and extruded 3D text with an Advanced 3D / Classic 3D switch |
 | **Camera** | Create, moves (push, pull, truck, pedestal), lens and focus, orbit and shake rigs, saved positions |
-| **Capture** | Grab Still at **Full, Half, Third or Quarter** size, with an option to import it into the project; a pop-up shows the still and where it was saved |
+| **Capture** | **Grab Still** saves the frame at the playhead as a PNG, with an option to import it into the project; a pop-up shows the still and where it was saved |
 | **Preview** | One-click **Animate Fast / Final Check**, resolution cards (Auto, Full, Half, Third, Quarter), **Rulers** and **Transparency grid** cards, Fast Previews, speed tools (**Work Area 90f / 150f / 300f**, Draft 3D, **Purge Memory**, **Purge All**), color depth, and a planner that mirrors After Effects' Preview panel |
 | **Audio** | Level and fade tools for selected audio layers |
 | **Favorites** | Your own kit of cards. Each favorite can keep **its own settings** (for example Stagger by 8 frames), or follow the tab it came from |
@@ -87,12 +88,14 @@ switch them back.
 
 Copyright (c) 2026 Amir Anderson. All rights reserved.
 
-This software is licensed, not sold, for your personal and studio use.
-Copying, recreating, reverse engineering, modifying, redistributing,
-reselling or creating derivative works of this software, its code or its
-design is strictly prohibited without written permission from Amir Anderson.
-Unauthorized use violates copyright law and may result in legal action. See
-`LICENSE.txt` for the full terms.
+The toolkit is **free** to use for personal and commercial projects,
+including client work, and what you make with it is yours. Free doesn't mean
+open source: copying, recreating, modifying, reverse engineering, reselling,
+re-uploading or creating derivative works of this software, its code or its
+design is prohibited without written permission from Amir Anderson. To share
+it, share the official download link. Unauthorized use violates copyright law
+and may result in takedown notices and legal action. It is provided "as is",
+without warranty. See `LICENSE.txt` for the full terms.
 
 Adobe and After Effects are trademarks of Adobe Inc. This is an independent
 product, not affiliated with or endorsed by Adobe.
