@@ -125,7 +125,7 @@
 
     function needsText(item) {
         var c = item.command || "preset.apply";
-        if (/^easing/.test(c) || c === "keyframes.delete" || c === "keyframes.reverse") return "Needs: keyframes selected in the timeline.";
+        if (/^easing/.test(c) || c === "keyframes.reverse") return "Needs: keyframes selected in the timeline.";
         if (/^camera\.move|camera\.select/.test(c)) return "Needs: a comp with a camera (or a selected camera layer).";
         if (/^(anchor|preset|keyframes\.add|layers\.(align|distribute|nullParent|precompose|stagger|motionBlur))/.test(c)) return "Needs: one or more layers selected.";
         return "Needs: an open composition.";

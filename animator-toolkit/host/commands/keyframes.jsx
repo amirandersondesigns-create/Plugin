@@ -58,25 +58,6 @@ AT.register("keyframes.add", {
     }
 });
 
-AT.register("keyframes.delete", {
-    validate: function (p, ctx) { AT.requireSelectedKeyframes(ctx.comp, 2); },
-    label: "Delete Keyframes",
-    mutating: true,
-    needs: "comp",
-    run: function (payload, ctx) {
-        var sel = AT.requireSelectedKeyframes(ctx.comp);
-        var count = 0;
-        for (var i = 0; i < sel.length; i++) {
-            var keys = sel[i].keys.slice(0).sort(function (a, b) { return b - a; });
-            for (var k = 0; k < keys.length; k++) {
-                sel[i].prop.removeKey(keys[k]);
-                count++;
-            }
-        }
-        return { result: { keyframes: count }, feedback: AT.plural(count, "keyframe") + " deleted" };
-    }
-});
-
 AT.snapshotKey = function (prop, k) {
     var snap = {
         time: prop.keyTime(k),
