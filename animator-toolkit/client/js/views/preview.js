@@ -265,11 +265,13 @@
     }
 
     // Like After Effects' "Choose grid and guide options" menu under the
-    // viewer, same items and order. These overlays have no scripting API, so
-    // the toolkit activates the Composition viewer and presses After
-    // Effects' own shortcut (js/core/keys.js). Where After Effects does
-    // report a setting (Guides, Rulers and snapping on some versions) that
-    // real state is used; otherwise the highlight follows your presses.
+    // viewer, same items and order, using only After Effects scripting (no
+    // key presses, no system permissions):
+    //  - Title/Action Safe, Proportional Grid, 3D Reference Axes: the viewer's
+    //    own versions can't be reached by scripts, so they're drawn in the comp
+    //    as locked guide layers (never render; Ctrl/Cmd+Z; exact highlight).
+    //  - Grid, Guides, Rulers, snapping: View menu commands, or the viewer's
+    //    own setting where After Effects exposes it (then set exactly).
     var gridOpen = false;
     function gridGuidesMenu() {
         var menu = h("div.gg-menu", { role: "menu" });
@@ -283,49 +285,17 @@
         var rows = [];
         var cleanup = h("div.gg-cleanup");
         function isOn(key) { return typeof reported[key] === "boolean" ? reported[key] : AT.viewToggleState(key); }
-
-        // Press the item's After Effects shortcut in the Composition viewer.
-        function pressShortcut(it, key, b) {
-            b.classList.add("is-busy");
-            return AT.bridge.run("viewer.focus").then(function (res) {
-                if (!AT.worked(res)) { b.classList.remove("is-busy"); AT.toast(res.error.message, "info"); return false; }
-                return new Promise(function (r) { setTimeout(r, 150); }).then(function () { return AT.keys.press(it.keys); }).then(function (k) {
-                    b.classList.remove("is-busy");
-                    if (!k.ok) { AT.toast(k.message, "info"); return false; }
-                    return true;
-                });
-            });
-        }
-        function flip(it, key, b, isUndo) {
-            var was = isOn(key);
-            var viaViewer = typeof reported[key] === "boolean";
-            var go = viaViewer
-                ? AT.bridge.run("view.toggle", { item: key, on: !was }).then(function (res) {
-                    if (res.ok && res.result && typeof res.result.on === "boolean") { reported[key] = res.result.on; return true; }
-                    if (!AT.worked(res)) AT.toast(res.error.message, res.error.code === "manual" ? "info" : "error");
-                    return AT.worked(res);
-                })
-                : it.keys ? pressShortcut(it, key, b)
-                : AT.bridge.run("view.toggle", { item: key }).then(function (res) {   // 3D Reference Axes: no shortcut
-                    if (!AT.worked(res)) { AT.toast(res.error.message, "info"); return false; }
-                    return true;
-                });
-            return go.then(function (ok) {
-                if (!ok) return;
-                var now = !was;
-                AT.rememberView(key, now);
-                if (!viaViewer) reported[key] = undefined;
-                paintAll();
-                if (isUndo) { AT.toast("↩ " + it.title + (now ? " on" : " off"), "ok"); return; }
-                var entry = AT.pushUndo({ title: it.title, revert: function () { return flip(it, key, b, true); } });
-                AT.toast("✓ " + it.title + (now ? " on" : " off"), "ok", null, { label: "Undo", run: function () { AT.undoEntry(entry); } });
-            });
-        }
         function row(id) {
             var it = AT.catalog.get(id), key = it.payload.item;
             var st = h("span.gg-state");
-            var b = h("button.gg-item", { type: "button", role: "menuitemcheckbox", title: it.why, "data-item": key, on: { click: function () { flip(it, key, b); } } },
-                [st, AT.icon(it.icon), h("span.gg-title", { text: it.title }), it.keys ? AT.ui.keycaps(it.keys) : h("span.gg-note", { text: "viewer menu only" })]);
+            var b = h("button.gg-item", { type: "button", role: "menuitemcheckbox", title: it.why, "data-item": key, on: { click: function () {
+                var exact = it.overlay || typeof reported[key] === "boolean";
+                AT.run(it, exact ? { on: !isOn(key) } : null, b).then(function (res) {
+                    if (res.ok && res.result && typeof res.result.on === "boolean") reported[key] = res.result.on;
+                    paintAll();
+                });
+            } } }, [st, AT.icon(it.icon), h("span.gg-title", { text: it.title }),
+                it.overlay ? h("span.gg-note", { text: "guide layer" }) : it.keys ? AT.ui.keycaps(it.keys) : null]);
             b.paint = function () {
                 var on = isOn(key);
                 st.innerHTML = "";
@@ -346,16 +316,15 @@
         menu.appendChild(h("div.gg-group", { text: "Snapping (View menu)" }));
         ["view.snapGuides", "view.snapGrid", "view.lockGuides"].forEach(function (id) { menu.appendChild(row(id)); });
         menu.appendChild(cleanup);
-        menu.appendChild(h("p.hint.gg-hint", { text: "Each row switches After Effects' own setting by pressing its shortcut in the Composition viewer. The highlight follows your presses here (After Effects doesn't report most of these); if you change one in After Effects directly, press it here once to line up. Viewer settings aren't in Edit > Undo: press again, or Undo in the message." }));
+        menu.appendChild(h("p.hint.gg-hint", { text: "Everything here works inside After Effects only, no system permissions. Title/Action Safe, Proportional Grid and 3D Reference Axes are drawn as locked guide layers (\"AT ...\"): they show in the viewer, never render, and Ctrl/Cmd+Z removes them. The others run After Effects' View menu commands; press again to turn them off." }));
         function readState() {
             AT.bridge.run("preview.read").then(function (res) {
                 if (res.ok && res.result) {
                     reported = res.result.view || {};
                     cleanup.innerHTML = "";
                     if (res.result.oldOverlays > 0) {
-                        cleanup.appendChild(h("button.link.gg-clean", { type: "button", text: "Remove the toolkit's old \"AT\" guide layers from this comp", on: { click: function () {
-                            ["safe", "propGrid", "grid", "axes"].reduce(function (p, k) { return p.then(function () { return AT.bridge.run("view.overlay", { item: k, on: false }); }); }, Promise.resolve())
-                                .then(function () { cleanup.innerHTML = ""; AT.toast("✓ Old guide layers removed", "ok"); });
+                        cleanup.appendChild(h("button.link.gg-clean", { type: "button", text: "Remove the old \"AT Grid\" guide layer from this comp", on: { click: function () {
+                            AT.bridge.run("view.overlay", { item: "grid", on: false }).then(function () { cleanup.innerHTML = ""; AT.toast("✓ Old guide layer removed", "ok"); });
                         } } }));
                     }
                 }

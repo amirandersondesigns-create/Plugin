@@ -61,7 +61,6 @@
                 illo.classList.remove("flash");
                 void illo.offsetWidth;
                 illo.classList.add("flash");
-                drawRecent();
             });
         } } }, [AT.icon("capture"), h("span", { text: "Grab Still" })]);
 
@@ -80,19 +79,6 @@
             h("button.btn.btn-sm", { type: "button", text: "Open", on: { click: function () { AT.bridge.run("still.reveal", { folder: s.stillFolder }); } } })
         ]);
 
-        var recent = h("div.capture-list");
-        function drawRecent() {
-            recent.innerHTML = "";
-            if (!session.length) {
-                recent.appendChild(h("p.muted", { text: "Stills you grab this session appear here." }));
-                return;
-            }
-            session.slice(0, 6).forEach(function (r) {
-                recent.appendChild(h("div.capture-item", [AT.icon("capture"), h("span.path", { text: r.path.split(/[\\/]/).pop(), title: r.path }),
-                    h("span.muted", { text: r.at.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) })]));
-            });
-        }
-        drawRecent();
 
         page.appendChild(h("div.capture-hero", [
             illo,
@@ -104,7 +90,6 @@
             AT.ui.toggle("Import into project", s.stillImport, function (v) { AT.store.update("settings", function (x) { x.stillImport = v; }); }),
             AT.ui.toggle("Also add as a layer in this comp", s.stillAddToComp, function (v) { AT.store.update("settings", function (x) { x.stillAddToComp = v; }); })
         ])));
-        page.appendChild(AT.ui.section("This session", { icon: "clock" }, recent));
         page.appendChild(h("p.fine", { text: "Experimental: renders through the active camera at the current time, for approvals and reference. For a deliverable still use Composition › Save Frame As › File (Render Queue)." }));
     }
 

@@ -246,9 +246,12 @@
      ["snapGuides", "Snap to Guides", "magnet", "Mod + Shift + ;", "Layers click onto your guides as you drag them, so things line up exactly."],
      ["snapGrid", "Snap to Grid", "magnet", "Mod + Shift + '", "Layers snap to the grid as you drag, for even spacing."],
      ["lockGuides", "Lock Guides", "lock", "Mod + Alt + Shift + ;", "Stops guides moving when you click near them."]].forEach(function (g) {
-        add({ id: "view." + g[0], title: g[1], icon: g[2], view: "preview", command: "view.toggle", payload: { item: g[0] }, keys: g[3],
+        var overlay = /^(safe|propGrid|axes)$/.test(g[0]);
+        add({ id: "view." + g[0], title: g[1], icon: g[2], view: "preview", command: overlay ? "view.overlay" : "view.toggle", payload: { item: g[0] }, keys: g[3], overlay: overlay,
             summary: "Turns " + g[1].replace("Show ", "") + " on or off in the Composition viewer" + (g[3] ? " (" + g[3].replace(/Mod/g, "Ctrl/Cmd") + ")" : "") + ".",
-            why: g[4] + " Switches After Effects' own viewer setting (the toolkit presses its shortcut for you). Stays highlighted while it's on; press again to turn it off.",
+            why: g[4] + (overlay
+                ? " Scripts can't switch the viewer's own version, so the toolkit draws it in the comp as a locked guide layer (never renders). Press again to remove it, or Ctrl/Cmd+Z."
+                : " Runs After Effects' View menu command. Stays highlighted while it's on; press again to turn it off."),
             keywords: "grid guides rulers snap snapping lock viewer toggle " + g[1].toLowerCase() });
     });
     add({ id: "preview.draft3d", title: "Draft 3D", icon: "cube", view: "preview", command: "preview.draft3d",

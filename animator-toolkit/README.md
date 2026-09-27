@@ -17,7 +17,7 @@ It also includes micro-lessons and explained shortcuts.
 
 1. Install a free ZXP installer, such as [ZXP Installer by aescripts](https://aescripts.com/learn/zxp-installer/)
    or Anastasiy's Extension Manager.
-2. Drag `Amir_Anderson_Animator_Toolkit-0.3.10.zxp` onto it.
+2. Drag `Amir_Anderson_Animator_Toolkit-0.3.11.zxp` onto it.
 3. Restart After Effects and open **Window › Extensions › Amir Anderson Animator Toolkit**.
 
 The ZXP is self-signed (not by an Adobe-trusted certificate), so installers
@@ -28,7 +28,7 @@ install as updates.
 
 **Option B: zip + install script (unsigned, debug mode)**
 
-1. Unzip `Amir_Anderson_Animator_Toolkit-0.3.10.zip`.
+1. Unzip `Amir_Anderson_Animator_Toolkit-0.3.11.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat` (Windows).
    These turn on CEP *PlayerDebugMode* so AE will load an unsigned panel,
    then copy the extension to your user CEP extensions folder.
@@ -71,7 +71,7 @@ unconfirmed result shows a short info note instead.
 
 First check `~/Library/Logs/CSXS/CEP12-AEFT.log` for `Unsupported Manifest version`.
 That error means the manifest can't be parsed. Up to 0.1.0 the manifest
-declared a default XML namespace, which After Effects 2026 rejects. 0.3.10
+declared a default XML namespace, which After Effects 2026 rejects. 0.3.11
 matches Adobe's schema, and `tests/manifest.test.js` guards against a repeat.
 
 1. Run `install/diagnose-mac.command` (or `diagnose-windows.bat`) from the zip.
@@ -101,7 +101,7 @@ and flows; it doesn't touch After Effects.
 | **3D** | Make 3D/2D, spread in depth, 3D motion (flip, tumble, door swing, fly from depth, card flip), extruded 3D text with an Advanced 3D / Classic 3D switch, and a link to the Camera tab |
 | **Camera** | Create, moves, **lens & focus** (DOF, aperture, focus on layer, lens zoom), **rigs** (orbit null, wiggle shake), and saved positions |
 | **Capture** | Grab Still. Every Grab Still button (including Home) opens a pop-up with the image, file name and folder, plus Open folder |
-| **Preview** | A **Viewer** section like the buttons under the Composition viewer: the **Grid & guides** menu (Title/Action Safe, Proportional Grid, Grid, Guides, Rulers, 3D Reference Axes, Snap to Guides/Grid, Lock Guides; each switches After Effects' own setting by pressing its shortcut in the viewer, and stays highlighted while on) and the transparency grid. One-click **Animate Fast / Final Check** (each card lists what it sets and ticks each part After Effects confirmed) and resolution cards **Auto / Full / Half / Third / Quarter**, each showing how blocky the picture gets (Auto matches the viewer zoom), a **Transparency grid** toggle, Fast Previews (Draft modes marked 3D-only), 8/16/32 bpc, a copy of After Effects' **Preview panel** (Shortcut, Include, Cache Before Playback, Range, Play From, Frame Rate / Skip 0-1-2-5 / Resolution, Full Screen, On Stop options), saved per shortcut with Animating / Final check fill-ins; plugins can't change the real panel, so it's copied across by hand, and speed tools |
+| **Preview** | A **Viewer** section like the buttons under the Composition viewer: the **Grid & guides** menu (Title/Action Safe, Proportional Grid, Grid, Guides, Rulers, 3D Reference Axes, Snap to Guides/Grid, Lock Guides; Title/Action Safe, Proportional Grid and 3D Reference Axes are drawn as locked guide layers, since scripts can't reach the viewer's own versions; the rest run After Effects' View menu commands. Scripting only, no system permissions; each row stays highlighted while on) and the transparency grid. One-click **Animate Fast / Final Check** (each card lists what it sets and ticks each part After Effects confirmed) and resolution cards **Auto / Full / Half / Third / Quarter**, each showing how blocky the picture gets (Auto matches the viewer zoom), a **Transparency grid** toggle, Fast Previews (Draft modes marked 3D-only), 8/16/32 bpc, a copy of After Effects' **Preview panel** (Shortcut, Include, Cache Before Playback, Range, Play From, Frame Rate / Skip 0-1-2-5 / Resolution, Full Screen, On Stop options), saved per shortcut with Animating / Final check fill-ins; plugins can't change the real panel, so it's copied across by hand, and speed tools |
 | **Audio** | -3/+3 dB, bed at -12 dB, reset, fades with a length slider in frames, and two shortcuts |
 | **Favorites** | Cards with previews, groups, rename, reorder |
 | **Learn** | Lessons, including "Stuck? Quick fixes" (invisible mask paths, empty viewer, finding anything, guides, getting around) and production topics (preview speed, rasterize, bpc, audio, 3D). 79 shortcuts in 9 categories. About: density, version, author with LinkedIn link, replay the welcome |
@@ -174,8 +174,8 @@ If it needs a new keyframe shape or kind, add it to `AT.SHAPES` or
 ## Tests
 
 ```
-npm test          # 64 unit/contract tests (Node, no dependencies)
-npm run test:e2e  # 80 end-to-end checks (81 with E2E_DROP=1) (needs Playwright + Chromium);
+npm test          # 65 unit/contract tests (Node, no dependencies)
+npm run test:e2e  # 81 end-to-end checks (82 with E2E_DROP=1) (needs Playwright + Chromium);
                   # E2E_FRIENDLY=1 for ideal conditions, E2E_DROP=1 for lost
                   # return values, E2E_SRC=<dir> for another build
 ```

@@ -78,10 +78,13 @@ AT.register("preview.read", {
             view: (function () {
                 var o = {}, k;
                 for (k in AT.VIEW_ITEMS) if (AT.VIEW_ITEMS.hasOwnProperty(k)) o[k] = AT.viewItemState(opts, k);
+                o.safe = AT.overlayLayers(c, "safe").length > 0;
+                o.propGrid = AT.overlayLayers(c, "propGrid").length > 0;
+                o.axes = AT.overlayLayers(c, "axes").length > 0;
                 return o;
             }()),
-            // Guide layers drawn by 0.3.8, so the panel can offer to remove them.
-            oldOverlays: (function () { var n = 0; for (var k in AT.OVERLAYS) if (AT.OVERLAYS.hasOwnProperty(k)) n += AT.overlayLayers(c, k).length; return n; }()),
+            // Old 0.3.8 "AT Grid" layers, so the panel can offer to remove them.
+            oldOverlays: AT.overlayLayers(c, "grid").length,
             workAreaStart: c.workAreaStart,
             workAreaDuration: c.workAreaDuration
         } };
@@ -133,33 +136,16 @@ AT.VIEW_ITEMS = {
     rulers:      { name: "Rulers",          option: "rulers",           menus: ["Show Rulers", "Hide Rulers"] },
     guides:      { name: "Guides",          option: "guidesVisibility", menus: ["Show Guides", "Hide Guides"] },
     snapGuides:  { name: "Snap to Guides",  option: "guidesSnap",       menus: ["Snap to Guides"] },
-    lockGuides:  { name: "Lock Guides",     option: "guidesLocked",     menus: ["Lock Guides"] },
+    lockGuides:  { name: "Lock Guides",     option: "guidesLocked",     menus: ["Lock Guides", "Unlock Guides"] },
     snapGrid:    { name: "Snap to Grid",    option: null,               menus: ["Snap to Grid"] },
-    // The viewer's grid-and-guides menu items. The panel presses their
-    // shortcuts (see client/js/core/keys.js); these entries are the fallback.
-    safe:        { name: "Title/Action Safe", option: null, menus: ["Title/Action Safe"], manual: "Click the Composition viewer, then press ' (apostrophe)." },
-    propGrid:    { name: "Proportional Grid", option: null, menus: ["Proportional Grid"], manual: "Click the Composition viewer, then press Alt/Option + ' ." },
-    grid:        { name: "Grid",              option: null, menus: ["Show Grid", "Hide Grid"], manual: "Click the Composition viewer, then press Ctrl/Cmd + ' ." },
-    axes:        { name: "3D Reference Axes", option: null, menus: ["3D Reference Axes"], manual: "3D Reference Axes has no shortcut: use the grid-and-guides button under the Composition viewer." }
+    grid:        { name: "Grid",            option: null,               menus: ["Show Grid", "Hide Grid"] }
 };
 
-// Brings the Composition viewer to the front with keyboard focus, so a
-// shortcut the panel presses next goes to it.
-AT.register("viewer.focus", {
-    mutating: false,
-    needs: "comp",
-    run: function (payload, ctx) {
-        var v = null;
-        try { v = app.activeViewer; } catch (e) {}
-        if (!v) { try { v = ctx.comp.openInViewer(); } catch (e2) {} }
-        if (!v) AT.fail("no-viewer", "Open the comp in the Composition viewer first.");
-        try { v.setActive(); } catch (e3) {}
-        return { result: { focused: true } };
-    }
-});
 
 // ---- overlays: guide layers ------------------------------------------------------
-// Title/Action Safe, Proportional Grid, Grid and 3D Reference Axes are drawn
+// Title/Action Safe, Proportional Grid and 3D Reference Axes live only in the
+// viewer's own menu, which scripts can't reach. The toolkit draws them in the
+// comp instead (Grid's layer version stays for cleaning up older comps),
 // as locked GUIDE layers (visible in the viewer, never rendered). Unlike the
 // viewer's own overlays, which scripts can't switch, these always work, show
 // their real state (the layer exists or not) and are one Ctrl/Cmd+Z.
@@ -339,12 +325,23 @@ AT.register("preview.workArea", {
     run: function (payload, ctx) {
         var c = ctx.comp;
         // Frames (how the panel counts time); seconds still accepted.
+        var fd = c.frameDuration;
         var secs = typeof payload.frames === "number" ? AT.frames(c, payload.frames) : typeof payload.seconds === "number" ? payload.seconds : 3;
-        var start = Math.min(c.time, Math.max(0, c.duration - c.frameDuration));
-        var dur = Math.max(c.frameDuration, Math.min(secs, c.duration - start));
+        // Start on the playhead's frame (never past the last frame).
+        var start = Math.round(Math.min(c.time, c.duration - fd) / fd) * fd;
+        if (start < 0) start = 0;
+        var dur = Math.max(fd, Math.min(secs, c.duration - start));
+        // After Effects checks start + duration against the comp length on
+        // EVERY write, so shrink the work area to one frame first, then move
+        // its start, then give it its length. (Setting the start first fails
+        // whenever the old work area is long, e.g. the whole comp.)
+        c.workAreaDuration = fd;
         c.workAreaStart = start;
         c.workAreaDuration = dur;
-        return { result: {}, feedback: "Work area: " + Math.round(dur / c.frameDuration) + " frames from the playhead" };
+        var frames = Math.round(dur / fd);
+        return { result: { start: start, duration: dur, frames: frames },
+            feedback: "Work area: " + frames + " frames from the playhead (frame " + Math.round(start / fd) + ")" +
+                (frames < Math.round(secs / fd) ? ", shortened to fit the comp" : "") };
     }
 });
 

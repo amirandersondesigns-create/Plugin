@@ -689,11 +689,11 @@ test("every undoable action reports its Edit > Undo name, and app.undo only undo
     assert.equal(again.error.code, "manual");
 });
 
-test("old 0.3.8 guide-layer overlays: counted by preview.read and removable (clean-up link)", () => {
+test("Title/Action Safe, Proportional Grid and 3D Axes are locked guide layers: toggled, reported, undoable", () => {
     const h = setup();
     const keep = h.comp.add(ShapeLayer, "Artwork", { inPoint: 0, outPoint: 8 });
     keep.selected = true;
-    for (const item of ["safe", "propGrid", "grid", "axes"]) {
+    for (const item of ["safe", "propGrid", "axes"]) {
         const on = h.call("view.overlay", { item });
         assert.equal(on.ok, true, item);
         assert.equal(on.result.on, true);
@@ -701,37 +701,67 @@ test("old 0.3.8 guide-layer overlays: counted by preview.read and removable (cle
         const ls = h.comp.layerList.filter((l) => l.name.indexOf(h.AT.OVERLAYS[item].name) === 0);
         assert.equal(ls.length, item === "axes" ? 3 : 1, item);
         ls.forEach((l) => { assert.equal(l.guideLayer, true); assert.equal(l.locked, true); });
-        const contents = ls[0].property("ADBE Root Vectors Group").property(1).property("ADBE Vectors Group");
-        assert.ok(contents.numProperties >= 2, item + " draws paths and a stroke");
+        assert.equal(h.call("preview.read").result.view[item], true, item);
     }
-    assert.equal(h.call("preview.read").result.oldOverlays, 6);
     // Safe areas: action safe 90% and title safe 80% of a 1920x1080 frame.
     const safe = h.comp.layerList.find((l) => l.name === "AT Title/Action Safe");
     const paths = safe.property("ADBE Root Vectors Group").property(1).property("ADBE Vectors Group");
     assert.deepEqual(plain(paths.property(1).property("ADBE Vector Shape").value.vertices[0]), [-864, -486]);
     assert.deepEqual(plain(paths.property(2).property("ADBE Vector Shape").value.vertices[0]), [-768, -432]);
-    // 3D axes: the Z line is a 3D layer turned 90 degrees on Y.
     const z = h.comp.layerList.find((l) => l.name === "AT 3D Reference Axes Z");
     assert.equal(z.threeDLayer, true);
     assert.equal(z.property("ADBE Transform Group").property("ADBE Rotate Y").value, -90);
-    // Press again: removed (even though locked); the artwork is untouched.
-    for (const item of ["safe", "propGrid", "grid", "axes"]) {
+    // Explicit on while on changes nothing; press again removes (even locked).
+    assert.equal(h.call("view.overlay", { item: "safe", on: true }).result.on, true);
+    assert.equal(h.comp.layerList.filter((l) => l.name === "AT Title/Action Safe").length, 1);
+    for (const item of ["safe", "propGrid", "axes"]) {
         assert.equal(h.call("view.overlay", { item }).result.on, false);
+        assert.equal(h.call("preview.read").result.view[item], false);
     }
-    assert.equal(h.call("preview.read").result.oldOverlays, 0);
     assert.deepEqual(h.comp.layerList.map((l) => l.name), ["Artwork"]);
+    // An old 0.3.8 "AT Grid" layer is counted so the panel can offer to remove it.
+    h.call("view.overlay", { item: "grid" });
+    assert.equal(h.call("preview.read").result.oldOverlays, 1);
+    h.call("view.overlay", { item: "grid", on: false });
+    assert.equal(h.call("preview.read").result.oldOverlays, 0);
     assert.equal(h.undo.open, 0);
 });
 
-test("grid-and-guides items: viewer.focus activates the viewer; menu fallback explains the shortcut", () => {
+test("Grid, Guides, Rulers and snapping use After Effects' View menu commands (no key presses)", () => {
     const h = setup();
-    assert.equal(h.call("viewer.focus").ok, true);
-    h.app.activeViewer = null;
-    assert.equal(h.call("viewer.focus").ok, true, "opens the comp in a viewer when none is active");
-    for (const [item, key] of [["safe", /' \(apostrophe\)/], ["propGrid", /Alt\/Option \+ '/], ["grid", /Ctrl\/Cmd \+ '/], ["axes", /no shortcut/]]) {
-        delete h.app.menus[{ safe: "Title/Action Safe", propGrid: "Proportional Grid", grid: "Show Grid", axes: "3D Reference Axes" }[item]];
+    const vo = h.app.activeViewer.views[0].options;
+    delete vo.guidesVisibility; delete vo.rulers; delete vo.guidesSnap; delete vo.guidesLocked; // a version that doesn't report them
+    for (const [item, id] of [["grid", 3042], ["guides", 3044], ["rulers", 3043], ["snapGuides", 3040], ["snapGrid", 3041], ["lockGuides", 3045]]) {
         const r = h.call("view.toggle", { item });
-        assert.equal(r.error.code, "manual", item);
-        assert.match(r.error.message, key, item);
+        assert.equal(r.ok, true, item);
+        assert.equal(r.result.on, null, "state unknown: the panel remembers presses");
+        assert.equal(h.app.executed.slice(-1)[0], id, item);
+        assert.equal(r.undo, "", "viewer settings are not undo steps");
     }
+    // "Lock Guides" reads "Unlock Guides" once locked: both names work.
+    delete h.app.menus["Lock Guides"]; h.app.menus["Unlock Guides"] = 3049;
+    assert.equal(h.call("view.toggle", { item: "lockGuides" }).ok, true);
+    assert.equal(h.app.executed.slice(-1)[0], 3049);
+    delete h.app.menus["Show Grid"];
+    const miss = h.call("view.toggle", { item: "grid" });
+    assert.equal(miss.error.code, "manual");
+});
+
+test("work area buttons move the work area from anywhere (After Effects checks start + length on every write)", () => {
+    const h = setup(); // 10 s at 30 fps; work area starts as the whole comp
+    const set = (t, frames) => { h.comp.time = t; return h.call("preview.workArea", { frames }); };
+    let r = set(5, 90);
+    assert.equal(r.ok, true, JSON.stringify(r.error));
+    close(h.comp.workAreaStart, 5); close(h.comp.workAreaDuration, 3);
+    r = set(1, 180); // moving backwards from a short work area
+    assert.equal(r.ok, true);
+    close(h.comp.workAreaStart, 1); close(h.comp.workAreaDuration, 6);
+    r = set(9.5, 90); // near the end: shortened to fit
+    assert.equal(r.ok, true);
+    close(h.comp.workAreaStart, 9.5); close(h.comp.workAreaDuration, 0.5);
+    assert.match(r.feedback, /shortened to fit/);
+    r = set(2.0166, 90); // between frames: snaps to the playhead's frame
+    close(h.comp.workAreaStart, 2);
+    assert.equal(r.result.frames, 90);
+    assert.equal(h.undo.open, 0);
 });

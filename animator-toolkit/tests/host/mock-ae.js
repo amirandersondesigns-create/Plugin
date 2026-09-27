@@ -388,8 +388,10 @@ class CompItem {
         this.markerProperty = new Property("Marker", "ADBE Marker", { value: null });
         this.resolutionFactor = [1, 1];
         this.draft3d = false;
-        this.workAreaStart = 0;
-        this.workAreaDuration = this.duration;
+        // Like After Effects: the work area must always fit inside the comp,
+        // checked on every assignment (so the order of the two writes matters).
+        this._waStart = 0;
+        this._waDur = this.duration;
         this.renderers = opts.renderers || ["ADBE Advanced 3d", "ADBE Ernst"];
         this.renderer = this.renderers[0];
         const comp = this;
@@ -408,6 +410,16 @@ class CompItem {
     }
     layer(i) { return this.layerList[i - 1]; }
     get numLayers() { return this.layerList.length; }
+    get workAreaStart() { return this._waStart; }
+    set workAreaStart(v) {
+        if (v < 0 || v + this._waDur > this.duration + 1e-9) throw new Error("After Effects error: workAreaStart value out of range (start + duration exceeds the comp).");
+        this._waStart = v;
+    }
+    get workAreaDuration() { return this._waDur; }
+    set workAreaDuration(v) {
+        if (v <= 0 || this._waStart + v > this.duration + 1e-9) throw new Error("After Effects error: workAreaDuration value out of range.");
+        this._waDur = v;
+    }
     openInViewer() { return { setActive() { return true; } }; }
     saveFrameToPng(time, file) {
         const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFklEQVR4nGNgYGD4z8DAwMDAwMDAAAAPAAHmJ5xQAAAAAElFTkSuQmCC", "base64");
