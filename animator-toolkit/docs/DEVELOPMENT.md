@@ -24,7 +24,7 @@ Presets are data (`client/js/content/motions.js`). The host engine
    preset name and spanning its duration. Presets that start on the same frame
    share one marker ("Fade In + Slide Up").
 
-Every click is one undo group, including multi-step presets. Each message has an **Undo** button, and Ctrl/Cmd+Z in the panel undoes the toolkit's last action: project changes through Edit › Undo (only while they're still the latest step), viewer toggles (grid, guides, snapping, safe areas, transparency, which After Effects keeps out of Edit › Undo) by switching them back.
+Every click is one undo group, including multi-step presets. Each message has an **Undo** button, and Ctrl/Cmd+Z in the panel undoes the toolkit's last action: project changes through Edit › Undo (only while they're still the latest step), viewer toggles (rulers, transparency grid, Fast Previews, which After Effects keeps out of Edit › Undo) by switching them back.
 
 ## Architecture
 
@@ -82,6 +82,6 @@ the mock and clicks through every tab.
 A mock is not After Effects. Before a release, check in After Effects (macOS
 and Windows): every tab loads; each button is one undo; Bounce In + Bounce Out
 on one layer; text presets on point and paragraph text; camera moves; Grab
-Still at each size; Rulers, Transparency grid and Fast Previews switch on and
+Still (with and without Import into project); Rulers, Transparency grid and Fast Previews switch on and
 off; Work Area buttons from different playhead positions; Purge All
 shows After Effects' confirmation; favorites with their own settings.

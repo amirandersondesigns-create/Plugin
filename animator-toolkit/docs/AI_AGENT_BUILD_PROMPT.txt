@@ -1,0 +1,541 @@
+===========================================================================
+ AI AGENT BUILD PROMPT
+ How the Amir Anderson Animator Toolkit was built for Adobe After Effects
+ Copyright (c) 2026 Amir Anderson. All rights reserved. Internal document.
+===========================================================================
+
+HOW TO USE THIS FILE
+---------------------------------------------------------------------------
+This file is a prompt and a playbook for an AI coding agent. Part 1 is a
+prompt you can paste in as-is to start a new After Effects panel project.
+Parts 2-13 are the detailed knowledge behind it: the architecture, the
+After Effects behaviors that caused real bugs (and their fixes), the design
+rules, the tests, the packaging and the release steps. An agent should
+read all of it before writing code, and follow Part 12 (the working method)
+on every change.
+
+Note: this file describes how this plugin was built so an agent can learn
+the method and apply it to NEW plugins. The Animator Toolkit itself is
+proprietary (see LICENSE.txt); do not copy or recreate it.
+
+
+===========================================================================
+ PART 1 - THE MASTER PROMPT (paste this to your agent)
+===========================================================================
+
+You are a senior Adobe After Effects extension engineer and product
+designer. Build a dockable CEP panel for After Effects that is fast,
+beginner-friendly and production-safe. Follow these rules without
+exception:
+
+1. Two layers only. An HTML/JS panel (the UI) and ExtendScript host scripts
+   (the only code that touches the project). The panel never builds
+   ExtendScript source code; it sends one versioned JSON request to a
+   single host dispatcher and gets JSON back.
+2. Only control the After Effects project. No keystroke automation, no
+   AppleScript/PowerShell, nothing that needs macOS Accessibility or any
+   other system permission. Use the scripting DOM and
+   app.findMenuCommandId()/app.executeCommand() only.
+3. Every button that changes the project is exactly ONE undo step with a
+   readable name ("<Plugin>: Set Anchor Point"). Check preconditions
+   before opening the undo group so a refused click leaves no empty undo
+   entry. Every message in the panel offers Undo.
+4. Every message is written for a new animator: what happened, or exactly
+   what to select/do next. Never show a raw exception.
+5. Host code is ES3 (ExtendScript), pure ASCII, and lives in ONE uniquely
+   named namespace ($["com.yourname.plugin"]) because every extension in
+   After Effects shares one ExtendScript global scope. No eval of request
+   data: ship your own JSON parser.
+6. Timing is shown in frames (with seconds as a hint), because that's how
+   animators think in the timeline.
+7. Build a strict mock of the After Effects DOM that throws where After
+   Effects throws, unit-test every command against it, and run end-to-end
+   tests of the real panel in Chromium with a fake __adobe_cep__ bridge.
+   Test the packaged builds, not only the source.
+8. Verify, don't assume. Reproduce each bug in the mock first, fix it,
+   prove the fix with a test, screenshot the UI, then commit. Report
+   honestly what was verified in the mock and what still needs a check in
+   real After Effects.
+9. Ship a signed ZXP and a zip with install scripts, clean file names, a
+   LICENSE.txt, an INSTALL.md and a user guide PDF with screenshots.
+
+Deliver in small, verified increments, and keep the user informed.
+
+
+===========================================================================
+ PART 2 - WHAT THE PLUGIN DOES (product spec)
+===========================================================================
+
+Name: Amir Anderson Animator Toolkit (version 1.0.0)
+Host: After Effects 2021 (18.0) or later, macOS and Windows (manifest
+      <Host Name="AEFT" Version="[18.0,99.9]"/>, CSXS 9.0 runtime).
+Audience: animators and designers moving into motion.
+Price: free (proprietary license).
+
+Twelve tabs (tab order = script order in client/index.html):
+ - Home: "For your selection" suggestions that change with what's selected
+   (text layer -> text entrances, keyframes -> easing), editable Quick
+   actions (add/remove, can always add back), favorites, recent tools, and
+   the "5 essential skills" lessons with progress.
+ - Animate: anchor point grid (moves the anchor WITHOUT moving the layer),
+   Align/Distribute to comp, keyframe buttons (P, S, R, T, A, All) at the
+   playhead, Reverse Keys, Stagger (in frames, in selection order), the
+   Motion library (entrances/exits), and layer tools (Null + Parent,
+   Precompose, Motion Blur, Continuous Rasterize, Marker, New Null).
+ - Easing: live bezier curve + motion preview, Easy Ease / In / Out /
+   Linear / Hold, curve presets, physics (Overshoot, Bounce, Elastic as
+   REAL keyframes), custom In/Out influence sliders.
+ - Text: New Text (centered anchor), presets by letter/word/line built
+   with real Text Animators and Range Selectors.
+ - Mask: animated mask reveals (wipes, iris, split) built as real masks,
+   plus rectangle/ellipse mask, invert, feather.
+ - 3D: Make 3D/2D, Spread in Depth (parallax), Advanced 3D/Classic 3D
+   renderer switch, Extrude text/shapes, 3D motion presets.
+ - Camera: create (lens 24/35/50/80/135, one-node), moves (Push, Pull,
+   Truck, Pedestal) from the playhead with distance, duration in frames
+   and feel; lens zoom, depth of field, focus on layer, orbit rig (a null
+   the camera is parented to), shake (wiggle expression), saved positions.
+ - Capture: Grab Still saves the frame at the playhead as a PNG (with
+   optional Import into project), with a pop-up showing the real image and
+   its folder.
+ - Preview: one-click "Animate Fast" (Half, Adaptive Fast Previews, Draft
+   3D) and "Final Check" (Full, Off, Draft 3D off); resolution cards (Auto,
+   Full, Half, Third, Quarter); Viewer cards (Rulers, Transparency grid);
+   Fast Previews modes; Speed tools (Work Area 90f/150f/300f = 3/5/10 s,
+   Draft 3D, Purge Memory, Purge All); color depth; and a planner that
+   mirrors After Effects' Preview panel (it can't be scripted).
+ - Audio: level down/up 3 dB, set -12 dB, reset 0 dB, fade in/out.
+ - Favorites: star anything; cards run on click; rename, reorder, remove;
+   each favorite can store ITS OWN settings (e.g. Stagger 8 frames),
+   starting from the source tab's current settings.
+ - Learn: 26 short lessons (essentials, basics, principles, quick fixes,
+   production), many with "Try it" buttons; 81 After Effects shortcuts
+   explained in plain words; About (density, version, license, LinkedIn).
+
+Global: search (press /) over every tool, preset, lesson and shortcut;
+right-click any tool for "what it does / why / what it needs"; messages
+with Undo; header logo opens the author's LinkedIn.
+
+Content size: 47 motion definitions (each has an In and an Out variant),
+about 60 tool definitions (some expand into several buttons), 26 lessons,
+81 shortcuts.
+
+
+===========================================================================
+ PART 3 - NON-NEGOTIABLE CONSTRAINTS
+===========================================================================
+
+- Scope: control the After Effects project only. The user explicitly
+  rejected anything needing machine permissions. Keystroke simulation for
+  View menu items (grids, guides) was removed for this reason; those items
+  became explained shortcuts in Learn instead.
+- Undo: one undo group per mutating click, named "Animator Toolkit:
+  <Label>". Viewer settings (rulers, transparency grid, Fast Previews,
+  resolution in some versions) are NOT in After Effects' undo; the panel
+  remembers the previous state and switches it back, and says so.
+- Frames-only timing in the UI; seconds only as a hint.
+- No duplicate features across tabs; each tool has one home (search and
+  favorites point to it).
+- Highlights must follow clicks: a selected option/card stays lit until
+  another is picked or it's pressed again.
+- Remove any control that doesn't do something real (e.g. "Read selected
+  keys" and an Essentials hide toggle were removed).
+- Accurate icons, illustrations and wording; American spelling.
+- Host files: ES3 syntax, pure ASCII (ExtendScript file decoding varies by
+  host), no globals outside the namespace, no try/finally around returns.
+
+
+===========================================================================
+ PART 4 - ARCHITECTURE
+===========================================================================
+
+Folder layout:
+  CSXS/manifest.xml        CEP manifest (MainPath ./client/index.html,
+                           ScriptPath ./host/index.jsx, --enable-nodejs,
+                           --mixed-context, panel 360x720, min 280x320)
+  host/index.jsx           loader: AT.MODULES list, AT.boot(root) evalFiles
+                           every module, sets AT.ready
+  host/core/json.jsx       JSON stringify + a real parser (ES3 has no JSON;
+                           never eval request text)
+  host/core/dispatcher.jsx command registry, context building, undo groups,
+                           user-facing errors, lastResponse
+  host/core/props.jsx      property matching, layer kinds, keyframe-safe
+                           offsets, helpers
+  host/commands/*.jsx      anchor, easing, presets, text, keyframes, layers,
+                           camera, mask, threed, preview, still, context
+  client/index.html        loads CSInterface, core, content, ui, views
+  client/js/core/bridge.js the ONLY caller of evalScript
+  client/js/core/preview-host.js  simulated host for browser preview
+  client/js/core/store.js  settings/favorites/progress as versioned JSON
+                           files in <user data>/AnimatorToolkit, atomic
+                           writes, localStorage fallback, then memory
+  client/js/core/catalog.js id -> tool/preset/lesson; AT.run(item,
+                           overrides) executes anything; undo history
+  client/js/core/search.js stemmed, weighted search index
+  client/js/core/favorites.js + fav-settings.js  favorites store ids (never
+                           copies) plus optional params overrides
+  client/js/content/*.js   DATA ONLY: actions, motions, lessons, shortcuts
+  client/js/ui/*.js        icons (inline SVG), illustrations, components
+  client/js/views/*.js     one file per tab
+  client/css/tokens.css    design tokens; app.css; previews.css
+  install/                 mac/win installers, uninstaller, diagnostics
+  tools/                   package.sh (zip), build-zxp.sh, repack-zxp.py
+  tests/                   mock-ae.js, host tests, panel tests, manifest
+                           test, cep-e2e.js
+  docs/                    DEVELOPMENT.md, guide PDF, this file
+
+Protocol (panel -> host):
+  request  = { version: 1, requestId: "req-N", command, payload }
+  success  = { ok: true, requestId, result, feedback, undo: "<Edit menu
+             name>" }
+  failure  = { ok: false, requestId, error: { code, message } }
+The request is JSON.stringify'd twice so it arrives in ExtendScript as one
+inert string literal (also escape U+2028/U+2029). The host parses it with
+its own parser.
+
+Dispatcher flow (AT.dispatch):
+  parse -> check version (mismatch => "close and reopen the panel") ->
+  look up command -> build context from spec.needs ("none" | "project" |
+  "comp" | "layers") -> spec.validate(payload, ctx) BEFORE any undo group
+  -> if spec.mutating: app.beginUndoGroup("Animator Toolkit: " + label)
+  -> spec.run(payload, ctx) returns { result, feedback } -> stringify ->
+  endUndoGroup -> store in AT.lastResponse -> return.
+  User errors are thrown with AT.fail(code, message). Anything else becomes
+  "After Effects reported an error: <message> (line N)".
+
+Adding a tool = register a host command + add one entry to
+content/actions.js. Search, favorites, the explain popover, suggestions
+and feedback pick it up automatically. Adding a preset = one object in
+motions.js (and a new shape/kind in presets.jsx if needed).
+
+Preset engine rules (presets.jsx):
+  1. Entrances start at the layer's In point, exits end at its Out point
+     (or at the playhead if the user picks Playhead).
+  2. Animate to/from the layer's REAL rest value; never reset it.
+  3. Remove existing keys only inside the preset's own time window on that
+     property, so re-applying replaces instead of stacking.
+  4. Different properties never collide (Opacity, Position, one shared
+     "AT Blur" effect, one named text animator per text preset).
+  5. Add a layer marker named after the preset spanning its duration;
+     presets starting on the same frame share one marker.
+  Exits are the entrance mirrored in time (and described that way).
+
+
+===========================================================================
+ PART 5 - AFTER EFFECTS / CEP BEHAVIORS THAT CAUSED BUGS (and the fixes)
+===========================================================================
+
+These are the most valuable lessons. Each one cost a debugging cycle.
+
+1. Shared global scope. Every extension and script shares one ExtendScript
+   engine. Put everything on $["com.yourname.plugin"]; define no globals;
+   test that other tools' globals (e.g. a global "AT") are untouched.
+
+2. ScriptPath may not run, or $.fileName may be empty. The panel boots the
+   host itself: if the namespace is missing, $.evalFile(<root>/host/
+   index.jsx), then call AT.boot(root). Skip re-evaluating if AT.ready and
+   AT.root already match. A failed boot is NOT cached; the next click
+   retries. Startup retries with backoff because the host may be busy.
+
+3. try/finally + return in ExtendScript can hand back undefined. The
+   command ran but the panel got an empty reply. Fix: never return from
+   inside try with a finally; build the response in try/catch, close the
+   undo group afterwards, then return.
+
+4. evalScript can return an empty string even when the command worked.
+   The host also stores the reply in AT.lastResponse; the bridge reads it
+   with a plain expression when the return value is empty. If still empty,
+   report "unconfirmed" (it may have worked; check the timeline) instead
+   of a hard error. Every call has a timeout (20 s) with a readable
+   message ("close any open dialog in After Effects").
+
+5. "EvalScript error." means the namespace was wiped (another tool reset
+   the engine). Mark the bridge as not booted so the next call reloads.
+
+6. Validate before beginUndoGroup. Otherwise a refused click ("select
+   keyframes first") leaves an empty "Undo ..." item in the Edit menu.
+
+7. Undo from the panel. Use app.findMenuCommandId("Undo " + undoName) and
+   only execute it while that is still the top undo step; otherwise tell
+   the user to use Edit > Undo.
+
+8. Work area writes are validated one property at a time. AE rejects
+   workAreaStart if start + current duration would pass the comp end.
+   Order: set workAreaDuration to one frame, then workAreaStart, then the
+   real duration (clamped to fit). The mock enforces the same rule.
+
+9. Viewer settings (app.activeViewer.views[0].options): some builds only
+   accept a write-back of the whole options object, and some only take
+   while the viewer is active. Write the key; read it back; if unchanged,
+   copy options, set, assign back; if still unchanged, viewer.setActive()
+   and retry. If it still fails, say "Click the Composition viewer once,
+   then try again." These settings are not in undo.
+
+10. Menu commands. Menu names differ between versions and some are not
+    exposed at all. Look up several spellings (three dots "..." AND the
+    single ellipsis character) and fall back gracefully. Grid, guides,
+    snapping and title/action safe could not be driven reliably without
+    keystrokes, so they became explained shortcuts. Rulers: set
+    ViewOptions.rulers where it exists, otherwise run View > Show Rulers.
+    Purge All uses "All Memory & Disk Cache..." (AE shows its own
+    confirmation); Purge Memory uses app.purge(PurgeTarget.ALL_CACHES).
+
+11. The Preview panel (Skip, Frame Rate, Range, Cache Before Playback...)
+    is not scriptable. Instead of faking it, the panel shows a planner
+    that mirrors it exactly, with values to copy per shortcut.
+
+12. Resolution: comp.resolutionFactor [n,n]. "Auto" is computed from the
+    viewer zoom once (50% -> Half, 33% -> Third, 25% -> Quarter).
+
+13. comp.saveFrameToPng is undocumented and can return before the file is
+    written. Wait (poll file.exists up to 10 s) before importing. Check it
+    exists; if not, point users to Composition > Save Frame As.
+
+14. Anchor point moves must keep the artwork still. Compensate Position
+    (including parenting and 3D). Refuse, with the reason, when it can't be
+    exact: Scale/Rotation animated, expressions on Anchor/Position, tilted
+    3D layers.
+
+15. Other refusals worth handling: locked layers, cameras/lights (no
+    bounds, no presets), separated Position dimensions on cameras, existing
+    expressions, comp markers (AE 2023+), Draft 3D (AE 2022+), extrusion
+    needs Advanced 3D or Cinema 4D renderer.
+
+16. Host files must be ASCII. A smart quote or em dash in a .jsx can break
+    loading on some systems. Test for it.
+
+17. CEP layout bug: a hidden checkbox inside a toggle was absolutely
+    positioned with no positioned ancestor, so clicking it scrolled and
+    shifted the whole panel. Fix: .toggle { position: relative } and
+    html, body { overflow: hidden } (the view scrolls, not the page).
+
+18. Opening links: use cep.util.openURLInDefaultBrowser (window.open in a
+    browser preview).
+
+19. Signing under Wine: ZXPSignCmd treats absolute "/home/..." paths as
+    Windows switches (use relative paths), signs dotfiles it then fails to
+    pack (don't stage .debug), and writes owner-only permissions (repack:
+    mimetype first and uncompressed, dirs 755, files 644, scripts 755).
+
+
+===========================================================================
+ PART 6 - DESIGN SYSTEM AND UX RULES
+===========================================================================
+
+- Palette (tokens.css): flat neutral dark grays like After Effects, one
+  blue brand color (#6fa8da logo blue, accent for active states), light
+  blue (#b3d0ea) for illustration fills. Light and dark text tokens; all
+  colors are tokens.
+- Branding: round "a" logo + "Amir Anderson Animator Toolkit" in the
+  header (clickable to LinkedIn). About shows maker, version, license,
+  LinkedIn.
+- Cards over lists: resolution cards with small art and pixel math,
+  viewer cards with keys and ON/OFF state, favorites cards with a live
+  preview, curve or icon.
+- State is always visible: active option lit, "press again to turn off"
+  hints, seconds under frame values, progress on essentials.
+- Messages: short, bottom of the panel, success/info/error styles, Undo
+  action, "What does this tool need?" link on refusals.
+- Teach while doing: every tool has a one-line summary and a "why"; the
+  right-click popover shows both plus what it needs. Lessons have
+  illustrations that animate on hover (and respect reduced motion).
+- Keyboard: / focuses search, arrows + Enter pick a result, Esc closes.
+- Density setting (Roomy/Compact). Works at 280 px wide.
+- Preview mode: in a normal browser the panel runs against a simulated
+  host with sample data and shows a banner; perfect for screenshots and
+  UI work.
+
+
+===========================================================================
+ PART 7 - CONTENT RULES
+===========================================================================
+
+- Content files are data only (ids, titles, summaries, whys, keywords,
+  payloads). Favorites store ids, never copies.
+- Every shortcut and fact must be checked against After Effects (e.g.
+  Easy Ease In = Shift+F9, Out = Ctrl/Cmd+Shift+F9, Precompose =
+  Ctrl/Cmd+Shift+C, Half resolution = Ctrl/Cmd+Shift+J, New Null =
+  Ctrl/Cmd+Alt/Opt+Shift+Y).
+- Descriptions must match behavior (a bug found in the final pass: exit
+  presets reused entrance wording; now "X in reverse, so the layer leaves
+  the way it came in").
+- Plain, friendly language for beginners; American spelling; no jargon
+  without a lesson behind it.
+
+
+===========================================================================
+ PART 8 - TESTING STRATEGY
+===========================================================================
+
+1. Strict mock After Effects DOM (tests/host/mock-ae.js): CompItem,
+   layers, properties, keyframes, masks, text animators, cameras, markers,
+   work area rules, locked layers, viewers, menu command ids, undo groups
+   (with an "undone" list), optional real file system for stills. It
+   THROWS where After Effects throws. When a real-AE bug is reported,
+   first make the mock reproduce it.
+2. Host unit tests (node --test): every command, success and refusal
+   paths, undo group counts, protocol/version checks, empty-reply
+   handling.
+3. Panel tests: catalog integrity, search, favorites, settings.
+4. Manifest test + schema validation (xmllint against the CEP ExtensionManifest
+   XSD), ES3 parse of every host file (acorn with ecmaVersion 3),
+   ASCII check of host files, node --check of every panel file.
+5. End-to-end (tests/e2e/cep-e2e.js, Playwright + Chromium): loads the real
+   panel with a fake __adobe_cep__ wired to the mock and clicks through
+   every tab; asserts toasts, undo counts ("every mutating click is
+   exactly one undo group"), highlights, favorites, stills, LinkedIn.
+   Three modes: normal (first evalScript fails once, like a cold host),
+   E2E_FRIENDLY=1 (ideal), E2E_DROP=1 (replies dropped -> lastResponse
+   path). E2E_SRC=<dir> runs it against the UNZIPPED zip and the ZXP.
+6. Click-everything smoke test: clicked all 560 buttons on all 12 tabs,
+   plus search and keyboard; zero script errors.
+7. Command cross-check: every command the panel calls is registered in
+   the host (and unused host commands are removed).
+8. Visual checks: Playwright screenshots of every tab at 2x, reviewed by
+   eye after every UI change; pixel-diff to prove CSS cleanups changed
+   nothing.
+9. Text checks: spell checker over every UI string, docs and the guide;
+   manual grammar read of every sentence; check every bold label in the
+   guide exists in the UI.
+10. Performance: panel load about 0.2 s, tab switch under 25 ms.
+
+
+===========================================================================
+ PART 9 - PACKAGING, SIGNING AND INSTALL
+===========================================================================
+
+- Names without version numbers: Amir_Anderson_Animator_Toolkit.zxp and
+  Amir_Anderson_Animator_Toolkit.zip; the zip unzips to a folder with the
+  same name. The internal bundle id (com.aanders.animatortoolkit) is used
+  only inside Adobe's extensions folder.
+- Zip contents: CSXS, client, host, install, INSTALL.md (from README.md),
+  LICENSE.txt, .debug. No tests, node_modules or dev files.
+- ZXP: self-signed with Adobe's ZXPSignCmd (native, or the Windows build
+  under Wine on Linux); certificate created once (subject O=Amir Anderson,
+  CN=Amir Anderson Animator Toolkit, 10 years) and reused so updates
+  install over the top; then repacked (Part 5 item 19) and verified.
+- install-mac.command / install-windows.bat: set PlayerDebugMode for CSXS
+  9-13 (needed for self-signed/unsigned panels), copy into the user
+  extensions folder (replacing old copies), print where to open it
+  (Window > Extensions > Amir Anderson Animator Toolkit).
+- diagnose scripts write a report to the Desktop: installed copies,
+  signatures, debug mode, After Effects installs, CEP logs.
+- uninstall-mac.command removes the panel and keeps user settings.
+- .debug enables DevTools on port 8099 for development.
+- Version lives in the manifest (1.0.0), package.json and About.
+- Changing the bundle id or certificate means users must remove the old
+  install first.
+
+
+===========================================================================
+ PART 10 - DOCUMENTATION AND LEGAL
+===========================================================================
+
+- INSTALL.md (shipped): install options (ZXP recommended, or zip + script),
+  what's in each tab, undo notes, troubleshooting, good-to-know limits,
+  and a pointer to LICENSE.txt (it does not restate the terms).
+- LICENSE.txt (one file): plugin details, what's in the download, a
+  plain-language "You can / You can't" summary, then full terms (free to
+  use; ownership; license for personal and commercial work; no copying,
+  recreating, modifying, reselling, re-uploading or competing products;
+  enforcement; termination; no warranty; limitation of liability;
+  trademarks; contact). The same summary appears in Learn > About > Terms.
+  Recommend a lawyer review; it is not legal advice.
+- Copyright header on every source file.
+- Quick Start Guide PDF (ReportLab, US Letter, Helvetica): cover with
+  logo; 1 Start Guide (download contents, what it does, requirements,
+  install, first animation); 2 The Interface; 3 Tab by Tab; 4 A Fast
+  Animation Workflow; 5 Words to Know & Troubleshooting. Blue numbered
+  section titles (#6fa8da), dark text (#1c1c1e), gray captions (#5f6368),
+  light table headers, footer "Name - User Guide - Page N", screenshots
+  beside the text they explain. Screenshots come from preview mode with
+  the banner hidden.
+- DEVELOPMENT.md (not shipped): architecture, preset rules, tests, manual
+  checklist.
+- Promo screenshots: full-height grabs of every tab at 2x (size the window
+  to the scroll container's content height), plus favorite settings and
+  search.
+
+
+===========================================================================
+ PART 11 - HOW THE FEATURES WERE BUILT (step-by-step history)
+===========================================================================
+
+1. Core: manifest, namespace loader, JSON, dispatcher, bridge with preview
+   mode, store, catalog, search, component kit, tabs.
+2. Tools and presets: anchor grid with position compensation, align,
+   keyframes, stagger, easing (curve presets, physics keys, influence),
+   motion library with the 5 stacking rules, text animators, masks, 3D,
+   cameras (moves, orbit rig, shake, DOF), audio.
+3. Reliability: boot retries, timeouts, lastResponse fallback,
+   try/finally fix, validate-before-undo, readable errors, diagnostics.
+4. Branding: palette matching the author's other plugin, logo, name,
+   LinkedIn; frames everywhere with sliders.
+5. Preview tab: one-click setups that stay highlighted; resolution cards;
+   Fast Previews; speed tools; color depth; the Preview panel planner
+   matching After Effects' own panel and frame rates (Auto, 15, 24, 25,
+   29.97, 30, 59.94, 60, 120).
+6. Undo everywhere: undo names returned by the host, panel undo history,
+   Undo on every message, viewer toggles switched back.
+7. Viewer: transparency grid and rulers as cards; grid/guides/safe/snap
+   moved to Learn > Shortcuts (no OS permissions).
+8. Work area 3/5/10 s buttons (fixed write order); Purge Memory and Purge
+   All.
+9. Capture: Grab Still with pop-up, folder choice, import; new
+   illustration (frames on a timeline, the one under the playhead lifted
+   out as a PNG).
+10. Favorites with their own settings (edit sheet: Save, Save & apply,
+    Use the tab's settings).
+11. Cleanup: removed dead UI and code, stale CSS (about 10 KB), unused
+    commands; fixed toggle layout bug.
+12. Release: license, naming, packaging, guide, screenshots, proofreading,
+    final full verification.
+
+
+===========================================================================
+ PART 12 - THE WORKING METHOD (follow on every change)
+===========================================================================
+
+1. Read the request carefully; restate what changes and where. If a
+   request is ambiguous and the choice changes the result, ask; otherwise
+   pick the sensible default and say so.
+2. Find the code (grep), read it, and understand why it is the way it is.
+3. For a bug: reproduce it in the mock or e2e test first.
+4. Make the smallest correct change that matches the surrounding code.
+5. Run: npm test; the e2e in all three modes; ES3/ASCII/manifest checks.
+6. Screenshot the affected UI and look at it. Fix layout problems
+   (truncated labels, overflow, blank space) before moving on.
+7. Rebuild the zip and ZXP; run the e2e against the unpacked packages;
+   verify the signature; check package contents.
+8. Commit with a clear message; push to the working branch.
+9. Report: what changed, what was verified, what still needs a real After
+   Effects check, and any trade-offs. Never claim something works in After
+   Effects when it was only tested in the mock.
+
+
+===========================================================================
+ PART 13 - RELEASE CHECKLIST (in real After Effects, macOS and Windows)
+===========================================================================
+
+[ ] Panel opens from Window > Extensions; every tab loads.
+[ ] Each button is one Edit > Undo step; Undo in messages works.
+[ ] Bounce In + Bounce Out on one layer land at opposite ends.
+[ ] Text presets on point and paragraph text.
+[ ] Anchor grid on rotated, scaled, parented and 3D layers.
+[ ] Camera create, moves, orbit, shake, focus.
+[ ] Grab Still (with and without Import into project).
+[ ] Rulers, Transparency grid and Fast Previews switch on and off.
+[ ] Work Area buttons from different playhead positions, near comp end.
+[ ] Purge All shows After Effects' confirmation.
+[ ] Favorites with their own settings run with those settings.
+[ ] Search, right-click help, LinkedIn links.
+[ ] Install from ZXP and from zip script; uninstall; diagnostics report.
+
+Known limits to state honestly: saveFrameToPng is undocumented; some menu
+names vary by version; viewer settings are outside After Effects' undo;
+the Preview panel can't be scripted; the ZXP is self-signed (installers
+may show an unverified-developer notice).
+
+===========================================================================
+ (c) 2026 Amir Anderson. Internal document. Not for redistribution.
+===========================================================================
