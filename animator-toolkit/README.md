@@ -88,15 +88,8 @@ switch them back.
 
 Copyright (c) 2026 Amir Anderson. All rights reserved.
 
-The toolkit is **free** to use for personal and commercial projects,
-including client work, and what you make with it is yours. Free doesn't mean
-open source: apart from installing it for your own use, copying, recreating,
-modifying, reverse engineering, reselling, re-uploading or creating
-derivative works of this software, its code or its design is prohibited
-without written permission from Amir Anderson. To share it, share the
-official download link. Unauthorized use violates copyright law and may
-result in takedown notices and legal action. It is provided "as is", without
-warranty. See `LICENSE.txt` for the full terms.
-
-Adobe and After Effects are trademarks of Adobe Inc. This is an independent
-product, not affiliated with or endorsed by Adobe.
+The toolkit is free to use for personal and commercial projects, including
+client work. It is not open source and may not be copied, modified, resold or
+re-uploaded. The complete terms, with a plain-language summary, are in
+`LICENSE.txt` (included in this folder). In the panel, see Learn > About >
+Terms.

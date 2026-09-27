@@ -1,9 +1,60 @@
-Amir Anderson Animator Toolkit
-Free License & Terms of Use
-Version 1.0
+===========================================================================
+ AMIR ANDERSON ANIMATOR TOOLKIT
+ Free License & Terms of Use - Version 1.0
+ Copyright (c) 2026 Amir Anderson. All rights reserved.
+===========================================================================
 
-Copyright (c) 2026 Amir Anderson. All rights reserved.
+ABOUT THE PLUGIN
+---------------------------------------------------------------------------
+ Product:    Amir Anderson Animator Toolkit
+ Version:    1.0
+ Made by:    Amir Anderson
+ Price:      Free
+ Works with: Adobe After Effects 2021 (18.0) or later, macOS or Windows
+ Contact:    https://www.linkedin.com/in/amiranderson
 
+Animator Toolkit is a panel for Adobe After Effects that puts everyday
+animation jobs one click away: anchor points, keyframes, easing, entrances
+and exits, text animation, masks, 3D, cameras, fast previews, audio fades
+and still grabs, with short lessons that explain each one.
+
+What's included in the download:
+ - Amir_Anderson_Animator_Toolkit.zxp      the plugin (install this one)
+ - Amir_Anderson_Animator_Toolkit.zip      the same plugin with install
+                                           scripts, INSTALL.md and this file
+ - Animator_Toolkit_Quick_Start_Guide.pdf  the user guide
+ - LICENSE.txt                             this file
+
+To install, see INSTALL.md or the Quick Start Guide. Inside the panel, the
+same terms are summarized under Learn > About > Terms.
+
+
+THE SHORT VERSION (plain language)
+---------------------------------------------------------------------------
+You CAN:
+ - download, install and use the toolkit for free;
+ - use it on personal and commercial projects, including client work;
+ - install it on the computers you use and keep a backup copy;
+ - keep everything you make with it. Your animations, renders and stills
+   are yours.
+
+You CAN'T (without written permission from Amir Anderson):
+ - copy, recreate, clone or imitate the toolkit, its code or its design;
+ - modify it, reverse engineer it or make derivative works from it;
+ - sell it, charge for it or bundle it with other products;
+ - re-upload or host its files elsewhere. Share the official download
+   link instead;
+ - use it to build or train a competing product;
+ - remove its copyright notices or present it as your own work.
+
+It is provided "as is", without warranty. Save your work and keep backups.
+
+This summary is for convenience. If it and the full terms below ever
+differ, the full terms apply.
+
+
+FULL TERMS
+---------------------------------------------------------------------------
 1. Free to use
 Amir Anderson Animator Toolkit (the "Software") is free. There is no charge
 to download, install or use it. Free does not mean open source or public
@@ -13,23 +64,23 @@ below.
 2. Ownership
 The Software, including its source code, scripts, install scripts,
 interface design, layout, graphics, icons, illustrations, text, presets,
-lessons and documentation (including the Quick Start Guide and INSTALL.md),
-is the exclusive property of Amir Anderson and is protected by copyright and
-other intellectual property laws.
+lessons and documentation (including the Quick Start Guide, INSTALL.md and
+this file), is the exclusive property of Amir Anderson and is protected by
+copyright and other intellectual property laws.
 
 3. License granted
 You are granted a free, personal, non-exclusive, non-transferable, revocable
 license to install and use the Software in Adobe After Effects for personal
-and commercial projects, including client work. You may install it on the computers you use and keep
-a backup copy for yourself. The animations, renders and stills you make with
-the Software belong to you. Anyone else who wants the Software should
-download it from the official link.
+and commercial projects, including client work. You may install it on the
+computers you use and keep a backup copy for yourself. The animations,
+renders and stills you make with the Software belong to you. Anyone else
+who wants the Software should download it from the official link.
 
 4. Not permitted
 Without the prior written permission of Amir Anderson, you may not, and may
 not permit anyone else to:
-  a. copy, reproduce, recreate, clone or imitate the Software, in whole or in
-     part, including its code, features, workflows, interface or design,
+  a. copy, reproduce, recreate, clone or imitate the Software, in whole or
+     in part, including its code, features, workflows, interface or design,
      except to install and use it as allowed in section 3;
   b. modify, adapt, translate, reverse engineer, decompile or disassemble
      the Software, or create derivative works based on it;
@@ -70,4 +121,9 @@ Adobe and After Effects are trademarks of Adobe Inc. The Software is an
 independent product and is not affiliated with or endorsed by Adobe Inc.
 
 10. Contact
-For licensing, permissions or questions: https://www.linkedin.com/in/amiranderson
+For licensing, permissions or questions:
+https://www.linkedin.com/in/amiranderson
+
+===========================================================================
+ (c) 2026 Amir Anderson. Free to use. Not for redistribution or resale.
+===========================================================================
