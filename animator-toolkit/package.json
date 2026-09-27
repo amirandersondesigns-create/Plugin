@@ -1,8 +1,10 @@
 {
-  "name": "animator-toolkit",
-  "version": "0.3.11",
+  "name": "amir-anderson-animator-toolkit",
+  "version": "1.0.0",
   "private": true,
-  "description": "After Effects CEP panel: productivity tools + learning for new animators.",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "author": "Amir Anderson",
+  "description": "Amir Anderson Animator Toolkit: an After Effects panel of animation tools and lessons.",
   "scripts": {
     "test": "node --test tests/manifest.test.js tests/host/host.test.js tests/panel/panel.test.js",
     "test:e2e": "node tests/e2e/cep-e2e.js",

@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Tool catalog. Every button in the panel, every search result and every
  * favorite that runs something points at one of these entries by id, so a
@@ -236,38 +238,30 @@
         summary: "Toggles the transparency grid (checkerboard) in the Composition viewer.",
         why: "Shows empty areas as a checkerboard instead of the background color, so you can see what's really transparent before you export with alpha.",
         keywords: "transparency grid checkerboard alpha background toggle viewer" });
-    // Grid & guides (the viewer's "Choose grid and guide options" menu).
-    [["safe", "Title/Action Safe", "safe", "'", "Safe-area boxes: keep text inside the inner (title safe) box for broadcast."],
-     ["propGrid", "Proportional Grid", "thirds", "Alt + '", "A rule-of-thirds style grid that scales with the comp."],
-     ["axes", "3D Reference Axes", "axes", "", "Shows the X/Y/Z axes in 3D views so you know which way is which."],
-     ["grid", "Grid", "grid", "Mod + '", "A square grid over the viewer for even spacing."],
-     ["guides", "Guides", "guides", "Mod + ;", "Shows the guides you've dragged out of the rulers. Guides never render."],
-     ["rulers", "Rulers", "ruler", "Mod + R", "Rulers along the viewer edges; drag from them to make guides."],
-     ["snapGuides", "Snap to Guides", "magnet", "Mod + Shift + ;", "Layers click onto your guides as you drag them, so things line up exactly."],
-     ["snapGrid", "Snap to Grid", "magnet", "Mod + Shift + '", "Layers snap to the grid as you drag, for even spacing."],
-     ["lockGuides", "Lock Guides", "lock", "Mod + Alt + Shift + ;", "Stops guides moving when you click near them."]].forEach(function (g) {
-        var overlay = /^(safe|propGrid|axes)$/.test(g[0]);
-        add({ id: "view." + g[0], title: g[1], icon: g[2], view: "preview", command: overlay ? "view.overlay" : "view.toggle", payload: { item: g[0] }, keys: g[3], overlay: overlay,
-            summary: "Turns " + g[1].replace("Show ", "") + " on or off in the Composition viewer" + (g[3] ? " (" + g[3].replace(/Mod/g, "Ctrl/Cmd") + ")" : "") + ".",
-            why: g[4] + (overlay
-                ? " Scripts can't switch the viewer's own version, so the toolkit draws it in the comp as a locked guide layer (never renders). Press again to remove it, or Ctrl/Cmd+Z."
-                : " Runs After Effects' View menu command. Stays highlighted while it's on; press again to turn it off."),
-            keywords: "grid guides rulers snap snapping lock viewer toggle " + g[1].toLowerCase() });
-    });
+    add({ id: "view.rulers", title: "Rulers", icon: "ruler", view: "preview", command: "view.toggle", payload: { item: "rulers" }, keys: "Mod + R",
+        summary: "Turns the viewer's rulers on or off (Ctrl/Cmd+R).",
+        why: "Rulers along the viewer edges; drag from them to make guides. A viewer setting: press again to turn it off.",
+        keywords: "rulers guides viewer toggle show hide" });
     add({ id: "preview.draft3d", title: "Draft 3D", icon: "cube", view: "preview", command: "preview.draft3d",
         summary: "Toggles Draft 3D: fast 3D previews without lights/shadows/DOF detail.", why: "3D is the slowest thing to preview. Draft 3D keeps the timing while you animate.", keywords: "draft 3d fast preview" });
-    add({ id: "preview.workArea.90", title: "Work Area 90f", icon: "clock", view: "preview", command: "preview.workArea", payload: { frames: 90 },
-        summary: "Sets the work area to 90 frames from the playhead.", why: "Previews only render the work area. A short range around what you're animating plays back almost instantly.", keywords: "work area preview range b n frames" });
-    add({ id: "preview.workArea.180", title: "Work Area 180f", icon: "clock", view: "preview", command: "preview.workArea", payload: { frames: 180 },
-        summary: "Sets the work area to 180 frames from the playhead.", why: "Previews only render the work area.", keywords: "work area preview range frames" });
+    // Work area lengths in seconds, labelled in frames (at 29.97 fps; the
+    // host uses the comp's own frame rate).
+    [[3, 90], [5, 150], [10, 300]].forEach(function (w) {
+        add({ id: "preview.workArea." + w[0] + "s", title: "Work Area " + w[1] + "f", icon: "clock", view: "preview", command: "preview.workArea", payload: { seconds: w[0] },
+            summary: "Sets the work area to " + w[0] + " seconds (" + w[1] + " frames at 29.97 fps) from the playhead.",
+            why: "Previews only render the work area, so a short range around what you're animating plays back sooner. B and N set it by hand.",
+            keywords: "work area preview range b n frames seconds " + w[0] });
+    });
     add({ id: "preview.mode.fast", title: "Animate Fast", icon: "bolt", view: "preview", command: "preview.mode", payload: { mode: "fast" },
         summary: "Half resolution, Adaptive fast previews and Draft 3D in one click.", why: "The quickest way to get real-time playback while you animate. Timing is unchanged.",
         keywords: "preview fast speed setup animate half adaptive draft" });
     add({ id: "preview.mode.final", title: "Final Check", icon: "check", view: "preview", command: "preview.mode", payload: { mode: "final" },
         summary: "Full resolution, full-quality previews, Draft 3D off.", why: "Switch back before you judge detail, text edges or render.",
         keywords: "preview final full quality check" });
-    add({ id: "preview.purge", title: "Purge Cache", icon: "trash", view: "preview", command: "preview.purge",
-        summary: "Clears RAM and disk preview cache.", why: "When previews stutter or show stale frames, purging frees memory. Edit > Purge > All Memory & Disk Cache.", keywords: "purge cache memory ram disk clear" });
+    add({ id: "preview.purge", title: "Purge Memory", icon: "trash", view: "preview", command: "preview.purge",
+        summary: "Clears the preview frames cached in memory (Edit > Purge > All Memory).", why: "When previews stutter or show stale frames, purging frees RAM. The disk cache is kept.", keywords: "purge cache memory ram clear" });
+    add({ id: "preview.purgeDisk", title: "Purge All", icon: "trash", view: "preview", command: "preview.purgeDisk",
+        summary: "Clears memory AND the disk cache (Edit > Purge > All Memory & Disk Cache).", why: "A full clean when cached frames are wrong or the cache drive is full. After Effects asks you to confirm.", keywords: "purge cache memory disk clear all everything" });
 
     // ---- audio ----
     add({ id: "audio.minus3", title: "-3 dB", icon: "down", view: "audio", command: "audio.levels", payload: { delta: -3 },

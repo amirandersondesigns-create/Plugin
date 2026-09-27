@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Easy 3D: one place for the 3D basics. Setup (3D switch, depth), 3D motion
  * presets, extruded 3D text, and quick camera moves that need 3D layers.

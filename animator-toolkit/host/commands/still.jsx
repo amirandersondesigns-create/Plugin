@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 // ============================================================================
 // Animator Toolkit - still capture (EXPERIMENTAL)
 //
@@ -39,7 +41,11 @@ AT.register("still.capture", {
         var folder = new Folder(payload.folder || AT.defaultStillFolder());
         if (!folder.exists && !folder.create()) AT.fail("io", "Couldn't create the folder " + folder.fsName + ".");
 
-        var base = AT.safeFileName(payload.fileName || comp.name) + "_" + AT.timecodeTag(comp);
+        // Size: Full, Half, Third or Quarter. Save Frame renders at the comp's
+        // resolution, so set it for the grab and put it straight back.
+        var scale = payload.scale === 2 || payload.scale === 3 || payload.scale === 4 ? payload.scale : 1;
+        var SIZE = { 1: "", 2: "_half", 3: "_third", 4: "_quarter" };
+        var base = AT.safeFileName(payload.fileName || comp.name) + "_" + AT.timecodeTag(comp) + SIZE[scale];
         var file = new File(folder.fsName + "/" + base + ".png");
         var n = 2;
         while (file.exists) {
@@ -47,6 +53,8 @@ AT.register("still.capture", {
             n++;
         }
 
+        var oldRes = comp.resolutionFactor;
+        if (scale !== 1) comp.resolutionFactor = [scale, scale];
         comp.saveFrameToPng(comp.time, file);
         // saveFrameToPng can return before the file is flushed; wait for it
         // before importing so the import doesn't fail on a missing file.
@@ -55,20 +63,16 @@ AT.register("still.capture", {
             $.sleep(100);
             waited += 100;
         }
+        if (scale !== 1) comp.resolutionFactor = oldRes;
         if (!file.exists) AT.fail("io", "After Effects didn't write the still. Try Composition > Save Frame As.");
 
-        var feedback = "Still saved: " + file.displayName;
-        if (payload.importToProject || payload.addToComp) {
-            var footage = app.project.importFile(new ImportOptions(file));
-            if (payload.addToComp) {
-                var layer = comp.layers.add(footage);
-                layer.startTime = comp.time;
-                feedback += " - added to comp";
-            } else {
-                feedback += " - imported";
-            }
+        var w = Math.ceil(comp.width / scale), h = Math.ceil(comp.height / scale);
+        var feedback = "Still saved (" + w + "x" + h + "): " + file.displayName;
+        if (payload.importToProject) {
+            app.project.importFile(new ImportOptions(file));
+            feedback += " - imported";
         }
-        return { result: { path: file.fsName, folder: folder.fsName }, feedback: feedback };
+        return { result: { path: file.fsName, folder: folder.fsName, width: w, height: h, scale: scale }, feedback: feedback };
     }
 });
 

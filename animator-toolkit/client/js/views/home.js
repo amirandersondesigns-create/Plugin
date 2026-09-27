@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Home: what's selected and what you can do with it, quick actions,
  * favorites quick bar, recent tools, and essential-skills progress.
@@ -107,7 +109,7 @@
         var s = AT.store.get("settings");
         var progress = AT.store.get("progress").lessons;
         var done = AT.content.essentials.filter(function (id) { return progress[id]; }).length;
-        // Collapsible only (no hiding). Hidden in an older build = folded.
+        // Collapsible; an old "hidden" setting shows it folded.
         var open = !s.essentialsCollapsed && !s.essentialsHidden;
         var body = h("div", [
             h("div.essential-row", AT.content.essentials.map(function (id, i) {
@@ -142,10 +144,10 @@
         return { title: "Nothing selected", text: "Click a layer in the timeline. Most tools act on the selected layers; easing tools act on selected keyframes.", ids: [] };
     }
 
-    function chip(id) {
+    function chip(id, params) {
         var item = AT.catalog.get(id);
         if (!item) return null;
-        var b = h("button.chip", { type: "button", title: item.summary, on: { click: function () { AT.run(item, null, b); } } }, [
+        var b = h("button.chip", { type: "button", title: item.summary, on: { click: function () { AT.run(item, params || null, b); } } }, [
             item.type === "preset" ? AT.ui.preview(item.preview, item.phase, { autoplay: false }) : AT.icon(item.icon),
             h("span", { text: item.title })
         ]);
@@ -177,7 +179,7 @@
             page.appendChild(AT.ui.section("Favorites", {
                 icon: "star", right: h("button.link", { type: "button", text: "All", on: { click: function () { AT.app.show("favorites"); } } })
             }, h("div.chips", favs.slice(0, 8).map(function (f) {
-                var c2 = chip(f.targetId);
+                var c2 = chip(f.targetId, f.params);
                 if (c2) c2.querySelector("span:last-child").textContent = f.label;
                 return c2;
             }))));

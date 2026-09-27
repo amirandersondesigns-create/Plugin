@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 // ============================================================================
 // Animator Toolkit - easy 3D: 3D switch, depth spread, renderer, extrusion
 //

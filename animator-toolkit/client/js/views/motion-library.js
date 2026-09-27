@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Motion library block shared by Animate (graphics) and Text: Entrance /
  * Exit switch, timing and duration controls, then preset tiles split into

@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Keyboard shortcuts, explained. Keys use "Mod" for Cmd (macOS) / Ctrl
  * (Windows) and "Alt" for Option / Alt; the panel renders the right one.
@@ -75,7 +77,7 @@
         ["sc.snap-grid", "view", "Mod + Shift + '", "Snap to grid", "Layers snap to the grid as you drag (show the grid with Mod + ')."],
         ["sc.snapping", "view", "Hold Mod while dragging", "Flip layer snapping", "Temporarily turns the Tools bar's Snapping checkbox on or off for one drag."],
         ["sc.lock-guides", "view", "Mod + Alt + Shift + ;", "Lock guides", "Stops guides moving by accident."],
-        ["sc.grid", "view", "Mod + '", "Show/hide grid", "A proportional grid over the viewer."],
+        ["sc.grid", "view", "Mod + '", "Show/hide grid", "A square grid over the viewer for even spacing."],
         ["sc.safe", "view", "'", "Title/action safe", "Shows the safe-area guides. Keep text inside the inner (title safe) box for broadcast."],
         ["sc.transparency", "view", "Transparency grid button", "Checkerboard background", "Shows transparency as a checkerboard instead of the comp colour, so you can see what's really empty."],
         // Getting around

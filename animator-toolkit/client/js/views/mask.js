@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Mask: animated mask reveals (real masks you can edit) and quick mask
  * tools, plus the fix for the most common mask confusion: invisible paths.

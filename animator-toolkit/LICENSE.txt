@@ -1,0 +1,54 @@
+Amir Anderson Animator Toolkit
+License & Terms of Use
+
+Copyright (c) 2026 Amir Anderson. All rights reserved.
+
+1. Ownership
+Amir Anderson Animator Toolkit (the "Software"), including its source code,
+scripts, interface design, layout, graphics, icons, illustrations, text,
+presets, lessons and documentation, is the exclusive property of Amir
+Anderson and is protected by copyright and other intellectual property
+laws. The Software is licensed, not sold.
+
+2. License granted
+You are granted a personal, non-exclusive, non-transferable, revocable
+license to install and use the Software in Adobe After Effects for your own
+personal and studio work, subject to these terms.
+
+3. Restrictions
+Without the prior written permission of Amir Anderson, you may not, and may
+not permit anyone else to:
+  a. copy, reproduce, recreate, clone or imitate the Software, in whole or in
+     part, including its code, features, workflows, interface or design;
+  b. modify, adapt, translate, reverse engineer, decompile or disassemble
+     the Software, or create derivative works based on it;
+  c. distribute, share, publish, sell, resell, rent, lease, sublicense or
+     otherwise make the Software available to any third party;
+  d. use the Software, or any part of it, to build or train a competing
+     product, extension, script or service;
+  e. remove, alter or obscure any copyright, trademark or other notices.
+
+4. Enforcement
+Any unauthorized copying, recreation, reproduction, distribution or other
+use of the Software is a violation of these terms and of applicable
+copyright law. Such violations will result in immediate termination of this
+license and may result in legal action, including claims for damages,
+injunctive relief and recovery of legal fees, to the fullest extent
+permitted by law.
+
+5. Termination
+This license ends automatically if you breach any of these terms. On
+termination you must stop using the Software and delete all copies.
+
+6. Disclaimer
+The Software is provided "as is", without warranty of any kind. To the
+fullest extent permitted by law, Amir Anderson is not liable for any
+damages arising from its use, including loss of data or project files.
+Save your work and keep backups.
+
+7. Third-party software
+Adobe and After Effects are trademarks of Adobe Inc. The Software is an
+independent product and is not affiliated with or endorsed by Adobe Inc.
+
+8. Contact
+For licensing, permissions or questions: linkedin.com/in/amiranderson

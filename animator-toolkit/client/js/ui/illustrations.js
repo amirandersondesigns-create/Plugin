@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Small teaching illustrations (inline SVG, themed through CSS classes:
  * .i-line stroke, .i-fill surfaces, .i-acc accent, .i-mut muted). Several
@@ -160,10 +162,17 @@
             '<defs><linearGradient id="at-bpc-g"><stop offset="0" style="stop-color:var(--brand);stop-opacity:.15"/><stop offset="1" style="stop-color:var(--brand);stop-opacity:1"/></linearGradient></defs>' +
             '<rect x="12" y="44" width="136" height="20" fill="url(#at-bpc-g)"/>' +
             '<text class="i-cap" x="80" y="40">banding (can happen at 8 bpc)</text><text class="i-cap" x="80" y="76">smooth (16 or 32 bpc)</text>',
+        // Capture: a viewfinder framing a small comp (hills, sun, lower third),
+        // with a focus box and the shutter flash.
         capture:
             '<rect class="i-grid" x="10" y="8" width="140" height="66" rx="3"/>' +
-            '<path class="i-acc-line" d="M18 20v-6h8M142 20v-6h-8M18 62v6h8M142 62v6h-8"/>' +
-            '<circle class="i-fill" cx="80" cy="41" r="14"/><rect class="i-flash" x="10" y="8" width="140" height="66" rx="3"/>'
+            '<rect class="i-fill i-dim" x="22" y="15" width="116" height="52" rx="2"/>' +
+            '<path class="i-fill" style="opacity:.35" d="M22 60 44 42l14 10 20-18 26 22 12-8 22 14v5H22z"/>' +
+            '<circle class="i-acc" cx="116" cy="27" r="5"/>' +
+            '<rect class="i-fill" x="30" y="47" width="34" height="4" rx="1"/><rect class="i-acc" x="30" y="53" width="50" height="6" rx="1"/>' +
+            '<rect class="i-mut-line i-dash" x="70" y="32" width="20" height="16"/>' +
+            '<path class="i-acc-line i-thick" d="M16 20v-6h8M144 20v-6h-8M16 62v6h8M144 62v6h-8"/>' +
+            '<rect class="i-flash" x="10" y="8" width="140" height="66" rx="3"/>'
     };
 
     AT.illustration = function (name, cls) {

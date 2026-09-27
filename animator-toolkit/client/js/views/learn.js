@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Learn: micro-lessons and explained shortcuts, plus the
  * panel's own settings (density), version and "replay the welcome".
@@ -6,7 +8,7 @@
     "use strict";
 
     var h = AT.h;
-    var VERSION = "0.3.11";
+    var VERSION = "1.0.0";
     var AUTHOR = "Amir Anderson";
     var LINKEDIN = "https://www.linkedin.com/in/amiranderson";
     var sub = "lessons";
@@ -100,6 +102,24 @@
         AT.app.rerender();
     }
 
+    // ---- license & terms (full text: LICENSE.txt) ----------------------------------------
+    var TERMS = [
+        ["Ownership", "Amir Anderson Animator Toolkit, including its code, interface design, graphics, presets, lessons and documentation, is the exclusive property of Amir Anderson and is protected by copyright. It is licensed, not sold."],
+        ["Your license", "A personal, non-transferable license to use the toolkit in After Effects for your own personal and studio work."],
+        ["Not permitted", "Copying, recreating, cloning or imitating the toolkit or its design; modifying, reverse engineering or creating derivative works; sharing, selling, renting or sublicensing it; or using it to build a competing product, without written permission from Amir Anderson."],
+        ["Enforcement", "Unauthorized copying, recreation or distribution violates these terms and copyright law, ends your license immediately, and may result in legal action, including claims for damages, injunctive relief and legal fees."],
+        ["No warranty", "Provided \"as is\", without warranty. Save your work and keep backups."],
+        ["Adobe", "Adobe and After Effects are trademarks of Adobe Inc. This is an independent product, not affiliated with or endorsed by Adobe."]
+    ];
+    function showTerms() {
+        AT.app.sheet("License & Terms", [
+            h("p.terms-lead", { text: "\u00a9 2026 Amir Anderson. All rights reserved." }),
+            h("dl.terms", TERMS.map(function (t) { return [h("dt", { text: t[0] }), h("dd", { text: t[1] })]; })),
+            h("p.hint", { text: "The full terms are in LICENSE.txt in the plugin folder." }),
+            h("button.btn.btn-sm", { type: "button", on: { click: function () { AT.bridge.openURL(LINKEDIN); } } }, [AT.icon("linkedin"), h("span", { text: "Permissions & questions" })])
+        ]);
+    }
+
     // ---- about this panel ------------------------------------------------------------------------
     function about() {
         var s = AT.store.get("settings");
@@ -113,6 +133,10 @@
                 h("img", { src: "icons/logo.svg", alt: "" }),
                 h("div.credit-text", [h("strong", { text: AUTHOR })]),
                 h("button.btn.btn-sm.linkedin", { type: "button", title: LINKEDIN, on: { click: function () { AT.bridge.openURL(LINKEDIN); } } }, [AT.icon("linkedin"), h("span", { text: "LinkedIn" })])
+            ])]),
+            h("div.about-row", [h("span.about-k", { text: "License" }), h("div.about-v.license", [
+                h("span.muted", { text: "\u00a9 2026 Amir Anderson. All rights reserved." }),
+                h("button.btn.btn-sm", { type: "button", text: "Terms", on: { click: showTerms } })
             ])]),
             h("div.about-row", [h("span.about-k", { text: "Welcome" }), h("button.btn.btn-sm", { type: "button", text: "Replay the welcome", on: { click: function () { AT.app.onboarding(); } } })])
         ]);

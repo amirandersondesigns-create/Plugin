@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Camera: create, move (with honest names), select, save/restore.
  * Still capture lives in its own Capture tab.

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Animator Toolkit - macOS installer (unsigned / debug mode)
+# Amir Anderson Animator Toolkit - macOS installer (unsigned / debug mode)
 # Enables CEP debug mode (lets After Effects load unsigned panels) and copies
 # the extension into your user CEP extensions folder.
 set -e
@@ -13,13 +13,10 @@ for v in 9 10 11 12 13; do
 done
 echo "✓ Debug mode enabled (CSXS 9-13)"
 
-# Remove the pre-0.3 copy (old ID), which would show up as a second panel.
-rm -rf "$HOME/Library/Application Support/Adobe/CEP/extensions/com.cnn.animatortoolkit"
-
 # Replace any previous copy completely (plain cp: no rsync dependency).
 rm -rf "$DEST"
 mkdir -p "$DEST"
-for item in CSXS client host install README.md .debug; do
+for item in CSXS client host install README.md LICENSE.txt .debug; do
     [ -e "$SRC/$item" ] && cp -R "$SRC/$item" "$DEST/"
 done
 if [ ! -f "$DEST/CSXS/manifest.xml" ]; then

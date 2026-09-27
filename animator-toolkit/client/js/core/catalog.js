@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Catalog: one lookup for every tool, preset, lesson, shortcut and
  * plus AT.run(), the single way anything in the panel executes.
@@ -39,7 +41,7 @@
             return assign({ distance: s.cameraDistance || 300, easing: s.cameraEasing || "smooth" }, dur("cameraDur", 48));
         }
         if (item.command === "still.capture") {
-            return { folder: s.stillFolder || "", importToProject: !!s.stillImport, addToComp: !!s.stillAddToComp };
+            return { folder: s.stillFolder || "", importToProject: !!s.stillImport, scale: s.stillScale || 1 };
         }
         if (item.command === "layers.stagger") {
             var st = typeof s.staggerAmount === "number" ? s.staggerAmount : (s.staggerFrames || 3);

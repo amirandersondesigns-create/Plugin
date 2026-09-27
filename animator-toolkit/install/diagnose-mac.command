@@ -1,5 +1,5 @@
 #!/bin/bash
-# Animator Toolkit - macOS diagnostics
+# Amir Anderson Animator Toolkit - macOS diagnostics
 # Writes ~/Desktop/AnimatorToolkit-diagnostics.txt: where the panel is
 # installed, its permissions, CEP debug-mode flags, installed After Effects
 # versions, and what After Effects' CEP log says about the extension.
@@ -8,7 +8,7 @@
 OUT="$HOME/Desktop/AnimatorToolkit-diagnostics.txt"
 ID="com.aanders.animatortoolkit"
 {
-echo "Animator Toolkit diagnostics - $(date)"
+echo "Amir Anderson Animator Toolkit diagnostics - $(date)"
 echo "macOS $(sw_vers -productVersion) ($(uname -m))"
 echo
 echo "== Installed copies =="
@@ -40,7 +40,7 @@ for f in $(ls -t "$HOME"/Library/Logs/CSXS/CEP*AEFT*.log 2>/dev/null | head -3);
     grep -i -E "animatortoolkit|signature|manifest|error|invalid" "$f" | tail -40
 done
 echo
-echo "== Animator Toolkit panel engine logs (JavaScript errors, bridge calls) =="
+echo "== Amir Anderson Animator Toolkit panel engine logs (JavaScript errors, bridge calls) =="
 for f in $(ls -t "$HOME"/Library/Logs/CSXS/CEPHtmlEngine*animatortoolkit*.log 2>/dev/null | head -2); do
     echo "--- $f"
     tail -60 "$f"

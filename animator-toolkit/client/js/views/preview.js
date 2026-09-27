@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Preview: animate at real-time speed. One-click setups (each card lists
  * exactly what it sets, ticked as After Effects confirms it), resolution
@@ -248,92 +250,52 @@
     }
 
     // Real on/off switch; snaps back if After Effects refuses.
-    function transparencyToggle(on) {
-        // Sends the exact state wanted (not "flip"), then shows what After
-        // Effects reports, so the switch can't drift out of step with the
-        // viewer even if a reply is lost. Not an undo step: click to turn off.
-        var tg = AT.ui.toggle("Transparency grid (checkerboard)", on, function (v) {
-            var input = tg.querySelector("input");
-            AT.run("viewer.transparency", { on: v }).then(function (res) {
-                if (res.ok && res.result) input.checked = !!res.result.on;
-                else if (!res.unconfirmed) input.checked = !v;
-                st.transparency = input.checked;
-            });
-        });
-        tg.classList.add("tg-transparency");
-        return tg;
+    // Viewer toggles as cards (like the one-click setup): a card is lit while
+    // its setting is on. Neither is an undo step in After Effects (viewer
+    // settings), so press the card again to turn it off.
+    //  - Transparency grid: the viewer's checkerboard, set exactly.
+    //  - Rulers: the viewer's own setting where After Effects reports it,
+    //    otherwise View > Show Rulers (then the card follows your presses).
+    function viewerCard(o) {
+        var state = h("span.vc-state");
+        var b = h("button.setup.vc-card", { type: "button", "data-card": o.key, "aria-pressed": "false", on: { click: function () {
+            var want = !o.isOn();
+            o.run(want).then(function () { paint(); });
+        } } }, [
+            h("span.setup-head", [h("span.setup-icon", AT.icon(o.icon)), h("span.setup-title", { text: o.title }), state]),
+            h("span.setup-sub", { text: o.sub }),
+            o.keys ? h("span.vc-keys", AT.ui.keycaps(o.keys)) : null
+        ]);
+        function paint() {
+            var on = o.isOn();
+            b.classList.toggle("on", on);
+            b.setAttribute("aria-pressed", on ? "true" : "false");
+            state.textContent = on ? "On" : "Off";
+        }
+        paint();
+        return b;
     }
-
-    // Like After Effects' "Choose grid and guide options" menu under the
-    // viewer, same items and order, using only After Effects scripting (no
-    // key presses, no system permissions):
-    //  - Title/Action Safe, Proportional Grid, 3D Reference Axes: the viewer's
-    //    own versions can't be reached by scripts, so they're drawn in the comp
-    //    as locked guide layers (never render; Ctrl/Cmd+Z; exact highlight).
-    //  - Grid, Guides, Rulers, snapping: View menu commands, or the viewer's
-    //    own setting where After Effects exposes it (then set exactly).
-    var gridOpen = false;
-    function gridGuidesMenu() {
-        var menu = h("div.gg-menu", { role: "menu" });
-        var toggle = h("button.gg-toggle", { type: "button", "aria-haspopup": "true", on: { click: function () {
-            gridOpen = !gridOpen; menu.hidden = !gridOpen; toggle.classList.toggle("open", gridOpen);
-            if (gridOpen) readState();
-        } } }, [AT.icon("guides"), h("span", { text: "Grid & guides" }), h("span.gg-sub", { text: "safe areas, grid, guides, rulers, snapping" }), AT.icon("chevron", "gg-chev")]);
-        menu.hidden = !gridOpen;
-        toggle.classList.toggle("open", gridOpen);
-        var reported = {};
-        var rows = [];
-        var cleanup = h("div.gg-cleanup");
-        function isOn(key) { return typeof reported[key] === "boolean" ? reported[key] : AT.viewToggleState(key); }
-        function row(id) {
-            var it = AT.catalog.get(id), key = it.payload.item;
-            var st = h("span.gg-state");
-            var b = h("button.gg-item", { type: "button", role: "menuitemcheckbox", title: it.why, "data-item": key, on: { click: function () {
-                var exact = it.overlay || typeof reported[key] === "boolean";
-                AT.run(it, exact ? { on: !isOn(key) } : null, b).then(function (res) {
-                    if (res.ok && res.result && typeof res.result.on === "boolean") reported[key] = res.result.on;
-                    paintAll();
-                });
-            } } }, [st, AT.icon(it.icon), h("span.gg-title", { text: it.title }),
-                it.overlay ? h("span.gg-note", { text: "guide layer" }) : it.keys ? AT.ui.keycaps(it.keys) : null]);
-            b.paint = function () {
-                var on = isOn(key);
-                st.innerHTML = "";
-                b.classList.toggle("on", on);
-                b.setAttribute("aria-checked", on ? "true" : "false");
-                if (on) st.appendChild(AT.icon("check"));
-            };
-            rows.push(b);
-            return b;
-        }
-        function paintAll() { rows.forEach(function (r) { r.paint(); }); }
-        // Same order and dividers as After Effects' menu.
-        ["view.safe", "view.propGrid"].forEach(function (id) { menu.appendChild(row(id)); });
-        menu.appendChild(h("div.gg-sep"));
-        ["view.grid", "view.guides", "view.rulers"].forEach(function (id) { menu.appendChild(row(id)); });
-        menu.appendChild(h("div.gg-sep"));
-        menu.appendChild(row("view.axes"));
-        menu.appendChild(h("div.gg-group", { text: "Snapping (View menu)" }));
-        ["view.snapGuides", "view.snapGrid", "view.lockGuides"].forEach(function (id) { menu.appendChild(row(id)); });
-        menu.appendChild(cleanup);
-        menu.appendChild(h("p.hint.gg-hint", { text: "Everything here works inside After Effects only, no system permissions. Title/Action Safe, Proportional Grid and 3D Reference Axes are drawn as locked guide layers (\"AT ...\"): they show in the viewer, never render, and Ctrl/Cmd+Z removes them. The others run After Effects' View menu commands; press again to turn them off." }));
-        function readState() {
-            AT.bridge.run("preview.read").then(function (res) {
-                if (res.ok && res.result) {
-                    reported = res.result.view || {};
-                    cleanup.innerHTML = "";
-                    if (res.result.oldOverlays > 0) {
-                        cleanup.appendChild(h("button.link.gg-clean", { type: "button", text: "Remove the old \"AT Grid\" guide layer from this comp", on: { click: function () {
-                            AT.bridge.run("view.overlay", { item: "grid", on: false }).then(function () { cleanup.innerHTML = ""; AT.toast("✓ Old guide layer removed", "ok"); });
-                        } } }));
-                    }
-                }
-                paintAll();
-            });
-        }
-        paintAll();
-        if (gridOpen) readState();
-        return h("div.gg", [toggle, menu]);
+    function viewerCards() {
+        var rulersKnown = typeof (st.view && st.view.rulers) === "boolean";
+        return h("div.setup-row.vc-row", [
+            viewerCard({ key: "rulers", title: "Rulers", icon: "ruler", keys: "Mod + R",
+                sub: "Rulers along the viewer. Drag from them to make guides.",
+                isOn: function () { return rulersKnown ? !!st.view.rulers : AT.viewToggleState("rulers"); },
+                run: function (want) {
+                    return AT.run("view.rulers", rulersKnown ? { on: want } : null).then(function (res) {
+                        if (res.ok && res.result && typeof res.result.on === "boolean") { st.view = st.view || {}; st.view.rulers = res.result.on; }
+                    });
+                } }),
+            viewerCard({ key: "transparency", title: "Transparency grid", icon: "checker",
+                sub: "Shows empty areas as a checkerboard, so you see what's really transparent.",
+                isOn: function () { return !!st.transparency; },
+                run: function (want) {
+                    return AT.run("viewer.transparency", { on: want }).then(function (res) {
+                        if (res.ok && res.result) st.transparency = !!res.result.on;
+                        else if (res.unconfirmed) st.transparency = want;
+                    });
+                } })
+        ]);
     }
 
     // One-click setup card. It lists exactly what it sets; while it's the
@@ -422,10 +384,9 @@
                 h("details.more", [h("summary", { text: "Custom and shortcuts" }), h("p", { text: "Custom sets any factor, e.g. every 6th pixel for heavy comps (Ctrl/Cmd+Alt+J). Shortcuts: Ctrl/Cmd+J Full, Ctrl/Cmd+Shift+J Half, Ctrl/Cmd+Alt+Shift+J Quarter. After Effects' own live Auto is in the viewer's resolution menu." })])
             ])));
 
-            body.appendChild(AT.ui.section("Viewer", { icon: "checker", hint: "the buttons under the Composition viewer" }, h("div", [
-                gridGuidesMenu(),
-                transparencyToggle(!!st.transparency),
-                h("p.hint.tg-note", { text: "A viewer setting, like the button under the viewer: click again to turn it off. After Effects doesn't put viewer settings in Undo." })
+            body.appendChild(AT.ui.section("Viewer", { icon: "checker", hint: "press again to turn off" }, h("div", [
+                viewerCards(),
+                h("p.hint.vc-note", { text: "Title/Action Safe, grids, guides and snapping are in Learn \u203a Shortcuts (View)." })
             ])));
 
             body.appendChild(AT.ui.section("Fast Previews", { icon: "bolt", hint: "how the viewer draws while you drag" },
@@ -435,7 +396,7 @@
                     function (it) { st.fastPreview = it.payload.mode; handPicked(); })));
 
             body.appendChild(AT.ui.section("Speed tools", { icon: "clock" },
-                h("div.tool-grid", ["preview.draft3d", "preview.workArea.90", "preview.workArea.180", "preview.purge"].map(function (id) { return AT.ui.toolButton(id); }))));
+                h("div.tool-grid", ["preview.workArea.3s", "preview.workArea.5s", "preview.workArea.10s", "preview.draft3d", "preview.purge", "preview.purgeDisk"].map(function (id) { return AT.ui.toolButton(id); }))));
 
             body.appendChild(AT.ui.section("Color depth", { icon: "sparkle", hint: "project-wide" },
                 optionRow(["project.bpc.8", "project.bpc.16", "project.bpc.32"],

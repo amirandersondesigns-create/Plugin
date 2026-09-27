@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Line icon set (16×16 grid, 1.5px stroke, currentColor). Paths only —
  * AT.icon(name) wraps them in an <svg>.
@@ -19,6 +21,7 @@
         check: "M3 8.5 6.5 12 13 4.5",
         close: "M4 4l8 8M12 4l-8 8",
         plus: "M8 3v10M3 8h10",
+        tune: "M2 4.5h7M12 4.5h2M2 11.5h2M7 11.5h7M10.5 3v3M5.5 10v3",
         eye: "M1.5 8c1.6-2.8 3.8-4.2 6.5-4.2s4.9 1.4 6.5 4.2c-1.6 2.8-3.8 4.2-6.5 4.2S3.1 10.8 1.5 8zM8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
         overlays: "M3.5 3.5h9v9h-9zM2 2h3M11 2h3M2 14h3M11 14h3M2 2v3M14 2v3M2 11v3M14 11v3",
         external: "M2.5 7v6.5h11V7M8 9.5V2M5.5 4.5 8 2l2.5 2.5",

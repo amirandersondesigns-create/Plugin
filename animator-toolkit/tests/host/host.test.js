@@ -161,17 +161,6 @@ test("easing without selected keyframes explains what to do", () => {
     assert.equal(r.error.code, "no-keyframes");
 });
 
-test("easing.read returns a curve for the selected pair", () => {
-    const h = setup();
-    keyedOpacity(h);
-    h.call("easing.apply", { mode: "both", influence: 60 });
-    const r = h.call("easing.read");
-    close(r.result.curve.x1, 0.6);
-    close(r.result.curve.y1, 0);
-    close(r.result.curve.x2, 0.4);
-    close(r.result.curve.y2, 1);
-});
-
 // ---- presets: stacking -----------------------------------------------------------
 
 function layerForPresets(h, Cls = ShapeLayer) {
@@ -527,13 +516,7 @@ test("preview settings, color depth, work area, purge, rasterize", () => {
     assert.equal(h.call("view.toggle", { item: "rulers" }).result.on, true);
     assert.equal(vo.rulers, true);
     assert.equal(h.call("view.toggle", { item: "rulers" }).result.on, false);
-    assert.equal(h.call("view.toggle", { item: "snapGuides", on: true }).result.on, true);
-    assert.equal(vo.guidesSnap, true);
-    assert.equal(h.call("view.toggle", { item: "guides" }).result.on, false);
-    assert.equal(h.call("view.toggle", { item: "lockGuides" }).result.on, true);
-    assert.equal(h.call("preview.read").result.view.snapGuides, true);
-    assert.equal(h.call("view.toggle", { item: "snapGrid" }).ok, true);
-    assert.deepEqual(plain(h.app.executed), [3041]);
+    assert.equal(h.call("preview.read").result.view.rulers, false);
     // A version that hands out a COPY of the view options still toggles.
     let stored = { fastPreview: 0, checkerboards: false, zoom: 0.5 };
     h.app.activeViewer.views[0] = { get options() { return Object.assign({}, stored); }, set options(o) { stored = Object.assign({}, o); } };
@@ -543,10 +526,19 @@ test("preview settings, color depth, work area, purge, rasterize", () => {
     assert.equal(stored.checkerboards, false);
     assert.equal(h.call("preview.fast", { mode: "wireframe" }).ok, true);
     assert.equal(h.call("preview.read").result.fastPreview, "wireframe");
-    delete h.app.menus["Snap to Grid"];
-    const miss = h.call("view.toggle", { item: "snapGrid" });
+    // A version that doesn't report rulers: View > Show Rulers instead.
+    delete stored.rulers;
+    const ru = h.call("view.toggle", { item: "rulers" });
+    assert.equal(ru.ok, true);
+    assert.equal(ru.result.on, null);
+    assert.equal(h.app.executed.slice(-1)[0], 3043);
+    delete h.app.menus["Show Rulers"];
+    const miss = h.call("view.toggle", { item: "rulers" });
     assert.equal(miss.ok, false);
     assert.equal(miss.error.code, "manual");
+    // Purge memory (scripting) and memory + disk (Edit > Purge menu command).
+    assert.equal(h.call("preview.purgeDisk").ok, true);
+    assert.equal(h.app.executed.slice(-1)[0], 10200);
 
     assert.equal(h.call("project.bpc", { bits: 16 }).ok, true);
     assert.equal(h.app.project.bitsPerChannel, 16);
@@ -689,64 +681,6 @@ test("every undoable action reports its Edit > Undo name, and app.undo only undo
     assert.equal(again.error.code, "manual");
 });
 
-test("Title/Action Safe, Proportional Grid and 3D Axes are locked guide layers: toggled, reported, undoable", () => {
-    const h = setup();
-    const keep = h.comp.add(ShapeLayer, "Artwork", { inPoint: 0, outPoint: 8 });
-    keep.selected = true;
-    for (const item of ["safe", "propGrid", "axes"]) {
-        const on = h.call("view.overlay", { item });
-        assert.equal(on.ok, true, item);
-        assert.equal(on.result.on, true);
-        assert.match(on.undo, /^Animator Toolkit: /, "an undo step");
-        const ls = h.comp.layerList.filter((l) => l.name.indexOf(h.AT.OVERLAYS[item].name) === 0);
-        assert.equal(ls.length, item === "axes" ? 3 : 1, item);
-        ls.forEach((l) => { assert.equal(l.guideLayer, true); assert.equal(l.locked, true); });
-        assert.equal(h.call("preview.read").result.view[item], true, item);
-    }
-    // Safe areas: action safe 90% and title safe 80% of a 1920x1080 frame.
-    const safe = h.comp.layerList.find((l) => l.name === "AT Title/Action Safe");
-    const paths = safe.property("ADBE Root Vectors Group").property(1).property("ADBE Vectors Group");
-    assert.deepEqual(plain(paths.property(1).property("ADBE Vector Shape").value.vertices[0]), [-864, -486]);
-    assert.deepEqual(plain(paths.property(2).property("ADBE Vector Shape").value.vertices[0]), [-768, -432]);
-    const z = h.comp.layerList.find((l) => l.name === "AT 3D Reference Axes Z");
-    assert.equal(z.threeDLayer, true);
-    assert.equal(z.property("ADBE Transform Group").property("ADBE Rotate Y").value, -90);
-    // Explicit on while on changes nothing; press again removes (even locked).
-    assert.equal(h.call("view.overlay", { item: "safe", on: true }).result.on, true);
-    assert.equal(h.comp.layerList.filter((l) => l.name === "AT Title/Action Safe").length, 1);
-    for (const item of ["safe", "propGrid", "axes"]) {
-        assert.equal(h.call("view.overlay", { item }).result.on, false);
-        assert.equal(h.call("preview.read").result.view[item], false);
-    }
-    assert.deepEqual(h.comp.layerList.map((l) => l.name), ["Artwork"]);
-    // An old 0.3.8 "AT Grid" layer is counted so the panel can offer to remove it.
-    h.call("view.overlay", { item: "grid" });
-    assert.equal(h.call("preview.read").result.oldOverlays, 1);
-    h.call("view.overlay", { item: "grid", on: false });
-    assert.equal(h.call("preview.read").result.oldOverlays, 0);
-    assert.equal(h.undo.open, 0);
-});
-
-test("Grid, Guides, Rulers and snapping use After Effects' View menu commands (no key presses)", () => {
-    const h = setup();
-    const vo = h.app.activeViewer.views[0].options;
-    delete vo.guidesVisibility; delete vo.rulers; delete vo.guidesSnap; delete vo.guidesLocked; // a version that doesn't report them
-    for (const [item, id] of [["grid", 3042], ["guides", 3044], ["rulers", 3043], ["snapGuides", 3040], ["snapGrid", 3041], ["lockGuides", 3045]]) {
-        const r = h.call("view.toggle", { item });
-        assert.equal(r.ok, true, item);
-        assert.equal(r.result.on, null, "state unknown: the panel remembers presses");
-        assert.equal(h.app.executed.slice(-1)[0], id, item);
-        assert.equal(r.undo, "", "viewer settings are not undo steps");
-    }
-    // "Lock Guides" reads "Unlock Guides" once locked: both names work.
-    delete h.app.menus["Lock Guides"]; h.app.menus["Unlock Guides"] = 3049;
-    assert.equal(h.call("view.toggle", { item: "lockGuides" }).ok, true);
-    assert.equal(h.app.executed.slice(-1)[0], 3049);
-    delete h.app.menus["Show Grid"];
-    const miss = h.call("view.toggle", { item: "grid" });
-    assert.equal(miss.error.code, "manual");
-});
-
 test("work area buttons move the work area from anywhere (After Effects checks start + length on every write)", () => {
     const h = setup(); // 10 s at 30 fps; work area starts as the whole comp
     const set = (t, frames) => { h.comp.time = t; return h.call("preview.workArea", { frames }); };
@@ -764,4 +698,23 @@ test("work area buttons move the work area from anywhere (After Effects checks s
     close(h.comp.workAreaStart, 2);
     assert.equal(r.result.frames, 90);
     assert.equal(h.undo.open, 0);
+});
+
+test("Grab Still sizes: Half/Third/Quarter save smaller stills and restore the comp's resolution", () => {
+    const fs = require("fs"), os = require("os"), path = require("path");
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "at-still-"));
+    const h = createHost({ fs: true, desktop: dir });
+    const comp = new CompItem();
+    h.app.project.activeItem = comp;
+    comp.resolutionFactor = [2, 2];
+    for (const [scale, suffix, w] of [[1, "", 1920], [2, "_half", 960], [3, "_third", 640], [4, "_quarter", 480]]) {
+        const r = h.call("still.capture", { folder: dir, scale });
+        assert.equal(r.ok, true, JSON.stringify(r.error));
+        assert.equal(r.result.width, w);
+        assert.ok(r.result.path.endsWith(suffix + ".png"), r.result.path);
+        assert.deepEqual(plain(comp.resolutionFactor), [2, 2], "resolution put back");
+    }
+    const imp = h.call("still.capture", { folder: dir, importToProject: true, addToComp: true });
+    assert.match(imp.feedback, /imported$/, "imports; no longer adds a layer");
+    assert.equal(comp.layerList.length, 0);
 });

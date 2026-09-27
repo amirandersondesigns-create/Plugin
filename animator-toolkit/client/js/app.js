@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Application shell: header (brand + search), tab bar, view
  * switching, global search, selection polling, onboarding and the
@@ -356,6 +358,7 @@
         rerender: rerender,
         open: open,
         sheet: sheet,
+        closeSheet: closeSheet,
         closeSheet: closeSheet,
         refreshContext: refreshContext,
         connect: connect,

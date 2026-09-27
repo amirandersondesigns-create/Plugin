@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Component kit. Small functions that return DOM nodes; every view is
  * built from these so interaction patterns stay identical across tabs.
@@ -360,7 +362,7 @@
         return "\u2248 " + (Math.round(frames / fps() * 100) / 100) + " s";
     }
 
-    // Saved duration in frames. Older builds could save seconds; convert.
+    // Saved duration in frames (a value saved in seconds is converted).
     function savedFrames(key) {
         var s = AT.store.get("settings");
         var v = s[key + "Value"];

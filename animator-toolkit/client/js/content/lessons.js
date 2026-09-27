@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Micro-lessons: 30 seconds to 2 minutes each. `tryIt` links lessons to
  * the tools that practise them; `illo` picks a small illustration
@@ -162,7 +164,7 @@
               "8 bpc is the fastest color depth. Only raise it when gradients band.",
               "Stale or stuttering previews? Edit > Purge > All Memory & Disk Cache."
           ],
-          tryIt: ["preview.res.2", "preview.workArea.90", "preview.draft3d"], shortcuts: ["sc.res-half", "sc.preview-num0", "sc.work-area", "sc.caps"] },
+          tryIt: ["preview.res.2", "preview.workArea.3s", "preview.draft3d"], shortcuts: ["sc.res-half", "sc.preview-num0", "sc.work-area", "sc.caps"] },
         { id: "lesson.rasterize", title: "Continuous Rasterize", level: "production", seconds: 45, illo: "rasterize",
           body: [
               "Illustrator, PDF and EPS art is drawn at 100% and then scaled, so blowing it up looks soft. (Shape and text layers already stay sharp when scaled.)",

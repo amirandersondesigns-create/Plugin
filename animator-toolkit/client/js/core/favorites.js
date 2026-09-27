@@ -1,8 +1,12 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Favorites reference catalog ids — never copies of tools — so a favorite
  * always runs the current definition. Stored in favorites.json.
  *
- *   { id, targetId, label, group, addedAt }
+ *   { id, targetId, label, group, addedAt, params? }
+ *   params: this favorite's own settings (see fav-settings.js), or none to
+ *   follow the tab's current settings.
  */
 (function (AT) {
     "use strict";
@@ -81,6 +85,12 @@
         });
     }
 
+    function setParams(targetId, params) {
+        AT.store.update("favorites", function (f) {
+            f.items.forEach(function (x) { if (x.targetId === targetId) { if (params) x.params = params; else delete x.params; } });
+        });
+    }
+
     function move(targetId, delta) {
         AT.store.update("favorites", function (f) {
             var i = f.items.findIndex(function (x) { return x.targetId === targetId; });
@@ -103,6 +113,7 @@
         remove: remove,
         toggle: toggle,
         rename: rename,
+        setParams: setParams,
         move: move
     };
 })(window.AT = window.AT || {});

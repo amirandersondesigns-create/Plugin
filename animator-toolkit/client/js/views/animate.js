@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Animate: the Motion-4-style workbench. Layout dock (anchor grid + align)
  * up top, keyframe strip, the graphic motion library, then layer tools.

@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 // ============================================================================
 // Animator Toolkit - easing engine
 //
@@ -132,53 +134,6 @@ AT.register("easing.apply", {
             result: { keyframes: count, properties: selection.length },
             feedback: label + " applied to " + AT.plural(count, "keyframe")
         };
-    }
-});
-
-// Reads the real curve between the first two selected keyframes so the
-// panel's preview reflects the user's animation, not a decorative graph.
-AT.register("easing.read", {
-    needs: "comp",
-    run: function (payload, ctx) {
-        var sel = AT.selectedKeyframes(ctx.comp);
-        for (var i = 0; i < sel.length; i++) {
-            var p = sel[i].prop;
-            var k1 = sel[i].keys[0];
-            var k2 = sel[i].keys.length > 1 ? sel[i].keys[1] : k1 + 1;
-            if (k2 > p.numKeys) continue;
-
-            var dt = p.keyTime(k2) - p.keyTime(k1);
-            var v1 = p.keyValue(k1);
-            var v2 = p.keyValue(k2);
-            var dv = AT.valueDistance(v1, v2);
-            var out1 = p.keyOutTemporalEase(k1)[0];
-            var in2 = p.keyInTemporalEase(k2)[0];
-            var outType = p.keyOutInterpolationType(k1);
-            var inType = p.keyInInterpolationType(k2);
-
-            var curve;
-            if (outType === KeyframeInterpolationType.HOLD) {
-                curve = { hold: true };
-            } else {
-                var x1 = outType === KeyframeInterpolationType.LINEAR ? 1 / 3 : out1.influence / 100;
-                var x2 = inType === KeyframeInterpolationType.LINEAR ? 2 / 3 : 1 - in2.influence / 100;
-                var y1 = x1;
-                var y2 = x2;
-                if (dv > 1e-9 && outType !== KeyframeInterpolationType.LINEAR) y1 = out1.speed * x1 * dt / dv;
-                if (dv > 1e-9 && inType !== KeyframeInterpolationType.LINEAR) y2 = 1 - in2.speed * (1 - x2) * dt / dv;
-                curve = { x1: x1, y1: y1, x2: x2, y2: y2 };
-            }
-            return {
-                result: {
-                    property: p.name,
-                    layer: AT.ownerLayer(p) ? AT.ownerLayer(p).name : "",
-                    fromTime: p.keyTime(k1),
-                    toTime: p.keyTime(k2),
-                    curve: curve
-                }
-            };
-        }
-        return { result: { curve: null } };
     }
 });
 

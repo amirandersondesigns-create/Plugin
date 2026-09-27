@@ -1,5 +1,5 @@
 @echo off
-REM Animator Toolkit - Windows installer (unsigned / debug mode)
+REM Amir Anderson Animator Toolkit - Windows installer (unsigned / debug mode)
 REM Enables CEP debug mode (lets After Effects load unsigned panels) and
 REM copies the extension into your user CEP extensions folder.
 setlocal
@@ -11,8 +11,6 @@ echo ----------------------------------------
 for %%v in (9 10 11 12 13) do reg add "HKCU\Software\Adobe\CSXS.%%v" /v PlayerDebugMode /t REG_SZ /d 1 /f >nul
 echo Debug mode enabled (CSXS 9-13)
 
-REM Remove the pre-0.3 copy (old ID), which would show up as a second panel.
-if exist "%APPDATA%\Adobe\CEP\extensions\com.cnn.animatortoolkit" rmdir /s /q "%APPDATA%\Adobe\CEP\extensions\com.cnn.animatortoolkit"
 if exist "%DEST%" rmdir /s /q "%DEST%"
 robocopy "%SRC%" "%DEST%" /E /XD tests .git /XF package.json >nul
 if %ERRORLEVEL% GEQ 8 (

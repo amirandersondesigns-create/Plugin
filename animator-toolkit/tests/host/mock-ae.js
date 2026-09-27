@@ -448,7 +448,7 @@ function createHost(opts) {
         project: { activeItem: null, bitsPerChannel: 8, importFile: (o) => ({ name: "still" }) },
         activeViewer: { active: 0, setActive() { this.active++; return true; }, views: [{ options: { fastPreview: FastPreviewType.FP_OFF, zoom: 0.5, checkerboards: false, rulers: false, guidesVisibility: true, guidesSnap: false, guidesLocked: false } }] },
         menus: { "Snap to Guides": 3040, "Snap to Grid": 3041, "Show Grid": 3042, "Show Rulers": 3043, "Show Guides": 3044, "Lock Guides": 3045,
-            "Title/Action Safe": 3046, "Proportional Grid": 3047, "3D Reference Axes": 3048 },
+            "Title/Action Safe": 3046, "Proportional Grid": 3047, "3D Reference Axes": 3048, "All Memory & Disk Cache...": 10200 },
         executed: [],
         undone: [],
         // Edit > Undo shows "Undo <last group>" like After Effects.

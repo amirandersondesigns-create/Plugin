@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Persistent storage for settings, favorites, lesson progress and saved
  * cameras. Survives After Effects restarts.
@@ -14,7 +16,7 @@
 
     var SCHEMA = 1;
     var DEFAULTS = {
-        settings: { onboarded: false, mode: "beginner", density: "comfortable", presetTiming: "layer", durationFrames: 0, stillFolder: "", stillImport: false, stillAddToComp: false },
+        settings: { onboarded: false, mode: "beginner", density: "comfortable", presetTiming: "layer", durationFrames: 0, stillFolder: "", stillImport: false, stillScale: 1 },
         favorites: { items: [] },
         progress: { lessons: {}, workflows: {} },
         cameras: { saved: [] }

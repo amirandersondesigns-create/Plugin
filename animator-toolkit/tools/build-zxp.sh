@@ -33,9 +33,9 @@ fi
 # path reads as a Windows command-line switch.
 cd "$DIST"
 rm -rf stage && mkdir -p stage/com.aanders.animatortoolkit
-(cd .. && cp -R CSXS client host README.md "$DIST/stage/com.aanders.animatortoolkit/")
+(cd .. && cp -R CSXS client host README.md LICENSE.txt "$DIST/stage/com.aanders.animatortoolkit/")
 
-[ -f cert.p12 ] || "${SIGN[@]}" -selfSignedCert US NY "Animator Toolkit" "Animator Toolkit" "$PASS" cert.p12 -validityDays 3650
+[ -f cert.p12 ] || "${SIGN[@]}" -selfSignedCert US NY "Amir Anderson" "Amir Anderson Animator Toolkit" "$PASS" cert.p12 -validityDays 3650
 
 OUT="Amir_Anderson_Animator_Toolkit-$VERSION.zxp"
 rm -f "$OUT"

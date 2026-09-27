@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Favorites: a personal kit of cards. Each card shows what the item does
  * (a live motion preview, the ease curve, or the tool's icon), runs on
@@ -49,16 +51,27 @@
             mouseenter: function () { if (vis.play) vis.play(); },
             keydown: function (e) { if (e.key === "Enter" && e.target === el) run(); }
         } });
-        function run() { AT.run(item, null, el); }
+        function run() { AT.run(item, fav.params || null, el); }
+        var editable = AT.favSettings.specFor(item).length > 0;
+        function editSettings() {
+            AT.favSettings.edit(fav, item, function (params) {
+                AT.favorites.setParams(fav.targetId, params);
+                AT.toast(params ? "\u2713 Saved " + fav.label + ": " + AT.favSettings.summary(item, params) : fav.label + " follows the tab's settings again", "ok");
+                redraw();
+            });
+        }
 
         el.appendChild(h("button.fav-visual", { type: "button", title: "Apply — " + item.summary, on: { click: run } }, [
             vis, h("span.fav-play", AT.icon(item.type === "lesson" || item.type === "workflow" ? "learn" : "play"))
         ]));
         el.appendChild(h("div.fav-foot", [
             title,
-            h("div.fav-meta", [h("span.fav-tag", { text: g.title }), h("span.fav-type", { text: item.type === "preset" ? (item.phase === "in" ? "entrance" : "exit") : item.type === "action" ? "tool" : item.type })])
+            h("div.fav-meta", [h("span.fav-tag", { text: g.title }), h("span.fav-type", { text: item.type === "preset" ? (item.phase === "in" ? "entrance" : "exit") : item.type === "action" ? "tool" : item.type })]),
+            editable ? h("button.fav-params" + (fav.params ? ".custom" : ""), { type: "button", title: "Edit this favorite's settings", on: { click: editSettings } },
+                [AT.icon("tune"), h("span", { text: AT.favSettings.summary(item, fav.params) })]) : null
         ]));
         el.appendChild(h("div.fav-actions", [
+            editable ? h("button.icon-btn.fav-edit", { type: "button", title: "Edit settings", "aria-label": "Edit settings", on: { click: editSettings } }, AT.icon("tune")) : null,
             h("button.icon-btn", { type: "button", title: "Rename", "aria-label": "Rename", on: { click: rename } }, AT.icon("edit")),
             index > 0 ? h("button.icon-btn", { type: "button", title: "Move earlier", "aria-label": "Move earlier", on: { click: function () { AT.favorites.move(fav.targetId, -1); redraw(); } } }, AT.icon("up")) : null,
             index < total - 1 ? h("button.icon-btn", { type: "button", title: "Move later", "aria-label": "Move later", on: { click: function () { AT.favorites.move(fav.targetId, 1); redraw(); } } }, AT.icon("down")) : null,
@@ -100,7 +113,7 @@
 
             body.appendChild(h("div.fav-hero", [
                 h("div", [h("div.fav-count", { text: String(all.length) }), h("div.fav-count-label", { text: all.length === 1 ? "favorite" : "favorites" })]),
-                h("div.fav-hero-text", { text: "Click a card to apply. Double-click a name to rename it." })
+                h("div.fav-hero-text", { text: "Click a card to apply. Tweak a favorite's settings with the sliders button; double-click a name to rename it." })
             ]));
 
             var chips = h("div.filter-chips", { role: "tablist" });

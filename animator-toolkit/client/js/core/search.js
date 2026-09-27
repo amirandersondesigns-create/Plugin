@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Global search across tools, presets, lessons, shortcuts, workflows and
  * favorites. Words are lightly stemmed so "ease", "eases" and "easing" all

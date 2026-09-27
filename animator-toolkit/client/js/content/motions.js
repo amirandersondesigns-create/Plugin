@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Motion presets — declarative definitions consumed by the host's
  * preset.apply (host/commands/presets.jsx). Each motion has an In and an

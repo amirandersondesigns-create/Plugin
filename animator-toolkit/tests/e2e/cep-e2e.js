@@ -262,10 +262,16 @@ function check(name, ok, detail) {
     await waitToast(/Work area/);
     const wa90 = Math.abs(comp.workAreaStart - 4) < 1e-6 && Math.abs(comp.workAreaDuration - 3) < 1e-6;
     comp.time = 1;
-    await page.click(".tool:has-text('Work Area 180f')");
-    await waitToast(/180 frames/);
-    const wa180 = Math.abs(comp.workAreaStart - 1) < 1e-6 && Math.abs(comp.workAreaDuration - 6) < 1e-6;
-    check("Work Area 90f / 180f move the work area to the playhead", wa90 && wa180, [comp.workAreaStart, comp.workAreaDuration, await toast()]);
+    await page.click(".tool:has-text('Work Area 150f')");
+    await waitToast(/150 frames/);
+    const wa150 = Math.abs(comp.workAreaStart - 1) < 1e-6 && Math.abs(comp.workAreaDuration - 5) < 1e-6;
+    comp.time = 0;
+    await page.click(".tool:has-text('Work Area 300f')");
+    await waitToast(/300 frames/);
+    const wa300 = Math.abs(comp.workAreaStart) < 1e-6 && Math.abs(comp.workAreaDuration - 10) < 1e-6;
+    check("Work Area 90f / 150f / 300f (3, 5, 10 s) move the work area to the playhead", wa90 && wa150 && wa300, [comp.workAreaStart, comp.workAreaDuration, await toast()]);
+    await page.click(".tool:has-text('Purge All')");
+    check("Purge All runs Edit > Purge > All Memory & Disk Cache", /confirm/.test(await waitToast(/Purge memory/)) && host.app.executed.slice(-1)[0] === 10200, await toast());
     comp.time = 0;
     const vo = comp.add(AVLayer, "VO", { audio: true, inPoint: 0, outPoint: 8 });
     comp.layerList.forEach((l) => { l.selected = false; });
@@ -353,6 +359,18 @@ function check(name, ok, detail) {
     await page.waitForSelector(".sheet .still-img", { timeout: 5000 }).catch(() => {});
     check("Capture tab Grab Still shows the same pop-up", !!(await page.$(".sheet .still-name")) && comp.savedFrames === 2, comp.savedFrames);
     await page.click(".sheet-close");
+    // Still size cards: Half saves a half-size still and puts the comp's
+    // resolution back afterwards.
+    const resBefore = comp.resolutionFactor.slice();
+    await page.click(".size-cards .option[data-scale='2']");
+    await page.click(".btn-hero:has-text('Grab Still')");
+    await page.waitForSelector(".sheet .still-name", { timeout: 5000 }).catch(() => {});
+    const halfName = (await page.textContent(".sheet .still-name")) || "";
+    const halfOk = /_half\.png$/.test(halfName) && comp.resolutionFactor.join() === resBefore.join() && (await page.$$(".size-cards .option.on")).length === 1;
+    await page.click(".sheet-close");
+    check("Capture: Half size card grabs a half-size still, resolution restored; no 'add as layer' option",
+        halfOk && !(await page.$("text=Also add as a layer")) && /1920\u00d71080|960\u00d7540/.test(await page.textContent(".size-cards")), [halfName, comp.resolutionFactor]);
+    await page.click(".size-cards .option[data-scale='1']");
 
     // Favorites persist a click and run from the Favorites tab.
     await page.fill("#search", "");
@@ -361,6 +379,21 @@ function check(name, ok, detail) {
     await page.click(".move .fav-btn >> nth=0", { force: true });
     await page.click(".tab[data-view=favorites]");
     check("favorite card rendered", (await page.$$(".fav-card")).length === 1);
+    // Editable favorites: give the Push In favorite its own 30-frame duration.
+    const favFollows = /tab's settings/.test(await page.textContent(".fav-params"));
+    await page.click(".fav-params");
+    await page.waitForSelector(".sheet .fs-body");
+    await page.fill(".sheet .fslider .num-input >> nth=0", "30");
+    await page.press(".sheet .fslider .num-input >> nth=0", "Tab");
+    await page.click(".sheet .btn-primary:has-text('Save')");
+    await page.waitForTimeout(300);
+    const favSummary = await page.textContent(".fav-params");
+    const nScripts = scripts.length;
+    await page.click(".fav-visual");
+    await waitToast(/Push In|Camera/);
+    const sent = scripts.slice(nScripts).join(" ");
+    check("Favorites are editable: own settings saved, shown on the card and used when run",
+        favFollows && /30 frames/.test(favSummary) && /durationFrames\\?\":30/.test(sent), [favFollows, favSummary, sent.slice(0, 300)]);
 
     // Preview: Auto resolution matches the viewer zoom (50% -> Half); the
     // Preview panel settings (Skip, Frame Rate, Cache...) are listed.
@@ -374,17 +407,17 @@ function check(name, ok, detail) {
     // On, then off again (it's a viewer setting, not an undo step), and the
     // switch always matches the viewer, even when AE's reply is lost.
     const cb = () => host.app.activeViewer.views[0].options.checkerboards;
-    const sw = () => page.$eval(".tg-transparency input", (i) => i.checked);
-    await page.click(".tg-transparency");
+    const sw = () => page.$eval(".vc-card[data-card=transparency]", (b) => b.classList.contains("on"));
+    await page.click(".vc-card[data-card=transparency]");
     await page.waitForTimeout(400);
     const onOk = cb() === true && (await sw()) === true;
-    await page.click(".tg-transparency");
+    await page.click(".vc-card[data-card=transparency]");
     await page.waitForTimeout(400);
     const offOk = cb() === false && (await sw()) === false;
-    await page.click(".tg-transparency");
+    await page.click(".vc-card[data-card=transparency]");
     await page.waitForTimeout(400);
     check("Transparency grid turns on, off and on again (switch matches the viewer)", onOk && offOk && cb() === true && (await sw()) === true, [onOk, offOk, cb()]);
-    await page.click(".tg-transparency");
+    await page.click(".vc-card[data-card=transparency]");
     await page.waitForTimeout(400);
     // The Preview panel copy matches After Effects' own (Window > Preview).
     const ppText = await page.textContent(".pp-form");
@@ -419,64 +452,24 @@ function check(name, ok, detail) {
         [ppSkip2, ppFinalOk, numpadFresh, keptNumpad, keptSpace, ppReset, incOff]);
     await page.click(".pp-reset");
 
-    // Grid & guides (Preview > Viewer, next to the transparency grid).
+    // Viewer: Rulers card (set exactly where the viewer reports it); the grid,
+    // guide and snapping items now live in Learn > Shortcuts.
     const gv = host.app.activeViewer.views[0].options;
-    await page.click(".gg-toggle");
-    await page.click(".gg-item:has-text('Snap to Guides')");
+    const rulersLit = () => page.$eval(".vc-card[data-card=rulers]", (b) => b.classList.contains("on"));
+    await page.click(".vc-card[data-card=rulers]");
     await page.waitForTimeout(400);
-    const snapOn = gv.guidesSnap === true && !!(await page.$(".gg-item.on:has-text('Snap to Guides')"));
-    await page.click(".gg-item:has-text('Snap to Guides')");
+    const rOn = gv.rulers === true && (await rulersLit());
+    await page.click(".vc-card[data-card=rulers]");
     await page.waitForTimeout(400);
-    const snapOff = gv.guidesSnap === false && !(await page.$(".gg-item.on:has-text('Snap to Guides')"));
-    check("Snap to Guides turns on (checked) and off again", snapOn && snapOff, [snapOn, snapOff]);
-    await page.click(".gg-item[data-item=rulers]");
-    await page.waitForTimeout(400);
-    check("Show Rulers turns rulers on", gv.rulers === true && !!(await page.$(".gg-item.on[data-item=rulers]")));
-    await page.click(".gg-item[data-item=rulers]");
-    await page.click(".gg-item:has-text('Snap to Grid')");
-    check("Snap to Grid runs View > Snap to Grid (no key presses)", /Snap to Grid/.test(await waitToast(/Snap to Grid/)) && host.app.executed.slice(-1)[0] === 3041, await toast());
-    await page.click(".gg-item:has-text('Snap to Grid')");
-    await page.waitForTimeout(400);
-    // Every row is clickable and stays highlighted until pressed again, even
-    // the toggles After Effects doesn't report (Grid, Title/Action Safe...).
-    const lit = (t) => page.$eval(".gg-item[data-item=" + t + "]", (e) => e.classList.contains("on"));
-    // Title/Action Safe, Proportional Grid, 3D Axes: locked guide layers in
-    // the comp (exact highlight). Grid: View menu command (remembered).
-    const hasLayer = (n) => comp.layerList.some((l) => l.name === n && l.guideLayer && l.locked);
-    await page.click(".gg-item[data-item=safe]");
-    await waitToast(/Title\/Action Safe on/);
-    const safeOn = (await lit("safe")) && hasLayer("AT Title/Action Safe");
-    await page.click(".gg-item[data-item=propGrid]");
-    await waitToast(/Proportional Grid on/);
-    const execBefore = host.app.executed.length;
-    await page.click(".gg-item[data-item=grid]");
-    await page.waitForTimeout(400);
-    const gridOn = (await lit("grid")) && host.app.executed.slice(execBefore).includes(3042);
-    await page.click(".tab[data-view=text]");
-    await page.click(".tab[data-view=preview]");
-    await page.waitForSelector(".gg-item[data-item=grid]");
-    if (!(await page.$(".gg-menu:not([hidden])"))) await page.click(".gg-toggle");
-    await page.waitForTimeout(400);
-    const stillLit = (await lit("grid")) && (await lit("safe")) && (await lit("propGrid"));
-    await page.click(".gg-item[data-item=grid]");
-    await page.click(".gg-item[data-item=safe]");
-    await waitToast(/Title\/Action Safe off/);
-    const off = !(await lit("grid")) && !(await lit("safe")) && !hasLayer("AT Title/Action Safe") && (await lit("propGrid"));
-    check("Grid & guides: guide layers and View menu commands, rows stay lit until pressed again", safeOn && gridOn && stillLit && off, [safeOn, gridOn, stillLit, off]);
-    // Undo in the message: the guide layer goes through Edit > Undo.
-    await page.click(".gg-item[data-item=propGrid]");
-    await waitToast(/Proportional Grid off/);
-    await page.click(".toast-action");
-    await page.waitForTimeout(400);
-    check("Undo in the message runs Edit > Undo for the guide layer", host.app.undone.slice(-1)[0] === "Animator Toolkit: Grid & Guides", host.app.undone);
-    await page.click(".gg-item[data-item=snapGuides]");
-    await waitToast(/Snap to Guides on/);
-    await page.click(".toast-action");
-    await page.waitForTimeout(400);
-    check("Undo in the message switches Snap to Guides back off", gv.guidesSnap === false && !(await lit("snapGuides")), [gv.guidesSnap, await toast()]);
-    await page.click(".gg-item[data-item=rulers]");
-    await page.waitForTimeout(400);
-    await page.click(".gg-toggle");
+    const rOff = gv.rulers === false && !(await rulersLit());
+    check("Rulers card turns rulers on and off (lit while on)", rOn && rOff, [rOn, rOff]);
+    check("Viewer has only the Rulers and Transparency cards (no grid menu)", !(await page.$(".gg-toggle")) && (await page.$$(".vc-card")).length === 2);
+    await page.click(".tab[data-view=learn]");
+    await page.click(".seg-tabs .seg-btn:has-text('Shortcuts')");
+    const viewSc = await page.textContent(".learn-body");
+    check("Title/Action Safe, grids, guides and snapping are in Learn > Shortcuts",
+        ["Title/action safe", "Proportional grid", "Show/hide grid", "Show/hide guides", "Snap to guides", "Snap to grid", "Lock guides", "Show/hide rulers"].every((t) => viewSc.includes(t)), null);
+    await page.click(".seg-tabs .seg-btn:has-text('Lessons')");
 
     // Home: quick actions can be removed, added back and reset.
     await page.click(".tab[data-view=home]");
@@ -516,7 +509,7 @@ function check(name, ok, detail) {
     // 0.2 clicks: stagger, mask wipe, flip, bounce, curve, 16 bpc, audio fade,
     // create camera, orbit = 9 more. 0.3.5: resolution and one-click setup are
     // undoable too: 4 resolution clicks + 3 setup clicks = 7 more; 2 Work Area
-    // clicks = 2 more; 4 guide-layer presses minus 1 undone = 3 more. (Grid &
+    // clicks = 2 more; 1 more Work Area click. (Grid &
     // guides are viewer settings: no undo steps.)
     const keyGroups = host.undo.groups.filter((g) => /Add Keyframes/.test(g)).length;
     if (process.env.E2E_LIST_UNDO) console.log(JSON.stringify(host.undo.groups.filter((g) => /Preview/.test(g))), host.undo.groups.length);
@@ -573,7 +566,7 @@ function check(name, ok, detail) {
             await page.waitForTimeout(150);
         }
     }
-    check("switches never shift the panel (" + toggles + " switches, incl. Easing > Link)", shifted.length === 0 && toggles >= 5, shifted);
+    check("switches never shift the panel (" + toggles + " switches, incl. Easing > Link)", shifted.length === 0 && toggles >= 3, shifted);
 
     // Animate Fast / Final Check move the Resolution and Fast Previews highlights too.
     await page.click(".tab[data-view=preview]");

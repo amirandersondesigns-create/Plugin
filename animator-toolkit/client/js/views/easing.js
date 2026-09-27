@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+// recreation or distribution is prohibited. See LICENSE.txt.
 /*
  * Easing: a live curve + motion preview (hover any ease to compare),
  * one-click presets, curves, physics and In/Out influence sliders.

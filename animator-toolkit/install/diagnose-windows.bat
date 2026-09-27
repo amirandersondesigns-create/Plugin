@@ -1,5 +1,5 @@
 @echo off
-REM Animator Toolkit - Windows diagnostics
+REM Amir Anderson Animator Toolkit - Windows diagnostics
 REM Writes AnimatorToolkit-diagnostics.txt to your Desktop: install location,
 REM CEP debug-mode flags and what After Effects' CEP log says. Also turns on
 REM detailed CEP logging; if the log section is empty, reopen After Effects
@@ -8,7 +8,7 @@ setlocal
 set "OUT=%USERPROFILE%\Desktop\AnimatorToolkit-diagnostics.txt"
 set "ID=com.aanders.animatortoolkit"
 (
-echo Animator Toolkit diagnostics - %DATE% %TIME%
+echo Amir Anderson Animator Toolkit diagnostics - %DATE% %TIME%
 ver
 echo.
 echo == Installed copies ==

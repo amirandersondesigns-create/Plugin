@@ -1,6 +1,8 @@
-/* Design tokens: the Amir Anderson plugin palette (shared with Motion Spell
-   Checker). Flat neutral grays, one blue accent for interaction, muted
-   status colors; group hues are used only as small tints and dots. */
+/* Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+   recreation or distribution is prohibited. See LICENSE.txt. */
+/* Design tokens: the Amir Anderson palette. Flat neutral grays, one blue
+   accent for interaction, muted status colors; group hues are used only as
+   small tints and dots. */
 :root {
     --bg-0: #1e1e1e;   /* panel background */
     --bg-1: #262626;   /* sections */
