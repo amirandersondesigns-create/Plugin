@@ -354,7 +354,7 @@
     }
 
     function render(page) {
-        page.appendChild(AT.ui.lead("Animate fast, then check at full quality before you render (timing never changes). The viewer's grid, guides and transparency are here too."));
+        page.appendChild(AT.ui.lead("Animate fast, then check at full quality before you render (timing never changes). Rulers and the transparency grid are here too."));
         var body = h("div");
         page.appendChild(body);
         syncs = [];

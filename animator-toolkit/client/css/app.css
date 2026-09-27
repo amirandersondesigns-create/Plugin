@@ -28,7 +28,8 @@ kbd { font: 600 var(--fs-xs)/1 var(--mono); background: var(--bg-3); border: 1px
 /* ---- header ------------------------------------------------------------ */
 .header { padding: 10px var(--pad) 8px; background: var(--bg-0); border-bottom: 1px solid var(--line); }
 .header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-width: 0; }
-.brand { display: flex; align-items: center; gap: 6px; flex: none; }
+.brand { display: flex; align-items: center; gap: 6px; flex: none; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; text-align: left; }
+.brand:hover .brand-name { color: var(--accent-2); }
 .brand-name { font-weight: 650; color: var(--fg-0); letter-spacing: 0.01em; }
 .context { flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px; padding: 3px 8px; border-radius: 999px; background: var(--bg-1); border: 1px solid var(--line); color: var(--fg-2); font-size: var(--fs-sm); }
 .context-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

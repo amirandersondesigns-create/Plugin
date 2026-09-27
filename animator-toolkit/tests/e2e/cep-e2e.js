@@ -320,6 +320,9 @@ function check(name, ok, detail) {
     check("brand logo loads", await page.$eval(".brand-logo", (i) => i.complete && i.naturalWidth > 0) && /Amir Anderson Animator Toolkit/.test(await page.textContent(".brand-name")));
     await page.click(".linkedin");
     check("LinkedIn opens in the browser", (await page.evaluate(() => window.__opened)).includes("https://www.linkedin.com/in/amiranderson"));
+    await page.evaluate(() => { window.__opened = []; });
+    await page.click("button.brand");
+    check("header logo and name open LinkedIn", (await page.evaluate(() => window.__opened)).includes("https://www.linkedin.com/in/amiranderson"));
     check("Learn: preview, render and guide shortcuts", /Preview with cache settings/.test(scText) && /Add to Render Queue/.test(scText) && /Show\/hide guides/.test(scText), null);
     await page.click(".seg-tabs .seg-btn:has-text('Lessons')");
 

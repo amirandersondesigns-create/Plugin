@@ -307,7 +307,7 @@
 
         var header = h("header.header", [
             h("div.header-row", [
-                h("div.brand", [h("img.brand-logo", { src: "icons/logo.svg", alt: "" }), h("span.brand-name", { text: "Amir Anderson Animator Toolkit" })]),
+                h("button.brand", { type: "button", title: "Amir Anderson on LinkedIn", on: { click: function () { AT.bridge.openURL(AT.learn.LINKEDIN); } } }, [h("img.brand-logo", { src: "icons/logo.svg", alt: "" }), h("span.brand-name", { text: "Amir Anderson Animator Toolkit" })]),
                 h("span.header-spacer")
             ]),
             h("div.search", [AT.icon("search", "search-ico"), searchEl])
