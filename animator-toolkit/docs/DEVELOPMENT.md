@@ -69,8 +69,8 @@ npm test          # unit and contract tests (Node, no dependencies)
 npm run test:e2e  # end-to-end checks in Chromium (needs Playwright);
                   # E2E_FRIENDLY=1 ideal conditions, E2E_DROP=1 lost replies,
                   # E2E_SRC=<dir> runs against an installed/unpacked build
-npm run package   # dist/Amir_Anderson_Animator_Toolkit-<version>.zip
-npm run zxp       # dist/Amir_Anderson_Animator_Toolkit-<version>.zxp (self-signed)
+npm run package   # dist/Amir_Anderson_Animator_Toolkit.zip
+npm run zxp       # dist/Amir_Anderson_Animator_Toolkit.zxp (self-signed)
 ```
 
 The unit tests run against `tests/host/mock-ae.js`, a strict mock of the

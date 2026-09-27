@@ -19,7 +19,7 @@ Use **one** of these, not both.
 
 1. Install a free ZXP installer, such as ZXP Installer by aescripts or
    Anastasiy's Extension Manager.
-2. Drag `Amir_Anderson_Animator_Toolkit-1.0.0.zxp` onto it.
+2. Drag `Amir_Anderson_Animator_Toolkit.zxp` onto it.
 3. Restart After Effects and open
    **Window › Extensions › Amir Anderson Animator Toolkit**.
 
@@ -27,7 +27,7 @@ The ZXP is self-signed, so an installer may say the publisher is unverified.
 
 **Option B: zip + install script**
 
-1. Unzip `Amir_Anderson_Animator_Toolkit-1.0.0.zip`.
+1. Unzip `Amir_Anderson_Animator_Toolkit.zip`.
 2. Run `install/install-mac.command` (macOS) or `install\install-windows.bat`
    (Windows). This lets After Effects load the panel and copies it into your
    user extensions folder.

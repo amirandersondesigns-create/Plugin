@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builds a self-signed dist/Amir_Anderson_Animator_Toolkit-<version>.zxp with Adobe's
+# Builds a self-signed dist/Amir_Anderson_Animator_Toolkit.zxp with Adobe's
 # ZXPSignCmd. On macOS/Windows use the native ZXPSignCmd (put it on PATH or
 # set ZXPSIGN). On Linux it runs the Windows build under Wine.
 #
@@ -9,7 +9,6 @@
 # later builds install as updates. Keep it out of git.
 set -e
 cd "$(dirname "$0")/.."
-VERSION=$(node -p "require('./package.json').version")
 PASS="${ZXP_PASSWORD:-animator-toolkit}"
 mkdir -p dist
 DIST="$(cd dist && pwd)"
@@ -37,7 +36,7 @@ rm -rf stage && mkdir -p stage/com.aanders.animatortoolkit
 
 [ -f cert.p12 ] || "${SIGN[@]}" -selfSignedCert US NY "Amir Anderson" "Amir Anderson Animator Toolkit" "$PASS" cert.p12 -validityDays 3650
 
-OUT="Amir_Anderson_Animator_Toolkit-$VERSION.zxp"
+OUT="Amir_Anderson_Animator_Toolkit.zxp"
 rm -f "$OUT"
 "${SIGN[@]}" -sign stage/com.aanders.animatortoolkit signed.zxp cert.p12 "$PASS"
 # Normalize the archive (mimetype first, Unix permissions), then re-verify.
