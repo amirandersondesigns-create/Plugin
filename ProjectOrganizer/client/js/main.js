@@ -854,6 +854,64 @@
     el.btnHelp.addEventListener("click", function () { openOverlay("helpOverlay"); });
 
     // ---------------------------------------------------------------
+    // Welcome walkthrough — same pattern as the Animator Toolkit's
+    // onboarding: shown once on first open, replayable from Help.
+    // ---------------------------------------------------------------
+    var ONBOARD_KEY = "motionProjectOrganizer.onboarded";
+    var onboard = {
+        root: $("onboard"),
+        slides: document.querySelectorAll(".onboard-slide"),
+        dots: document.querySelectorAll("#onboardDots span"),
+        next: $("onboardNext"),
+        back: $("onboardBack"),
+        step: 0
+    };
+    var NEXT_LABEL = ["Get started", "Next", "Start organizing"];
+
+    function showSlide(i) {
+        onboard.step = i;
+        for (var k = 0; k < onboard.slides.length; k++) {
+            // Re-adding the class restarts each slide's animation from the top.
+            onboard.slides[k].classList.remove("on");
+            onboard.dots[k].classList.toggle("on", k === i);
+        }
+        void onboard.slides[i].offsetWidth;
+        onboard.slides[i].classList.add("on");
+        onboard.next.textContent = NEXT_LABEL[i];
+        onboard.back.style.display = i === 0 ? "none" : "";
+    }
+
+    function openWelcome() {
+        closeOverlay("helpOverlay");
+        showSlide(0);
+        onboard.root.classList.add("open");
+    }
+
+    function closeWelcome() {
+        onboard.root.classList.remove("open");
+        try { localStorage.setItem(ONBOARD_KEY, "1"); } catch (e) {}
+    }
+
+    function seenWelcome() {
+        try { return localStorage.getItem(ONBOARD_KEY) === "1"; } catch (e) { return false; }
+    }
+
+    onboard.next.addEventListener("click", function () {
+        if (onboard.step < onboard.slides.length - 1) showSlide(onboard.step + 1);
+        else closeWelcome();
+    });
+    onboard.back.addEventListener("click", function () { if (onboard.step > 0) showSlide(onboard.step - 1); });
+    $("onboardSkip").addEventListener("click", closeWelcome);
+    Array.prototype.forEach.call(onboard.dots, function (d, i) { d.addEventListener("click", function () { showSlide(i); }); });
+    document.addEventListener("keydown", function (e) {
+        if (!onboard.root.classList.contains("open")) return;
+        if (e.key === "Escape") closeWelcome();
+        else if (e.key === "ArrowRight") onboard.next.click();
+        else if (e.key === "ArrowLeft") onboard.back.click();
+    });
+    $("btnReplayWelcome").addEventListener("click", openWelcome);
+
+    // ---------------------------------------------------------------
     // Init
     // ---------------------------------------------------------------
     function init() {
@@ -870,6 +928,7 @@
         el.planHint.style.display = "none";
         el.btnToggleAll.style.display = "none";
         renderStepper();
+        if (!seenWelcome()) openWelcome();
 
         // Tell the host where this extension lives (for config/organizer-config.json),
         // rather than relying on $.fileName, which varies between CEP versions.

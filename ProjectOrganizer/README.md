@@ -78,6 +78,10 @@ file to go back to the built-in defaults in
 
 ## Using it
 
+The first time the panel opens, a short animated welcome walks through the
+workflow — files flying into their folders, Analyze stamping each file,
+then copy → relink → save. Replay it any time from **Help → Replay the welcome**.
+
 The panel walks you through three steps, shown in the stepper at the top —
 the step you're on pulses, finished steps turn into green checks, and the
 button you should press next gently glows. The coach bar under the buttons
@@ -192,11 +196,11 @@ Command Prompt (After Effects closed):
 
 ```bash
 # macOS
-"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.3.0.zxp
+"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.4.0.zxp
 ```
 ```bat
 :: Windows
-"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.3.0.zxp"
+"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.4.0.zxp"
 ```
 
 If you used the debug installer before, run `install/uninstall_mac.command`

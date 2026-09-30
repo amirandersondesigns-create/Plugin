@@ -8,6 +8,7 @@
 <body>
     <!-- Shared SVG icons (referenced with <use href="#i-...">) -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs><linearGradient id="ob-glow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a9ce2" stop-opacity="0"/><stop offset="1" stop-color="#5a9ce2" stop-opacity=".9"/></linearGradient></defs>
         <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4.2l2 2h8.8A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" fill="currentColor"/></symbol>
         <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" fill="currentColor"/><path d="M14 3v4h4" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.4"/></symbol>
         <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -231,6 +232,40 @@
     <!-- Toast -->
     <div class="toast" id="toast"></div>
 
+    <!-- Welcome: a 3-slide walkthrough of the workflow (shown once; replay from Help) -->
+    <div class="onboard" id="onboard" role="dialog" aria-label="Welcome">
+        <div class="onboard-card" id="onboardCard">
+            <button class="onboard-skip" id="onboardSkip">Skip</button>
+
+            <div class="onboard-slide" data-slide="0">
+                <div class="onboard-illo"><svg class="ob-svg" viewBox="0 0 240 120"><g class="ob-tree"><use href="#i-folder" x="128" y="2" width="12" height="12" class="ob-root-ico"/><text x="143" y="11" class="ob-root">NBA_Finals_Open</text><path class="ob-branch" d="M134 15V108"/><g class="ob-row r0"><path class="ob-branch" d="M134 28h6"/><rect class="ob-hl" x="140" y="21" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="22" width="12" height="12" style="color:#8a8fd0"/><text x="157" y="31" class="ob-label">AE</text><circle class="ob-dot" cx="232" cy="28" r="2.2" style="fill:#8a8fd0"/></g><g class="ob-row r1"><path class="ob-branch" d="M134 44h6"/><rect class="ob-hl" x="140" y="37" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="38" width="12" height="12" style="color:#c9974a"/><text x="157" y="47" class="ob-label">AI</text><circle class="ob-dot" cx="232" cy="44" r="2.2" style="fill:#c9974a"/></g><g class="ob-row r2"><path class="ob-branch" d="M134 60h6"/><rect class="ob-hl" x="140" y="53" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="54" width="12" height="12" style="color:#6fa8da"/><text x="157" y="63" class="ob-label">PS</text><circle class="ob-dot" cx="232" cy="60" r="2.2" style="fill:#6fa8da"/></g><g class="ob-row r3"><path class="ob-branch" d="M134 76h6"/><rect class="ob-hl" x="140" y="69" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="70" width="12" height="12" style="color:#6a9955"/><text x="157" y="79" class="ob-label">AUDIO</text><circle class="ob-dot" cx="232" cy="76" r="2.2" style="fill:#6a9955"/></g><g class="ob-row r4"><path class="ob-branch" d="M134 92h6"/><rect class="ob-hl" x="140" y="85" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="86" width="12" height="12" style="color:#c4849a"/><text x="157" y="95" class="ob-label">FOOTAGE</text><circle class="ob-dot" cx="232" cy="92" r="2.2" style="fill:#c4849a"/></g><g class="ob-row r5"><path class="ob-branch" d="M134 108h6"/><rect class="ob-hl" x="140" y="101" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="102" width="12" height="12" style="color:#c9b458"/><text x="157" y="111" class="ob-label">SOURCE IMAGES</text><circle class="ob-dot" cx="232" cy="108" r="2.2" style="fill:#c9b458"/></g></g><g class="ob-file f0"><path class="ob-doc" d="M10 40h9l5 5v13h-14z"/><path class="ob-fold" d="M19 40v5h5"/><rect x="10" y="53" width="14" height="5" style="fill:#8a8fd0"/><text x="17" y="50" class="ob-ext">aep</text></g><g class="ob-file f1"><path class="ob-doc" d="M44 10h9l5 5v13h-14z"/><path class="ob-fold" d="M53 10v5h5"/><rect x="44" y="23" width="14" height="5" style="fill:#c9974a"/><text x="51" y="20" class="ob-ext">ai</text></g><g class="ob-file f2"><path class="ob-doc" d="M16 76h9l5 5v13h-14z"/><path class="ob-fold" d="M25 76v5h5"/><rect x="16" y="89" width="14" height="5" style="fill:#6fa8da"/><text x="23" y="86" class="ob-ext">psd</text></g><g class="ob-file f3"><path class="ob-doc" d="M52 46h9l5 5v13h-14z"/><path class="ob-fold" d="M61 46v5h5"/><rect x="52" y="59" width="14" height="5" style="fill:#6a9955"/><text x="59" y="56" class="ob-ext">wav</text></g><g class="ob-file f4"><path class="ob-doc" d="M20 8h9l5 5v13h-14z"/><path class="ob-fold" d="M29 8v5h5"/><rect x="20" y="21" width="14" height="5" style="fill:#c4849a"/><text x="27" y="18" class="ob-ext">mov</text></g><g class="ob-file f5"><path class="ob-doc" d="M50 84h9l5 5v13h-14z"/><path class="ob-fold" d="M59 84v5h5"/><rect x="50" y="97" width="14" height="5" style="fill:#c9b458"/><text x="57" y="94" class="ob-ext">png</text></g><g class="ob-done"><circle cx="236" cy="8" r="6"/><path d="M233 8l2 2 4-4"/></g></svg></div>
+                <h2>Welcome to Motion Project Organizer</h2>
+                <p>Before you hand off a job, it gathers every file your project uses into one clean folder
+                    structure — AE, AI, PS, AUDIO, FOOTAGE, SOURCE IMAGES — so nothing is ever missing.</p>
+            </div>
+
+            <div class="onboard-slide" data-slide="1">
+                <div class="onboard-illo"><svg class="ob-svg" viewBox="0 0 240 120"><g class="ob-li"><path class="ob-doc" d="M16 8h9l5 5v13h-14z"/><path class="ob-fold" d="M25 8v5h5"/><rect class="ob-bar" x="38" y="12" width="90" height="5" rx="1"/><rect class="ob-bar2" x="38" y="20" width="64" height="3" rx="1"/><g class="ob-badge b0 copy"><rect x="166" y="10" width="58" height="13" rx="2"/><text x="195" y="19">COPY</text></g></g><g class="ob-li"><path class="ob-doc" d="M16 35h9l5 5v13h-14z"/><path class="ob-fold" d="M25 35v5h5"/><rect class="ob-bar" x="38" y="39" width="78" height="5" rx="1"/><rect class="ob-bar2" x="38" y="47" width="70" height="3" rx="1"/><g class="ob-badge b1 inplace"><rect x="166" y="37" width="58" height="13" rx="2"/><text x="195" y="46">IN PLACE</text></g></g><g class="ob-li"><path class="ob-doc" d="M16 62h9l5 5v13h-14z"/><path class="ob-fold" d="M25 62v5h5"/><rect class="ob-bar" x="38" y="66" width="66" height="5" rx="1"/><rect class="ob-bar2" x="38" y="74" width="76" height="3" rx="1"/><g class="ob-badge b2 copy"><rect x="166" y="64" width="58" height="13" rx="2"/><text x="195" y="73">COPY</text></g></g><g class="ob-li"><path class="ob-doc" d="M16 89h9l5 5v13h-14z"/><path class="ob-fold" d="M25 89v5h5"/><rect class="ob-bar" x="38" y="93" width="54" height="5" rx="1"/><rect class="ob-bar2" x="38" y="101" width="82" height="3" rx="1"/><g class="ob-badge b3 missing"><rect x="166" y="91" width="58" height="13" rx="2"/><text x="195" y="100">MISSING</text></g></g><g class="ob-scan"><rect x="6" y="3" width="228" height="2" rx="1"/><rect class="ob-scan-glow" x="6" y="-7" width="228" height="10"/></g></svg></div>
+                <h2><span class="onboard-num">1</span> Analyze</h2>
+                <p>See where every file will go, what's already in place and what's missing.
+                    Nothing is changed until you say so.</p>
+            </div>
+
+            <div class="onboard-slide" data-slide="2">
+                <div class="onboard-illo"><svg class="ob-svg" viewBox="0 0 240 120"><text x="20" y="12" class="ob-cap">Copying files…</text><text x="220" y="12" class="ob-cap ob-right ob-pct">100%</text><rect x="20" y="16" width="200" height="5" rx="2.5" class="ob-track"/><rect x="20" y="16" width="200" height="5" rx="2.5" class="ob-fill"/><use href="#i-folder" x="22" y="52" width="40" height="40" class="ob-ae"/><text x="42" y="80" class="ob-ae-t">AE</text><g class="ob-aep"><path class="ob-doc" d="M34 30h11l5 5v15h-16z"/><path class="ob-fold" d="M45 30v5h5"/><text x="42" y="44" class="ob-ext">aep</text></g><text x="42" y="106" class="ob-cap ob-mid">Copied</text><g class="ob-link"><g class="ob-l1"><rect x="98" y="64" width="20" height="11" rx="5.5"/></g><g class="ob-l2"><rect x="113" y="64" width="20" height="11" rx="5.5"/></g></g><text x="120" y="106" class="ob-cap ob-mid">Relinked</text><g class="ob-save"><circle cx="198" cy="70" r="15"/><path d="M190 70.5l5.5 5.5 11-11"/></g><text x="198" y="106" class="ob-cap ob-mid">Saved</text><path class="ob-arrow a1" d="M70 70h18m-4-4l4 4-4 4"/><path class="ob-arrow a2" d="M146 70h18m-4-4l4 4-4 4"/></svg></div>
+                <h2><span class="onboard-num">2</span> Organize &amp; Save</h2>
+                <p>Files are copied in (originals are never moved), the project is relinked and saved into
+                    <code>AE/</code>, with a handoff report for whoever opens it next.</p>
+            </div>
+
+            <div class="onboard-actions">
+                <button class="btn btn-ghost" id="onboardBack">Back</button>
+                <button class="btn btn-primary" id="onboardNext">Get started</button>
+            </div>
+            <div class="onboard-dots" id="onboardDots"><span></span><span></span><span></span></div>
+        </div>
+    </div>
+
     <!-- Help overlay -->
     <div class="overlay" id="helpOverlay">
         <div class="overlay-panel">
@@ -249,6 +284,8 @@
                         never moved or deleted), relinks the project, saves it into <code>AE/</code> and writes <code>_HANDOFF_REPORT.txt</code>.
                         The relink is one undo step.</div></div>
                 </div>
+
+                <button class="btn btn-small" id="btnReplayWelcome" style="margin-top:12px">Replay the welcome</button>
 
                 <h3>Where files go</h3>
                 <div class="folder-legend">

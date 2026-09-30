@@ -21,7 +21,7 @@
 // ============================================================================
 
 var APP_NAME = "Motion Project Organizer";
-var VERSION = "1.3.0";
+var VERSION = "1.4.0";
 var AUTHOR = "Amir Anderson";
 
 // ==================== JSON (guard for older ExtendScript engines) ==========
