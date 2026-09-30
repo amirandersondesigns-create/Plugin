@@ -35,9 +35,13 @@
         }
     };
 
+    // Returns a plain file-system path (Adobe returns a file:// URI; this
+    // strips it the same way the official CSInterface.js does).
     CSInterface.prototype.getSystemPath = function (pathType) {
         try {
-            return window.__adobe_cep__.getSystemPath(pathType);
+            var p = decodeURI(window.__adobe_cep__.getSystemPath(pathType));
+            if (/^file:\/\/\/[A-Za-z]:/.test(p)) return p.substring(8);   // Windows: file:///C:/...
+            return p.replace(/^file:\/\//, "");                            // macOS:   file:///Users/...
         } catch (e) {
             return "";
         }

@@ -6,169 +6,275 @@
     <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
+    <!-- Shared SVG icons (referenced with <use href="#i-...">) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="g-accent" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#5aa9ff" />
+                <stop offset="1" stop-color="#7b61ff" />
+            </linearGradient>
+        </defs>
+        <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4.2l2 2h8.8A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" fill="currentColor"/></symbol>
+        <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" fill="currentColor"/><path d="M14 3v4h4" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.4"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+        <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z" fill="currentColor"/><path d="M12 10v5M12 17.6v.4" stroke="#1b1b1f" stroke-width="2" stroke-linecap="round"/></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+        <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+        <symbol id="i-disk" viewBox="0 0 24 24"><path d="M4 16l2.5-9h11L20 16v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 16h16" stroke="currentColor" stroke-width="2"/><circle cx="16.5" cy="18" r="1" fill="currentColor"/></symbol>
+        <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+        <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 13.5l1.6 1.2-2 3.4-1.9-.7a7.6 7.6 0 0 1-2 1.2L14.8 21h-4l-.3-2.4a7.6 7.6 0 0 1-2-1.2l-1.9.7-2-3.4 1.6-1.2a7.6 7.6 0 0 1 0-2.4L4.6 9.9l2-3.4 1.9.7a7.6 7.6 0 0 1 2-1.2L10.8 3.6h4l.3 2.4a7.6 7.6 0 0 1 2 1.2l1.9-.7 2 3.4-1.6 1.2a7.6 7.6 0 0 1 0 2.4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+        <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.6 2.3c-.8.4-1.2 1-1.2 1.9v.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.1" fill="currentColor"/></symbol>
+        <symbol id="i-caret" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+        <symbol id="i-open" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+        <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M8.5 12h7M8.5 15.5h7M8.5 8.5h3" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+        <symbol id="i-font" viewBox="0 0 24 24"><path d="M5 20L11 4h2l6 16M7.6 14h8.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    </svg>
+
     <div class="app">
 
-        <!-- Title bar -->
-        <div class="titlebar">
-            <h1 id="appTitle">Motion Project Organizer</h1>
-            <span class="byline" id="appByline">by Amir Anderson</span>
+        <!-- Header -->
+        <header class="header">
+            <div class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4.2l2 2h8.8A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" fill="url(#g-accent)"/></svg>
+                <span class="brand-spark"></span>
+            </div>
+            <div class="brand-text">
+                <h1 id="appTitle">Project Organizer</h1>
+                <span class="byline" id="appByline">Motion · by Amir Anderson</span>
+            </div>
             <span class="spacer"></span>
-            <button class="link-btn" id="btnHelp">Help</button>
-        </div>
+            <button class="icon-btn" id="btnHelp" title="How it works"><svg><use href="#i-help"/></svg></button>
+        </header>
 
-        <!-- 1. Where things are going -->
-        <div class="section" id="projectSection">
-            <div class="step-label"><span class="step-num">1</span> Project folder</div>
+        <!-- Stepper: where you are in the flow -->
+        <nav class="stepper" id="stepper">
+            <div class="step" data-step="1"><span class="dot"><b>1</b><svg><use href="#i-check"/></svg></span><span class="lbl">Locate</span></div>
+            <div class="rail"><span class="fill"></span></div>
+            <div class="step" data-step="2"><span class="dot"><b>2</b><svg><use href="#i-check"/></svg></span><span class="lbl">Analyze</span></div>
+            <div class="rail"><span class="fill"></span></div>
+            <div class="step" data-step="3"><span class="dot"><b>3</b><svg><use href="#i-check"/></svg></span><span class="lbl">Organize</span></div>
+        </nav>
 
-            <div class="kv">
-                <span class="k">Project</span>
-                <span class="v" id="projName">—</span>
-            </div>
+        <div class="scroll" id="scroll">
 
-            <div class="unsaved" id="unsavedBox">
-                <span>This project hasn't been saved yet. Save it where the job lives, then come back.</span>
-                <button id="btnSaveAs" class="btn-primary">Save Project…</button>
-            </div>
-
-            <div id="rootBox">
-                <div class="root-path" id="rootPath" title="">—</div>
-                <div class="root-reason" id="rootReason"></div>
-                <div class="root-row">
-                    <label class="field" id="nameField">
-                        <span class="field-label">Folder name</span>
-                        <input type="text" id="txtProjectName" spellcheck="false" />
-                    </label>
-                    <span class="spacer"></span>
-                    <button id="btnChooseRoot" class="btn-plain btn-small">Change…</button>
-                    <button id="btnResetRoot" class="btn-plain btn-small">Auto</button>
+            <!-- 1. Where things are going -->
+            <section class="card" id="projectSection">
+                <div class="card-head">
+                    <span class="card-title">Project folder</span>
+                    <span class="pill" id="rootModePill"></span>
                 </div>
-            </div>
-        </div>
 
-        <!-- 2. Options + actions -->
-        <div class="toolbar">
-            <div class="step-label"><span class="step-num">2</span> Check, then organize</div>
-            <div class="toolbar-row">
-                <button class="advanced-toggle" id="btnAdvancedToggle">
-                    <span class="caret">&#9656;</span> Options
-                </button>
-                <span class="spacer"></span>
-                <button id="btnAnalyze" class="btn-plain">Analyze</button>
-                <button id="btnOrganize" class="btn-primary" disabled>Organize &amp; Save</button>
-            </div>
+                <div class="aep-chip" id="projChip">
+                    <span class="ae-badge">Ae</span>
+                    <span class="aep-name" id="projName">—</span>
+                </div>
 
-            <div class="advanced-panel" id="advancedPanel">
-                <div class="check-group">
-                    <div class="check-group-label">Collect</div>
-                    <label class="checkbox"><input type="checkbox" id="cbFonts" checked /> Copy fonts used in text layers into FONTS</label>
-                    <label class="checkbox"><input type="checkbox" id="cbSkipUnused" /> Skip footage that isn't used in any comp</label>
+                <div class="unsaved" id="unsavedBox">
+                    <svg class="unsaved-icon"><use href="#i-alert"/></svg>
+                    <span>This project hasn't been saved yet. Save it where the job lives, then come back.</span>
+                    <button id="btnSaveAs" class="btn btn-primary btn-small">Save…</button>
                 </div>
-                <div class="check-group">
-                    <div class="check-group-label">Tidy up</div>
-                    <label class="checkbox"><input type="checkbox" id="cbTidy" /> Sort loose Project-panel items into matching bins</label>
-                    <label class="checkbox"><input type="checkbox" id="cbRenderQueue" /> Point Render Queue outputs to DELIVERABLES/EDIT</label>
-                    <label class="checkbox"><input type="checkbox" id="cbReport" checked /> Write a handoff report into the project folder</label>
-                </div>
-                <div class="check-group">
-                    <div class="check-group-label">Starter template</div>
-                    <div class="template-row">
-                        <span class="template-path" id="templatePath">None — built-in folder list</span>
-                        <button id="btnChooseTemplate" class="btn-plain btn-small">Choose…</button>
-                        <button id="btnClearTemplate" class="btn-plain btn-small">Clear</button>
+
+                <div id="rootBox">
+                    <div class="root-box" id="rootPathBox" title="">
+                        <svg class="root-icon"><use href="#i-folder"/></svg>
+                        <div class="crumbs" id="rootCrumbs">—</div>
                     </div>
-                    <div class="help-text">Point this at your z_PROJECT_TEMPLATE folder to also copy its starter files
-                        (One Sheet, banners, .aet) into new project folders. Existing files are never overwritten.</div>
+                    <div class="root-reason" id="rootReason"></div>
+                    <div class="root-row">
+                        <label class="field" id="nameField">
+                            <span class="field-label">Folder name</span>
+                            <input type="text" id="txtProjectName" spellcheck="false" />
+                        </label>
+                        <span class="spacer"></span>
+                        <button id="btnResetRoot" class="btn btn-ghost btn-small" style="display:none">Auto</button>
+                        <button id="btnChooseRoot" class="btn btn-ghost btn-small">Change…</button>
+                    </div>
                 </div>
-                <div class="check-group">
-                    <div class="check-group-label">Handoff note</div>
-                    <textarea id="txtNotes" rows="2" placeholder="Optional — e.g. &quot;Final is comp MAIN_1080. Swap scores in CONTROL layer.&quot;"></textarea>
+            </section>
+
+            <!-- 2. Actions -->
+            <section class="card actions-card">
+                <div class="action-row">
+                    <button id="btnAnalyze" class="btn btn-secondary btn-big">
+                        <svg><use href="#i-search"/></svg><span>Analyze</span>
+                    </button>
+                    <button id="btnOrganize" class="btn btn-primary btn-big" disabled>
+                        <svg><use href="#i-bolt"/></svg><span id="organizeLabel">Organize &amp; Save</span>
+                        <span class="shine"></span>
+                    </button>
                 </div>
-                <button class="link-inline" id="btnEditRules">Edit folder rules…</button>
+
+                <button class="options-toggle" id="btnAdvancedToggle">
+                    <svg class="gear"><use href="#i-gear"/></svg>
+                    <span>Options</span>
+                    <span class="options-summary" id="optionsSummary"></span>
+                    <svg class="caret"><use href="#i-caret"/></svg>
+                </button>
+
+                <div class="advanced-panel" id="advancedPanel">
+                    <div class="advanced-inner">
+                        <div class="opt-group-label">Collect</div>
+                        <label class="switch-row">
+                            <span class="switch"><input type="checkbox" id="cbFonts" checked /><span class="knob"></span></span>
+                            <span class="switch-text"><b>Copy fonts</b><small>Installed fonts used in text layers → FONTS</small></span>
+                        </label>
+                        <label class="switch-row">
+                            <span class="switch"><input type="checkbox" id="cbSkipUnused" /><span class="knob"></span></span>
+                            <span class="switch-text"><b>Skip unused footage</b><small>Leave out files not used in any comp</small></span>
+                        </label>
+
+                        <div class="opt-group-label">Tidy up</div>
+                        <label class="switch-row">
+                            <span class="switch"><input type="checkbox" id="cbTidy" /><span class="knob"></span></span>
+                            <span class="switch-text"><b>Sort Project panel</b><small>Loose items go into bins matching the disk folders</small></span>
+                        </label>
+                        <label class="switch-row">
+                            <span class="switch"><input type="checkbox" id="cbRenderQueue" /><span class="knob"></span></span>
+                            <span class="switch-text"><b>Retarget Render Queue</b><small>Queued outputs render to DELIVERABLES/EDIT</small></span>
+                        </label>
+                        <label class="switch-row">
+                            <span class="switch"><input type="checkbox" id="cbReport" checked /><span class="knob"></span></span>
+                            <span class="switch-text"><b>Handoff report</b><small>_HANDOFF_REPORT.txt in the project folder</small></span>
+                        </label>
+
+                        <div class="opt-group-label">Starter template</div>
+                        <div class="template-row">
+                            <svg class="tpl-icon"><use href="#i-folder"/></svg>
+                            <span class="template-path" id="templatePath">None — built-in folder list</span>
+                            <button id="btnClearTemplate" class="btn btn-ghost btn-small">Clear</button>
+                            <button id="btnChooseTemplate" class="btn btn-ghost btn-small">Choose…</button>
+                        </div>
+                        <div class="help-text">Point at your z_PROJECT_TEMPLATE folder to also copy its starter files
+                            (One Sheet, banners, .aet). Existing files are never overwritten.</div>
+
+                        <div class="opt-group-label">Handoff note</div>
+                        <textarea id="txtNotes" rows="2" placeholder="Optional — e.g. &quot;Final is comp MAIN_1080. Swap scores in CONTROL layer.&quot;"></textarea>
+
+                        <button class="link-inline" id="btnEditRules"><svg><use href="#i-doc"/></svg> Edit folder rules…</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coach: the one line that tells you what's happening / what to do next -->
+            <div class="coach" id="coach">
+                <span class="coach-icon" id="coachIcon"><svg><use href="#i-bulb"/></svg></span>
+                <span class="coach-text" id="statusText">Getting ready…</span>
             </div>
-        </div>
 
-        <!-- Status -->
-        <div class="statusline">
-            <div class="status-dot" id="statusDot"></div>
-            <div class="status-text" id="statusText">Ready.</div>
-        </div>
-
-        <div class="stats" id="statsRow">
-            <div class="stat-box"><div class="num" id="statCollect">0</div><div class="lbl">To collect</div></div>
-            <div class="stat-box"><div class="num" id="statInPlace">0</div><div class="lbl">In place</div></div>
-            <div class="stat-box warn"><div class="num" id="statMissing">0</div><div class="lbl">Missing</div></div>
-            <div class="stat-box"><div class="num" id="statSize">0 B</div><div class="lbl">To copy</div></div>
-        </div>
-
-        <div class="progress" id="progressBox">
-            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-            <div class="progress-row">
-                <span class="progress-text" id="progressText">Copying…</span>
-                <button id="btnCancel" class="btn-plain btn-small">Cancel</button>
+            <!-- Stats -->
+            <div class="stats" id="statsRow">
+                <div class="stat-tile t-collect"><svg><use href="#i-copy"/></svg><div class="num" id="statCollect">0</div><div class="lbl">To collect</div></div>
+                <div class="stat-tile t-inplace"><svg><use href="#i-check"/></svg><div class="num" id="statInPlace">0</div><div class="lbl">In place</div></div>
+                <div class="stat-tile t-missing" id="tileMissing"><svg><use href="#i-alert"/></svg><div class="num" id="statMissing">0</div><div class="lbl">Missing</div></div>
+                <div class="stat-tile t-size"><svg><use href="#i-disk"/></svg><div class="num" id="statSize">0 B</div><div class="lbl">To copy</div></div>
             </div>
-        </div>
 
-        <!-- 3. The plan: where every file will end up -->
-        <div class="plan">
-            <div class="pane-header">
-                <span id="planTitle">Plan</span>
-                <span class="count" id="planHint">Click a file to select it in the Project panel</span>
+            <!-- Progress -->
+            <div class="progress" id="progressBox">
+                <div class="progress-top">
+                    <span class="progress-icon"><svg><use href="#i-file"/></svg></span>
+                    <span class="progress-text" id="progressText">Copying…</span>
+                    <span class="progress-pct" id="progressPct">0%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                <div class="progress-row">
+                    <span class="progress-sub" id="progressSub"></span>
+                    <button id="btnCancel" class="btn btn-ghost btn-small">Cancel</button>
+                </div>
             </div>
-            <div class="empty-state" id="emptyState">Click <b>Analyze</b> to see where every file in this project will go.
-                Nothing is copied or changed until you click <b>Organize &amp; Save</b>.</div>
-            <div class="list" id="planList"></div>
-        </div>
 
-        <!-- Result -->
-        <div class="result" id="resultBox">
-            <div class="result-title" id="resultTitle">Organized</div>
-            <div class="result-body" id="resultBody"></div>
-            <div class="result-actions">
-                <button id="btnOpenFolder" class="btn-primary">Open Project Folder</button>
-                <button id="btnOpenReport" class="btn-plain">Open Report</button>
+            <!-- Result -->
+            <div class="result" id="resultBox">
+                <div class="result-head">
+                    <svg class="result-check" viewBox="0 0 52 52" id="resultCheck">
+                        <circle cx="26" cy="26" r="23" />
+                        <path d="M15 27l7.5 7.5L37.5 19" />
+                    </svg>
+                    <div>
+                        <div class="result-title" id="resultTitle">Organized</div>
+                        <div class="result-sub" id="resultSub"></div>
+                    </div>
+                </div>
+                <div class="result-body" id="resultBody"></div>
+                <div class="result-actions">
+                    <button id="btnOpenFolder" class="btn btn-primary"><svg><use href="#i-open"/></svg><span>Open Project Folder</span></button>
+                    <button id="btnOpenReport" class="btn btn-secondary"><svg><use href="#i-doc"/></svg><span>Report</span></button>
+                </div>
             </div>
+
+            <!-- Plan -->
+            <section class="plan">
+                <div class="plan-head">
+                    <span class="plan-title" id="planTitle">Plan</span>
+                    <span class="plan-hint" id="planHint">Click a file to select it in AE</span>
+                    <span class="spacer"></span>
+                    <button class="link-inline" id="btnToggleAll">Collapse all</button>
+                </div>
+
+                <!-- Empty state: files fly into folders — shows what the tool does before you've run it -->
+                <div class="empty-state" id="emptyState">
+                    <div class="illo" aria-hidden="true">
+                        <span class="fly f1"><svg><use href="#i-file"/></svg></span>
+                        <span class="fly f2"><svg><use href="#i-file"/></svg></span>
+                        <span class="fly f3"><svg><use href="#i-file"/></svg></span>
+                        <span class="fly f4"><svg><use href="#i-file"/></svg></span>
+                        <span class="illo-folder"><svg><use href="#i-folder"/></svg></span>
+                    </div>
+                    <div class="empty-text" id="emptyText">Click <b>Analyze</b> to see where every file in this project will go.<br />
+                        Nothing is copied or changed until you click <b>Organize &amp; Save</b>.</div>
+                </div>
+                <div class="list" id="planList"></div>
+            </section>
         </div>
     </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
 
     <!-- Help overlay -->
     <div class="overlay" id="helpOverlay">
         <div class="overlay-panel">
             <div class="overlay-header">
-                <h2>Motion Project Organizer — Help</h2>
-                <button class="close-x" data-close="helpOverlay">Close</button>
+                <h2>How it works</h2>
+                <button class="icon-btn" data-close="helpOverlay" title="Close">&#10005;</button>
             </div>
             <div class="overlay-body">
-                <h3>When to use it</h3>
-                <p>At the end of a job, before you hand it off. It gathers every file your project uses into
-                one tidy folder, relinks the project to those copies and saves the .aep inside it — so whoever
-                opens it next has everything, nothing offline.</p>
-
-                <h3>1 · Project folder</h3>
-                <p>The organizer works out where the job lives from where the project is saved:</p>
-                <p>• Saved inside an <code>AE</code> folder → the folder above it is the project folder.<br />
-                • Saved next to <code>FOOTAGE</code>, <code>PS</code>, etc. → that folder is used.<br />
-                • Anywhere else → a new folder (named in "Folder name") is made next to the .aep.<br />
-                Click <b>Change…</b> to pick any folder instead, <b>Auto</b> to go back.</p>
-
-                <h3>2 · Analyze</h3>
-                <p>Shows where every file will go, what's already in place and what's missing. Nothing is
-                changed. Missing files are listed first in red — relink those in After Effects before you
-                hand off, because there's nothing to copy.</p>
-
-                <h3>3 · Organize &amp; Save</h3>
-                <p>Creates the folder structure, <b>copies</b> each file into it (originals are never moved or
-                deleted), relinks the project to the copies, saves the project into <code>AE/</code> and writes
-                <code>_HANDOFF_REPORT.txt</code>. The relink is one undo step.</p>
+                <div class="how">
+                    <div class="how-step"><span class="how-num">1</span><div><b>Locate.</b> The organizer works out the job folder from where the project is saved:
+                        inside an <code>AE</code> folder → the folder above it; next to <code>FOOTAGE</code>, <code>PS</code>… → that folder;
+                        anywhere else → a new folder (named in "Folder name") next to the .aep. <b>Change…</b> picks any folder, <b>Auto</b> goes back.</div></div>
+                    <div class="how-step"><span class="how-num">2</span><div><b>Analyze.</b> Shows where every file will go, what's already in place and
+                        what's missing. Nothing is changed. Missing files are listed first in red — relink those in After Effects before you hand off.</div></div>
+                    <div class="how-step"><span class="how-num">3</span><div><b>Organize &amp; Save.</b> Builds the folders, <b>copies</b> each file in (originals are
+                        never moved or deleted), relinks the project, saves it into <code>AE/</code> and writes <code>_HANDOFF_REPORT.txt</code>.
+                        The relink is one undo step.</div></div>
+                </div>
 
                 <h3>Where files go</h3>
-                <p>AE: the project (ARCHIVE for old versions) · AI: .ai .eps .svg · PS: .psd .psb ·
-                AUDIO: music and nat sound, with VO and SFX sorted by file name · C4D: .c4d, MODELS: .fbx .obj …,
-                RENDER: .exr and 3D render passes · DATA: .csv .json stats · ESP_EarthStudioPro: anything from a
-                Google Earth Studio folder · FOOTAGE: video and image sequences, STOCK: Getty / Shutterstock / AP … ·
-                REFERENCE: files named ref, mockup, styleframe · SOURCE IMAGES: HEADSHOTS, LOGOS, STOCK, then
-                PNG / JPG / PDF / TIFF / OTHER · FONTS: fonts.</p>
-                <p>DELIVERABLES also gets REVIEW, SOCIAL and THUMBNAILS folders for your own exports.</p>
-                <p>Change any of this with <b>Options → Edit folder rules…</b></p>
+                <div class="folder-legend">
+                    <div class="legend-row"><svg style="color:#9999ff"><use href="#i-folder"/></svg><b>AE</b><span>the project · ARCHIVE for old versions</span></div>
+                    <div class="legend-row"><svg style="color:#ff9a00"><use href="#i-folder"/></svg><b>AI</b><span>.ai .eps .svg</span></div>
+                    <div class="legend-row"><svg style="color:#4cc38a"><use href="#i-folder"/></svg><b>AUDIO</b><span>music &amp; nat sound · VO · SFX (by file name)</span></div>
+                    <div class="legend-row"><svg style="color:#4d8dff"><use href="#i-folder"/></svg><b>C4D</b><span>.c4d · MODELS .fbx .obj … · RENDER .exr &amp; 3D passes</span></div>
+                    <div class="legend-row"><svg style="color:#3fd0e0"><use href="#i-folder"/></svg><b>DATA</b><span>.csv .json stats and scores</span></div>
+                    <div class="legend-row"><svg style="color:#a898ff"><use href="#i-folder"/></svg><b>DELIVERABLES</b><span>your exports · REVIEW · SOCIAL · THUMBNAILS …</span></div>
+                    <div class="legend-row"><svg style="color:#34c759"><use href="#i-folder"/></svg><b>ESP_EarthStudioPro</b><span>anything from a Google Earth Studio folder</span></div>
+                    <div class="legend-row"><svg style="color:#ff6b8b"><use href="#i-folder"/></svg><b>FOOTAGE</b><span>video &amp; image sequences · STOCK (Getty, AP …)</span></div>
+                    <div class="legend-row"><svg style="color:#31a8ff"><use href="#i-folder"/></svg><b>PS</b><span>.psd .psb</span></div>
+                    <div class="legend-row"><svg style="color:#a0a0b0"><use href="#i-folder"/></svg><b>REFERENCE</b><span>files named ref, mockup, styleframe …</span></div>
+                    <div class="legend-row"><svg style="color:#f0d25a"><use href="#i-folder"/></svg><b>SOURCE IMAGES</b><span>HEADSHOTS · LOGOS · STOCK · PNG / JPG / PDF / TIFF</span></div>
+                    <div class="legend-row"><svg style="color:#e6e6ee"><use href="#i-folder"/></svg><b>FONTS</b><span>installed fonts used in text layers</span></div>
+                </div>
+                <p style="margin-top:8px">Change any of this with <b>Options → Edit folder rules…</b></p>
+
+                <h3>Badges</h3>
+                <p><span class="badge copy">Copy</span> will be copied in ·
+                   <span class="badge reuse">Relink</span> identical copy already there ·
+                   <span class="badge inplace">In place</span> already inside the folder ·
+                   <span class="badge missing">Missing</span> can't be found ·
+                   <span class="badge unused">Skip</span> unused, left out</p>
 
                 <h3>Layered Photoshop / Illustrator files</h3>
                 <p>Files imported as a composition keep every layer when relinked. If a layer can't be matched

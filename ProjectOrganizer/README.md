@@ -71,19 +71,31 @@ click Analyze again. Delete the file to go back to the built-in defaults.
 
 ## Using it
 
-1. **Save** your project (the panel offers a Save button if you haven't).
-2. **Analyze** — shows every file grouped by the folder it'll go to, with a
+The panel walks you through three steps, shown in the stepper at the top —
+the step you're on pulses, finished steps turn into green checks, and the
+button you should press next gently glows. The coach bar under the buttons
+always says what's happening and what to do next.
+
+1. **Locate** — save your project (the panel offers a Save button if you
+   haven't). The project-folder card shows where everything will go as a
+   breadcrumb, tagged `NEW FOLDER`, `EXISTING` or `CHOSEN`.
+2. **Analyze** — shows every file grouped under colour-coded folders, with a
    badge: `COPY`, `RELINK` (an identical copy is already there), `IN PLACE`
-   (already inside the project folder), `MISSING` (red, listed first) or
-   `SKIP` (unused, if you chose to skip those). Click any row to select those
-   items in the Project panel. **Nothing is changed.**
-3. **Organize & Save** — copies files with a progress bar (Cancel stops
+   (already inside the project folder), `MISSING` (red, listed first — the
+   Missing tile shakes to get your attention) or `SKIP` (unused, if you chose
+   to skip those). Click any row to select those items in the Project panel.
+   **Nothing is changed.**
+3. **Organize & Save** — copies files with a live progress bar (Cancel stops
    before anything in the project is touched), then relinks, saves into
    `AE/` and writes the report. The relink is a single undo step. If files
-   are missing it asks once first — relink them in AE before handoff.
+   are missing, the button turns red and asks you to click once more. When
+   it's done, a result card draws a check mark and offers
+   **Open Project Folder** and **Report**.
 
 Running it again on an organized project is safe: everything shows
 `IN PLACE` and it just re-saves and refreshes the report.
+
+Animations respect the system "reduce motion" setting.
 
 ### Options
 
@@ -118,45 +130,74 @@ Running it again on an organized project is safe: everything shows
 
 ```
 CSXS/manifest.xml             Extension manifest
-client/index.html             Panel markup
-client/css/style.css          Same flat dark theme as Motion Spell Checker
+client/index.html             Panel markup (icons are an inline SVG sprite)
+client/css/style.css          Theme, layout and all animations
 client/js/main.js             Panel logic — renders state, talks to ExtendScript
 client/js/CSInterface.js      Minimal bridge to the CEP host
 host/organizer.jsx            ExtendScript engine — analyze, copy, relink, save, report
 config/organizer-config.json  Folder names and sorting rules (editable)
+install/                      Mac/Windows installers, uninstallers, .zxp packager
 ```
 
 The panel never touches the project directly. `main.js` calls `csAnalyze`
 (read-only), then `csPrepare` → `csCopyNext` (repeated; each call copies for
 ~0.4 s so the progress bar can update) → `csFinish` in `host/organizer.jsx`.
 
-## Installing it for testing (unsigned / debug mode)
+## Installing it
 
-Same as Motion Spell Checker — turn on CEP debug mode:
+### Quick install (unsigned, for you and your team)
 
-**macOS**
-```bash
-defaults write com.adobe.CSXS.9 PlayerDebugMode 1
-```
-**Windows** — in `regedit`, under `HKEY_CURRENT_USER\Software\Adobe\CSXS.9`
-add a String value `PlayerDebugMode` set to `1`. (Also try `CSXS.10`,
-`CSXS.11`… if your AE uses a newer CEP runtime.)
+Close After Effects, then run the installer for your platform from the
+`install/` folder:
 
-Copy (or symlink) **this `ProjectOrganizer` folder** into:
+- **macOS** — double-click `install/install_mac.command`
+  (first time: right-click → Open, since it's downloaded).
+- **Windows** — double-click `install/install_windows.bat`.
+
+It turns on CEP debug mode (needed for unsigned extensions) for CEP 9–12,
+copies the extension to your user extensions folder and keeps your edited
+`organizer-config.json` if you're reinstalling. Restart After Effects →
+**Window → Extensions → Motion Project Organizer**.
+
+`uninstall_mac.command` / `uninstall_windows.bat` remove it again.
+
+<details>
+<summary>Manual install</summary>
+
+Turn on debug mode — macOS: `defaults write com.adobe.CSXS.11 PlayerDebugMode 1`
+(repeat for 9, 10, 12); Windows: add String `PlayerDebugMode` = `1` under
+`HKEY_CURRENT_USER\Software\Adobe\CSXS.11` (and .9/.10/.12). Then copy this
+`ProjectOrganizer` folder to:
 
 - **macOS**: `~/Library/Application Support/Adobe/CEP/extensions/MotionProjectOrganizer`
 - **Windows**: `%APPDATA%\Adobe\CEP\extensions\MotionProjectOrganizer`
+</details>
 
-Restart After Effects → **Window → Extensions → Motion Project Organizer**.
+### Signed `.zxp` (no debug mode on users' machines)
 
-Chrome DevTools for the panel: `http://localhost:8093` (set in `.debug`).
-
-## Packaging (signed `.zxp`)
+With Adobe's `ZXPSignCmd` on your PATH:
 
 ```bash
-ZXPSignCmd -selfSignedCert US CA "Amir Anderson" "MotionProjectOrganizer" password cert.p12
-ZXPSignCmd -sign ProjectOrganizer MotionProjectOrganizer.zxp cert.p12 password
+install/package_zxp.sh              # creates a self-signed cert the first time
+install/package_zxp.sh my.p12 pass  # or sign with your own certificate
 ```
+
+It stages a clean copy (no installers, no `.debug`), signs and timestamps it
+into `install/MotionProjectOrganizer.zxp`. Users install that with
+Anastasiy's Extension Manager or Adobe's `ExManCmd`.
+
+### Debugging the panel
+
+With debug mode on, Chrome DevTools for the panel are at
+`http://localhost:8093` (set in `.debug`) while the panel is open.
+
+### Compatibility
+
+After Effects 2022 (22.0) and later, macOS and Windows. The panel's CSS/JS
+sticks to what the Chromium builds in CEP 9–12 support, and the host script
+is plain ES3 ExtendScript with a JSON fallback. The panel passes its own
+install path to the host on start-up, so the rules file is found no matter
+where the extension is installed.
 
 ## Limits worth knowing
 

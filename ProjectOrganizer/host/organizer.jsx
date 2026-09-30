@@ -21,7 +21,7 @@
 // ============================================================================
 
 var APP_NAME = "Motion Project Organizer";
-var VERSION = "1.0";
+var VERSION = "1.1";
 var AUTHOR = "Amir Anderson";
 
 // ==================== JSON (guard for older ExtendScript engines) ==========
@@ -201,7 +201,11 @@ function itemById(id) {
     return null;
 }
 
+// The panel tells us where the extension lives (csSetExtensionRoot); $.fileName
+// is only a fallback because it isn't reliable across CEP versions.
+var EXTENSION_ROOT = "";
 function extensionRoot() {
+    if (EXTENSION_ROOT) { var f = new Folder(EXTENSION_ROOT); if (f.exists) return f; }
     try { return new File($.fileName).parent.parent; } catch (e) { return null; }
 }
 
@@ -942,6 +946,14 @@ function fail(e, extra) {
     return JSON.stringify(o);
 }
 function parseParams(s) { try { return s ? JSON.parse(s) : {}; } catch (e) { return {}; } }
+
+function csSetExtensionRoot(json) {
+    try {
+        var p = parseParams(json);
+        if (p.path) EXTENSION_ROOT = p.path;
+        return ok({ path: EXTENSION_ROOT });
+    } catch (e) { return fail(e); }
+}
 
 function csGetInfo() {
     try { return ok({ appName: APP_NAME, version: VERSION, author: AUTHOR, project: projectInfo() }); }
