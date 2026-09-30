@@ -192,11 +192,11 @@ Command Prompt (After Effects closed):
 
 ```bash
 # macOS
-"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.2.1.zxp
+"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.2.2.zxp
 ```
 ```bat
 :: Windows
-"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.2.1.zxp"
+"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.2.2.zxp"
 ```
 
 If you used the debug installer before, run `install/uninstall_mac.command`
@@ -226,6 +226,13 @@ no debug port and makes no network or localhost connections.
 > package is signed on Windows (or with the Windows signer under Wine).
 > `install/fix_zxp_permissions.py` repairs a package in place without
 > touching the signature; `package_zxp.sh` runs it automatically.
+
+> **Panel missing from Window → Extensions?** CEP silently skips any
+> extension whose `CSXS/manifest.xml` doesn't match Adobe's
+> `ExtensionManifest_v_7_0.xsd` (use `Version="7.0"`, no default `xmlns`,
+> `MaxSize` before `MinSize`, icon types `DarkNormal`/`DarkRollOver`).
+> On a Mac, double-click `install/diagnose_mac.command` — it turns on CEP
+> logging and writes `MPO_Diagnostics.txt` to your Desktop with the reason.
 
 ### Compatibility
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="9.0" ExtensionBundleId="com.aanders.motionspellchecker" ExtensionBundleVersion="2.0.1" ExtensionBundleName="Motion Spell Checker" xmlns="http://ns.adobe.com/extension/1.0">
+<ExtensionManifest Version="7.0" ExtensionBundleId="com.aanders.motionspellchecker" ExtensionBundleVersion="2.0.2" ExtensionBundleName="Motion Spell Checker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ExtensionList>
-        <Extension Id="com.aanders.motionspellchecker.panel" Version="2.0.1" />
+        <Extension Id="com.aanders.motionspellchecker.panel" Version="2.0.2" />
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
@@ -36,19 +36,20 @@
                             <Height>820</Height>
                             <Width>420</Width>
                         </Size>
-                        <MinSize>
-                            <Height>560</Height>
-                            <Width>360</Width>
-                        </MinSize>
                         <MaxSize>
                             <Height>2400</Height>
                             <Width>900</Width>
                         </MaxSize>
+                        <MinSize>
+                            <Height>560</Height>
+                            <Width>360</Width>
+                        </MinSize>
                     </Geometry>
                     <Icons>
                         <Icon Type="Normal">./client/icons/icon.png</Icon>
                         <Icon Type="RollOver">./client/icons/icon.png</Icon>
-                        <Icon Type="Darkest">./client/icons/icon.png</Icon>
+                        <Icon Type="DarkNormal">./client/icons/icon.png</Icon>
+                        <Icon Type="DarkRollOver">./client/icons/icon.png</Icon>
                     </Icons>
                 </UI>
             </DispatchInfo>
