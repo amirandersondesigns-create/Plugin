@@ -2,16 +2,21 @@
   "_readme": [
     "Folder rules for Motion Project Organizer. Edit, save, then click Analyze again in the panel.",
     "folders: created in every project folder (use / for subfolders).",
-    "rules: checked top to bottom, first match wins. ext = file extensions, kinds = still | sequence | video | audio | other, path = regex tested against the full file path (case-insensitive).",
+    "rules: checked top to bottom, first match wins. ext = file extensions, kinds = still | sequence | video | audio | other, path = regex tested against the full file path, name = regex tested against the file name only (both case-insensitive).",
     "Files that match no rule go to fallbackFolder. Image sequences always get their own subfolder inside their destination.",
     "Delete this file to go back to the built-in defaults."
   ],
   "folders": [
     "AE",
+    "AE/ARCHIVE",
     "AI",
     "AUDIO",
+    "AUDIO/SFX",
+    "AUDIO/VO",
     "C4D",
+    "C4D/MODELS",
     "C4D/RENDER",
+    "DATA",
     "DELIVERABLES",
     "DELIVERABLES/APS",
     "DELIVERABLES/AUDIO for ENCO",
@@ -19,12 +24,20 @@
     "DELIVERABLES/EDIT",
     "DELIVERABLES/LOGOS",
     "DELIVERABLES/ONE SHEET",
+    "DELIVERABLES/REVIEW",
     "DELIVERABLES/SCENIC",
+    "DELIVERABLES/SOCIAL",
     "DELIVERABLES/STILLS",
+    "DELIVERABLES/THUMBNAILS",
     "ESP_EarthStudioPro",
     "FOOTAGE",
+    "FOOTAGE/STOCK",
     "PS",
-    "SOURCE IMAGES"
+    "REFERENCE",
+    "SOURCE IMAGES",
+    "SOURCE IMAGES/HEADSHOTS",
+    "SOURCE IMAGES/LOGOS",
+    "SOURCE IMAGES/STOCK"
   ],
   "projectFolder": "AE",
   "fontsFolder": "FONTS",
@@ -60,10 +73,16 @@
       ]
     },
     {
-      "label": "3D scene",
+      "label": "Cinema 4D scene",
       "dest": "C4D",
       "ext": [
-        "c4d",
+        "c4d"
+      ]
+    },
+    {
+      "label": "3D model",
+      "dest": "C4D/MODELS",
+      "ext": [
         "abc",
         "fbx",
         "obj",
@@ -73,6 +92,32 @@
         "usdz",
         "usdc"
       ]
+    },
+    {
+      "label": "Data",
+      "dest": "DATA",
+      "ext": [
+        "csv",
+        "tsv",
+        "json",
+        "mgjson"
+      ]
+    },
+    {
+      "label": "Voiceover",
+      "dest": "AUDIO/VO",
+      "kinds": [
+        "audio"
+      ],
+      "name": "(^|[^a-z])(vo|voice ?over|narration|narr|announcer)([^a-z]|$)"
+    },
+    {
+      "label": "Sound effect",
+      "dest": "AUDIO/SFX",
+      "kinds": [
+        "audio"
+      ],
+      "name": "sfx|whoosh|swoosh|impact|riser|swish|transition|crowd ?(noise|cheer)"
     },
     {
       "label": "Audio",
@@ -91,6 +136,30 @@
       ]
     },
     {
+      "label": "Stock video",
+      "dest": "FOOTAGE/STOCK",
+      "kinds": [
+        "video",
+        "sequence"
+      ],
+      "path": "getty|shutterstock|pond5|istock|adobestock|storyblocks|videoblocks|artgrid|envato|reuters|apimages"
+    },
+    {
+      "label": "Stock image",
+      "dest": "SOURCE IMAGES/STOCK",
+      "ext": [
+        "png",
+        "jpg",
+        "jpeg",
+        "jpe",
+        "tif",
+        "tiff",
+        "webp",
+        "heic"
+      ],
+      "path": "getty|shutterstock|pond5|istock|adobestock|storyblocks|alamy|envato|reuters|apimages"
+    },
+    {
       "label": "Photoshop",
       "dest": "PS",
       "ext": [
@@ -106,6 +175,41 @@
         "eps",
         "svg"
       ]
+    },
+    {
+      "label": "Reference",
+      "dest": "REFERENCE",
+      "kinds": [
+        "still",
+        "video"
+      ],
+      "name": "(^|[^a-z])(ref|reference|mockup|mock_up|sketch|storyboard|styleframe|style ?frame)([^a-z]|$)"
+    },
+    {
+      "label": "Headshot",
+      "dest": "SOURCE IMAGES/HEADSHOTS",
+      "kinds": [
+        "still"
+      ],
+      "name": "headshot|head_shot|head shot|mugshot|portrait"
+    },
+    {
+      "label": "Logo",
+      "dest": "SOURCE IMAGES/LOGOS",
+      "ext": [
+        "png",
+        "jpg",
+        "jpeg",
+        "jpe",
+        "tif",
+        "tiff",
+        "webp",
+        "gif"
+      ],
+      "kinds": [
+        "still"
+      ],
+      "path": "logo|wordmark|crest|badge|emblem"
     },
     {
       "label": "Image sequence",

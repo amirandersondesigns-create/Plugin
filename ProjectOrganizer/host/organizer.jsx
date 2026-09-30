@@ -67,14 +67,28 @@ if (typeof JSON !== "object") { JSON = {}; }
 //   ext   — list of file extensions (lowercase, no dot)
 //   kinds — any of: still, sequence, video, audio, other
 //   path  — case-insensitive regex tested against the file's full path
+//   name  — case-insensitive regex tested against the file name only
 // A rule matches when every field it specifies matches.
 var DEFAULT_CONFIG = {
+    // Same layout and naming style as z_PROJECT_TEMPLATE. Everything below
+    // the template's own folders is marked "added".
     folders: [
-        "AE", "AI", "AUDIO", "C4D", "C4D/RENDER",
+        "AE", "AE/ARCHIVE",                                   // added: old .aep versions
+        "AI",
+        "AUDIO", "AUDIO/SFX", "AUDIO/VO",                     // added: sound effects, voiceover
+        "C4D", "C4D/MODELS", "C4D/RENDER",                    // added: MODELS (.fbx .obj …)
+        "DATA",                                               // added: stats / scores CSV & JSON
         "DELIVERABLES", "DELIVERABLES/APS", "DELIVERABLES/AUDIO for ENCO",
         "DELIVERABLES/BILLBOARDS", "DELIVERABLES/EDIT", "DELIVERABLES/LOGOS",
-        "DELIVERABLES/ONE SHEET", "DELIVERABLES/SCENIC", "DELIVERABLES/STILLS",
-        "ESP_EarthStudioPro", "FOOTAGE", "PS", "SOURCE IMAGES"
+        "DELIVERABLES/ONE SHEET", "DELIVERABLES/REVIEW",      // added: review / approval renders
+        "DELIVERABLES/SCENIC", "DELIVERABLES/SOCIAL",         // added: 9x16, 1x1, 4x5 cut-downs
+        "DELIVERABLES/STILLS", "DELIVERABLES/THUMBNAILS",     // added: web / social thumbnails
+        "ESP_EarthStudioPro",
+        "FOOTAGE", "FOOTAGE/STOCK",                           // added: licensed stock / agency video
+        "PS",
+        "REFERENCE",                                          // added: refs, mockups, style frames
+        "SOURCE IMAGES", "SOURCE IMAGES/HEADSHOTS",           // added: player / talent headshots
+        "SOURCE IMAGES/LOGOS", "SOURCE IMAGES/STOCK"          // added: team logos, stock stills
     ],
     projectFolder: "AE",
     fontsFolder: "FONTS",
@@ -89,10 +103,26 @@ var DEFAULT_CONFIG = {
         { label: "3D render pass", dest: "C4D/RENDER", kinds: ["sequence"],
           path: "c4d|cinema ?4d|redshift|octane|arnold" },
         { label: "EXR render", dest: "C4D/RENDER", ext: ["exr", "sxr"] },
-        { label: "3D scene", dest: "C4D", ext: ["c4d", "abc", "fbx", "obj", "glb", "gltf", "usd", "usdz", "usdc"] },
+        { label: "Cinema 4D scene", dest: "C4D", ext: ["c4d"] },
+        { label: "3D model", dest: "C4D/MODELS", ext: ["abc", "fbx", "obj", "glb", "gltf", "usd", "usdz", "usdc"] },
+        { label: "Data", dest: "DATA", ext: ["csv", "tsv", "json", "mgjson"] },
+        { label: "Voiceover", dest: "AUDIO/VO", kinds: ["audio"],
+          name: "(^|[^a-z])(vo|voice ?over|narration|narr|announcer)([^a-z]|$)" },
+        { label: "Sound effect", dest: "AUDIO/SFX", kinds: ["audio"],
+          name: "sfx|whoosh|swoosh|impact|riser|swish|transition|crowd ?(noise|cheer)" },
         { label: "Audio", dest: "AUDIO", ext: ["wav", "mp3", "aif", "aiff", "aifc", "m4a", "aac", "ogg", "flac", "bwf"] },
+        { label: "Stock video", dest: "FOOTAGE/STOCK", kinds: ["video", "sequence"],
+          path: "getty|shutterstock|pond5|istock|adobestock|storyblocks|videoblocks|artgrid|envato|reuters|apimages" },
+        { label: "Stock image", dest: "SOURCE IMAGES/STOCK", ext: ["png", "jpg", "jpeg", "jpe", "tif", "tiff", "webp", "heic"],
+          path: "getty|shutterstock|pond5|istock|adobestock|storyblocks|alamy|envato|reuters|apimages" },
         { label: "Photoshop", dest: "PS", ext: ["psd", "psb"] },
         { label: "Illustrator / vector", dest: "AI", ext: ["ai", "eps", "svg"] },
+        { label: "Reference", dest: "REFERENCE", kinds: ["still", "video"],
+          name: "(^|[^a-z])(ref|reference|mockup|mock_up|sketch|storyboard|styleframe|style ?frame)([^a-z]|$)" },
+        { label: "Headshot", dest: "SOURCE IMAGES/HEADSHOTS", kinds: ["still"],
+          name: "headshot|head_shot|head shot|mugshot|portrait" },
+        { label: "Logo", dest: "SOURCE IMAGES/LOGOS", ext: ["png", "jpg", "jpeg", "jpe", "tif", "tiff", "webp", "gif"],
+          kinds: ["still"], path: "logo|wordmark|crest|badge|emblem" },
         { label: "Image sequence", dest: "FOOTAGE", kinds: ["sequence"] },
         { label: "Video", dest: "FOOTAGE", kinds: ["video"] },
         { label: "PNG", dest: "SOURCE IMAGES/PNG", ext: ["png"] },
@@ -304,6 +334,11 @@ function classify(cfg, path, ext, kind) {
             var re;
             try { re = new RegExp(r.path, "i"); } catch (e) { continue; }
             if (!re.test(String(path).replace(/\\/g, "/"))) continue;
+        }
+        if (r.name) {
+            var rn;
+            try { rn = new RegExp(r.name, "i"); } catch (e2) { continue; }
+            if (!rn.test(String(path).replace(/\\/g, "/").replace(/^.*\//, ""))) continue;
         }
         return { dest: r.dest, label: r.label || r.dest };
     }

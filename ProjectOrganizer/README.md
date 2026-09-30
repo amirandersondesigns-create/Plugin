@@ -13,30 +13,47 @@ into one flat folder no one wants to dig through.
 
 ## The folder structure
 
-Matches `z_PROJECT_TEMPLATE`:
+Matches `z_PROJECT_TEMPLATE`, with a few extra folders for sports/news
+work added in the same style (marked `+`):
 
 ```
 <Project folder>/
   AE/                    the .aep (and AE's Auto-Save folder)
+    ARCHIVE/           + old .aep versions
   AI/                    .ai .eps .svg
-  AUDIO/                 .wav .mp3 .aif .m4a …
-  C4D/                   .c4d (+ its tex/ folder), .fbx .obj .abc .glb …
+  AUDIO/                 .wav .mp3 .aif .m4a … (music beds, nat sound)
+    SFX/               + file names with sfx, whoosh, impact, riser …
+    VO/                + file names with VO, voiceover, narration, announcer
+  C4D/                   .c4d (+ its tex/ folder)
+    MODELS/            + .fbx .obj .abc .glb .usd …
     RENDER/              .exr, and image sequences from a C4D/Redshift/Octane path
+  DATA/                + .csv .tsv .json .mgjson — stats, scores, standings
   DELIVERABLES/          APS, AUDIO for ENCO, BILLBOARDS, EDIT, LOGOS,
                          ONE SHEET, SCENIC, STILLS
+                       + REVIEW (approval renders), SOCIAL (9x16 / 1x1 / 4x5
+                         cut-downs), THUMBNAILS
   ESP_EarthStudioPro/    anything from a Google Earth Studio / ESP folder
   FOOTAGE/               video, and image sequences (one folder per sequence)
+    STOCK/             + Getty, Shutterstock, Pond5, iStock, Adobe Stock, AP, Reuters …
     MISC/                anything that matches no rule
     _PROXIES/            proxy files
   PS/                    .psd .psb
+  REFERENCE/           + images/video named ref, reference, mockup, sketch, styleframe
   SOURCE IMAGES/
+    HEADSHOTS/         + file names with headshot, portrait, mugshot
+    LOGOS/             + raster images with logo, crest, badge, wordmark in the name or folder
+    STOCK/             + stock / agency stills
     PNG/  JPG/  PDF/  TIFF/  OTHER/
   FONTS/                 (only if fonts are collected)
   _HANDOFF_REPORT.txt
 ```
 
-All of this — folder names, which extensions go where, the order rules are
-checked in — lives in [`config/organizer-config.json`](config/organizer-config.json).
+The added folders are always created so people have somewhere to drop
+things; the type folders (PNG, JPG, MISC, _PROXIES, FONTS…) only appear
+when something goes in them. Vector logos (.ai/.eps/.svg) still go to `AI/`.
+
+All of this — folder names, which extensions or file names go where, the
+order rules are checked in — lives in [`config/organizer-config.json`](config/organizer-config.json).
 Edit it (or click **Options → Edit folder rules…** in the panel), save, and
 click Analyze again. Delete the file to go back to the built-in defaults.
 
