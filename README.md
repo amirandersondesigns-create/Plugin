@@ -5,6 +5,12 @@ A spell-checking panel for After Effects 2022+, rebuilt as a CEP extension
 real product instead of a native ScriptUI dialog — rounded cards, a
 settings drawer, colored suggestion states, hover/press feedback.
 
+> **Also in this repo:** [`ProjectOrganizer/`](ProjectOrganizer/) — Motion
+> Project Organizer, an end-of-job handoff panel that collects every file a
+> project uses into the standard AE / AI / AUDIO / C4D / FOOTAGE / PS /
+> SOURCE IMAGES folder structure and relinks the project. It's a separate
+> extension with its own install steps — see its README.
+
 ## How it's put together
 
 ```

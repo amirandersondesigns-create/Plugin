@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Motion Project Organizer</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+    <div class="app">
+
+        <!-- Title bar -->
+        <div class="titlebar">
+            <h1 id="appTitle">Motion Project Organizer</h1>
+            <span class="byline" id="appByline">by Amir Anderson</span>
+            <span class="spacer"></span>
+            <button class="link-btn" id="btnHelp">Help</button>
+        </div>
+
+        <!-- 1. Where things are going -->
+        <div class="section" id="projectSection">
+            <div class="step-label"><span class="step-num">1</span> Project folder</div>
+
+            <div class="kv">
+                <span class="k">Project</span>
+                <span class="v" id="projName">—</span>
+            </div>
+
+            <div class="unsaved" id="unsavedBox">
+                <span>This project hasn't been saved yet. Save it where the job lives, then come back.</span>
+                <button id="btnSaveAs" class="btn-primary">Save Project…</button>
+            </div>
+
+            <div id="rootBox">
+                <div class="root-path" id="rootPath" title="">—</div>
+                <div class="root-reason" id="rootReason"></div>
+                <div class="root-row">
+                    <label class="field" id="nameField">
+                        <span class="field-label">Folder name</span>
+                        <input type="text" id="txtProjectName" spellcheck="false" />
+                    </label>
+                    <span class="spacer"></span>
+                    <button id="btnChooseRoot" class="btn-plain btn-small">Change…</button>
+                    <button id="btnResetRoot" class="btn-plain btn-small">Auto</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Options + actions -->
+        <div class="toolbar">
+            <div class="step-label"><span class="step-num">2</span> Check, then organize</div>
+            <div class="toolbar-row">
+                <button class="advanced-toggle" id="btnAdvancedToggle">
+                    <span class="caret">&#9656;</span> Options
+                </button>
+                <span class="spacer"></span>
+                <button id="btnAnalyze" class="btn-plain">Analyze</button>
+                <button id="btnOrganize" class="btn-primary" disabled>Organize &amp; Save</button>
+            </div>
+
+            <div class="advanced-panel" id="advancedPanel">
+                <div class="check-group">
+                    <div class="check-group-label">Collect</div>
+                    <label class="checkbox"><input type="checkbox" id="cbFonts" checked /> Copy fonts used in text layers into FONTS</label>
+                    <label class="checkbox"><input type="checkbox" id="cbSkipUnused" /> Skip footage that isn't used in any comp</label>
+                </div>
+                <div class="check-group">
+                    <div class="check-group-label">Tidy up</div>
+                    <label class="checkbox"><input type="checkbox" id="cbTidy" /> Sort loose Project-panel items into matching bins</label>
+                    <label class="checkbox"><input type="checkbox" id="cbRenderQueue" /> Point Render Queue outputs to DELIVERABLES/EDIT</label>
+                    <label class="checkbox"><input type="checkbox" id="cbReport" checked /> Write a handoff report into the project folder</label>
+                </div>
+                <div class="check-group">
+                    <div class="check-group-label">Starter template</div>
+                    <div class="template-row">
+                        <span class="template-path" id="templatePath">None — built-in folder list</span>
+                        <button id="btnChooseTemplate" class="btn-plain btn-small">Choose…</button>
+                        <button id="btnClearTemplate" class="btn-plain btn-small">Clear</button>
+                    </div>
+                    <div class="help-text">Point this at your z_PROJECT_TEMPLATE folder to also copy its starter files
+                        (One Sheet, banners, .aet) into new project folders. Existing files are never overwritten.</div>
+                </div>
+                <div class="check-group">
+                    <div class="check-group-label">Handoff note</div>
+                    <textarea id="txtNotes" rows="2" placeholder="Optional — e.g. &quot;Final is comp MAIN_1080. Swap scores in CONTROL layer.&quot;"></textarea>
+                </div>
+                <button class="link-inline" id="btnEditRules">Edit folder rules…</button>
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="statusline">
+            <div class="status-dot" id="statusDot"></div>
+            <div class="status-text" id="statusText">Ready.</div>
+        </div>
+
+        <div class="stats" id="statsRow">
+            <div class="stat-box"><div class="num" id="statCollect">0</div><div class="lbl">To collect</div></div>
+            <div class="stat-box"><div class="num" id="statInPlace">0</div><div class="lbl">In place</div></div>
+            <div class="stat-box warn"><div class="num" id="statMissing">0</div><div class="lbl">Missing</div></div>
+            <div class="stat-box"><div class="num" id="statSize">0 B</div><div class="lbl">To copy</div></div>
+        </div>
+
+        <div class="progress" id="progressBox">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-row">
+                <span class="progress-text" id="progressText">Copying…</span>
+                <button id="btnCancel" class="btn-plain btn-small">Cancel</button>
+            </div>
+        </div>
+
+        <!-- 3. The plan: where every file will end up -->
+        <div class="plan">
+            <div class="pane-header">
+                <span id="planTitle">Plan</span>
+                <span class="count" id="planHint">Click a file to select it in the Project panel</span>
+            </div>
+            <div class="empty-state" id="emptyState">Click <b>Analyze</b> to see where every file in this project will go.
+                Nothing is copied or changed until you click <b>Organize &amp; Save</b>.</div>
+            <div class="list" id="planList"></div>
+        </div>
+
+        <!-- Result -->
+        <div class="result" id="resultBox">
+            <div class="result-title" id="resultTitle">Organized</div>
+            <div class="result-body" id="resultBody"></div>
+            <div class="result-actions">
+                <button id="btnOpenFolder" class="btn-primary">Open Project Folder</button>
+                <button id="btnOpenReport" class="btn-plain">Open Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help overlay -->
+    <div class="overlay" id="helpOverlay">
+        <div class="overlay-panel">
+            <div class="overlay-header">
+                <h2>Motion Project Organizer — Help</h2>
+                <button class="close-x" data-close="helpOverlay">Close</button>
+            </div>
+            <div class="overlay-body">
+                <h3>When to use it</h3>
+                <p>At the end of a job, before you hand it off. It gathers every file your project uses into
+                one tidy folder, relinks the project to those copies and saves the .aep inside it — so whoever
+                opens it next has everything, nothing offline.</p>
+
+                <h3>1 · Project folder</h3>
+                <p>The organizer works out where the job lives from where the project is saved:</p>
+                <p>• Saved inside an <code>AE</code> folder → the folder above it is the project folder.<br />
+                • Saved next to <code>FOOTAGE</code>, <code>PS</code>, etc. → that folder is used.<br />
+                • Anywhere else → a new folder (named in "Folder name") is made next to the .aep.<br />
+                Click <b>Change…</b> to pick any folder instead, <b>Auto</b> to go back.</p>
+
+                <h3>2 · Analyze</h3>
+                <p>Shows where every file will go, what's already in place and what's missing. Nothing is
+                changed. Missing files are listed first in red — relink those in After Effects before you
+                hand off, because there's nothing to copy.</p>
+
+                <h3>3 · Organize &amp; Save</h3>
+                <p>Creates the folder structure, <b>copies</b> each file into it (originals are never moved or
+                deleted), relinks the project to the copies, saves the project into <code>AE/</code> and writes
+                <code>_HANDOFF_REPORT.txt</code>. The relink is one undo step.</p>
+
+                <h3>Where files go</h3>
+                <p>AE: the project itself · AI: .ai .eps .svg · PS: .psd .psb · AUDIO: .wav .mp3 .aif .m4a ·
+                FOOTAGE: video and image sequences (each sequence in its own folder) · C4D: .c4d and 3D
+                files, RENDER: .exr and 3D render passes · ESP_EarthStudioPro: anything from a Google Earth
+                Studio folder · SOURCE IMAGES/PNG, /JPG, /PDF, /TIFF, /OTHER: still images · FONTS: fonts.</p>
+                <p>Change any of this with <b>Options → Edit folder rules…</b></p>
+
+                <h3>Layered Photoshop / Illustrator files</h3>
+                <p>Files imported as a composition keep every layer when relinked. If a layer can't be matched
+                it's relinked flattened and flagged in the report as "CHECK".</p>
+
+                <h3>Fonts</h3>
+                <p>Installed font files are copied into <code>FONTS/</code>. Adobe Fonts can't be copied —
+                they're listed in the report so the next person can activate them in Creative Cloud.
+                Check your font licences before sending fonts outside your organization.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/CSInterface.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

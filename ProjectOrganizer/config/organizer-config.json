@@ -1,0 +1,163 @@
+{
+  "_readme": [
+    "Folder rules for Motion Project Organizer. Edit, save, then click Analyze again in the panel.",
+    "folders: created in every project folder (use / for subfolders).",
+    "rules: checked top to bottom, first match wins. ext = file extensions, kinds = still | sequence | video | audio | other, path = regex tested against the full file path (case-insensitive).",
+    "Files that match no rule go to fallbackFolder. Image sequences always get their own subfolder inside their destination.",
+    "Delete this file to go back to the built-in defaults."
+  ],
+  "folders": [
+    "AE",
+    "AI",
+    "AUDIO",
+    "C4D",
+    "C4D/RENDER",
+    "DELIVERABLES",
+    "DELIVERABLES/APS",
+    "DELIVERABLES/AUDIO for ENCO",
+    "DELIVERABLES/BILLBOARDS",
+    "DELIVERABLES/EDIT",
+    "DELIVERABLES/LOGOS",
+    "DELIVERABLES/ONE SHEET",
+    "DELIVERABLES/SCENIC",
+    "DELIVERABLES/STILLS",
+    "ESP_EarthStudioPro",
+    "FOOTAGE",
+    "PS",
+    "SOURCE IMAGES"
+  ],
+  "projectFolder": "AE",
+  "fontsFolder": "FONTS",
+  "proxiesFolder": "FOOTAGE/_PROXIES",
+  "renderOutputFolder": "DELIVERABLES/EDIT",
+  "fallbackFolder": "FOOTAGE/MISC",
+  "reportName": "_HANDOFF_REPORT.txt",
+  "rules": [
+    {
+      "label": "Google Earth Studio",
+      "dest": "ESP_EarthStudioPro",
+      "kinds": [
+        "still",
+        "sequence",
+        "video"
+      ],
+      "path": "earth ?studio|google ?earth|[\\\\/]esp[_ \\\\/]"
+    },
+    {
+      "label": "3D render pass",
+      "dest": "C4D/RENDER",
+      "kinds": [
+        "sequence"
+      ],
+      "path": "c4d|cinema ?4d|redshift|octane|arnold"
+    },
+    {
+      "label": "EXR render",
+      "dest": "C4D/RENDER",
+      "ext": [
+        "exr",
+        "sxr"
+      ]
+    },
+    {
+      "label": "3D scene",
+      "dest": "C4D",
+      "ext": [
+        "c4d",
+        "abc",
+        "fbx",
+        "obj",
+        "glb",
+        "gltf",
+        "usd",
+        "usdz",
+        "usdc"
+      ]
+    },
+    {
+      "label": "Audio",
+      "dest": "AUDIO",
+      "ext": [
+        "wav",
+        "mp3",
+        "aif",
+        "aiff",
+        "aifc",
+        "m4a",
+        "aac",
+        "ogg",
+        "flac",
+        "bwf"
+      ]
+    },
+    {
+      "label": "Photoshop",
+      "dest": "PS",
+      "ext": [
+        "psd",
+        "psb"
+      ]
+    },
+    {
+      "label": "Illustrator / vector",
+      "dest": "AI",
+      "ext": [
+        "ai",
+        "eps",
+        "svg"
+      ]
+    },
+    {
+      "label": "Image sequence",
+      "dest": "FOOTAGE",
+      "kinds": [
+        "sequence"
+      ]
+    },
+    {
+      "label": "Video",
+      "dest": "FOOTAGE",
+      "kinds": [
+        "video"
+      ]
+    },
+    {
+      "label": "PNG",
+      "dest": "SOURCE IMAGES/PNG",
+      "ext": [
+        "png"
+      ]
+    },
+    {
+      "label": "JPEG",
+      "dest": "SOURCE IMAGES/JPG",
+      "ext": [
+        "jpg",
+        "jpeg",
+        "jpe"
+      ]
+    },
+    {
+      "label": "PDF",
+      "dest": "SOURCE IMAGES/PDF",
+      "ext": [
+        "pdf"
+      ]
+    },
+    {
+      "label": "TIFF",
+      "dest": "SOURCE IMAGES/TIFF",
+      "ext": [
+        "tif",
+        "tiff"
+      ]
+    },
+    {
+      "label": "Other image",
+      "dest": "SOURCE IMAGES/OTHER",
+      "kinds": [
+        "still"
+      ]
+    }
+  ]
+}
