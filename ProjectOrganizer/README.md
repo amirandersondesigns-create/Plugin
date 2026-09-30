@@ -53,9 +53,16 @@ things; the type folders (PNG, JPG, MISC, _PROXIES, FONTS…) only appear
 when something goes in them. Vector logos (.ai/.eps/.svg) still go to `AI/`.
 
 All of this — folder names, which extensions or file names go where, the
-order rules are checked in — lives in [`config/organizer-config.json`](config/organizer-config.json).
-Edit it (or click **Options → Edit folder rules…** in the panel), save, and
-click Analyze again. Delete the file to go back to the built-in defaults.
+order rules are checked in — is editable. Click **Options → Edit folder
+rules…** in the panel: it opens your own copy at
+`Documents/MotionProjectOrganizer/organizer-config.json` (created from the
+defaults the first time). Edit, save, and click Analyze again. Delete that
+file to go back to the built-in defaults in
+[`config/organizer-config.json`](config/organizer-config.json).
+
+> Don't edit the copy inside the installed extension: a signed `.zxp`
+> install is signature-checked every time After Effects loads it, and
+> changing any file inside it stops the panel from loading.
 
 ## How it decides where "the project folder" is
 
@@ -139,6 +146,9 @@ config/organizer-config.json  Folder names and sorting rules (editable)
 install/                      Mac/Windows installers, uninstallers, .zxp packager
 ```
 
+A test kit (messy sample media + a script that builds a test project) lives
+in [`../ProjectOrganizer-TestKit`](../ProjectOrganizer-TestKit) — see its README.
+
 The panel never touches the project directly. `main.js` calls `csAnalyze`
 (read-only), then `csPrepare` → `csCopyNext` (repeated; each call copies for
 ~0.4 s so the progress bar can update) → `csFinish` in `host/organizer.jsx`.
@@ -173,9 +183,29 @@ Turn on debug mode — macOS: `defaults write com.adobe.CSXS.11 PlayerDebugMode 
 - **Windows**: `%APPDATA%\Adobe\CEP\extensions\MotionProjectOrganizer`
 </details>
 
-### Signed `.zxp` (no debug mode on users' machines)
+### Signed `.zxp` (recommended — no debug mode needed)
 
-With Adobe's `ZXPSignCmd` on your PATH:
+**Install:** the easiest way is the free
+[ZXP Installer from aescripts](https://aescripts.com/learn/zxp-installer/) —
+drag the `.zxp` onto it. Or use Adobe's built-in installer from Terminal /
+Command Prompt (After Effects closed):
+
+```bash
+# macOS
+"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.2.0.zxp
+```
+```bat
+:: Windows
+"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.2.0.zxp"
+```
+
+If you used the debug installer before, run `install/uninstall_mac.command`
+/ `uninstall_windows.bat` first so two copies don't clash.
+
+**Build:**
+
+With Adobe's `ZXPSignCmd` on your PATH (Mac/Windows builds only — on
+Linux the Windows build runs fine under Wine):
 
 ```bash
 install/package_zxp.sh              # creates a self-signed cert the first time

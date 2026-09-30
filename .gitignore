@@ -1,0 +1,5 @@
+# Signing certificates and built packages never go in the repo
+*.p12
+*.zxp
+ProjectOrganizer-TestKit/dist/
+.DS_Store

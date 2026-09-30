@@ -21,7 +21,7 @@
 // ============================================================================
 
 var APP_NAME = "Motion Project Organizer";
-var VERSION = "1.1";
+var VERSION = "1.2";
 var AUTHOR = "Amir Anderson";
 
 // ==================== JSON (guard for older ExtendScript engines) ==========
@@ -224,17 +224,32 @@ function writeText(f, s) {
     return true;
 }
 
+// Built-in rules ship inside the extension. Never edit that copy: a signed
+// (.zxp) install is signature-checked every time AE loads it, so changing a
+// file inside it stops the panel loading. Your editable copy lives in
+// Documents/MotionProjectOrganizer/ and wins when present.
 function configFile() {
     var root = extensionRoot();
     return root ? new File(joinPath(root.fsName, "config/organizer-config.json")) : null;
+}
+
+function userConfigFile() {
+    return new File(joinPath(Folder.myDocuments.fsName, "MotionProjectOrganizer/organizer-config.json"));
+}
+
+function activeConfigFile() {
+    var u = userConfigFile();
+    if (u.exists) return u;
+    var f = configFile();
+    return (f && f.exists) ? f : null;
 }
 
 function loadConfig() {
     var cfg = {}, k;
     for (k in DEFAULT_CONFIG) cfg[k] = DEFAULT_CONFIG[k];
     try {
-        var f = configFile();
-        if (f && f.exists) {
+        var f = activeConfigFile();
+        if (f) {
             var user = JSON.parse(readText(f));
             for (k in user) if (user.hasOwnProperty(k) && k.charAt(0) !== "_") cfg[k] = user[k];
         }
@@ -1123,14 +1138,20 @@ function csOpenPath(json) {
 
 function csOpenConfig() {
     try {
-        var f = configFile();
-        if (!f) return fail("Extension folder not found.");
-        if (!f.exists) {
-            ensureFolder(f.parent.fsName);
-            var copy = {}; for (var k in DEFAULT_CONFIG) copy[k] = DEFAULT_CONFIG[k];
-            writeText(f, JSON.stringify(copy));
+        // Open (creating on first use) the user's own copy — never the one
+        // inside the extension, which would break a signed install.
+        var u = userConfigFile();
+        if (!u.exists) {
+            ensureFolder(u.parent.fsName);
+            var shipped = configFile();
+            var okCopy = false;
+            if (shipped && shipped.exists) { try { okCopy = shipped.copy(u); } catch (e1) {} }
+            if (!okCopy) {
+                var copy = {}; for (var k in DEFAULT_CONFIG) copy[k] = DEFAULT_CONFIG[k];
+                writeText(u, JSON.stringify(copy));
+            }
         }
-        f.execute();
-        return ok({ path: f.fsName });
+        u.execute();
+        return ok({ path: u.fsName });
     } catch (e) { return fail(e); }
 }

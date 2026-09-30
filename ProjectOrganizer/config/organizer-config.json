@@ -4,7 +4,7 @@
     "folders: created in every project folder (use / for subfolders).",
     "rules: checked top to bottom, first match wins. ext = file extensions, kinds = still | sequence | video | audio | other, path = regex tested against the full file path, name = regex tested against the file name only (both case-insensitive).",
     "Files that match no rule go to fallbackFolder. Image sequences always get their own subfolder inside their destination.",
-    "Delete this file to go back to the built-in defaults."
+    "Your editable copy lives in Documents/MotionProjectOrganizer/organizer-config.json (Options → Edit folder rules… creates it). Delete that copy to go back to these defaults. Don't edit the copy inside the installed extension — a signed install stops loading if its files change."
   ],
   "folders": [
     "AE",

@@ -408,7 +408,7 @@
 
     el.btnEditRules.addEventListener("click", function () {
         callHost("csOpenConfig").then(function (res) {
-            if (res.ok) setStatus("Folder rules opened — edit, save the file, then click Analyze again.", "hint");
+            if (res.ok) setStatus("Opened your folder rules (Documents/MotionProjectOrganizer/organizer-config.json) — edit, save, then click Analyze again.", "hint");
             else setStatus(res.error || "Couldn't open the rules file.", "error");
         });
     });
