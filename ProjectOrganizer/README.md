@@ -192,11 +192,11 @@ Command Prompt (After Effects closed):
 
 ```bash
 # macOS
-"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.2.2.zxp
+"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.3.0.zxp
 ```
 ```bat
 :: Windows
-"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.2.2.zxp"
+"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.3.0.zxp"
 ```
 
 If you used the debug installer before, run `install/uninstall_mac.command`

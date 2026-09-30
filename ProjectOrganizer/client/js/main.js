@@ -320,7 +320,7 @@
             if (!res.ok) { setStatus(res.error || "Couldn't reach After Effects.", "error"); return; }
             var prev = state.project ? state.project.path : undefined;
             state.project = res.project;
-            if (res.version) $("appByline").textContent = "Motion · v" + res.version + " · by " + res.author;
+            if (res.version) $("appByline").textContent = "v" + res.version;
             if (prev !== undefined && prev !== (res.project && res.project.path)) {
                 // Different project (or first save) — start over.
                 state.rootOverride = "";
@@ -508,12 +508,12 @@
                          adobe: "Adobe", system: "System", shared: "Copy" };
 
     // One colour per top-level folder, loosely following each app's brand.
-    var FOLDER_COLOR = {
-        "AE": "#9999ff", "AI": "#ff9a00", "PS": "#31a8ff", "AUDIO": "#4cc38a", "C4D": "#4d8dff",
-        "FOOTAGE": "#ff6b8b", "SOURCE IMAGES": "#f0d25a", "DATA": "#3fd0e0", "REFERENCE": "#a0a0b0",
-        "ESP_EarthStudioPro": "#34c759", "DELIVERABLES": "#a898ff", "FONTS": "#e6e6ee"
+    var FOLDER_COLOR = {   // the Toolkit's muted group hues
+        "AE": "#8a8fd0", "AI": "#c9974a", "PS": "#6fa8da", "AUDIO": "#6a9955", "C4D": "#5fa8a0",
+        "FOOTAGE": "#c4849a", "SOURCE IMAGES": "#c9b458", "DATA": "#5fa8a0", "REFERENCE": "#9a9a9a",
+        "ESP_EarthStudioPro": "#6a9955", "DELIVERABLES": "#8a8fd0", "FONTS": "#d8d8d8"
     };
-    function folderColor(dest) { return FOLDER_COLOR[String(dest).split("/")[0]] || "#5aa9ff"; }
+    function folderColor(dest) { return FOLDER_COLOR[String(dest).split("/")[0]] || "#6fa8da"; }
 
     var rowIndex = 0;
     function stagger(node) {

@@ -8,12 +8,6 @@
 <body>
     <!-- Shared SVG icons (referenced with <use href="#i-...">) -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-        <defs>
-            <linearGradient id="g-accent" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#5aa9ff" />
-                <stop offset="1" stop-color="#7b61ff" />
-            </linearGradient>
-        </defs>
         <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4.2l2 2h8.8A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" fill="currentColor"/></symbol>
         <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" fill="currentColor"/><path d="M14 3v4h4" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.4"/></symbol>
         <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -35,13 +29,10 @@
 
         <!-- Header -->
         <header class="header">
-            <div class="brand-mark" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4.2l2 2h8.8A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" fill="url(#g-accent)"/></svg>
-                <span class="brand-spark"></span>
-            </div>
+            <div class="brand-mark" aria-hidden="true"><img src="./icons/logo.svg" alt="" /></div>
             <div class="brand-text">
-                <h1 id="appTitle">Project Organizer</h1>
-                <span class="byline" id="appByline">Motion · by Amir Anderson</span>
+                <h1 id="appTitle">Motion Project Organizer</h1>
+                <span class="byline" id="appByline">by Amir Anderson</span>
             </div>
             <span class="spacer"></span>
             <button class="icon-btn" id="btnHelp" title="How it works"><svg><use href="#i-help"/></svg></button>
@@ -61,6 +52,7 @@
             <!-- 1. Where things are going -->
             <section class="card" id="projectSection">
                 <div class="card-head">
+                    <svg><use href="#i-folder"/></svg>
                     <span class="card-title">Project folder</span>
                     <span class="pill" id="rootModePill"></span>
                 </div>
@@ -96,6 +88,11 @@
 
             <!-- 2. Actions -->
             <section class="card actions-card">
+                <div class="card-head">
+                    <svg><use href="#i-bolt"/></svg>
+                    <span class="card-title">Collect &amp; handoff</span>
+                    <span class="card-hint">copies, relinks and saves</span>
+                </div>
                 <div class="action-row">
                     <button id="btnAnalyze" class="btn btn-secondary btn-big">
                         <svg><use href="#i-search"/></svg><span>Analyze</span>
@@ -207,6 +204,7 @@
             <!-- Plan -->
             <section class="plan">
                 <div class="plan-head">
+                    <svg><use href="#i-doc"/></svg>
                     <span class="plan-title" id="planTitle">Plan</span>
                     <span class="plan-hint" id="planHint">Click a file to select it in AE</span>
                     <span class="spacer"></span>
@@ -254,18 +252,18 @@
 
                 <h3>Where files go</h3>
                 <div class="folder-legend">
-                    <div class="legend-row"><svg style="color:#9999ff"><use href="#i-folder"/></svg><b>AE</b><span>the project · ARCHIVE for old versions</span></div>
-                    <div class="legend-row"><svg style="color:#ff9a00"><use href="#i-folder"/></svg><b>AI</b><span>.ai .eps .svg</span></div>
-                    <div class="legend-row"><svg style="color:#4cc38a"><use href="#i-folder"/></svg><b>AUDIO</b><span>music &amp; nat sound · VO · SFX (by file name)</span></div>
-                    <div class="legend-row"><svg style="color:#4d8dff"><use href="#i-folder"/></svg><b>C4D</b><span>.c4d · MODELS .fbx .obj … · RENDER .exr &amp; 3D passes</span></div>
-                    <div class="legend-row"><svg style="color:#3fd0e0"><use href="#i-folder"/></svg><b>DATA</b><span>.csv .json stats and scores</span></div>
-                    <div class="legend-row"><svg style="color:#a898ff"><use href="#i-folder"/></svg><b>DELIVERABLES</b><span>your exports · REVIEW · SOCIAL · THUMBNAILS …</span></div>
-                    <div class="legend-row"><svg style="color:#34c759"><use href="#i-folder"/></svg><b>ESP_EarthStudioPro</b><span>anything from a Google Earth Studio folder</span></div>
-                    <div class="legend-row"><svg style="color:#ff6b8b"><use href="#i-folder"/></svg><b>FOOTAGE</b><span>video &amp; image sequences · STOCK (Getty, AP …)</span></div>
-                    <div class="legend-row"><svg style="color:#31a8ff"><use href="#i-folder"/></svg><b>PS</b><span>.psd .psb</span></div>
-                    <div class="legend-row"><svg style="color:#a0a0b0"><use href="#i-folder"/></svg><b>REFERENCE</b><span>files named ref, mockup, styleframe …</span></div>
-                    <div class="legend-row"><svg style="color:#f0d25a"><use href="#i-folder"/></svg><b>SOURCE IMAGES</b><span>HEADSHOTS · LOGOS · STOCK · PNG / JPG / PDF / TIFF</span></div>
-                    <div class="legend-row"><svg style="color:#e6e6ee"><use href="#i-folder"/></svg><b>FONTS</b><span>installed fonts used in text layers</span></div>
+                    <div class="legend-row"><svg style="color:#8a8fd0"><use href="#i-folder"/></svg><b>AE</b><span>the project · ARCHIVE for old versions</span></div>
+                    <div class="legend-row"><svg style="color:#c9974a"><use href="#i-folder"/></svg><b>AI</b><span>.ai .eps .svg</span></div>
+                    <div class="legend-row"><svg style="color:#6a9955"><use href="#i-folder"/></svg><b>AUDIO</b><span>music &amp; nat sound · VO · SFX (by file name)</span></div>
+                    <div class="legend-row"><svg style="color:#5fa8a0"><use href="#i-folder"/></svg><b>C4D</b><span>.c4d · MODELS .fbx .obj … · RENDER .exr &amp; 3D passes</span></div>
+                    <div class="legend-row"><svg style="color:#5fa8a0"><use href="#i-folder"/></svg><b>DATA</b><span>.csv .json stats and scores</span></div>
+                    <div class="legend-row"><svg style="color:#8a8fd0"><use href="#i-folder"/></svg><b>DELIVERABLES</b><span>your exports · REVIEW · SOCIAL · THUMBNAILS …</span></div>
+                    <div class="legend-row"><svg style="color:#6a9955"><use href="#i-folder"/></svg><b>ESP_EarthStudioPro</b><span>anything from a Google Earth Studio folder</span></div>
+                    <div class="legend-row"><svg style="color:#c4849a"><use href="#i-folder"/></svg><b>FOOTAGE</b><span>video &amp; image sequences · STOCK (Getty, AP …)</span></div>
+                    <div class="legend-row"><svg style="color:#6fa8da"><use href="#i-folder"/></svg><b>PS</b><span>.psd .psb</span></div>
+                    <div class="legend-row"><svg style="color:#9a9a9a"><use href="#i-folder"/></svg><b>REFERENCE</b><span>files named ref, mockup, styleframe …</span></div>
+                    <div class="legend-row"><svg style="color:#c9b458"><use href="#i-folder"/></svg><b>SOURCE IMAGES</b><span>HEADSHOTS · LOGOS · STOCK · PNG / JPG / PDF / TIFF</span></div>
+                    <div class="legend-row"><svg style="color:#d8d8d8"><use href="#i-folder"/></svg><b>FONTS</b><span>installed fonts used in text layers</span></div>
                 </div>
                 <p style="margin-top:8px">Change any of this with <b>Options → Edit folder rules…</b></p>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="7.0" ExtensionBundleId="com.aanders.motionprojectorganizer" ExtensionBundleVersion="1.2.2" ExtensionBundleName="Motion Project Organizer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest Version="7.0" ExtensionBundleId="com.aanders.motionprojectorganizer" ExtensionBundleVersion="1.3.0" ExtensionBundleName="Motion Project Organizer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ExtensionList>
-        <Extension Id="com.aanders.motionprojectorganizer.panel" Version="1.2.2" />
+        <Extension Id="com.aanders.motionprojectorganizer.panel" Version="1.3.0" />
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
@@ -43,9 +43,9 @@
                     </Geometry>
                     <Icons>
                         <Icon Type="Normal">./client/icons/icon.png</Icon>
-                        <Icon Type="RollOver">./client/icons/icon.png</Icon>
-                        <Icon Type="DarkNormal">./client/icons/icon.png</Icon>
-                        <Icon Type="DarkRollOver">./client/icons/icon.png</Icon>
+                        <Icon Type="RollOver">./client/icons/icon-rollover.png</Icon>
+                        <Icon Type="DarkNormal">./client/icons/icon-dark.png</Icon>
+                        <Icon Type="DarkRollOver">./client/icons/icon-rollover.png</Icon>
                     </Icons>
                 </UI>
             </DispatchInfo>
