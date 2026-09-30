@@ -192,11 +192,11 @@ Command Prompt (After Effects closed):
 
 ```bash
 # macOS
-"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.2.0.zxp
+"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.2.1.zxp
 ```
 ```bat
 :: Windows
-"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.2.0.zxp"
+"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.2.1.zxp"
 ```
 
 If you used the debug installer before, run `install/uninstall_mac.command`
@@ -212,14 +212,20 @@ install/package_zxp.sh              # creates a self-signed cert the first time
 install/package_zxp.sh my.p12 pass  # or sign with your own certificate
 ```
 
-It stages a clean copy (no installers, no `.debug`), signs and timestamps it
-into `install/MotionProjectOrganizer.zxp`. Users install that with
+It stages a clean copy (no installers), signs and timestamps it,
+sets normal file permissions inside the package (see below)
+and writes `install/MotionProjectOrganizer.zxp`. Users install that with
 Anastasiy's Extension Manager or Adobe's `ExManCmd`.
 
-### Debugging the panel
 
-With debug mode on, Chrome DevTools for the panel are at
-`http://localhost:8093` (set in `.debug`) while the panel is open.
+The panel is fully self-contained: it loads only its own local files, opens
+no debug port and makes no network or localhost connections.
+
+> **"Failed to install, status = -160"** from Adobe's installer means the
+> files inside the `.zxp` have no read permissions — this happens when a
+> package is signed on Windows (or with the Windows signer under Wine).
+> `install/fix_zxp_permissions.py` repairs a package in place without
+> touching the signature; `package_zxp.sh` runs it automatically.
 
 ### Compatibility
 

@@ -18,11 +18,14 @@ if [ ! -f "$CERT" ]; then
     ZXPSignCmd -selfSignedCert US CA "Amir Anderson" "MotionProjectOrganizer" "$PASS" "$CERT"
 fi
 
-# Stage a clean copy: no installers, no debug file, no Finder junk.
+# Stage a clean copy: no installers, no Finder junk.
 mkdir -p "$STAGE"
 cp -R "$SRC/." "$STAGE/"
-rm -rf "$STAGE/install" "$STAGE/.debug"
+rm -rf "$STAGE/install"
 find "$STAGE" -name .DS_Store -delete
 rm -f "$OUT"
 ZXPSignCmd -sign "$STAGE" "$OUT" "$CERT" "$PASS" -tsa http://timestamp.digicert.com
+# Normal file permissions inside the package (needed if signed on Windows/Wine).
+command -v python3 >/dev/null && python3 "$HERE/fix_zxp_permissions.py" "$OUT"
+ZXPSignCmd -verify "$OUT"
 echo "Built $OUT — install it with ExManCmd or Anastasiy's Extension Manager."
