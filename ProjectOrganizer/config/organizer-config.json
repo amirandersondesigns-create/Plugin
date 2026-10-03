@@ -1,6 +1,6 @@
 {
   "_readme": [
-    "Folder rules for Motion Project Organizer. Edit, save, then click Analyze again in the panel.",
+    "Folder rules for the Amir Anderson Project Organizer. Edit, save, then click Analyze again in the panel.",
     "folders: created in every project folder (use / for subfolders).",
     "rules: checked top to bottom, first match wins. ext = file extensions, kinds = still | sequence | video | audio | other, path = regex tested against the full file path, name = regex tested against the file name only (both case-insensitive).",
     "Files that match no rule go to fallbackFolder. Image sequences always get their own subfolder inside their destination.",

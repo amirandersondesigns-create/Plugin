@@ -2,7 +2,7 @@
 # Builds MPO_TestKit.zip: a deliberately messy "sports job" — media scattered
 # across Downloads, a media volume, render folders, Google Earth Studio, etc. —
 # plus Build_Test_Project.jsx, which turns it into an After Effects project
-# ready for Motion Project Organizer to clean up.
+# ready for Amir Anderson Project Organizer to clean up.
 # Needs: ffmpeg, python3, zip.   Usage: ./make_kit.sh [output_dir]
 set -e
 HERE="$(cd "$(dirname "$0")" && pwd)"

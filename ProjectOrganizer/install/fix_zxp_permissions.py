@@ -7,7 +7,7 @@ Adobe's installer fails with "status = -160". Only the zip metadata changes;
 file bytes, order and compression stay identical, so the signature in
 META-INF/signatures.xml remains valid.
 
-Usage: fix_zxp_permissions.py MotionProjectOrganizer.zxp
+Usage: fix_zxp_permissions.py Amir_Anderson_Project_Organizer.zxp
 """
 import os, shutil, sys, tempfile, zipfile
 

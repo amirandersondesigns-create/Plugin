@@ -1,5 +1,5 @@
 // ============================================================================
-// MOTION PROJECT ORGANIZER — ExtendScript engine (CEP host)
+// AMIR ANDERSON PROJECT ORGANIZER — ExtendScript engine (CEP host)
 // After Effects 2022+
 //
 // This file contains no UI. It is the ExtendScript "back end" that the CEP
@@ -20,8 +20,8 @@
 //                 the project into the AE folder, writes a handoff report.
 // ============================================================================
 
-var APP_NAME = "Motion Project Organizer";
-var VERSION = "1.4.0";
+var APP_NAME = "Amir Anderson Project Organizer";
+var VERSION = "1.5.0";
 var AUTHOR = "Amir Anderson";
 
 // ==================== JSON (guard for older ExtendScript engines) ==========
@@ -822,7 +822,17 @@ function collectImported(comp, comps, feet, folders) {
     }
 }
 
+// Layered relinks replace footage items with new ones; remember old id -> new
+// id so the Project-panel step can still find them afterwards.
+var ID_MAP = {};
+function liveItem(id) {
+    var seen = 0;
+    while (ID_MAP[id] !== undefined && seen++ < 10) id = ID_MAP[id];
+    return itemById(id);
+}
+
 function swapFootage(oldItem, newItem) {
+    ID_MAP[oldItem.id] = newItem.id;
     restoreItem(newItem, snapshotItem(oldItem));
     newItem.parentFolder = oldItem.parentFolder;
     var comps = oldItem.usedIn;
@@ -835,28 +845,125 @@ function swapFootage(oldItem, newItem) {
     oldItem.remove();
 }
 
-// ==================== PROJECT-PANEL TIDY / RENDER QUEUE ====================
-function tidyProjectPanel(plan) {
-    var root = app.project.rootFolder, bins = {}, moved = 0;
-    function bin(name) {
-        if (bins[name]) return bins[name];
-        for (var i = 1; i <= root.numItems; i++) {
-            var it = root.item(i);
-            if (it instanceof FolderItem && it.name === name) { bins[name] = it; return it; }
+// ==================== PROJECT PANEL / RENDER QUEUE ===========================
+// Files every footage item into Project-panel folders that mirror the disk
+// structure (FOOTAGE, AUDIO, SOURCE IMAGES > PNG, C4D > RENDER…).
+//  • Existing folders are reused, never duplicated: names match without
+//    regard to case/spacing, first at the top level, then anywhere in the
+//    project if exactly one folder has that name.
+//  • Items already inside the right folder (or any subfolder of it) are left
+//    where they are, so your own sub-organization survives.
+//  • Layered PSD/AI imports move as their "<name> Layers" folder.
+//  • Folders that this step emptied are removed; nothing else is deleted.
+function binKey(name) { return trim(String(name)).replace(/\s+/g, " ").toLowerCase(); }
+
+function binPathFor(src, plan) {
+    if (src.status === "inplace") {
+        // Already inside the project folder: mirror where it actually lives.
+        var dir = new File(src.srcPath).parent.fsName;
+        if (normPath(dir) !== normPath(plan.root.path)) {
+            var parts = relPath(dir, plan.root.path).split("/");
+            var clean = [];
+            for (var i = 0; i < parts.length; i++) if (parts[i]) clean.push(parts[i]);
+            if (src.kind === "sequence" && clean.length > 1) clean.pop();   // drop the per-sequence folder
+            if (clean.length) return clean.slice(0, 2);
         }
-        bins[name] = app.project.items.addFolder(name);
-        return bins[name];
     }
+    return String(src.dest).split("/").slice(0, 2);
+}
+
+function organizeProjectPanel(plan) {
+    var P = app.project, root = P.rootFolder;
+    var out = { moved: 0, inPlace: 0, created: 0, reused: 0, removed: 0, folders: [] };
+    var cache = {}, usedBins = {}, touchedParents = [], touchedSeen = {}, removedIds = {};
+
+    function childFolder(parent, name) {
+        var k = binKey(name);
+        for (var i = 1; i <= parent.numItems; i++) {
+            var it = parent.item(i);
+            if (it instanceof FolderItem && binKey(it.name) === k) return it;
+        }
+        return null;
+    }
+    function uniqueFolderAnywhere(name) {
+        var k = binKey(name), hit = null, n = 0;
+        for (var i = 1; i <= P.numItems; i++) {
+            var it = P.item(i);
+            if (it instanceof FolderItem && binKey(it.name) === k) { hit = it; n++; }
+        }
+        return n === 1 ? hit : null;
+    }
+    function ensureBin(parts) {
+        var key = binKey(parts.join("/"));
+        if (cache[key]) return cache[key];
+        var cur = null;
+        for (var d = 0; d < parts.length; d++) {
+            var found = d === 0 ? (childFolder(root, parts[0]) || uniqueFolderAnywhere(parts[0])) : childFolder(cur, parts[d]);
+            if (found) {
+                if (!usedBins[found.id]) out.reused++;
+            } else {
+                found = P.items.addFolder(parts[d]);
+                if (d > 0) found.parentFolder = cur;
+                out.created++;
+            }
+            usedBins[found.id] = true;
+            cur = found;
+        }
+        cache[key] = cur;
+        out.folders.push(parts.join(" / "));
+        return cur;
+    }
+    function isWithin(item, folder) {
+        var f = item.parentFolder, guard = 0;
+        while (f && guard++ < 64) {
+            if (f.id === folder.id) return true;
+            if (isRootFolder(f)) return false;
+            f = f.parentFolder;
+        }
+        return false;
+    }
+    function move(item, bin) {
+        if (isWithin(item, bin)) { out.inPlace++; return; }
+        var from = item.parentFolder;
+        item.parentFolder = bin;
+        out.moved++;
+        if (!isRootFolder(from) && !touchedSeen[from.id]) { touchedSeen[from.id] = true; touchedParents.push(from); }
+    }
+
+    var movedLayerFolders = {};
     for (var s = 0; s < plan.sources.length; s++) {
         var src = plan.sources[s];
-        var top = String(src.dest).split("/")[0];
+        var bin = null;
         for (var r = 0; r < src.refs.length; r++) {
-            if (src.refs[r].role !== "main") continue;
-            var item = itemById(src.refs[r].id);
-            if (item && isRootFolder(item.parentFolder)) { item.parentFolder = bin(top); moved++; }
+            var ref = src.refs[r];
+            if (ref.role !== "main") continue;
+            var item = liveItem(ref.id);
+            if (!item) continue;
+            if (!bin) bin = ensureBin(binPathFor(src, plan));
+            var parent = item.parentFolder;
+            if (ref.layered && !isRootFolder(parent) && / Layers$/.test(parent.name)) {
+                if (!movedLayerFolders[parent.id]) { movedLayerFolders[parent.id] = true; move(parent, bin); }
+            } else {
+                move(item, bin);
+            }
         }
     }
-    return moved;
+
+    // Remove folders this step left empty (walking up), but never a bin in use.
+    for (var t = 0; t < touchedParents.length; t++) {
+        var f = touchedParents[t], guard = 0;
+        while (f && !isRootFolder(f) && guard++ < 32) {
+            try {
+                if (removedIds[f.id] || usedBins[f.id] || f.numItems > 0) break;
+                var up = f.parentFolder;
+                removedIds[f.id] = true;
+                f.remove();
+                out.removed++;
+                f = up;
+            } catch (e) { break; }
+        }
+    }
+    return out;
 }
 
 function pointRenderQueue(plan) {
@@ -907,6 +1014,15 @@ function writeReport(plan, log, p) {
     for (i = 0; i < log.errors.length; i++) L.push("ERROR     " + log.errors[i]);
     for (i = 0; i < log.warnings.length; i++) L.push("CHECK     " + log.warnings[i]);
     L.push("");
+
+    if (log.panel) {
+        L.push("PROJECT PANEL");
+        L.push("-------------");
+        L.push(log.panel.moved + " item(s) filed, " + log.panel.inPlace + " already in place. Folders: " +
+               log.panel.created + " created, " + log.panel.reused + " existing reused" +
+               (log.panel.removed ? ", " + log.panel.removed + " emptied folder(s) removed" : "") + ".");
+        L.push("");
+    }
 
     L.push("FILES BY FOLDER");
     L.push("---------------");
@@ -1058,7 +1174,8 @@ function csFinish() {
     try {
         if (!ORG) return fail("Nothing to finish — run Organize again.");
         var plan = ORG.plan, p = ORG.params;
-        var log = { relinked: 0, errors: ORG.errors.slice(0), warnings: [], tidied: 0, rqPointed: 0 };
+        var log = { relinked: 0, errors: ORG.errors.slice(0), warnings: [], panel: null, rqPointed: 0 };
+        ID_MAP = {};
 
         app.beginUndoGroup("Organize Project");
         try {
@@ -1068,7 +1185,9 @@ function csFinish() {
                 if (ORG.failedSources[i]) { log.errors.push("Left linked to original (copy failed): " + s.srcPath); continue; }
                 relinkSource(s, log);
             }
-            if (p.tidyPanel) log.tidied = tidyProjectPanel(plan);
+            // Always: file every asset into matching Project-panel folders.
+            try { log.panel = organizeProjectPanel(plan); }
+            catch (ePanel) { log.errors.push("Project panel: " + ePanel.message); }
             if (p.pointRenderQueue) log.rqPointed = pointRenderQueue(plan);
         } finally {
             app.endUndoGroup();
@@ -1098,7 +1217,7 @@ function csFinish() {
             relinked: log.relinked,
             missing: missing,
             placeholders: plan.placeholders.length,
-            tidied: log.tidied,
+            panel: log.panel,
             rqPointed: log.rqPointed,
             errors: log.errors,
             warnings: log.warnings,

@@ -1,4 +1,4 @@
-# Motion Project Organizer — Test Kit
+# Amir Anderson Project Organizer — Test Kit
 
 A deliberately messy sports job for trying the organizer in After Effects.
 `Scattered Media/` mimics files pulled from all over a machine — Downloads,
@@ -12,7 +12,7 @@ a media volume, render folders, Google Earth Studio, a designer's PSD — and
    (If AE refuses, turn on *Settings → Scripting & Expressions → Allow Scripts
    to Write Files and Access Network*.)
 3. It builds and saves `Save Here/NBA_Finals_Open_v03.aep`.
-4. Open **Window → Extensions → Motion Project Organizer**.
+4. Open **Window → Extensions → Amir Anderson Project Organizer**.
 
 ## What you should see
 
@@ -38,6 +38,10 @@ a media volume, render folders, Google Earth Studio, a designer's PSD — and
 - In the Project panel: **TEAM LOGO (renamed)** kept its name and label colour;
   `crowd_[0001-0024].png` still interprets at **24 fps** (Interpret Footage);
   the `scorebug` comp still has 3 separate layers (Background, Score Bar, Team Logo).
+- The Project panel now has folders matching the disk (FOOTAGE, AUDIO › VO /
+  SFX, SOURCE IMAGES › LOGOS / HEADSHOTS / PNG…, PS with the "scorebug Layers"
+  folder inside). Create a folder called `footage` yourself before running —
+  it should be reused, not duplicated.
 - File → Dependencies → Find Missing Footage finds only `missing_bite.mov`.
 - `_HANDOFF_REPORT.txt` lists the missing file, where everything went and the
   fonts used.

@@ -1,3 +1,5 @@
+/* Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+   recreation or distribution is prohibited. See LICENSE.txt. */
 (function () {
     "use strict";
 
@@ -53,7 +55,6 @@
         advancedPanel: $("advancedPanel"),
         cbFonts: $("cbFonts"),
         cbSkipUnused: $("cbSkipUnused"),
-        cbTidy: $("cbTidy"),
         cbRenderQueue: $("cbRenderQueue"),
         cbReport: $("cbReport"),
         templatePath: $("templatePath"),
@@ -123,8 +124,7 @@
     function savePrefs() {
         try {
             localStorage.setItem(PREFS_KEY, JSON.stringify({
-                fonts: el.cbFonts.checked, skipUnused: el.cbSkipUnused.checked, tidy: el.cbTidy.checked,
-                renderQueue: el.cbRenderQueue.checked, report: el.cbReport.checked,
+                fonts: el.cbFonts.checked, skipUnused: el.cbSkipUnused.checked,                 renderQueue: el.cbRenderQueue.checked, report: el.cbReport.checked,
                 template: state.templatePath || "", optionsOpen: el.advancedPanel.classList.contains("open")
             }));
         } catch (e) {}
@@ -320,7 +320,7 @@
             if (!res.ok) { setStatus(res.error || "Couldn't reach After Effects.", "error"); return; }
             var prev = state.project ? state.project.path : undefined;
             state.project = res.project;
-            if (res.version) $("appByline").textContent = "v" + res.version;
+            if (res.version) $("aboutVersion").textContent = res.version + (window.__adobe_cep__ ? "" : " · preview mode");
             if (prev !== undefined && prev !== (res.project && res.project.path)) {
                 // Different project (or first save) — start over.
                 state.rootOverride = "";
@@ -376,7 +376,6 @@
         var on = [];
         if (el.cbFonts.checked) on.push("Fonts");
         if (el.cbSkipUnused.checked) on.push("Skip unused");
-        if (el.cbTidy.checked) on.push("Sort bins");
         if (el.cbRenderQueue.checked) on.push("Render Queue");
         if (el.cbReport.checked) on.push("Report");
         if (state.templatePath) on.push("Template");
@@ -386,7 +385,7 @@
     [el.cbFonts, el.cbSkipUnused].forEach(function (cb) {
         cb.addEventListener("change", function () { savePrefs(); renderOptionsSummary(); if (state.analysis) analyze(); });
     });
-    [el.cbTidy, el.cbRenderQueue, el.cbReport].forEach(function (cb) {
+    [el.cbRenderQueue, el.cbReport].forEach(function (cb) {
         cb.addEventListener("change", function () { savePrefs(); renderOptionsSummary(); });
     });
 
@@ -419,7 +418,6 @@
             projectName: el.txtProjectName.value,
             collectFonts: el.cbFonts.checked,
             skipUnused: el.cbSkipUnused.checked,
-            tidyPanel: el.cbTidy.checked,
             pointRenderQueue: el.cbRenderQueue.checked,
             writeReport: el.cbReport.checked,
             templatePath: state.templatePath || "",
@@ -801,7 +799,11 @@
 
         var lines = [];
         lines.push(plural(r.copied, "file") + " collected (" + r.bytesLabel + "), " + plural(r.relinked, "item") + " relinked.");
-        if (r.tidied) lines.push(plural(r.tidied, "loose item") + " sorted into Project-panel bins.");
+        if (r.panel) {
+            var pf = r.panel;
+            lines.push("Project panel: " + plural(pf.moved, "item") + " filed" + (pf.inPlace ? ", " + pf.inPlace + " already in place" : "") +
+                       " · folders: " + pf.created + " created, " + pf.reused + " existing reused.");
+        }
         if (r.rqPointed) lines.push(plural(r.rqPointed, "render output") + " pointed to DELIVERABLES.");
         if (r.missing) lines.push('<span class="err">' + plural(r.missing, "missing file") + " — listed in the report.</span>");
         if (r.placeholders) lines.push('<span class="chk">' + plural(r.placeholders, "placeholder") + " in the project.</span>");
@@ -852,6 +854,22 @@
         if (e.key === "Escape") Array.prototype.forEach.call(document.querySelectorAll(".overlay.open"), function (o) { o.classList.remove("open"); });
     });
     el.btnHelp.addEventListener("click", function () { openOverlay("helpOverlay"); });
+
+    // ---------------------------------------------------------------
+    // Author credit — the header logo/name and the LinkedIn buttons open
+    // Amir Anderson's LinkedIn in the default browser (same as the Toolkit).
+    // ---------------------------------------------------------------
+    var LINKEDIN = "https://www.linkedin.com/in/amiranderson";
+    function openURL(url) {
+        try {
+            if (window.cep && window.cep.util && window.cep.util.openURLInDefaultBrowser) return window.cep.util.openURLInDefaultBrowser(url);
+        } catch (e) {}
+        window.open(url, "_blank");
+    }
+    ["btnBrand", "btnLinkedIn", "btnTermsLinkedIn"].forEach(function (id) {
+        $(id).addEventListener("click", function () { openURL(LINKEDIN); });
+    });
+    $("btnTerms").addEventListener("click", function () { openOverlay("termsOverlay"); });
 
     // ---------------------------------------------------------------
     // Welcome walkthrough — same pattern as the Animator Toolkit's
@@ -918,7 +936,6 @@
         var prefs = loadPrefs();
         if (prefs.fonts !== undefined) el.cbFonts.checked = !!prefs.fonts;
         if (prefs.skipUnused !== undefined) el.cbSkipUnused.checked = !!prefs.skipUnused;
-        if (prefs.tidy !== undefined) el.cbTidy.checked = !!prefs.tidy;
         if (prefs.renderQueue !== undefined) el.cbRenderQueue.checked = !!prefs.renderQueue;
         if (prefs.report !== undefined) el.cbReport.checked = !!prefs.report;
         state.templatePath = prefs.template || "";

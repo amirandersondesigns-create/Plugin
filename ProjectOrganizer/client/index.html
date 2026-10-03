@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<!-- Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying, recreation or distribution is prohibited. See LICENSE.txt. -->
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Motion Project Organizer</title>
+    <title>Amir Anderson Project Organizer</title>
     <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
@@ -23,6 +24,7 @@
         <symbol id="i-caret" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
         <symbol id="i-open" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
         <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M8.5 12h7M8.5 15.5h7M8.5 8.5h3" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 16 16"><path d="M2.5 2.5h11v11h-11zM5 7v4.5M5 4.8v.4M7.5 11.5V7M7.5 9c0-1.2.8-2 1.8-2s1.7.7 1.7 2v2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
         <symbol id="i-font" viewBox="0 0 24 24"><path d="M5 20L11 4h2l6 16M7.6 14h8.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     </svg>
 
@@ -30,11 +32,11 @@
 
         <!-- Header -->
         <header class="header">
-            <div class="brand-mark" aria-hidden="true"><img src="./icons/logo.svg" alt="" /></div>
-            <div class="brand-text">
-                <h1 id="appTitle">Motion Project Organizer</h1>
-                <span class="byline" id="appByline">by Amir Anderson</span>
-            </div>
+            <!-- Logo + name open Amir Anderson's LinkedIn (same as the Animator Toolkit) -->
+            <button class="brand" id="btnBrand" type="button" title="Amir Anderson on LinkedIn">
+                <img class="brand-logo" src="./icons/logo.svg" alt="" />
+                <span class="brand-name" id="appTitle">Amir Anderson Project Organizer</span>
+            </button>
             <span class="spacer"></span>
             <button class="icon-btn" id="btnHelp" title="How it works"><svg><use href="#i-help"/></svg></button>
         </header>
@@ -92,7 +94,7 @@
                 <div class="card-head">
                     <svg><use href="#i-bolt"/></svg>
                     <span class="card-title">Collect &amp; handoff</span>
-                    <span class="card-hint">copies, relinks and saves</span>
+                    <span class="card-hint">copies, relinks, files and saves</span>
                 </div>
                 <div class="action-row">
                     <button id="btnAnalyze" class="btn btn-secondary btn-big">
@@ -124,10 +126,6 @@
                         </label>
 
                         <div class="opt-group-label">Tidy up</div>
-                        <label class="switch-row">
-                            <span class="switch"><input type="checkbox" id="cbTidy" /><span class="knob"></span></span>
-                            <span class="switch-text"><b>Sort Project panel</b><small>Loose items go into bins matching the disk folders</small></span>
-                        </label>
                         <label class="switch-row">
                             <span class="switch"><input type="checkbox" id="cbRenderQueue" /><span class="knob"></span></span>
                             <span class="switch-text"><b>Retarget Render Queue</b><small>Queued outputs render to DELIVERABLES/EDIT</small></span>
@@ -239,7 +237,7 @@
 
             <div class="onboard-slide" data-slide="0">
                 <div class="onboard-illo"><svg class="ob-svg" viewBox="0 0 240 120"><g class="ob-tree"><use href="#i-folder" x="128" y="2" width="12" height="12" class="ob-root-ico"/><text x="143" y="11" class="ob-root">NBA_Finals_Open</text><path class="ob-branch" d="M134 15V108"/><g class="ob-row r0"><path class="ob-branch" d="M134 28h6"/><rect class="ob-hl" x="140" y="21" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="22" width="12" height="12" style="color:#8a8fd0"/><text x="157" y="31" class="ob-label">AE</text><circle class="ob-dot" cx="232" cy="28" r="2.2" style="fill:#8a8fd0"/></g><g class="ob-row r1"><path class="ob-branch" d="M134 44h6"/><rect class="ob-hl" x="140" y="37" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="38" width="12" height="12" style="color:#c9974a"/><text x="157" y="47" class="ob-label">AI</text><circle class="ob-dot" cx="232" cy="44" r="2.2" style="fill:#c9974a"/></g><g class="ob-row r2"><path class="ob-branch" d="M134 60h6"/><rect class="ob-hl" x="140" y="53" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="54" width="12" height="12" style="color:#6fa8da"/><text x="157" y="63" class="ob-label">PS</text><circle class="ob-dot" cx="232" cy="60" r="2.2" style="fill:#6fa8da"/></g><g class="ob-row r3"><path class="ob-branch" d="M134 76h6"/><rect class="ob-hl" x="140" y="69" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="70" width="12" height="12" style="color:#6a9955"/><text x="157" y="79" class="ob-label">AUDIO</text><circle class="ob-dot" cx="232" cy="76" r="2.2" style="fill:#6a9955"/></g><g class="ob-row r4"><path class="ob-branch" d="M134 92h6"/><rect class="ob-hl" x="140" y="85" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="86" width="12" height="12" style="color:#c4849a"/><text x="157" y="95" class="ob-label">FOOTAGE</text><circle class="ob-dot" cx="232" cy="92" r="2.2" style="fill:#c4849a"/></g><g class="ob-row r5"><path class="ob-branch" d="M134 108h6"/><rect class="ob-hl" x="140" y="101" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="102" width="12" height="12" style="color:#c9b458"/><text x="157" y="111" class="ob-label">SOURCE IMAGES</text><circle class="ob-dot" cx="232" cy="108" r="2.2" style="fill:#c9b458"/></g></g><g class="ob-file f0"><path class="ob-doc" d="M10 40h9l5 5v13h-14z"/><path class="ob-fold" d="M19 40v5h5"/><rect x="10" y="53" width="14" height="5" style="fill:#8a8fd0"/><text x="17" y="50" class="ob-ext">aep</text></g><g class="ob-file f1"><path class="ob-doc" d="M44 10h9l5 5v13h-14z"/><path class="ob-fold" d="M53 10v5h5"/><rect x="44" y="23" width="14" height="5" style="fill:#c9974a"/><text x="51" y="20" class="ob-ext">ai</text></g><g class="ob-file f2"><path class="ob-doc" d="M16 76h9l5 5v13h-14z"/><path class="ob-fold" d="M25 76v5h5"/><rect x="16" y="89" width="14" height="5" style="fill:#6fa8da"/><text x="23" y="86" class="ob-ext">psd</text></g><g class="ob-file f3"><path class="ob-doc" d="M52 46h9l5 5v13h-14z"/><path class="ob-fold" d="M61 46v5h5"/><rect x="52" y="59" width="14" height="5" style="fill:#6a9955"/><text x="59" y="56" class="ob-ext">wav</text></g><g class="ob-file f4"><path class="ob-doc" d="M20 8h9l5 5v13h-14z"/><path class="ob-fold" d="M29 8v5h5"/><rect x="20" y="21" width="14" height="5" style="fill:#c4849a"/><text x="27" y="18" class="ob-ext">mov</text></g><g class="ob-file f5"><path class="ob-doc" d="M50 84h9l5 5v13h-14z"/><path class="ob-fold" d="M59 84v5h5"/><rect x="50" y="97" width="14" height="5" style="fill:#c9b458"/><text x="57" y="94" class="ob-ext">png</text></g><g class="ob-done"><circle cx="236" cy="8" r="6"/><path d="M233 8l2 2 4-4"/></g></svg></div>
-                <h2>Welcome to Motion Project Organizer</h2>
+                <h2>Welcome to the Amir Anderson Project Organizer</h2>
                 <p>Before you hand off a job, it gathers every file your project uses into one clean folder
                     structure — AE, AI, PS, AUDIO, FOOTAGE, SOURCE IMAGES — so nothing is ever missing.</p>
             </div>
@@ -254,8 +252,8 @@
             <div class="onboard-slide" data-slide="2">
                 <div class="onboard-illo"><svg class="ob-svg" viewBox="0 0 240 120"><text x="20" y="12" class="ob-cap">Copying files…</text><text x="220" y="12" class="ob-cap ob-right ob-pct">100%</text><rect x="20" y="16" width="200" height="5" rx="2.5" class="ob-track"/><rect x="20" y="16" width="200" height="5" rx="2.5" class="ob-fill"/><use href="#i-folder" x="22" y="52" width="40" height="40" class="ob-ae"/><text x="42" y="80" class="ob-ae-t">AE</text><g class="ob-aep"><path class="ob-doc" d="M34 30h11l5 5v15h-16z"/><path class="ob-fold" d="M45 30v5h5"/><text x="42" y="44" class="ob-ext">aep</text></g><text x="42" y="106" class="ob-cap ob-mid">Copied</text><g class="ob-link"><g class="ob-l1"><rect x="98" y="64" width="20" height="11" rx="5.5"/></g><g class="ob-l2"><rect x="113" y="64" width="20" height="11" rx="5.5"/></g></g><text x="120" y="106" class="ob-cap ob-mid">Relinked</text><g class="ob-save"><circle cx="198" cy="70" r="15"/><path d="M190 70.5l5.5 5.5 11-11"/></g><text x="198" y="106" class="ob-cap ob-mid">Saved</text><path class="ob-arrow a1" d="M70 70h18m-4-4l4 4-4 4"/><path class="ob-arrow a2" d="M146 70h18m-4-4l4 4-4 4"/></svg></div>
                 <h2><span class="onboard-num">2</span> Organize &amp; Save</h2>
-                <p>Files are copied in (originals are never moved), the project is relinked and saved into
-                    <code>AE/</code>, with a handoff report for whoever opens it next.</p>
+                <p>Files are copied in (originals are never moved), the project is relinked, every asset is filed
+                    into matching Project-panel folders, and it's saved into <code>AE/</code> with a handoff report.</p>
             </div>
 
             <div class="onboard-actions">
@@ -281,11 +279,9 @@
                     <div class="how-step"><span class="how-num">2</span><div><b>Analyze.</b> Shows where every file will go, what's already in place and
                         what's missing. Nothing is changed. Missing files are listed first in red — relink those in After Effects before you hand off.</div></div>
                     <div class="how-step"><span class="how-num">3</span><div><b>Organize &amp; Save.</b> Builds the folders, <b>copies</b> each file in (originals are
-                        never moved or deleted), relinks the project, saves it into <code>AE/</code> and writes <code>_HANDOFF_REPORT.txt</code>.
+                        never moved or deleted), relinks the project, files every asset into matching folders in the Project panel, saves it into <code>AE/</code> and writes <code>_HANDOFF_REPORT.txt</code>.
                         The relink is one undo step.</div></div>
                 </div>
-
-                <button class="btn btn-small" id="btnReplayWelcome" style="margin-top:12px">Replay the welcome</button>
 
                 <h3>Where files go</h3>
                 <div class="folder-legend">
@@ -315,10 +311,58 @@
                 <p>Files imported as a composition keep every layer when relinked. If a layer can't be matched
                 it's relinked flattened and flagged in the report as "CHECK".</p>
 
+                <h3>Project panel</h3>
+                <p>Organize &amp; Save also files every asset into matching folders inside the After Effects
+                project — FOOTAGE, AUDIO, SOURCE IMAGES › PNG, PS and so on. Folders you already have are reused,
+                never duplicated (names match regardless of capitals), items already in the right folder stay put,
+                and layered Photoshop/Illustrator imports move with their "Layers" folder.</p>
+
                 <h3>Fonts</h3>
                 <p>Installed font files are copied into <code>FONTS/</code>. Adobe Fonts can't be copied —
                 they're listed in the report so the next person can activate them in Creative Cloud.
                 Check your font licences before sending fonts outside your organization.</p>
+
+                <h3>About</h3>
+                <div class="about">
+                    <div class="about-row"><span class="about-k">Version</span><span class="about-v muted" id="aboutVersion">—</span></div>
+                    <div class="about-row"><span class="about-k">Made by</span>
+                        <div class="about-v credit">
+                            <img src="./icons/logo.svg" alt="" />
+                            <div class="credit-text"><strong>Amir Anderson</strong></div>
+                            <button class="btn btn-small linkedin" id="btnLinkedIn" type="button" title="https://www.linkedin.com/in/amiranderson"><svg><use href="#i-linkedin"/></svg><span>LinkedIn</span></button>
+                        </div>
+                    </div>
+                    <div class="about-row"><span class="about-k">License</span>
+                        <div class="about-v license">
+                            <span class="muted">&copy; 2026 Amir Anderson. Free to use. All rights reserved.</span>
+                            <button class="btn btn-small" id="btnTerms" type="button">Terms</button>
+                        </div>
+                    </div>
+                    <div class="about-row"><span class="about-k">Welcome</span><button class="btn btn-small" id="btnReplayWelcome" type="button">Replay the welcome</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- License & Terms -->
+    <div class="overlay" id="termsOverlay">
+        <div class="overlay-panel">
+            <div class="overlay-header">
+                <h2>License &amp; Terms</h2>
+                <button class="icon-btn" data-close="termsOverlay" title="Close">&#10005;</button>
+            </div>
+            <div class="overlay-body">
+                <p class="terms-lead">&copy; 2026 Amir Anderson. Free to use. All rights reserved.</p>
+                <dl class="terms">
+                    <dt>Free to use</dt><dd>The organizer is free. Free doesn't mean open source: Amir Anderson keeps all rights to it.</dd>
+                    <dt>Your license</dt><dd>A free, personal, non-transferable license to use the organizer in After Effects for personal and commercial projects, including client work. Install it on the computers you use; what you make with it is yours.</dd>
+                    <dt>Not permitted</dt><dd>Copying (beyond installing it for your own use), recreating, cloning or imitating the organizer or its design; modifying, reverse engineering or creating derivative works; selling it or charging for it; re-uploading its files (share the official download link instead); or using it to build a competing product, without written permission from Amir Anderson.</dd>
+                    <dt>Enforcement</dt><dd>Unauthorized copying, recreation, redistribution or sale violates these terms and copyright law, ends your license immediately, and may result in takedown notices and legal action. Being free doesn't reduce these rights.</dd>
+                    <dt>No warranty</dt><dd>Free and provided "as is", without warranty. Updates and support aren't guaranteed, and Amir Anderson isn't liable for lost work. Save often and keep backups.</dd>
+                    <dt>Adobe</dt><dd>Adobe and After Effects are trademarks of Adobe Inc. This is an independent product, not affiliated with or endorsed by Adobe.</dd>
+                </dl>
+                <p class="hint">The full terms are in LICENSE.txt in the plugin folder.</p>
+                <button class="btn btn-small" id="btnTermsLinkedIn" type="button"><svg><use href="#i-linkedin"/></svg><span>Permissions &amp; questions</span></button>
             </div>
         </div>
     </div>

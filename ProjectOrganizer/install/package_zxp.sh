@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build a signed MotionProjectOrganizer.zxp for distribution (no debug mode needed
+# Build a signed Amir_Anderson_Project_Organizer.zxp for distribution (no debug mode needed
 # on users' machines). Needs Adobe's ZXPSignCmd on your PATH:
 #   https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD
 # Usage:  install/package_zxp.sh [cert.p12] [password]
@@ -9,13 +9,13 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 SRC="$(cd "$HERE/.." && pwd)"
 CERT="${1:-$HERE/cert.p12}"
 PASS="${2:-changeme}"
-OUT="$HERE/MotionProjectOrganizer.zxp"
-STAGE="$(mktemp -d)/MotionProjectOrganizer"
+OUT="$HERE/Amir_Anderson_Project_Organizer.zxp"
+STAGE="$(mktemp -d)/Amir_Anderson_Project_Organizer"
 
 command -v ZXPSignCmd >/dev/null || { echo "ZXPSignCmd not found on PATH."; exit 1; }
 if [ ! -f "$CERT" ]; then
     echo "Creating self-signed certificate: $CERT"
-    ZXPSignCmd -selfSignedCert US CA "Amir Anderson" "MotionProjectOrganizer" "$PASS" "$CERT"
+    ZXPSignCmd -selfSignedCert US CA "Amir Anderson" "Amir Anderson Project Organizer" "$PASS" "$CERT"
 fi
 
 # Stage a clean copy: no installers, no Finder junk.

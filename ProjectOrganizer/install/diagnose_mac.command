@@ -1,11 +1,11 @@
 #!/bin/bash
-# Motion Project Organizer — diagnostics (macOS).
+# Amir Anderson Project Organizer — diagnostics (macOS).
 # Double-click. First run turns on CEP logging; then restart After Effects,
 # open Window → Extensions once, and double-click this again. It writes
 # MPO_Diagnostics.txt to your Desktop — send that file.
 OUT="$HOME/Desktop/MPO_Diagnostics.txt"
 {
-echo "=== Motion Project Organizer diagnostics — $(date)"
+echo "=== Amir Anderson Project Organizer diagnostics — $(date)"
 sw_vers 2>/dev/null
 echo
 echo "=== After Effects installs"

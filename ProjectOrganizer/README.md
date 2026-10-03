@@ -1,4 +1,6 @@
-# Motion Project Organizer (CEP extension)
+# Amir Anderson Project Organizer
+
+By Amir Anderson · [LinkedIn](https://www.linkedin.com/in/amiranderson)
 
 An end-of-job handoff tool for After Effects 2022+. Run it before you close
 a project: it works out where the job lives on disk, builds the standard
@@ -114,11 +116,28 @@ Animations respect the system "reduce motion" setting.
 |---|---|---|
 | Copy fonts into FONTS | on | Copies installed font files used by text layers. Adobe Fonts can't be copied — they're listed in the report for the next person to activate. System fonts are skipped. **Check font licences before sending outside your organization.** |
 | Skip unused footage | off | Leaves out footage not used in any comp. |
-| Sort loose Project-panel items into bins | off | Footage sitting at the top of the Project panel is moved into bins named like the disk folders. Existing bins are left alone. |
 | Point Render Queue outputs to DELIVERABLES/EDIT | off | Retargets queued render outputs (same file names). |
 | Write a handoff report | on | `_HANDOFF_REPORT.txt`: what's missing, what went where, fonts, your note. |
 | Starter template | none | Point at your `z_PROJECT_TEMPLATE` folder to also copy its starter files (One Sheet, banners, `.aet`) into the project folder. Never overwrites; skips `.DS_Store`, `Thumbs.db` and Auto-Save folders. |
 | Handoff note | — | Free text added to the report ("Final is comp MAIN_1080…"). |
+
+## Inside the After Effects project
+
+Organize & Save also files every asset into Project-panel folders that
+mirror the disk structure — `FOOTAGE`, `AUDIO`, `SOURCE IMAGES › PNG`,
+`C4D › RENDER`, `PS` and so on. It never duplicates folders:
+
+- An existing folder with the same name is reused (capitals and extra
+  spaces don't matter) — at the top level first, then anywhere in the
+  project if exactly one folder has that name (e.g. `_ASSETS › AUDIO`).
+- Items already inside the right folder, or any subfolder of it (say
+  `FOOTAGE › Game 7`), are left where they are.
+- Layered Photoshop/Illustrator imports move together with their
+  "… Layers" folder.
+- Folders that end up empty because their items were filed are removed;
+  nothing else is deleted. Comps and solids aren't moved.
+
+Running it again creates nothing new — everything shows as already in place.
 
 ## What's preserved
 
@@ -171,7 +190,7 @@ Close After Effects, then run the installer for your platform from the
 It turns on CEP debug mode (needed for unsigned extensions) for CEP 9–12,
 copies the extension to your user extensions folder and keeps your edited
 `organizer-config.json` if you're reinstalling. Restart After Effects →
-**Window → Extensions → Motion Project Organizer**.
+**Window → Extensions → Amir Anderson Project Organizer**.
 
 `uninstall_mac.command` / `uninstall_windows.bat` remove it again.
 
@@ -196,11 +215,11 @@ Command Prompt (After Effects closed):
 
 ```bash
 # macOS
-"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/MotionProjectOrganizer_1.4.0.zxp
+"/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent" --install ~/Downloads/Amir_Anderson_Project_Organizer.zxp
 ```
 ```bat
 :: Windows
-"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\MotionProjectOrganizer_1.4.0.zxp"
+"C:\Program Files\Common Files\Adobe\Adobe Desktop Common\RemoteComponents\UPI\UnifiedPluginInstallerAgent\UnifiedPluginInstallerAgent.exe" /install "%USERPROFILE%\Downloads\Amir_Anderson_Project_Organizer.zxp"
 ```
 
 If you used the debug installer before, run `install/uninstall_mac.command`

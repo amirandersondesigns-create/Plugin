@@ -1,4 +1,6 @@
-/* Motion Project Organizer — panel theme
+/* Copyright (c) 2026 Amir Anderson. All rights reserved. Unauthorized copying,
+   recreation or distribution is prohibited. See LICENSE.txt. */
+/* Amir Anderson Project Organizer — panel theme
    Amir Anderson house style (same palette and components as the Animator
    Toolkit, AutoReframe and Motion Spell Checker). Motion is used to
    guide: the next action pulses, new content eases in, numbers count up.
@@ -776,6 +778,28 @@ code { background: #333333; }
 .ob-save circle { animation: ob-draw1 5.2s ease infinite; } .ob-save path { animation: ob-draw2 5.2s ease infinite; }
 @keyframes ob-draw1 { 0%, 70% { stroke-dashoffset: 95; } 82%, 94% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 95; } }
 @keyframes ob-draw2 { 0%, 80% { stroke-dashoffset: 26; } 88%, 94% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 26; } }
+
+/* ---------- Brand header + author credit (Animator Toolkit's .brand / About) ---------- */
+.brand { display: flex; align-items: center; gap: 6px; flex: none; min-width: 0; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; text-align: left; }
+.brand:hover .brand-name { color: var(--accent-2); }
+.brand-logo { width: 22px; height: 22px; flex: none; animation: bob 4s ease-in-out infinite; }
+.brand-name { font-weight: 650; color: var(--text-strong); letter-spacing: 0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .12s; }
+.about { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.about-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.about-k { width: 60px; color: var(--muted); font-size: 11px; }
+.about-v { display: flex; gap: 6px; flex-wrap: wrap; font-size: 11px; }
+.about-v.muted, .muted { color: var(--muted); }
+.credit { display: flex; align-items: center; gap: 10px; }
+.credit img { width: 36px; height: 36px; flex: none; }
+.credit-text { display: flex; flex-direction: column; gap: 2px; font-size: 11px; }
+.credit-text strong { color: var(--text-strong); }
+.about-v.license { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1 1 0; min-width: 0; }
+.btn svg { flex: none; }
+.terms-lead { color: var(--text) !important; }
+.terms { margin: 0 0 10px; }
+.terms dt { color: var(--text-strong); font-weight: 600; font-size: 11px; margin-top: 8px; }
+.terms dd { margin: 2px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.hint { color: var(--muted); font-size: 11px; }
 
 /* ---------- Keyframes ---------- */
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }

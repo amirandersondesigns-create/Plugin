@@ -1,7 +1,7 @@
 /*
  * Minimal CSInterface bridge for Adobe CEP panels.
  *
- * This implements only what Motion Project Organizer's panel needs to talk to
+ * This implements only what the Amir Anderson Project Organizer panel needs to talk to
  * ExtendScript (host/organizer.jsx): evalScript() and a couple of
  * environment getters. It intentionally does not reproduce Adobe's full
  * CSInterface.js (~700 lines of menu/theme/event plumbing this panel

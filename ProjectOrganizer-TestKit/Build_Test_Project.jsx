@@ -1,8 +1,8 @@
-// Build_Test_Project.jsx — Motion Project Organizer test kit
+// Build_Test_Project.jsx — Amir Anderson Project Organizer test kit
 // Run from After Effects: File → Scripts → Run Script File… → pick this file.
 //
 // Creates a deliberately messy "NBA Finals open" project from the files in
-// "Scattered Media", with a few traps that Motion Project Organizer should
+// "Scattered Media", with a few traps that Amir Anderson Project Organizer should
 // handle, then saves it into "Save Here". Nothing outside this kit is touched.
 (function () {
     var kit = new File($.fileName).parent;
@@ -90,6 +90,6 @@
     P.save(new File(saveDir.fsName + "/NBA_Finals_Open_v03.aep"));
 
     alert("Test project built and saved to:\n" + P.file.fsName +
-          "\n\nNow open Window → Extensions → Motion Project Organizer, click Analyze, then Organize & Save." +
+          "\n\nNow open Window → Extensions → Amir Anderson Project Organizer, click Analyze, then Organize & Save." +
           (log.length ? "\n\nNotes:\n• " + log.join("\n• ") : ""));
 })();
