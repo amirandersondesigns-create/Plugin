@@ -186,12 +186,12 @@ story += [
     figure([P("The panel has a header with the logo and name, a step tracker (<b>Locate</b>, <b>Analyze</b>, "
               "<b>Organize</b>), and a card for each part of the job. The step you're on pulses, finished steps turn "
               "into green checks, and the button you should press next gently glows."),
-            P("Click the logo or name at the top to visit Amir Anderson on LinkedIn. Click <b>?</b> for Help.")],
+            P("Click <b>?</b> at the top right for Help: how it works, where each kind of file goes and what the badges mean.")],
            "06_full_panel_after_analyze.png", "The panel after Analyze.", img_w=180),
     PageBreak(),
     P("The Panel at a Glance", h2),
     table(("Area", "What it's for"), [
-        ("Header", "Logo and name (opens LinkedIn) and the Help button."),
+        ("Header", "The plugin name and the Help button."),
         ("Steps", "Shows where you are: Locate, Analyze, Organize."),
         ("Project folder", "Where the job lives on disk, and where the project will be saved."),
         ("Collect & handoff", "The Analyze and Organize & Save buttons, and Options."),
@@ -199,7 +199,7 @@ story += [
         ("Tiles", "Files to collect, files already in place, missing files and the size to copy."),
         ("Plan", "Every file, grouped under the folder it will go to, with a badge."),
         ("Result", "What was collected, relinked and filed, with Open Project Folder and Report."),
-        ("Help", "How it works, where files go, badges, About (version, LinkedIn, license)."),
+        ("Help", "How it works, where each kind of file goes and what the badges mean."),
     ]),
     Spacer(1, 10),
     P("The Welcome", h2),
@@ -217,17 +217,6 @@ story += [
     figure(P("The tiles count the files to collect, the files already inside the project folder, missing files "
              "and the total size to copy. The Missing tile shakes and turns red when something can't be found."),
            "12_stat_tiles.png", "The tiles after Analyze."),
-    PageBreak(),
-    P("Getting Help Inside the Panel", h2),
-    figure([bullets(["Click <b>?</b> in the header for <b>How it works</b>, where each kind of file goes, what the "
-                     "badges mean, and how the Project panel is organized.",
-                     "<b>About</b> at the bottom shows the version, who made it with a <b>LinkedIn</b> button, the "
-                     "license and <b>Terms</b>, and <b>Replay the welcome</b>.",
-                     "Hover over the header to see “Amir Anderson on LinkedIn”."])],
-           "28_about_credit.png", "About: version, credit, license."),
-    figure(P("<b>Terms</b> opens a short summary of the license. The full terms are in LICENSE.txt in the plugin "
-             "folder; <b>Permissions &amp; questions</b> opens LinkedIn."),
-           "29_license_and_terms.png", "License &amp; Terms.", img_w=150),
     PageBreak(),
 ]
 
