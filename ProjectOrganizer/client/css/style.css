@@ -178,9 +178,12 @@ svg { width: 14px; height: 14px; flex: 0 0 auto; }
 .crumb.last { color: var(--text-strong); font-weight: 600; flex: 0 0 auto; }
 .crumb-sep { color: var(--faint); flex: 0 0 auto; font-size: 10px; }
 
-.root-reason { font-size: 10.5px; color: var(--muted); line-height: 1.45; }
-.root-row { display: flex; align-items: center; gap: 6px; }
-.root-row label.field { flex: 1 1 auto; min-width: 0; }
+#rootBox { display: flex; flex-direction: column; gap: 8px; }
+.root-reason { flex: 1 1 auto; min-width: 0; font-size: 10.5px; color: var(--muted); line-height: 1.45; }
+.root-row { display: flex; align-items: center; gap: 8px; }
+.root-row .btn { flex: 0 0 auto; }
+.name-field { display: flex; align-items: center; gap: 6px; }
+.name-field input[type="text"] { flex: 1 1 auto; min-width: 0; }
 
 label.field { display: flex; align-items: center; gap: 6px; }
 .field-label { font-size: 10.5px; color: var(--faint); white-space: nowrap; }

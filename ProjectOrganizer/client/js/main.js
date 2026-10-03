@@ -311,7 +311,7 @@
         el.rootModePill.className = "pill show " + root.mode;
 
         // Folder name only matters when we're making a new folder next to the .aep.
-        el.nameField.style.visibility = (!state.rootOverride && (root.mode === "new" || state.nameEdited)) ? "" : "hidden";
+        el.nameField.style.display = (!state.rootOverride && (root.mode === "new" || state.nameEdited)) ? "" : "none";
         el.btnResetRoot.style.display = state.rootOverride ? "" : "none";
     }
 

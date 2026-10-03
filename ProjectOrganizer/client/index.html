@@ -78,16 +78,17 @@
                         <svg class="root-icon"><use href="#i-folder"/></svg>
                         <div class="crumbs" id="rootCrumbs">—</div>
                     </div>
-                    <div class="root-reason" id="rootReason"></div>
+                    <!-- Explanation on the left, Auto / Change… on the right, same row -->
                     <div class="root-row">
-                        <label class="field" id="nameField">
-                            <span class="field-label">Folder name</span>
-                            <input type="text" id="txtProjectName" spellcheck="false" />
-                        </label>
-                        <span class="spacer"></span>
+                        <div class="root-reason" id="rootReason"></div>
                         <button id="btnResetRoot" class="btn btn-ghost btn-small" style="display:none">Auto</button>
                         <button id="btnChooseRoot" class="btn btn-ghost btn-small">Change…</button>
                     </div>
+                    <!-- Only shown when a new folder will be created next to the .aep -->
+                    <label class="field name-field" id="nameField" style="display:none">
+                        <span class="field-label">Folder name</span>
+                        <input type="text" id="txtProjectName" spellcheck="false" />
+                    </label>
                 </div>
             </section>
 
