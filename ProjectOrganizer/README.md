@@ -29,7 +29,7 @@ work added in the same style (marked `+`):
   C4D/                   .c4d (+ its tex/ folder)
     MODELS/            + .fbx .obj .abc .glb .usd …
     RENDER/              .exr, and image sequences from a C4D/Redshift/Octane path
-  DATA/                + .csv .tsv .json .mgjson — stats, scores, standings
+  DATA/                + .csv .tsv .json .mgjson — data files (stats, lists, tables)
   DELIVERABLES/          APS, AUDIO for ENCO, BILLBOARDS, EDIT, LOGOS,
                          ONE SHEET, SCENIC, STILLS
                        + REVIEW (approval renders), SOCIAL (9x16 / 1x1 / 4x5

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builds MPO_TestKit.zip: a deliberately messy "sports job" — media scattered
+# Builds MPO_TestKit.zip: a deliberately messy sample job — media scattered
 # across Downloads, a media volume, render folders, Google Earth Studio, etc. —
 # plus Build_Test_Project.jsx, which turns it into an After Effects project
 # ready for Amir Anderson Project Organizer to clean up.
@@ -23,8 +23,8 @@ ff -f lavfi -i testsrc2=s=1280x720:r=29.97:d=4 -f lavfi -i sine=f=440:d=4 -c:v l
 ff -f lavfi -i mandelbrot=s=1280x720:r=29.97 -t 3 -c:v prores_ks -profile:v 0 "$M/Downloads/AdobeStock_998877.mov"
 
 echo "Stills…"
-card x "0x552583" "$M/Downloads/Lakers_logo.png"
-card x "0x8a5a44" "$M/Downloads/LeBron_headshot.jpg"
+card x "0x552583" "$M/Downloads/Team_logo.png"
+card x "0x8a5a44" "$M/Downloads/Talent_headshot.jpg"
 card x "0x2e4a3a" "$M/Downloads/GettyImages-1234567.jpg"
 card x "0x303a52" "$M/Downloads/arena_wide.tif"
 card x "0x1d428a" "$M/Downloads/team_photo.png"
@@ -52,7 +52,7 @@ open(sys.argv[2], "wb").write(pdf("LEAGUE MARK"))   # PDF-compatible .ai
 PY
 
 echo "Layered PSD…"
-python3 "$HERE/make_psd.py" "$M/Design/scorebug.psd"
+python3 "$HERE/make_psd.py" "$M/Design/lower_third.psd"
 
 echo "Audio…"
 ff -f lavfi -i "sine=f=220:d=5" "$M/Audio/VO_intro_take2.wav"

@@ -42,17 +42,21 @@
 
 * { box-sizing: border-box; }
 
+/* The whole panel scrolls as a normal page (header + steps pinned on top).
+   Document scrolling is the one kind that always works inside After
+   Effects' CEP browser; a nested overflow box can stop taking the wheel. */
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100%;
     background: var(--bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Adobe Clean", Roboto, Helvetica, Arial, sans-serif;
     font-size: 12px;
     -webkit-font-smoothing: antialiased;
-    overflow: hidden;
 }
+/* Only the root scrolls; an overflow value on <body> would break the pinned top bar. */
+html { overflow-x: hidden; overflow-y: auto; }
 
 svg { width: 14px; height: 14px; flex: 0 0 auto; }
 
@@ -61,7 +65,8 @@ svg { width: 14px; height: 14px; flex: 0 0 auto; }
 ::-webkit-scrollbar-thumb { background: #333333; border-radius: 4px; border: 2px solid var(--bg); }
 ::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
 
-.app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+.app { display: flex; flex-direction: column; min-height: 100vh; }
+.topbar { position: sticky; top: 0; z-index: 30; background: var(--bg); }
 .spacer { flex: 1 1 auto; }
 
 /* ---------- Header ---------- */
@@ -73,25 +78,6 @@ svg { width: 14px; height: 14px; flex: 0 0 auto; }
     padding: 10px 12px 8px;
     background: var(--bg);
 }
-.brand-mark {
-    position: relative;
-    width: 30px; height: 30px;
-    border-radius: 8px;
-    background: rgba(74, 144, 217, 0.12);
-    border: 1px solid rgba(74, 144, 217, 0.35);
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-}
-.brand-mark svg { width: 18px; height: 18px; animation: bob 4s ease-in-out infinite; }
-.brand-spark {
-    position: absolute; top: -40%; left: -60%; width: 40%; height: 180%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
-    transform: rotate(25deg);
-    animation: sweep 5s ease-in-out infinite;
-}
-.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
-.brand-text h1 { margin: 0; font-size: 13.5px; font-weight: 700; color: var(--text-strong); letter-spacing: .2px; }
-.byline { font-size: 10px; color: var(--faint); }
 
 .icon-btn {
     width: 26px; height: 26px; border-radius: 50%;
@@ -133,7 +119,7 @@ svg { width: 14px; height: 14px; flex: 0 0 auto; }
 
 /* ---------- Scroll area ---------- */
 .scroll {
-    flex: 1 1 auto; min-height: 0; overflow-y: auto;
+    flex: 1 0 auto;
     padding: 10px 10px 14px;
     display: flex; flex-direction: column; gap: 10px;
 }
@@ -559,12 +545,6 @@ body { font-size: 12px; line-height: 1.4; color: var(--text); }
 
 /* Header: AA logo + product name, like the Toolkit */
 .header { padding: 10px 12px 8px; border-bottom: 1px solid var(--border-soft); }
-.brand-mark { width: 22px; height: 22px; border-radius: 50%; background: none; border: 0; overflow: visible; }
-.brand-mark img { width: 22px; height: 22px; display: block; animation: bob 4s ease-in-out infinite; }
-.brand-spark { display: none; }
-.brand-text { flex-direction: row; align-items: baseline; gap: 6px; }
-.brand-text h1 { font-size: 12px; font-weight: 650; letter-spacing: .01em; color: var(--text-strong); }
-.byline { font-size: 10px; color: var(--faint); }
 .icon-btn { width: 24px; height: 24px; border: 0; background: transparent; border-radius: 3px; }
 .icon-btn:hover { background: var(--hover); transform: none; }
 .icon-btn svg { width: 14px; height: 14px; }
@@ -800,6 +780,13 @@ code { background: #333333; }
 .terms dt { color: var(--text-strong); font-weight: 600; font-size: 11px; margin-top: 8px; }
 .terms dd { margin: 2px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
 .hint { color: var(--muted); font-size: 11px; }
+
+/* Badge legend in Help + spacing so badges never touch */
+.badge-legend { display: flex; flex-direction: column; gap: 6px; margin: 2px 0 8px; }
+.badge-row { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 11px; }
+.badge-row .badge { min-width: 64px; }
+.badge { padding: 3px 7px; line-height: 1.2; }
+.file-row { gap: 10px; }
 
 /* ---------- Keyframes ---------- */
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }

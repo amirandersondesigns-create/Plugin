@@ -276,7 +276,7 @@
         renderStepper();
     }
 
-    // Path as breadcrumbs: … › Desktop › NBA_Finals_Open
+    // Path as breadcrumbs: … › Desktop › Project_Name
     function renderCrumbs(path) {
         var parts = String(path).split(/[\\\/]+/).filter(function (s) { return s; });
         var show = parts.slice(-3);
@@ -730,7 +730,7 @@
         showProgress(true);
         setProgress(0, "Building folders…");
         setStatus("Organizing — keep After Effects open. You can cancel until the copy finishes.", "scanning");
-        el.scroll.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" });
+        window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" });
 
         callHost("csPrepare", gatherParams()).then(function (res) {
             if (!res.ok) return stop(res.error || "Couldn't prepare the project folder.", "error");
@@ -819,7 +819,7 @@
         el.resultBox.classList.add("open");
         el.btnOpenFolder.classList.add("guide");
         renderStepper();
-        el.scroll.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" });
+        window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" });
 
         setStatus(problems ? "Done. Check the notes in the result card before you hand off."
                            : "Done — everything is inside the project folder. Open it to hand off.",

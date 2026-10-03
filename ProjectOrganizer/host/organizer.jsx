@@ -21,7 +21,7 @@
 // ============================================================================
 
 var APP_NAME = "Amir Anderson Project Organizer";
-var VERSION = "1.5.0";
+var VERSION = "1.5.1";
 var AUTHOR = "Amir Anderson";
 
 // ==================== JSON (guard for older ExtendScript engines) ==========
@@ -77,7 +77,7 @@ var DEFAULT_CONFIG = {
         "AI",
         "AUDIO", "AUDIO/SFX", "AUDIO/VO",                     // added: sound effects, voiceover
         "C4D", "C4D/MODELS", "C4D/RENDER",                    // added: MODELS (.fbx .obj …)
-        "DATA",                                               // added: stats / scores CSV & JSON
+        "DATA",                                               // added: CSV & JSON data files
         "DELIVERABLES", "DELIVERABLES/APS", "DELIVERABLES/AUDIO for ENCO",
         "DELIVERABLES/BILLBOARDS", "DELIVERABLES/EDIT", "DELIVERABLES/LOGOS",
         "DELIVERABLES/ONE SHEET", "DELIVERABLES/REVIEW",      // added: review / approval renders
@@ -194,11 +194,22 @@ function allItems() {
     return out;
 }
 
-function itemById(id) {
-    try { if (app.project.itemByID) return app.project.itemByID(id); } catch (e) {}
+// Item lookup. Uses AE's own itemByID when present; otherwise an id -> item
+// table built once (instead of scanning the whole project for every lookup)
+// and rebuilt only when an id isn't found or the cached item was removed.
+var ITEM_INDEX = null;
+function indexItems() {
+    ITEM_INDEX = {};
     var p = app.project;
-    for (var i = 1; i <= p.numItems; i++) if (p.item(i).id === id) return p.item(i);
-    return null;
+    for (var i = 1; i <= p.numItems; i++) { var it = p.item(i); ITEM_INDEX[it.id] = it; }
+}
+function itemById(id) {
+    try { if (app.project.itemByID) { var direct = app.project.itemByID(id); if (direct) return direct; } } catch (e) {}
+    if (!ITEM_INDEX) indexItems();
+    var hit = ITEM_INDEX[id];
+    try { if (hit && hit.id === id) return hit; } catch (e2) {}   // removed since indexing
+    indexItems();
+    return ITEM_INDEX[id] || null;
 }
 
 // The panel tells us where the extension lives (csSetExtensionRoot); $.fileName
@@ -1176,6 +1187,7 @@ function csFinish() {
         var plan = ORG.plan, p = ORG.params;
         var log = { relinked: 0, errors: ORG.errors.slice(0), warnings: [], panel: null, rqPointed: 0 };
         ID_MAP = {};
+        ITEM_INDEX = null;
 
         app.beginUndoGroup("Organize Project");
         try {
@@ -1233,6 +1245,7 @@ function csFinish() {
 
 function csRevealItems(json) {
     try {
+        ITEM_INDEX = null;
         var p = parseParams(json), want = toSet(p.ids || []), n = 0;
         var items = allItems();
         for (var i = 0; i < items.length; i++) {

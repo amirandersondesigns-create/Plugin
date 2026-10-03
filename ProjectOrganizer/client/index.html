@@ -30,7 +30,8 @@
 
     <div class="app">
 
-        <!-- Header -->
+        <!-- Header + steps stay pinned while the panel scrolls -->
+        <div class="topbar">
         <header class="header">
             <!-- Logo + name open Amir Anderson's LinkedIn (same as the Animator Toolkit) -->
             <button class="brand" id="btnBrand" type="button" title="Amir Anderson on LinkedIn">
@@ -49,6 +50,7 @@
             <div class="rail"><span class="fill"></span></div>
             <div class="step" data-step="3"><span class="dot"><b>3</b><svg><use href="#i-check"/></svg></span><span class="lbl">Organize</span></div>
         </nav>
+        </div>
 
         <div class="scroll" id="scroll">
 
@@ -146,7 +148,7 @@
                             (One Sheet, banners, .aet). Existing files are never overwritten.</div>
 
                         <div class="opt-group-label">Handoff note</div>
-                        <textarea id="txtNotes" rows="2" placeholder="Optional — e.g. &quot;Final is comp MAIN_1080. Swap scores in CONTROL layer.&quot;"></textarea>
+                        <textarea id="txtNotes" rows="2" placeholder="Optional — e.g. &quot;Final is comp MAIN_1080. Edit text in the CONTROL layer.&quot;"></textarea>
 
                         <button class="link-inline" id="btnEditRules"><svg><use href="#i-doc"/></svg> Edit folder rules…</button>
                     </div>
@@ -236,7 +238,7 @@
             <button class="onboard-skip" id="onboardSkip">Skip</button>
 
             <div class="onboard-slide" data-slide="0">
-                <div class="onboard-illo"><svg class="ob-svg" viewBox="0 0 240 120"><g class="ob-tree"><use href="#i-folder" x="128" y="2" width="12" height="12" class="ob-root-ico"/><text x="143" y="11" class="ob-root">NBA_Finals_Open</text><path class="ob-branch" d="M134 15V108"/><g class="ob-row r0"><path class="ob-branch" d="M134 28h6"/><rect class="ob-hl" x="140" y="21" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="22" width="12" height="12" style="color:#8a8fd0"/><text x="157" y="31" class="ob-label">AE</text><circle class="ob-dot" cx="232" cy="28" r="2.2" style="fill:#8a8fd0"/></g><g class="ob-row r1"><path class="ob-branch" d="M134 44h6"/><rect class="ob-hl" x="140" y="37" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="38" width="12" height="12" style="color:#c9974a"/><text x="157" y="47" class="ob-label">AI</text><circle class="ob-dot" cx="232" cy="44" r="2.2" style="fill:#c9974a"/></g><g class="ob-row r2"><path class="ob-branch" d="M134 60h6"/><rect class="ob-hl" x="140" y="53" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="54" width="12" height="12" style="color:#6fa8da"/><text x="157" y="63" class="ob-label">PS</text><circle class="ob-dot" cx="232" cy="60" r="2.2" style="fill:#6fa8da"/></g><g class="ob-row r3"><path class="ob-branch" d="M134 76h6"/><rect class="ob-hl" x="140" y="69" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="70" width="12" height="12" style="color:#6a9955"/><text x="157" y="79" class="ob-label">AUDIO</text><circle class="ob-dot" cx="232" cy="76" r="2.2" style="fill:#6a9955"/></g><g class="ob-row r4"><path class="ob-branch" d="M134 92h6"/><rect class="ob-hl" x="140" y="85" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="86" width="12" height="12" style="color:#c4849a"/><text x="157" y="95" class="ob-label">FOOTAGE</text><circle class="ob-dot" cx="232" cy="92" r="2.2" style="fill:#c4849a"/></g><g class="ob-row r5"><path class="ob-branch" d="M134 108h6"/><rect class="ob-hl" x="140" y="101" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="102" width="12" height="12" style="color:#c9b458"/><text x="157" y="111" class="ob-label">SOURCE IMAGES</text><circle class="ob-dot" cx="232" cy="108" r="2.2" style="fill:#c9b458"/></g></g><g class="ob-file f0"><path class="ob-doc" d="M10 40h9l5 5v13h-14z"/><path class="ob-fold" d="M19 40v5h5"/><rect x="10" y="53" width="14" height="5" style="fill:#8a8fd0"/><text x="17" y="50" class="ob-ext">aep</text></g><g class="ob-file f1"><path class="ob-doc" d="M44 10h9l5 5v13h-14z"/><path class="ob-fold" d="M53 10v5h5"/><rect x="44" y="23" width="14" height="5" style="fill:#c9974a"/><text x="51" y="20" class="ob-ext">ai</text></g><g class="ob-file f2"><path class="ob-doc" d="M16 76h9l5 5v13h-14z"/><path class="ob-fold" d="M25 76v5h5"/><rect x="16" y="89" width="14" height="5" style="fill:#6fa8da"/><text x="23" y="86" class="ob-ext">psd</text></g><g class="ob-file f3"><path class="ob-doc" d="M52 46h9l5 5v13h-14z"/><path class="ob-fold" d="M61 46v5h5"/><rect x="52" y="59" width="14" height="5" style="fill:#6a9955"/><text x="59" y="56" class="ob-ext">wav</text></g><g class="ob-file f4"><path class="ob-doc" d="M20 8h9l5 5v13h-14z"/><path class="ob-fold" d="M29 8v5h5"/><rect x="20" y="21" width="14" height="5" style="fill:#c4849a"/><text x="27" y="18" class="ob-ext">mov</text></g><g class="ob-file f5"><path class="ob-doc" d="M50 84h9l5 5v13h-14z"/><path class="ob-fold" d="M59 84v5h5"/><rect x="50" y="97" width="14" height="5" style="fill:#c9b458"/><text x="57" y="94" class="ob-ext">png</text></g><g class="ob-done"><circle cx="236" cy="8" r="6"/><path d="M233 8l2 2 4-4"/></g></svg></div>
+                <div class="onboard-illo"><svg class="ob-svg" viewBox="0 0 240 120"><g class="ob-tree"><use href="#i-folder" x="128" y="2" width="12" height="12" class="ob-root-ico"/><text x="143" y="11" class="ob-root">Project_Name</text><path class="ob-branch" d="M134 15V108"/><g class="ob-row r0"><path class="ob-branch" d="M134 28h6"/><rect class="ob-hl" x="140" y="21" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="22" width="12" height="12" style="color:#8a8fd0"/><text x="157" y="31" class="ob-label">AE</text><circle class="ob-dot" cx="232" cy="28" r="2.2" style="fill:#8a8fd0"/></g><g class="ob-row r1"><path class="ob-branch" d="M134 44h6"/><rect class="ob-hl" x="140" y="37" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="38" width="12" height="12" style="color:#c9974a"/><text x="157" y="47" class="ob-label">AI</text><circle class="ob-dot" cx="232" cy="44" r="2.2" style="fill:#c9974a"/></g><g class="ob-row r2"><path class="ob-branch" d="M134 60h6"/><rect class="ob-hl" x="140" y="53" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="54" width="12" height="12" style="color:#6fa8da"/><text x="157" y="63" class="ob-label">PS</text><circle class="ob-dot" cx="232" cy="60" r="2.2" style="fill:#6fa8da"/></g><g class="ob-row r3"><path class="ob-branch" d="M134 76h6"/><rect class="ob-hl" x="140" y="69" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="70" width="12" height="12" style="color:#6a9955"/><text x="157" y="79" class="ob-label">AUDIO</text><circle class="ob-dot" cx="232" cy="76" r="2.2" style="fill:#6a9955"/></g><g class="ob-row r4"><path class="ob-branch" d="M134 92h6"/><rect class="ob-hl" x="140" y="85" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="86" width="12" height="12" style="color:#c4849a"/><text x="157" y="95" class="ob-label">FOOTAGE</text><circle class="ob-dot" cx="232" cy="92" r="2.2" style="fill:#c4849a"/></g><g class="ob-row r5"><path class="ob-branch" d="M134 108h6"/><rect class="ob-hl" x="140" y="101" width="98" height="14" rx="2"/><use href="#i-folder" x="142" y="102" width="12" height="12" style="color:#c9b458"/><text x="157" y="111" class="ob-label">SOURCE IMAGES</text><circle class="ob-dot" cx="232" cy="108" r="2.2" style="fill:#c9b458"/></g></g><g class="ob-file f0"><path class="ob-doc" d="M10 40h9l5 5v13h-14z"/><path class="ob-fold" d="M19 40v5h5"/><rect x="10" y="53" width="14" height="5" style="fill:#8a8fd0"/><text x="17" y="50" class="ob-ext">aep</text></g><g class="ob-file f1"><path class="ob-doc" d="M44 10h9l5 5v13h-14z"/><path class="ob-fold" d="M53 10v5h5"/><rect x="44" y="23" width="14" height="5" style="fill:#c9974a"/><text x="51" y="20" class="ob-ext">ai</text></g><g class="ob-file f2"><path class="ob-doc" d="M16 76h9l5 5v13h-14z"/><path class="ob-fold" d="M25 76v5h5"/><rect x="16" y="89" width="14" height="5" style="fill:#6fa8da"/><text x="23" y="86" class="ob-ext">psd</text></g><g class="ob-file f3"><path class="ob-doc" d="M52 46h9l5 5v13h-14z"/><path class="ob-fold" d="M61 46v5h5"/><rect x="52" y="59" width="14" height="5" style="fill:#6a9955"/><text x="59" y="56" class="ob-ext">wav</text></g><g class="ob-file f4"><path class="ob-doc" d="M20 8h9l5 5v13h-14z"/><path class="ob-fold" d="M29 8v5h5"/><rect x="20" y="21" width="14" height="5" style="fill:#c4849a"/><text x="27" y="18" class="ob-ext">mov</text></g><g class="ob-file f5"><path class="ob-doc" d="M50 84h9l5 5v13h-14z"/><path class="ob-fold" d="M59 84v5h5"/><rect x="50" y="97" width="14" height="5" style="fill:#c9b458"/><text x="57" y="94" class="ob-ext">png</text></g><g class="ob-done"><circle cx="236" cy="8" r="6"/><path d="M233 8l2 2 4-4"/></g></svg></div>
                 <h2>Welcome to the Amir Anderson Project Organizer</h2>
                 <p>Before you hand off a job, it gathers every file your project uses into one clean folder
                     structure — AE, AI, PS, AUDIO, FOOTAGE, SOURCE IMAGES — so nothing is ever missing.</p>
@@ -289,7 +291,7 @@
                     <div class="legend-row"><svg style="color:#c9974a"><use href="#i-folder"/></svg><b>AI</b><span>.ai .eps .svg</span></div>
                     <div class="legend-row"><svg style="color:#6a9955"><use href="#i-folder"/></svg><b>AUDIO</b><span>music &amp; nat sound · VO · SFX (by file name)</span></div>
                     <div class="legend-row"><svg style="color:#5fa8a0"><use href="#i-folder"/></svg><b>C4D</b><span>.c4d · MODELS .fbx .obj … · RENDER .exr &amp; 3D passes</span></div>
-                    <div class="legend-row"><svg style="color:#5fa8a0"><use href="#i-folder"/></svg><b>DATA</b><span>.csv .json stats and scores</span></div>
+                    <div class="legend-row"><svg style="color:#5fa8a0"><use href="#i-folder"/></svg><b>DATA</b><span>.csv .json data files</span></div>
                     <div class="legend-row"><svg style="color:#8a8fd0"><use href="#i-folder"/></svg><b>DELIVERABLES</b><span>your exports · REVIEW · SOCIAL · THUMBNAILS …</span></div>
                     <div class="legend-row"><svg style="color:#6a9955"><use href="#i-folder"/></svg><b>ESP_EarthStudioPro</b><span>anything from a Google Earth Studio folder</span></div>
                     <div class="legend-row"><svg style="color:#c4849a"><use href="#i-folder"/></svg><b>FOOTAGE</b><span>video &amp; image sequences · STOCK (Getty, AP …)</span></div>
@@ -301,11 +303,13 @@
                 <p style="margin-top:8px">Change any of this with <b>Options → Edit folder rules…</b></p>
 
                 <h3>Badges</h3>
-                <p><span class="badge copy">Copy</span> will be copied in ·
-                   <span class="badge reuse">Relink</span> identical copy already there ·
-                   <span class="badge inplace">In place</span> already inside the folder ·
-                   <span class="badge missing">Missing</span> can't be found ·
-                   <span class="badge unused">Skip</span> unused, left out</p>
+                <div class="badge-legend">
+                    <div class="badge-row"><span class="badge copy">Copy</span><span>will be copied in</span></div>
+                    <div class="badge-row"><span class="badge reuse">Relink</span><span>identical copy already there</span></div>
+                    <div class="badge-row"><span class="badge inplace">In place</span><span>already inside the folder</span></div>
+                    <div class="badge-row"><span class="badge missing">Missing</span><span>can't be found — relink in AE</span></div>
+                    <div class="badge-row"><span class="badge unused">Skip</span><span>unused, left out</span></div>
+                </div>
 
                 <h3>Layered Photoshop / Illustrator files</h3>
                 <p>Files imported as a composition keep every layer when relinked. If a layer can't be matched

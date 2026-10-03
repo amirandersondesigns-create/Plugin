@@ -1,7 +1,7 @@
 // Build_Test_Project.jsx — Amir Anderson Project Organizer test kit
 // Run from After Effects: File → Scripts → Run Script File… → pick this file.
 //
-// Creates a deliberately messy "NBA Finals open" project from the files in
+// Creates a deliberately messy "sample project" from the files in
 // "Scattered Media", with a few traps that Amir Anderson Project Organizer should
 // handle, then saves it into "Save Here". Nothing outside this kit is touched.
 (function () {
@@ -36,8 +36,8 @@
     // --- Footage from all over the place ---
     var clip    = imp("Volumes_Media/game7/game7_highlight.mov");
     var stock   = imp("Downloads/AdobeStock_998877.mov");
-    var logo    = imp("Downloads/Lakers_logo.png");
-    var head    = imp("Downloads/LeBron_headshot.jpg");
+    var logo    = imp("Downloads/Team_logo.png");
+    var head    = imp("Downloads/Talent_headshot.jpg");
     var getty   = imp("Downloads/GettyImages-1234567.jpg");
     var team1   = imp("Downloads/team_photo.png");
     var team2   = imp("Downloads/Other/team_photo.png");
@@ -52,7 +52,7 @@
     var crowd   = imp("Renders/crowd_seq/crowd_0001.png", { seq: true });
     var trophy  = imp("C4D_renders/trophy_beauty_0001.exr", { seq: true });
     var earth   = imp("Projects/Google Earth Studio/arena_flyin/footage/arena_flyin_000.jpeg", { seq: true });
-    var bug     = imp("Design/scorebug.psd", { comp: true });   // layered PSD → comp + layer footage
+    var bug     = imp("Design/lower_third.psd", { comp: true });   // layered PSD → comp + layer footage
     var unused  = imp("Downloads/arena_wide.tif");               // imported but never used
 
     // --- Traps the organizer must preserve ---
@@ -63,7 +63,7 @@
     var list = [clip, stock, logo, head, getty, team1, team2, stats, mark, ref, vo, sfx, music, csv, json, crowd, trophy, earth, bug];
     for (var i = 0; i < list.length; i++) add(main, list[i]);
 
-    try { main.layers.addText("NBA FINALS · GAME 7"); } catch (e) { log.push("Couldn't add text layer"); }
+    try { main.layers.addText("SAMPLE TITLE"); } catch (e) { log.push("Couldn't add text layer"); }
 
     // --- A missing file: import a temporary copy, then delete it ---
     if (clip) {
@@ -87,7 +87,7 @@
 
     // --- Save somewhere that isn't organized yet ---
     var saveDir = new Folder(kit.fsName + "/Save Here"); saveDir.create();
-    P.save(new File(saveDir.fsName + "/NBA_Finals_Open_v03.aep"));
+    P.save(new File(saveDir.fsName + "/Sample_Project_v03.aep"));
 
     alert("Test project built and saved to:\n" + P.file.fsName +
           "\n\nNow open Window → Extensions → Amir Anderson Project Organizer, click Analyze, then Organize & Save." +
