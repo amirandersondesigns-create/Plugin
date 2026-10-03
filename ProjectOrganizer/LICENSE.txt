@@ -7,7 +7,7 @@
 ABOUT THE PLUGIN
 ---------------------------------------------------------------------------
  Product:    Amir Anderson Project Organizer
- Version:    1.5.2
+ Version:    1.0
  Made by:    Amir Anderson
  Price:      Free
  Works with: Adobe After Effects 2022 (22.0) or later, macOS or Windows

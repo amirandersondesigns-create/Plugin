@@ -23,7 +23,7 @@ fi
 rm -rf "$DEST"
 mkdir -p "$DEST"
 cp -R "$SRC/." "$DEST/"
-rm -rf "$DEST/install"
+rm -rf "$DEST/install" "$DEST/tools" "$DEST/docs" "$DEST/dist"
 find "$DEST" -name .DS_Store -delete
 if [ -n "$KEEP" ]; then
     cp "$KEEP" "$DEST/config/organizer-config.json"

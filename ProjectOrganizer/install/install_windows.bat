@@ -13,7 +13,7 @@ echo Enabling CEP debug mode...
 for %%v in (9 10 11 12) do reg add "HKCU\Software\Adobe\CSXS.%%v" /v PlayerDebugMode /t REG_SZ /d 1 /f >nul
 
 echo Copying extension to: %DEST%
-robocopy "%SRC%" "%DEST%" /MIR /XD install /XF .DS_Store organizer-config.json /NFL /NDL /NJH /NJS /NP >nul
+robocopy "%SRC%" "%DEST%" /MIR /XD install tools docs dist /XF .DS_Store organizer-config.json /NFL /NDL /NJH /NJS /NP >nul
 if %ERRORLEVEL% GEQ 8 (
     echo Copy failed. Close After Effects and try again.
     pause

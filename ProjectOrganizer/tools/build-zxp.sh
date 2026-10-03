@@ -1,0 +1,46 @@
+#!/bin/bash
+# Builds a self-signed dist/Amir_Anderson_Project_Organizer.zxp with Adobe's
+# ZXPSignCmd. On macOS/Windows use the native ZXPSignCmd (put it on PATH or
+# set ZXPSIGN). On Linux it runs the Windows build under Wine.
+#
+#   ZXP_PASSWORD=... bash tools/build-zxp.sh
+#
+# The certificate (dist/cert.p12) is created on first run and reused, so
+# later builds install as updates. Keep it out of git.
+set -e
+cd "$(dirname "$0")/.."
+PASS="${ZXP_PASSWORD:-project-organizer}"
+mkdir -p dist
+DIST="$(cd dist && pwd)"
+
+if [ -n "$ZXPSIGN" ]; then
+    SIGN=("$ZXPSIGN")
+elif command -v ZXPSignCmd >/dev/null; then
+    SIGN=(ZXPSignCmd)
+else
+    command -v wine >/dev/null || { echo "Need ZXPSignCmd on PATH, or Wine to run the Windows build." >&2; exit 1; }
+    EXE="$DIST/ZXPSignCmd.exe"
+    [ -f "$EXE" ] || curl -fsSL -o "$EXE" https://raw.githubusercontent.com/Adobe-CEP/CEP-Resources/master/ZXPSignCMD/4.1.103/win64/ZXPSignCmd.exe
+    export WINEDEBUG=-all
+    SIGN=(wine "$EXE")
+fi
+
+# Stage only what the extension needs. Paths passed to the signer are
+# relative (inside dist/): under Wine an absolute "/home/..." path reads as
+# a Windows command-line switch.
+cd "$DIST"
+rm -rf stage && mkdir -p stage/com.aanders.motionprojectorganizer
+(cd .. && cp -R CSXS client host config LICENSE.txt "$DIST/stage/com.aanders.motionprojectorganizer/" && cp README.md "$DIST/stage/com.aanders.motionprojectorganizer/INSTALL.md")
+find stage -name .DS_Store -delete
+
+[ -f cert.p12 ] || "${SIGN[@]}" -selfSignedCert US NY "Amir Anderson" "Amir Anderson Project Organizer" "$PASS" cert.p12 -validityDays 3650
+
+OUT="Amir_Anderson_Project_Organizer.zxp"
+rm -f "$OUT"
+"${SIGN[@]}" -sign stage/com.aanders.motionprojectorganizer signed.zxp cert.p12 "$PASS"
+# Normalize the archive (mimetype first, Unix permissions), then re-verify.
+python3 ../tools/repack-zxp.py signed.zxp "$OUT"
+rm -f signed.zxp
+"${SIGN[@]}" -verify "$OUT"
+rm -rf stage
+echo "$DIST/$OUT"

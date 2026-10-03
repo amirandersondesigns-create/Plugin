@@ -21,7 +21,7 @@
 // ============================================================================
 
 var APP_NAME = "Amir Anderson Project Organizer";
-var VERSION = "1.5.2";
+var VERSION = "1.0.0";
 var AUTHOR = "Amir Anderson";
 
 // ==================== JSON (guard for older ExtendScript engines) ==========

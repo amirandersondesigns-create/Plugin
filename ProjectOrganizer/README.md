@@ -2,6 +2,9 @@
 
 By Amir Anderson · [LinkedIn](https://www.linkedin.com/in/amiranderson)
 
+- **Version:** 1.0.0
+- **Works with:** Adobe After Effects 2022 (22.0) or later, macOS or Windows
+
 An end-of-job handoff tool for After Effects 2022+. Run it before you close
 a project: it works out where the job lives on disk, builds the standard
 project folder structure, **copies** every file the project uses into the
@@ -166,7 +169,9 @@ client/js/main.js             Panel logic — renders state, talks to ExtendScri
 client/js/CSInterface.js      Minimal bridge to the CEP host
 host/organizer.jsx            ExtendScript engine — analyze, copy, relink, save, report
 config/organizer-config.json  Folder names and sorting rules (editable)
-install/                      Mac/Windows installers, uninstallers, .zxp packager
+install/                      Mac/Windows installers, uninstallers, diagnostics
+tools/                        build-zxp.sh, package.sh, repack-zxp.py, make-guide.py
+docs/                         Quick Start Guide PDF and UI screenshots
 ```
 
 A test kit (messy sample media + a script that builds a test project) lives
@@ -225,30 +230,29 @@ Command Prompt (After Effects closed):
 If you used the debug installer before, run `install/uninstall_mac.command`
 / `uninstall_windows.bat` first so two copies don't clash.
 
-**Build:**
-
-With Adobe's `ZXPSignCmd` on your PATH (Mac/Windows builds only — on
-Linux the Windows build runs fine under Wine):
+**Build (same tools as the Animator Toolkit):**
 
 ```bash
-install/package_zxp.sh              # creates a self-signed cert the first time
-install/package_zxp.sh my.p12 pass  # or sign with your own certificate
+ZXP_PASSWORD=... bash tools/build-zxp.sh   # dist/Amir_Anderson_Project_Organizer.zxp (signed)
+bash tools/package.sh                       # dist/Amir_Anderson_Project_Organizer.zip
+python3 tools/make-guide.py                 # docs/Project_Organizer_Quick_Start_Guide.pdf
 ```
 
-It stages a clean copy (no installers), signs and timestamps it,
-sets normal file permissions inside the package (see below)
-and writes `install/MotionProjectOrganizer.zxp`. Users install that with
-Anastasiy's Extension Manager or Adobe's `ExManCmd`.
+`build-zxp.sh` uses Adobe's `ZXPSignCmd` (on PATH, or `ZXPSIGN=…`; on Linux
+it runs the Windows build under Wine). The self-signed certificate
+(`dist/cert.p12`) is created on the first run and reused, so later builds
+install as updates — keep it and its password safe, and out of git. After
+signing, `tools/repack-zxp.py` puts `mimetype` first and gives every file
+normal permissions without touching the signature (a package signed under
+Windows/Wine otherwise fails Adobe's installer with **status = -160**), then
+the package is verified.
 
+The user guide is built from `docs/screenshots/` (one per section of the
+panel, taken with a generic sample project) by `tools/make-guide.py`
+(needs `pip install reportlab`).
 
 The panel is fully self-contained: it loads only its own local files, opens
 no debug port and makes no network or localhost connections.
-
-> **"Failed to install, status = -160"** from Adobe's installer means the
-> files inside the `.zxp` have no read permissions — this happens when a
-> package is signed on Windows (or with the Windows signer under Wine).
-> `install/fix_zxp_permissions.py` repairs a package in place without
-> touching the signature; `package_zxp.sh` runs it automatically.
 
 > **Panel missing from Window → Extensions?** CEP silently skips any
 > extension whose `CSXS/manifest.xml` doesn't match Adobe's
